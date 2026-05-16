@@ -1,4 +1,4 @@
-# 🚀 MASAR | منصة مسار التعليمية
+#  MASAR | منصة مسار التعليمية
 
 **MASAR** is a premium, futuristic educational platform designed for the modern learner. Built with high-end aesthetics and a "deep-space" dark mode, it provides an immersive experience for mastering digital skills.
 
@@ -11,12 +11,12 @@
 
 ## ✨ Key Features
 
-- 🌌 **Deep Space Dark Mode**: A premium, high-contrast UI designed for long learning sessions.
-- 🧪 **Gamified Learning**: Interactive tracks, levels, and XP systems.
-- ⚡ **Real-time Interaction**: Powered by React and Framer Motion for buttery-smooth animations.
-- 🛠️ **Professional Dashboard**: Track your progress across multiple specialized technical tracks.
-- 🔐 **Secure Auth System**: Elegant, terminal-style authentication portal.
-- 🌍 **Bilingual Support**: Fully localized in Arabic (RTL) and English (LTR).
+-  **Deep Space Dark Mode**: A premium, high-contrast UI designed for long learning sessions.
+-  **Gamified Learning**: Interactive tracks, levels, and XP systems.
+-  **Real-time Interaction**: Powered by React and Framer Motion for buttery-smooth animations.
+-  **Professional Dashboard**: Track your progress across multiple specialized technical tracks.
+-  **Secure Auth System**: Elegant, terminal-style authentication portal.
+-  **Bilingual Support**: Fully localized in Arabic (RTL) and English (LTR).
 
 ---
 
@@ -31,7 +31,7 @@
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -62,17 +62,17 @@
 
 ---
 
-## 📸 Preview
+##  Preview
 
 *Check out the sleek new Auth portal and the immersive learning tracks!*
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome contributions! Please feel free to submit a Pull Request.
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License.
 
