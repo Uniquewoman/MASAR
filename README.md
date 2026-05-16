@@ -47,7 +47,7 @@
 
 2. **Navigate to the project directory**
    ```bash
-   cd my-codex-app
+   cd MASAR
    ```
 
 3. **Install dependencies**
