@@ -132,6 +132,38 @@ const [dragIndex, setDragIndex] = useState(null);
     saveUnlockedLevel
   ]);
 
+// يوزّع الأسئلة بحيث يتبادل الموضوع والنوع بدل أن يتجمّعا:
+// نجمع الأسئلة في مجموعات حسب الموضوع، ثم نسحب دورياً من أكبر مجموعة
+// متبقية مع تجنّب تكرار موضوع أو نوع السؤال السابق ما أمكن.
+const spreadOut = (items) => {
+  const buckets = new Map();
+  items.forEach(q => {
+    const key = q.topic || 'عام';
+    if (!buckets.has(key)) buckets.set(key, []);
+    buckets.get(key).push(q);
+  });
+
+  const lists = [...buckets.values()];
+  const out = [];
+
+  while (out.length < items.length) {
+    lists.sort((a, b) => b.length - a.length);
+    const prev = out[out.length - 1];
+    const prevTopic = prev ? (prev.topic || 'عام') : null;
+    const prevType = prev ? prev.type : null;
+
+    const available = lists.filter(l => l.length > 0);
+    // الأفضلية: موضوع مختلف ونوع مختلف، ثم موضوع مختلف، ثم أي متاح
+    const pick =
+      available.find(l => (l[0].topic || 'عام') !== prevTopic && l[0].type !== prevType)
+      || available.find(l => (l[0].topic || 'عام') !== prevTopic)
+      || available[0];
+
+    out.push(pick.shift());
+  }
+  return out;
+};
+
 const loadQuestions = async (level) => {
   setLoading(true);
 
@@ -214,7 +246,9 @@ const loadQuestions = async (level) => {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
-  const session = shuffled.slice(0, PULL_SIZE);
+  // 8. توزيع يضمن ألا يتجمّع نفس الموضوع أو نفس النوع في أسئلة متتالية
+  //    (الخلط العشوائي وحده قد يُخرج عدة أسئلة من نفس الموضوع وراء بعض)
+  const session = spreadOut(shuffled.slice(0, PULL_SIZE));
   console.log(`✅ بنك المستوى ${pool.length} سؤال · متبقٍ ${remaining.length} · سُحب ${session.length} · المطلوب ${need} صحيحة · دورة ${activeCycle}`);
 
   setSessionQuestions(session);
