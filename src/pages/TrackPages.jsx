@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Clock, AlertTriangle, ArrowRight, Lock, CheckCircle2, XCircle, ArrowLeft } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
@@ -293,35 +293,44 @@ function submitOrdering() {
   scoreAnswer(correct);
 }
 
-// تحريك عنصر لأعلى أو لأسفل في قائمة الترتيب
-const moveItem = (from, to) => {
+// السحب بالإصبع أو بالماوس — Pointer Events تدعم اللمس، بعكس draggable من HTML
+const rowRefs = useRef([]);
+// موضع العنصر المسحوب يُحفظ في ref لا في state، لأن الحالة لا تتحدّث
+// فوراً أثناء حركة الإصبع فتقرأ الدالة قيمة قديمة ولا يحدث أي ترتيب
+const dragFrom = useRef(null);
+
+const onPointerDown = (e, index) => {
   if (selectedAns !== null) return;
-  if (to < 0 || to >= orderItems.length) return;
-  setOrderItems(prev => {
-    const next = [...prev];
-    [next[from], next[to]] = [next[to], next[from]];
-    return next;
-  });
+  try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* بعض المتصفحات لا تدعمه */ }
+  dragFrom.current = index;
+  setDragIndex(index);
 };
 
-// السحب والإفلات لإعادة الترتيب
-const onDragStart = (e, index) => {
-  if (selectedAns !== null) return;
-  setDragIndex(index);
-  e.dataTransfer.effectAllowed = 'move';
-};
-
-const onDragOver = (e, index) => {
-  if (selectedAns !== null || dragIndex === null) return;
-  e.preventDefault();
-  if (index === dragIndex) return;
+const onPointerMove = (e) => {
+  const from = dragFrom.current;
+  if (from === null || selectedAns !== null) return;
+  const y = e.clientY;
+  const over = rowRefs.current.findIndex(el => {
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    return y >= r.top && y <= r.bottom;
+  });
+  if (over === -1 || over === from) return;
   setOrderItems(prev => {
     const next = [...prev];
-    const [moved] = next.splice(dragIndex, 1);
-    next.splice(index, 0, moved);
+    const [moved] = next.splice(from, 1);
+    next.splice(over, 0, moved);
     return next;
   });
-  setDragIndex(index);
+  dragFrom.current = over;
+  setDragIndex(over);
+};
+
+const endDrag = (e) => {
+  if (dragFrom.current === null) return;
+  try { e.currentTarget.releasePointerCapture(e.pointerId); } catch { /* تجاهل */ }
+  dragFrom.current = null;
+  setDragIndex(null);
 };
 
 // منطق الاحتساب المشترك لكل الأنواع
@@ -894,7 +903,7 @@ loadQuestions(lvl);
               return (
                 <div className="max-w-2xl mx-auto">
                   <p className="text-center text-white/40 font-bold text-xs mb-6">
-                    {t('اسحب الخطوة لأعلى أو لأسفل حتى يصبح الترتيب صحيحاً', 'Drag each step up or down until the order is right')}
+                    {t('المس الخطوة واسحبها بإصبعك لأعلى أو لأسفل حتى يصبح الترتيب صحيحاً', 'Touch and drag a step up or down until the order is right')}
                   </p>
                   <div className="flex flex-col gap-3">
                     {orderItems.map((item, i) => {
@@ -906,12 +915,13 @@ loadQuestions(lvl);
                       return (
                         <div
                           key={item.originalIndex}
-                          draggable={!answered}
-                          onDragStart={(e) => onDragStart(e, i)}
-                          onDragOver={(e) => onDragOver(e, i)}
-                          onDragEnd={() => setDragIndex(null)}
-                          onDrop={(e) => { e.preventDefault(); setDragIndex(null); }}
-                          className={`p-4 rounded-2xl border flex items-center gap-4 transition-all ${cls} ${!answered ? 'cursor-grab active:cursor-grabbing' : ''} ${dragging ? 'opacity-60' : ''}`}
+                          ref={(el) => { rowRefs.current[i] = el; }}
+                          onPointerDown={(e) => onPointerDown(e, i)}
+                          onPointerMove={onPointerMove}
+                          onPointerUp={endDrag}
+                          onPointerCancel={endDrag}
+                          style={{ touchAction: answered ? 'auto' : 'none' }}
+                          className={`p-4 rounded-2xl border flex items-center gap-4 ${cls} ${!answered ? 'cursor-grab active:cursor-grabbing select-none' : ''} ${dragging ? 'opacity-70 scale-[1.03] shadow-2xl z-10' : 'transition-all'}`}
                         >
                           {!answered && (
                             <span className="shrink-0 text-white/25 text-lg leading-none select-none" aria-hidden="true">⠿</span>
@@ -920,24 +930,6 @@ loadQuestions(lvl);
                             {i + 1}
                           </span>
                           <span className="flex-1 font-bold text-sm md:text-base">{item.text}</span>
-                          {!answered && (
-                            <span className="shrink-0 flex flex-col gap-1">
-                              <button
-                                type="button"
-                                aria-label={t('تحريك لأعلى', 'Move up')}
-                                onClick={() => moveItem(i, i - 1)}
-                                disabled={i === 0}
-                                className="w-7 h-6 rounded-lg bg-white/10 text-white/70 text-xs font-black disabled:opacity-20 hover:bg-white/20 transition-all"
-                              >▲</button>
-                              <button
-                                type="button"
-                                aria-label={t('تحريك لأسفل', 'Move down')}
-                                onClick={() => moveItem(i, i + 1)}
-                                disabled={i === orderItems.length - 1}
-                                className="w-7 h-6 rounded-lg bg-white/10 text-white/70 text-xs font-black disabled:opacity-20 hover:bg-white/20 transition-all"
-                              >▼</button>
-                            </span>
-                          )}
                           {answered && !ok && (
                             <span className="shrink-0 text-[10px] font-black text-white/40">
                               {t(`مكانه ${item.originalIndex + 1}`, `goes to ${item.originalIndex + 1}`)}
