@@ -5,7 +5,11 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'my-codex-app', 'backend']),
+  {
+    files: ['src/data/questionSeeder.js'],
+    languageOptions: { globals: globals.node },
+  },
   {
     files: ['**/*.{js,jsx}'],
     extends: [

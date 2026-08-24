@@ -1,30 +1,21 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-const BIG_DATABASE = {
+// نُقلت هذه الأسئلة كما هي من src/.tailwind.config.js (كانت مدسوسة هناك بالخطأ).
+// لم يُحذف ولم يُعدّل أي سؤال — فقط نُقلت إلى مكانها الصحيح.
+export const BIG_DATABASE = {
   CS: { // تخصص السايبر
     level1: [ // 200 سؤال للمستوى الأول (أمثلة)
-      { 
+      {
         type: 'multiple-choice',
-        q: "ماذا يرمز حرف C في مثلث CIA؟", 
-        options: ["Confidentiality", "Control", "Cyber", "Cloud"], 
-        correct: 0, 
-        time: 30 
+        q: "ماذا يرمز حرف C في مثلث CIA؟",
+        options: ["Confidentiality", "Control", "Cyber", "Cloud"],
+        correct: 0,
+        time: 30
       },
-      { 
-        type: 'true-false', 
-        q: "هل يعتبر بروتوكول HTTP أكثر أماناً من HTTPS؟", 
-        options: ["صح", "خطأ"], 
-        correct: 1, 
-        time: 20 
+      {
+        type: 'true-false',
+        q: "هل يعتبر بروتوكول HTTP أكثر أماناً من HTTPS؟",
+        options: ["صح", "خطأ"],
+        correct: 1,
+        time: 20
       },
       // ... كرر هذا الهيكل حتى 200 سؤال
     ],
@@ -45,3 +36,5 @@ const BIG_DATABASE = {
     ]
   }
 };
+
+export default BIG_DATABASE;

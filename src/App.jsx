@@ -7,19 +7,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from './context/AppContext';
 
 // Import New Pages
-import { Auth } from './pages/Auth';
+import { supabase } from './supabaseClient'; // تأكدي من المسار
+import Auth from './pages/Auth';
 import { Dashboard } from './pages/Dashboard';
 import { Lessons, QuestionBank, Challenges } from './pages/Features';
-import { Analytics } from './pages/Analytics';
-import { ProfileSettings } from './pages/ProfileSettings';
-import { Programs, AboutSDA } from './pages/ProgramsInfo';
-import { TrackHome, PlayLevel } from './pages/TrackPages';
-import { Community } from './pages/Community';
 
+import { ProfileSettings } from './pages/ProfileSettings';
+
+import { TrackHome, PlayLevel } from './pages/TrackPages';
+import { SettingsPage } from './pages/SettingsPage';
+import { JourneyPage } from "./pages/JourneyPage";
 const PATHS_CONFIG = {
-  SE: {
-    id: 'SE',
-    mainTitle: "Software Engineering", mainTitle_ar: "هندسة البرمجيات",
+  Programming: {
+    id: 'Programming',
+    mainTitle: "Programming", mainTitle_ar: "البرمجة",
     slogan: "Building robust systems from abstract thoughts.", slogan_ar: "بناء أنظمة برمجية متينة من أفكار مجردة.",
     color: "#0d9488",
     theme: { bg: 'from-[#020617] via-[#061c2e] to-[#042f2e]' },
@@ -27,50 +28,81 @@ const PATHS_CONFIG = {
     loadingMsgs: ["Compiling Modules...", "Linking Dependencies...", "Initializing Kernel...", "Optimizing Runtime..."],
     loadingMsgs_ar: ["جاري تجميع الوحدات...", "ربط التبعيات...", "تهيئة النواة...", "تحسين وقت التشغيل..."],
   },
-  AI: {
-    id: 'AI',
+  ArtificialIntelligence: {
+    id: 'ArtificialIntelligence',
     mainTitle: "Artificial Intelligence", mainTitle_ar: "الذكاء الاصطناعي",
-    slogan: "Simulating neural pathways to evolve technology.", slogan_ar: "محاكاة المسارات العصبية لتطوير التكنولوجيا.",
-    color: "#a855f7",
+    slogan: "Building intelligent systems for the future.",
+    slogan_ar: "بناء أنظمة ذكية لمستقبل أكثر تطورًا.", color: "#a855f7",
     theme: { bg: 'from-[#020617] via-[#1e1b4b] to-[#4c1d95]' },
     icon: <Cpu size={40} />,
     loadingMsgs: ["Training Neurons...", "Processing Datasets...", "Optimizing Weights...", "Deploying Model..."],
     loadingMsgs_ar: ["تدريب الخلايا العصبية...", "معالجة مجموعات البيانات...", "تحسين الأوزان...", "نشر النموذج..."],
   },
-  CS: {
-    id: 'CS',
+  CyberSecurity: {
+    id: 'CyberSecurity',
     mainTitle: "Cyber Security", mainTitle_ar: "الأمن السيبراني",
-    slogan: "Protecting the digital frontier, one packet at a time.", slogan_ar: "حماية الحدود الرقمية، حزمة تلو الأخرى.",
+    slogan: "Defending the digital world against evolving threats.", slogan_ar: "حماية العالم الرقمي من التهديدات المتطورة.",
     color: "#ef4444",
     theme: { bg: 'from-[#020617] via-[#1a0505] to-[#450a0a]' },
     icon: <Shield size={40} />,
-    loadingMsgs: ["Scanning Vulnerabilities...", "Decrypting Handshake..."],
-    loadingMsgs_ar: ["فحص الثغرات الأمنية...", "فك تشفير الاتصال..."],
+    loadingMsgs: [
+      "Scanning Vulnerabilities...",
+      "Analyzing Threats...",
+      "Securing Infrastructure...",
+      "Monitoring Network..."
+    ],
+    loadingMsgs_ar: [
+      "فحص الثغرات الأمنية...",
+      "تحليل التهديدات...",
+      "تأمين البنية التحتية...",
+      "مراقبة الشبكة..."
+    ],
   },
-  NW: {
-    id: 'NW',
+  Networking: {
+    id: 'Networking',
     mainTitle: "Networking", mainTitle_ar: "الشبكات",
-    slogan: "Connecting the world through neural infrastructures.", slogan_ar: "ربط العالم من خلال البنى التحتية العصبية.",
+    slogan: "Connecting the world through modern networks.", slogan_ar: "ربط العالم عبر الشبكات الحديثة.",
     color: "#3b82f6",
     theme: { bg: 'from-[#020617] via-[#062010] to-[#064e3b]' },
     icon: <Globe size={40} />,
-    loadingMsgs: ["Tracing Packets...", "Resolving DNS..."],
-    loadingMsgs_ar: ["تتبع الحزم...", "حل عناوين DNS..."],
+    loadingMsgs: [
+      "Initializing Network...",
+      "Resolving DNS...",
+      "Routing Packets...",
+      "Establishing Connection..."
+    ],
+    loadingMsgs_ar: [
+      "تهيئة الشبكة...",
+      "حل عناوين DNS...",
+      "توجيه الحزم...",
+      "إنشاء الاتصال..."
+    ],
   },
-  FI: {
-    id: 'FI',
-    mainTitle: "Digital Finance", mainTitle_ar: "المالية",
-    slogan: "Decoding the future of decentralized economy.", slogan_ar: "فك تشفير مستقبل الاقتصاد اللامركزي.",
+  FinTech: {
+    id: 'FinTech',
+    mainTitle: "FinTech", mainTitle_ar: "التقنية المالية",
+    slogan: "Transforming finance through technology.", slogan_ar: "إعادة تشكيل عالم المال بالتقنية.",
     color: "#38bdf8",
     theme: { bg: 'from-[#020617] via-[#082f49] to-[#075985]' },
     icon: <Landmark size={40} />,
-    loadingMsgs: ["Validating Ledger...", "Mining Blocks..."],
-    loadingMsgs_ar: ["التحقق من السجل...", "تعدين الكتل..."],
+    loadingMsgs: [
+      "Connecting Banking APIs...",
+      "Processing Payments...",
+      "Analyzing Financial Data...",
+      "Securing Transactions..."
+    ],
+    loadingMsgs_ar: [
+      "ربط واجهات البنوك...",
+      "معالجة المدفوعات...",
+      "تحليل البيانات المالية...",
+      "تأمين المعاملات..."
+    ],
   }
 };
 
 export default function CodexQuestPro() {
-  const { user, currentTrack, selectTrack, userStats, language, t } = useAppContext();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const { user, currentTrack, selectTrack, updateProfileProgress, userStats, language, t, logout } = useAppContext();
   const [view, setView] = useState('landing');
   const [activePathId, setActivePathId] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
@@ -83,14 +115,18 @@ export default function CodexQuestPro() {
     window.addEventListener('changeView', handleViewChange);
     return () => window.removeEventListener('changeView', handleViewChange);
   }, []);
+const startLoading = async (pathId) => {
+    setActivePathId(pathId); // هذا يغير المسار النشط
+    selectTrack(pathId);     // تأكدي أن هذا يحدث في الـ Context
 
-  const startLoading = (pathId) => {
-    setActivePathId(pathId);
-    selectTrack(pathId);
-    setView('dashboard');
+    // تحديث قاعدة البيانات
+    await updateProfileProgress({
+      current_path: PATHS_CONFIG[pathId].mainTitle // استخدمي العنوان الثابت
+    });
+
+    setView('dashboard'); // الآن انتقلي للداشبورد
   };
-
-  if (!user) return <Auth onAuthSuccess={() => setView('landing')} />;
+  if (!user) return <Auth onAuthSuccess={() => setView('dashboard')} />;
 
   return (
     <div className={`h-screen bg-[#000000] text-white font-sans relative overflow-hidden transition-all duration-1000 ${view !== 'landing' ? `bg-gradient-to-br ${activePath?.theme.bg || 'from-[#000000] to-black'}` : ''}`} dir={language === 'ar' ? 'rtl' : 'ltr'}>
@@ -113,31 +149,10 @@ export default function CodexQuestPro() {
           <button onClick={() => setIsSidebarOpen(true)} className="p-3 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all">
             <Menu size={24} />
           </button>
-          <h1 className="text-2xl font-black italic tracking-tighter cursor-pointer" onClick={() => setView('landing')}>MASAR</h1>
+          <h1 className="text-2xl font-black italic tracking-tighter cursor-pointer" onClick={() => setView('landing')}>{t('مسار', 'MASAR')}</h1>
         </div>
         <div className="flex gap-4 items-center">
-          <button
-            onClick={() => {
-              const nextLang = language === 'en' ? 'ar' : 'en';
-              setLanguage(nextLang);
-            }}
-            className="p-3 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all text-[10px] font-black uppercase tracking-widest"
-          >
-            {language === 'en' ? 'العربية' : 'English'}
-          </button>
 
-          {/* COMMUNITY BUTTON: Conditional and Dynamic */}
-          {activePathId && (
-            <motion.button
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              onClick={() => setView('community')}
-              className="px-8 py-3 rounded-2xl text-black font-black uppercase text-[10px] tracking-widest hover:scale-105 transition-all shadow-xl flex items-center gap-3"
-              style={{ backgroundColor: activePath?.color, boxShadow: `0 10px 30px ${activePath?.color}40` }}
-            >
-              <Users size={18} /> {t('المجتمع', 'COMMUNITY')}
-            </motion.button>
-          )}
         </div>
       </header>
 
@@ -157,24 +172,30 @@ export default function CodexQuestPro() {
                 <X size={24} className="cursor-pointer opacity-30 hover:opacity-100" onClick={() => setIsSidebarOpen(false)} />
               </div>
               <SidebarCard icon={<User />} title={t('الحساب الشخصي', 'PROFILE')} color={activePath?.color} onClick={() => { setView('profile'); setIsSidebarOpen(false); }} />
-              <SidebarCard icon={<Users />} title={t('المجتمع', 'COMMUNITY')} color={activePath?.color} onClick={() => { setView('community'); setIsSidebarOpen(false); }} />
               <SidebarCard icon={<BookOpen />} title={t('الشروحات والدروس', 'LESSONS')} color={activePath?.color} onClick={() => { setView('lessons'); setIsSidebarOpen(false); }} />
               <SidebarCard icon={<Database />} title={t('بنك الأسئلة', 'QUESTION BANK')} color={activePath?.color} onClick={() => { setView('banks'); setIsSidebarOpen(false); }} />
               <div className="my-4 h-px bg-white/5 w-full" />
+              <SidebarCard icon={<Trophy />} title={t('التحديات ', '   CHALLENGES')} color={activePath?.color} onClick={() => { setView('challenges'); setIsSidebarOpen(false); }} />
+
+              <SidebarCard icon={<Trophy />} title={t(' رحلتي ', '   My Journey')} color={activePath?.color} onClick={() => { setView('journey'); setIsSidebarOpen(false); }} />
               <SidebarCard icon={<ArrowLeft className={language === 'en' ? 'rotate-180' : ''} />} title={t('العودة للمسارات', 'BACK TO TRACKS')} color={activePath?.color} onClick={() => { setView('landing'); setActivePathId(null); setActiveSection(null); setIsSidebarOpen(false); }} />
               <div className="my-4 h-px bg-white/5 w-full" />
-              <SidebarCard icon={<Trophy />} title={t('تحديات الكود', 'CODE CHALLENGES')} color={activePath?.color} onClick={() => { setView('challenges'); setIsSidebarOpen(false); }} />
-              <SidebarCard icon={<LayoutGrid />} title={t('البرامج والخدمات', 'PROGRAMS')} color={activePath?.color} onClick={() => { setView('programs'); setIsSidebarOpen(false); }} />
-              <SidebarCard icon={<Activity />} title={t('التحليلات', 'ANALYTICS')} color={activePath?.color} onClick={() => { setView('analytics'); setIsSidebarOpen(false); }} />
-              <div className="my-6 h-px bg-white/5 w-full" />
-              <SidebarCard icon={<Settings />} title={t('الإعدادات', 'SETTINGS')} color={activePath?.color} onClick={() => { setView('profile'); setIsSidebarOpen(false); }} />
-              <button className="mt-8 p-6 rounded-[2.5rem] bg-red-500/10 border border-red-500/20 text-red-500 font-black uppercase text-[10px] tracking-widest hover:bg-red-500/20 transition-all flex items-center justify-center gap-2"><LogOut size={16} /> {t('تسجيل الخروج', 'LOGOUT')}</button>
+
+              <SidebarCard icon={<Settings />} title={t('الإعدادات', 'SETTINGS')} color={activePath?.color} onClick={() => { setView('settings'); setIsSidebarOpen(false); }} />
+              <button
+                onClick={() => setShowLogoutModal(true)}
+                className="mt-8 p-6 rounded-[2.5rem] bg-red-500/10 border border-red-500/20 text-red-500 font-black uppercase text-[10px] tracking-widest hover:bg-red-500/20 transition-all flex items-center justify-center gap-2"
+              >
+                <LogOut size={16} />
+                {t('تسجيل الخروج', 'LOGOUT')}
+              </button>
             </motion.aside>
           </>
         )}
       </AnimatePresence>
 
       <main className="h-full relative z-10 overflow-y-auto no-scrollbar pt-24">
+
         <AnimatePresence mode="wait">
           {view === 'landing' && (
             <motion.div key="landing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-20 px-10 pb-20 max-w-7xl mx-auto flex flex-col items-center" dir={language === 'ar' ? 'rtl' : 'ltr'}>
@@ -212,16 +233,55 @@ export default function CodexQuestPro() {
           {view === 'dashboard' && <Dashboard key="dashboard" onSelectSection={(sec) => { setActiveSection(sec); setView('levels'); }} />}
           {view === 'levels' && <PlayLevel key="play" section={activeSection} />}
           {view === 'profile' && <ProfileSettings key="profile" />}
-          {view === 'community' && <Community key="community" />}
+
           {view === 'lessons' && <Lessons key="lessons" section={activeSection} />}
           {view === 'banks' && <QuestionBank key="banks" section={activeSection} />}
           {view === 'challenges' && <Challenges key="challenges" />}
-          {view === 'analytics' && <Analytics key="analytics" section={activeSection} />}
-          {view === 'programs' && <Programs key="programs" onStart={() => setView('landing')} />}
-          {view === 'about' && <AboutSDA key="about" />}
-          {view === 'settings' && <ProfileSettings key="settings" />}
+          {view === "journey" && <JourneyPage key="journey" />}
+          {view === 'settings' && <SettingsPage key="settings" />}
         </AnimatePresence>
       </main>
+
+      {showLogoutModal && (
+        <div className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center">
+          <div className="w-[420px] p-8 rounded-[2.5rem] bg-[#030712] border border-white/10 shadow-2xl">
+
+            <h2 className="text-2xl font-black text-center mb-4">
+              {t('تسجيل الخروج', 'Logout')}
+            </h2>
+
+            <p className="text-white/50 text-center mb-8">
+              {t(
+                'هل أنت متأكد أنك تريد تسجيل الخروج؟',
+                'Are you sure you want to logout?'
+              )}
+            </p>
+
+            <div className="flex gap-4">
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                className="flex-1 p-4 rounded-2xl bg-white/5 border border-white/10"
+              >
+                {t('إلغاء', 'Cancel')}
+              </button>
+
+              <button
+                onClick={async () => {
+                  await supabase.auth.signOut();
+                  logout();
+                  setIsSidebarOpen(false);
+                  setShowLogoutModal(false);
+                }}
+                className="flex-1 p-4 rounded-2xl bg-red-500/20 border border-red-500/30 text-red-400 font-bold"
+              >
+                {t('تأكيد', 'Confirm')}
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
@@ -229,6 +289,7 @@ export default function CodexQuestPro() {
 function SidebarCard({ icon, title, color, onClick, isSoon }) {
   return (
     <button onClick={isSoon ? null : onClick} className={`w-full p-5 rounded-[2.5rem] bg-white/[0.03] border border-white/5 transition-all flex items-center gap-6 group relative overflow-hidden text-white ${isSoon ? 'opacity-40 cursor-not-allowed' : 'hover:bg-white/[0.08] hover:border-white/10'}`}>
+
       <div className="p-4 rounded-2xl bg-white/5 shadow-inner" style={{ color: color || '#0d9488' }}>{icon}</div>
       <div className="flex flex-col items-start"><span className="font-black text-xs uppercase italic tracking-tight">{title}</span>{isSoon && <span className="text-[8px] font-black text-white/40 tracking-widest uppercase mt-1">Soon</span>}</div>
     </button>

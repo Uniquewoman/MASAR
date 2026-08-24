@@ -1,81 +1,102 @@
-# 🚀 MASAR | منصة مسار التعليمية
+# Masar (مسار)
 
-**MASAR** is a premium, futuristic educational platform designed for the modern learner. Built with high-end aesthetics and a "deep-space" dark mode, it provides an immersive experience for mastering digital skills.
+Masar is a bilingual (Arabic/English, RTL-first) web learning platform. I built it for myself first, and for anyone who wants to learn without losing interest halfway through: the whole journey is structured like a game, so you always know where you are and what comes next.
 
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+It's a dark-themed, card-driven UI covering five learning tracks: **Programming, Artificial Intelligence, Cyber Security, Networking, and FinTech**, each broken into sections with lessons, a question bank, and level-based practice.
 
 ---
 
-## ✨ Key Features
+## What's inside
 
-- 🌌 **Deep Space Dark Mode**: A premium, high-contrast UI designed for long learning sessions.
-- 🧪 **Gamified Learning**: Interactive tracks, levels, and XP systems.
-- ⚡ **Real-time Interaction**: Powered by React and Framer Motion for buttery-smooth animations.
-- 🛠️ **Professional Dashboard**: Track your progress across multiple specialized technical tracks.
-- 🔐 **Secure Auth System**: Elegant, terminal-style authentication portal.
-- 🌍 **Bilingual Support**: Fully localized in Arabic (RTL) and English (LTR).
-
----
-
-## 🛠️ Technology Stack
-
-- **Frontend**: React.js 18+
-- **Build Tool**: Vite
-- **Styling**: TailwindCSS & Custom CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **State Management**: React Context API
+- **Learning tracks** — 5 tracks, each with 7 sections of structured content (`src/data/courses.js`)
+- **Lessons** — per-section video/lesson lists, with fallback placeholder content for sections without custom lessons yet
+- **Question bank** — practice questions per track/section, multiple difficulty levels (`src/data/questions.js`)
+- **Level play** — quiz-style levels that unlock progressively and award XP
+- **Journey dashboard** — personal progress, achievements, and activity log
+- **Profile & settings** — theme, language switcher, notifications/security toggles, logout
+- **Auth** — Supabase-backed sign up / sign in / password reset
 
 ---
 
-## 🚀 Getting Started
+## Tech stack
 
-### Prerequisites
-
-- Node.js (v16.0.0 or higher)
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone [your-repository-url]
-   ```
-
-2. **Navigate to the project directory**
-   ```bash
-   cd my-codex-app
-   ```
-
-3. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
+- React 19 + Vite 7
+- Tailwind CSS 4
+- Framer Motion (animations) + Lucide (icons)
+- Supabase (Postgres + Auth) as the live backend
+- React Context for global state (auth, track selection, language, theme, gamification) — no React Router; navigation is a local view-state switch in `App.jsx`
 
 ---
 
-## 📸 Preview
+## Running locally
 
-*Check out the sleek new Auth portal and the immersive learning tracks!*
+```bash
+git clone https://github.com/Uniquewoman/MASAR.git
+cd MASAR
+npm install
+```
+
+Copy `.env.example` to `.env` and fill in the Supabase keys:
+
+```bash
+cp .env.example .env
+```
+
+```bash
+npm run dev
+```
+
+Runs on `http://localhost:5173` by default.
+
+```bash
+npm run build      # production build → /dist
+npm run preview    # preview the production build
+npm run lint        # eslint
+npm run seed:questions   # seed script for the question bank
+```
 
 ---
 
-## 🤝 Contributing
+## Project structure
 
-We welcome contributions! Please feel free to submit a Pull Request.
+```
+tailwind.config.js       # إعدادات Tailwind (بالجذر)
+postcss.config.js        # إعدادات PostCSS (بالجذر)
+.env / .env.example      # مفاتيح Supabase
+src/
+├── App.jsx              # root component + view-state navigation (landing/dashboard/lessons/...)
+├── supabaseClient.js     # Supabase client (auth + data) — يقرأ من .env
+├── context/
+│   └── AppContext.jsx    # auth, track selection, language (i18n), theme, XP/levels, progress
+├── data/
+│   ├── courses.js        # bilingual lesson/document content per track & section
+│   ├── questions.js      # question bank per track/section
+│   ├── bigDatabase.js    # أسئلة السايبر (multiple-choice / true-false / fix-code / matching)
+│   └── questionSeeder.js # seeds the question bank (npm run seed:questions)
+└── pages/
+    ├── Auth.jsx
+    ├── Dashboard.jsx
+    ├── Features.jsx       # Lessons, QuestionBank, Challenges
+    ├── TrackPages.jsx      # TrackHome, PlayLevel
+    ├── JourneyPage.jsx
+    ├── ProfileSettings.jsx
+    ├── SettingsPage.jsx
+    └── ResetPassword.jsx
+```
 
-## 📄 License
-
-This project is licensed under the MIT License.
+Supabase tables used: `profiles`, `user_progress`, `journey_logs`, `user_achievements`, `achievements`.
 
 ---
 
-<p align="center">Made with ❤️ for the future of education.</p>
+## Notes
+
+- Auth and progress are backed by Supabase (Postgres + Auth) — no longer purely client-side.
+- The `backend/` folder is a separate, not-yet-wired-in Express + Prisma API (JWT auth, SQLite dev DB) — an alternate backend design that the frontend currently does **not** call.
+- `my-codex-app/` is an earlier standalone scaffold of this project kept in the repo for reference; it is not part of the active app.
+
+---
+
+## License
+
+© 2026 Rawan Alshammari. This project is for portfolio and educational purposes.
+Not licensed for commercial use without permission.

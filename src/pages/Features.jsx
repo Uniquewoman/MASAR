@@ -1,19 +1,45 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  PlayCircle, FileText, Users, PlusCircle, LogIn, Swords, 
+import {
+  PlayCircle, FileText, Users, PlusCircle, LogIn, Swords,
   Shuffle, User, Shield, ArrowRight, BrainCircuit, Database, Trophy, LayoutGrid, Zap, Sparkles, Code, ArrowLeft, XCircle
 } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { getSectionQuestions } from '../data/questions';
+import { trackLessons, trackDocuments } from '../data/courses';
 
 export const Lessons = ({ section }) => {
   const { currentTrack, tracksInfo, language, t } = useAppContext();
-  const track = currentTrack || tracksInfo['SE'];
+  const track = currentTrack || tracksInfo['Programming'];
   const [selectedSection, setSelectedSection] = useState(section || null);
+  const [activeVideoUrl, setActiveVideoUrl] = useState(null);
 
   const trackColor = track.color || '#14b8a6';
   const cardBg = "bg-white/[0.03] backdrop-blur-md border border-white/10 hover:bg-white/[0.08]";
+
+  const sectionIndex = useMemo(() => {
+    if (!selectedSection) return -1;
+    return track.sections.findIndex(s => s.title === selectedSection.title || s.title_ar === selectedSection.title_ar);
+  }, [track.sections, selectedSection]);
+
+  const lessonsList = useMemo(() => {
+    const list = trackLessons[track.id.toLowerCase()]?.[sectionIndex];
+    if (list && list.length > 0) return list;
+    return [
+      { t_ar: `شرح المفاهيم الأساسية للقسم`, t_en: `Basic Concepts of this Section`, d_ar: `محاضرة معمقة حول معايير التصميم والتطبيقات العملية.`, d_en: `Deep lecture on design standards and practical applications.`, videoUrl: 'https://www.youtube.com/embed/W_m4d9X7vF8', duration: '12:45' },
+      { t_ar: `استراتيجيات التحسين والتطوير`, t_en: `Optimization & Development Strategies`, d_ar: `كيفية تقليل استهلاك الذاكرة وتحسين سرعة الاستجابة.`, d_en: `How to reduce memory usage and optimize latency.`, videoUrl: 'https://www.youtube.com/embed/7D5A92_n_tA', duration: '10:15' },
+      { t_ar: `دراسة حالة وتحليل الأنظمة`, t_en: `Case Study & System Analysis`, d_ar: `تحليل تقني عملي لكيفية معالجة الطلبات وإدارة الأخطاء.`, d_en: `Technical practical analysis of handling requests and errors.`, videoUrl: 'https://www.youtube.com/embed/5aTHeRerN8Y', duration: '15:30' }
+    ];
+  }, [track.id, sectionIndex]);
+
+  const docsList = useMemo(() => {
+    const list = trackDocuments[track.id.toLowerCase()]?.[sectionIndex];
+    if (list && list.length > 0) return list;
+    return [
+      { t_ar: 'ملخص المفاهيم الأساسية', t_en: 'Core Concepts Summary', d_ar: 'ملخص يحتوي على أهم النقاط التي تم شرحها في هذا القسم بشكل مبسط.', d_en: 'A summary of the key points explained in this section in a simplified form.' },
+      { t_ar: 'قائمة المراجع الإضافية', t_en: 'Additional References', d_ar: 'روابط ومصادر خارجية لتعميق فهمك للمواضيع المتقدمة.', d_en: 'External links and resources to deepen your understanding of advanced topics.' }
+    ];
+  }, [track.id, sectionIndex]);
 
   if (!selectedSection) {
     return (
@@ -21,8 +47,8 @@ export const Lessons = ({ section }) => {
         <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-8">{t('اختر قسماً لعرض الشروحات', 'CHOOSE A SECTION FOR LESSONS')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {track.sections.map((sec, i) => (
-            <motion.div 
-              key={i} 
+            <motion.div
+              key={i}
               whileHover={{ scale: 1.05 }}
               onClick={() => setSelectedSection(sec)}
               className={`p-8 rounded-[2.5rem] ${cardBg} cursor-pointer border-t-4`}
@@ -42,7 +68,7 @@ export const Lessons = ({ section }) => {
       <button onClick={() => setSelectedSection(null)} className="mb-8 flex items-center gap-2 font-black uppercase text-[10px] tracking-widest hover:gap-4 transition-all" style={{ color: trackColor }}>
         {language === 'ar' ? <ArrowRight size={14} /> : <ArrowRight size={14} className="rotate-180" />} {t('العودة للأقسام', 'BACK TO SECTIONS')}
       </button>
-      
+
       <div className={`p-12 rounded-[3rem] ${cardBg} mb-12 relative overflow-hidden group ${language === 'ar' ? 'text-right' : 'text-left'}`}>
         <div className="absolute inset-0 opacity-10" style={{ background: `linear-gradient(to bottom right, ${trackColor}, transparent)` }} />
         <h1 className="text-4xl font-black italic uppercase tracking-tighter mb-4 text-white">{t(selectedSection.title_ar, selectedSection.title)}</h1>
@@ -50,17 +76,18 @@ export const Lessons = ({ section }) => {
           {t('"العلم ليس مجرد معلومات، بل هو طريقك لبناء المستقبل. استثمر وقتك في فهم هذه المفاهيم بعمق."', '"Knowledge is not just information; it is your path to building the future. Invest your time in understanding these concepts deeply."')}
         </p>
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-        {[
-          { t_ar: `بناء الأنظمة الموزعة`, t_en: `Building Distributed Systems`, d_ar: `محاضرة معمقة حول معايير التصميم العالمي.`, d_en: `Deep lecture on global design standards.` },
-          { t_ar: `استراتيجيات التحسين`, t_en: `Optimization Strategies`, d_ar: `كيفية تقليل استهلاك الذاكرة والمعالجة.`, d_en: `How to reduce memory and CPU usage.` },
-          { t_ar: `دراسة حالة: معمارية الأنظمة`, t_en: `Case Study: System Architecture`, d_ar: `تحليل تقني لكيفية معالجة ملايين الطلبات.`, d_en: `Technical analysis of processing millions of requests.` }
-        ].map((vid, i) => (
-          <motion.div key={i} whileHover={{ y: -10 }} className={`p-6 rounded-[2.5rem] ${cardBg} transition-all ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+        {lessonsList.map((vid, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ y: -10 }}
+            className={`p-6 rounded-[2.5rem] ${cardBg} transition-all cursor-pointer ${language === 'ar' ? 'text-right' : 'text-left'}`}
+            onClick={() => setActiveVideoUrl(vid.videoUrl)}
+          >
             <div className="aspect-video bg-black/40 rounded-3xl flex items-center justify-center mb-6 relative overflow-hidden group">
               <PlayCircle size={48} className="relative z-10 opacity-60 group-hover:opacity-100 transition-all" style={{ color: trackColor }} />
-              <div className="absolute bottom-4 left-4 bg-black/60 px-2 py-1 rounded text-[10px] font-mono">12:45</div>
+              <div className="absolute bottom-4 left-4 bg-black/60 px-2 py-1 rounded text-[10px] font-mono">{vid.duration}</div>
             </div>
             <h4 className="text-lg font-black text-white mb-2">{t(vid.t_ar, vid.t_en)}</h4>
             <p className="text-xs text-white/40 font-bold leading-relaxed">{t(vid.d_ar, vid.d_en)}</p>
@@ -70,25 +97,70 @@ export const Lessons = ({ section }) => {
 
       <div className="mt-20">
         <h2 className="text-2xl font-black italic uppercase tracking-tighter text-white mb-10 flex items-center gap-4">
-          <FileText size={32} style={{ color: trackColor }} /> {t('وثائق وشروحات مكتوبة', 'STUDY DOCUMENTS & SUMMARIES')}
+          <FileText size={32} style={{ color: trackColor }} /> {t('شروحات مكتوبة مختصرة', 'WRITTEN LESSON SUMMARIES')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-           {[
-             { t_ar: 'ملخص المفاهيم الأساسية', t_en: 'Core Concepts Summary', d_ar: 'ملف PDF يحتوي على أهم النقاط التي تم شرحها في هذا القسم بشكل مبسط.', d_en: 'A simplified PDF containing the key points explained in this section.' },
-             { t_ar: 'قائمة المراجع الإضافية', t_en: 'Additional References', d_ar: 'روابط ومصادر خارجية لتعميق فهمك للمواضيع المتقدمة.', d_en: 'External links and resources to deepen your understanding of advanced topics.' }
-           ].map((doc, i) => (
-             <motion.div key={i} whileHover={{ x: language === 'ar' ? -10 : 10 }} className={`p-8 rounded-[2.5rem] ${cardBg} flex items-center gap-8 group cursor-pointer border-r-4`} style={{ borderRightColor: trackColor }}>
-                <div className="p-4 rounded-2xl bg-white/5 group-hover:bg-white/10 transition-all" style={{ color: trackColor }}>
-                  <LayoutGrid size={24} />
+          {docsList.map((doc, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -4 }}
+              className={`p-8 rounded-[2.5rem] bg-white/[0.03] backdrop-blur-md border border-white/10 group cursor-default relative overflow-hidden ${language === 'ar' ? 'text-right' : 'text-left'}`}
+              style={{ borderTopColor: trackColor, borderTopWidth: 3 }}
+            >
+              <div className="absolute top-0 left-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: `linear-gradient(135deg, ${trackColor}08, transparent)` }} />
+              <div className="flex items-start gap-5 relative z-10" style={{ flexDirection: language === 'ar' ? 'row' : 'row-reverse' }}>
+                <div className="p-3 rounded-2xl bg-white/5 shrink-0" style={{ color: trackColor }}>
+                  <FileText size={20} />
                 </div>
-                <div className={language === 'ar' ? 'text-right' : 'text-left'}>
-                   <h4 className="text-white font-black italic mb-1">{t(doc.t_ar, doc.t_en)}</h4>
-                   <p className="text-[10px] text-white/40 font-bold">{t(doc.d_ar, doc.d_en)}</p>
+                <div className="flex-1">
+                  <div className="text-[9px] font-black uppercase tracking-[0.4em] mb-2 opacity-40" style={{ color: trackColor }}>#{i + 1}</div>
+                  <h4 className="text-white font-black italic mb-3 text-base leading-tight">{t(doc.t_ar, doc.t_en)}</h4>
+                  <p className="text-sm text-white/60 font-medium leading-relaxed">{t(doc.d_ar, doc.d_en)}</p>
                 </div>
-             </motion.div>
-           ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
+
+      {/* Video Modal */}
+      <AnimatePresence>
+        {activeVideoUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/85 backdrop-blur-md z-[200] flex items-center justify-center p-4"
+            onClick={() => setActiveVideoUrl(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="bg-slate-950/90 border border-white/10 rounded-[3rem] p-6 max-w-4xl w-full relative overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setActiveVideoUrl(null)}
+                className="absolute top-6 right-6 p-3 rounded-full bg-white/10 border border-white/20 text-white/60 hover:text-white hover:bg-white/20 transition-all z-[210]"
+              >
+                <XCircle size={24} />
+              </button>
+              <div className="aspect-video w-full rounded-2xl overflow-hidden bg-black mt-10">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={activeVideoUrl}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
@@ -113,8 +185,8 @@ export const QuestionBank = ({ section }) => {
         <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-8">{t('اختر قسماً لعرض بنك الأسئلة', 'CHOOSE A SECTION FOR QUESTION BANK')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {track.sections.map((sec, i) => (
-            <motion.div 
-              key={i} 
+            <motion.div
+              key={i}
               whileHover={{ scale: 1.05 }}
               onClick={() => setSelectedSection(sec)}
               className={`p-8 rounded-[2.5rem] ${cardBg} cursor-pointer border-t-4`}
@@ -139,21 +211,21 @@ export const QuestionBank = ({ section }) => {
         <div className="absolute inset-0 opacity-10" style={{ background: `linear-gradient(to bottom right, ${trackColor}, transparent)` }} />
         <h1 className="text-5xl font-black italic uppercase tracking-tighter mb-4 text-white relative z-10">{t(selectedSection.title_ar, selectedSection.title)}</h1>
       </div>
-      
+
       <div className="space-y-6">
         {questions.map((q, i) => (
           <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }} className={`p-10 rounded-[3rem] ${cardBg} shadow-xl ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-             <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center font-black" style={{ color: trackColor }}>{i + 1}</div>
-                <h3 className="text-xl font-bold text-white leading-relaxed">{q.q}</h3>
-             </div>
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {q.options.map((opt, optIdx) => (
-                  <div key={optIdx} className="p-5 rounded-2xl bg-white/5 border border-white/5 text-white/60 font-bold text-sm" style={q.answer === optIdx ? { borderColor: `${trackColor}30`, backgroundColor: `${trackColor}10`, color: trackColor } : {}}>
-                    {opt}
-                  </div>
-                ))}
-             </div>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center font-black" style={{ color: trackColor }}>{i + 1}</div>
+              <h3 className="text-xl font-bold text-white leading-relaxed">{q.q}</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {q.options.map((opt, optIdx) => (
+                <div key={optIdx} className="p-5 rounded-2xl bg-white/5 border border-white/5 text-white/60 font-bold text-sm" style={q.answer === optIdx ? { borderColor: `${trackColor}30`, backgroundColor: `${trackColor}10`, color: trackColor } : {}}>
+                  {opt}
+                </div>
+              ))}
+            </div>
           </motion.div>
         ))}
       </div>
@@ -163,7 +235,7 @@ export const QuestionBank = ({ section }) => {
 
 export const Challenges = () => {
   const { currentTrack, tracksInfo, language, t } = useAppContext();
-  const track = currentTrack || tracksInfo['SE'];
+  const track = currentTrack || tracksInfo['Programming'];
   const [view, setView] = useState('menu'); // menu | self-challenge-options | playing-self | rooms-menu | create-room | create-room-ready | join-room | random-match-options | room-playing
   const [selectedSection, setSelectedSection] = useState(null);
   const [selectedLevel, setSelectedLevel] = useState(1);
@@ -173,7 +245,7 @@ export const Challenges = () => {
   const [challengeTask, setChallengeTask] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isWrong, setIsWrong] = useState(false);
-  
+
   const trackColor = track.color || '#14b8a6';
   const cardBg = "bg-white/[0.03] backdrop-blur-md border border-white/10 hover:bg-white/[0.08]";
 
@@ -272,12 +344,12 @@ export const Challenges = () => {
               <div className="space-y-6">
                 <label className="text-[10px] font-black uppercase text-white/20 tracking-[0.3em] block">{t('مستوى الصعوبة', 'DIFFICULTY LEVEL')}</label>
                 <div className="grid grid-cols-3 gap-4">
-                   {[1, 2, 3].map(lvl => (
-                     <button key={lvl} onClick={() => setSelectedLevel(lvl)} className={`p-6 rounded-2xl border transition-all flex flex-col items-center gap-2 ${selectedLevel === lvl ? 'text-black border-transparent shadow-lg' : 'bg-white/5 border-white/10 text-white/40'}`} style={selectedLevel === lvl ? { backgroundColor: trackColor } : {}}>
-                        <span className="text-2xl font-black italic">{lvl}</span>
-                        <span className="text-[8px] font-black uppercase">{lvl === 1 ? t('سهل', 'EASY') : lvl === 2 ? t('متوسط', 'MID') : t('صعب', 'HARD')}</span>
-                     </button>
-                   ))}
+                  {[1, 2, 3].map(lvl => (
+                    <button key={lvl} onClick={() => setSelectedLevel(lvl)} className={`p-6 rounded-2xl border transition-all flex flex-col items-center gap-2 ${selectedLevel === lvl ? 'text-black border-transparent shadow-lg' : 'bg-white/5 border-white/10 text-white/40'}`} style={selectedLevel === lvl ? { backgroundColor: trackColor } : {}}>
+                      <span className="text-2xl font-black italic">{lvl}</span>
+                      <span className="text-[8px] font-black uppercase">{lvl === 1 ? t('سهل', 'EASY') : lvl === 2 ? t('متوسط', 'MID') : t('صعب', 'HARD')}</span>
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
@@ -288,31 +360,31 @@ export const Challenges = () => {
 
       {view === 'playing-self' && challengeTask && (
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-4xl mx-auto space-y-8">
-           <div className={`p-12 rounded-[4rem] ${cardBg} border-t-8 space-y-10 shadow-2xl ${isWrong ? 'border-red-500' : ''}`} style={{ borderTopColor: isWrong ? '#ef4444' : trackColor }}>
-             <div className="bg-black/80 p-10 rounded-[3rem] font-mono text-xl overflow-x-auto shadow-inner border border-white/5" style={{ color: isWrong ? '#ef4444' : trackColor }}><pre>{challengeTask.code}</pre></div>
-             <div className="text-center space-y-8">
-               <h3 className="text-3xl font-black text-white italic">{t(challengeTask.q_ar, challengeTask.q_en)}</h3>
-               <input type="text" placeholder={t('اكتب إجابتك هنا...', 'Type your answer here...')} className={`w-full bg-white/5 border rounded-[2.5rem] p-8 text-white text-center outline-none transition-all text-xl font-bold ${isWrong ? 'border-red-500 text-red-500' : 'border-white/5'}`} />
-               <button onClick={checkAnswer} className="w-full py-8 rounded-[3rem] text-black font-black uppercase tracking-widest text-lg shadow-xl" style={{ backgroundColor: trackColor }}>{t('تحقق من الإجابة', 'CHECK ANSWER')}</button>
-             </div>
-           </div>
+          <div className={`p-12 rounded-[4rem] ${cardBg} border-t-8 space-y-10 shadow-2xl ${isWrong ? 'border-red-500' : ''}`} style={{ borderTopColor: isWrong ? '#ef4444' : trackColor }}>
+            <div className="bg-black/80 p-10 rounded-[3rem] font-mono text-xl overflow-x-auto shadow-inner border border-white/5" style={{ color: isWrong ? '#ef4444' : trackColor }}><pre>{challengeTask.code}</pre></div>
+            <div className="text-center space-y-8">
+              <h3 className="text-3xl font-black text-white italic">{t(challengeTask.q_ar, challengeTask.q_en)}</h3>
+              <input type="text" placeholder={t('اكتب إجابتك هنا...', 'Type your answer here...')} className={`w-full bg-white/5 border rounded-[2.5rem] p-8 text-white text-center outline-none transition-all text-xl font-bold ${isWrong ? 'border-red-500 text-red-500' : 'border-white/5'}`} />
+              <button onClick={checkAnswer} className="w-full py-8 rounded-[3rem] text-black font-black uppercase tracking-widest text-lg shadow-xl" style={{ backgroundColor: trackColor }}>{t('تحقق من الإجابة', 'CHECK ANSWER')}</button>
+            </div>
+          </div>
         </motion.div>
       )}
 
       {view === 'rooms-menu' && (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <motion.div whileHover={{ y: -10 }} onClick={() => setView('create-room')} className={`p-10 rounded-[3.5rem] ${cardBg} flex flex-col justify-between h-[450px] border-b-8 shadow-2xl group cursor-pointer relative overflow-hidden`} style={{ borderBottomColor: trackColor }}>
-            <div className="p-6 rounded-3xl bg-white/5 w-fit shadow-inner" style={{ color: trackColor }}><PlusCircle size={32}/></div>
+            <div className="p-6 rounded-3xl bg-white/5 w-fit shadow-inner" style={{ color: trackColor }}><PlusCircle size={32} /></div>
             <h3 className="text-2xl font-black italic text-white uppercase mb-2">{t('إنشاء روم', 'CREATE ROOM')}</h3>
             <button className="w-full py-5 rounded-2xl text-black font-black uppercase text-xs tracking-widest group-hover:bg-white transition-all" style={{ backgroundColor: trackColor }}>{t('تفعيل الغرفة', 'ACTIVATE ROOM')}</button>
           </motion.div>
           <motion.div whileHover={{ y: -10 }} onClick={() => setView('join-room')} className={`p-10 rounded-[3.5rem] ${cardBg} flex flex-col justify-between h-[450px] border-b-8 shadow-2xl group cursor-pointer relative overflow-hidden`} style={{ borderBottomColor: trackColor }}>
-            <div className="p-6 rounded-3xl bg-white/5 w-fit shadow-inner" style={{ color: trackColor }}><LogIn size={32}/></div>
+            <div className="p-6 rounded-3xl bg-white/5 w-fit shadow-inner" style={{ color: trackColor }}><LogIn size={32} /></div>
             <h3 className="text-2xl font-black italic text-white uppercase mb-2">{t('دخول روم', 'JOIN ROOM')}</h3>
             <button className="w-full py-5 rounded-2xl text-black font-black uppercase text-xs tracking-widest group-hover:bg-white transition-all" style={{ backgroundColor: trackColor }}>{t('بحث عن غرفة', 'FIND ROOM')}</button>
           </motion.div>
           <motion.div whileHover={{ y: -10 }} onClick={() => setView('random-match-options')} className={`p-10 rounded-[3.5rem] ${cardBg} flex flex-col justify-between h-[450px] border-b-8 shadow-2xl group cursor-pointer relative overflow-hidden`} style={{ borderBottomColor: trackColor }}>
-            <div className="p-6 rounded-3xl bg-white/5 w-fit shadow-inner" style={{ color: trackColor }}><Shuffle size={32}/></div>
+            <div className="p-6 rounded-3xl bg-white/5 w-fit shadow-inner" style={{ color: trackColor }}><Shuffle size={32} /></div>
             <h3 className="text-2xl font-black italic text-white uppercase mb-2">{t('بحث عشوائي', 'RANDOM MATCH')}</h3>
             <button className="w-full py-5 rounded-2xl text-black font-black uppercase text-xs tracking-widest group-hover:bg-white transition-all" style={{ backgroundColor: trackColor }}>{t('بدء المطابقة', 'START MATCHING')}</button>
           </motion.div>
@@ -322,56 +394,56 @@ export const Challenges = () => {
       {view === 'create-room' && (
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-xl mx-auto">
           <div className={`p-12 rounded-[4rem] ${cardBg} space-y-10 shadow-2xl`}>
-             <h2 className="text-3xl font-black italic text-white uppercase text-center">{t('إعدادات الغرفة', 'ROOM SETUP')}</h2>
-             <div className="space-y-6">
-                <label className="text-[10px] font-black uppercase text-white/20 tracking-widest block">{t('عدد اللاعبين', 'PLAYER COUNT')}</label>
-                <div className="grid grid-cols-2 gap-4">
-                   {[2, 4].map(num => (
-                     <button key={num} onClick={() => setPlayerCount(num)} className={`p-6 rounded-2xl border transition-all ${playerCount === num ? 'text-black border-transparent' : 'bg-white/5 border-white/10 text-white/40'}`} style={playerCount === num ? { backgroundColor: trackColor } : {}}>{num} {t('لاعبين', 'Players')}</button>
-                   ))}
-                </div>
-                <label className="text-[10px] font-black uppercase text-white/20 tracking-widest block">{t('مستوى الصعوبة', 'DIFFICULTY')}</label>
-                <div className="grid grid-cols-3 gap-3">
-                   {[1, 2, 3].map(lvl => (
-                     <button key={lvl} onClick={() => setSelectedLevel(lvl)} className={`p-4 rounded-xl border transition-all text-[10px] font-black ${selectedLevel === lvl ? 'text-black border-transparent' : 'bg-white/5 border-white/10 text-white/40'}`} style={selectedLevel === lvl ? { backgroundColor: trackColor } : {}}>{lvl === 1 ? 'EASY' : lvl === 2 ? 'MID' : 'HARD'}</button>
-                   ))}
-                </div>
-             </div>
-             <button onClick={handleCreateRoom} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-widest shadow-xl" style={{ backgroundColor: trackColor }}>{t('إنشاء الغرفة الآن', 'CREATE ROOM NOW')}</button>
+            <h2 className="text-3xl font-black italic text-white uppercase text-center">{t('إعدادات الغرفة', 'ROOM SETUP')}</h2>
+            <div className="space-y-6">
+              <label className="text-[10px] font-black uppercase text-white/20 tracking-widest block">{t('عدد اللاعبين', 'PLAYER COUNT')}</label>
+              <div className="grid grid-cols-2 gap-4">
+                {[2, 4].map(num => (
+                  <button key={num} onClick={() => setPlayerCount(num)} className={`p-6 rounded-2xl border transition-all ${playerCount === num ? 'text-black border-transparent' : 'bg-white/5 border-white/10 text-white/40'}`} style={playerCount === num ? { backgroundColor: trackColor } : {}}>{num} {t('لاعبين', 'Players')}</button>
+                ))}
+              </div>
+              <label className="text-[10px] font-black uppercase text-white/20 tracking-widest block">{t('مستوى الصعوبة', 'DIFFICULTY')}</label>
+              <div className="grid grid-cols-3 gap-3">
+                {[1, 2, 3].map(lvl => (
+                  <button key={lvl} onClick={() => setSelectedLevel(lvl)} className={`p-4 rounded-xl border transition-all text-[10px] font-black ${selectedLevel === lvl ? 'text-black border-transparent' : 'bg-white/5 border-white/10 text-white/40'}`} style={selectedLevel === lvl ? { backgroundColor: trackColor } : {}}>{lvl === 1 ? 'EASY' : lvl === 2 ? 'MID' : 'HARD'}</button>
+                ))}
+              </div>
+            </div>
+            <button onClick={handleCreateRoom} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-widest shadow-xl" style={{ backgroundColor: trackColor }}>{t('إنشاء الغرفة الآن', 'CREATE ROOM NOW')}</button>
           </div>
         </motion.div>
       )}
 
       {view === 'create-room-ready' && (
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl mx-auto text-center space-y-10">
-           <div className={`p-12 rounded-[4rem] ${cardBg} space-y-8 shadow-2xl border-t-8`} style={{ borderTopColor: trackColor }}>
-              <h2 className="text-2xl font-black text-white italic">{t('تم إنشاء الغرفة بنجاح!', 'Room Created Successfully!')}</h2>
-              <div className="bg-black/60 p-10 rounded-[3rem] border border-white/5 shadow-inner">
-                 <div className="text-[10px] font-black text-white/20 uppercase tracking-[0.5em] mb-4">{t('رمز الدخول', 'ENTRY CODE')}</div>
-                 <div className="text-6xl font-black tracking-[0.2em]" style={{ color: trackColor }}>{roomID}</div>
-              </div>
-              <p className="text-xs text-white/40 font-bold leading-relaxed">{t('شارك هذا الرمز مع أصدقائك ليبدأوا التحدي معك.', 'Share this code with your friends to start the challenge with you.')}</p>
-              <button onClick={() => setView('room-playing')} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-widest" style={{ backgroundColor: trackColor }}>{t('بدء التحدي', 'START CHALLENGE')}</button>
-           </div>
+          <div className={`p-12 rounded-[4rem] ${cardBg} space-y-8 shadow-2xl border-t-8`} style={{ borderTopColor: trackColor }}>
+            <h2 className="text-2xl font-black text-white italic">{t('تم إنشاء الغرفة بنجاح!', 'Room Created Successfully!')}</h2>
+            <div className="bg-black/60 p-10 rounded-[3rem] border border-white/5 shadow-inner">
+              <div className="text-[10px] font-black text-white/20 uppercase tracking-[0.5em] mb-4">{t('رمز الدخول', 'ENTRY CODE')}</div>
+              <div className="text-6xl font-black tracking-[0.2em]" style={{ color: trackColor }}>{roomID}</div>
+            </div>
+            <p className="text-xs text-white/40 font-bold leading-relaxed">{t('شارك هذا الرمز مع أصدقائك ليبدأوا التحدي معك.', 'Share this code with your friends to start the challenge with you.')}</p>
+            <button onClick={() => setView('room-playing')} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-widest" style={{ backgroundColor: trackColor }}>{t('بدء التحدي', 'START CHALLENGE')}</button>
+          </div>
         </motion.div>
       )}
 
       {view === 'join-room' && (
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-xl mx-auto">
           <div className={`p-12 rounded-[4rem] ${cardBg} space-y-10 shadow-2xl`}>
-             <h2 className="text-3xl font-black italic text-white uppercase text-center">{t('دخول غرفة', 'JOIN ROOM')}</h2>
-             <div className="space-y-6">
-                <label className="text-[10px] font-black uppercase text-white/20 tracking-widest block text-center">{t('أدخل رمز الغرفة المكون من 6 أرقام', 'ENTER 6-DIGIT ROOM CODE')}</label>
-                <input 
-                  type="text" 
-                  maxLength={6}
-                  value={inputRoomID}
-                  onChange={(e) => setInputRoomID(e.target.value)}
-                  className="w-full bg-black/60 border border-white/5 rounded-[2.5rem] p-8 text-center text-5xl font-black tracking-[0.3em] outline-none transition-all" 
-                  style={{ color: trackColor, border: `2px solid ${trackColor}20` }}
-                />
-             </div>
-             <button onClick={handleJoinRoom} disabled={inputRoomID.length !== 6} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-widest shadow-xl disabled:opacity-20" style={{ backgroundColor: trackColor }}>{t('دخول الآن', 'JOIN NOW')}</button>
+            <h2 className="text-3xl font-black italic text-white uppercase text-center">{t('دخول غرفة', 'JOIN ROOM')}</h2>
+            <div className="space-y-6">
+              <label className="text-[10px] font-black uppercase text-white/20 tracking-widest block text-center">{t('أدخل رمز الغرفة المكون من 6 أرقام', 'ENTER 6-DIGIT ROOM CODE')}</label>
+              <input
+                type="text"
+                maxLength={6}
+                value={inputRoomID}
+                onChange={(e) => setInputRoomID(e.target.value)}
+                className="w-full bg-black/60 border border-white/5 rounded-[2.5rem] p-8 text-center text-5xl font-black tracking-[0.3em] outline-none transition-all"
+                style={{ color: trackColor, border: `2px solid ${trackColor}20` }}
+              />
+            </div>
+            <button onClick={handleJoinRoom} disabled={inputRoomID.length !== 6} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-widest shadow-xl disabled:opacity-20" style={{ backgroundColor: trackColor }}>{t('دخول الآن', 'JOIN NOW')}</button>
           </div>
         </motion.div>
       )}
@@ -379,51 +451,51 @@ export const Challenges = () => {
       {view === 'random-match-options' && (
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="max-w-xl mx-auto">
           <div className={`p-12 rounded-[4rem] ${cardBg} space-y-10 shadow-2xl`}>
-             <h2 className="text-3xl font-black italic text-white uppercase text-center">{t('بحث عشوائي', 'RANDOM MATCH')}</h2>
-             <div className="space-y-6">
-                <label className="text-[10px] font-black uppercase text-white/20 tracking-widest block">{t('اختر مستوى الصعوبة المفضل', 'CHOOSE PREFERRED DIFFICULTY')}</label>
-                <div className="grid grid-cols-1 gap-4">
-                   {[1, 2, 3].map(lvl => (
-                     <button key={lvl} onClick={() => setSelectedLevel(lvl)} className={`p-6 rounded-2xl border transition-all flex justify-between items-center ${selectedLevel === lvl ? 'text-black border-transparent' : 'bg-white/5 border-white/10 text-white/40'}`} style={selectedLevel === lvl ? { backgroundColor: trackColor } : {}}>
-                        <span className="text-lg font-black">{lvl === 1 ? t('سهل', 'EASY') : lvl === 2 ? t('متوسط', 'MID') : t('صعب', 'HARD')}</span>
-                        {selectedLevel === lvl && <Zap size={20} />}
-                     </button>
-                   ))}
-                </div>
-             </div>
-             <button onClick={startRandomMatch} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-widest shadow-xl" style={{ backgroundColor: trackColor }}>{t('البدء في المطابقة', 'START MATCHMAKING')}</button>
+            <h2 className="text-3xl font-black italic text-white uppercase text-center">{t('بحث عشوائي', 'RANDOM MATCH')}</h2>
+            <div className="space-y-6">
+              <label className="text-[10px] font-black uppercase text-white/20 tracking-widest block">{t('اختر مستوى الصعوبة المفضل', 'CHOOSE PREFERRED DIFFICULTY')}</label>
+              <div className="grid grid-cols-1 gap-4">
+                {[1, 2, 3].map(lvl => (
+                  <button key={lvl} onClick={() => setSelectedLevel(lvl)} className={`p-6 rounded-2xl border transition-all flex justify-between items-center ${selectedLevel === lvl ? 'text-black border-transparent' : 'bg-white/5 border-white/10 text-white/40'}`} style={selectedLevel === lvl ? { backgroundColor: trackColor } : {}}>
+                    <span className="text-lg font-black">{lvl === 1 ? t('سهل', 'EASY') : lvl === 2 ? t('متوسط', 'MID') : t('صعب', 'HARD')}</span>
+                    {selectedLevel === lvl && <Zap size={20} />}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <button onClick={startRandomMatch} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-widest shadow-xl" style={{ backgroundColor: trackColor }}>{t('البدء في المطابقة', 'START MATCHMAKING')}</button>
           </div>
         </motion.div>
       )}
 
       {view === 'room-playing' && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-10 text-center">
-           <div className={`p-12 rounded-[4rem] ${cardBg} border-b-8 shadow-2xl relative overflow-hidden`} style={{ borderBottomColor: trackColor }}>
-              <button onClick={() => setView('rooms-menu')} className="absolute top-8 left-8 p-3 rounded-2xl bg-white/5 border border-white/5 text-white/40 hover:text-white transition-all z-20">
-                <ArrowLeft size={20} className={language === 'ar' ? 'rotate-180' : ''} />
-              </button>
-              <div className="absolute top-4 right-4 text-[8px] font-mono text-white/20 uppercase tracking-widest">Room: {roomID}</div>
-              <div className="flex justify-center gap-20 mb-12">
-                 <div className="flex flex-col items-center gap-4">
-                    <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center font-black text-2xl border-2" style={{ color: trackColor, borderColor: trackColor }}>ME</div>
-                    <div className="text-[10px] font-black uppercase text-white/40">150 XP</div>
-                 </div>
-                 <div className="flex flex-col items-center justify-center text-4xl font-black italic text-white/10 uppercase tracking-tighter">VS</div>
-                 <div className="flex flex-col items-center gap-4">
-                    <div className="w-20 h-20 rounded-3xl bg-red-500/10 text-red-500 flex items-center justify-center font-black text-2xl border-2 border-red-500/50">OP</div>
-                    <div className="text-[10px] font-black uppercase text-white/40">120 XP</div>
-                 </div>
+          <div className={`p-12 rounded-[4rem] ${cardBg} border-b-8 shadow-2xl relative overflow-hidden`} style={{ borderBottomColor: trackColor }}>
+            <button onClick={() => setView('rooms-menu')} className="absolute top-8 left-8 p-3 rounded-2xl bg-white/5 border border-white/5 text-white/40 hover:text-white transition-all z-20">
+              <ArrowLeft size={20} className={language === 'ar' ? 'rotate-180' : ''} />
+            </button>
+            <div className="absolute top-4 right-4 text-[8px] font-mono text-white/20 uppercase tracking-widest">Room: {roomID}</div>
+            <div className="flex justify-center gap-20 mb-12">
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center font-black text-2xl border-2" style={{ color: trackColor, borderColor: trackColor }}>ME</div>
+                <div className="text-[10px] font-black uppercase text-white/40">150 XP</div>
               </div>
-              <div className="space-y-8">
-                 <h2 className="text-3xl font-black text-white italic">{t('أي من هذه الدوال تستخدم لإضافة عنصر لمصفوفة؟', 'Which of these functions is used to add an item to an array?')}</h2>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {['push()', 'pop()', 'shift()', 'slice()'].map((opt, i) => (
-                      <button key={i} className="p-6 rounded-2xl border border-white/5 bg-white/5 text-white/60 font-black hover:bg-white/10 transition-all">{opt}</button>
-                    ))}
-                 </div>
+              <div className="flex flex-col items-center justify-center text-4xl font-black italic text-white/10 uppercase tracking-tighter">VS</div>
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-20 h-20 rounded-3xl bg-red-500/10 text-red-500 flex items-center justify-center font-black text-2xl border-2 border-red-500/50">OP</div>
+                <div className="text-[10px] font-black uppercase text-white/40">120 XP</div>
               </div>
-              <button onClick={() => setView('rooms-menu')} className="mt-12 text-[10px] font-black uppercase text-white/20 hover:text-white transition-all">{t('انسحاب', 'SURRENDER')}</button>
-           </div>
+            </div>
+            <div className="space-y-8">
+              <h2 className="text-3xl font-black text-white italic">{t('أي من هذه الدوال تستخدم لإضافة عنصر لمصفوفة؟', 'Which of these functions is used to add an item to an array?')}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {['push()', 'pop()', 'shift()', 'slice()'].map((opt, i) => (
+                  <button key={i} className="p-6 rounded-2xl border border-white/5 bg-white/5 text-white/60 font-black hover:bg-white/10 transition-all">{opt}</button>
+                ))}
+              </div>
+            </div>
+            <button onClick={() => setView('rooms-menu')} className="mt-12 text-[10px] font-black uppercase text-white/20 hover:text-white transition-all">{t('انسحاب', 'SURRENDER')}</button>
+          </div>
         </motion.div>
       )}
     </motion.div>

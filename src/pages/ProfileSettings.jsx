@@ -1,102 +1,395 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Globe, Shield, Bell, Moon, Sun, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Trophy, BookOpen } from 'lucide-react';
+import { supabase } from '../supabaseClient';
 import { useAppContext } from '../context/AppContext';
 
 export const ProfileSettings = () => {
-  const { language, setLanguage, theme, setTheme, t } = useAppContext();
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'ar' ? 'en' : 'ar');
-  };
+  const { language, t, tracksInfo } = useAppContext();
 
-  const cardBg = "bg-white/[0.03] backdrop-blur-md border border-white/10";
 
-  return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }} 
-      animate={{ opacity: 1, y: 0 }} 
-      className="pt-32 pb-20 px-10 max-w-4xl mx-auto"
-      dir={language === 'ar' ? 'rtl' : 'ltr'}
-    >
-      <div className={`mb-16 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-        <h2 className="text-5xl font-black italic uppercase tracking-tighter text-white mb-4">
-          {t('إعدادات المنصة', 'PLATFORM SETTINGS')}
-        </h2>
-        <p className="text-white/40 font-bold uppercase tracking-widest text-xs">
-          {t('تخصيص تجربتك التعليمية في مسار', 'CUSTOMIZE YOUR LEARNING EXPERIENCE IN MASAR')}
-        </p>
+  const [userData, setUserData] = useState(null);
+  const [progressData, setProgressData] = useState(null);
+
+
+  useEffect(() => {
+
+    getProfile();
+
+
+    const handleProfileUpdate = () => {
+      getProfile();
+    };
+
+
+    window.addEventListener("profileUpdated", handleProfileUpdate);
+
+
+    return () => {
+      window.removeEventListener("profileUpdated", handleProfileUpdate);
+    };
+
+
+  }, []);
+
+
+
+  async function getProfile() {
+
+    const { data: authData } = await supabase.auth.getUser();
+
+
+    if (!authData.user) return;
+
+
+
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", authData.user.id)
+      .single();
+
+
+
+    if (error) return;
+
+
+    setUserData(data);
+
+
+
+    const { data: progress } = await supabase
+      .from("user_progress")
+      .select("*")
+      .eq("user_id", authData.user.id);
+
+
+
+    setProgressData(progress);
+
+  }
+
+
+
+
+  if (!userData) {
+
+    return (
+
+      <div className="min-h-screen flex items-center justify-center text-white">
+
+        {t("جاري تحميل الحساب...","Loading account...")}
+
       </div>
 
-      <div className="space-y-6">
-        {/* Language Toggle Card */}
-        <div className={`p-8 rounded-[3rem] ${cardBg} flex items-center justify-between group hover:bg-white/[0.06] transition-all`}>
-          <div className="flex items-center gap-6">
-            <div className="p-4 rounded-2xl bg-teal-500/10 text-teal-500">
-              <Globe size={24} />
-            </div>
-            <div className={language === 'ar' ? 'text-right' : 'text-left'}>
-              <h3 className="text-xl font-black text-white">{t('لغة المنصة', 'Platform Language')}</h3>
-              <p className="text-sm text-white/40 font-bold">{t('تغيير اللغة للنظام بالكامل', 'Change the entire system language')}</p>
-            </div>
-          </div>
-          <button 
-            onClick={toggleLanguage}
-            className="px-8 py-4 rounded-2xl bg-teal-500 text-black font-black uppercase text-xs tracking-widest hover:scale-105 transition-all shadow-xl shadow-teal-500/20"
-          >
-            {language === 'ar' ? 'English' : 'العربية'}
-          </button>
-        </div>
+    );
 
-        {/* Theme Toggle Card */}
-        <div className={`p-8 rounded-[3rem] ${cardBg} flex items-center justify-between group hover:bg-white/[0.06] transition-all`}>
-          <div className="flex items-center gap-6">
-            <div className="p-4 rounded-2xl bg-purple-500/10 text-purple-500">
-              {theme === 'dark' ? <Moon size={24} /> : <Sun size={24} />}
-            </div>
-            <div className={language === 'ar' ? 'text-right' : 'text-left'}>
-              <h3 className="text-xl font-black text-white">{t('المظهر', 'Appearance')}</h3>
-              <p className="text-sm text-white/40 font-bold">{t('تبديل بين الوضع الليلي والنهاري', 'Toggle between dark and light mode')}</p>
-            </div>
-          </div>
-          <div className="flex bg-white/5 p-1 rounded-2xl border border-white/5">
-            <button 
-              onClick={() => setTheme('dark')}
-              className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${theme === 'dark' ? 'bg-purple-500 text-white shadow-lg' : 'text-white/40'}`}
-            >
-              Dark
-            </button>
-            <button 
-              onClick={() => setTheme('light')}
-              className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${theme === 'light' ? 'bg-purple-500 text-white shadow-lg' : 'text-white/40'}`}
-            >
-              Light
-            </button>
-          </div>
-        </div>
+  }
 
-        {/* Security Card */}
-        <div className={`p-8 rounded-[3rem] ${cardBg} flex items-center justify-between group hover:bg-white/[0.06] transition-all opacity-50`}>
-          <div className="flex items-center gap-6">
-            <div className="p-4 rounded-2xl bg-red-500/10 text-red-500">
-              <Shield size={24} />
-            </div>
-            <div className={language === 'ar' ? 'text-right' : 'text-left'}>
-              <h3 className="text-xl font-black text-white">{t('الأمان والخصوصية', 'Security & Privacy')}</h3>
-              <p className="text-sm text-white/40 font-bold">{t('إدارة كلمة المرور والوصول', 'Manage password and access')}</p>
-            </div>
-          </div>
-          <div className="text-[10px] font-black uppercase tracking-widest text-white/20 italic">Coming Soon</div>
-        </div>
-      </div>
 
-      <button 
-        onClick={() => window.dispatchEvent(new CustomEvent('changeView', { detail: 'dashboard' }))}
-        className="mt-12 w-full p-8 rounded-[3rem] border border-white/5 bg-white/5 flex items-center justify-center gap-4 text-white/40 hover:text-white hover:bg-white/10 transition-all font-black uppercase text-xs tracking-[0.3em]"
-      >
-        {language === 'ar' ? <ArrowRight size={16} /> : <ArrowLeft size={16} />}
-        {t('العودة للوحة التحكم', 'RETURN TO DASHBOARD')}
-      </button>
-    </motion.div>
-  );
+
+
+const currentProgress = progressData?.find(
+  (item) =>
+    item.track_id === userData.current_path_id &&
+    item.section_id === userData.current_section_id
+);
+
+
+
+
+
+const currentTrackInfo = Object.values(tracksInfo || {}).find(
+
+(track) =>
+
+track.name_ar === userData.current_path ||
+track.name === userData.current_path
+
+);
+
+
+
+
+const currentTrackName = currentTrackInfo
+
+?
+
+t(
+currentTrackInfo.name_ar,
+currentTrackInfo.name
+)
+
+:
+
+userData.current_path || t("لم يبدأ مسار","No track started");
+
+
+
+
+
+const currentSectionInfo = currentTrackInfo?.sections?.find(
+
+(section)=>
+
+section.title_ar === userData.current_section ||
+section.title === userData.current_section
+
+);
+
+
+
+
+
+const currentSectionName = currentSectionInfo
+
+?
+
+t(
+currentSectionInfo.title_ar,
+currentSectionInfo.title
+)
+
+:
+
+userData.current_section || t("لم يبدأ قسم","No section");
+
+
+
+
+
+
+
+
+return (
+
+<motion.div
+
+initial={{ opacity:0, y:20 }}
+
+animate={{ opacity:1, y:0 }}
+
+dir={language==="ar"?"rtl":"ltr"}
+
+className="pt-32 pb-20 px-10 max-w-4xl mx-auto"
+
+>
+
+
+
+
+
+<div className="mb-16 text-center">
+
+
+<h2 className="text-5xl font-black text-white mb-4">
+
+{userData.full_name}
+
+</h2>
+
+
+
+<p className="text-teal-400 font-bold text-sm">
+
+{t("مستواك الحالي","Your current level")}: <p>
+مستواك الحالي: {currentProgress?.unlocked_level || 1}
+</p>
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+
+
+
+
+
+<div className="p-8 rounded-3xl bg-white bg-opacity-5 border border-white border-opacity-10">
+
+
+<BookOpen className="text-teal-500 mb-4" size={24}/>
+
+
+
+<h3 className="text-xl font-black text-white">
+
+{t("المسار الحالي","Current Track")}
+
+</h3>
+
+
+
+<p className="text-white text-opacity-60 text-lg">
+
+{currentTrackName}
+
+</p>
+
+
+
+
+<p className="text-white text-opacity-60 text-sm mt-2">
+
+{t("القسم","Section")}: {currentSectionName}
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div className="p-8 rounded-3xl bg-white bg-opacity-5 border border-white bg-opacity-10">
+
+
+<Trophy className="text-yellow-500 mb-4" size={24}/>
+
+
+
+<h3 className="text-xl font-black text-white">
+
+{t("نقاط الخبرة","Experience Points")}
+
+</h3>
+
+
+
+<p className="text-3xl font-black text-white">
+
+{t("المستوى","Level")} {currentProgress?.unlocked_level || 1}
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div className="mt-6 p-8 rounded-3xl bg-white bg-opacity-5 border border-white border-opacity-10">
+
+
+<h3 className="text-xl font-black text-white mb-8">
+
+{t("تحليلات التقدم","Progress Analytics")}
+
+</h3>
+
+
+
+
+
+<div className="flex justify-between text-white text-opacity-60 text-sm font-bold mb-2">
+
+
+<span>
+
+{t("نسبة التقدم","Progress")}
+
+</span>
+
+
+{((currentProgress?.unlocked_level || 1) * 10)}%
+
+
+
+</div>
+
+
+
+
+
+<div className="w-full bg-white bg-opacity-10 h-4 rounded-full">
+
+
+<div
+
+className="bg-teal-500 h-4 rounded-full"
+
+style={{
+
+width:
+((currentProgress?.unlocked_level || 1) * 10)+"%"
+
+}}
+
+/>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<button
+
+onClick={()=>window.dispatchEvent(
+
+new CustomEvent('changeView',{
+
+detail:'dashboard'
+
+})
+
+)}
+
+className="mt-12 w-full p-6 rounded-3xl bg-white bg-opacity-10 text-white font-black uppercase tracking-widest hover:bg-white hover:bg-opacity-20 transition-all"
+
+>
+
+
+{t("العودة للوحة التحكم","Back to Dashboard")}
+
+
+</button>
+
+
+
+
+
+
+</motion.div>
+
+);
+
 };
