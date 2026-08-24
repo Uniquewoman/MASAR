@@ -201,12 +201,15 @@ const loadQuestions = async (level) => {
   }
   setCycle(activeCycle);
 
-  // 7. الدورة الأولى تمشي بالترتيب الأصلي، وبعدها خلط عشوائي
-  const ordered = activeCycle === 1
-    ? remaining
-    : [...remaining].sort(() => Math.random() - 0.5);
+  // 7. خلط عشوائي من أول محاولة، حتى تتوزّع أنواع الأسئلة والمواضيع على الجلسة
+  //    بدل ما تتجمّع الأسئلة القديمة أولاً والجديدة في الآخر
+  const shuffled = [...remaining];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
 
-  const session = ordered.slice(0, PULL_SIZE);
+  const session = shuffled.slice(0, PULL_SIZE);
   console.log(`✅ بنك المستوى ${pool.length} سؤال · متبقٍ ${remaining.length} · سُحب ${session.length} · المطلوب ${need} صحيحة · دورة ${activeCycle}`);
 
   setSessionQuestions(session);
