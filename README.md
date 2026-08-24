@@ -8,10 +8,11 @@ It's a dark-themed, card-driven UI covering five learning tracks: **Programming,
 
 ## What's inside
 
-- **Learning tracks** — 5 tracks, each with 7 sections of structured content (`src/data/courses.js`)
+- **Learning tracks** — 5 tracks × 7 sections × 5 levels, ordered so every topic builds on the one before it ([خطة المنهج](docs/CURRICULUM.md))
 - **Lessons** — per-section video/lesson lists, with fallback placeholder content for sections without custom lessons yet
 - **Question bank** — practice questions per track/section, multiple difficulty levels (`src/data/questions.js`)
-- **Level play** — quiz-style levels that unlock progressively and award XP
+- **Level play** — pull 36 questions, pass with 30 correct, fail at 6 mistakes; questions never repeat until the level's bank is exhausted
+- **Question types** — multiple choice, true/false, scenario, code tracing, image, **matching** (connect two columns), and **terminal** (type the correct command)
 - **Journey dashboard** — personal progress, achievements, and activity log
 - **Profile & settings** — theme, language switcher, notifications/security toggles, logout
 - **Auth** — Supabase-backed sign up / sign in / password reset
@@ -84,7 +85,9 @@ src/
     └── ResetPassword.jsx
 ```
 
-Supabase tables used: `profiles`, `user_progress`, `journey_logs`, `user_achievements`, `achievements`.
+Supabase tables used: `profiles`, `user_progress`, `journey_logs`, `user_achievements`, `achievements`, `questions`, `user_question_history`.
+
+SQL migrations live in [`sql/`](sql/). The curriculum plan — which topics belong to which level, the exact `section_id` keys, and the question quality bar — is in [`docs/CURRICULUM.md`](docs/CURRICULUM.md).
 
 ---
 
