@@ -185,6 +185,7 @@ const loadQuestions = async (level) => {
     .eq("track_id", currentTrackId)    // المسار الحالي
     .eq("section_id", currentSectionId) // القسم الحالي
     .eq("level", Number(level))         // المستوى الحالي
+    .eq("is_active", true)              // الأسئلة المعطّلة لا تُعرض
     .order("question_order", { ascending: true });
 
   if (error) {
