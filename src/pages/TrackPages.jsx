@@ -38,13 +38,11 @@ export const PlayLevel = ({ section }) => {
     saveUnlockedLevel
   } = useAppContext();
  // تأكدي أننا نعتمد على المسار النشط فقط
-const track = currentTrack; 
+const track = currentTrack;
 
-// أضيفي فحصاً قبل أي شيء للتأكد أن البيانات موجودة
-if (!track) {
-  return <div className="p-10 text-center text-white">لم يتم اختيار مسار صحيح. الرجاء العودة للقائمة الرئيسية.</div>;
-}
-  const trackColor = track.color || '#14b8a6';
+// ملاحظة: فحص وجود المسار موجود بعد كل الـ hooks (قبل الـ return مباشرة)
+// لأن قواعد React تمنع أي return قبل استدعاء الـ hooks.
+  const trackColor = track?.color || '#14b8a6';
 
   const [view, setView] = useState('map'); // map | playing
   const [selectedLevel, setSelectedLevel] = useState(1);
@@ -61,8 +59,17 @@ if (!track) {
 const [loading, setLoading] = useState(false);
 const [currentQ, setCurrentQ] = useState(null);
 const [sessionQuestions, setSessionQuestions] = useState([]);
-const MAX_QUESTIONS = 30;
+
+// عدد الإجابات الصحيحة المطلوبة لعبور المستوى
+const NEEDED_CORRECT = 30;
 const MAX_MISTAKES = 6;
+// نسحب 36 = 30 صحيحة + 6 أخطاء، حتى لو استهلك كل فرصه يبقى عنده أسئلة يكمل فيها
+const PULL_SIZE = NEEDED_CORRECT + MAX_MISTAKES;
+
+// لو بنك المستوى أصغر من 30، نخفّض المطلوب لحجم البنك حتى يبقى المستوى قابلاً للعبور
+const [targetCorrect, setTargetCorrect] = useState(NEEDED_CORRECT);
+// دورة الأسئلة: بعد ما يخلص كل أسئلة المستوى تبدأ دورة جديدة مخلوطة
+const [cycle, setCycle] = useState(1);
   const cardBg = "bg-white/[0.03] backdrop-blur-md border border-white/10";
 
   const levels = Array.from({ length: 5 }, (_, i) => i + 1);
@@ -113,16 +120,6 @@ const MAX_MISTAKES = 6;
     saveUnlockedLevel
   ]);
 
-  useEffect(() => {
-    if (view !== 'playing' || selectedAns !== null || isLevelFailed || isLevelSuccess) return;
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev <= 1) { clearInterval(timer); handleAnswer(-1); return 0; }
-        return prev - 1;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [view, questionNum, selectedAns, isLevelFailed, isLevelSuccess]);
 const loadQuestions = async (level) => {
   setLoading(true);
 
@@ -137,13 +134,14 @@ const loadQuestions = async (level) => {
     Level: level 
   });
 
-  // 2. الاستعلام من Supabase باستخدام القيم الديناميكية
-  const { data, error } = await supabase
+  // 2. جلب بنك المستوى كامل بترتيب الأسئلة الأصلي
+  const { data: pool, error } = await supabase
     .from("questions")
     .select("*")
     .eq("track_id", currentTrackId)    // المسار الحالي
     .eq("section_id", currentSectionId) // القسم الحالي
-    .eq("level", Number(level));        // المستوى الحالي
+    .eq("level", Number(level))         // المستوى الحالي
+    .order("question_order", { ascending: true });
 
   if (error) {
     console.error("❌ خطأ Supabase:", error.message);
@@ -151,24 +149,86 @@ const loadQuestions = async (level) => {
     return;
   }
 
-  // 3. التحقق من النتيجة
-  if (data && data.length > 0) {
-    console.log(`✅ تم العثور على ${data.length} سؤال.`);
-    
-    // خلط الأسئلة عشوائياً
-    const shuffled = [...data].sort(() => Math.random() - 0.5);
-    setSessionQuestions(shuffled);
-    setCurrentQ(shuffled[0]);
-    setQuestionNum(0);
-    setLoading(false);
-    setView('playing'); 
-  } else {
+  if (!pool || pool.length === 0) {
     console.warn("⚠️ لا توجد أسئلة بهذا المسار والقسم والمستوى:", { currentTrackId, currentSectionId, level });
     alert(`عذراً، لم يتم العثور على أسئلة للمسار: ${currentTrackId}، القسم: ${currentSectionId}، المستوى: ${level}`);
     setLoading(false);
+    return;
+  }
+
+  // 3. المطلوب لعبور المستوى (يقلّ لو البنك أصغر من 30)
+  const need = Math.min(NEEDED_CORRECT, pool.length);
+  setTargetCorrect(need);
+
+  // 4. الأسئلة اللي شافها اليوزر سابقاً في هذا المستوى
+  const { data: { user } } = await supabase.auth.getUser();
+  let activeCycle = 1;
+  let seenIds = [];
+
+  if (user) {
+    const { data: history, error: histErr } = await supabase
+      .from("user_question_history")
+      .select("question_id, cycle")
+      .eq("user_id", user.id)
+      .eq("track_id", currentTrackId)
+      .eq("section_id", currentSectionId)
+      .eq("level", Number(level));
+
+    if (histErr) {
+      // الجدول غير موجود بعد — نكمل بدون تتبّع بدل ما ينكسر المستوى
+      console.warn("⚠️ تعذّر قراءة سجل الأسئلة، سيتم السحب بدون تتبّع:", histErr.message);
+    } else if (history?.length) {
+      activeCycle = Math.max(...history.map(h => h.cycle));
+      seenIds = history.filter(h => h.cycle === activeCycle).map(h => h.question_id);
+    }
+  }
+
+  // 5. غير المشاهدة في الدورة الحالية
+  let remaining = pool.filter(q => !seenIds.includes(q.id));
+
+  // 6. خلصت الدورة؟ نبدأ دورة جديدة بكامل البنك
+  if (remaining.length < need) {
+    activeCycle += 1;
+    remaining = [...pool];
+    console.log(`🔄 انتهت أسئلة المستوى — بدء الدورة رقم ${activeCycle}`);
+  }
+  setCycle(activeCycle);
+
+  // 7. الدورة الأولى تمشي بالترتيب الأصلي، وبعدها خلط عشوائي
+  const ordered = activeCycle === 1
+    ? remaining
+    : [...remaining].sort(() => Math.random() - 0.5);
+
+  const session = ordered.slice(0, PULL_SIZE);
+  console.log(`✅ بنك المستوى ${pool.length} سؤال · متبقٍ ${remaining.length} · سُحب ${session.length} · المطلوب ${need} صحيحة · دورة ${activeCycle}`);
+
+  setSessionQuestions(session);
+  setCurrentQ(session[0]);
+  setQuestionNum(0);
+  setLoading(false);
+  setView('playing');
+};
+
+// تسجيل أن اليوزر شاف السؤال، حتى لا يتكرر عليه قبل ما تخلص أسئلة المستوى
+const recordSeen = async (question) => {
+  if (!question) return;
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    await supabase.from("user_question_history").insert({
+      user_id: user.id,
+      question_id: question.id,
+      track_id: track.id,
+      section_id: section.title,
+      level: Number(selectedLevel),
+      cycle,
+    });
+  } catch (e) {
+    console.warn("⚠️ تعذّر تسجيل السؤال في السجل:", e?.message);
   }
 };
-const handleAnswer = (idx) => {
+// تعريف دالة (مرفوع) وليس ثابتاً، لأن مؤقّت السؤال أعلاه يستدعيها قبل هذا السطر
+function handleAnswer(idx) {
   if (selectedAns !== null || isLevelFailed || isLevelSuccess) return;
 
   setSelectedAns(idx);
@@ -176,11 +236,19 @@ const handleAnswer = (idx) => {
   const correct = idx === currentQ?.correct_answer;
   setIsCorrect(correct);
 
+  recordSeen(currentQ);
+
   if (correct) {
-    setCorrectCount(prev => prev + 1);
+    const newCorrect = correctCount + 1;
+    setCorrectCount(newCorrect);
 
     setTimeout(() => {
-      nextQuestion();
+      // العبور يتحقق بعدد الإجابات الصحيحة، لا بعدد الأسئلة المعروضة
+      if (newCorrect >= targetCorrect) {
+        setIsLevelSuccess(true);
+      } else {
+        nextQuestion();
+      }
     }, 500);
 
   } else {
@@ -206,8 +274,21 @@ const handleAnswer = (idx) => {
       return newMistakes;
     });
   }
-};
+}
 const [hint, setHint] = useState(null);
+
+// مؤقّت السؤال — موضوع بعد handleAnswer لأنه يستدعيها عند انتهاء الوقت
+useEffect(() => {
+  if (view !== 'playing' || selectedAns !== null || isLevelFailed || isLevelSuccess) return;
+  const timer = setInterval(() => {
+    setTimeLeft(prev => {
+      if (prev <= 1) { clearInterval(timer); handleAnswer(-1); return 0; }
+      return prev - 1;
+    });
+  }, 1000);
+  return () => clearInterval(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [view, questionNum, selectedAns, isLevelFailed, isLevelSuccess]);
 
 const showHint = (q) => {
   setHint(q.explanation);
@@ -216,8 +297,10 @@ const showHint = (q) => {
 const nextQuestion = () => {
   const nextIndex = questionNum + 1;
 setHint(null);
-  if (nextIndex >= sessionQuestions.length || nextIndex >= MAX_QUESTIONS) {
-    setIsLevelSuccess(true);
+  // خلصت أسئلة الجلسة قبل ما يوصل العدد المطلوب من الإجابات الصحيحة
+  if (nextIndex >= sessionQuestions.length) {
+    if (correctCount >= targetCorrect) setIsLevelSuccess(true);
+    else setIsLevelFailed(true);
     return;
   }
 
@@ -247,6 +330,11 @@ setTimeLeft(60);
 
 loadQuestions(lvl);
 };
+  // فحص المسار هنا — بعد كل الـ hooks، حتى لا نخالف قواعد React
+  if (!track) {
+    return <div className="p-10 text-center text-white">لم يتم اختيار مسار صحيح. الرجاء العودة للقائمة الرئيسية.</div>;
+  }
+
   if (view === 'map') {
     return (
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-32 pb-20 px-10 max-w-5xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
@@ -255,7 +343,7 @@ loadQuestions(lvl);
         </button>
         <div className="text-center mb-16">
           <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-2">{t(section?.title_ar || section?.title, section?.title) || t('المستويات', 'LEVELS')}</h2>
-          <p className="text-white/40 font-bold uppercase tracking-widest text-xs">{t('أكمل 30 سؤال لفتح المستوى التالي', 'COMPLETE 100 QUESTIONS TO UNLOCK NEXT LEVEL')}</p>
+          <p className="text-white/40 font-bold uppercase tracking-widest text-xs">{t('أجب 30 إجابة صحيحة لفتح المستوى التالي', 'ANSWER 30 QUESTIONS CORRECTLY TO UNLOCK THE NEXT LEVEL')}</p>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-5 gap-8">
 
@@ -321,7 +409,7 @@ loadQuestions(lvl);
           <motion.div key="success" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className={`p-12 rounded-[4rem] ${cardBg} text-center max-w-lg border-t-8 shadow-2xl`} style={{ borderTopColor: trackColor }}>
             <CheckCircle2 size={80} style={{ color: trackColor }} className="mx-auto mb-8" />
             <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-4">{t('أحسنت صنعاً!', 'WELL DONE!')}</h2>
-            <p className="text-white/40 font-bold mb-10 leading-relaxed">{t('لقد أكملت 30 سؤال بنجاح! تم فتح المستوى التالي ومزامنة نقاط الخبرة.', 'You successfully completed 30 questions! Next level unlocked and XP synced.')}</p>
+            <p className="text-white/40 font-bold mb-10 leading-relaxed">{t('أحسنت! أجبت على العدد المطلوب بشكل صحيح. تم فتح المستوى التالي ومزامنة نقاط الخبرة.', 'Well done! You answered enough questions correctly. Next level unlocked and XP synced.')}</p>
             <button onClick={() => setView('map')} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-tighter shadow-2xl hover:scale-105 transition-all" style={{ backgroundColor: trackColor, boxShadow: `0 15px 40px ${trackColor}30` }}>{t('المتابعة للمستويات', 'CONTINUE TO LEVELS')}</button>
           </motion.div>
         ) : (
@@ -338,7 +426,7 @@ loadQuestions(lvl);
                 </div>
                 <div className="px-6 py-2 rounded-2xl bg-white/5 border border-white/5 flex items-center gap-3">
                   <Trophy size={18} className="text-yellow-500" />
-                  <span className="font-mono font-black text-white">{questionNum + 1}/{MAX_QUESTIONS}</span>
+                  <span className="font-mono font-black text-white">{correctCount}/{targetCorrect}</span>
                 </div>
               </div>
               <div className="flex items-center gap-3 font-black uppercase text-[10px] tracking-widest opacity-40" style={{ color: trackColor }}>
