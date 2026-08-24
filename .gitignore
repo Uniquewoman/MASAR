@@ -18,9 +18,6 @@ dist-ssr
 !.env.example
 backend/.env
 
-# نسخة قديمة لها .git مستقل جواها — تبقى بمكانها لكن ما ترتفع على GitHub
-my-codex-app
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

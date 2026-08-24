@@ -159,13 +159,6 @@ const [userAchievements, setUserAchievements] = useState([]);
     addXP(100);
   };
 
-  const [registeredUsers, setRegisteredUsers] = useState(() => {
-    const saved = localStorage.getItem('registeredUsers');
-    return saved ? JSON.parse(saved) : [
-      { username: 'ahmed', password: '123', email: 'ahmed@sda.com' }
-    ];
-  });
-
   const tracksInfo = {
    Programming: {
       id: 'Programming', name: 'Programming', name_ar: 'البرمجة', color: '#0d9488',
@@ -244,25 +237,7 @@ FinTech: {
 }
   };
 
-  const registerUser = (userData) => {
-    const updatedUsers = [...registeredUsers, userData];
-    setRegisteredUsers(updatedUsers);
-    localStorage.setItem('registeredUsers', JSON.stringify(updatedUsers));
-    setUser(userData);
-  };
-
-  const loginUser = (username, password) => {
-    const foundUser = registeredUsers.find(
-      u => u.username.toLowerCase() === username.toLowerCase() && u.password === password
-    );
-    if (foundUser) {
-      setUser(foundUser);
-      return true;
-    }
-    return false;
-  };
-
- const logout = () => { 
+ const logout = () => {
   setUser(null); 
   setCurrentTrack(null);
 
@@ -368,8 +343,6 @@ const selectTrack = async (trackId) => {
     journeyLogs,
     userAchievements,
 
-    registerUser,
-    loginUser,
     logout,
 
     currentTrack,
