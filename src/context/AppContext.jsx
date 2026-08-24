@@ -168,8 +168,8 @@ const [userAchievements, setUserAchievements] = useState([]);
       sections: [
         { title: 'Programming Basics', title_ar: 'أساسيات البرمجة', desc: 'Learn programming fundamentals, variables, data types, operators, and input/output.', desc_ar: 'تعلم أساسيات البرمجة والمتغيرات وأنواع البيانات والعمليات والإدخال والإخراج.' },
         { title: 'Computational Thinking and Algorithms', title_ar: 'التفكير البرمجي والخوارزميات', desc: 'Learn problem solving, algorithm design, and computational thinking.', desc_ar: 'تعلم التفكير البرمجي وحل المشكلات وتصميم الخوارزميات.' },
-        { title: 'Data Structures', title_ar: 'هياكل البيانات', desc: 'Study arrays, linked lists, stacks, queues, trees, and graphs.', desc_ar: 'دراسة هياكل البيانات مثل المصفوفات والقوائم والمكدسات والأشجار.' },
         { title: 'Object-Oriented and Advanced Programming', title_ar: 'البرمجة الكائنية والمتقدمة', desc: 'Master OOP concepts and advanced programming techniques.', desc_ar: 'إتقان البرمجة الكائنية والمفاهيم البرمجية المتقدمة.' },
+        { title: 'Data Structures', title_ar: 'هياكل البيانات', desc: 'Study arrays, linked lists, stacks, queues, trees, and graphs.', desc_ar: 'دراسة هياكل البيانات مثل المصفوفات والقوائم والمكدسات والأشجار.' },
         { title: 'Software Development', title_ar: 'تطوير البرمجيات', desc: 'Build software projects using modern development practices.', desc_ar: 'تطوير البرمجيات باستخدام أفضل الممارسات والأدوات الحديثة.' },
         { title: 'Software Engineering', title_ar: 'هندسة البرمجيات', desc: 'Learn software architecture, design, testing, and maintenance.', desc_ar: 'تعلم هندسة البرمجيات والتصميم والاختبارات وصيانة الأنظمة.' },
         { title: 'Programming Specializations', title_ar: 'التخصصات البرمجية', desc: 'Explore web, mobile, game, AI, embedded, and cloud development.', desc_ar: 'استكشف تخصصات البرمجة مثل الويب والجوال والألعاب والذكاء الاصطناعي والسحابة.' }
@@ -199,8 +199,8 @@ ArtificialIntelligence: {
     { title: 'Cyber Security Basics', title_ar: 'أساسيات الأمن السيبراني', desc: 'Introduction to cybersecurity, threats, and security principles.', desc_ar: 'مقدمة في الأمن السيبراني، التهديدات، والمبادئ الأساسية للحماية.' },
     { title: 'Networking for Security', title_ar: 'الشبكات للأمن السيبراني', desc: 'Networking concepts, protocols, and secure communication.', desc_ar: 'أساسيات الشبكات، البروتوكولات، وآليات الاتصال الآمن.' },
     { title: 'System and Operating System Security', title_ar: 'أمن الأنظمة وأنظمة التشغيل', desc: 'Securing Windows, Linux, permissions, and system hardening.', desc_ar: 'حماية أنظمة التشغيل، الصلاحيات، وتقوية الأنظمة.' },
-    { title: 'Ethical Hacking and Penetration Testing', title_ar: 'الاختراق الأخلاقي واختبار الاختراق', desc: 'Reconnaissance, vulnerability assessment, and penetration testing.', desc_ar: 'جمع المعلومات، تحليل الثغرات، واختبار الاختراق الأخلاقي.' },
     { title: 'Application and Web Security', title_ar: 'أمن التطبيقات والويب', desc: 'Secure coding, OWASP Top 10, and web application security.', desc_ar: 'البرمجة الآمنة، أشهر ثغرات OWASP، وأمن تطبيقات الويب.' },
+    { title: 'Ethical Hacking and Penetration Testing', title_ar: 'الاختراق الأخلاقي واختبار الاختراق', desc: 'Reconnaissance, vulnerability assessment, and penetration testing.', desc_ar: 'جمع المعلومات، تحليل الثغرات، واختبار الاختراق الأخلاقي.' },
     { title: 'Digital Forensics and Incident Response', title_ar: 'التحقيق الجنائي الرقمي والاستجابة للحوادث', desc: 'Digital investigations, malware analysis, and incident response.', desc_ar: 'التحقيقات الرقمية، تحليل البرمجيات الخبيثة، والاستجابة للحوادث.' },
     { title: 'Cloud Security and Advanced Cyber Defense', title_ar: 'أمن السحابة والدفاع السيبراني المتقدم', desc: 'Cloud security, identity management, threat hunting, and SOC operations.', desc_ar: 'أمن الحوسبة السحابية، إدارة الهوية، صيد التهديدات، وعمليات مركز الأمن SOC.' }
   ]
@@ -228,8 +228,8 @@ FinTech: {
   sections: [
     { title: 'FinTech Fundamentals', title_ar: 'أساسيات التقنية المالية', desc: 'Introduction to financial technology and the digital financial ecosystem.', desc_ar: 'مقدمة في التقنية المالية والنظام المالي الرقمي.' },
     { title: 'Digital Payments', title_ar: 'أنظمة الدفع الرقمية', desc: 'Payment gateways, cards, wallets, and banking transactions.', desc_ar: 'بوابات الدفع، البطاقات، المحافظ الرقمية، والتحويلات البنكية.' },
-    { title: 'Blockchain & Digital Assets', title_ar: 'البلوكشين والأصول الرقمية', desc: 'Blockchain architecture, cryptocurrencies, and smart contracts.', desc_ar: 'تقنية البلوكشين، العملات الرقمية، والعقود الذكية.' },
     { title: 'Digital Banking', title_ar: 'الخدمات المصرفية الرقمية', desc: 'Open Banking, APIs, digital banks, and financial services.', desc_ar: 'الخدمات البنكية الرقمية، Open Banking، وواجهات API.' },
+    { title: 'Blockchain & Digital Assets', title_ar: 'البلوكشين والأصول الرقمية', desc: 'Blockchain architecture, cryptocurrencies, and smart contracts.', desc_ar: 'تقنية البلوكشين، العملات الرقمية، والعقود الذكية.' },
     { title: 'Financial Data & Analytics', title_ar: 'البيانات والتحليل المالي', desc: 'Financial data analysis, reporting, forecasting, and business intelligence.', desc_ar: 'تحليل البيانات المالية، التقارير، التنبؤ، وذكاء الأعمال.' },
     { title: 'Financial Security & Compliance', title_ar: 'الأمن والامتثال المالي', desc: 'Fraud prevention, AML, KYC, cybersecurity, and regulations.', desc_ar: 'مكافحة الاحتيال، AML، KYC، الأمن السيبراني، والأنظمة.' },
     { title: 'Advanced FinTech', title_ar: 'التقنية المالية المتقدمة', desc: 'AI in finance, DeFi, embedded finance, and future financial technologies.', desc_ar: 'الذكاء الاصطناعي المالي، التمويل اللامركزي، والاتجاهات المستقبلية.' }
