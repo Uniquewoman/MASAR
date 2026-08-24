@@ -77,6 +77,11 @@ const [activeLeft, setActiveLeft] = useState(null); // العنصر المختا
 const [shuffledRight, setShuffledRight] = useState([]);
 // حالة أسئلة التيرمنال
 const [termInput, setTermInput] = useState('');
+// حالة أسئلة الاختيار المتعدد (اختر كل ما ينطبق)
+const [multiPicked, setMultiPicked] = useState([]);
+// حالة أسئلة الترتيب — عناصر مخلوطة يعيد اليوزر ترتيبها
+const [orderItems, setOrderItems] = useState([]);
+const [dragIndex, setDragIndex] = useState(null);
   const cardBg = "bg-white/[0.03] backdrop-blur-md border border-white/10";
 
   const levels = Array.from({ length: 5 }, (_, i) => i + 1);
@@ -269,6 +274,56 @@ function submitTerminal() {
   scoreAnswer(correct);
 }
 
+// اختر كل ما ينطبق — صحيح فقط لو اختار كل الصحيحة ولا شيء غيرها
+function submitMultiSelect() {
+  if (selectedAns !== null || isLevelFailed || isLevelSuccess) return;
+  if (multiPicked.length === 0) return;
+  const expected = Array.isArray(currentQ?.correct_answers) ? currentQ.correct_answers : [];
+  const same = expected.length === multiPicked.length
+    && expected.every(i => multiPicked.includes(i));
+  setSelectedAns('multi');
+  scoreAnswer(same);
+}
+
+// ترتيب الخطوات — options مخزّنة بالترتيب الصحيح، والمقارنة على الترتيب النهائي
+function submitOrdering() {
+  if (selectedAns !== null || isLevelFailed || isLevelSuccess) return;
+  const correct = orderItems.every((item, i) => item.originalIndex === i);
+  setSelectedAns('ordering');
+  scoreAnswer(correct);
+}
+
+// تحريك عنصر لأعلى أو لأسفل في قائمة الترتيب
+const moveItem = (from, to) => {
+  if (selectedAns !== null) return;
+  if (to < 0 || to >= orderItems.length) return;
+  setOrderItems(prev => {
+    const next = [...prev];
+    [next[from], next[to]] = [next[to], next[from]];
+    return next;
+  });
+};
+
+// السحب والإفلات لإعادة الترتيب
+const onDragStart = (e, index) => {
+  if (selectedAns !== null) return;
+  setDragIndex(index);
+  e.dataTransfer.effectAllowed = 'move';
+};
+
+const onDragOver = (e, index) => {
+  if (selectedAns !== null || dragIndex === null) return;
+  e.preventDefault();
+  if (index === dragIndex) return;
+  setOrderItems(prev => {
+    const next = [...prev];
+    const [moved] = next.splice(dragIndex, 1);
+    next.splice(index, 0, moved);
+    return next;
+  });
+  setDragIndex(index);
+};
+
 // منطق الاحتساب المشترك لكل الأنواع
 function scoreAnswer(correct) {
   setIsCorrect(correct);
@@ -332,6 +387,24 @@ useEffect(() => {
   setMatchLinks({});
   setActiveLeft(null);
   setTermInput('');
+  setMultiPicked([]);
+
+  // الترتيب: نخلط العناصر مع الاحتفاظ بموضعها الصحيح للمقارنة لاحقاً
+  if (currentQ?.type === 'ordering' && Array.isArray(currentQ.options)) {
+    const items = currentQ.options.map((text, i) => ({ text, originalIndex: i }));
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [items[i], items[j]] = [items[j], items[i]];
+    }
+    // نتفادى أن يبدأ السؤال وهو مرتّب أصلاً
+    if (items.every((it, i) => it.originalIndex === i) && items.length > 1) {
+      [items[0], items[1]] = [items[1], items[0]];
+    }
+    setOrderItems(items);
+  } else {
+    setOrderItems([]);
+  }
+
   if (currentQ?.type === 'matching' && Array.isArray(currentQ.pairs)) {
     const rights = currentQ.pairs.map((p, i) => ({ ...p, originalIndex: i }));
     setShuffledRight([...rights].sort(() => Math.random() - 0.5));
@@ -760,8 +833,138 @@ loadQuestions(lvl);
               </div>
             )}
 
+            {/* ===== اختر كل ما ينطبق ===== */}
+            {currentQ?.type === 'multi-select' && (() => {
+              const answered = selectedAns !== null;
+              const expected = Array.isArray(currentQ?.correct_answers) ? currentQ.correct_answers : [];
+              return (
+                <div className="max-w-3xl mx-auto">
+                  <p className="text-center text-white/40 font-bold text-xs mb-6">
+                    {t('اختر كل الإجابات الصحيحة — قد تكون أكثر من واحدة', 'Select every correct answer — there may be more than one')}
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {currentQ?.options?.map((opt, i) => {
+                      const picked = multiPicked.includes(i);
+                      const shouldBe = expected.includes(i);
+                      let cls = 'border-white/10 bg-white/5 text-white/60';
+                      if (answered) {
+                        if (shouldBe) cls = 'border-teal-400 bg-teal-400/10 text-white';
+                        else if (picked) cls = 'border-red-500 bg-red-500/10 text-red-400';
+                      } else if (picked) cls = 'border-white/60 bg-white/15 text-white';
+                      return (
+                        <button
+                          key={i}
+                          type="button"
+                          disabled={answered}
+                          onClick={() => setMultiPicked(prev =>
+                            prev.includes(i) ? prev.filter(x => x !== i) : [...prev, i])}
+                          className={`p-6 rounded-2xl border text-base font-bold transition-all flex items-center gap-4 ${language === 'ar' ? 'text-right' : 'text-left'} ${cls} ${!answered ? 'hover:bg-white/10' : ''}`}
+                        >
+                          <span className={`shrink-0 w-6 h-6 rounded-md border-2 flex items-center justify-center text-xs ${picked ? 'border-white bg-white text-black' : 'border-white/30'}`}>
+                            {picked ? '✓' : ''}
+                          </span>
+                          <span className="flex-1">{opt}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {!answered && (
+                    <div className="mt-8 flex flex-col items-center gap-3">
+                      <span className="text-white/40 font-bold text-xs">
+                        {t(`اخترت ${multiPicked.length}`, `${multiPicked.length} selected`)}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={submitMultiSelect}
+                        disabled={multiPicked.length === 0}
+                        className="px-12 py-4 rounded-2xl font-black uppercase tracking-widest text-sm text-black disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                        style={{ backgroundColor: trackColor }}
+                      >
+                        {t('تأكيد', 'CONFIRM')}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* ===== ترتيب الخطوات ===== */}
+            {currentQ?.type === 'ordering' && (() => {
+              const answered = selectedAns !== null;
+              return (
+                <div className="max-w-2xl mx-auto">
+                  <p className="text-center text-white/40 font-bold text-xs mb-6">
+                    {t('اسحب الخطوة لأعلى أو لأسفل حتى يصبح الترتيب صحيحاً', 'Drag each step up or down until the order is right')}
+                  </p>
+                  <div className="flex flex-col gap-3">
+                    {orderItems.map((item, i) => {
+                      const ok = answered && item.originalIndex === i;
+                      const dragging = dragIndex === i;
+                      let cls = 'border-white/10 bg-white/5 text-white/70';
+                      if (answered) cls = ok ? 'border-teal-400 bg-teal-400/10 text-white' : 'border-red-500 bg-red-500/10 text-red-300';
+                      else if (dragging) cls = 'border-white/60 bg-white/15 text-white';
+                      return (
+                        <div
+                          key={item.originalIndex}
+                          draggable={!answered}
+                          onDragStart={(e) => onDragStart(e, i)}
+                          onDragOver={(e) => onDragOver(e, i)}
+                          onDragEnd={() => setDragIndex(null)}
+                          onDrop={(e) => { e.preventDefault(); setDragIndex(null); }}
+                          className={`p-4 rounded-2xl border flex items-center gap-4 transition-all ${cls} ${!answered ? 'cursor-grab active:cursor-grabbing' : ''} ${dragging ? 'opacity-60' : ''}`}
+                        >
+                          {!answered && (
+                            <span className="shrink-0 text-white/25 text-lg leading-none select-none" aria-hidden="true">⠿</span>
+                          )}
+                          <span className="shrink-0 w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center font-black text-sm" style={{ color: trackColor }}>
+                            {i + 1}
+                          </span>
+                          <span className="flex-1 font-bold text-sm md:text-base">{item.text}</span>
+                          {!answered && (
+                            <span className="shrink-0 flex flex-col gap-1">
+                              <button
+                                type="button"
+                                aria-label={t('تحريك لأعلى', 'Move up')}
+                                onClick={() => moveItem(i, i - 1)}
+                                disabled={i === 0}
+                                className="w-7 h-6 rounded-lg bg-white/10 text-white/70 text-xs font-black disabled:opacity-20 hover:bg-white/20 transition-all"
+                              >▲</button>
+                              <button
+                                type="button"
+                                aria-label={t('تحريك لأسفل', 'Move down')}
+                                onClick={() => moveItem(i, i + 1)}
+                                disabled={i === orderItems.length - 1}
+                                className="w-7 h-6 rounded-lg bg-white/10 text-white/70 text-xs font-black disabled:opacity-20 hover:bg-white/20 transition-all"
+                              >▼</button>
+                            </span>
+                          )}
+                          {answered && !ok && (
+                            <span className="shrink-0 text-[10px] font-black text-white/40">
+                              {t(`مكانه ${item.originalIndex + 1}`, `goes to ${item.originalIndex + 1}`)}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {!answered && (
+                    <div className="mt-8 flex justify-center">
+                      <button
+                        type="button"
+                        onClick={submitOrdering}
+                        className="px-12 py-4 rounded-2xl font-black uppercase tracking-widest text-sm text-black transition-all"
+                        style={{ backgroundColor: trackColor }}
+                      >
+                        {t('تحقق', 'CHECK')}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
             {/* ===== الخيارات (بقية الأنواع) ===== */}
-            <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${currentQ?.type === 'matching' || currentQ?.type === 'terminal' ? 'hidden' : ''}`}>
+            <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${['matching','terminal','multi-select','ordering'].includes(currentQ?.type) ? 'hidden' : ''}`}>
              {currentQ?.options?.map((opt, i) => {
                 const isAnswered = selectedAns !== null;
               const isCorrectOpt = i === currentQ?.correct_answer;
