@@ -205,6 +205,7 @@ const loadQuestions = async (level) => {
   setSessionQuestions(session);
   setCurrentQ(session[0]);
   setQuestionNum(0);
+  setTimeLeft(session[0]?.time_limit || 60);
   setLoading(false);
   setView('playing');
 };
@@ -304,12 +305,14 @@ setHint(null);
     return;
   }
 
+  const nextQ = sessionQuestions[nextIndex];
   setQuestionNum(nextIndex);
-  setCurrentQ(sessionQuestions[nextIndex]);
+  setCurrentQ(nextQ);
 
   setSelectedAns(null);
   setIsCorrect(null);
-  setTimeLeft(60);
+  // كل سؤال يقدر يحدد وقته الخاص — الأنواع الأصعب تاخذ وقت أطول
+  setTimeLeft(nextQ?.time_limit || 60);
 };
 const startLevel = (lvl) => {
   setSelectedLevel(lvl);
@@ -444,6 +447,19 @@ loadQuestions(lvl);
     💡 {hint}
   </div>
 )}
+              {/* صورة السؤال */}
+              {currentQ?.image_url && (
+                <div className="my-6 flex justify-center">
+                  <img
+                    src={currentQ.image_url}
+                    alt={t('صورة توضيحية للسؤال', 'Question illustration')}
+                    loading="lazy"
+                    className="max-h-72 w-auto max-w-full rounded-3xl border border-white/10 shadow-xl object-contain bg-black/30"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
+                </div>
+              )}
+
               {/* Custom Code Snippet Renderer */}
               {currentQ?.code_snippet && (
                 <pre className="my-6 p-6 bg-black/60 rounded-3xl text-left font-mono text-xs border border-white/10 text-teal-400 overflow-x-auto max-w-2xl mx-auto shadow-inner">

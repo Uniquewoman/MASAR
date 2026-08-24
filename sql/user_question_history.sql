@@ -31,3 +31,28 @@ create policy "uqh_insert_own" on public.user_question_history
 drop policy if exists "uqh_delete_own" on public.user_question_history;
 create policy "uqh_delete_own" on public.user_question_history
   for delete using (auth.uid() = user_id);
+
+
+-- ============================================================
+-- دعم أنواع الأسئلة المتعددة
+-- ============================================================
+
+-- نوع السؤال — الافتراضي اختيار من متعدد حتى لا تتأثر الأسئلة الحالية
+alter table public.questions
+  add column if not exists type text not null default 'multiple-choice';
+
+-- أزواج التوصيل لأسئلة الماتش، مثال:
+--   [{"left":"SSH","right":"22"},{"left":"HTTP","right":"80"}]
+alter table public.questions
+  add column if not exists pairs jsonb;
+
+-- الوقت المخصص للسؤال بالثواني (الافتراضي الحالي 60)
+alter table public.questions
+  add column if not exists time_limit int not null default 60;
+
+-- الأنواع المسموحة
+alter table public.questions drop constraint if exists questions_type_check;
+alter table public.questions add constraint questions_type_check
+  check (type in ('multiple-choice','true-false','scenario','code','image','matching'));
+
+create index if not exists idx_questions_type on public.questions (type);
