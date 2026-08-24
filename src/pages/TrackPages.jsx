@@ -70,6 +70,13 @@ const PULL_SIZE = NEEDED_CORRECT + MAX_MISTAKES;
 const [targetCorrect, setTargetCorrect] = useState(NEEDED_CORRECT);
 // دورة الأسئلة: بعد ما يخلص كل أسئلة المستوى تبدأ دورة جديدة مخلوطة
 const [cycle, setCycle] = useState(1);
+
+// حالة أسئلة التوصيل (ماتش)
+const [matchLinks, setMatchLinks] = useState({});   // فهرس اليمين -> فهرس اليسار المخلوط
+const [activeLeft, setActiveLeft] = useState(null); // العنصر المختار حالياً
+const [shuffledRight, setShuffledRight] = useState([]);
+// حالة أسئلة التيرمنال
+const [termInput, setTermInput] = useState('');
   const cardBg = "bg-white/[0.03] backdrop-blur-md border border-white/10";
 
   const levels = Array.from({ length: 5 }, (_, i) => i + 1);
@@ -229,12 +236,38 @@ const recordSeen = async (question) => {
   }
 };
 // تعريف دالة (مرفوع) وليس ثابتاً، لأن مؤقّت السؤال أعلاه يستدعيها قبل هذا السطر
+// اختيار من متعدد / صح وخطأ / سيناريو / كود / صورة
 function handleAnswer(idx) {
   if (selectedAns !== null || isLevelFailed || isLevelSuccess) return;
-
   setSelectedAns(idx);
+  scoreAnswer(idx === currentQ?.correct_answer);
+}
 
-  const correct = idx === currentQ?.correct_answer;
+// أسئلة التوصيل — تُحتسب صحيحة فقط لو كل الأزواج صح
+function submitMatching() {
+  if (selectedAns !== null || isLevelFailed || isLevelSuccess) return;
+  const total = currentQ?.pairs?.length || 0;
+  if (Object.keys(matchLinks).length < total) return;
+  const allCorrect = Object.entries(matchLinks)
+    .every(([leftIdx, rightIdx]) => shuffledRight[rightIdx]?.originalIndex === Number(leftIdx));
+  setSelectedAns('matching');
+  scoreAnswer(allCorrect);
+}
+
+// أسئلة التيرمنال — يكتب الأمر بنفسه
+function submitTerminal() {
+  if (selectedAns !== null || isLevelFailed || isLevelSuccess) return;
+  const typed = termInput.trim();
+  if (!typed) return;
+  const normalize = (s) => String(s).trim().toLowerCase().replace(/\s+/g, ' ');
+  const accepted = Array.isArray(currentQ?.expected_answers) ? currentQ.expected_answers : [];
+  const correct = accepted.some(a => normalize(a) === normalize(typed));
+  setSelectedAns('terminal');
+  scoreAnswer(correct);
+}
+
+// منطق الاحتساب المشترك لكل الأنواع
+function scoreAnswer(correct) {
   setIsCorrect(correct);
 
   recordSeen(currentQ);
@@ -290,6 +323,34 @@ useEffect(() => {
   return () => clearInterval(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [view, questionNum, selectedAns, isLevelFailed, isLevelSuccess]);
+
+// إعادة تهيئة حالة الماتش والتيرمنال مع كل سؤال جديد
+useEffect(() => {
+  setMatchLinks({});
+  setActiveLeft(null);
+  setTermInput('');
+  if (currentQ?.type === 'matching' && Array.isArray(currentQ.pairs)) {
+    const rights = currentQ.pairs.map((p, i) => ({ ...p, originalIndex: i }));
+    setShuffledRight([...rights].sort(() => Math.random() - 0.5));
+  } else {
+    setShuffledRight([]);
+  }
+}, [currentQ]);
+
+// ربط عنصر من اليمين بعنصر من اليسار
+const linkRight = (rightIdx) => {
+  if (selectedAns !== null || activeLeft === null) return;
+  setMatchLinks(prev => {
+    const next = {};
+    // نلغي أي ربط سابق لنفس الطرفين حتى يبقى كل عنصر بزوج واحد
+    Object.entries(prev).forEach(([l, r]) => {
+      if (Number(l) !== activeLeft && r !== rightIdx) next[l] = r;
+    });
+    next[activeLeft] = rightIdx;
+    return next;
+  });
+  setActiveLeft(null);
+};
 
 const showHint = (q) => {
   setHint(q.explanation);
@@ -541,7 +602,163 @@ loadQuestions(lvl);
 )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* ===== سؤال توصيل (ماتش) ===== */}
+            {currentQ?.type === 'matching' && Array.isArray(currentQ?.pairs) && (() => {
+              const answered = selectedAns !== null;
+              const linkedCount = Object.keys(matchLinks).length;
+              const total = currentQ.pairs.length;
+              const rightOfLeft = (l) => (l in matchLinks ? matchLinks[l] : null);
+              const leftOfRight = (r) => {
+                const found = Object.entries(matchLinks).find(([, v]) => v === r);
+                return found ? Number(found[0]) : null;
+              };
+              const pairColor = (n) => ['#f59e0b', '#3b82f6', '#a855f7', '#10b981', '#ec4899', '#06b6d4'][n % 6];
+
+              return (
+                <div>
+                  <p className="text-center text-white/40 font-bold text-xs mb-6">
+                    {answered
+                      ? t('راجع إجاباتك', 'Review your answers')
+                      : t('اضغط عنصراً من اليمين ثم ما يقابله من اليسار', 'Tap an item on the right, then its match on the left')}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-4 md:gap-8 max-w-3xl mx-auto">
+                    {/* العمود الثابت */}
+                    <div className="flex flex-col gap-3">
+                      {currentQ.pairs.map((p, i) => {
+                        const linked = rightOfLeft(i);
+                        const isActive = activeLeft === i;
+                        const ok = answered && shuffledRight[linked]?.originalIndex === i;
+                        let cls = 'border-white/10 bg-white/5 text-white/70';
+                        if (answered) cls = ok ? 'border-teal-400 bg-teal-400/10 text-white' : 'border-red-500 bg-red-500/10 text-red-300';
+                        else if (isActive) cls = 'border-white/60 bg-white/15 text-white';
+                        else if (linked !== null) cls = 'border-white/30 bg-white/10 text-white';
+                        return (
+                          <button
+                            key={i}
+                            type="button"
+                            disabled={answered}
+                            onClick={() => setActiveLeft(prev => (prev === i ? null : i))}
+                            className={`p-4 md:p-5 rounded-2xl border text-sm md:text-base font-bold transition-all flex items-center justify-between gap-2 ${cls} ${!answered ? 'hover:bg-white/10' : ''}`}
+                          >
+                            <span className="text-right">{p.left}</span>
+                            {linked !== null && (
+                              <span
+                                className="shrink-0 w-6 h-6 rounded-full text-[11px] font-black flex items-center justify-center text-black"
+                                style={{ backgroundColor: pairColor(i) }}
+                              >{i + 1}</span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    {/* العمود المخلوط */}
+                    <div className="flex flex-col gap-3">
+                      {shuffledRight.map((r, ri) => {
+                        const owner = leftOfRight(ri);
+                        const ok = answered && owner !== null && r.originalIndex === owner;
+                        let cls = 'border-white/10 bg-white/5 text-white/70';
+                        if (answered) {
+                          if (owner === null) cls = 'border-white/10 bg-white/5 text-white/40';
+                          else cls = ok ? 'border-teal-400 bg-teal-400/10 text-white' : 'border-red-500 bg-red-500/10 text-red-300';
+                        } else if (owner !== null) cls = 'border-white/30 bg-white/10 text-white';
+                        return (
+                          <button
+                            key={ri}
+                            type="button"
+                            disabled={answered || activeLeft === null}
+                            onClick={() => linkRight(ri)}
+                            className={`p-4 md:p-5 rounded-2xl border text-sm md:text-base font-bold transition-all flex items-center justify-between gap-2 ${cls} ${!answered && activeLeft !== null ? 'hover:bg-white/10' : ''}`}
+                          >
+                            {owner !== null && (
+                              <span
+                                className="shrink-0 w-6 h-6 rounded-full text-[11px] font-black flex items-center justify-center text-black"
+                                style={{ backgroundColor: pairColor(owner) }}
+                              >{owner + 1}</span>
+                            )}
+                            <span className="text-right flex-1">{r.right}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {!answered && (
+                    <div className="mt-8 flex flex-col items-center gap-3">
+                      <span className="text-white/40 font-bold text-xs">
+                        {t(`وصّلت ${linkedCount} من ${total}`, `${linkedCount} of ${total} matched`)}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={submitMatching}
+                        disabled={linkedCount < total}
+                        className="px-12 py-4 rounded-2xl font-black uppercase tracking-widest text-sm text-black disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                        style={{ backgroundColor: trackColor }}
+                      >
+                        {t('تحقق', 'CHECK')}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
+
+            {/* ===== سؤال تيرمنال ===== */}
+            {currentQ?.type === 'terminal' && (
+              <div className="max-w-2xl mx-auto">
+                <p className="text-center text-white/40 font-bold text-xs mb-4">
+                  {t('اكتب الأمر الصحيح ثم اضغط Enter', 'Type the correct command, then press Enter')}
+                </p>
+                <div className="rounded-3xl border border-white/10 bg-black/80 p-6 font-mono text-left shadow-inner" dir="ltr">
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="w-3 h-3 rounded-full bg-red-500/70" />
+                    <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
+                    <span className="w-3 h-3 rounded-full bg-green-500/70" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="shrink-0 text-teal-400 text-sm">
+                      {currentQ.prompt_label || 'user@masar:~$'}
+                    </span>
+                    <input
+                      type="text"
+                      value={termInput}
+                      autoFocus
+                      spellCheck="false"
+                      autoComplete="off"
+                      disabled={selectedAns !== null}
+                      onChange={(e) => setTermInput(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === 'Enter') submitTerminal(); }}
+                      className="flex-1 bg-transparent border-none outline-none text-white text-sm caret-teal-400 disabled:opacity-60"
+                      placeholder="_"
+                    />
+                  </div>
+                  {selectedAns !== null && (
+                    <p className={`mt-4 text-xs ${isCorrect ? 'text-teal-400' : 'text-red-400'}`}>
+                      {isCorrect
+                        ? '✓ ' + t('أمر صحيح', 'Correct command')
+                        : '✗ ' + t('الأمر الصحيح: ', 'Expected: ') + (currentQ?.expected_answers?.[0] || '')}
+                    </p>
+                  )}
+                </div>
+                {selectedAns === null && (
+                  <div className="mt-6 flex justify-center">
+                    <button
+                      type="button"
+                      onClick={submitTerminal}
+                      disabled={!termInput.trim()}
+                      className="px-12 py-4 rounded-2xl font-black uppercase tracking-widest text-sm text-black disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                      style={{ backgroundColor: trackColor }}
+                    >
+                      {t('تنفيذ', 'RUN')}
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* ===== الخيارات (بقية الأنواع) ===== */}
+            <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${currentQ?.type === 'matching' || currentQ?.type === 'terminal' ? 'hidden' : ''}`}>
              {currentQ?.options?.map((opt, i) => {
                 const isAnswered = selectedAns !== null;
               const isCorrectOpt = i === currentQ?.correct_answer;
