@@ -75,6 +75,44 @@ group by level order by level;
 - ملتزم بموضوع مستواه، ما يخرج عنه
 - غير مكرر مع أي سؤال موجود
 
+### ⚠️ ألّا تكشف الإجابة الصحيحة نفسها
+
+ثلاثة تلميحات تجعل اليوزر يخمّن بلا فهم، وكلها ممنوعة:
+
+**١. الطول** — لا تكون الإجابة الصحيحة أطول من كل البدائل. الشرح مكانه حقل
+`explanation` لا داخل الخيار. اجعلي أطوال الخيارات متقاربة.
+
+**٢. المجال الدلالي** — البدائل يجب أن تكون في نفس مجال الإجابة الصحيحة وتبدو
+معقولة. خيار مثل "لتقليل حجم الملف" أمام إجابة عن المنطق يُستبعد فوراً بلا تفكير.
+اجعلي كل بديل خطأً شائعاً حقيقياً أو التباساً واردًا.
+
+**٣. الموضع** — لا تتركّز الإجابة الصحيحة في موضع معيّن. كان التوزيع ٥١٪ في
+الموضع الأول و٠.٦٪ في الأخير، أي أن اختيار الأول دائماً يعطي ٥١٪ بلا قراءة.
+
+فحص الموضع:
+```sql
+select correct_answer, count(*),
+       round(100.0*count(*)/sum(count(*)) over (),1) as نسبة
+from public.questions
+where type='multiple-choice' and is_active and jsonb_array_length(options)=4
+group by correct_answer order by correct_answer;
+```
+المطلوب: كل موضع بين ٢٠٪ و٣٠٪ تقريباً.
+
+فحص الطول:
+```sql
+with opt as (
+  select q.id, length(t.value) as len, (t.ord-1)=q.correct_answer as ok
+  from public.questions q,
+       lateral jsonb_array_elements_text(q.options) with ordinality t(value, ord)
+  where q.type='multiple-choice' and q.is_active
+)
+select round(100.0*count(*) filter (where lc > lo)/count(*),1) as نسبة_الصحيحة_الأطول
+from (select id, max(len) filter (where ok) lc, max(len) filter (where not ok) lo
+      from opt group by id) a;
+```
+المطلوب: قريبة من ٢٥٪، لا ٥٠٪.
+
 ---
 
 ## ترتيب الأقسام — معتمد ومطبّق
