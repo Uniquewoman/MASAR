@@ -99,6 +99,36 @@ group by correct_answer order by correct_answer;
 ```
 المطلوب: كل موضع بين ٢٠٪ و٣٠٪ تقريباً.
 
+لتوزيع المواضع بالتساوي على مستوى جديد، ضعي الإجابة الصحيحة في موضع يتناوب
+`0,1,2,3` بدل الاعتماد على خلط عشوائي (العشوائي على عيّنة صغيرة يعطي ميلاً واضحاً):
+
+```sql
+with target as (
+  select id, options, correct_answer,
+         (row_number() over (order by md5(id::text || 'seed')) - 1) % 4 as want
+  from public.questions
+  where section_id = '...' and level = N
+    and type in ('multiple-choice','code') and jsonb_array_length(options) = 4
+),
+parts as (
+  select t.id, t.want, (t.options ->> t.correct_answer) as correct_txt,
+         (select jsonb_agg(v order by ord)
+            from jsonb_array_elements_text(t.options) with ordinality x(v, ord)
+           where ord - 1 <> t.correct_answer) as others
+  from target t
+),
+built as (
+  select id, want,
+    coalesce((select jsonb_agg(v) from (select value v from jsonb_array_elements(others) limit want) s), '[]'::jsonb)
+    || jsonb_build_array(to_jsonb(correct_txt))
+    || coalesce((select jsonb_agg(v) from (select value v from jsonb_array_elements(others) offset want) s2), '[]'::jsonb)
+    as new_options
+  from parts
+)
+update public.questions q set options = b.new_options, correct_answer = b.want
+from built b where q.id = b.id;
+```
+
 فحص الطول:
 ```sql
 with opt as (
@@ -274,7 +304,7 @@ from (select id, max(len) filter (where ok) lc, max(len) filter (where not ok) l
 | المسار | القسم | الحالة |
 |---|---|---|
 | البرمجة | **S1 أساسيات** | ✅ **مكتمل — ٤٥٠ سؤالاً** · كل مستوى ٩٠ نشطاً فريداً بالتوزيع المعتمد |
-| البرمجة | S2 التفكير البرمجي | جارٍ — L1: **٩٠ ✅** · L2–L5: لم تبدأ |
+| البرمجة | S2 التفكير البرمجي | L1: **٩٠ ✅** · L2: **٩٠ ✅** · L3–L5: لم تبدأ |
 | البرمجة | S3–S7 | لم يبدأ |
 | بقية المسارات | الكل | لم يبدأ |
 
