@@ -1,4 +1,4 @@
-# Masar (مسار)
+#  MASAR | منصة مسار التعليمية
 
 Masar is a bilingual (Arabic/English, RTL-first) web learning platform. I built it for myself first, and for anyone who wants to learn without losing interest halfway through: the whole journey is structured like a game, so you always know where you are and what comes next.
 
