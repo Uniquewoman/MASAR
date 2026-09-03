@@ -86,6 +86,9 @@ const [dragIndex, setDragIndex] = useState(null);
 
   const levels = Array.from({ length: 5 }, (_, i) => i + 1);
   const [unlockedLevel, setUnlockedLevel] = useState(1);
+  // عدد الأسئلة النشطة في كل مستوى — المستوى الذي بنكه أصغر من المطلوب يظهر «قريباً» لا مفتوحاً
+  const [levelCounts, setLevelCounts] = useState(null);
+  const MIN_BANK = 30;
 
   useEffect(() => {
     const loadLevel = async () => {
@@ -101,6 +104,33 @@ const [dragIndex, setDragIndex] = useState(null);
     loadLevel();
 
   }, [track, section, loadUnlockedLevel]);
+
+  useEffect(() => {
+    const loadCounts = async () => {
+      if (!track || !section) return;
+      const counts = {};
+      await Promise.all(
+        [1, 2, 3, 4, 5].map(async (lvl) => {
+          const { count } = await supabase
+            .from('questions')
+            .select('id', { count: 'exact', head: true })
+            .eq('track_id', track.id)
+            .eq('section_id', section.title)
+            .eq('level', lvl)
+            .eq('is_active', true);
+          counts[lvl] = count || 0;
+        })
+      );
+      setLevelCounts(counts);
+    };
+
+    loadCounts();
+
+  }, [track, section]);
+
+  // المستوى متاح إذا فُتح للمستخدم وكان بنكه كافياً؛ وقبل وصول الأعداد نعتمد القفل الحالي فقط
+  const isLevelReady = (lvl) => !levelCounts || levelCounts[lvl] >= MIN_BANK;
+  const isLevelOpen = (lvl) => lvl <= unlockedLevel && isLevelReady(lvl);
 
 
   useEffect(() => {
@@ -534,15 +564,15 @@ loadQuestions(lvl);
  {levels.map((lvl) => (
   <motion.div
     key={lvl}
-    whileHover={lvl <= unlockedLevel ? { scale: 1.1, rotate: 5 } : {}}
+    whileHover={isLevelOpen(lvl) ? { scale: 1.1, rotate: 5 } : {}}
     onClick={() => {
-      if (lvl <= unlockedLevel) {
+      if (isLevelOpen(lvl)) {
         startLevel(lvl);
       }
     }}
     className="aspect-square rounded-3xl flex flex-col items-center justify-center cursor-pointer transition-all h-[150px]"
     style={
-      lvl <= unlockedLevel
+      isLevelOpen(lvl)
         ? {
             backgroundColor: trackColor,
             color: '#000',
@@ -558,9 +588,11 @@ loadQuestions(lvl);
     <span className="text-3xl font-black italic">{lvl}</span>
 
     <span className="text-[10px] font-black uppercase mt-2">
-      {lvl <= unlockedLevel
+      {isLevelOpen(lvl)
         ? t('مستوى', 'LEVEL')
-        : t('مقفل', 'LOCKED')}
+        : !isLevelReady(lvl)
+          ? t('قريباً', 'SOON')
+          : t('مقفل', 'LOCKED')}
     </span>
   </motion.div>
 ))}
