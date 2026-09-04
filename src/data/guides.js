@@ -923,6 +923,319 @@ export const sectionGuides = {
           { q_ar: 'متى يُلجأ إلى نمط تصميم؟', q_en: 'When should a design pattern be used?', a_ar: 'عند تكرار مشكلة بعينها فعلاً، لا قبل ظهورها — فالبدء بالنمط يعقّد بلا سبب.', a_en: 'When a specific problem actually recurs, not before it appears, since starting from the pattern adds needless complexity.' }
         ]
       }
+    ],
+
+    // ─────────── هياكل البيانات ───────────
+    3: [
+      {
+        title_ar: 'مفهوم الهياكل والمصفوفات',
+        title_en: 'Data Structures and Arrays',
+        lead_ar: 'هيكل البيانات طريقة تنظيم القيم في الذاكرة، واختياره يقرر أي العمليات ستكون رخيصة وأيها ستكون مكلفة.',
+        lead_en: 'A data structure is a way of organising values in memory, and choosing it decides which operations are cheap and which are expensive.',
+        body_ar: [
+          'البيانات وحدها لا تكفي: المهم كيف تُرتَّب في الذاكرة. فهيكل البيانات ليس ترفاً تنظيمياً، وإنما هو ما يحدد كلفة كل عملية ستجريها عليها. والسؤال الذي يسبق الاختيار دائماً: ما العمليات التي سأكررها كثيراً؟ فالهيكل الذي يجعل عمليتك المتكررة رخيصة هو الصحيح، ولو كان أسوأ في عمليات أخرى لا تحتاجها.',
+          'والمصفوفة أبسط الهياكل: عناصر متتابعة في الذاكرة، كل عنصر يليه الذي بعده مباشرة. وهذا التتابع هو سرّ قوتها: يعرف الحاسوب موضع أي عنصر بعملية حسابية واحدة من عنوان البداية والفهرس، فالوصول لأي عنصر بفهرسه فوري مهما كان حجم المصفوفة — سواء كانت عشرة عناصر أو مليوناً.',
+          'لكن للتتابع ثمنه: الإضافة والحذف في وسط المصفوفة مكلفة. فلو حذفت العنصر الأول من مليون، وجب إزاحة تسعمئة ألف وتسعة وتسعين عنصراً خطوةً واحدة لسدّ الفراغ. ولهذا: المصفوفة ممتازة للقراءة بالفهرس، رديئة للإدخال والحذف المتكرر في المقدمة أو الوسط.',
+          'والفهرس يبدأ من الصفر لا من الواحد، وله سبب هندسي لا اعتباطي: الفهرس في الأصل إزاحة عن عنوان البداية، فالعنصر الأول إزاحته صفر لأنه في البداية نفسها. ومن هنا جاء أشهر خطأ في البرمجة: تجاوز الحد بمقدار واحد، حين تكتب حلقة تصل إلى الطول نفسه بدل الطول ناقص واحد.',
+          'والمصفوفة متعددة الأبعاد قائمة عناصرها قوائم: تمثّل جدولاً أو شبكة، ويُوصل للخلية بفهرس الصف ثم فهرس العمود. وتُستخدم في كل ما هو شبكي: صورة بكسلاتها، ولوحة لعبة، وجدول درجات.',
+          'وثمة تمييز يخلط فيه كثيرون: المصفوفة الحقيقية ثابتة الحجم ونوع عناصرها واحد، أما قائمة بايثون فديناميكية تكبر وتصغر وتقبل أنواعاً مختلطة. ولهذا المرونة ثمنها في الذاكرة والأداء، لكنها تكفي أغلب الحالات وتغني عن حساب الحجم مسبقاً.'
+        ],
+        body_en: [
+          'Data alone is not enough: what matters is how it is arranged in memory. A data structure is not organisational luxury; it determines the cost of every operation you will run. The question that always precedes the choice is: which operations will I repeat most? The structure that makes your frequent operation cheap is the right one, even if it is worse at operations you never need.',
+          'An array is the simplest structure: elements laid consecutively in memory, each directly after the previous. That adjacency is its strength: the computer finds any element position with one calculation from the start address and the index, so access by index is instant whatever the size, ten elements or a million.',
+          'Adjacency has a price: inserting or deleting in the middle is expensive. Deleting the first of a million elements requires shifting 999,999 elements one step to close the gap. So an array is excellent for index reads and poor for repeated insertion or deletion at the front or middle.',
+          'Indexes start at zero, not one, for an engineering reason rather than an arbitrary one: an index is originally an offset from the start address, so the first element has offset zero because it sits at the start. From this comes the most famous bug in programming, the off-by-one, when a loop reaches the length itself rather than length minus one.',
+          'A multi-dimensional array is a list of lists representing a table or grid, reached by row index then column index. It serves everything grid-shaped: an image and its pixels, a game board, a grade table.',
+          'A distinction many blur: a true array is fixed in size with one element type, while a Python list is dynamic, growing and shrinking and accepting mixed types. That flexibility costs memory and performance but suffices for most cases and spares you sizing in advance.'
+        ],
+        table: {
+          head_ar: ['العملية', 'كلفتها في المصفوفة', 'السبب'],
+          head_en: ['Operation', 'Array cost', 'Reason'],
+          rows: [
+            ['الوصول بالفهرس', 'O(1)', 'حساب مباشر من عنوان البداية'],
+            ['الإضافة في النهاية', 'O(1) غالباً', 'لا إزاحة مطلوبة'],
+            ['الإضافة في المقدمة', 'O(n)', 'إزاحة كل العناصر'],
+            ['البحث عن قيمة', 'O(n)', 'فحص العناصر واحداً واحداً']
+          ]
+        },
+        keyPoints_ar: [
+          'اختيار الهيكل يقرر كلفة كل عملية، فابدأ بسؤال: ما العملية التي أكررها؟',
+          'تتابع المصفوفة في الذاكرة يجعل الوصول بالفهرس فورياً مهما كبر الحجم.',
+          'الإضافة والحذف في المقدمة مكلفة لأنها تُزيح كل ما بعدها.',
+          'الفهرس إزاحة عن البداية، ولذلك يبدأ من الصفر.',
+          'قائمة بايثون ديناميكية ومختلطة الأنواع، والمصفوفة الحقيقية ثابتة وموحّدة.'
+        ],
+        keyPoints_en: [
+          'The structure decides operation costs, so start by asking which operation repeats.',
+          'Array adjacency makes index access instant whatever the size.',
+          'Front insertion and deletion are expensive because everything after shifts.',
+          'An index is an offset from the start, which is why it begins at zero.',
+          'A Python list is dynamic and mixed; a true array is fixed and uniform.'
+        ],
+        analogy_ar: 'تخيّل المصفوفة صفَّ خزائن ملتصقة مرقّمة من الصفر. للوصول للخزانة رقم ٧٤٣ تمشي إليها مباشرة بلا فتح ما قبلها — هذا الوصول الفوري. لكن لو أردت إدخال خزانة جديدة في الموضع الثاني، وجب تحريك كل الخزائن التي بعدها خطوة — وهنا الكلفة.',
+        analogy_en: 'Picture an array as a row of attached lockers numbered from zero. To reach locker 743 you walk straight to it without opening the earlier ones, and that is instant access. But inserting a new locker at position two means physically shifting every locker after it one step, and that is the cost.',
+        terms: [
+          { term: 'Data Structure', def_ar: 'طريقة تنظيم القيم في الذاكرة تحدد كلفة العمليات عليها.', def_en: 'A way of organising values in memory that sets operation costs.' },
+          { term: 'Array', def_ar: 'عناصر متتابعة في الذاكرة يُوصل لأيها بفهرسه فوراً.', def_en: 'Consecutive elements in memory, any reachable instantly by index.' },
+          { term: 'Off-by-one', def_ar: 'خطأ تجاوز الحد بمقدار واحد، أشهره الوصول للطول نفسه.', def_en: 'The off-by-one bug, most often reaching the length itself.' },
+          { term: '2D Array', def_ar: 'قائمة عناصرها قوائم تمثّل جدولاً بصفوف وأعمدة.', def_en: 'A list of lists representing a table of rows and columns.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا الوصول بالفهرس في المصفوفة فوري؟', q_en: 'Why is array index access instant?', a_ar: 'لأن العناصر متتابعة في الذاكرة، فيُحسب موضع أيٍّ منها بعملية واحدة من عنوان البداية.', a_en: 'Because elements are consecutive in memory, so any position is computed in one step from the start address.' },
+          { q_ar: 'ما كلفة الحذف من مقدمة مصفوفة؟', q_en: 'What is the cost of deleting from the front of an array?', a_ar: 'O(n)، لأن كل العناصر التي بعدها تُزاح خطوة لسدّ الفراغ.', a_en: 'O(n), because every element after it shifts one step to close the gap.' },
+          { q_ar: 'لماذا يبدأ الفهرس من الصفر؟', q_en: 'Why does indexing start at zero?', a_ar: 'لأنه إزاحة عن عنوان البداية، والعنصر الأول إزاحته صفر.', a_en: 'Because it is an offset from the start address, and the first element has offset zero.' },
+          { q_ar: 'ما السؤال الذي يسبق اختيار الهيكل؟', q_en: 'What question precedes choosing a structure?', a_ar: 'ما العمليات التي سأكررها كثيراً؟ فالهيكل يُختار ليجعلها رخيصة.', a_en: 'Which operations will I repeat most? The structure is chosen to make those cheap.' }
+        ]
+      },
+      {
+        title_ar: 'القوائم المترابطة',
+        title_en: 'Linked Lists',
+        lead_ar: 'القائمة المترابطة عقد متفرقة في الذاكرة يشير كل عقدة للتالية — تربح الإضافة والحذف السريع وتخسر الوصول الفوري بالفهرس.',
+        lead_en: 'A linked list is nodes scattered in memory, each pointing to the next: it wins fast insertion and deletion and loses instant index access.',
+        body_ar: [
+          'المصفوفة تشترط التتابع في الذاكرة، والقائمة المترابطة تتخلى عنه: كل عنصر عقدة تحمل قيمتها وإشارة إلى موضع العقدة التالية. فالعقد قد تكون متفرقة في أنحاء الذاكرة، والذي يربطها هو الإشارات لا التجاور.',
+          'وثمرة التخلي عن التتابع أن الإضافة والحذف يصيران رخيصين: لإدخال عقدة بين عقدتين، تُغيَّر إشارتان فقط ولا يُزاح شيء، مهما بلغ طول القائمة. وهذا عكس المصفوفة تماماً، وهو سبب وجود هذا الهيكل أصلاً.',
+          'وثمن ذلك أن الوصول بالفهرس لم يعد فورياً: لا يوجد حساب يقفز للعنصر رقم ٥٠٠، بل يجب المشي من الأول عقدة عقدة حتى بلوغه. فالمصفوفة تربح القراءة والقائمة المترابطة تربح التعديل — وهذي هي المقايضة الأساسية بين الهيكلين.',
+          'وللقائمة المفردة إشارة واحدة لكل عقدة تشير للتالية، فالمرور فيها باتجاه واحد لا رجعة فيه: لو كنت عند عقدة وأردت سابقتها، وجب البدء من الأول من جديد. ولهذا وُجدت المزدوجة: كل عقدة تشير للتالية وللسابقة معاً، فيصير المرور في الاتجاهين بثمن إشارة إضافية في كل عقدة.',
+          'والقائمة الدائرية آخر عقدة فيها تشير للأولى بدل أن تشير إلى لا شيء، فلا نهاية لها. وتصلح لما يدور بطبيعته: تناوب الأدوار بين لاعبين، وقائمة تشغيل تكرر نفسها. وخطرها أن المرور فيها بشرط «حتى تصل إلى لا شيء» لن ينتهي أبداً — فيجب المرور بعدّ أو بمقارنة بنقطة البداية.',
+          'وأكثر ما يخطئ فيه المبتدئ في هذا الباب هو الطرفان: الإضافة إلى قائمة فارغة، والحذف من عقدة واحدة، والوصول للعقدة الأخيرة. فأغلب أخطاء القوائم المترابطة تقع في هذي الحالات الحدّية لا في الحالة العامة.'
+        ],
+        body_en: [
+          'An array demands adjacency in memory; a linked list abandons it: each element is a node holding its value and a reference to the next node position. Nodes may be scattered anywhere, and what binds them is references rather than adjacency.',
+          'The fruit of abandoning adjacency is cheap insertion and deletion: inserting a node between two changes only two references and shifts nothing, whatever the length. That is the exact opposite of an array and the reason this structure exists.',
+          'The price is that index access is no longer instant: no calculation jumps to element 500; you must walk from the first node by node. An array wins reading and a linked list wins editing, and this is the core trade-off between them.',
+          'A singly linked list holds one reference per node pointing forward, so traversal goes one way with no return: standing at a node and wanting the previous one means starting over from the head. Hence the doubly linked list, where each node points both forward and backward, giving two-way traversal at the price of an extra reference per node.',
+          'A circular list has its last node point back to the first rather than to nothing, so it never ends. It suits naturally cyclic things: turn rotation among players, a repeating playlist. Its danger is that traversing with the condition "until nothing" never terminates, so you must traverse by count or by comparing against the starting point.',
+          'What beginners most often get wrong here is the extremes: inserting into an empty list, deleting from a single-node list, and reaching the last node. Most linked-list bugs live in these edge cases rather than the general one.'
+        ],
+        table: {
+          head_ar: ['العملية', 'مصفوفة', 'قائمة مترابطة'],
+          head_en: ['Operation', 'Array', 'Linked list'],
+          rows: [
+            ['الوصول بالفهرس', 'O(1)', 'O(n)'],
+            ['الإضافة في المقدمة', 'O(n)', 'O(1)'],
+            ['الحذف من الوسط', 'O(n) إزاحة', 'O(1) بعد الوصول'],
+            ['استهلاك الذاكرة', 'القيم فقط', 'القيم مع الإشارات']
+          ]
+        },
+        keyPoints_ar: [
+          'العقدة تحمل قيمتها وإشارة للتالية، والربط بالإشارات لا بالتجاور.',
+          'الإضافة والحذف رخيصان لأنهما تعديل إشارتين بلا إزاحة.',
+          'الوصول بالفهرس مكلف لأنه مشي من الأول عقدة عقدة.',
+          'المزدوجة تتيح الرجوع بثمن إشارة إضافية في كل عقدة.',
+          'الدائرية لا تنتهي، فالمرور فيها يحتاج عدّاً أو مقارنة بالبداية.',
+          'أغلب الأخطاء في الحالات الحدّية: القائمة الفارغة والعقدة الوحيدة والأخيرة.'
+        ],
+        keyPoints_en: [
+          'A node holds its value and a reference to the next; binding is by references, not adjacency.',
+          'Insertion and deletion are cheap: two reference changes with no shifting.',
+          'Index access is expensive: walking from the head node by node.',
+          'A doubly linked list allows going back at the price of one extra reference per node.',
+          'A circular list never ends, so traversal needs a count or a comparison with the start.',
+          'Most bugs live in edge cases: an empty list, a single node, and the last node.'
+        ],
+        analogy_ar: 'تخيّل المصفوفة صفَّ بيوت في شارع واحد بأرقام متتابعة، والقائمة المترابطة كنزاً بخريطة: كل ورقة تقول لك أين الورقة التالية، وقد تكون في حيّ آخر. إدخال محطة جديدة في رحلة الكنز سهل — تكتب ورقة جديدة وتعدّل إشارتين. لكن للوصول للمحطة الخمسين لا بدّ أن تمرّ بالتاسعة والأربعين قبلها.',
+        analogy_en: 'Picture an array as a row of houses on one street with consecutive numbers, and a linked list as a treasure hunt: each note tells you where the next note is, possibly in another neighbourhood. Adding a stop to the hunt is easy, a new note and two edits. But reaching the fiftieth stop requires passing the forty-nine before it.',
+        terms: [
+          { term: 'Node', def_ar: 'وحدة القائمة المترابطة: قيمة وإشارة إلى التالية.', def_en: 'The unit of a linked list: a value and a reference to the next.' },
+          { term: 'Singly Linked', def_ar: 'قائمة كل عقدة فيها تشير للتالية فقط، فالمرور باتجاه واحد.', def_en: 'A list where each node points only forward, so traversal is one-way.' },
+          { term: 'Doubly Linked', def_ar: 'قائمة كل عقدة تشير للتالية والسابقة، فالمرور باتجاهين.', def_en: 'A list where each node points both ways, allowing two-way traversal.' },
+          { term: 'Circular List', def_ar: 'قائمة آخر عقدة فيها تشير للأولى فلا نهاية لها.', def_en: 'A list whose last node points back to the first, so it never ends.' }
+        ],
+        cards: [
+          { q_ar: 'ما المقايضة الأساسية بين المصفوفة والقائمة المترابطة؟', q_en: 'What is the core trade-off between an array and a linked list?', a_ar: 'المصفوفة تربح الوصول الفوري بالفهرس، والقائمة تربح الإضافة والحذف بلا إزاحة.', a_en: 'The array wins instant index access; the linked list wins insertion and deletion with no shifting.' },
+          { q_ar: 'كم إشارة تتغيّر عند إدخال عقدة بين عقدتين؟', q_en: 'How many references change when inserting a node between two?', a_ar: 'إشارتان فقط، ولا يُزاح أي عنصر مهما طالت القائمة.', a_en: 'Only two, and no element shifts however long the list.' },
+          { q_ar: 'لماذا يخطر المرور في القائمة الدائرية؟', q_en: 'Why is traversing a circular list risky?', a_ar: 'لأن شرط «حتى تصل إلى لا شيء» لا يتحقق أبداً، فيجب العدّ أو المقارنة بنقطة البداية.', a_en: 'Because the condition "until nothing" never holds, so you must count or compare with the start.' },
+          { q_ar: 'أين تقع أغلب أخطاء القوائم المترابطة؟', q_en: 'Where do most linked-list bugs occur?', a_ar: 'في الحالات الحدّية: قائمة فارغة، أو عقدة واحدة، أو العقدة الأخيرة.', a_en: 'In edge cases: an empty list, a single node, or the last node.' }
+        ]
+      },
+      {
+        title_ar: 'المكدسات والطوابير',
+        title_en: 'Stacks and Queues',
+        lead_ar: 'المكدس يخرج منه آخر ما دخل، والطابور يخرج منه أول ما دخل — وهذا الفرق وحده يحسم أي المسائل يناسبها كل منهما.',
+        lead_en: 'A stack releases the last item in and a queue releases the first, and that single difference decides which problems suit each.',
+        body_ar: [
+          'المكدس والطابور ليسا هيكلين جديدين بقدر ما هما قيدان على الوصول: كلاهما يخزّن عناصر، لكن يحدد أيها يخرج أولاً. وهذا التقييد المقصود هو مصدر فائدتهما، لأنه يجعل السلوك متوقَّعاً ويمنع الوصول العشوائي الذي قد يفسد المنطق.',
+          'والمكدس يعمل بمبدأ «آخر داخل أول خارج»: تضيف على القمة وتسحب من القمة، فلا تصل لما تحتها إلا بعد رفع ما فوقها. وله عمليتان أساسيتان: الدفع push للإضافة والسحب pop للإخراج، وكلتاهما بكلفة ثابتة لأنهما تعملان على طرف واحد.',
+          'وتطبيقاته أكثر مما يبدو: زر التراجع في المحررات يخزّن العمليات مكدساً فيتراجع عن آخرها أولاً، وسجل تصفح المتصفح كذلك، والأهم أن استدعاءات الدوال نفسها تُدار بمكدس. ولهذا حين تنهار العودية بلا حالة توقف، تكون الرسالة «فيضان المكدس»: امتلأ مكدس الاستدعاءات.',
+          'ومن أشهر استخداماته فحص توازن الأقواس: تدفع كل قوس فاتح، وعند كل قوس مغلق تسحب من القمة وتقارن. فإن لم يطابق أو كان المكدس فارغاً فالأقواس غير متوازنة، وفي النهاية يجب أن يكون المكدس فارغاً وإلا بقي قوس بلا إغلاق.',
+          'أما الطابور فيعمل بمبدأ «أول داخل أول خارج»، تماماً كصف الانتظار: تُضاف العناصر من الخلف وتخرج من الأمام. وتطبيقاته كل ما يجب أن يُخدَم بالترتيب: طوابير الطباعة، وطلبات الخوادم، وجدولة المهام.',
+          'واختيار الخطأ بينهما يقلب النتيجة رأساً على عقب. فلو استخدمت مكدساً في نظام تذاكر دعم، لخُدم آخر من وصل أولاً وبقي الأول ينتظر إلى الأبد — وهذا ظلم تشغيلي حقيقي وقع في أنظمة فعلية بسبب اختيار هيكل خاطئ.'
+        ],
+        body_en: [
+          'A stack and a queue are less new structures than access constraints: both store elements but dictate which leaves first. That deliberate restriction is the source of their value, making behaviour predictable and preventing random access that could corrupt the logic.',
+          'A stack works last in, first out: you add at the top and take from the top, reaching what is below only after lifting what is above. It has two core operations, push and pop, both at constant cost because they act on one end.',
+          'Its applications exceed expectation: the undo button stores operations on a stack so the latest reverses first, browser history likewise, and most importantly function calls themselves are managed by a stack. That is why recursion without a base case crashes with "stack overflow": the call stack filled.',
+          'A famous use is bracket balancing: push every opening bracket, and on each closing one pop and compare. A mismatch or an empty stack means unbalanced, and at the end the stack must be empty or an opening bracket was never closed.',
+          'A queue works first in, first out, exactly like a waiting line: elements join at the back and leave from the front. Its applications are everything that must be served in order: print queues, server requests, task scheduling.',
+          'Choosing wrongly between them inverts the outcome. Using a stack for a support-ticket system would serve the newest arrival first while the earliest waits forever, a genuine operational injustice that has happened in real systems because of a wrong structure choice.'
+        ],
+        table: {
+          head_ar: ['الهيكل', 'المبدأ', 'الإضافة والإخراج', 'مثال'],
+          head_en: ['Structure', 'Principle', 'Add / remove', 'Example'],
+          rows: [
+            ['المكدس', 'آخر داخل أول خارج', 'من القمة فقط', 'زر التراجع'],
+            ['الطابور', 'أول داخل أول خارج', 'خلف وأمام', 'صف الطباعة'],
+            ['مكدس الاستدعاءات', 'يدير الدوال المتداخلة', 'تلقائي', 'فيضان المكدس'],
+            ['طابور الأولوية', 'الأهم يخرج أولاً', 'حسب الأولوية', 'حالات الطوارئ']
+          ]
+        },
+        keyPoints_ar: [
+          'المكدس والطابور قيدان على الوصول لا هيكلان جديدان.',
+          'المكدس: آخر داخل أول خارج، ويعمل على طرف واحد بكلفة ثابتة.',
+          'استدعاءات الدوال تُدار بمكدس، ومنه جاءت رسالة فيضان المكدس.',
+          'الطابور: أول داخل أول خارج، لكل ما يجب خدمته بالترتيب.',
+          'اختيار الخطأ بينهما يقلب ترتيب الخدمة رأساً على عقب.'
+        ],
+        keyPoints_en: [
+          'Stacks and queues are access constraints rather than new structures.',
+          'A stack is last in first out, acting on one end at constant cost.',
+          'Function calls run on a stack, which is where stack overflow comes from.',
+          'A queue is first in first out, for anything that must be served in order.',
+          'Choosing wrongly between them inverts the service order entirely.'
+        ],
+        analogy_ar: 'تخيّل المكدس رصّة أطباق: تضع الطبق على القمة وتأخذ من القمة، ولا تسحب الطبق الأسفل إلا بعد رفع كل ما فوقه. والطابور صفّ الخبز: من وصل أولاً يُخدَم أولاً، ومن جاء متأخراً يقف خلف. ولو خدمت صفّ الخبز بمنطق رصّة الأطباق، لأخذ آخر الواصلين خبزه وبقي الأول واقفاً.',
+        analogy_en: 'Picture a stack as a pile of plates: you place on top and take from the top, reaching the bottom plate only after lifting everything above. A queue is the bakery line: first to arrive is first served and latecomers stand behind. Serving a bakery line with pile-of-plates logic would give the newest arrival bread while the first still waits.',
+        terms: [
+          { term: 'Stack', def_ar: 'هيكل يخرج منه آخر ما دخل، بعمليتي push وpop.', def_en: 'A structure releasing the last item in, via push and pop.' },
+          { term: 'Queue', def_ar: 'هيكل يخرج منه أول ما دخل، الإضافة خلفاً والإخراج أماماً.', def_en: 'A structure releasing the first item in, adding at the back and removing at the front.' },
+          { term: 'Call Stack', def_ar: 'مكدس يدير استدعاءات الدوال المتداخلة أثناء التنفيذ.', def_en: 'The stack managing nested function calls at run time.' },
+          { term: 'Stack Overflow', def_ar: 'امتلاء مكدس الاستدعاءات، وأشهر أسبابه عودية بلا حالة توقف.', def_en: 'The call stack filling up, most often from recursion with no base case.' }
+        ],
+        cards: [
+          { q_ar: 'ما مبدأ المكدس وما مبدأ الطابور؟', q_en: 'What principle governs a stack and a queue?', a_ar: 'المكدس آخر داخل أول خارج، والطابور أول داخل أول خارج.', a_en: 'A stack is last in first out; a queue is first in first out.' },
+          { q_ar: 'لماذا ترتبط رسالة فيضان المكدس بالعودية؟', q_en: 'Why is stack overflow tied to recursion?', a_ar: 'لأن الاستدعاءات تُدار بمكدس، فالعودية بلا حالة توقف تُراكمها حتى يمتلئ.', a_en: 'Because calls run on a stack, so recursion with no base case piles them until it fills.' },
+          { q_ar: 'كيف يُفحص توازن الأقواس بمكدس؟', q_en: 'How does a stack check bracket balance?', a_ar: 'يُدفع كل قوس فاتح، وعند كل مغلق يُسحب من القمة ويُقارن، ويجب أن ينتهي المكدس فارغاً.', a_en: 'Push every opening bracket, pop and compare on each closing one, and the stack must end empty.' },
+          { q_ar: 'ما أثر استخدام مكدس مكان طابور في نظام تذاكر؟', q_en: 'What happens using a stack instead of a queue for tickets?', a_ar: 'يُخدَم آخر الواصلين أولاً ويبقى الأول ينتظر، فينقلب ترتيب الخدمة.', a_en: 'The newest arrival is served first while the earliest waits, inverting the service order.' }
+        ]
+      },
+      {
+        title_ar: 'الأشجار وأشجار البحث الثنائي',
+        title_en: 'Trees and Binary Search Trees',
+        lead_ar: 'الشجرة هيكل هرمي لكل عقدة فيه أبناء، وشجرة البحث الثنائي ترتّب أبناءها بقاعدة تجعل البحث ينصّف المسألة في كل خطوة.',
+        lead_en: 'A tree is a hierarchical structure where each node has children, and a binary search tree orders them by a rule that halves the problem at every step.',
+        body_ar: [
+          'كل ما سبق من هياكل خطي: عناصر في صف. لكن كثيراً من البيانات في الواقع هرمي لا خطي: نظام الملفات ومجلداته المتداخلة، والهيكل الإداري، وقائمة تصنيفات المتجر. والشجرة هي الهيكل الذي يمثّل هذي العلاقة: جذر واحد في القمة، ولكل عقدة أبناء، والعقدة بلا أبناء تُسمّى ورقة.',
+          'ومصطلحاتها تُبنى على هذي الصورة: الجذر أعلى عقدة بلا أب، والأب والابن علاقة مباشرة، والعمق مسافة العقدة عن الجذر، والارتفاع أطول مسار من الجذر إلى ورقة. والشجرة الثنائية حالة خاصة: لكل عقدة ابنان على الأكثر، يمين ويسار.',
+          'وشجرة البحث الثنائي تضيف قاعدة ترتيب صارمة: كل ما في الشجرة اليسرى لعقدة أصغر من قيمتها، وكل ما في اليمنى أكبر. وهذي القاعدة ليست تنظيماً شكلياً، بل هي ما يجعل البحث فعالاً: تقارن بالجذر فتعرف في أي نصف تكمل، فتستبعد نصف الشجرة بمقارنة واحدة.',
+          'وبهذا يشبه البحث فيها البحث الثنائي في مصفوفة مرتبة، لكن بميزة إضافية: الإضافة والحذف يحفظان الترتيب تلقائياً بلا إزاحة، بينما إدخال قيمة في مصفوفة مرتبة يستوجب إزاحة ما بعدها.',
+          'لكن هنا يكمن الخطر الذي يجهله كثيرون: كفاءة الشجرة مشروطة بتوازنها. فلو أدخلت القيم مرتبة تصاعدياً من الأصل، لصار كل عنصر ابناً يمينياً لسابقه، وتحولت الشجرة إلى ما يشبه قائمة مترابطة طويلة — فيهبط البحث من تنصيف في كل خطوة إلى مرور على الجميع.',
+          'ولهذا وُجدت الأشجار المتوازنة ذاتياً التي تعيد ترتيب نفسها عند الإضافة لتحفظ التوازن. والدرس العملي: لا تفترض الكفاءة من نوع الهيكل وحده، بل من الهيكل مع نمط البيانات الداخلة إليه — فالبيانات المرتبة سلفاً هي أسوأ ما يدخل شجرة بحث غير متوازنة.',
+          'والمرور على الشجرة له ثلاثة ترتيبات شائعة، وأنفعها في شجرة البحث هو المرور الوسطي: يزور الشجرة اليسرى ثم العقدة ثم اليمنى، فيخرج العناصر مرتبة تصاعدياً — وهذي طريقة أنيقة لاستخراج بيانات الشجرة مرتبة بلا خوارزمية ترتيب.'
+        ],
+        body_en: [
+          'Every structure so far is linear: elements in a row. Yet much real data is hierarchical: a file system with nested folders, an org chart, a store category list. A tree represents that relation: one root at the top, each node with children, and a childless node called a leaf.',
+          'Its vocabulary follows the image: the root is the top node with no parent, parent and child is a direct relation, depth is a node distance from the root, and height is the longest path from root to leaf. A binary tree is a special case: at most two children per node, left and right.',
+          'A binary search tree adds a strict ordering rule: everything in a node left subtree is smaller than its value and everything right is larger. This rule is not cosmetic; it is what makes search efficient: comparing with the root tells you which half to continue in, discarding half the tree in one comparison.',
+          'Search then resembles binary search on a sorted array, with an extra advantage: insertion and deletion preserve order automatically with no shifting, while inserting into a sorted array requires shifting everything after.',
+          'Here lies the danger many miss: efficiency is conditional on balance. Inserting values in ascending order makes each element the right child of the previous, turning the tree into something like a long linked list, so search degrades from halving each step to visiting everything.',
+          'Hence self-balancing trees that reorder themselves on insertion to preserve balance. The practical lesson: never assume efficiency from the structure type alone but from the structure together with the incoming data pattern, since already-sorted data is the worst input to an unbalanced search tree.',
+          'Tree traversal has three common orders, and the most useful in a search tree is in-order: visit the left subtree, then the node, then the right, emitting elements in ascending order. That is an elegant way to extract sorted data with no sorting algorithm.'
+        ],
+        table: {
+          head_ar: ['الحالة', 'شكل الشجرة', 'كلفة البحث'],
+          head_en: ['Case', 'Tree shape', 'Search cost'],
+          rows: [
+            ['متوازنة', 'أبناء موزّعون يميناً ويساراً', 'O(log n)'],
+            ['غير متوازنة', 'سلسلة في اتجاه واحد', 'O(n)'],
+            ['إدخال مرتب تصاعدياً', 'أسوأ حالة ممكنة', 'O(n)'],
+            ['متوازنة ذاتياً', 'تعيد ترتيب نفسها', 'O(log n) مضمونة']
+          ]
+        },
+        keyPoints_ar: [
+          'الشجرة تمثّل العلاقات الهرمية التي تعجز عنها الهياكل الخطية.',
+          'قاعدة شجرة البحث: اليسار أصغر واليمين أكبر، فتُستبعد نصف الشجرة بمقارنة.',
+          'الإضافة والحذف يحفظان الترتيب تلقائياً بلا إزاحة.',
+          'كفاءة الشجرة مشروطة بتوازنها، وغير المتوازنة تصير كقائمة مترابطة.',
+          'إدخال بيانات مرتبة سلفاً هو أسوأ ما يدخل شجرة بحث غير متوازنة.',
+          'المرور الوسطي يُخرج عناصر شجرة البحث مرتبة تصاعدياً.'
+        ],
+        keyPoints_en: [
+          'A tree represents hierarchical relations linear structures cannot.',
+          'The BST rule is smaller left and larger right, discarding half the tree per comparison.',
+          'Insertion and deletion preserve order automatically with no shifting.',
+          'Efficiency depends on balance; an unbalanced tree behaves like a linked list.',
+          'Already-sorted input is the worst case for an unbalanced search tree.',
+          'In-order traversal emits a search tree elements in ascending order.'
+        ],
+        analogy_ar: 'تخيّل شجرة البحث دليل هاتف مطوياً: تفتحه من المنتصف فتعرف في أي نصف يقع الاسم فتترك النصف الآخر كله. لكن تخيّل دليلاً كُتبت أسماؤه كلها في عمود واحد بلا تفرّع — عندها لا معنى للفتح من المنتصف، ووجب قراءة الأسماء واحداً واحداً. هذي بالضبط الشجرة غير المتوازنة.',
+        analogy_en: 'Picture a search tree as a folded phone book: you open the middle, learn which half holds the name and abandon the other. Now picture a book whose names are all written in one column with no branching: opening the middle is meaningless and you must read name by name. That is exactly an unbalanced tree.',
+        terms: [
+          { term: 'Root', def_ar: 'أعلى عقدة في الشجرة ولا أب لها.', def_en: 'The top node of a tree with no parent.' },
+          { term: 'Leaf', def_ar: 'عقدة بلا أبناء.', def_en: 'A node with no children.' },
+          { term: 'BST', def_ar: 'شجرة بحث ثنائية: اليسار أصغر واليمين أكبر من العقدة.', def_en: 'A binary search tree: left smaller and right larger than the node.' },
+          { term: 'In-order', def_ar: 'مرور يزور اليسار ثم العقدة ثم اليمين فيُخرج القيم مرتبة.', def_en: 'Traversal visiting left, node, then right, emitting sorted values.' },
+          { term: 'Balance', def_ar: 'توزّع العقد على الجهتين، وهو شرط كفاءة البحث.', def_en: 'Node distribution across both sides, the condition for search efficiency.' }
+        ],
+        cards: [
+          { q_ar: 'ما قاعدة شجرة البحث الثنائي؟', q_en: 'What is the binary search tree rule?', a_ar: 'كل ما في الشجرة اليسرى أصغر من العقدة وكل ما في اليمنى أكبر منها.', a_en: 'Everything in the left subtree is smaller than the node and everything right is larger.' },
+          { q_ar: 'ماذا يحدث لو أُدخلت القيم مرتبة تصاعدياً؟', q_en: 'What happens if values are inserted in ascending order?', a_ar: 'تتحول الشجرة إلى سلسلة في اتجاه واحد فيهبط البحث إلى O(n).', a_en: 'The tree becomes a one-way chain and search degrades to O(n).' },
+          { q_ar: 'أي مرور يُخرج عناصر شجرة البحث مرتبة؟', q_en: 'Which traversal emits BST elements sorted?', a_ar: 'المرور الوسطي: اليسار ثم العقدة ثم اليمين.', a_en: 'In-order traversal: left, node, then right.' },
+          { q_ar: 'ما ميزة شجرة البحث على المصفوفة المرتبة؟', q_en: 'What advantage does a BST have over a sorted array?', a_ar: 'الإضافة والحذف يحفظان الترتيب بلا إزاحة العناصر.', a_en: 'Insertion and deletion preserve order without shifting elements.' }
+        ]
+      },
+      {
+        title_ar: 'الرسوم وجداول التقطيع ومقارنة الهياكل',
+        title_en: 'Graphs, Hash Tables and Comparing Structures',
+        lead_ar: 'الرسم يمثّل علاقات متشابكة لا هرمية، وجدول التقطيع يصل للقيمة بمفتاحها فوراً — والاختيار بينها كله يعود لسؤال واحد: ما العملية التي أكررها؟',
+        lead_en: 'A graph models tangled rather than hierarchical relations, a hash table reaches a value by its key instantly, and choosing between them all comes back to one question: which operation do I repeat?',
+        body_ar: [
+          'الشجرة تفترض هرمية: لكل عقدة أب واحد ولا دورات. لكن كثيراً من العلاقات ليست كذلك: الصداقة في شبكة اجتماعية متبادلة ومتشابكة، والطرق بين المدن تربط كلاً بأكثر من واحدة وتعود. والرسم هو الهيكل العام لهذي العلاقات: عقد تسمى رؤوساً، وروابط بينها تسمى حوافّ.',
+          'وللحافة اتجاه أو لا: فعلاقة الصداقة متبادلة فالرسم غير موجّه، ومتابعة حساب في منصة أحادية فالرسم موجّه. وقد يكون للحافة وزن يمثّل كلفة: مسافة بين مدينتين أو زمن رحلة. وعلى الرسوم الموزونة تُبنى خوارزميات أقصر طريق التي تعمل بها الخرائط.',
+          'وجدول التقطيع هيكل مختلف كلياً في فكرته: يحوّل المفتاح إلى رقم بدالة تقطيع، ويستخدم هذا الرقم موضعاً مباشراً للقيمة. فلا بحث ولا مرور: تحسب الموضع وتذهب إليه، ولهذا يكون الوصول بالمفتاح فورياً في المتوسط مهما كبر الجدول.',
+          'ولهذا يقع التصادم: مفتاحان مختلفان قد تعطيهما الدالة الرقم نفسه، فيتنازعان الموضع. وتُعالَج بطرق منها ربط قائمة في الموضع الواحد تضم كل ما تصادم عليه. ولو ساءت دالة التقطيع فأرسلت أغلب المفاتيح لموضع واحد، لتحول الجدول إلى قائمة طويلة وهبط الوصول من فوري إلى مرور على الجميع — فجودة الدالة شرط في الكفاءة لا تفصيل.',
+          'وهنا تتضح القاعدة الكبرى في هذا القسم كله: لا هيكل أفضل مطلقاً، وإنما أفضل لعملية. المصفوفة للقراءة بالفهرس، والقائمة المترابطة للإضافة والحذف المتكرر، والمكدس والطابور لضبط ترتيب الخدمة، وشجرة البحث للبحث مع بقاء البيانات مرتبة، وجدول التقطيع للوصول بالمفتاح، والرسم للعلاقات المتشابكة.',
+          'والخطأ الشائع اختيار الهيكل من حيث الألفة لا من حيث الحاجة: يبدأ كثيرون بالقائمة في كل موضع لأنها أول ما تعلّموه، ثم يشتكون البطء. فاسأل قبل أن تختار: هل عملية القراءة أكثر أم الإضافة؟ هل أبحث بالمفتاح أم بالترتيب؟ هل العلاقات هرمية أم متشابكة؟ — إجابتك عن هذي الثلاث تحدد الهيكل وحدها.'
+        ],
+        body_en: [
+          'A tree assumes hierarchy: one parent per node and no cycles. Many relations are not like that: friendship in a social network is mutual and tangled, and roads between cities connect each to several and loop back. A graph is the general structure for these: nodes called vertices and links called edges.',
+          'An edge may or may not have direction: friendship is mutual so the graph is undirected, while following an account is one-way so it is directed. An edge may carry a weight representing cost: distance between cities or travel time. Shortest-path algorithms behind maps are built on weighted graphs.',
+          'A hash table is entirely different in idea: it converts a key into a number with a hash function and uses that number as the direct position of the value. No search, no traversal: compute the position and go there, which is why key access is instant on average whatever the size.',
+          'Hence collisions: two different keys may hash to the same number and contend for the position. Remedies include chaining a list at each position holding everything that collided. If the hash function is poor and sends most keys to one position, the table becomes a long list and access degrades from instant to visiting everything, so function quality is a condition of efficiency, not a detail.',
+          'Here the great rule of this whole section becomes clear: no structure is best absolutely, only best for an operation. Arrays for index reads, linked lists for frequent insertion and deletion, stacks and queues for service order, search trees for searching while data stays sorted, hash tables for key access, and graphs for tangled relations.',
+          'The common mistake is choosing by familiarity rather than need: many reach for a list everywhere because it was the first thing they learned, then complain about slowness. Ask before choosing: are reads more frequent than insertions? Do I look up by key or by order? Are relations hierarchical or tangled? Those three answers alone determine the structure.'
+        ],
+        table: {
+          head_ar: ['الهيكل', 'أقوى ما فيه', 'أضعف ما فيه'],
+          head_en: ['Structure', 'Strength', 'Weakness'],
+          rows: [
+            ['مصفوفة', 'وصول بالفهرس O(1)', 'إضافة وحذف في المقدمة O(n)'],
+            ['قائمة مترابطة', 'إضافة وحذف O(1)', 'وصول بالفهرس O(n)'],
+            ['مكدس وطابور', 'ضبط ترتيب الخدمة', 'لا وصول عشوائي'],
+            ['شجرة بحث', 'بحث O(log n) مع بقاء الترتيب', 'تهبط لـO(n) بلا توازن'],
+            ['جدول تقطيع', 'وصول بالمفتاح O(1) متوسطاً', 'لا ترتيب، ويتأثر بالتصادم'],
+            ['رسم', 'علاقات متشابكة وأوزان', 'أعقد تنفيذاً وتحليلاً']
+          ]
+        },
+        keyPoints_ar: [
+          'الرسم لعلاقات متشابكة، وحوافّه قد تكون موجّهة أو موزونة.',
+          'جدول التقطيع يحسب موضع القيمة من مفتاحها فلا يبحث أصلاً.',
+          'التصادم يقع حتماً، ودالة تقطيع رديئة تحوّل الجدول إلى قائمة بطيئة.',
+          'لا هيكل أفضل مطلقاً، وإنما أفضل لعملية بعينها.',
+          'ثلاثة أسئلة تحسم الاختيار: قراءة أم إضافة، بمفتاح أم بترتيب، هرمي أم متشابك.'
+        ],
+        keyPoints_en: [
+          'A graph models tangled relations, and its edges may be directed or weighted.',
+          'A hash table computes a value position from its key, so it never searches.',
+          'Collisions are inevitable, and a poor hash function turns the table into a slow list.',
+          'No structure is best absolutely, only best for a specific operation.',
+          'Three questions settle the choice: reads or insertions, by key or by order, hierarchical or tangled.'
+        ],
+        analogy_ar: 'تخيّل جدول التقطيع صالة مواقف فيها لوحة تحسب لك رقم الموقف من رقم لوحتك مباشرة، فتذهب إليه بلا دوران. والتصادم أن تعطي اللوحة الرقم نفسه لسيارتين، فيوقفان في الموقف ذاته وتحتاج تفرّقهما. أما الرسم فهو خريطة الطرق بين المدن: لا قمة ولا قاع، وإنما شبكة تربط كل مدينة بعدة مدن وتعود.',
+        analogy_en: 'Picture a hash table as a car park where a board computes your bay number straight from your plate, so you drive to it with no circling. A collision is the board giving two cars the same bay, so they share it and you need a way to tell them apart. A graph is the road map between cities: no top and no bottom, a web linking each city to several and looping back.',
+        terms: [
+          { term: 'Graph', def_ar: 'رؤوس وحوافّ تمثّل علاقات متشابكة قد تكون موجّهة أو موزونة.', def_en: 'Vertices and edges modelling tangled relations, possibly directed or weighted.' },
+          { term: 'Hash Function', def_ar: 'دالة تحوّل المفتاح إلى رقم يُستخدم موضعاً للقيمة.', def_en: 'A function converting a key into a number used as the value position.' },
+          { term: 'Collision', def_ar: 'إعطاء الدالة الرقم نفسه لمفتاحين مختلفين.', def_en: 'The function assigning the same number to two different keys.' },
+          { term: 'Weighted Edge', def_ar: 'حافة تحمل كلفة كمسافة أو زمن، تُبنى عليها خوارزميات أقصر طريق.', def_en: 'An edge carrying a cost such as distance or time, used by shortest-path algorithms.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يكون الوصول في جدول التقطيع فورياً؟', q_en: 'Why is hash table access instant?', a_ar: 'لأنه يحسب موضع القيمة من المفتاح مباشرة فلا يبحث ولا يمرّ على العناصر.', a_en: 'Because it computes the position directly from the key, never searching or traversing.' },
+          { q_ar: 'ما أثر دالة تقطيع رديئة؟', q_en: 'What is the effect of a poor hash function?', a_ar: 'ترسل أغلب المفاتيح لموضع واحد، فيتحول الجدول إلى قائمة طويلة ويهبط الوصول إلى O(n).', a_en: 'It sends most keys to one position, turning the table into a long list and degrading access to O(n).' },
+          { q_ar: 'متى تختار رسماً بدل شجرة؟', q_en: 'When do you choose a graph over a tree?', a_ar: 'حين تكون العلاقات متشابكة وفيها دورات، لا هرمية بأب واحد لكل عقدة.', a_en: 'When relations are tangled with cycles rather than hierarchical with one parent per node.' },
+          { q_ar: 'ما الأسئلة الثلاثة التي تحسم اختيار الهيكل؟', q_en: 'Which three questions settle the structure choice?', a_ar: 'قراءة أكثر أم إضافة؟ بحث بالمفتاح أم بالترتيب؟ علاقات هرمية أم متشابكة؟', a_en: 'More reads or insertions? Lookup by key or by order? Hierarchical or tangled relations?' }
+        ]
+      }
     ]
   }
 };
