@@ -380,7 +380,10 @@ export const Challenges = () => {
   };
 
   // ═════════ شاشة الإعداد (مشتركة بين الفردي والروم) ═════════
-  const SetupScreen = ({ isRoom }) => (
+  // تُستدعى كدالة لا كمكوّن: لو كانت مكوّناً معرّفاً داخل Challenges لأعاد React
+  // بناء الشجرة كاملةً مع كل تحديث حالة (والمؤقّت يحدّثها كل ثانية)، فتتكرر
+  // حركة الظهور كل ثانية وتفقد الحقول تركيزها مع كل حرف.
+  const renderSetup = (isRoom) => (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto space-y-8">
       <div className={`p-10 rounded-[3rem] ${cardBg} space-y-10`}>
         <h2 className="text-3xl font-black italic text-white uppercase tracking-tighter text-center">
@@ -512,14 +515,16 @@ export const Challenges = () => {
   );
 
   // ═════════ شاشة السؤال ═════════
-  const QuestionScreen = ({ withSeats }) => (
-    <div className="relative min-h-[620px]">
+  const renderQuestion = (withSeats) => (
+    <div className={`relative ${withSeats ? 'min-h-[620px]' : ''}`}>
+      {/* مقاعد اللاعبين في الزوايا الأربع — تظهر في الرومات فقط */}
       {withSeats && players.map((p, i) => (
         <PlayerSeat key={p.user_id} player={p} corner={i} total={questions.length}
           color={pickedTrack.color} isMe={p.user_id === user?.id} isHost={room?.host_id === p.user_id} />
       ))}
 
-      <div className="max-w-3xl mx-auto pt-24">
+      {/* الفراغ العلوي مخصّص للمقاعد؛ في التحدي الفردي لا مقاعد فلا داعي له */}
+      <div className={`max-w-3xl mx-auto ${withSeats ? 'pt-24 lg:pt-24' : 'pt-0'}`}>
         {/* الشريط العلوي */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/5 border border-white/10">
@@ -532,7 +537,10 @@ export const Challenges = () => {
               animate={{ width: `${((qIndex) / questions.length) * 100}%` }}
               style={{ backgroundColor: pickedTrack.color }} />
           </div>
-          <span className="font-black text-sm text-white/40">{qIndex + 1} / {questions.length}</span>
+          {/* dir=ltr إلزامي: «2 / 10» محتوى لاتيني داخل صفحة عربية، وبدونه يعرضه المتصفح «10 / 2» */}
+          <span className="font-black text-sm text-white/40 tabular-nums" dir="ltr">
+            {qIndex + 1} / {questions.length}
+          </span>
         </div>
 
         <motion.div key={qIndex} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
@@ -628,8 +636,8 @@ export const Challenges = () => {
         </div>
       )}
 
-      {view === 'setup' && <SetupScreen isRoom={false} />}
-      {view === 'room-setup' && <SetupScreen isRoom={true} />}
+      {view === 'setup' && renderSetup(false)}
+      {view === 'room-setup' && renderSetup(true)}
 
       {/* ── قائمة الرومات ── */}
       {view === 'room-menu' && (
@@ -722,8 +730,8 @@ export const Challenges = () => {
         </div>
       )}
 
-      {view === 'playing' && currentQ && <QuestionScreen withSeats={false} />}
-      {view === 'room-playing' && currentQ && <QuestionScreen withSeats={true} />}
+      {view === 'playing' && currentQ && renderQuestion(false)}
+      {view === 'room-playing' && currentQ && renderQuestion(true)}
 
       {/* ── نتيجة التحدي الفردي ── */}
       {view === 'result' && (
