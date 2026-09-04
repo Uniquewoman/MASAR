@@ -1554,6 +1554,635 @@ export const sectionGuides = {
           { q_ar: 'لماذا النشر المتكرر أأمن من النادر؟', q_en: 'Why is frequent deployment safer than rare?', a_ar: 'لأن كل نشرة تحمل تغييراً صغيراً يسهل تتبّعه والتراجع عنه، بخلاف نشرة تراكمت فيها التغييرات.', a_en: 'Each release carries a small change that is easy to trace and reverse, unlike one where changes piled up.' }
         ]
       }
+    ],
+
+    // ─────────── هندسة البرمجيات ───────────
+    5: [
+      {
+        title_ar: 'مفهوم الهندسة ودورة حياة التطوير',
+        title_en: 'Software Engineering and the SDLC',
+        lead_ar: 'الفرق بين البرمجة والهندسة أن الأولى تُنتج كوداً يعمل، والثانية تُنتج نظاماً يبقى صالحاً وقابلاً للتغيير بعد سنوات وبأيدٍ كثيرة.',
+        lead_en: 'Programming produces code that works; engineering produces a system that stays workable and changeable years later and in many hands.',
+        body_ar: [
+          'الكود الذي يعمل ليس غاية المشروع. فالبرنامج يُكتب مرة ويُقرأ ويُعدَّل عشرات المرات، ويعمل عليه أشخاص لم يحضروا كتابته، ويستمر سنوات تتغيّر فيها متطلباته. وهندسة البرمجيات هي ما يجعل هذا ممكناً: منهجية وأدوات وممارسات تجعل النظام قابلاً للفهم والتغيير والصيانة، لا مجرد قابل للتشغيل.',
+          'ولهذا يُقال إن أغلب كلفة البرمجيات ليست في بنائها أول مرة بل في صيانتها بعد ذلك. ومن هنا تُقاس جودة القرار الهندسي بأثره بعد سنتين لا بسرعته اليوم: حلٌّ يوفّر يومين الآن ويكلّف شهراً كل سنة قرار سيئ ولو بدا ذكياً.',
+          'ودورة حياة التطوير هي المراحل التي يمر بها أي نظام: جمع المتطلبات وتحليلها، ثم التصميم، ثم التنفيذ، ثم الاختبار، ثم النشر، ثم الصيانة. وهي ليست وصفة جامدة تُتبع مرة، وإنما إطار يصف طبيعة العمل مهما اختلف نموذج التنفيذ.',
+          'وكلفة الخطأ ترتفع كلما تأخر اكتشافه، وهذي من أثبت الحقائق في المجال. فخطأ في المتطلبات يُكتشف في مرحلة المتطلبات يُصحَّح بتعديل جملة، والخطأ نفسه يُكتشف بعد النشر قد يستوجب إعادة بناء وحدة كاملة وترحيل بيانات وإخطار مستخدمين. ولهذا تُبذل عناية في المراحل الأولى ولو بدت بطيئة.',
+          'والصيانة أطول مراحل الدورة وأكثرها كلفة، وهي أربعة أنواع: تصحيحية لإصلاح أخطاء ظهرت، وتكيّفية لمواكبة تغيّر البيئة كتحديث نظام أو قانون، وتحسينية لإضافة ما يطلبه المستخدمون، ووقائية لتحسين البنية قبل أن تصير عائقاً. والثالثة والرابعة أكثر من الأولى بكثير خلافاً لما يُظن.',
+          'وأخيراً: الجودة ليست ما يُضاف في النهاية باختبار قبل النشر، وإنما ما يُبنى في كل مرحلة. فمشروع بمتطلبات غامضة وتصميم مرتبك لن يُنقذه اختبار مهما اشتد، لأن الاختبار يكشف الانحراف عن المطلوب ولا يصلح مطلوباً خاطئاً أصلاً.'
+        ],
+        body_en: [
+          'Working code is not the goal of a project. Software is written once and read and modified dozens of times, worked on by people who never saw it written, and lives for years while its requirements shift. Software engineering makes that possible: methods, tools and practices making a system understandable, changeable and maintainable rather than merely runnable.',
+          'Hence the saying that most software cost lies not in building it once but in maintaining it afterwards. So an engineering decision is judged by its effect in two years rather than its speed today: a solution saving two days now and costing a month every year is a bad decision however clever it looked.',
+          'The development life cycle is the stages any system passes through: gathering and analysing requirements, design, implementation, testing, deployment, then maintenance. It is not a rigid recipe followed once but a frame describing the nature of the work whatever the execution model.',
+          'The cost of a defect rises the later it is found, one of the best-established facts in the field. A requirements error caught during requirements is fixed by editing a sentence; the same error found after release may demand rebuilding a whole module, migrating data and notifying users. That is why care in the early stages pays even when it feels slow.',
+          'Maintenance is the longest and costliest stage, and it has four kinds: corrective for defects that appeared, adaptive to follow a changing environment such as a system or legal update, perfective to add what users request, and preventive to improve structure before it becomes an obstacle. The third and fourth far exceed the first, contrary to common belief.',
+          'Finally: quality is not something added at the end by testing before release; it is built at every stage. A project with vague requirements and confused design is not saved by testing however rigorous, because testing exposes deviation from what was asked and cannot repair a wrong ask.'
+        ],
+        table: {
+          head_ar: ['المرحلة', 'سؤالها', 'مخرجها'],
+          head_en: ['Stage', 'Its question', 'Its output'],
+          rows: [
+            ['المتطلبات', 'ما الذي يجب أن يفعله النظام؟', 'وثيقة متطلبات متفق عليها'],
+            ['التصميم', 'كيف سيُبنى؟', 'معمارية ومخططات'],
+            ['التنفيذ', 'كتابة النظام', 'كود عامل'],
+            ['الاختبار', 'هل يفعل ما طُلب؟', 'تقرير جودة وأخطاء'],
+            ['النشر', 'إيصاله للمستخدمين', 'إصدار في الإنتاج'],
+            ['الصيانة', 'إبقاؤه صالحاً', 'تحديثات وإصلاحات']
+          ]
+        },
+        keyPoints_ar: [
+          'الهندسة تُنتج نظاماً قابلاً للتغيير، والبرمجة تُنتج كوداً يعمل.',
+          'أغلب كلفة البرمجيات في الصيانة لا في البناء الأول.',
+          'كلفة الخطأ ترتفع كلما تأخر اكتشافه، فالعناية المبكرة توفّر لا تُبطئ.',
+          'الصيانة أربعة أنواع، والتحسينية والوقائية أكثر من التصحيحية.',
+          'الجودة تُبنى في كل مرحلة ولا تُضاف باختبار في النهاية.'
+        ],
+        keyPoints_en: [
+          'Engineering produces a changeable system; programming produces working code.',
+          'Most software cost is maintenance, not the first build.',
+          'Defect cost rises the later it is found, so early care saves rather than slows.',
+          'Maintenance has four kinds, and perfective and preventive exceed corrective.',
+          'Quality is built at every stage and cannot be added by testing at the end.'
+        ],
+        analogy_ar: 'تخيّل الفرق بين من يبني غرفة في حديقته بنفسه، ومن يبني عمارة سكنية. الأول يقرر ويغيّر ويهدم كما شاء. والثاني يحتاج مخططات ومواصفات وتراخيص، لا تعقيداً بلا سبب، بل لأن مئة أسرة ستسكن فيها عشرين سنة، وسيأتي مهندس آخر بعده يصلح ما بناه دون أن يكلّمه. هندسة البرمجيات هي هذا الفرق بالضبط.',
+        analogy_en: 'Picture the difference between building a garden shed yourself and building an apartment block. The first lets you decide, change and demolish freely. The second needs plans, specifications and permits, not needless bureaucracy but because a hundred families will live there for twenty years and another engineer will one day repair your work without ever speaking to you. Software engineering is exactly that difference.',
+        terms: [
+          { term: 'SDLC', def_ar: 'دورة حياة تطوير النظام من المتطلبات إلى الصيانة.', def_en: 'The system development life cycle from requirements to maintenance.' },
+          { term: 'Maintainability', def_ar: 'سهولة فهم النظام وتعديله بعد سنوات وبأيدٍ جديدة.', def_en: 'How easily a system is understood and changed years later by new hands.' },
+          { term: 'Corrective Maintenance', def_ar: 'صيانة لإصلاح أخطاء ظهرت بعد التشغيل.', def_en: 'Maintenance fixing defects that appeared after release.' },
+          { term: 'Preventive Maintenance', def_ar: 'تحسين البنية قبل أن تصير عائقاً أمام التغيير.', def_en: 'Improving structure before it obstructs future change.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين البرمجة وهندسة البرمجيات؟', q_en: 'Difference between programming and software engineering?', a_ar: 'البرمجة تُنتج كوداً يعمل، والهندسة تُنتج نظاماً يبقى قابلاً للفهم والتغيير والصيانة.', a_en: 'Programming produces working code; engineering produces a system that stays understandable, changeable and maintainable.' },
+          { q_ar: 'لماذا تُبذل عناية في مرحلة المتطلبات رغم بطئها؟', q_en: 'Why invest care in requirements despite the slowness?', a_ar: 'لأن كلفة الخطأ ترتفع كلما تأخر اكتشافه، فخطأ متطلبات بعد النشر قد يعيد بناء وحدة كاملة.', a_en: 'Because defect cost rises the later it is found; a requirements error after release may rebuild a whole module.' },
+          { q_ar: 'أي أنواع الصيانة أكثر وقوعاً؟', q_en: 'Which kind of maintenance is most common?', a_ar: 'التحسينية والتكيّفية، خلافاً للظن الشائع أن الصيانة إصلاح أخطاء فقط.', a_en: 'Perfective and adaptive, contrary to the common belief that maintenance is only bug fixing.' },
+          { q_ar: 'هل ينقذ الاختبار مشروعاً بمتطلبات غامضة؟', q_en: 'Can testing save a project with vague requirements?', a_ar: 'لا، لأن الاختبار يكشف الانحراف عن المطلوب ولا يصلح مطلوباً خاطئاً أصلاً.', a_en: 'No, because testing exposes deviation from what was asked and cannot repair a wrong ask.' }
+        ]
+      },
+      {
+        title_ar: 'نماذج التطوير وجمع المتطلبات',
+        title_en: 'Development Models and Requirements Gathering',
+        lead_ar: 'النموذج يحدد متى تُتخذ القرارات، والمتطلبات هي أخطر ما في المشروع لأن خطأها لا يظهر إلا بعد البناء.',
+        lead_en: 'The model decides when decisions are made, and requirements are the riskiest part of a project because their errors surface only after building.',
+        body_ar: [
+          'النموذج الشلالي ينفّذ المراحل بالترتيب: تُغلق المتطلبات ثم يبدأ التصميم، ويُغلق التصميم ثم يبدأ التنفيذ. وميزته الوضوح وسهولة التخطيط والتوثيق، وعيبه القاتل أن المستخدم لا يرى شيئاً حتى النهاية — فإن كان الفهم خاطئاً من البداية اكتُشف بعد استنفاد الميزانية.',
+          'ولذلك يصلح الشلالي حين تكون المتطلبات معروفة ومستقرة ونادرة التغيّر، كنظام يخضع لمواصفة تنظيمية محددة سلفاً. أما حين تكون المتطلبات غامضة أو متغيّرة — وهو الغالب — فالإصرار عليه وصفة للفشل.',
+          'والنماذج التكرارية تبني النظام على دورات قصيرة: كل دورة تنتج شيئاً يعمل ويُعرض ويُراجع، فيُصحَّح المسار مبكراً. وثمنها أن التخطيط بعيد المدى أصعب والتوثيق أخف، ومكسبها أن الخطأ في الفهم يُكتشف بعد أسابيع لا بعد سنة.',
+          'أما المتطلبات فنوعان: وظيفية تصف ما يفعله النظام — يسجّل الطلب، يصدر فاتورة — وغير وظيفية تصف كيف يجب أن يكون: زمن الاستجابة، وعدد المستخدمين المتزامنين، ومستوى الأمان، وسهولة الاستخدام. وإهمال غير الوظيفية شائع ومكلف: نظام يفعل كل المطلوب لكنه يستغرق ثلاثين ثانية للاستجابة نظام فاشل عملياً.',
+          'والمتطلب الجيد له صفات: واضح لا يحتمل تفسيرين، وقابل للقياس فيمكن الحكم على تحققه، وقابل للتنفيذ بالموارد المتاحة، وضروري لا مجرد أمنية. وعبارة مثل «يجب أن يكون النظام سريعاً» ليست متطلباً بل رغبة — والمتطلب أن تقول: يستجيب في أقل من ثانيتين لتسعة وتسعين بالمئة من الطلبات.',
+          'وأدوات الجمع متعددة ولكل موضعها: المقابلة تكشف العمق، والاستبيان يغطي عدداً كبيراً، والملاحظة تكشف ما لا يقوله الناس لأنهم اعتادوه فلا ينتبهون له، وتحليل الأنظمة القائمة يكشف ما يعتمدون عليه فعلاً. والاعتماد على أداة واحدة يترك ثغرات، وأخطرها الاكتفاء بسؤال الإدارة دون من سيستخدم النظام يومياً.'
+        ],
+        body_en: [
+          'The waterfall model runs stages in order: requirements close, then design begins; design closes, then implementation. Its merits are clarity and easy planning and documentation; its fatal flaw is that the user sees nothing until the end, so a wrong understanding from the start is discovered after the budget is spent.',
+          'So waterfall suits requirements that are known, stable and rarely changing, such as a system bound by a predefined regulatory specification. When requirements are vague or shifting, which is the norm, insisting on it is a recipe for failure.',
+          'Iterative models build in short cycles: each produces something working that is shown and reviewed, correcting course early. The price is harder long-range planning and lighter documentation; the gain is that a misunderstanding surfaces in weeks rather than a year.',
+          'Requirements come in two kinds: functional describing what the system does, such as recording an order or issuing an invoice, and non-functional describing how it must be: response time, concurrent users, security level, usability. Neglecting the non-functional is common and costly: a system doing everything asked but taking thirty seconds to respond has failed in practice.',
+          'A good requirement has traits: unambiguous, measurable so its fulfilment can be judged, feasible with available resources, and necessary rather than a wish. A phrase like "the system should be fast" is not a requirement but a desire; the requirement is that it responds under two seconds for ninety-nine percent of requests.',
+          'Gathering tools are several and each has its place: interviews reveal depth, surveys cover numbers, observation reveals what people never say because habit made it invisible, and analysing existing systems reveals what they actually depend on. Relying on one tool leaves gaps, and the most dangerous is asking management alone without those who will use the system daily.'
+        ],
+        table: {
+          head_ar: ['النموذج', 'متى يصلح', 'أكبر خطر فيه'],
+          head_en: ['Model', 'When it fits', 'Its biggest risk'],
+          rows: [
+            ['الشلالي', 'متطلبات مستقرة معروفة سلفاً', 'اكتشاف سوء الفهم بعد استنفاد الميزانية'],
+            ['التكراري', 'متطلبات غامضة أو متغيّرة', 'صعوبة التخطيط بعيد المدى'],
+            ['النموذج الأولي', 'حاجة لتصوّر الشكل قبل البناء', 'ظن العميل أن النموذج منتج جاهز'],
+            ['الحلزوني', 'مشاريع عالية المخاطر', 'ثقل التحليل المتكرر للمخاطر']
+          ]
+        },
+        keyPoints_ar: [
+          'الشلالي يصلح للمتطلبات المستقرة، ويفشل حين تتغيّر أو تغمض.',
+          'التكراري يكشف سوء الفهم بعد أسابيع لا بعد سنة.',
+          'المتطلبات غير الوظيفية تُهمَل كثيراً وإهمالها يُفشل نظاماً كامل الوظائف.',
+          'المتطلب الجيد قابل للقياس: «سريع» رغبة، و«أقل من ثانيتين» متطلب.',
+          'سؤال الإدارة وحدها دون المستخدم اليومي أخطر ثغرات الجمع.'
+        ],
+        keyPoints_en: [
+          'Waterfall suits stable requirements and fails when they shift or blur.',
+          'Iterative models expose misunderstanding in weeks rather than a year.',
+          'Non-functional requirements are widely neglected, and neglecting them fails a fully functional system.',
+          'A good requirement is measurable: "fast" is a wish, "under two seconds" is a requirement.',
+          'Asking management alone without daily users is the most dangerous gathering gap.'
+        ],
+        analogy_ar: 'تخيّل بناء بيت بالنموذج الشلالي: يوقّع صاحبه المخطط ولا يراه إلا مكتملاً بعد سنة، فإن كان يظن غرفة المعيشة أكبر فالجدران مصبوبة. والتكراري أن يزور الموقع كل أسبوعين فيرى الأساس ثم الجدران ثم التقسيم، فيصحّح فهمه قبل أن يُصبّ الخرسانة. والمتطلب غير القابل للقياس مثل أن يقول: «أريد البيت مريحاً» — لا أحد يعرف متى تحقق.',
+        analogy_en: 'Picture building a house the waterfall way: the owner signs the plan and sees nothing until it is finished a year later, so if they imagined a larger living room the walls are already poured. Iterative means visiting every fortnight, seeing the foundation, then walls, then partitions, correcting understanding before the concrete sets. An unmeasurable requirement is like saying "I want the house comfortable": nobody knows when it is met.',
+        terms: [
+          { term: 'Waterfall', def_ar: 'نموذج ينفّذ المراحل بالترتيب ولا يعود لسابقتها.', def_en: 'A model running stages in order with no return to earlier ones.' },
+          { term: 'Iterative', def_ar: 'نموذج يبني على دورات قصيرة كل واحدة تنتج شيئاً يعمل.', def_en: 'A model building in short cycles each producing something working.' },
+          { term: 'Functional Requirement', def_ar: 'متطلب يصف ما يفعله النظام.', def_en: 'A requirement describing what the system does.' },
+          { term: 'Non-functional Requirement', def_ar: 'متطلب يصف كيف يجب أن يكون النظام: أداءً وأماناً وسهولة.', def_en: 'A requirement describing how the system must be: performance, security, usability.' }
+        ],
+        cards: [
+          { q_ar: 'ما أكبر عيب في النموذج الشلالي؟', q_en: 'What is waterfall biggest flaw?', a_ar: 'أن المستخدم لا يرى شيئاً حتى النهاية، فيُكتشف سوء الفهم بعد استنفاد الميزانية.', a_en: 'The user sees nothing until the end, so misunderstanding surfaces after the budget is spent.' },
+          { q_ar: 'أعطِ مثالاً على متطلب غير وظيفي.', q_en: 'Give an example of a non-functional requirement.', a_ar: 'زمن الاستجابة أو عدد المستخدمين المتزامنين أو مستوى الأمان.', a_en: 'Response time, concurrent user count, or security level.' },
+          { q_ar: 'لماذا لا تُعد عبارة «النظام سريع» متطلباً؟', q_en: 'Why is "the system is fast" not a requirement?', a_ar: 'لأنها غير قابلة للقياس، فلا يمكن الحكم على تحققها؛ والمتطلب يحدد رقماً كأقل من ثانيتين.', a_en: 'Because it is unmeasurable, so fulfilment cannot be judged; a requirement states a number such as under two seconds.' },
+          { q_ar: 'ما أخطر ثغرة في جمع المتطلبات؟', q_en: 'What is the most dangerous requirements-gathering gap?', a_ar: 'الاكتفاء بسؤال الإدارة دون من سيستخدم النظام يومياً.', a_en: 'Asking management alone without the people who will use the system daily.' }
+        ]
+      },
+      {
+        title_ar: 'التحليل والتصميم المعماري وUML',
+        title_en: 'Analysis, Architecture and UML',
+        lead_ar: 'التصميم المعماري قرارات يصعب تغييرها لاحقاً، ومخططات UML لغة مشتركة تكشف الخلل قبل أن يُكتب سطر.',
+        lead_en: 'Architecture is the set of decisions hardest to change later, and UML diagrams are a shared language exposing flaws before a line is written.',
+        body_ar: [
+          'بعد جمع المتطلبات يأتي التحليل: تحويل ما قاله الناس بلغتهم إلى وصف دقيق منظم — ما الكيانات وما العلاقات بينها وما القواعد التي تحكمها. والتحليل يكشف تناقضات لم يلحظها أحد: قسم يقول إن الطلب يُلغى قبل الشحن، وآخر يعمل بأن الإلغاء ممكن بعده. وكشف هذا التناقض على الورق أرخص ألف مرة من كشفه في الإنتاج.',
+          'والتصميم المعماري هو القرارات الكبرى في بنية النظام: من أي مكوّنات يتكوّن، وكيف تتخاطب، وأين تُحفظ البيانات، وأين ترسم الحدود بين الأجزاء. وما يميّز القرار المعماري عن غيره أن تغييره لاحقاً مكلف جداً — فتبديل مكتبة يوم عمل، وتبديل بنية النظام كله قد يعني إعادة كتابة.',
+          'والمعمارية الطبقية أشهر الأنماط: طبقة عرض للواجهة، وطبقة منطق للقواعد، وطبقة بيانات للتخزين. وقاعدتها أن كل طبقة تخاطب التي تحتها فقط، ولا تقفز طبقة العرض إلى قاعدة البيانات مباشرة. وكسر هذي القاعدة يبدو اختصاراً بريئاً ثم يتحوّل لفوضى: تتفرّق قواعد العمل بين الواجهات فيصير تعديل قاعدة واحدة بحثاً في عشرة ملفات.',
+          'والمعمارية الأحادية تجعل النظام كتلة واحدة تُنشر معاً: أبسط وأسهل بداية، وتصلح لأغلب المشاريع. والخدمات المصغّرة تفصله لخدمات مستقلة تُنشر وتُوسَّع كل واحدة وحدها: تحل مشاكل حقيقية في الأنظمة الضخمة، لكنها تجلب تعقيداً شبكياً وتشغيلياً كبيراً — واختيارها لمشروع صغير خطأ شائع يكلّف أضعاف ما يوفّر.',
+          'وUML لغة تمثيل مرئي موحّدة تصف النظام بمخططات. وأشهرها ثلاثة: مخطط الكلاسات يصف البنية الساكنة من كلاسات وعلاقات، ومخطط حالات الاستخدام يصف ما يفعله كل نوع مستخدم بالنظام، ومخطط التتابع يصف تبادل الرسائل بين الأجزاء عبر الزمن لسيناريو محدد.',
+          'وقيمة المخطط في أنه لغة مشتركة تُقرأ في دقيقة بدل صفحات وصف، وأنه يكشف الخلل مبكراً: مخطط تتابع تظهر فيه خمس عشرة رسالة لعملية بسيطة يقول لك إن التصميم معقّد قبل أن تكتب سطراً. لكن احذر الإفراط: مخططات تفصيلية لكل شيء تتقادم بسرعة ويكذب توثيقها على واقع الكود، والقاعدة العملية أن ترسم ما يحتاج نقاشاً أو ما سيقرؤه غيرك، لا كل شيء.'
+        ],
+        body_en: [
+          'After gathering comes analysis: turning what people said in their own words into a precise structured description of entities, relations and governing rules. Analysis exposes contradictions nobody noticed: one department says an order cancels before shipping while another works on the assumption that cancellation is possible after. Catching that on paper is a thousand times cheaper than catching it in production.',
+          'Architecture is the major structural decisions: which components exist, how they communicate, where data lives, and where the boundaries between parts are drawn. What sets an architectural decision apart is that changing it later is very expensive: swapping a library is a day, swapping the system structure may mean a rewrite.',
+          'Layered architecture is the best-known pattern: a presentation layer, a logic layer for rules, and a data layer for storage. Its rule is that each layer talks only to the one below, and presentation never jumps straight to the database. Breaking that rule looks like an innocent shortcut then becomes chaos: business rules scatter across interfaces so changing one rule means searching ten files.',
+          'A monolith keeps the system one block deployed together: simpler, easier to start, and suitable for most projects. Microservices split it into independent services deployed and scaled separately: they solve real problems in very large systems but bring heavy network and operational complexity, and choosing them for a small project is a common mistake costing multiples of what it saves.',
+          'UML is a unified visual language describing a system with diagrams. Three are most used: a class diagram describing static structure of classes and relations, a use-case diagram describing what each user type does with the system, and a sequence diagram describing message exchange between parts over time for a specific scenario.',
+          'A diagram value is being a shared language read in a minute instead of pages of prose, and exposing flaws early: a sequence diagram showing fifteen messages for a simple operation tells you the design is complex before you write a line. But beware excess: detailed diagrams for everything age quickly and their documentation starts lying about the code. The practical rule is to draw what needs discussion or what others will read, not everything.'
+        ],
+        table: {
+          head_ar: ['المخطط', 'ما يصفه', 'متى يفيد'],
+          head_en: ['Diagram', 'What it describes', 'When it helps'],
+          rows: [
+            ['الكلاسات', 'البنية الساكنة والعلاقات', 'تصميم النموذج قبل الكتابة'],
+            ['حالات الاستخدام', 'ما يفعله كل مستخدم بالنظام', 'الاتفاق على النطاق مع العميل'],
+            ['التتابع', 'تبادل الرسائل عبر الزمن', 'كشف تعقيد سيناريو قبل بنائه'],
+            ['النشاط', 'تدفّق العملية وقراراتها', 'توضيح إجراء عمل متشعّب']
+          ]
+        },
+        keyPoints_ar: [
+          'التحليل يكشف تناقضات المتطلبات على الورق قبل الإنتاج.',
+          'القرار المعماري ما يصعب تغييره لاحقاً، فيستحق وقتاً أطول.',
+          'في المعمارية الطبقية لا تقفز طبقة العرض إلى البيانات مباشرة.',
+          'الأحادية تكفي أغلب المشاريع، والخدمات المصغّرة تجلب تعقيداً حقيقياً.',
+          'ارسم ما يحتاج نقاشاً أو ما سيقرؤه غيرك، لا كل شيء.'
+        ],
+        keyPoints_en: [
+          'Analysis exposes requirement contradictions on paper before production.',
+          'An architectural decision is one hard to change later, so it deserves more time.',
+          'In a layered architecture, presentation never reaches data directly.',
+          'A monolith suffices for most projects; microservices bring real complexity.',
+          'Draw what needs discussion or what others will read, not everything.'
+        ],
+        analogy_ar: 'تخيّل المعمارية قرار عدد الأدوار وموضع الأعمدة في مبنى: تغيير لون الجدار سهل في أي وقت، ونقل عمود بعد الصبّ يعني هدم نصف المبنى. ولهذا يُعطى قرار الأعمدة وقتاً وليس لون الدهان. والمخطط المعماري هو ما يجعل مهندساً آخر يفهم مبناك في دقائق بدل أن يمشي فيه شهراً ليعرف ما يحمله.',
+        analogy_en: 'Picture architecture as deciding floor count and column positions in a building: repainting a wall is easy anytime, while moving a column after the pour means demolishing half the building. So the column decision earns the time, not the paint colour. An architectural diagram is what lets another engineer understand your building in minutes rather than walking it for a month to learn what carries what.',
+        terms: [
+          { term: 'Architecture', def_ar: 'القرارات الكبرى في بنية النظام التي يصعب تغييرها لاحقاً.', def_en: 'The major structural decisions that are hard to change later.' },
+          { term: 'Layered Architecture', def_ar: 'فصل النظام لطبقات عرض ومنطق وبيانات تخاطب كل منها ما تحتها.', def_en: 'Separating a system into presentation, logic and data layers each talking to the one below.' },
+          { term: 'Monolith', def_ar: 'نظام يُبنى ويُنشر كتلة واحدة.', def_en: 'A system built and deployed as one block.' },
+          { term: 'Sequence Diagram', def_ar: 'مخطط يصف تبادل الرسائل بين الأجزاء عبر الزمن لسيناريو محدد.', def_en: 'A diagram describing message exchange between parts over time for a scenario.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي يميّز القرار المعماري عن غيره؟', q_en: 'What sets an architectural decision apart?', a_ar: 'أن تغييره لاحقاً مكلف جداً وقد يعني إعادة كتابة، فيستحق وقتاً أطول في التفكير.', a_en: 'Changing it later is very expensive and may mean a rewrite, so it deserves more thought.' },
+          { q_ar: 'ما ضرر قفز طبقة العرض إلى قاعدة البيانات؟', q_en: 'What harm comes from presentation reaching the database directly?', a_ar: 'تتفرّق قواعد العمل بين الواجهات، فيصير تعديل قاعدة واحدة بحثاً في عشرة ملفات.', a_en: 'Business rules scatter across interfaces, so changing one rule means searching ten files.' },
+          { q_ar: 'متى تكون الخدمات المصغّرة خطأً؟', q_en: 'When are microservices a mistake?', a_ar: 'في المشاريع الصغيرة، إذ تجلب تعقيداً شبكياً وتشغيلياً يفوق ما توفّره.', a_en: 'In small projects, where they bring network and operational complexity exceeding their benefit.' },
+          { q_ar: 'ما القاعدة العملية في رسم المخططات؟', q_en: 'What is the practical rule for drawing diagrams?', a_ar: 'ارسم ما يحتاج نقاشاً أو ما سيقرؤه غيرك، فالمخططات التفصيلية لكل شيء تتقادم وتكذب.', a_en: 'Draw what needs discussion or what others will read, since exhaustive diagrams age and start lying.' }
+        ]
+      },
+      {
+        title_ar: 'الأنماط المعمارية وضمان الجودة والاختبارات',
+        title_en: 'Architectural Patterns, QA and Testing',
+        lead_ar: 'ضمان الجودة عملية تمنع الخلل، والاختبار نشاط يكشفه — والفرق بينهما ليس لفظياً بل يحدد أين تُنفق جهدك.',
+        lead_en: 'Quality assurance is a process preventing defects and testing is an activity detecting them, and the difference is not verbal: it decides where your effort goes.',
+        body_ar: [
+          'نمط MVC من أشهر الأنماط المعمارية: يفصل النموذج الذي يحمل البيانات وقواعدها، عن العرض الذي يظهر للمستخدم، عن المتحكم الذي يستقبل الطلب ويوجّهه. وفائدته أن تغيير شكل الواجهة لا يمسّ قواعد العمل، وأن قواعد العمل تُختبر بلا واجهة أصلاً.',
+          'ومن الأنماط أيضاً المعمارية الموجّهة بالأحداث: يُطلق جزء حدثاً ويستجيب له من يعنيه بلا أن يعرف المُطلِق من هم. وتصلح لأنظمة تتفاعل فيها أجزاء كثيرة، وثمنها صعوبة تتبّع المسار: من الصعب أن تعرف ماذا حدث ولماذا حين لا يستدعي أحد أحداً مباشرة.',
+          'وضمان الجودة والاختبار ليسا مترادفين. فضمان الجودة عملية وقائية تشمل المعايير والمراجعات والقوالب والتدريب — هدفها ألا يقع الخلل أصلاً. والاختبار نشاط كشفي يجد الخلل بعد وقوعه. ومشروع يعتمد على الاختبار وحده يظل يصلح أعراضاً بلا أن يعالج ما ينتجها.',
+          'ومراجعة الكود من أرخص ممارسات ضمان الجودة وأعلاها عائداً: عين ثانية تقرأ التغيير قبل دمجه. وقيمتها ليست في اصطياد الأخطاء فحسب، بل في نشر المعرفة بالنظام بين الفريق وتوحيد الأسلوب. والمراجعة الجيدة تسأل عن سبب القرار ولا تكتفي بالتعليق على التنسيق.',
+          'وللاختبارات أنواع بحسب الغرض لا بحسب المستوى فقط: اختبار الانحدار يعيد تشغيل ما كان يعمل ليتأكد أن التعديل لم يكسره، واختبار القبول يتحقق أن النظام يحقق ما طلبه العميل بلغته، واختبار الأداء يقيس السلوك تحت حمل، واختبار الأمان يبحث عن الثغرات، واختبار قابلية الاستخدام يراقب مستخدماً حقيقياً وهو يحاول إنجاز مهمة.',
+          'واختبار الانحدار أكثرها إهمالاً وأشدها ضرراً عند إهماله: أكثر ما يشتكيه المستخدمون ليس ميزة جديدة معطوبة، بل ميزة قديمة كانت تعمل ثم توقفت. ولهذا كل إصلاح خطأ يستحق اختباراً يثبت أنه لن يعود — وهذي عادة تفرّق بين فريق يتحسّن وفريق يدور في مكانه.'
+        ],
+        body_en: [
+          'MVC is among the best-known architectural patterns: it separates the model holding data and rules, the view shown to the user, and the controller receiving and routing requests. Its benefit is that changing the interface never touches business rules, and business rules can be tested with no interface at all.',
+          'Another is event-driven architecture: one part emits an event and whoever cares responds, without the emitter knowing who they are. It suits systems where many parts interact, at the price of hard tracing: knowing what happened and why is difficult when nobody calls anybody directly.',
+          'Quality assurance and testing are not synonyms. QA is a preventive process covering standards, reviews, templates and training, aiming for defects never to occur. Testing is a detective activity finding defects after they occur. A project relying on testing alone keeps treating symptoms without addressing what produces them.',
+          'Code review is among the cheapest QA practices with the highest return: a second pair of eyes reading a change before it merges. Its value is not only catching bugs but spreading system knowledge across the team and unifying style. A good review asks why a decision was made rather than commenting on formatting.',
+          'Tests also have kinds by purpose, not only by level: regression testing reruns what worked to confirm the change did not break it, acceptance testing verifies the system meets what the client asked in their own terms, performance testing measures behaviour under load, security testing hunts vulnerabilities, and usability testing watches a real user attempting a task.',
+          'Regression testing is the most neglected and the most damaging when neglected: what users complain about most is not a broken new feature but an old one that used to work and stopped. So every bug fix deserves a test proving it will not return, a habit separating a team that improves from one running in place.'
+        ],
+        table: {
+          head_ar: ['النشاط', 'طبيعته', 'يقع متى'],
+          head_en: ['Activity', 'Its nature', 'When it happens'],
+          rows: [
+            ['ضمان الجودة', 'وقائي يمنع وقوع الخلل', 'طوال المشروع'],
+            ['الاختبار', 'كشفي يجد الخلل الواقع', 'بعد بناء الجزء'],
+            ['مراجعة الكود', 'وقائي بعين ثانية', 'قبل الدمج'],
+            ['اختبار الانحدار', 'يحمي ما كان يعمل', 'مع كل تغيير'],
+            ['اختبار القبول', 'يتحقق من رضا العميل', 'قبل التسليم']
+          ]
+        },
+        keyPoints_ar: [
+          'MVC يفصل البيانات عن العرض عن التوجيه، فتُختبر القواعد بلا واجهة.',
+          'المعمارية الموجّهة بالأحداث مرنة، وثمنها صعوبة تتبّع المسار.',
+          'ضمان الجودة يمنع، والاختبار يكشف — والاعتماد على الاختبار وحده يعالج الأعراض.',
+          'مراجعة الكود تنشر المعرفة وتوحّد الأسلوب لا تصطاد الأخطاء فقط.',
+          'أكثر شكاوى المستخدمين من ميزة قديمة توقفت، فاختبار الانحدار ضرورة.',
+          'كل إصلاح خطأ يستحق اختباراً يثبت أنه لن يعود.'
+        ],
+        keyPoints_en: [
+          'MVC separates data, view and routing so rules are testable with no interface.',
+          'Event-driven architecture is flexible at the price of hard tracing.',
+          'QA prevents while testing detects; relying on testing alone treats symptoms.',
+          'Code review spreads knowledge and unifies style rather than only catching bugs.',
+          'Users complain most about an old feature that stopped, so regression testing is essential.',
+          'Every bug fix deserves a test proving it will not return.'
+        ],
+        analogy_ar: 'تخيّل مصنع أغذية. الاختبار أن تفحص عيّنة من المنتج النهائي وترمي الفاسد. وضمان الجودة أن تضبط حرارة المستودع وتدرّب العمال وتعقّم الخطوط، فلا يفسد المنتج أصلاً. والمصنع الذي يفحص فقط سيرمي كل يوم ولن يعرف لماذا يفسد. واختبار الانحدار أن تتأكد أن الوصفة الجديدة لم تفسد المنتج القديم الذي يشتريه الناس منذ سنوات.',
+        analogy_en: 'Picture a food factory. Testing is inspecting samples of the finished product and discarding the spoiled. QA is controlling warehouse temperature, training workers and sterilising lines so nothing spoils in the first place. A factory that only inspects will discard daily and never learn why. Regression testing is confirming the new recipe did not ruin the old product people have bought for years.',
+        terms: [
+          { term: 'MVC', def_ar: 'نمط يفصل النموذج عن العرض عن المتحكم.', def_en: 'A pattern separating model, view and controller.' },
+          { term: 'Quality Assurance', def_ar: 'عملية وقائية تمنع وقوع الخلل بالمعايير والمراجعات.', def_en: 'A preventive process stopping defects through standards and reviews.' },
+          { term: 'Regression Test', def_ar: 'اختبار يعيد فحص ما كان يعمل ليتأكد أن التعديل لم يكسره.', def_en: 'A test rerunning what worked to confirm a change did not break it.' },
+          { term: 'Acceptance Test', def_ar: 'اختبار يتحقق أن النظام يحقق ما طلبه العميل بلغته.', def_en: 'A test verifying the system meets what the client asked in their terms.' },
+          { term: 'Code Review', def_ar: 'قراءة عين ثانية للتغيير قبل دمجه.', def_en: 'A second pair of eyes reading a change before it merges.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين ضمان الجودة والاختبار؟', q_en: 'Difference between QA and testing?', a_ar: 'ضمان الجودة وقائي يمنع وقوع الخلل، والاختبار كشفي يجده بعد وقوعه.', a_en: 'QA is preventive, stopping defects from occurring; testing is detective, finding them after.' },
+          { q_ar: 'ما فائدة MVC في الاختبار؟', q_en: 'How does MVC help testing?', a_ar: 'يفصل قواعد العمل عن الواجهة فتُختبر القواعد بلا واجهة أصلاً.', a_en: 'It separates business rules from the interface so rules are testable with no interface.' },
+          { q_ar: 'لماذا يُعد اختبار الانحدار ضرورة لا رفاهية؟', q_en: 'Why is regression testing essential rather than optional?', a_ar: 'لأن أكثر شكاوى المستخدمين من ميزة قديمة كانت تعمل ثم توقفت بعد تعديل.', a_en: 'Because users complain most about an old working feature that stopped after a change.' },
+          { q_ar: 'ما الذي تسأل عنه المراجعة الجيدة؟', q_en: 'What does a good code review ask about?', a_ar: 'عن سبب القرار ومدى وضوحه، لا عن التنسيق الذي تتولاه الأدوات.', a_en: 'The reason and clarity of a decision, not formatting which tools handle.' }
+        ]
+      },
+      {
+        title_ar: 'الصيانة وإدارة التغيير وAgile وScrum',
+        title_en: 'Maintenance, Change Management, Agile and Scrum',
+        lead_ar: 'التغيير ليس فشلاً في التخطيط بل طبيعة المشاريع، وAgile منهج يبني على هذي الحقيقة بدل مقاومتها.',
+        lead_en: 'Change is not a planning failure but the nature of projects, and Agile builds on that fact instead of resisting it.',
+        body_ar: [
+          'ينتهي البناء ويبدأ الجزء الأطول: الصيانة. والفهم الشائع أنها إصلاح أخطاء، والواقع أن أكثرها إضافة ما يطلبه المستخدمون بعد أن استخدموا النظام فعلاً وعرفوا ما ينقصهم، ومواكبة تغيّر البيئة من أنظمة تشغيل وقوانين وتكاملات. وهذا يفسّر لماذا يجب أن يُبنى النظام قابلاً للتغيير من أول يوم.',
+          'والدين التقني استعارة دقيقة: حين تختار حلاً سريعاً تعرف أنه ليس الأمثل، فأنت تقترض وقتاً تدفعه لاحقاً بفوائد. والاقتراض ليس خطأ في ذاته — قد يكون قراراً صائباً للحاق بموعد — لكن الخطأ ألا تسجّله ولا تسدده أبداً، فتتراكم الفوائد حتى يصير كل تغيير بسيط مكلفاً.',
+          'وإدارة التغيير عملية منظمة لطلبات التعديل: يُقدَّم الطلب، ويُقيَّم أثره وكلفته، ويُقرَّر قبوله أو تأجيله، ثم يُنفَّذ ويُوثَّق. وبدونها يقع «زحف النطاق»: طلبات صغيرة تُقبَل شفهياً واحدة بعد أخرى حتى يتضاعف المشروع بلا زيادة وقت ولا ميزانية — وهو من أشهر أسباب فشل المشاريع.',
+          'وAgile ليس منهجية واحدة بل مجموعة قيم: الأفراد والتفاعل قبل العمليات والأدوات، والبرنامج العامل قبل التوثيق الشامل، والتعاون مع العميل قبل التفاوض التعاقدي، والاستجابة للتغيير قبل اتباع الخطة. ولاحظ أن البنود لا تُلغي الطرف الثاني، وإنما ترجّح الأول عند التعارض — وسوء الفهم هذا أنتج فرقاً تظن Agile يعني بلا توثيق ولا خطة.',
+          'وScrum إطار عملي يطبّق هذي القيم: العمل في سباقات قصيرة محددة المدة، ولكل سباق هدف ومخرج قابل للعرض. وأدواره ثلاثة: مالك المنتج يحدد الأولويات ويمثّل العميل، ومدرّب الفريق يزيل العوائق ويحمي العملية، وفريق التطوير ينفّذ ويقدّر.',
+          'ومراسمه أربع: تخطيط السباق لاختيار ما سيُنجز، واجتماع يومي قصير للتنسيق وكشف العوائق لا للتقارير الإدارية، ومراجعة السباق لعرض المُنجَز على أصحاب المصلحة، واسترجاع لمراجعة طريقة العمل نفسها. والاسترجاع أكثرها إهمالاً وأعلاها قيمة، لأنه الوحيد الذي يحسّن العملية ذاتها لا المنتج فقط — وفريق يلغي الاسترجاع يكرر أخطاءه سباقاً بعد سباق.'
+        ],
+        body_en: [
+          'Building ends and the longest part begins: maintenance. The common belief is that it means fixing bugs, while in reality most of it is adding what users request after actually using the system and learning what they lack, and following environmental change in operating systems, laws and integrations. This explains why a system must be built changeable from day one.',
+          'Technical debt is a precise metaphor: choosing a quick solution you know is not ideal is borrowing time repaid later with interest. Borrowing is not wrong in itself and may be right to meet a deadline, but the error is never recording it and never repaying, so interest accrues until every simple change becomes expensive.',
+          'Change management is an organised process for modification requests: a request is submitted, its impact and cost assessed, acceptance or deferral decided, then implemented and documented. Without it comes scope creep: small requests accepted verbally one after another until the project doubles with no added time or budget, one of the best-known causes of project failure.',
+          'Agile is not one methodology but a set of values: individuals and interaction over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan. Note that the items do not cancel the second side but prefer the first when they conflict, and misreading this produced teams believing Agile means no documentation and no plan.',
+          'Scrum is a practical framework applying those values: work in short time-boxed sprints, each with a goal and a demonstrable output. It has three roles: a product owner setting priorities and representing the customer, a scrum master removing obstacles and protecting the process, and a development team implementing and estimating.',
+          'It has four ceremonies: sprint planning to choose what will be done, a short daily meeting for coordination and surfacing obstacles rather than management reporting, a sprint review to show the work to stakeholders, and a retrospective to examine the way of working itself. The retrospective is the most neglected and the most valuable, being the only one improving the process rather than the product, and a team that cancels it repeats its mistakes sprint after sprint.'
+        ],
+        table: {
+          head_ar: ['المراسم', 'غرضها', 'الخطأ الشائع فيها'],
+          head_en: ['Ceremony', 'Purpose', 'Common mistake'],
+          rows: [
+            ['تخطيط السباق', 'اختيار ما سيُنجز وتقديره', 'التزام بأكثر من الطاقة'],
+            ['الاجتماع اليومي', 'تنسيق وكشف عوائق', 'تحويله لتقرير للمدير'],
+            ['مراجعة السباق', 'عرض المُنجَز وأخذ الملاحظات', 'عرض شرائح بدل نظام عامل'],
+            ['الاسترجاع', 'تحسين طريقة العمل نفسها', 'إلغاؤه عند ضيق الوقت']
+          ]
+        },
+        keyPoints_ar: [
+          'أكثر الصيانة إضافة وتكيّف لا إصلاح أخطاء، فابنِ النظام قابلاً للتغيير.',
+          'الدين التقني اقتراض مشروع، والخطأ ألا يُسجَّل ولا يُسدَّد.',
+          'زحف النطاق يقع بقبول طلبات صغيرة شفهياً بلا تقييم أثر.',
+          'Agile يرجّح طرفاً عند التعارض ولا يلغي التوثيق ولا التخطيط.',
+          'الاجتماع اليومي للتنسيق وكشف العوائق لا لتقارير الإدارة.',
+          'الاسترجاع وحده يحسّن العملية، وإلغاؤه يجعل الفريق يكرر أخطاءه.'
+        ],
+        keyPoints_en: [
+          'Most maintenance is addition and adaptation rather than bug fixing, so build for change.',
+          'Technical debt is legitimate borrowing; the error is never recording or repaying it.',
+          'Scope creep comes from accepting small verbal requests with no impact assessment.',
+          'Agile prefers one side in a conflict and cancels neither documentation nor planning.',
+          'The daily meeting is for coordination and obstacles, not management reporting.',
+          'Only the retrospective improves the process, and cancelling it repeats mistakes.'
+        ],
+        analogy_ar: 'تخيّل الدين التقني بطاقة ائتمانية. استخدامها لشراء عاجل قرار معقول أحياناً. والكارثة أن تنسى أنك اقترضت وتكتفي بدفع الحد الأدنى: يكبر المبلغ حتى يبتلع دخلك. والدين التقني كذلك — يظهر يوم تكتشف أن تعديل زر واحد يستغرق أسبوعاً. أما الاسترجاع فهو جلسة مراجعة الحسابات: من يلغيها لأنه مشغول يبقى مشغولاً بالسبب نفسه إلى الأبد.',
+        analogy_en: 'Picture technical debt as a credit card. Using it for an urgent purchase is sometimes reasonable. The disaster is forgetting you borrowed and paying only the minimum: the balance grows until it swallows your income. Technical debt is the same, showing up the day you find that changing one button takes a week. The retrospective is the account review session: whoever cancels it for being busy stays busy for the very same reason forever.',
+        terms: [
+          { term: 'Technical Debt', def_ar: 'اقتراض وقت بحل سريع يُدفع لاحقاً بكلفة أعلى.', def_en: 'Borrowing time with a quick fix repaid later at higher cost.' },
+          { term: 'Scope Creep', def_ar: 'تضخّم نطاق المشروع بطلبات صغيرة متتابعة بلا تقييم.', def_en: 'Project scope swelling through successive small unassessed requests.' },
+          { term: 'Sprint', def_ar: 'دورة عمل قصيرة محددة المدة لها هدف ومخرج قابل للعرض.', def_en: 'A short time-boxed work cycle with a goal and demonstrable output.' },
+          { term: 'Product Owner', def_ar: 'من يحدد الأولويات ويمثّل العميل في الفريق.', def_en: 'The person setting priorities and representing the customer.' },
+          { term: 'Retrospective', def_ar: 'جلسة تراجع طريقة العمل نفسها لتحسينها.', def_en: 'A session examining the way of working itself to improve it.' }
+        ],
+        cards: [
+          { q_ar: 'ما أكثر أنواع الصيانة وقوعاً؟', q_en: 'What kind of maintenance is most common?', a_ar: 'الإضافة التحسينية والتكيّف مع تغيّر البيئة، لا إصلاح الأخطاء.', a_en: 'Perfective additions and adaptation to environmental change, not bug fixing.' },
+          { q_ar: 'متى يصير الدين التقني مشكلة؟', q_en: 'When does technical debt become a problem?', a_ar: 'حين لا يُسجَّل ولا يُسدَّد، فتتراكم كلفته حتى يصير كل تغيير بسيط مكلفاً.', a_en: 'When it is never recorded or repaid, so its cost accrues until every simple change is expensive.' },
+          { q_ar: 'ما سوء الفهم الشائع في Agile ؟', q_en: 'What is the common misreading of Agile?', a_ar: 'ظن أنه يعني بلا توثيق ولا خطة، وهو إنما يرجّح طرفاً عند التعارض لا يلغي الآخر.', a_en: 'Believing it means no documentation and no plan, while it merely prefers one side in a conflict.' },
+          { q_ar: 'لماذا الاسترجاع أعلى المراسم قيمة؟', q_en: 'Why is the retrospective the most valuable ceremony?', a_ar: 'لأنه الوحيد الذي يحسّن طريقة العمل نفسها، وإلغاؤه يجعل الفريق يكرر أخطاءه.', a_en: 'It is the only one improving the way of working itself, and cancelling it makes the team repeat mistakes.' }
+        ]
+      }
+    ],
+
+    // ─────────── التخصصات البرمجية ───────────
+    6: [
+      {
+        title_ar: 'خريطة التخصصات والواجهات الأمامية',
+        title_en: 'The Specialisation Map and Frontend',
+        lead_ar: 'التخصصات ليست لغات بل مجالات مشكلات، والواجهة الأمامية أقربها للمستخدم وأكثرها تغيّراً — وتحديها أن كل شيء فيها يحدث في غير ترتيبه.',
+        lead_en: 'Specialisations are problem domains rather than languages, and frontend is closest to the user and the fastest changing, its challenge being that everything happens out of order.',
+        body_ar: [
+          'الخطأ الأول في اختيار التخصص أن تسأل «أي لغة أتعلّم؟». فاللغة أداة تُستبدل، والتخصص مجال مشكلات له طريقة تفكير وقيود وأولويات. ومن أتقن الأساسيات — الخوارزميات والهياكل والتصميم — انتقل بين اللغات بأسابيع، ومن حفظ لغة بلا أساس بقي حبيسها.',
+          'والمجالات الكبرى ستة: الواجهات الأمامية، والخلفية، وتطبيقات الجوال، والأنظمة المدمجة، والحوسبة السحابية وDevOps، والذكاء الاصطناعي التطبيقي. ولكل واحد سؤاله الذي يعيش عليه: الأمامي يسأل كيف تكون التجربة سلسة، والخلفي كيف تبقى البيانات صحيحة تحت الحمل، والمدمج كيف يعمل بذاكرة ضئيلة وطاقة محدودة.',
+          'والواجهة الأمامية كل ما يراه المستخدم ويتفاعل معه في المتصفح. وأركانها ثلاثة: البنية التي تحدد العناصر ومعناها، والتنسيق الذي يحدد الشكل والتوزيع، والمنطق الذي يحدد السلوك عند التفاعل. والفصل بين الثلاثة ليس تنظيماً شكلياً بل هو ما يجعل تغيير الشكل بلا مساس بالسلوك ممكناً.',
+          'وأكبر تحوّل في المجال أنه انتقل من صفحات تُبنى في الخادم إلى تطبيقات تعمل في المتصفح وتدير حالتها. وهنا ظهر التحدي الحقيقي: إدارة الحالة. فما الذي يُعرض الآن؟ وهل البيانات قيد التحميل أم وصلت أم فشلت؟ وأين تُحفظ حالة يحتاجها جزآن بعيدان؟ — وأغلب أخطاء الواجهات ليست في الشكل بل في حالة لم تُحدَّث أو حُدِّثت مرتين.',
+          'والعمل غير المتزامن جوهر هذا المجال: طلب الشبكة لا يعود فوراً، والمستخدم يضغط أثناء انتظاره، وقد يصل رد الطلب القديم بعد الجديد. ولهذا تُدار ثلاث حالات لكل طلب لا حالة واحدة: قيد التحميل، ونجح، وفشل. والواجهة التي تفترض النجاح وحده تنهار عند أول انقطاع شبكة.',
+          'ومسؤوليتان تُهمَلان كثيراً وتُميّزان المحترف: إتاحة الوصول لذوي الاحتياجات — بنية صحيحة وتباين ألوان كافٍ وتشغيل كامل بلوحة المفاتيح — والأداء المدرَك، وهو شعور المستخدم بالسرعة لا رقم القياس: واجهة تُظهر هيكلاً فورياً ثم تملؤه تبدو أسرع من واجهة تنتظر كل شيء ثم تعرضه دفعة واحدة، ولو تساوى زمناهما.'
+        ],
+        body_en: [
+          'The first mistake in choosing a specialisation is asking which language to learn. A language is a replaceable tool, while a specialisation is a problem domain with its own thinking, constraints and priorities. Whoever masters the fundamentals of algorithms, structures and design moves between languages in weeks, while whoever memorised a language with no foundation stays imprisoned in it.',
+          'There are six major domains: frontend, backend, mobile, embedded, cloud and DevOps, and applied AI. Each lives on its own question: frontend asks how the experience becomes smooth, backend asks how data stays correct under load, and embedded asks how to work with tiny memory and limited power.',
+          'Frontend is everything the user sees and touches in the browser. It has three pillars: structure defining elements and their meaning, styling defining appearance and layout, and logic defining behaviour on interaction. Separating the three is not cosmetic; it is what makes changing appearance without touching behaviour possible.',
+          'The biggest shift in the field was moving from pages built on the server to applications running in the browser and managing their own state. Here the real challenge appeared: state management. What is displayed now? Is data loading, arrived, or failed? Where does state needed by two distant parts live? Most interface bugs are not visual but a state never updated or updated twice.',
+          'Asynchronous work is the essence of this field: a network request does not return immediately, the user clicks while waiting, and an older response may arrive after a newer one. So each request has three states rather than one: loading, succeeded, failed. An interface assuming only success collapses at the first network drop.',
+          'Two responsibilities are widely neglected and mark the professional: accessibility, with correct structure, sufficient colour contrast and full keyboard operation, and perceived performance, which is how fast it feels rather than what it measures: an interface showing a skeleton instantly then filling it feels faster than one waiting for everything and showing it at once, even at identical timings.'
+        ],
+        table: {
+          head_ar: ['المجال', 'سؤاله المركزي', 'قيده الأكبر'],
+          head_en: ['Domain', 'Central question', 'Biggest constraint'],
+          rows: [
+            ['الواجهات الأمامية', 'كيف تكون التجربة سلسة؟', 'تنوّع الأجهزة والشبكات'],
+            ['الخلفية', 'كيف تبقى البيانات صحيحة تحت الحمل؟', 'التزامن والسلامة'],
+            ['الجوال', 'كيف تعمل بلا اتصال وببطارية محدودة؟', 'الموارد والمتاجر'],
+            ['الأنظمة المدمجة', 'كيف تعمل بذاكرة ضئيلة؟', 'العتاد والطاقة'],
+            ['السحابة وDevOps', 'كيف تُنشر وتُوسَّع بأمان؟', 'الكلفة والموثوقية'],
+            ['الذكاء التطبيقي', 'كيف نحوّل البيانات لقرار؟', 'جودة البيانات']
+          ]
+        },
+        keyPoints_ar: [
+          'التخصص مجال مشكلات لا لغة، واللغة أداة تُستبدل.',
+          'الأساسيات المتينة تنقلك بين اللغات بأسابيع.',
+          'أركان الواجهة ثلاثة: البنية والتنسيق والمنطق، وفصلها يتيح التغيير الآمن.',
+          'أغلب أخطاء الواجهات في الحالة لا في الشكل.',
+          'لكل طلب ثلاث حالات: قيد التحميل ونجح وفشل — وافتراض النجاح وحده انهيار مؤجّل.',
+          'إتاحة الوصول والأداء المدرَك مسؤوليتان تُميّزان المحترف.'
+        ],
+        keyPoints_en: [
+          'A specialisation is a problem domain, not a language; languages are replaceable tools.',
+          'Solid fundamentals move you between languages in weeks.',
+          'Frontend has three pillars, structure, styling and logic, and separating them enables safe change.',
+          'Most interface bugs live in state rather than appearance.',
+          'Every request has three states: loading, succeeded, failed; assuming success is deferred collapse.',
+          'Accessibility and perceived performance are the responsibilities marking a professional.'
+        ],
+        analogy_ar: 'تخيّل الواجهة الأمامية واجهة متجر: العميل لا يرى المستودع ولا نظام المحاسبة، ويحكم على المتجر كله من ترتيب الرفوف وسرعة الخدمة. والحالة هي ما يُعرض على الرف الآن — والفوضى تقع حين يعرض الرف صنفاً نفد فعلاً، أو يبقى فارغاً وقد وصلت البضاعة للمستودع. وهذا بالضبط ما يعنيه أن أغلب أخطاء الواجهات في الحالة لا في الشكل.',
+        analogy_en: 'Picture the frontend as a shop front: the customer never sees the warehouse or the accounting system and judges the whole shop by shelf order and service speed. State is what sits on the shelf right now, and chaos comes when the shelf displays an item already sold out, or stays empty while stock has arrived in the warehouse. That is exactly what it means that most interface bugs live in state rather than appearance.',
+        terms: [
+          { term: 'State', def_ar: 'البيانات التي تحدد ما يُعرض في الواجهة الآن.', def_en: 'The data deciding what the interface shows right now.' },
+          { term: 'Asynchronous', def_ar: 'عمل لا يعود فوراً، كطلب الشبكة، فتُدار حالاته الثلاث.', def_en: 'Work that does not return immediately, such as a network request, with three states.' },
+          { term: 'Accessibility', def_ar: 'إتاحة استخدام الواجهة لذوي الاحتياجات ببنية وتباين وتشغيل بلوحة المفاتيح.', def_en: 'Making an interface usable for people with disabilities via structure, contrast and keyboard operation.' },
+          { term: 'Perceived Performance', def_ar: 'شعور المستخدم بالسرعة، وقد يخالف زمن التحميل المقيس.', def_en: 'How fast it feels to the user, which may differ from measured load time.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا يبدأ اختيار التخصص بسؤال اللغة؟', q_en: 'Why does choosing a specialisation not start with the language?', a_ar: 'لأن اللغة أداة تُستبدل، والتخصص مجال مشكلات له تفكيره وقيوده.', a_en: 'Because a language is a replaceable tool while a specialisation is a problem domain with its own thinking and constraints.' },
+          { q_ar: 'أين تقع أغلب أخطاء الواجهات؟', q_en: 'Where do most interface bugs live?', a_ar: 'في إدارة الحالة: حالة لم تُحدَّث أو حُدِّثت مرتين، لا في الشكل.', a_en: 'In state management: a state never updated or updated twice, not in appearance.' },
+          { q_ar: 'كم حالة لكل طلب شبكة؟', q_en: 'How many states does a network request have?', a_ar: 'ثلاث: قيد التحميل ونجح وفشل، ومن يفترض النجاح وحده تنهار واجهته عند أول انقطاع.', a_en: 'Three: loading, succeeded and failed; assuming only success collapses at the first drop.' },
+          { q_ar: 'ما الأداء المدرَك؟', q_en: 'What is perceived performance?', a_ar: 'شعور المستخدم بالسرعة؛ فواجهة تُظهر هيكلاً فوراً ثم تملؤه تبدو أسرع ولو تساوى الزمن.', a_en: 'How fast it feels; showing a skeleton then filling it feels faster even at identical timings.' }
+        ]
+      },
+      {
+        title_ar: 'الخلفية والتطوير المتكامل',
+        title_en: 'Backend and Full-Stack Development',
+        lead_ar: 'الخلفية ما لا يراه المستخدم ويعتمد عليه كل شيء: البيانات والمنطق والأمان — وخطؤها لا يُرى بل يتسرّب.',
+        lead_en: 'The backend is what users never see and everything depends on: data, logic and security, and its errors do not show, they leak.',
+        body_ar: [
+          'الخلفية هي الجزء العامل على الخادم: يستقبل الطلبات، ويطبّق قواعد العمل، ويخاطب قاعدة البيانات، ويعيد الرد. والفرق الجوهري عن الواجهة أن خطأ الواجهة يراه المستخدم ويشتكي منه، وخطأ الخلفية قد يعمل بصمت شهوراً وهو يفسد البيانات أو يسرّبها.',
+          'ومسؤولياتها خمس متمايزة: تعريف الواجهة البرمجية التي يخاطبها العملاء، وتطبيق قواعد العمل، وإدارة البيانات وسلامتها، والمصادقة والصلاحيات، والأداء تحت الحمل. وأكثر ما يُخلط: المصادقة تعني «من أنت»، والصلاحية تعني «وماذا يحق لك». فمستخدم مصادَق قد لا يحق له حذف طلب غيره — والخلط بينهما ثغرة شائعة.',
+          'وقاعدة الأمان الأولى: لا تثق بأي مدخل قادم من العميل مهما بدا. فالتحقق في الواجهة تحسين تجربة لا حماية، لأن من يريد التلاعب يرسل الطلب مباشرة متجاوزاً واجهتك كلها. والتحقق الحقيقي في الخادم دائماً، وهو غير قابل للتفاوض.',
+          'وأخطر ثغرة في هذا الباب مرجعية الكائن المباشرة غير الآمنة: أن يطلب المستخدم موردًا برقمه فيُعطاه بلا فحص أنه صاحبه. فيغيّر الرقم في العنوان ويرى فاتورة غيره. والعلاج ألا يُكتفى بأن الطلب من مستخدم مسجّل، بل يُفحص أن هذا المورد يخصه هو.',
+          'والتطوير المتكامل أن يعمل الشخص في الطرفين. وقيمته الحقيقية ليست في إتقان الاثنين بالعمق نفسه — وهذا نادر — بل في فهم أثر قرار كل طرف على الآخر: مصمم واجهة يفهم كلفة الاستعلامات لا يطلب مئة طلب لعرض صفحة، ومطوّر خلفية يفهم تجربة المستخدم يصمم واجهة برمجية تعطي ما تحتاجه الشاشة بطلب واحد.',
+          'وفخ شائع في هذا الطريق: انتشار سطحي في كل شي بلا عمق في شيء. والقاعدة العملية أن تتعمّق في طرف حتى تبلغ فيه مستوى موثوقاً، وتُلمّ بالآخر إلماماً يكفي للتفاهم والتصميم المشترك — فسوق العمل يدفع للعمق ويقدّر الإلمام، ولا يدفع للسطحية في الاثنين.'
+        ],
+        body_en: [
+          'The backend is the part running on the server: receiving requests, applying business rules, addressing the database and returning a response. The fundamental difference from the frontend is that an interface bug is seen and complained about, while a backend bug may run silently for months while corrupting or leaking data.',
+          'It has five distinct responsibilities: defining the API clients address, applying business rules, managing data and its integrity, authentication and authorisation, and performance under load. The most confused pair: authentication means who you are and authorisation means what you may do. An authenticated user may have no right to delete another person order, and blurring the two is a common vulnerability.',
+          'The first security rule: never trust any input coming from a client however it looks. Validation in the interface improves experience but is not protection, because anyone wishing to tamper sends the request directly, bypassing your interface entirely. Real validation always lives on the server and is non-negotiable.',
+          'The most dangerous flaw here is insecure direct object reference: a user requests a resource by its number and receives it with no check that it is theirs. They change the number in the address and see somebody else invoice. The cure is not settling for the request coming from a logged-in user but checking that this resource belongs to them.',
+          'Full-stack means working on both sides. Its real value is not equal depth in both, which is rare, but understanding how each side decisions affect the other: an interface designer who understands query cost does not request a hundred calls to render a page, and a backend developer who understands user experience designs an API returning what the screen needs in one call.',
+          'A common trap on this path is shallow spread across everything with depth in nothing. The practical rule is to go deep on one side until you are dependable there, and know the other well enough for shared understanding and design, since the market pays for depth and values breadth but does not pay for shallowness in both.'
+        ],
+        table: {
+          head_ar: ['المفهوم', 'سؤاله', 'الخلط الشائع'],
+          head_en: ['Concept', 'Its question', 'Common confusion'],
+          rows: [
+            ['المصادقة', 'من أنت؟', 'ظنها تكفي للسماح بكل شيء'],
+            ['الصلاحية', 'وماذا يحق لك؟', 'إهمالها بعد تسجيل الدخول'],
+            ['التحقق في الواجهة', 'تحسين تجربة', 'ظنها حماية'],
+            ['التحقق في الخادم', 'حماية حقيقية', 'الاكتفاء بواجهة تتحقق']
+          ]
+        },
+        keyPoints_ar: [
+          'خطأ الواجهة يُرى ويُشتكى، وخطأ الخلفية يعمل بصمت وهو يفسد أو يسرّب.',
+          'المصادقة «من أنت» والصلاحية «ماذا يحق لك»، والخلط بينهما ثغرة.',
+          'التحقق في الواجهة تجربة لا حماية؛ الحماية في الخادم دائماً.',
+          'لا يكفي أن الطلب من مستخدم مسجّل، بل يجب فحص أن المورد يخصه.',
+          'قيمة التكامل في فهم أثر قرار كل طرف على الآخر لا في إتقانهما معاً.',
+          'العمق في طرف مع إلمام بالآخر خير من سطحية في الاثنين.'
+        ],
+        keyPoints_en: [
+          'A frontend bug is seen and reported; a backend bug runs silently while corrupting or leaking.',
+          'Authentication is who you are and authorisation is what you may do; blurring them is a vulnerability.',
+          'Client-side validation is experience, not protection; protection always lives on the server.',
+          'A logged-in requester is not enough: check the resource belongs to them.',
+          'Full-stack value is understanding cross-side impact rather than equal mastery.',
+          'Depth on one side with breadth on the other beats shallowness in both.'
+        ],
+        analogy_ar: 'تخيّل المطعم: الواجهة هي الصالة والقائمة والنادل، والخلفية هي المطبخ والمخزن والمحاسبة. خطأ في الصالة يراه الزبون فوراً فيشتكي. وخطأ في المطبخ — سوء حفظ أو خلط مكوّنات — قد لا يُرى شهوراً ثم يظهر أثره على الجميع دفعة واحدة. والتحقق في الواجهة كأن تكتب على القائمة «الحد الأقصى عشرة أطباق»: تنظيم مفيد، لكن من دخل المطبخ مباشرة لا تمنعه القائمة.',
+        analogy_en: 'Picture a restaurant: the frontend is the dining room, menu and waiter, while the backend is the kitchen, store and accounts. A dining-room mistake is seen instantly and reported. A kitchen mistake, poor storage or mixed ingredients, may go unseen for months then hit everyone at once. Client-side validation is like printing "maximum ten dishes" on the menu: useful order, but it stops nobody who walks straight into the kitchen.',
+        terms: [
+          { term: 'Authentication', def_ar: 'التحقق من هوية المستخدم: من أنت.', def_en: 'Verifying user identity: who you are.' },
+          { term: 'Authorisation', def_ar: 'تحديد ما يحق للمستخدم فعله بعد التعرّف عليه.', def_en: 'Deciding what an identified user may do.' },
+          { term: 'Server-side Validation', def_ar: 'فحص المدخلات في الخادم، وهو الحماية الحقيقية.', def_en: 'Validating input on the server, the real protection.' },
+          { term: 'IDOR', def_ar: 'إعطاء مورد برقمه بلا فحص ملكيته، فيرى المستخدم بيانات غيره.', def_en: 'Serving a resource by id with no ownership check, exposing another user data.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين المصادقة والصلاحية؟', q_en: 'Difference between authentication and authorisation?', a_ar: 'المصادقة تجيب «من أنت»، والصلاحية تجيب «ماذا يحق لك» بعد التعرّف عليك.', a_en: 'Authentication answers who you are; authorisation answers what you may do once identified.' },
+          { q_ar: 'لماذا لا يكفي التحقق في الواجهة؟', q_en: 'Why is client-side validation not enough?', a_ar: 'لأن المتلاعب يرسل الطلب مباشرة متجاوزاً الواجهة كلها، فالحماية في الخادم.', a_en: 'Because an attacker sends the request directly, bypassing the interface entirely, so protection lives on the server.' },
+          { q_ar: 'كيف تُمنع ثغرة رؤية بيانات مستخدم آخر برقم المورد؟', q_en: 'How do you prevent seeing another user data by resource id?', a_ar: 'بفحص أن المورد المطلوب يخص المستخدم نفسه، لا الاكتفاء بأنه مسجّل دخول.', a_en: 'By checking the requested resource belongs to that same user, not merely that they are logged in.' },
+          { q_ar: 'أين تكمن قيمة التطوير المتكامل؟', q_en: 'Where does full-stack value lie?', a_ar: 'في فهم أثر قرارات كل طرف على الآخر، لا في إتقان الطرفين بالعمق نفسه.', a_en: 'In understanding how each side decisions affect the other, not in equal mastery of both.' }
+        ]
+      },
+      {
+        title_ar: 'تطبيقات الجوال وتطوير الألعاب',
+        title_en: 'Mobile Applications and Game Development',
+        lead_ar: 'الجوال بيئة مقيّدة: بطارية وذاكرة واتصال متقطّع وشاشة صغيرة — والألعاب مجال يجتمع فيه الأداء اللحظي بالتصميم.',
+        lead_en: 'Mobile is a constrained environment of battery, memory, intermittent connectivity and a small screen, while games combine real-time performance with design.',
+        body_ar: [
+          'تطوير الجوال ليس تصغير موقع. البيئة نفسها مختلفة: بطارية محدودة تعاقب على كل عملية خلفية، وذاكرة يقتل النظام تطبيقك إن تجاوزتها، واتصال يتقطّع في المصعد والنفق، وشاشة صغيرة تُلمس بإصبع لا بمؤشر دقيق. وكل قرار تصميمي يمر عبر هذي القيود.',
+          'وثلاثة طرق للبناء: الأصلي بلغة المنصة نفسها فيعطي أفضل أداء وأعمق وصول للعتاد بثمن كتابة تطبيقين منفصلين لنظامين. والهجين بتقنيات الويب داخل غلاف فرخيص وسريع لكنه أضعف أداءً وأقل التصاقاً بالمنصة. وبينهما الإطار المشترك الذي يكتب مرة ويعمل على الاثنين بأداء قريب من الأصلي — وهو اختيار أغلب الفرق اليوم.',
+          'ودورة حياة التطبيق مفهوم لا نظير له في الويب: التطبيق يُوقَف مؤقتاً حين يفتح المستخدم غيره، وقد يُنهيه النظام دون إشعار ليحرر ذاكرة. ولهذا تُحفظ الحالة عند الإيقاف وتُستعاد عند العودة — وإهمال هذا سبب الشكوى الشهيرة: فتحت التطبيق فوجدته بدأ من الصفر وضاع ما كتبت.',
+          'ودعم العمل بلا اتصال ليس ميزة رفاهية في الجوال بل توقّع أساسي: يُحفظ ما يمكن محلياً، وتُصفّ العمليات لتُرسل عند عودة الشبكة، ويُعرض ما لدينا مع بيان أنه قد لا يكون محدَّثاً. والتطبيق الذي يعرض شاشة خطأ عند أول انقطاع يُحذف بسرعة.',
+          'وتطوير الألعاب مجال مختلف في طبيعته: حلقة تتكرر عشرات المرات في الثانية تحدّث حالة العالم وترسمه. وقيده أن لكل إطار ميزانية زمنية صارمة — عند ستين إطاراً في الثانية لديك ستة عشر مللي ثانية لكل شيء: منطق ومصادمات ورسم. وتجاوزها يعني تقطيعاً يشعر به اللاعب فوراً.',
+          'ولهذا يُبنى منطق اللعبة على الزمن المنقضي بين إطارين لا على عدد الإطارات، وإلا تحرّك اللاعب أسرع على جهاز قوي وأبطأ على ضعيف. وهذا خطأ كلاسيكي وقعت فيه ألعاب تجارية فصار سرعة اللعب تابعة لسرعة الجهاز — وهو مثال دقيق على قيد يفرضه المجال ولا يُفهم إلا بالعمل فيه.'
+        ],
+        body_en: [
+          'Mobile development is not a shrunken website. The environment itself differs: limited battery punishing every background operation, memory whose excess makes the system kill your app, connectivity dropping in a lift or tunnel, and a small screen touched by a finger rather than a precise pointer. Every design decision passes through these constraints.',
+          'There are three build routes: native in the platform own language, giving the best performance and deepest hardware access at the cost of writing two separate apps; hybrid with web technologies in a shell, cheap and fast but weaker in performance and less native in feel; and between them the shared framework written once and running on both with near-native performance, which most teams choose today.',
+          'The application life cycle has no equivalent on the web: an app is paused when the user opens another and may be terminated by the system with no notice to free memory. So state is saved on pause and restored on return, and neglecting this causes the famous complaint of opening an app to find it started over with your work gone.',
+          'Offline support is not a luxury feature on mobile but a baseline expectation: store what you can locally, queue operations to send when the network returns, and show what you have while indicating it may be stale. An app showing an error screen at the first drop is deleted quickly.',
+          'Game development differs in nature: a loop repeating dozens of times per second updating the world state and drawing it. Its constraint is a strict time budget per frame: at sixty frames per second you have sixteen milliseconds for everything, logic, collisions and rendering. Exceeding it means stutter the player feels instantly.',
+          'So game logic is built on the elapsed time between frames rather than the frame count, otherwise the player moves faster on a powerful machine and slower on a weak one. This is a classic error that shipped in commercial games, tying game speed to machine speed, and it is a precise example of a domain constraint understood only by working in it.'
+        ],
+        table: {
+          head_ar: ['الطريقة', 'الأداء', 'الكلفة', 'الوصول للعتاد'],
+          head_en: ['Route', 'Performance', 'Cost', 'Hardware access'],
+          rows: [
+            ['أصلي', 'الأفضل', 'الأعلى — تطبيقان', 'كامل'],
+            ['إطار مشترك', 'قريب من الأصلي', 'متوسطة — كود واحد', 'جيد'],
+            ['هجين', 'الأضعف', 'الأقل', 'محدود']
+          ]
+        },
+        keyPoints_ar: [
+          'الجوال بيئة مقيّدة ببطارية وذاكرة واتصال متقطّع، لا شاشة أصغر فقط.',
+          'الأصلي أفضل أداءً بثمن تطبيقين، والمشترك يوازن، والهجين أرخص وأضعف.',
+          'التطبيق قد يُنهيه النظام بلا إشعار، فتُحفظ الحالة عند الإيقاف وتُستعاد.',
+          'العمل بلا اتصال توقّع أساسي في الجوال لا ميزة إضافية.',
+          'عند ستين إطاراً في الثانية لديك ستة عشر مللي ثانية لكل شيء.',
+          'اربط منطق اللعبة بالزمن المنقضي لا بعدد الإطارات، وإلا تبعت السرعةُ الجهازَ.'
+        ],
+        keyPoints_en: [
+          'Mobile is constrained by battery, memory and intermittent connectivity, not merely a smaller screen.',
+          'Native performs best at the cost of two apps, shared frameworks balance, hybrid is cheaper and weaker.',
+          'The system may terminate an app with no notice, so save state on pause and restore it.',
+          'Offline capability is a baseline expectation on mobile, not an extra feature.',
+          'At sixty frames per second you have sixteen milliseconds for everything.',
+          'Tie game logic to elapsed time rather than frame count, or speed follows the machine.'
+        ],
+        analogy_ar: 'تخيّل تطبيق الجوال مسافراً بحقيبة يد واحدة: كل ما يحمله محسوب، وقد يُطلب منه النزول فجأة فيترك مكانه لغيره. ولهذا يحزم بذكاء ويحفظ ما يحتاجه معه. وحلقة اللعبة أشبه بعازف في أوركسترا: عليه أن ينهي نوتته في زمنها بالضبط ستين مرة في الدقيقة؛ فإن تأخر جزءاً من الثانية اختلّ اللحن كله وسمعه الجميع.',
+        analogy_en: 'Picture a mobile app as a traveller with one carry-on: everything carried is counted, and they may be told to disembark suddenly and give up their seat. So they pack wisely and keep essentials on them. A game loop is like an orchestra player who must finish their note exactly on time sixty times a minute; a fraction of a second late and the whole melody breaks and everyone hears it.',
+        terms: [
+          { term: 'Native App', def_ar: 'تطبيق مكتوب بلغة المنصة نفسها فيعطي أفضل أداء ووصول.', def_en: 'An app written in the platform own language with best performance and access.' },
+          { term: 'App Lifecycle', def_ar: 'مراحل التطبيق من التشغيل للإيقاف المؤقت للإنهاء بأمر النظام.', def_en: 'App stages from launch to pause to termination by the system.' },
+          { term: 'Offline-first', def_ar: 'تصميم يفترض انقطاع الشبكة فيحفظ محلياً ويصفّ العمليات.', def_en: 'Design assuming network loss, storing locally and queueing operations.' },
+          { term: 'Frame Budget', def_ar: 'الزمن المتاح لكل إطار، وهو ١٦ مللي ثانية عند ٦٠ إطاراً.', def_en: 'The time available per frame, sixteen milliseconds at sixty frames per second.' },
+          { term: 'Delta Time', def_ar: 'الزمن المنقضي بين إطارين، يُبنى عليه منطق الحركة.', def_en: 'The elapsed time between frames, on which motion logic is based.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يُحفظ حالة تطبيق الجوال عند الإيقاف؟', q_en: 'Why save mobile app state on pause?', a_ar: 'لأن النظام قد ينهي التطبيق بلا إشعار لتحرير ذاكرة، فيعود المستخدم ويجده بدأ من الصفر.', a_en: 'Because the system may terminate it with no notice to free memory, so the user returns to find it started over.' },
+          { q_ar: 'كم مللي ثانية لكل إطار عند ستين إطاراً في الثانية؟', q_en: 'How many milliseconds per frame at sixty FPS?', a_ar: 'نحو ستة عشر مللي ثانية لكل شيء: منطق ومصادمات ورسم.', a_en: 'About sixteen milliseconds for everything: logic, collisions and rendering.' },
+          { q_ar: 'ما خطر ربط حركة اللعبة بعدد الإطارات؟', q_en: 'What is the risk of tying motion to frame count?', a_ar: 'تصير السرعة تابعة لقوة الجهاز، فيتحرك اللاعب أسرع على جهاز قوي.', a_en: 'Speed follows machine power, so the player moves faster on a stronger device.' },
+          { q_ar: 'أي طريقة بناء تناسب فريقاً يريد كوداً واحداً بأداء قريب من الأصلي؟', q_en: 'Which route suits one codebase with near-native performance?', a_ar: 'الإطار المشترك، وهو ما تختاره أغلب الفرق اليوم.', a_en: 'A shared framework, which most teams choose today.' }
+        ]
+      },
+      {
+        title_ar: 'الأنظمة المدمجة والسحابة وDevOps',
+        title_en: 'Embedded Systems, Cloud and DevOps',
+        lead_ar: 'المدمج يعمل بذاكرة تُقاس بالكيلوبايت ولا يقبل التوقف، والسحابة تبيع المرونة بالاستخدام — والفرق بينهما أقصى ما في المجال من تباين.',
+        lead_en: 'Embedded runs on kilobytes and cannot stop, while the cloud sells elasticity by usage, and the gap between them is the widest in the field.',
+        body_ar: [
+          'الأنظمة المدمجة برمجيات تعمل داخل أجهزة لا تُرى كحواسيب: غسالة وسيارة وجهاز طبي وحسّاس. وقيودها قاسية: ذاكرة تُقاس بالكيلوبايت لا الجيجابايت، ومعالج ضعيف، وطاقة من بطارية يجب أن تدوم شهوراً، ولا نظام تشغيل كاملاً غالباً.',
+          'وأشد ما يميّزها أن لا مجال للتراجع السهل: الجهاز في يد المستخدم أو داخل جدار، وتحديثه ليس ضغطة زر. ومنها ما لا يُقبل فيه الخطأ أصلاً كأجهزة طبية ومكابح سيارة، فيُبنى بمعايير أشد وتحقق أعمق مما اعتاده مطوّر التطبيقات.',
+          'ومفهوم الزمن الحقيقي فيها ليس السرعة بل الضمان: أن تكتمل الاستجابة خلال مهلة محددة دائماً لا غالباً. فنظام وسادة هوائية يستجيب في عشر مللي ثانية في تسع وتسعين بالمئة من الحالات نظام فاشل — المطلوب الضمان لا المتوسط.',
+          'وإنترنت الأشياء توسّع لهذا المجال: أجهزة صغيرة تجمع بيانات وترسلها. وتحدياتها ثلاثة: الطاقة فكل إرسال يستهلك، والأمان فأجهزة كثيرة تُنشر بكلمات مرور افتراضية فتُخترق جماعياً، والتحديث فكيف تُحدَّث آلاف الأجهزة الموزّعة بأمان دون أن يفشل بعضها في منتصف التحديث.',
+          'وعلى الطرف الآخر: الحوسبة السحابية، وهي استئجار موارد حسابية بدل امتلاكها. وميزتها الجوهرية المرونة: تدفع بمقدار ما تستخدم، وتتوسّع في ساعة الذروة وتتقلّص بعدها. لكن السهولة فخ مالي معروف: خدمات تُشغَّل للتجربة وتُنسى تعمل شهوراً، وفواتير تتضخم بلا أن ينتبه أحد حتى نهاية الشهر.',
+          'وDevOps ثقافة قبل أن يكون أدوات: تقريب فريق التطوير من التشغيل حتى لا يرمي أحدهما المسؤولية على الآخر. وأثره العملي في أربعة مقاييس: كم مرة تنشر، وكم يستغرق التغيير حتى يصل المستخدم، وكم نسبة النشرات التي تفشل، وكم تستغرق العودة للحالة السليمة بعد عطل. وهذي المقاييس الأربعة تصف صحة الفريق أدق من أي شعار.'
+        ],
+        body_en: [
+          'Embedded systems are software running inside devices nobody sees as computers: a washing machine, a car, a medical device, a sensor. Their constraints are harsh: memory measured in kilobytes rather than gigabytes, a weak processor, power from a battery expected to last months, and often no full operating system.',
+          'What most distinguishes them is that easy rollback does not exist: the device is in a user hand or inside a wall, and updating it is not a button press. Some tolerate no error at all, such as medical devices and car brakes, so they are built to stricter standards and deeper verification than an app developer is used to.',
+          'Real time here does not mean fast but guaranteed: the response completes within a set deadline always rather than usually. An airbag system responding in ten milliseconds ninety-nine percent of the time has failed; the requirement is the guarantee, not the average.',
+          'The internet of things extends this domain: small devices collecting and sending data. It has three challenges: power, since every transmission costs; security, since many devices ship with default passwords and are compromised en masse; and updates, since thousands of distributed devices must update safely without some failing midway.',
+          'At the other extreme is cloud computing, renting compute resources rather than owning them. Its essential merit is elasticity: you pay for what you use, scaling up at peak and shrinking after. But that ease is a known financial trap: services started for a trial and forgotten run for months, and bills swell unnoticed until month end.',
+          'DevOps is a culture before it is tooling: bringing development and operations close so neither throws responsibility at the other. Its practical effect shows in four measures: how often you deploy, how long a change takes to reach users, what share of deployments fail, and how long recovery takes after an incident. Those four describe team health more precisely than any slogan.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'الأنظمة المدمجة', 'الحوسبة السحابية'],
+          head_en: ['Dimension', 'Embedded', 'Cloud'],
+          rows: [
+            ['الذاكرة', 'كيلوبايتات', 'قابلة للتوسيع'],
+            ['التحديث', 'صعب ومحفوف', 'بضغطة وقابل للتراجع'],
+            ['القيد الأول', 'الطاقة والذاكرة', 'الكلفة والموثوقية'],
+            ['أثر الخطأ', 'قد يكون مادياً وخطراً', 'خدمة متوقفة تُستعاد']
+          ]
+        },
+        keyPoints_ar: [
+          'المدمج يعمل بكيلوبايتات وبلا تراجع سهل، فيُبنى بتحقق أعمق.',
+          'الزمن الحقيقي ضمان مهلة لا مجرد سرعة متوسطة.',
+          'أخطر ما في إنترنت الأشياء كلمات المرور الافتراضية والتحديث الجماعي.',
+          'مرونة السحابة فخ مالي إن نُسيت خدمات تعمل بلا استخدام.',
+          'DevOps ثقافة تُقاس بأربعة: تكرار النشر وزمنه ونسبة فشله وزمن التعافي.'
+        ],
+        keyPoints_en: [
+          'Embedded runs on kilobytes with no easy rollback, so it is built with deeper verification.',
+          'Real time means a guaranteed deadline, not merely average speed.',
+          'The gravest IoT risks are default passwords and mass updates.',
+          'Cloud elasticity is a financial trap when unused services are forgotten running.',
+          'DevOps is a culture measured by four: deploy frequency, lead time, failure rate and recovery time.'
+        ],
+        analogy_ar: 'تخيّل الفرق بين مهندس يبني قمراً صناعياً ومهندس يدير فندقاً. الأول يحسب كل غرام وكل واط، ويعرف أنه بعد الإطلاق لن يصعد ليصلح شيئاً — فيتحقق ألف مرة قبل. والثاني يفتح غرفاً في الموسم ويغلقها بعده، ويقيس نجاحه بسرعة استعادة الخدمة إن انقطعت الكهرباء. والمشكلة الشائعة في الفندق أن تبقى أضواء جناح فارغ مضاءة شهراً — وهي بالضبط فاتورة السحابة المنسيّة.',
+        analogy_en: 'Picture the difference between an engineer building a satellite and one running a hotel. The first counts every gram and watt, knowing that after launch nobody climbs up to fix anything, so they verify a thousand times before. The second opens rooms in season and closes them after, measuring success by how fast service returns when power fails. The hotel common problem is leaving an empty suite lights on for a month, which is precisely the forgotten cloud bill.',
+        terms: [
+          { term: 'Embedded System', def_ar: 'برنامج يعمل داخل جهاز لا يُرى كحاسوب بقيود صارمة.', def_en: 'Software running inside a device not seen as a computer under tight constraints.' },
+          { term: 'Real Time', def_ar: 'ضمان اكتمال الاستجابة خلال مهلة محددة دائماً.', def_en: 'A guarantee that a response completes within a set deadline every time.' },
+          { term: 'Elasticity', def_ar: 'توسّع الموارد وتقلّصها حسب الحاجة مع الدفع بالاستخدام.', def_en: 'Resources growing and shrinking on demand with pay-per-use.' },
+          { term: 'DevOps', def_ar: 'ثقافة تقرّب التطوير من التشغيل وتُقاس بمقاييس النشر والتعافي.', def_en: 'A culture bringing development and operations together, measured by deployment and recovery metrics.' }
+        ],
+        cards: [
+          { q_ar: 'ما معنى الزمن الحقيقي في الأنظمة المدمجة؟', q_en: 'What does real time mean in embedded systems?', a_ar: 'ضمان اكتمال الاستجابة خلال مهلة محددة دائماً، لا مجرد سرعة في المتوسط.', a_en: 'A guarantee the response completes within a deadline every time, not average speed.' },
+          { q_ar: 'ما الفخ المالي الشائع في السحابة؟', q_en: 'What is the common cloud financial trap?', a_ar: 'خدمات تُشغَّل للتجربة وتُنسى تعمل شهوراً فتتضخم الفاتورة بلا استخدام.', a_en: 'Services started for a trial and forgotten running for months, swelling the bill with no use.' },
+          { q_ar: 'لماذا يُبنى المدمج بتحقق أعمق؟', q_en: 'Why is embedded built with deeper verification?', a_ar: 'لأن الجهاز في يد المستخدم أو داخل جدار، والتراجع عن خطأ ليس ضغطة زر.', a_en: 'Because the device is in a user hand or inside a wall, and rolling back is not a button press.' },
+          { q_ar: 'بم يُقاس أثر DevOps عملياً؟', q_en: 'How is DevOps impact measured?', a_ar: 'بتكرار النشر، وزمن وصول التغيير، ونسبة النشرات الفاشلة، وزمن التعافي.', a_en: 'Deployment frequency, change lead time, failed deployment rate, and recovery time.' }
+        ]
+      },
+      {
+        title_ar: 'الذكاء الاصطناعي التطبيقي واختيار المسار المهني',
+        title_en: 'Applied AI and Choosing a Career Path',
+        lead_ar: 'الذكاء التطبيقي هندسة حول نموذج لا بناء نموذج، واختيار مسارك يُحسم بالتجربة القصيرة لا بالقراءة الطويلة.',
+        lead_en: 'Applied AI is engineering around a model rather than building one, and choosing your path is settled by short experiments rather than long reading.',
+        body_ar: [
+          'أغلب من يعمل بالذكاء الاصطناعي اليوم لا يبني نماذج من الصفر، وإنما يستخدم نماذج جاهزة ويبني حولها نظاماً: يجهّز البيانات، ويستدعي النموذج، ويعالج مخرجه، ويتعامل مع بطئه وأخطائه وكلفته. وهذي هندسة برمجيات في أغلبها، ومن يتقن الأساسيات يدخلها بلا تخصص رياضي عميق.',
+          'وثلاثة فروق عن البرمجة المعتادة يجب استيعابها. الأول أن المخرج احتمالي لا قاطع: النموذج نفسه بالمدخل نفسه قد يعطي مخرجاً مختلفاً، فلا تُبنى عليه فروض اليقين. والثاني أن الاستدعاء بطيء ومكلف نسبياً، فيُصمَّم النظام على أساس أنه عملية شبكية ثقيلة لا استدعاء دالة محلية.',
+          'والثالث أن الجودة تعتمد على المدخل اعتماداً حاسماً: البيانات الرديئة تعطي مخرجاً رديئاً مهما كان النموذج قوياً. ولهذا تجد أن أغلب وقت المشروع يذهب لتجهيز البيانات وتنظيفها لا لاختيار النموذج — وهذي حقيقة تفاجئ الداخلين الجدد.',
+          'وقاعدة تصميم لا يُستغنى عنها: لا تفترض نجاح الاستدعاء ولا صحة المخرج. تحقق من شكل المخرج قبل استخدامه، وضع حداً زمنياً وبديلاً إن تأخر، واحسب الكلفة لكل عملية قبل النشر لا بعد الفاتورة. والنظام الذي يفترض المثالية ينهار في أول يوم إنتاج حقيقي.',
+          'وأما اختيار المسار المهني فيغلط فيه كثيرون بطريقة واحدة: يقرؤون شهوراً ويقارنون الرواتب ولا يجربون شيئاً. والحقيقة أن أسبوعين من بناء شيء صغير في مجال يعطيانك عن ملاءمته لك أكثر مما تعطيه خمسون مقالاً. جرّب لا تقرأ فقط.',
+          'وثلاثة أسئلة تحسم الاختيار: أي المشكلات تستمتع بحلّها فعلاً — بصرية أم بياناتية أم بنيوية؟ وأي بيئة عمل تناسبك — سرعة الشركات الناشئة أم انضباط المؤسسات الكبيرة؟ وما وضع السوق في مكانك أو عن بُعد؟ وأخيراً: التخصص ليس عقداً أبدياً، فأكثر المحترفين انتقلوا مرة على الأقل، والأساسيات هي ما يجعل الانتقال ممكناً — ولهذا كان بناؤها أول القسم وآخره.'
+        ],
+        body_en: [
+          'Most people working in AI today do not build models from scratch; they use ready models and build a system around them: preparing data, calling the model, processing its output, and handling its latency, errors and cost. That is mostly software engineering, and whoever masters the fundamentals enters it without deep mathematical specialisation.',
+          'Three differences from ordinary programming must be internalised. First, the output is probabilistic rather than definite: the same model with the same input may return something different, so certainty assumptions cannot be built on it. Second, calls are relatively slow and costly, so the system is designed around a heavy network operation rather than a local function call.',
+          'Third, quality depends decisively on the input: poor data gives poor output however strong the model. That is why most project time goes to preparing and cleaning data rather than choosing a model, a fact that surprises newcomers.',
+          'An indispensable design rule: never assume the call succeeds nor the output is valid. Verify the output shape before using it, set a timeout with a fallback, and compute per-operation cost before release rather than after the invoice. A system assuming perfection collapses on its first real production day.',
+          'As for choosing a career path, many go wrong in one way: they read for months comparing salaries and try nothing. In truth, two weeks building something small in a field tells you more about its fit for you than fifty articles. Experiment rather than only read.',
+          'Three questions settle the choice: which problems do you actually enjoy solving, visual, data or structural? Which work environment suits you, startup speed or large-organisation discipline? And what does the market look like where you are or remotely? Finally, a specialisation is not a lifetime contract: most professionals moved at least once, and fundamentals are what make moving possible, which is why building them opened this section and closes it.'
+        ],
+        table: {
+          head_ar: ['الفرق', 'البرمجة المعتادة', 'الذكاء التطبيقي'],
+          head_en: ['Aspect', 'Ordinary programming', 'Applied AI'],
+          rows: [
+            ['المخرج', 'قاطع ومكرَّر', 'احتمالي قد يختلف'],
+            ['الاستدعاء', 'دالة محلية سريعة', 'عملية شبكية بطيئة ومكلفة'],
+            ['مصدر الجودة', 'صحة المنطق', 'جودة البيانات أولاً'],
+            ['أكثر الوقت', 'كتابة المنطق', 'تجهيز البيانات وتنظيفها']
+          ]
+        },
+        keyPoints_ar: [
+          'أغلب العمل في الذكاء التطبيقي هندسة حول نموذج جاهز لا بناء نموذج.',
+          'المخرج احتمالي، فلا تُبنى عليه فروض اليقين.',
+          'الاستدعاء بطيء ومكلف، فيُصمَّم النظام على هذا الأساس.',
+          'البيانات الرديئة تُفسد أقوى نموذج، وأكثر الوقت يذهب لتجهيزها.',
+          'تحقق من المخرج وضع مهلة وبديلاً واحسب الكلفة قبل النشر.',
+          'أسبوعان من البناء يحسمان ملاءمة المجال أكثر من خمسين مقالاً.',
+          'التخصص ليس عقداً أبدياً، والأساسيات هي ما يجعل الانتقال ممكناً.'
+        ],
+        keyPoints_en: [
+          'Most applied AI work is engineering around a ready model, not building one.',
+          'The output is probabilistic, so certainty assumptions cannot rest on it.',
+          'Calls are slow and costly, so design the system on that basis.',
+          'Poor data ruins the strongest model, and most time goes to preparing it.',
+          'Validate the output, set a timeout and fallback, and compute cost before release.',
+          'Two weeks of building settles a field fit better than fifty articles.',
+          'A specialisation is not a lifetime contract, and fundamentals make moving possible.'
+        ],
+        analogy_ar: 'تخيّل النموذج خبيراً استشارياً تستأجره بالساعة: رأيه نافع لكنه ليس قاطعاً، ويتأخر أحياناً، ويكلّفك مع كل سؤال. فلا تبني نظامك على أنه سيرد فوراً وبيقين دائم، بل تضع مهلة وبديلاً وتراجع جوابه قبل اعتماده. وأما اختيار التخصص فأشبه باختيار رياضة: لا تعرف أيها يناسبك بقراءة قوانينها، وإنما بأن تلعب أسبوعين وترى أين تجد نفسك.',
+        analogy_en: 'Picture the model as a consultant hired by the hour: their opinion is useful but not decisive, sometimes slow, and billed per question. So do not build your system on an instant, certain answer; set a timeout and a fallback and review the answer before relying on it. Choosing a specialisation is like choosing a sport: you learn which suits you by playing for two weeks, not by reading the rules.',
+        terms: [
+          { term: 'Applied AI', def_ar: 'بناء نظام حول نموذج جاهز بدل بناء النموذج نفسه.', def_en: 'Building a system around a ready model rather than the model itself.' },
+          { term: 'Probabilistic Output', def_ar: 'مخرج قد يختلف بين استدعاءين للمدخل نفسه.', def_en: 'Output that may differ between two calls with the same input.' },
+          { term: 'Fallback', def_ar: 'بديل يُنفَّذ إن تأخر الاستدعاء أو فشل.', def_en: 'An alternative path used when a call is delayed or fails.' },
+          { term: 'Data Preparation', def_ar: 'تنظيف البيانات وتجهيزها، ويستهلك أغلب وقت المشروع.', def_en: 'Cleaning and preparing data, which consumes most project time.' }
+        ],
+        cards: [
+          { q_ar: 'ما طبيعة أغلب العمل في الذكاء الاصطناعي التطبيقي؟', q_en: 'What is most applied AI work?', a_ar: 'هندسة برمجيات حول نموذج جاهز: تجهيز بيانات واستدعاء ومعالجة مخرج وإدارة كلفة.', a_en: 'Software engineering around a ready model: preparing data, calling it, processing output and managing cost.' },
+          { q_ar: 'لماذا لا تُبنى فروض اليقين على مخرج النموذج؟', q_en: 'Why can certainty assumptions not rest on model output?', a_ar: 'لأنه احتمالي: النموذج نفسه بالمدخل نفسه قد يعطي مخرجاً مختلفاً.', a_en: 'Because it is probabilistic: the same model with the same input may return something different.' },
+          { q_ar: 'أين يذهب أكثر وقت مشروع الذكاء الاصطناعي؟', q_en: 'Where does most AI project time go?', a_ar: 'إلى تجهيز البيانات وتنظيفها لا إلى اختيار النموذج.', a_en: 'To preparing and cleaning data rather than choosing a model.' },
+          { q_ar: 'ما أسرع طريقة لحسم ملاءمة تخصص لك؟', q_en: 'What is the fastest way to test a specialisation fit?', a_ar: 'بناء شيء صغير فيه أسبوعين؛ التجربة تحسم أكثر من القراءة الطويلة.', a_en: 'Building something small in it for two weeks; experimenting settles it faster than long reading.' }
+        ]
+      }
     ]
   }
 };
