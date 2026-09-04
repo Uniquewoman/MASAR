@@ -21,7 +21,20 @@ export const trackLessons = {
       { t_ar: 'الدرس 18: إدارة القائمة (الإضافة والحذف)', t_en: 'Lesson 18: List Manipulation', d_ar: 'طريقة تعديل محتوى القائمة برمجياً مثل إضافة عناصر جديدة (Append/Insert) أو مسح عناصر موجودة (Remove/Pop).', d_en: 'How to dynamically edit a list in code, such as appending/inserting new values, or removing/popping existing items.', videoUrl: '', duration: '09:40' },
       { t_ar: 'الدرس 19: أنواع الأخطاء (Syntax vs Logic)', t_en: 'Lesson 19: Syntax Errors vs. Logic Errors', d_ar: 'الفرق بين الأخطاء الإملائية والتركيبية التي توقف البرنامج تماماً، وبين الأخطاء المنطقية التي تعطي نتائج غير متوقعة.', d_en: 'The difference between grammatical coding mistakes (Syntax Errors) that halt the app and logical errors that output wrong results.', videoUrl: '', duration: '08:50' },
       { t_ar: 'الدرس 20: قراءة وفك شفرة رسائل الخطأ', t_en: 'Lesson 20: Decoding Error Messages', d_ar: 'تعلم كيف تقرأ وتفهم "اللون الأحمر" وتتتبع سطر الخطأ (Traceback) لمعرفة أين تكمن المشكلة بالضبط وكيفية البحث عنها.', d_en: 'Learn how to read stack traces and error messages, understand warning highlights, and find exact line numbers where bugs occur.', videoUrl: '', duration: '09:20' },
-      { t_ar: 'الدرس 21: استراتيجية حل المشكلات (Debugging)', t_en: 'Lesson 21: Debugging Strategies', d_ar: 'خطوات عملية وتفكير علمي لحل أي مشكلة برمجية: تقسيم الكود، فحص قيم المتغيرات بالتفصيل، والبحث في المجتمعات البرمجية.', d_en: 'Practical steps for debugging: isolating code sections, inspecting variables print statements, and searching developer communities.', videoUrl: '', duration: '10:05' }
+      { t_ar: 'الدرس 21: استراتيجية حل المشكلات (Debugging)', t_en: 'Lesson 21: Debugging Strategies', d_ar: 'خطوات عملية وتفكير علمي لحل أي مشكلة برمجية: تقسيم الكود، فحص قيم المتغيرات بالتفصيل، والبحث في المجتمعات البرمجية.', d_en: 'Practical steps for debugging: isolating code sections, inspecting variables print statements, and searching developer communities.', videoUrl: '', duration: '10:05' },
+      { t_ar: 'الدرس 22: التكرار المعدود (حلقة for)', t_en: 'Lesson 22: Counted Repetition (for loop)', d_ar: 'كيف نكرر أمراً عدداً محدداً من المرات بدل نسخه يدوياً، وكيف تولّد range سلسلة الأرقام.', d_en: 'How to repeat a statement a fixed number of times instead of copying it, and how range generates the number sequence.', videoUrl: '', duration: '09:30', level: 4 },
+      { t_ar: 'الدرس 23: التكرار بشرط (حلقة while)', t_en: 'Lesson 23: Conditional Repetition (while loop)', d_ar: 'متى نستخدم while بدل for، وكيف نضمن أن الشرط سينتهي حتى لا تدور الحلقة إلى ما لا نهاية.', d_en: 'When to use while instead of for, and how to guarantee the condition ends so the loop does not run forever.', videoUrl: '', duration: '10:20', level: 4 },
+      { t_ar: 'الدرس 24: المرور على عناصر القائمة', t_en: 'Lesson 24: Iterating Over a List', d_ar: 'قراءة عناصر القائمة واحداً واحداً بلا فهارس يدوية، والحصول على الفهرس والقيمة معاً عند الحاجة.', d_en: 'Reading list elements one by one without manual indexes, and getting index and value together when needed.', videoUrl: '', duration: '08:15', level: 4 },
+      { t_ar: 'الدرس 25: الخروج والتخطي (break و continue)', t_en: 'Lesson 25: break and continue', d_ar: 'إيقاف الحلقة فور تحقق هدفها بـbreak، وتخطي دورة واحدة فقط بـcontinue، والفرق العملي بينهما.', d_en: 'Stopping a loop as soon as its goal is met with break, skipping a single iteration with continue, and the practical difference.', videoUrl: '', duration: '07:45', level: 4 },
+      { t_ar: 'الدرس 26: الحلقات المتداخلة', t_en: 'Lesson 26: Nested Loops', d_ar: 'حلقة داخل حلقة: كم مرة ينفَّذ الجسم الداخلي فعلاً، ولماذا يرتفع عدد الخطوات بسرعة.', d_en: 'A loop inside a loop: how many times the inner body actually runs, and why the step count grows fast.', videoUrl: '', duration: '09:00', level: 4 },
+      { t_ar: 'الدرس 27: المصفوفات ثنائية الأبعاد', t_en: 'Lesson 27: Two-Dimensional Arrays', d_ar: 'تمثيل الجداول والشبكات بقائمة داخل قائمة، والوصول لخلية بصفها ثم عمودها.', d_en: 'Representing tables and grids as a list inside a list, and reaching a cell by its row then its column.', videoUrl: '', duration: '08:40', level: 4 },
+      { t_ar: 'الدرس 28: الدوال — لماذا وكيف', t_en: 'Lesson 28: Functions - Why and How', d_ar: 'تجميع خطوات متكررة تحت اسم واحد يُستدعى وقت الحاجة، والفرق بين تعريف الدالة واستدعائها.', d_en: 'Grouping repeated steps under one name called when needed, and the difference between defining and calling.', videoUrl: '', duration: '10:05', level: 5 },
+      { t_ar: 'الدرس 29: المعاملات والوسائط', t_en: 'Lesson 29: Parameters and Arguments', d_ar: 'تمرير قيم مختلفة للدالة في كل استدعاء، والقيمة الافتراضية التي تُستخدم عند غياب الوسيط.', d_en: 'Passing different values on each call, and the default value used when an argument is omitted.', videoUrl: '', duration: '09:25', level: 5 },
+      { t_ar: 'الدرس 30: قيمة الإرجاع (return)', t_en: 'Lesson 30: Return Values', d_ar: 'الفرق الجوهري بين دالة تطبع نتيجتها ودالة ترجعها، ولماذا لا يمكن استخدام ناتج الطباعة في حساب لاحق.', d_en: 'The core difference between a function that prints and one that returns, and why a printed result cannot be reused.', videoUrl: '', duration: '10:40', level: 5 },
+      { t_ar: 'الدرس 31: نطاق المتغيرات (Scope)', t_en: 'Lesson 31: Variable Scope', d_ar: 'لماذا لا يرى الكود الخارجي متغيراً عُرِّف داخل دالة، وكيف يختفي المتغير المحلي بانتهاء الاستدعاء.', d_en: 'Why outside code cannot see a variable defined inside a function, and how a local variable disappears when the call ends.', videoUrl: '', duration: '08:50', level: 5 },
+      { t_ar: 'الدرس 32: العودية (Recursion)', t_en: 'Lesson 32: Recursion', d_ar: 'دالة تستدعي نفسها على مسألة أصغر، وحالة التوقف التي بدونها يستمر الاستدعاء حتى ينهار البرنامج.', d_en: 'A function calling itself on a smaller problem, and the base case without which calls continue until the program crashes.', videoUrl: '', duration: '11:15', level: 5 },
+      { t_ar: 'الدرس 33: معالجة الأخطاء (try / except)', t_en: 'Lesson 33: Exception Handling (try/except)', d_ar: 'التقاط الخطأ المتوقَّع ومعالجته بدل توقف البرنامج، والتفريق بين أنواع الأخطاء في المعالجة.', d_en: 'Catching an expected error and handling it instead of crashing, and distinguishing error types while handling.', videoUrl: '', duration: '10:30', level: 5 },
+      { t_ar: 'الدرس 34: الوحدات والاستيراد (import)', t_en: 'Lesson 34: Modules and Imports', d_ar: 'الاستفادة من دوال جاهزة كتبها غيرك، والفرق بين استيراد الوحدة كاملة واستيراد اسم واحد منها.', d_en: 'Using ready-made functions written by others, and the difference between importing a whole module and one name from it.', videoUrl: '', duration: '09:10', level: 5 }
     ]
   }
 };
@@ -196,7 +209,147 @@ export const trackDocuments = {
         details_en: 'Follow this order: 1) Read the full error message. 2) Go to the line number. 3) Add print() before the line to see variable values. 4) Search the error on Google. 5) Ask the community for help.',
         visual: 'debug_steps',
         code: '# خطوة 3: أضف print لمراقبة المتغيرات\ndef calculate(x, y):\n    print("x =", x, "y =", y)  # ← للتشخيص\n    result = x / y\n    return result'
+      },
+      {
+        t_ar: 'التكرار المعدود (حلقة for)',
+        t_en: 'Counted Repetition (for loop)',
+        details_ar: 'حلقة for تكرر كتلة من الكود عدداً معروفاً من المرات. الدالة range(n) تولّد أرقاماً تبدأ من 0 وتنتهي قبل n، فـrange(3) تعطي 0 و1 و2 — ثلاث دورات لا أربع. المتغير بعد كلمة for يأخذ قيمة جديدة في كل دورة. وانتبه للمسافة البادئة: كل سطر مزاح للداخل ينتمي للحلقة، وأول سطر يعود لليسار يخرج منها.',
+        details_en: 'A for loop repeats a block a known number of times. range(n) generates numbers from 0 up to but not including n, so range(3) yields 0, 1, 2 — three iterations, not four. The variable after for takes a new value each round. Watch the indentation: every indented line belongs to the loop, and the first line back at the left is outside it.',
+        visual: 'loop_for',
+        code: 'for i in range(3):\n    print("الدورة رقم", i)\n\n# الناتج:\n# الدورة رقم 0\n# الدورة رقم 1\n# الدورة رقم 2',
+        level: 4
+      },
+      {
+        t_ar: 'التكرار بشرط (حلقة while)',
+        t_en: 'Conditional Repetition (while loop)',
+        details_ar: 'حلقة while تكرر ما دام الشرط صحيحاً، وتُستخدم حين لا نعرف عدد الدورات مسبقاً. وخطرها الأشهر الحلقة اللانهائية: إذا لم يتغيّر المتغيّر الداخل في الشرط، بقي الشرط صحيحاً إلى الأبد. القاعدة العملية: تأكد أن شيئاً داخل الحلقة يقرّب الشرط من أن يصير خاطئاً.',
+        details_en: 'A while loop repeats as long as its condition is true, and is used when the number of iterations is not known in advance. Its most common danger is the infinite loop: if the variable in the condition never changes, the condition stays true forever. Practical rule: make sure something inside the loop moves the condition toward false.',
+        visual: 'loop_while',
+        code: 'count = 3\nwhile count > 0:\n    print(count)\n    count = count - 1   # بدونه تدور للأبد\nprint("انطلق!")\n\n# الناتج: 3 ثم 2 ثم 1 ثم انطلق!',
+        level: 4
+      },
+      {
+        t_ar: 'المرور على عناصر القائمة',
+        t_en: 'Iterating Over a List',
+        details_ar: 'بدل الوصول لكل عنصر بفهرسه يدوياً، تمرّ حلقة for على القائمة عنصراً عنصراً. وإذا احتجت الفهرس والقيمة معاً استخدم enumerate فتعطيك الاثنين في كل دورة. هذا الأسلوب أقصر وأقل عرضة لخطأ تجاوز حدود القائمة.',
+        details_en: 'Instead of accessing each element by index manually, a for loop walks the list element by element. If you need index and value together, enumerate gives both each round. This style is shorter and less prone to going out of bounds.',
+        visual: 'loop_list',
+        code: 'fruits = ["تفاح", "موز", "مانجو"]\n\nfor fruit in fruits:\n    print(fruit)\n\nfor i, fruit in enumerate(fruits):\n    print(i, fruit)   # 0 تفاح · 1 موز · 2 مانجو',
+        level: 4
+      },
+      {
+        t_ar: 'الخروج والتخطي (break و continue)',
+        t_en: 'break and continue',
+        details_ar: 'الأمر break يوقف الحلقة كلها فوراً ويكمل البرنامج بعدها، ويُستخدم حين يتحقق الهدف فلا معنى لمواصلة البحث. أما continue فيتخطى بقية الدورة الحالية فقط وينتقل للدورة التالية. والخلط بينهما شائع: break يخرج، وcontinue يقفز.',
+        details_en: 'break stops the entire loop immediately and continues after it, used when the goal is met and searching further is pointless. continue skips only the rest of the current iteration and moves to the next. Confusing them is common: break exits, continue jumps.',
+        visual: 'loop_break',
+        code: 'for n in [4, 7, 10, 13]:\n    if n == 10:\n        break\n    print(n)\n# يطبع 4 ثم 7 ويتوقف\n\nfor n in range(5):\n    if n % 2 == 0:\n        continue\n    print(n)\n# يطبع 1 ثم 3 فقط',
+        level: 4
+      },
+      {
+        t_ar: 'الحلقات المتداخلة',
+        t_en: 'Nested Loops',
+        details_ar: 'حلقة داخل حلقة: مع كل دورة للحلقة الخارجية تدور الداخلية دورتها كاملة. فلو دارت الخارجية ثلاث مرات والداخلية ثلاثاً، نُفِّذ الجسم الداخلي تسع مرات لا ستاً. ولهذا ترتفع كلفة الحلقات المتداخلة بسرعة كلما كبر حجم البيانات.',
+        details_en: 'A loop inside a loop: for each pass of the outer loop, the inner loop runs its full course. If the outer runs three times and the inner three, the inner body executes nine times, not six. This is why nested loops get expensive quickly as data grows.',
+        visual: 'loop_nested',
+        code: 'for i in range(1, 4):\n    for j in range(1, 4):\n        print(i * j, end=" ")\n    print()\n\n# الناتج:\n# 1 2 3\n# 2 4 6\n# 3 6 9',
+        level: 4
+      },
+      {
+        t_ar: 'المصفوفات ثنائية الأبعاد',
+        t_en: 'Two-Dimensional Arrays',
+        details_ar: 'الجدول أو الشبكة يُمثَّل بقائمة عناصرها قوائم: كل قائمة داخلية صف. وللوصول لخلية نكتب فهرس الصف أولاً ثم فهرس العمود. وكلا الفهرسين يبدأ من الصفر، فالخلية الأولى هي [0][0].',
+        details_en: 'A table or grid is represented as a list whose elements are lists: each inner list is a row. To reach a cell, write the row index first, then the column index. Both indexes start at zero, so the first cell is [0][0].',
+        visual: 'grid_2d',
+        code: 'grid = [[1, 2, 3],\n        [4, 5, 6]]\n\nprint(grid[0][2])   # 3  (الصف الأول، العمود الثالث)\nprint(grid[1][0])   # 4  (الصف الثاني، العمود الأول)\nprint(len(grid))    # 2  (عدد الصفوف)',
+        level: 4
+      },
+      {
+        t_ar: 'الدوال — لماذا وكيف',
+        t_en: 'Functions - Why and How',
+        details_ar: 'الدالة تجمع خطوات متكررة تحت اسم واحد، فتكتبها مرة وتستدعيها متى شئت. وتعريف الدالة بكلمة def لا ينفّذ شيئاً بذاته، إنما يسجّل الخطوات فقط؛ والتنفيذ يحدث عند الاستدعاء بكتابة اسمها متبوعاً بقوسين. ونسيان القوسين يعني الإشارة للدالة لا تشغيلها.',
+        details_en: 'A function groups repeated steps under one name: write once, call whenever needed. Defining with def does not execute anything by itself, it only records the steps; execution happens on the call, writing the name followed by parentheses. Forgetting the parentheses references the function instead of running it.',
+        visual: 'func_def',
+        code: 'def greet():\n    print("أهلاً بك في مسار")\n\ngreet()   # هنا ينفّذ فعلاً\ngreet()   # ومرة أخرى بلا تكرار الكود',
+        level: 5
+      },
+      {
+        t_ar: 'المعاملات والوسائط',
+        t_en: 'Parameters and Arguments',
+        details_ar: 'المعامل هو الاسم المكتوب بين قوسي التعريف، والوسيط هو القيمة الفعلية الممرَّرة وقت الاستدعاء. ويمكن إعطاء المعامل قيمة افتراضية تُستخدم إذا لم يُمرَّر وسيط، فيصير الاستدعاء ممكناً بوسيط وبدونه.',
+        details_en: 'A parameter is the name written between the parentheses at definition; an argument is the actual value passed at call time. A parameter can have a default value used when no argument is passed, so the call works with or without it.',
+        visual: 'func_params',
+        code: 'def greet(name):\n    print("أهلاً", name)\n\ngreet("سارة")   # أهلاً سارة\n\ndef power(base, exp=2):\n    return base ** exp\n\nprint(power(5))      # 25  (استُخدمت القيمة الافتراضية)\nprint(power(5, 3))   # 125',
+        level: 5
+      },
+      {
+        t_ar: 'قيمة الإرجاع (return)',
+        t_en: 'Return Values',
+        details_ar: 'الفرق بين print وreturn من أكثر ما يلتبس على المبتدئ. فـprint يعرض النص على الشاشة فقط ولا يعطي البرنامج قيمة يمكن استخدامها، أما return فيسلّم القيمة لمن استدعى الدالة فتُخزَّن في متغيّر أو تدخل في حساب. والدالة التي لا تحوي return ترجع None ضمناً.',
+        details_en: 'The difference between print and return trips up most beginners. print only displays text on screen and gives the program no usable value, while return hands the value back to the caller so it can be stored or used in a computation. A function without return implicitly returns None.',
+        visual: 'func_return',
+        code: 'def area(w, h):\n    return w * h\n\nresult = area(3, 4)\nprint(result)          # 12\nprint(area(3, 4) * 2)  # 24  (استُخدمت القيمة في حساب)\n\ndef bad_area(w, h):\n    print(w * h)       # يعرض فقط\nvalue = bad_area(3, 4)\nprint(value)           # None',
+        level: 5
+      },
+      {
+        t_ar: 'نطاق المتغيرات (Scope)',
+        t_en: 'Variable Scope',
+        details_ar: 'المتغيّر المعرَّف داخل دالة محلي: يولد عند الاستدعاء ويختفي بانتهائه، ولا يراه الكود خارجها. ولو تصادف اسمه مع اسم متغيّر خارجي، فالإسناد داخل الدالة يُنشئ نسخة محلية جديدة ولا يمسّ الخارجي. وهذا العزل مقصود، فهو يمنع دالة من إفساد بيانات دالة أخرى.',
+        details_en: 'A variable defined inside a function is local: it is born at call time and disappears when the call ends, invisible to code outside. If its name matches an outer variable, assignment inside the function creates a new local copy and leaves the outer one untouched. This isolation is deliberate: it stops one function from corrupting another one data.',
+        visual: 'func_scope',
+        code: 'x = 10\n\ndef show():\n    x = 5              # متغيّر محلي جديد\n    print("داخل:", x)\n\nshow()                 # داخل: 5\nprint("خارج:", x)      # خارج: 10  (لم يتأثر)',
+        level: 5
+      },
+      {
+        t_ar: 'العودية (Recursion)',
+        t_en: 'Recursion',
+        details_ar: 'الدالة العودية تستدعي نفسها على نسخة أصغر من المسألة حتى تبلغ حالة التوقف. ولكل دالة عودية جزآن لا غنى عنهما: حالة التوقف التي ترجع نتيجة مباشرة بلا استدعاء، والخطوة العودية التي تقترب منها. وإسقاط حالة التوقف يجعل الاستدعاءات تتراكم حتى يمتلئ المكدس وينهار البرنامج.',
+        details_en: 'A recursive function calls itself on a smaller version of the problem until it reaches the base case. Every recursive function needs two parts: a base case returning a direct result without recursing, and a recursive step moving toward it. Omitting the base case piles up calls until the stack overflows and the program crashes.',
+        visual: 'func_recursion',
+        code: 'def factorial(n):\n    if n == 1:          # حالة التوقف\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(4))     # 24\n\n# التتبّع: 4*factorial(3) = 4*3*factorial(2)\n#        = 4*3*2*factorial(1) = 4*3*2*1 = 24',
+        level: 5
+      },
+      {
+        t_ar: 'معالجة الأخطاء (try / except)',
+        t_en: 'Exception Handling (try/except)',
+        details_ar: 'بعض الأخطاء متوقَّعة ولا ذنب للمبرمج فيها: مستخدم يكتب حرفاً مكان رقم، أو ملف غير موجود. فبدل أن يتوقف البرنامج، نضع الكود المعرَّض للخطأ في try ونعالج الحالة في except. ويُفضَّل تحديد نوع الخطأ لكل حالة، لأن except العام يبتلع أخطاء لم تكن تقصدها ويخفي عيوباً حقيقية.',
+        details_en: 'Some errors are expected and are not the programmer fault: a user typing a letter instead of a number, or a missing file. Instead of crashing, put the risky code in try and handle the case in except. Naming the error type per case is preferred, because a bare except swallows errors you did not intend and hides real defects.',
+        visual: 'try_except',
+        code: 'try:\n    age = int(input("عمرك: "))\n    print(100 / age)\nexcept ValueError:\n    print("أدخل رقماً صحيحاً")\nexcept ZeroDivisionError:\n    print("لا يمكن القسمة على صفر")',
+        level: 5
+      },
+      {
+        t_ar: 'الوحدات والاستيراد (import)',
+        t_en: 'Modules and Imports',
+        details_ar: 'الوحدة ملف فيه دوال جاهزة تستفيد منها بلا إعادة كتابتها. فـimport math يستورد الوحدة كاملة فتُستخدم دوالها مسبوقة باسمها، أما from math import sqrt فيستورد اسماً واحداً يُستخدم مباشرة. والأول أوضح في القراءة لأنه يبيّن مصدر الدالة، والثاني أقصر.',
+        details_en: 'A module is a file of ready-made functions you use without rewriting them. import math imports the whole module, so its functions are used prefixed by its name, while from math import sqrt imports a single name used directly. The first reads clearer because it shows the function source; the second is shorter.',
+        visual: 'imports',
+        code: 'import math\nprint(math.sqrt(16))   # 4.0\nprint(math.pi)         # 3.141592653589793\n\nfrom random import randint\nprint(randint(1, 6))   # رقم عشوائي بين 1 و6',
+        level: 5
       }
+    ]
+  }
+};
+
+// توزيع الدروس الأصلية (0–20) على مستويات القسم الخمسة كما في خطة المنهج.
+// الدروس المضافة (21+) تحمل مستواها داخلها، وهذا الجدول للأصلية فقط
+// حتى لا يُمسّ محتواها. المستويات: 1 التعليقات والمتغيرات · 2 أنواع البيانات
+// والإدخال والإخراج · 3 العمليات والمنطق · 4 التكرار والمصفوفات · 5 الدوال والأخطاء.
+export const legacyLessonLevels = {
+  Programming: {
+    0: [1, 2, 1, 3, 3, 3, 2, 2, 2, 1, 3, 3, 1, 1, 1, 4, 4, 4, 5, 5, 5]
+  }
+};
+
+// عناوين مستويات كل قسم كما تظهر فوق مجموعات الدروس
+export const sectionLevelTitles = {
+  Programming: {
+    0: [
+      { ar: 'التعليقات والمتغيرات', en: 'Comments and Variables' },
+      { ar: 'أنواع البيانات والإدخال والإخراج', en: 'Data Types, Input and Output' },
+      { ar: 'العمليات الحسابية والمنطق', en: 'Operators and Logic' },
+      { ar: 'التكرار والمصفوفات', en: 'Loops and Arrays' },
+      { ar: 'الدوال والأخطاء والوحدات', en: 'Functions, Errors and Modules' }
     ]
   }
 };

@@ -10,7 +10,8 @@ import { useAppContext } from './context/AppContext';
 import { supabase } from './supabaseClient'; // تأكدي من المسار
 import Auth from './pages/Auth';
 import { Dashboard } from './pages/Dashboard';
-import { Lessons, QuestionBank } from './pages/Features';
+import { QuestionBank } from './pages/Features';
+import { Lessons } from './pages/Lessons';
 import { Challenges } from './pages/Challenges';
 
 import { ProfileSettings } from './pages/ProfileSettings';
