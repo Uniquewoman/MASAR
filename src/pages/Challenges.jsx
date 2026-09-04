@@ -372,6 +372,13 @@ export const Challenges = () => {
     setPickedSection(null); setJoinCode(''); setError(null);
   };
 
+  // الانتقال بين شاشات التحضير يمسح أثر الغرفة السابقة،
+  // وإلا بقيت غرفة منتهية معروضة على الشاشة رغم زوالها من الخادم.
+  const goto = (next) => {
+    setRoom(null); setPlayers([]); setError(null);
+    setView(next);
+  };
+
   // ═════════ شاشة الإعداد (مشتركة بين الفردي والروم) ═════════
   const SetupScreen = ({ isRoom }) => (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto space-y-8">
@@ -602,7 +609,7 @@ export const Challenges = () => {
               dAr: 'أنشئ غرفة واحصل على كود، أعطه أصدقاءك حتى أربعة لاعبين، وابدأوا معاً.',
               dEn: 'Create a room, share the code with up to four players, and start together.' }
           ].map(card => (
-            <motion.div key={card.id} whileHover={{ y: -10 }} onClick={() => setView(card.id)}
+            <motion.div key={card.id} whileHover={{ y: -10 }} onClick={() => goto(card.id)}
               className={`p-12 rounded-[4rem] ${cardBg} cursor-pointer flex flex-col justify-between h-[480px] border-b-8 group ${language === 'ar' ? 'text-right' : 'text-left'}`}
               style={{ borderBottomColor: trackColor }}>
               <div className="p-8 rounded-[2.5rem] bg-white/5 w-fit" style={{ color: trackColor }}>
@@ -627,7 +634,7 @@ export const Challenges = () => {
       {/* ── قائمة الرومات ── */}
       {view === 'room-menu' && (
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <motion.div whileHover={{ y: -8 }} onClick={() => setView('room-setup')}
+          <motion.div whileHover={{ y: -8 }} onClick={() => goto('room-setup')}
             className={`p-10 rounded-[3rem] ${cardBg} cursor-pointer h-[340px] flex flex-col justify-between`}>
             <Sparkles size={40} style={{ color: trackColor }} />
             <div>
@@ -671,12 +678,8 @@ export const Challenges = () => {
               </button>
             </div>
             <p className="text-white/40 font-bold text-sm">
-              {t(`${room.question_count} سؤال · ${DIFFICULTIES.find(d => d.id === room.difficulty)?.ar} · وقت الجولة ${clock(room.duration_seconds || 0)} · ${players.length}/${room.max_players} لاعبين`,
-                 `${room.question_count} questions · ${room.difficulty} · ${clock(room.duration_seconds || 0)} round · ${players.length}/${room.max_players} players`)}
-            </p>
-            <p className="text-[11px] font-bold text-white/25 mt-3">
-              {t('الكود صالح لهذه الغرفة وحدها، ولا يُعاد استعماله لغرفة أخرى إلا بعد عشر دقائق من انتهائها.',
-                 'This code belongs to this room only, and is not reused for another room until ten minutes after it ends.')}
+              {t(`${room.question_count} سؤال · ${clock(room.duration_seconds || 0)} دقيقة`,
+                 `${room.question_count} questions · ${clock(room.duration_seconds || 0)}`)}
             </p>
           </div>
 
