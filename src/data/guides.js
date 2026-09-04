@@ -1236,6 +1236,324 @@ export const sectionGuides = {
           { q_ar: 'ما الأسئلة الثلاثة التي تحسم اختيار الهيكل؟', q_en: 'Which three questions settle the structure choice?', a_ar: 'قراءة أكثر أم إضافة؟ بحث بالمفتاح أم بالترتيب؟ علاقات هرمية أم متشابكة؟', a_en: 'More reads or insertions? Lookup by key or by order? Hierarchical or tangled relations?' }
         ]
       }
+    ],
+
+    // ─────────── تطوير البرمجيات ───────────
+    4: [
+      {
+        title_ar: 'بيئة التطوير وسطر الأوامر',
+        title_en: 'The Development Environment and the Command Line',
+        lead_ar: 'أدواتك ليست تفصيلاً: بيئة مضبوطة توفّر عليك ساعات، وسطر الأوامر يفتح لك ما لا تصله الواجهات الرسومية.',
+        lead_en: 'Your tools are not a detail: a configured environment saves hours, and the command line reaches what graphical interfaces cannot.',
+        body_ar: [
+          'بيئة التطوير هي المحرّر والمفسّر والأدوات المساعدة مجتمعة. والمحرّر الحديث ليس دفتر كتابة، بل يقرأ كودك ويفهمه: يلوّن العناصر بحسب معناها، ويكمل الأسماء، ويشير للخطأ قبل التشغيل، ويتيح التنقل لتعريف أي دالة بضغطة. وهذي ليست رفاهية: من يكتب بمحرّر لا يفهم لغته يقضي وقته في أخطاء إملائية كان الحاسوب يكشفها فوراً.',
+          'وأهم ما تضبطه أول يوم أمران: المُنسّق الآلي الذي يوحّد شكل الكود بلا نقاش، والمُدقّق الذي يكشف الأنماط المشبوهة كمتغيّر عُرّف ولم يُستخدم. وفائدة المُنسّق أبعد من الشكل: يُنهي نقاشات الفريق حول المسافات ويجعل اختلافات الملفات نظيفة.',
+          'وسطر الأوامر واجهة نصية تكتب فيها الأمر بدل النقر عليه. وقد يبدو رجوعاً للوراء، لكنه أقوى للمبرمج لثلاثة أسباب: يعمل على الخوادم البعيدة التي لا واجهة رسومية لها أصلاً، ويقبل الأتمتة فتُكتب سلسلة أوامر في ملف تُنفَّذ بأمر واحد، ويعالج عمليات ضخمة بسطر واحد كإعادة تسمية ألف ملف.',
+          'وأوامره الأساسية قليلة وتكفي للبداية: أمر لمعرفة موضعك الحالي، وآخر لعرض ما في المجلد، وثالث للانتقال بين المجلدات، ورابع لإنشاء مجلد، وخامس لنسخ ملف ونقله. ومعها مفهوم المسار: المطلق يبدأ من جذر النظام ويعمل من أي موضع، والنسبي يبدأ من موضعك الحالي فيتغيّر معناه بتغيّره.',
+          'وأخطر أوامره أمر الحذف: لا سلة محذوفات فيه ولا تراجع، فما حُذف ذهب. والقاعدة قبل تنفيذ أي أمر حذف: تحقق من موضعك أولاً بأمر عرض المحتويات، وتأكد أن ما ستحذفه هو ما تظنه. وهذي عادة تُنقذ مشاريع كاملة.',
+          'وآخر مكوّن في البيئة: إدارة الاعتماديات. فمشروعك يستخدم مكتبات خارجية بإصداراتها، وتشغيله على جهاز آخر يستوجب المكتبات نفسها بالإصدارات نفسها. ولهذا يُوثَّق الاعتماد في ملف، وتُعزل بيئة كل مشروع عن غيره حتى لا يتصادم مشروعان على إصدارين مختلفين من مكتبة واحدة.'
+        ],
+        body_en: [
+          'A development environment is the editor, interpreter and supporting tools together. A modern editor is not a notepad; it reads and understands your code: colouring elements by meaning, completing names, flagging errors before running, and jumping to any definition with one keystroke. That is not luxury: writing in an editor that does not understand your language spends your time on typos the computer could have caught instantly.',
+          'The two most valuable things to configure on day one are the formatter, which unifies code shape without debate, and the linter, which flags suspicious patterns such as a variable defined and never used. The formatter value goes beyond looks: it ends team arguments about spacing and keeps file differences clean.',
+          'The command line is a text interface where you type a command instead of clicking it. It may look like a step backwards, but it is stronger for a developer for three reasons: it works on remote servers that have no graphical interface at all, it accepts automation so a sequence of commands lives in a file run by one command, and it handles bulk operations in one line, such as renaming a thousand files.',
+          'Its essential commands are few and enough to start: one to know where you are, one to list a folder, one to move between folders, one to create a folder, and one to copy and move files. With them comes the path concept: an absolute path starts from the system root and works from anywhere, while a relative path starts from your current location so its meaning changes as you move.',
+          'Its most dangerous command is delete: there is no recycle bin and no undo, so what is deleted is gone. The rule before any delete: check your location first by listing the contents, and confirm what you are about to remove is what you think. This habit has saved entire projects.',
+          'The last component is dependency management. Your project uses external libraries at specific versions, and running it on another machine requires the same libraries at the same versions. So dependencies are recorded in a file, and each project environment is isolated so two projects never clash over two versions of one library.'
+        ],
+        table: {
+          head_ar: ['الأداة', 'ما تمنعه', 'متى تُضبط'],
+          head_en: ['Tool', 'What it prevents', 'When to set up'],
+          rows: [
+            ['المحرّر الذكي', 'أخطاء إملائية ونحوية قبل التشغيل', 'أول يوم'],
+            ['المُنسّق الآلي', 'نقاشات الشكل واختلافات ملفات مزعجة', 'أول يوم'],
+            ['المُدقّق', 'أنماطاً مشبوهة كمتغيّر غير مستخدم', 'أول يوم'],
+            ['ملف الاعتماديات', 'يعمل عندي ولا يعمل عندك', 'مع أول مكتبة'],
+            ['البيئة المعزولة', 'تصادم إصدارات بين مشروعين', 'مع أول مشروع']
+          ]
+        },
+        keyPoints_ar: [
+          'المحرّر الذي يفهم لغتك يكشف الخطأ قبل التشغيل فيوفّر وقتاً حقيقياً.',
+          'المُنسّق ينهي نقاشات الشكل ويجعل اختلافات الملفات نظيفة.',
+          'سطر الأوامر يعمل على الخوادم بلا واجهة، ويقبل الأتمتة والعمليات الضخمة.',
+          'المسار المطلق يعمل من أي موضع، والنسبي يتغيّر معناه بتغيّر موضعك.',
+          'أمر الحذف بلا تراجع: تحقق من موضعك قبل تنفيذه دائماً.',
+          'توثيق الاعتماديات وعزل البيئة يمنعان «يعمل عندي ولا يعمل عندك».'
+        ],
+        keyPoints_en: [
+          'An editor that understands your language catches errors before running and saves real time.',
+          'A formatter ends style debates and keeps file diffs clean.',
+          'The command line works on headless servers and enables automation and bulk work.',
+          'An absolute path works from anywhere; a relative one changes meaning as you move.',
+          'Delete has no undo: always verify your location before running it.',
+          'Recording dependencies and isolating environments prevent "works on my machine".'
+        ],
+        analogy_ar: 'تخيّل الفرق بين نجّار يعمل بأدوات مبعثرة وآخر بورشة مرتبة كل أداة في موضعها. الاثنان يصنعان الطاولة نفسها، لكن الأول يقضي نصف وقته يبحث. وسطر الأوامر هو المفتاح الإنجليزي: يبدو أقل أناقة من المفكّ الكهربائي، لكنه الوحيد الذي يصل للمواضع الضيقة التي لا تصلها الأدوات الفاخرة.',
+        analogy_en: 'Picture the difference between a carpenter working with scattered tools and one in an ordered workshop where every tool has its place. Both build the same table, but the first spends half the time searching. The command line is the adjustable spanner: less elegant than a power driver, yet the only thing that reaches the tight spots fancy tools cannot.',
+        terms: [
+          { term: 'Linter', def_ar: 'أداة تفحص الكود وتكشف الأنماط المشبوهة قبل التشغيل.', def_en: 'A tool inspecting code and flagging suspicious patterns before running.' },
+          { term: 'Formatter', def_ar: 'أداة توحّد شكل الكود آلياً بلا نقاش.', def_en: 'A tool unifying code shape automatically with no debate.' },
+          { term: 'Absolute Path', def_ar: 'مسار يبدأ من جذر النظام فيعمل من أي موضع.', def_en: 'A path from the system root that works from anywhere.' },
+          { term: 'Dependency', def_ar: 'مكتبة خارجية يعتمد عليها المشروع بإصدار محدد.', def_en: 'An external library the project relies on at a specific version.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يبقى سطر الأوامر ضرورياً رغم الواجهات الرسومية؟', q_en: 'Why is the command line still necessary?', a_ar: 'لأنه يعمل على الخوادم بلا واجهة، ويقبل الأتمتة، وينفّذ عمليات ضخمة بسطر واحد.', a_en: 'It works on headless servers, enables automation, and performs bulk operations in one line.' },
+          { q_ar: 'ما الفرق بين المسار المطلق والنسبي؟', q_en: 'Difference between absolute and relative paths?', a_ar: 'المطلق يبدأ من جذر النظام ويعمل من أي موضع، والنسبي يبدأ من موضعك فيتغيّر معناه.', a_en: 'Absolute starts at the system root and works anywhere; relative starts where you are, so its meaning shifts.' },
+          { q_ar: 'ما القاعدة قبل تنفيذ أمر حذف؟', q_en: 'What is the rule before running a delete?', a_ar: 'تحقق من موضعك الحالي واعرض المحتويات أولاً، فلا تراجع بعد الحذف.', a_en: 'Verify your current location and list contents first, since there is no undo.' },
+          { q_ar: 'ما الذي يمنع مشكلة «يعمل عندي ولا يعمل عندك»؟', q_en: 'What prevents "works on my machine"?', a_ar: 'توثيق الاعتماديات بإصداراتها في ملف، وعزل بيئة كل مشروع عن غيره.', a_en: 'Recording dependencies with versions in a file and isolating each project environment.' }
+        ]
+      },
+      {
+        title_ar: 'التحكم بالإصدارات وGit',
+        title_en: 'Version Control and Git',
+        lead_ar: 'التحكم بالإصدارات آلة زمن لمشروعك وسجل يجيب عن سؤال «من غيّر هذا ولماذا؟» — وبدونه يصير التعاون فوضى.',
+        lead_en: 'Version control is a time machine for your project and a record answering "who changed this and why?" Without it, collaboration turns to chaos.',
+        body_ar: [
+          'قبل التحكم بالإصدارات كان الناس ينسخون مجلد المشروع ويسمّونه «نسخة نهائية» ثم «نهائية ٢» ثم «نهائية الأخيرة فعلاً». وهذي الطريقة تفشل في ثلاثة: لا تعرف ما الذي تغيّر بين نسختين، ولا تستطيع دمج عمل شخصين، ولا تعرف لماذا اتُّخذ قرار قديم.',
+          'وGit يحل الثلاثة: يحفظ لقطات من مشروعك عبر الزمن، ويعرف بالضبط ما تغيّر في كل لقطة، ويحفظ رسالة تشرح السبب. فتقدر ترجع لأي لقطة، وتقارن بينها، وتعرف من كتب أي سطر ومتى ولماذا.',
+          'ودورة العمل ثلاث مراحل لا اثنتان، وهذي أكثر ما يلتبس على المبتدئ: ملفاتك في مجلد العمل، ثم تختار ما تريد تسجيله فتضعه في منطقة التجهيز، ثم تسجّل اللقطة. وفائدة منطقة التجهيز أنك قد تكون عدّلت خمسة ملفات لسببين مختلفين، فتسجّل كل سبب في لقطة مستقلة برسالتها.',
+          'ورسالة اللقطة ليست شكلية: هي ما يقرأه زميلك — أو أنت بعد سنة — ليفهم لماذا تغيّر هذا. والرسالة الجيدة تصف السبب لا الفعل: «تصحيح احتساب الخصم للطلبات الملغاة» أنفع بكثير من «تعديلات» أو «إصلاح». وسجل رسائل رديئة يجعل تاريخ المشروع بلا قيمة.',
+          'والفروع هي القوة الثانية: الفرع مسار عمل مستقل يتفرّع عن الأصل، تعمل فيه على ميزتك بلا أن تمسّ الفرع الرئيسي. فيبقى الرئيسي مستقراً صالحاً للنشر دائماً، ويكمل زملاؤك عملهم بلا أن يصطدموا بنصف ميزتك.',
+          'وحين تنتهي، تُدمج تغييراتك في الرئيسي. والدمج يمر بسلام غالباً، فGit يعرف كيف يجمع تعديلات في مواضع مختلفة. لكن إن عدّل شخصان السطر نفسه، وقع تعارض ولا يستطيع Git ترجيح أحدهما — فيتوقف ويطلب منك أنت أن تقرر. والتعارض ليس خطأ ولا عطلاً، وإنما سؤال مشروع: أي التغييرين تريد؟'
+        ],
+        body_en: [
+          'Before version control, people copied the project folder and named it "final", then "final 2", then "really final". That approach fails at three things: you cannot tell what changed between copies, you cannot merge two people work, and you cannot learn why an old decision was made.',
+          'Git solves all three: it saves snapshots of your project over time, knows exactly what changed in each, and stores a message explaining why. So you can return to any snapshot, compare them, and learn who wrote a line, when and why.',
+          'The workflow has three stages, not two, and this confuses most beginners: files sit in the working directory, then you choose what to record and move it to the staging area, then you commit the snapshot. Staging exists because you may have edited five files for two different reasons, so each reason becomes its own commit with its own message.',
+          'A commit message is not ceremonial: it is what your colleague, or you a year later, reads to understand why this changed. A good message describes the reason rather than the action: "fix discount calculation for cancelled orders" is far more useful than "changes" or "fix". A log of poor messages makes project history worthless.',
+          'Branches are the second power: a branch is an independent line of work splitting from the main one, where you build your feature without touching it. The main line stays stable and releasable, and colleagues continue without colliding with your half-finished feature.',
+          'When done, your changes merge back. Merging usually passes peacefully, since Git knows how to combine edits in different places. But when two people edit the same line, a conflict arises and Git cannot prefer one, so it stops and asks you to decide. A conflict is neither an error nor a fault; it is a legitimate question: which of the two changes do you want?'
+        ],
+        table: {
+          head_ar: ['المرحلة', 'أين الملف', 'ماذا يعني'],
+          head_en: ['Stage', 'Where the file is', 'What it means'],
+          rows: [
+            ['مجلد العمل', 'على قرصك', 'عدّلته ولم تختره بعد'],
+            ['منطقة التجهيز', 'مختار للتسجيل', 'قررت ضمّه للقطة القادمة'],
+            ['اللقطة', 'مسجّلة في التاريخ', 'محفوظة برسالتها ويمكن الرجوع إليها'],
+            ['الفرع', 'مسار عمل مستقل', 'تعمل بلا مسّ الفرع الرئيسي']
+          ]
+        },
+        keyPoints_ar: [
+          'Git يجيب عن ثلاثة: ما الذي تغيّر، ومن غيّره، ولماذا.',
+          'الدورة ثلاث مراحل: مجلد العمل ثم التجهيز ثم اللقطة.',
+          'التجهيز يتيح فصل تعديلات مختلفة الأسباب في لقطات مستقلة.',
+          'الرسالة الجيدة تصف السبب لا الفعل، وسجل رديء يُفقد التاريخ قيمته.',
+          'الفرع يبقي الرئيسي مستقراً صالحاً للنشر أثناء بناء الميزات.',
+          'التعارض سؤال مشروع لا عطل: أي التغييرين تريد؟'
+        ],
+        keyPoints_en: [
+          'Git answers three questions: what changed, who changed it, and why.',
+          'The cycle has three stages: working directory, staging, commit.',
+          'Staging lets you separate edits made for different reasons into distinct commits.',
+          'A good message states the reason, not the action; a poor log wastes the history.',
+          'Branches keep the main line stable and releasable while features are built.',
+          'A conflict is a legitimate question, not a fault: which change do you want?'
+        ],
+        analogy_ar: 'تخيّل Git كاميرا تصوّر مشروعك كل ما طلبت، وتكتب تحت كل صورة سبب التقاطها. تقدر ترجع لأي صورة، وتقارن صورتين لترى ما تغيّر بالضبط. والفرع أن تصوّر خطاً موازياً من التجارب بلا أن تفسد الألبوم الرئيسي، فإن نجحت التجربة ضممت صورها للألبوم، وإن فشلت تركتها بلا أثر.',
+        analogy_en: 'Picture Git as a camera photographing your project whenever you ask, writing under each photo why it was taken. You can return to any photo and compare two to see exactly what changed. A branch is photographing a parallel line of experiments without spoiling the main album: if the experiment works you fold its photos in, and if not you leave them with no trace.',
+        terms: [
+          { term: 'Commit', def_ar: 'لقطة مسجّلة من المشروع برسالة تشرح سببها.', def_en: 'A recorded project snapshot with a message explaining its reason.' },
+          { term: 'Staging Area', def_ar: 'منطقة تختار فيها ما يدخل اللقطة القادمة.', def_en: 'Where you choose what enters the next commit.' },
+          { term: 'Branch', def_ar: 'مسار عمل مستقل يتفرّع عن الأصل ويُدمج فيه لاحقاً.', def_en: 'An independent line of work splitting from the main and merged back later.' },
+          { term: 'Merge Conflict', def_ar: 'تعديل شخصين للسطر نفسه فيتوقف Git ليقرر الإنسان.', def_en: 'Two people editing the same line, so Git stops for a human decision.' }
+        ],
+        cards: [
+          { q_ar: 'ما الأسئلة الثلاثة التي يجيب عنها Git ؟', q_en: 'Which three questions does Git answer?', a_ar: 'ما الذي تغيّر، ومن غيّره، ولماذا غُيّر.', a_en: 'What changed, who changed it, and why.' },
+          { q_ar: 'ما فائدة منطقة التجهيز؟', q_en: 'What is the staging area for?', a_ar: 'فصل تعديلات مختلفة الأسباب في لقطات مستقلة، لكل واحدة رسالتها.', a_en: 'Separating edits made for different reasons into distinct commits, each with its own message.' },
+          { q_ar: 'ما صفة رسالة اللقطة الجيدة؟', q_en: 'What makes a good commit message?', a_ar: 'أن تصف سبب التغيير لا فعله، فيفهمها من يقرأ التاريخ لاحقاً.', a_en: 'It states the reason for the change rather than the action, so future readers understand.' },
+          { q_ar: 'متى يقع تعارض الدمج؟', q_en: 'When does a merge conflict occur?', a_ar: 'حين يعدّل شخصان السطر نفسه، فلا يستطيع Git ترجيح أحدهما ويطلب قرار الإنسان.', a_en: 'When two people edit the same line, so Git cannot prefer one and asks a human to decide.' }
+        ]
+      },
+      {
+        title_ar: 'قواعد البيانات وSQL',
+        title_en: 'Databases and SQL',
+        lead_ar: 'قاعدة البيانات ليست ملفاً أكبر، وإنما نظام يضمن أن بياناتك تبقى صحيحة ومتاحة حتى مع آلاف العمليات المتزامنة.',
+        lead_en: 'A database is not a bigger file but a system guaranteeing your data stays correct and available even under thousands of concurrent operations.',
+        body_ar: [
+          'قد تحفظ بيانات تطبيقك في ملف نصي، وستنجح ما دمت وحدك بعشرات السجلات. لكن حين يكتب مستخدمان في اللحظة نفسها، أو تنقطع الكهرباء في منتصف الكتابة، أو تريد كل الطلبات فوق مبلغ في شهر بعينه — عندها يفشل الملف وتظهر الحاجة لقاعدة بيانات.',
+          'والقاعدة العلاقية تنظّم البيانات في جداول: كل جدول لنوع كيان واحد، وكل صف سجل، وكل عمود صفة بنوع محدد. والمفتاح الأساسي عمود يميّز كل صف بلا تكرار، والمفتاح الخارجي عمود يشير لمفتاح أساسي في جدول آخر فيربط الجدولين.',
+          'وهذا الربط هو جوهر الفكرة: بدل تكرار بيانات العميل في كل طلب من طلباته، يُحفظ العميل مرة في جدوله ويشير كل طلب إليه. فإن تغيّر رقم هاتفه عُدّل في موضع واحد، ولا يبقى في النظام رقمان مختلفان للعميل نفسه.',
+          'وSQL لغة مخاطبة القاعدة، وهي تصريحية لا إجرائية: تقول ما تريد لا كيف يُجلب. فتكتب «أعطني أسماء العملاء الذين طلباتهم فوق ألف مرتبة تنازلياً»، ويتولى محرّك القاعدة تحديد أكفأ طريق للتنفيذ. وهذا فرق جوهري عن البرمجة المعتادة التي تصف فيها الخطوات.',
+          'وأربعة أوامر تغطي أغلب العمل: قراءة السجلات، وإضافة سجل، وتعديل سجل، وحذف سجل. وأخطر ما فيها التعديل والحذف بلا شرط تحديد: أمر حذف بلا شرط يمسح الجدول كله، وأمر تعديل بلا شرط يغيّر كل الصفوف. والعادة الواقية: اكتب شرط التحديد أولاً وجرّبه بأمر قراءة، فإذا رجع ما تقصده بالضبط حوّله لحذف أو تعديل.',
+          'ومن أهم ما يميّز القاعدة عن الملف: المعاملة. فتحويل مبلغ بين حسابين خصمٌ وإضافة، ولو نجح الخصم وفشلت الإضافة ضاع المال. والمعاملة تجمع العمليتين في وحدة لا تتجزأ: إما أن تنجحا معاً أو تُلغيا معاً وترجع البيانات كما كانت. وهذي الضمانة وحدها سبب كافٍ لاستخدام قاعدة بيانات.'
+        ],
+        body_en: [
+          'You may store your application data in a text file, and it will work while you are alone with dozens of records. But when two users write at the same moment, or power fails mid-write, or you want every order above an amount in one month, the file fails and a database becomes necessary.',
+          'A relational database organises data into tables: one table per entity type, each row a record and each column an attribute with a defined type. A primary key is a column uniquely identifying each row, and a foreign key is a column pointing at a primary key in another table, linking the two.',
+          'That link is the core idea: instead of repeating customer details on every one of their orders, the customer is stored once in their table and each order points to them. If their phone number changes it is edited in one place, and the system never holds two different numbers for the same customer.',
+          'SQL is the language for addressing the database, and it is declarative rather than procedural: you state what you want, not how to fetch it. You write "give me the names of customers whose orders exceed a thousand, sorted descending" and the engine decides the most efficient path. That is a fundamental departure from ordinary programming where you describe the steps.',
+          'Four commands cover most work: reading records, inserting, updating and deleting. The most dangerous are update and delete without a filtering condition: a delete with no condition wipes the whole table and an update with none changes every row. The protective habit: write the condition first and test it with a read, then convert it to a delete or update once it returns exactly what you mean.',
+          'One thing above all separates a database from a file: the transaction. Transferring money between accounts is a debit and a credit, and if the debit succeeds while the credit fails the money vanishes. A transaction binds both into an indivisible unit: either both succeed or both roll back and data returns as it was. That guarantee alone justifies using a database.'
+        ],
+        table: {
+          head_ar: ['المفهوم', 'ما هو', 'لماذا يهم'],
+          head_en: ['Concept', 'What it is', 'Why it matters'],
+          rows: [
+            ['الجدول', 'صفوف وأعمدة لنوع كيان واحد', 'تنظيم واضح بأنواع محددة'],
+            ['المفتاح الأساسي', 'عمود يميّز كل صف بلا تكرار', 'لا التباس بين سجلين'],
+            ['المفتاح الخارجي', 'عمود يشير لجدول آخر', 'ربط بلا تكرار البيانات'],
+            ['المعاملة', 'عمليات لا تتجزأ', 'إما الكل أو لا شيء'],
+            ['الفهرس', 'بنية تسرّع البحث في عمود', 'قراءة أسرع بثمن كتابة أبطأ']
+          ]
+        },
+        keyPoints_ar: [
+          'القاعدة تلزم عند التزامن وضمان السلامة والاستعلام المركّب، لا عند كثرة البيانات وحدها.',
+          'المفتاح الخارجي يربط الجداول فتُحفظ البيانات مرة واحدة لا مكررة.',
+          'SQL تصريحية: تصف ما تريد ويحدد المحرّك كيف يجلبه.',
+          'حذف أو تعديل بلا شرط يطال الجدول كله — جرّب الشرط بأمر قراءة أولاً.',
+          'المعاملة تضمن أن العمليات المترابطة تنجح معاً أو تُلغى معاً.'
+        ],
+        keyPoints_en: [
+          'A database becomes necessary for concurrency, integrity and complex queries, not merely data volume.',
+          'A foreign key links tables so data is stored once rather than duplicated.',
+          'SQL is declarative: you describe what you want and the engine decides how.',
+          'A delete or update with no condition hits the entire table; test the condition with a read first.',
+          'A transaction guarantees related operations succeed together or roll back together.'
+        ],
+        analogy_ar: 'تخيّل الملف النصي دفتراً واحداً يكتب فيه الجميع بالدور، فإن كتب اثنان معاً تشابكت السطور. والقاعدة نظام أرشيف بموظف ينظّم: يمنع تسجيل عميلين برقم واحد، ويرفض طلباً لعميل غير موجود، وإن انقطعت الكهرباء وسط تسجيل عملية ألغاها كاملة بدل أن يتركها نصفاً. المعاملة هي هذا الموظف: لا يقبل نصف عملية أبداً.',
+        analogy_en: 'Picture a text file as one notebook everyone writes in by turns, so two writing at once tangle the lines. A database is an archive with a clerk who enforces order: refusing two customers under one number, rejecting an order for a nonexistent customer, and cancelling a half-written operation entirely if power fails rather than leaving it partial. The transaction is that clerk: never accepting half an operation.',
+        terms: [
+          { term: 'Primary Key', def_ar: 'عمود يميّز كل صف في الجدول بلا تكرار.', def_en: 'A column uniquely identifying each row in a table.' },
+          { term: 'Foreign Key', def_ar: 'عمود يشير لمفتاح أساسي في جدول آخر فيربط الجدولين.', def_en: 'A column pointing at another table primary key, linking them.' },
+          { term: 'Transaction', def_ar: 'مجموعة عمليات لا تتجزأ: تنجح كلها أو تُلغى كلها.', def_en: 'An indivisible group of operations: all succeed or all roll back.' },
+          { term: 'Index', def_ar: 'بنية تسرّع البحث في عمود بثمن إبطاء الكتابة قليلاً.', def_en: 'A structure speeding column searches at the cost of slightly slower writes.' }
+        ],
+        cards: [
+          { q_ar: 'متى تلزم قاعدة بيانات بدل ملف؟', q_en: 'When is a database necessary instead of a file?', a_ar: 'عند الكتابة المتزامنة، وضمان سلامة البيانات، والاستعلامات المركّبة — لا لمجرد كثرة البيانات.', a_en: 'For concurrent writes, data integrity and complex queries, not merely for data volume.' },
+          { q_ar: 'ما معنى أن SQL لغة تصريحية؟', q_en: 'What does SQL being declarative mean?', a_ar: 'أنك تصف ما تريد لا كيف يُجلب، ويحدد محرّك القاعدة أكفأ طريق للتنفيذ.', a_en: 'You describe what you want, not how to fetch it, and the engine picks the efficient path.' },
+          { q_ar: 'ما خطر أمر تعديل بلا شرط تحديد؟', q_en: 'What is the risk of an update with no condition?', a_ar: 'يغيّر كل صفوف الجدول لا الصف المقصود.', a_en: 'It changes every row in the table rather than the intended one.' },
+          { q_ar: 'ما الذي تضمنه المعاملة في تحويل مبلغ؟', q_en: 'What does a transaction guarantee in a transfer?', a_ar: 'أن الخصم والإضافة ينجحان معاً أو يُلغيان معاً، فلا يضيع المال في المنتصف.', a_en: 'The debit and credit both succeed or both roll back, so money never vanishes midway.' }
+        ]
+      },
+      {
+        title_ar: 'ربط التطبيق بقاعدة البيانات وواجهات API',
+        title_en: 'Connecting to the Database and APIs',
+        lead_ar: 'الواجهة البرمجية عقد بين نظامين: تحدد ما يُطلب وكيف يُطلب وما يعود — فيتغيّر كل نظام داخلياً بلا أن يكسر الآخر.',
+        lead_en: 'An API is a contract between two systems defining what can be requested, how, and what returns, so each side changes internally without breaking the other.',
+        body_ar: [
+          'تطبيقك لا يخزّن بياناته بنفسه، وإنما يخاطب قاعدة البيانات: يفتح اتصالاً، ويرسل استعلاماً، ويستقبل النتيجة، ويغلق الاتصال. وفتح الاتصال عملية مكلفة نسبياً، ولهذا تُستخدم بركة اتصالات: مجموعة اتصالات مفتوحة سلفاً تُعار للطلبات وتُعاد بلا فتح وإغلاق متكرر.',
+          'وأخطر ما في مخاطبة القاعدة من التطبيق هو بناء الاستعلام بلصق مدخلات المستخدم فيه نصياً. فلو كتب المستخدم في خانة الاسم نصاً يُغلق الجملة ويضيف أمراً، نُفِّذ أمره ضمن استعلامك — وهذا هجوم حقن SQL. والوقاية ليست بتنظيف النص، وإنما باستخدام استعلام معلَّم يمرَّر فيه المدخل كقيمة لا كجزء من نص الاستعلام، فيستحيل أن يُقرأ كأمر.',
+          'والواجهة البرمجية API عقد بين نظامين: تحدد ما الذي يمكن طلبه، وبأي شكل يُرسل الطلب، وما الذي يعود. وقيمتها أن النظامين يتغيّران داخلياً بحرية ما داما يحترمان العقد، فتبدّل قاعدة البيانات كلياً ولا يشعر من يستهلك واجهتك.',
+          'وREST أسلوب شائع لبناء الواجهات يقوم على فكرة المورد: لكل نوع بيانات عنوان، والفعل يُحدَّد بطريقة الطلب لا بالعنوان. فطلب القراءة يجلب، والإرسال ينشئ، والتحديث يعدّل، والحذف يحذف. ولهذا لا يُكتب الفعل في العنوان — العنوان اسم مورد لا جملة أمر.',
+          'ورموز الاستجابة جزء من العقد لا زينة: مئتان تعني نجاحاً، وأربعمئة تعني أن الطلب نفسه خاطئ فلا فائدة من إعادته كما هو، وأربعمئة وواحد تعني أنك غير معرَّف، وأربعمئة وثلاثة تعني معرَّفاً بلا صلاحية، وأربعمئة وأربعة تعني أن المورد غير موجود، وخمسمئة تعني خللاً في الخادم لا في طلبك. وقراءة الرمز تختصر نصف وقت تشخيص المشكلة.',
+          'وقاعدة أمنية لا تُخالف: مفاتيح الوصول لا تُكتب داخل الكود ولا تُرفع مع المشروع، وإنما تُقرأ من متغيرات بيئة خارج الملفات المرفوعة. فالمفتاح المرفوع في مستودع عام يُكتشف آلياً خلال دقائق ويُستغل، وقد وقعت حوادث تسريب كبرى بهذا السبب وحده.'
+        ],
+        body_en: [
+          'Your application does not store data itself; it addresses the database: opens a connection, sends a query, receives a result, closes. Opening a connection is relatively expensive, so a connection pool is used: a set of pre-opened connections lent to requests and returned rather than repeatedly opened and closed.',
+          'The greatest danger in addressing a database from an application is building the query by pasting user input into it as text. If a user types something in the name field that closes the statement and appends a command, their command runs inside your query, and that is SQL injection. Prevention is not sanitising text but using a parameterised query where input is passed as a value rather than part of the query text, making it impossible to read as a command.',
+          'An API is a contract between two systems defining what can be requested, in what shape, and what returns. Its value is that both sides change internally as long as they honour the contract, so you can replace the database entirely and consumers never notice.',
+          'REST is a common style built on the resource idea: each data type has an address, and the verb is carried by the request method rather than the address. A read fetches, a post creates, an update modifies, a delete removes. So the verb is never written in the address, which names a resource rather than issuing a command.',
+          'Response codes are part of the contract, not decoration: 200 means success, 400 means the request itself is wrong so resending it unchanged is pointless, 401 means unidentified, 403 means identified without permission, 404 means the resource does not exist, and 500 means a server fault rather than a problem with your request. Reading the code halves diagnosis time.',
+          'One security rule is never broken: access keys are not written in code nor uploaded with the project, but read from environment variables outside uploaded files. A key pushed to a public repository is discovered automatically within minutes and exploited, and major leaks have happened for this reason alone.'
+        ],
+        table: {
+          head_ar: ['الرمز', 'معناه', 'ماذا تفعل'],
+          head_en: ['Code', 'Meaning', 'What to do'],
+          rows: [
+            ['200', 'نجاح', 'تابع عادة'],
+            ['400', 'الطلب نفسه خاطئ', 'صحّح الطلب لا تُعده كما هو'],
+            ['401', 'غير معرَّف', 'سجّل الدخول أو أرسل المفتاح'],
+            ['403', 'معرَّف بلا صلاحية', 'اطلب الصلاحية، الإعادة لن تنفع'],
+            ['404', 'المورد غير موجود', 'راجع العنوان أو المعرّف'],
+            ['500', 'خلل في الخادم', 'المشكلة ليست في طلبك']
+          ]
+        },
+        keyPoints_ar: [
+          'بركة الاتصالات تتجنب كلفة فتح اتصال جديد لكل طلب.',
+          'حقن SQL يُمنع بالاستعلام المعلَّم لا بتنظيف النص.',
+          'الواجهة عقد: كل طرف يتغيّر داخلياً ما دام يحترمه.',
+          'في REST العنوان اسم مورد، والفعل تحمله طريقة الطلب.',
+          'رمز الاستجابة يفرّق بين خطأ طلبك وخطأ الخادم فيختصر التشخيص.',
+          'المفاتيح في متغيرات بيئة لا في الكود ولا في المستودع.'
+        ],
+        keyPoints_en: [
+          'A connection pool avoids the cost of opening a new connection per request.',
+          'SQL injection is prevented by parameterised queries, not by sanitising text.',
+          'An API is a contract: each side changes internally while honouring it.',
+          'In REST the address names a resource and the method carries the verb.',
+          'The response code separates your error from a server error and shortens diagnosis.',
+          'Keys live in environment variables, never in code or the repository.'
+        ],
+        analogy_ar: 'تخيّل الواجهة نافذة طلبات في مطعم: تقول ما تريد بالشكل المتفق عليه وتستلم طلبك، ولا تدخل المطبخ ولا يهمك من الطبّاخ ولا كيف رُتّب المطبخ. ولهذا يقدر المطعم يغيّر مطبخه كاملاً بلا أن يتغيّر شيء عندك. أما حقن SQL فأن يكتب أحدهم في ورقة الطلب جملة تُقرأ أمراً للطبّاخ — والعلاج ألا تُقرأ الورقة أمراً أبداً، لا أن تُراجع كلماتها.',
+        analogy_en: 'Picture an API as a restaurant order window: you state what you want in the agreed form and receive it, never entering the kitchen nor caring who cooks or how it is arranged. So the restaurant can replace its whole kitchen while nothing changes for you. SQL injection is someone writing on the order slip a sentence the cook reads as an instruction, and the cure is that the slip is never read as instructions rather than reviewing its words.',
+        terms: [
+          { term: 'API', def_ar: 'عقد يحدد ما يُطلب وكيف يُطلب وما يعود بين نظامين.', def_en: 'A contract defining what is requested, how, and what returns between systems.' },
+          { term: 'SQL Injection', def_ar: 'إدخال المستخدم يُقرأ جزءاً من الاستعلام فيُنفَّذ كأمر.', def_en: 'User input read as part of the query and executed as a command.' },
+          { term: 'Parameterised Query', def_ar: 'استعلام يُمرَّر فيه المدخل كقيمة لا كنص، فيستحيل تنفيذه كأمر.', def_en: 'A query passing input as a value rather than text, so it cannot execute as a command.' },
+          { term: 'REST', def_ar: 'أسلوب واجهات يجعل لكل مورد عنواناً والفعل في طريقة الطلب.', def_en: 'An API style giving each resource an address with the verb in the method.' },
+          { term: 'Environment Variable', def_ar: 'قيمة تُقرأ من خارج الكود، تُحفظ فيها المفاتيح السرية.', def_en: 'A value read from outside the code, where secret keys are kept.' }
+        ],
+        cards: [
+          { q_ar: 'كيف يُمنع حقن SQL منعاً حقيقياً؟', q_en: 'How is SQL injection genuinely prevented?', a_ar: 'باستعلام معلَّم يُمرَّر فيه المدخل كقيمة لا كجزء من نص الاستعلام.', a_en: 'With a parameterised query passing input as a value rather than part of the query text.' },
+          { q_ar: 'ما الفرق بين الرمزين 401 و403 ؟', q_en: 'Difference between 401 and 403?', a_ar: '401 يعني أنك غير معرَّف، و403 يعني معرَّفاً لكن بلا صلاحية لهذا المورد.', a_en: '401 means unidentified; 403 means identified but lacking permission for this resource.' },
+          { q_ar: 'أين يوضع الفعل في واجهة REST ؟', q_en: 'Where does the verb live in a REST API?', a_ar: 'في طريقة الطلب لا في العنوان، فالعنوان اسم مورد.', a_en: 'In the request method, not the address, since the address names a resource.' },
+          { q_ar: 'لماذا لا يُكتب المفتاح السري داخل الكود؟', q_en: 'Why is a secret key never written in code?', a_ar: 'لأنه يُرفع مع المشروع فيُكتشف آلياً خلال دقائق ويُستغل.', a_en: 'Because it ships with the project and is discovered automatically within minutes and exploited.' }
+        ]
+      },
+      {
+        title_ar: 'الاختبار الآلي والنشر',
+        title_en: 'Automated Testing and Deployment',
+        lead_ar: 'الاختبار الآلي شبكة أمان تخبرك أن تعديلك لم يكسر ما كان يعمل، والنشر خطوة تُؤتمت حتى تصير مملة — والملل هنا مطلوب.',
+        lead_en: 'Automated tests are a safety net telling you your change did not break what worked, and deployment is automated until it becomes boring, and boring is the goal.',
+        body_ar: [
+          'الاختبار اليدوي يكفي في البداية: تشغّل التطبيق وتجرّب. لكنه يفشل بمجرد أن يكبر المشروع، لأن كل تعديل قد يكسر شيئاً بعيداً عنه، ولا أحد يعيد تجربة كل شي يدوياً في كل مرة. والاختبار الآلي كود يشغّل كودك ويتحقق أن ناتجه هو المتوقَّع.',
+          'وثلاثة مستويات للاختبار: اختبار الوحدة يفحص دالة واحدة معزولة عن غيرها فهو سريع ودقيق التشخيص، واختبار التكامل يفحص عمل عدة أجزاء معاً كالتطبيق مع قاعدة البيانات، واختبار النظام يفحص المسار كاملاً من واجهة المستخدم إلى النتيجة. والقاعدة العملية: اختبارات وحدة كثيرة، وتكامل أقل، ونظام قليلة — لأن الأخيرة أبطأ وأهش.',
+          'والاختبار الجيد يفحص السلوك لا التفاصيل الداخلية. فاختبار يتحقق أن الدالة ترجع القيمة الصحيحة يبقى صالحاً مهما أعدت كتابتها داخلياً، أما اختبار يتحقق أنها استدعت دالة أخرى بترتيب معيّن فسينكسر مع كل إعادة هيكلة ولو بقي السلوك سليماً — وهذي اختبارات هشّة تكلّف أكثر مما تنفع.',
+          'ولا تنس الحالات الحدّية: أغلب الأخطاء لا تقع في الحالة المعتادة بل في أطرافها — قائمة فارغة، وقيمة صفرية أو سالبة، ونص طويل جداً، وحرف خاص في اسم. واختبار يفحص الحالة السعيدة وحدها يعطيك طمأنينة كاذبة.',
+          'والتكامل المستمر أن تُشغَّل الاختبارات آلياً مع كل تغيير يُرفع، فيُكتشف الكسر خلال دقائق لا بعد أسبوع. والفائدة الحقيقية ليست في الاختبارات بحد ذاتها، وإنما في قِصَر المدة بين ارتكاب الخطأ واكتشافه: خطأ يُكتشف بعد دقيقتين تعرف سببه بالضبط، وخطأ يُكتشف بعد شهر تبحث عنه في مئة تغيير.',
+          'والنشر نقل الكود من جهازك إلى بيئة يستخدمها الناس. وأول قاعدة فيه فصل البيئات: بيئة تطوير عندك، وبيئة اختبار تشبه الإنتاج، وبيئة إنتاج للمستخدمين. والنشر المؤتمت يُنفَّذ بأمر واحد فيصير متكرراً ومملاً وقابلاً للتراجع — وهذا أأمن بكثير من نشر يدوي نادر مرهق يخشاه الفريق فيؤجّله حتى تتراكم التغييرات.'
+        ],
+        body_en: [
+          'Manual testing suffices at first: run the app and try it. It fails as soon as the project grows, because any change may break something far away and nobody re-tries everything by hand each time. An automated test is code that runs your code and verifies the result matches expectation.',
+          'Testing has three levels: a unit test checks one function in isolation, so it is fast and pinpoints the fault; an integration test checks several parts working together, such as the app with the database; and a system test checks the whole path from interface to result. Practical rule: many unit tests, fewer integration, few system, because the last are slower and more brittle.',
+          'A good test checks behaviour rather than internal details. A test verifying the returned value stays valid however you rewrite the internals, while one verifying that it called another function in a certain order breaks with every refactor even when behaviour is intact. Those brittle tests cost more than they give.',
+          'Do not forget edge cases: most bugs live not in the ordinary case but at its edges, an empty list, a zero or negative value, very long text, a special character in a name. A test covering only the happy path grants false confidence.',
+          'Continuous integration runs the tests automatically on every pushed change, so breakage surfaces in minutes rather than a week. The real benefit is not the tests themselves but the short gap between making an error and finding it: a fault found in two minutes has an obvious cause, while one found a month later is hunted through a hundred changes.',
+          'Deployment moves code from your machine to an environment people use. Its first rule is separating environments: development on your machine, a staging environment resembling production, and production for users. Automated deployment runs with one command, so it becomes frequent, boring and reversible, which is far safer than a rare, exhausting manual release the team dreads and postpones until changes pile up.'
+        ],
+        table: {
+          head_ar: ['النوع', 'ما يفحصه', 'سرعته', 'دقة التشخيص'],
+          head_en: ['Type', 'What it checks', 'Speed', 'Diagnosis'],
+          rows: [
+            ['اختبار وحدة', 'دالة واحدة معزولة', 'سريع جداً', 'يحدد السطر تقريباً'],
+            ['اختبار تكامل', 'أجزاء تعمل معاً', 'متوسط', 'يحدد الوصلة'],
+            ['اختبار نظام', 'المسار كاملاً', 'بطيء', 'يخبرك أن شيئاً كُسر'],
+            ['تكامل مستمر', 'الكل مع كل تغيير', '—', 'يقصّر زمن الاكتشاف']
+          ]
+        },
+        keyPoints_ar: [
+          'الاختبار الآلي كود يشغّل كودك ويتحقق أن ناتجه هو المتوقَّع.',
+          'اختبارات وحدة كثيرة، وتكامل أقل، ونظام قليلة.',
+          'افحص السلوك لا التفاصيل الداخلية، وإلا انكسرت اختباراتك مع كل إعادة هيكلة.',
+          'أغلب الأخطاء في الحالات الحدّية لا في الحالة السعيدة.',
+          'قيمة التكامل المستمر في قِصَر المدة بين ارتكاب الخطأ واكتشافه.',
+          'النشر المؤتمت المتكرر أأمن من النشر اليدوي النادر المرهق.'
+        ],
+        keyPoints_en: [
+          'An automated test is code that runs your code and verifies the expected result.',
+          'Many unit tests, fewer integration tests, few system tests.',
+          'Test behaviour rather than internals, or tests break with every refactor.',
+          'Most bugs live in edge cases, not the happy path.',
+          'The value of continuous integration is the short gap between error and discovery.',
+          'Frequent automated deployment is safer than rare exhausting manual releases.'
+        ],
+        analogy_ar: 'تخيّل الاختبارات حزام الأمان: لا يمنعك من القيادة ولا يبطئك، لكنه يجعل الخطأ محتملاً بدل أن يكون كارثة. وتخيّل النشر اليدوي النادر عملية جراحية كبرى يخشاها الفريق فيؤجّلها حتى تتراكم المشاكل؛ والنشر المؤتمت المتكرر كجرعة دواء يومية صغيرة — مملة، وهذا بالضبط سبب أمانها.',
+        analogy_en: 'Picture tests as a seatbelt: it neither stops you driving nor slows you, but it turns a mistake into something survivable rather than catastrophic. Picture rare manual deployment as major surgery the team dreads and postpones until problems accumulate, while frequent automated deployment is a small daily dose: boring, and that is precisely why it is safe.',
+        terms: [
+          { term: 'Unit Test', def_ar: 'اختبار يفحص دالة واحدة معزولة عن بقية النظام.', def_en: 'A test checking one function isolated from the rest.' },
+          { term: 'Integration Test', def_ar: 'اختبار يفحص عمل عدة أجزاء معاً.', def_en: 'A test checking several parts working together.' },
+          { term: 'CI', def_ar: 'تشغيل الاختبارات آلياً مع كل تغيير يُرفع.', def_en: 'Running tests automatically on every pushed change.' },
+          { term: 'Staging', def_ar: 'بيئة تشبه الإنتاج تُجرَّب فيها التغييرات قبل المستخدمين.', def_en: 'An environment resembling production where changes are tried before users.' },
+          { term: 'Rollback', def_ar: 'الرجوع لإصدار سابق يعمل بعد نشر فاشل.', def_en: 'Returning to a previously working release after a failed deployment.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يُفضَّل فحص السلوك على فحص التفاصيل الداخلية؟', q_en: 'Why test behaviour rather than internals?', a_ar: 'لأن اختبار السلوك يبقى صالحاً بعد إعادة الهيكلة، واختبار التفاصيل ينكسر ولو بقي السلوك سليماً.', a_en: 'Behaviour tests survive refactoring, while internal-detail tests break even when behaviour is intact.' },
+          { q_ar: 'أين تقع أغلب الأخطاء؟', q_en: 'Where do most bugs live?', a_ar: 'في الحالات الحدّية: قائمة فارغة، قيمة صفرية أو سالبة، نص طويل، حرف خاص.', a_en: 'In edge cases: an empty list, zero or negative values, very long text, special characters.' },
+          { q_ar: 'ما القيمة الحقيقية للتكامل المستمر؟', q_en: 'What is the real value of continuous integration?', a_ar: 'قِصَر المدة بين ارتكاب الخطأ واكتشافه، فيسهل ربطه بسببه.', a_en: 'The short gap between making an error and finding it, which keeps the cause obvious.' },
+          { q_ar: 'لماذا النشر المتكرر أأمن من النادر؟', q_en: 'Why is frequent deployment safer than rare?', a_ar: 'لأن كل نشرة تحمل تغييراً صغيراً يسهل تتبّعه والتراجع عنه، بخلاف نشرة تراكمت فيها التغييرات.', a_en: 'Each release carries a small change that is easy to trace and reverse, unlike one where changes piled up.' }
+        ]
+      }
     ]
   }
 };
