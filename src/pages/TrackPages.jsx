@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Clock, AlertTriangle, ArrowRight, Lock, CheckCircle2, XCircle, ArrowLeft } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 import { supabase } from '../supabaseClient';
+import { awardLevelPoints } from '../lib/points';
 
 export const TrackHome = () => {
   const { currentTrack, tracksInfo, language, t } = useAppContext();
@@ -138,6 +139,9 @@ const [dragIndex, setDragIndex] = useState(null);
     if (!track || !section) return;
 
     const unlockNextLevel = async () => {
+      // نقاط اجتياز المستوى — تُمنح مرة واحدة لكل مستوى، والإعادة لا تُحتسب
+      awardLevelPoints(track.id, section.title, selectedLevel);
+
       const nextLevel = selectedLevel + 1;
 
       if (nextLevel > unlockedLevel) {
