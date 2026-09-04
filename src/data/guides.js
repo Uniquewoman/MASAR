@@ -615,6 +615,314 @@ export const sectionGuides = {
           { q_ar: 'ما القاعدة قبل أي تحسين؟', q_en: 'What is the rule before any optimisation?', a_ar: 'لا تحسّن ما لم تقس، فالتحسين قبل القياس يعقّد الكود بلا فائدة مثبتة.', a_en: 'Do not optimise what you have not measured; optimising first complicates code with no proven gain.' }
         ]
       }
+    ],
+
+    // ─────────── البرمجة الكائنية والمتقدمة ───────────
+    2: [
+      {
+        title_ar: 'لماذا الكائنية · الكلاس والكائن والخصائص',
+        title_en: 'Why OOP · Classes, Objects and Attributes',
+        lead_ar: 'الكلاس مخطط، والكائن نسخة مبنية منه — والفكرة كلها أن تجمع البيانات والدوال التي تعمل عليها في مكان واحد بدل تفريقهما.',
+        lead_en: 'A class is a blueprint and an object is an instance built from it. The whole idea is keeping data and the functions that act on it in one place instead of scattering them.',
+        body_ar: [
+          'حين يكبر البرنامج تظهر مشكلة: عندك عشرون متغيّراً تصف طالباً — اسمه ودرجاته ومستواه — وعشر دوال تعمل عليها، وكلها مبعثرة في الملف. فإن أضفت طالباً ثانياً ضاعفت المتغيرات، وإن غيّرت شكل البيانات لاحقتك التعديلات في كل دالة. البرمجة الكائنية تحل هذا بجمع البيانات ودوالها في وحدة واحدة.',
+          'والكلاس وصف أو مخطط: يقول ما الذي يملكه الشيء وما الذي يقدر أن يفعله، لكنه لا يشغل ذاكرة ولا يمثّل شيئاً بعينه. أما الكائن فهو النسخة الفعلية المبنية من هذا المخطط، وله قيمه الخاصة. فكلاس Student واحد، وكائناته آلاف الطلاب، لكل واحد اسمه ودرجاته.',
+          'والخصائص هي بيانات الكائن: ما يملكه. وتُعطى قيمها الابتدائية في دالة خاصة اسمها __init__ تُستدعى تلقائياً لحظة إنشاء الكائن، فلا تُنادى يدوياً أبداً. وكل ما تكتبه فيها من إسنادات يصير خاصية للكائن الجديد.',
+          'وكلمة self هي مربط الفرس: تشير للكائن المحدَّد الذي تشتغل عليه الدالة الآن. فحين تكتب self.name = name داخل __init__، أنت تقول: خاصية الاسم في هذا الكائن بعينه تساوي القيمة الممرَّرة. ولهذا تكون self أول معامل في كل دالة داخل الكلاس — والنسيان الشائع لها من أكثر أخطاء المبتدئ في هذا الباب.',
+          'ولاحظ الفرق بين خاصية الكائن وخاصية الكلاس: الأولى تُكتب بـself وتختلف من كائن لآخر، والثانية تُكتب مباشرة داخل الكلاس ويشترك فيها كل الكائنات. فعدّاد لكم عدد الطلاب المنشأين يكون خاصية كلاس، واسم الطالب خاصية كائن.',
+          'والفائدة العملية تظهر فوراً: بدل عشرين متغيّراً مبعثراً صار عندك كائن واحد يحمل بياناته معه أينما ذهب. وحين تمرّره لدالة تمرّر كل ما يخصه دفعة واحدة، وحين تغيّر بنيته تعدّل في مكان واحد.'
+        ],
+        body_en: [
+          'As a program grows, a problem appears: twenty variables describe a student, ten functions act on them, and all are scattered through the file. Adding a second student doubles the variables, and changing the data shape chases edits through every function. Object-oriented programming solves this by keeping data and its functions in one unit.',
+          'A class is a description or blueprint: it states what a thing has and what it can do, but occupies no memory and represents nothing specific. An object is the actual instance built from that blueprint, with its own values. One Student class, thousands of student objects, each with its own name and grades.',
+          'Attributes are the object data: what it has. Their initial values are set in a special function named __init__, called automatically at creation, never manually. Every assignment you write there becomes an attribute of the new object.',
+          'The word self is the crux: it refers to the specific object the function is currently working on. Writing self.name = name inside __init__ says: the name attribute of this particular object equals the passed value. That is why self is the first parameter of every method, and forgetting it is a classic beginner error here.',
+          'Note the difference between an instance attribute and a class attribute: the first is written with self and differs per object, the second is written directly in the class and is shared by all objects. A counter of created students is a class attribute; a student name is an instance attribute.',
+          'The practical benefit shows immediately: instead of twenty scattered variables you have one object carrying its data wherever it goes. Passing it to a function passes everything at once, and changing its structure means editing one place.'
+        ],
+        table: {
+          head_ar: ['المفهوم', 'ما هو', 'يشغل ذاكرة؟', 'مثال'],
+          head_en: ['Concept', 'What it is', 'Uses memory?', 'Example'],
+          rows: [
+            ['Class', 'مخطط ووصف', 'لا', 'Student'],
+            ['Object', 'نسخة فعلية من المخطط', 'نعم', 'الطالب سارة'],
+            ['Attribute', 'بيانات يملكها الكائن', 'نعم', 'self.name'],
+            ['__init__', 'دالة تُستدعى تلقائياً عند الإنشاء', '—', 'تضبط القيم الابتدائية']
+          ]
+        },
+        keyPoints_ar: [
+          'الكلاس مخطط لا يشغل ذاكرة، والكائن نسخة فعلية منه لها قيمها.',
+          'دالة __init__ تُستدعى تلقائياً عند الإنشاء ولا تُنادى يدوياً.',
+          'self تشير للكائن المحدَّد الذي تعمل عليه الدالة، وهي أول معامل دائماً.',
+          'خاصية الكائن تختلف بين الكائنات، وخاصية الكلاس يشترك فيها الجميع.',
+          'الفائدة الأساسية: البيانات ودوالها في وحدة واحدة لا مبعثرة.'
+        ],
+        keyPoints_en: [
+          'A class is a blueprint using no memory; an object is a real instance with its own values.',
+          '__init__ runs automatically at creation and is never called by hand.',
+          'self refers to the specific object the method works on, and is always the first parameter.',
+          'Instance attributes differ per object; class attributes are shared by all.',
+          'The core benefit: data and its functions live in one unit instead of scattered.'
+        ],
+        analogy_ar: 'تخيّل الكلاس مخطط بيت عند المهندس: ورقة تصف عدد الغرف ومواضع الأبواب. لا أحد يسكن المخطط. والكائن هو البيت المبني فعلاً من هذا المخطط — وقد تبني منه عشرة بيوت، كل بيت بلونه وأثاثه. و__init__ هي لحظة التسليم: تُركَّب فيها الأشياء الابتدائية لكل بيت على حدة.',
+        analogy_en: 'Picture a class as an architect house plan: a sheet describing rooms and door positions. Nobody lives in the plan. The object is the house actually built from it, and you may build ten, each with its own colour and furniture. __init__ is the handover moment when each house initial fittings are installed.',
+        terms: [
+          { term: 'Class', def_ar: 'مخطط يصف ما يملكه الشيء وما يفعله.', def_en: 'A blueprint describing what a thing has and does.' },
+          { term: 'Object', def_ar: 'نسخة فعلية مبنية من الكلاس ولها قيمها الخاصة.', def_en: 'A real instance built from a class with its own values.' },
+          { term: '__init__', def_ar: 'دالة الإنشاء التي تُستدعى تلقائياً وتضبط القيم الابتدائية.', def_en: 'The constructor called automatically to set initial values.' },
+          { term: 'self', def_ar: 'إشارة للكائن المحدَّد الذي تعمل عليه الدالة الآن.', def_en: 'A reference to the specific object the method is working on.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين الكلاس والكائن؟', q_en: 'Difference between a class and an object?', a_ar: 'الكلاس مخطط يصف ولا يشغل ذاكرة، والكائن نسخة فعلية منه لها قيمها الخاصة.', a_en: 'A class is a describing blueprint using no memory; an object is a real instance with its own values.' },
+          { q_ar: 'متى تُستدعى __init__ ؟', q_en: 'When is __init__ called?', a_ar: 'تلقائياً لحظة إنشاء الكائن، ولا تُنادى يدوياً.', a_en: 'Automatically at object creation; it is never called manually.' },
+          { q_ar: 'إلامَ تشير self ؟', q_en: 'What does self refer to?', a_ar: 'للكائن المحدَّد الذي تُستدعى عليه الدالة، ولهذا تكون أول معامل في كل دوال الكلاس.', a_en: 'The specific object the method was called on, which is why it is the first parameter of every method.' },
+          { q_ar: 'أي الخصائص يشترك فيها كل الكائنات؟', q_en: 'Which attribute is shared by all objects?', a_ar: 'خاصية الكلاس المكتوبة داخله مباشرة، لا خاصية الكائن المكتوبة بـself.', a_en: 'The class attribute written directly in the class, not the instance attribute written with self.' }
+        ]
+      },
+      {
+        title_ar: 'الدوال والباني',
+        title_en: 'Methods and the Constructor',
+        lead_ar: 'الدالة داخل الكلاس تصف ما يقدر الكائن أن يفعله، وتصل لبياناته عبر self بلا حاجة لتمريرها في كل استدعاء.',
+        lead_en: 'A method inside a class describes what the object can do, reaching its data through self with no need to pass it on every call.',
+        body_ar: [
+          'الدالة داخل الكلاس تُسمّى method، وهي تصف سلوك الكائن: ما الذي يقدر أن يفعله. والفرق بينها وبين الدالة العادية أنها تملك وصولاً مباشراً لبيانات الكائن عبر self، فلا تحتاج أن تمرّر لها الاسم والدرجات في كل استدعاء — هي تعرفها أصلاً لأنها جزء من الكائن.',
+          'وهذا هو الفرق العملي الأكبر بين الأسلوبين: في الأسلوب الإجرائي تكتب calculate_average(grades) وتمرّر البيانات في كل مرة، وفي الكائني تكتب student.calculate_average() والكائن يعرف درجاته. فإن أضفت بياناً جديداً للطالب، لا تتغيّر توقيعات الدوال.',
+          'والباني هو __init__: دالة تُستدعى تلقائياً لحظة الإنشاء لتضبط الحالة الابتدائية للكائن. ويقبل معاملات تُمرَّر عند الإنشاء بين قوسي اسم الكلاس، فيكون كل كائن مضبوطاً من لحظة ولادته لا بعدها بأسطر.',
+          'ويمكن للباني أن يعطي قيماً افتراضية لبعض المعاملات، فيصير إنشاء الكائن ممكناً بحد أدنى من البيانات. وهذي ممارسة جيدة تقلل ما يجب على المستخدم تذكّره، لكن احذر الفخ الشهير: لا تجعل القيمة الافتراضية قائمة أو قاموساً، لأنها تُنشأ مرة واحدة وتتشارك بين كل الكائنات.',
+          'وثمة دوال خاصة أخرى تبدأ وتنتهي بشرطتين سفليتين، أشهرها __str__ التي تحدد ما يظهر حين تطبع الكائن. فبدونها تطبع بايثون شيئاً مثل موضع الكائن في الذاكرة وهو بلا فائدة للقارئ، ومعها تطبع ما تختاره أنت.',
+          'وقاعدة عملية في تصميم الدوال: الدالة الواحدة تفعل شيئاً واحداً. فدالة اسمها save_and_send_and_log تخفي ثلاث مسؤوليات، وتصعب على من يقرأ ومن يختبر. اجعل كل دالة تُوصَف بجملة واحدة بلا واو.'
+        ],
+        body_en: [
+          'A function inside a class is a method describing the object behaviour: what it can do. Unlike a plain function, it reaches the object data directly through self, so you need not pass the name and grades on every call; it already knows them as part of the object.',
+          'This is the biggest practical difference between the two styles: procedurally you write calculate_average(grades) passing data each time, while in OOP you write student.calculate_average() and the object knows its grades. Adding a new field does not change method signatures.',
+          'The constructor is __init__: a method called automatically at creation to set the initial state. It accepts parameters passed between the class-name parentheses, so every object is configured from birth rather than lines later.',
+          'A constructor may give defaults to some parameters, making creation possible with minimal data. That is good practice, reducing what a user must remember, but beware the classic trap: never use a list or dict as a default, since it is created once and shared across all objects.',
+          'Other special methods begin and end with double underscores, most notably __str__, which defines what appears when the object is printed. Without it Python prints something like a memory address, useless to a reader; with it you choose what shows.',
+          'A practical design rule: one method does one thing. A method named save_and_send_and_log hides three responsibilities and is hard to read and test. Make every method describable in one sentence with no "and".'
+        ],
+        table: {
+          head_ar: ['الأسلوب', 'الاستدعاء', 'أين تعيش البيانات'],
+          head_en: ['Style', 'Call', 'Where data lives'],
+          rows: [
+            ['إجرائي', 'calculate_average(grades)', 'متغيّر خارجي يُمرَّر'],
+            ['كائني', 'student.calculate_average()', 'داخل الكائن نفسه'],
+            ['الباني', 'Student("سارة", 20)', 'يُضبط لحظة الإنشاء'],
+            ['__str__', 'print(student)', 'يحدد شكل الطباعة']
+          ]
+        },
+        keyPoints_ar: [
+          'الدالة داخل الكلاس تصل لبيانات الكائن عبر self بلا تمرير.',
+          'الباني __init__ يضبط الحالة الابتدائية لحظة الإنشاء لا بعدها.',
+          'لا تجعل القيمة الافتراضية قائمة أو قاموساً — تُنشأ مرة وتتشارك.',
+          '__str__ تحدد ما يظهر عند طباعة الكائن بدل موضع الذاكرة.',
+          'الدالة الواحدة تفعل شيئاً واحداً يُوصَف بجملة بلا واو.'
+        ],
+        keyPoints_en: [
+          'A method reaches object data through self with no passing.',
+          '__init__ sets the initial state at creation, not lines later.',
+          'Never default a parameter to a list or dict; it is created once and shared.',
+          '__str__ defines what prints instead of a memory address.',
+          'One method does one thing, describable in a sentence with no "and".'
+        ],
+        analogy_ar: 'تخيّل الفرق بين طبّاخ يحمل مقاديره معه في حقيبته، وطبّاخ تُسلَّم له المقادير في كل مرة يطبخ. الكائني هو الأول: الدالة جزء من الكائن وتعرف بياناته. والباني هو تجهيز الحقيبة قبل أول طبخة — لا يُترك للطبّاخ أن يجمع مقاديره أثناء العمل.',
+        analogy_en: 'Picture the difference between a cook carrying ingredients in their own bag and one handed ingredients every time. OOP is the first: the method belongs to the object and knows its data. The constructor is packing that bag before the first dish, rather than letting the cook gather ingredients mid-service.',
+        terms: [
+          { term: 'Method', def_ar: 'دالة معرَّفة داخل كلاس تصف سلوك الكائن.', def_en: 'A function defined inside a class describing object behaviour.' },
+          { term: 'Constructor', def_ar: 'الباني __init__ الذي يضبط الحالة الابتدائية عند الإنشاء.', def_en: 'The __init__ method setting initial state at creation.' },
+          { term: 'Default Parameter', def_ar: 'قيمة تُستخدم إن لم يُمرَّر وسيط، ويُمنع أن تكون قابلة للتغيير.', def_en: 'A value used when no argument is passed; must not be mutable.' },
+          { term: '__str__', def_ar: 'دالة خاصة تحدد النص الظاهر عند طباعة الكائن.', def_en: 'A special method defining the text shown when printing an object.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا تحتاج الدالة داخل الكلاس تمرير بيانات الكائن؟', q_en: 'Why does a method not need the object data passed in?', a_ar: 'لأنها تصل إليها مباشرة عبر self، فهي جزء من الكائن نفسه.', a_en: 'Because it reaches them directly through self, being part of the object itself.' },
+          { q_ar: 'ما خطر جعل القيمة الافتراضية قائمة؟', q_en: 'What is the risk of a list as a default value?', a_ar: 'تُنشأ مرة واحدة وتتشارك بين كل الكائنات، فتعديل واحد يظهر عند الجميع.', a_en: 'It is created once and shared across all objects, so one change appears everywhere.' },
+          { q_ar: 'ماذا تطبع بايثون للكائن بلا __str__ ؟', q_en: 'What does Python print for an object without __str__ ?', a_ar: 'وصفاً تقنياً كموضع الكائن في الذاكرة، وهو بلا فائدة للقارئ.', a_en: 'A technical description such as its memory address, useless to a reader.' },
+          { q_ar: 'ما علامة أن الدالة تحمل مسؤوليات أكثر من واحدة؟', q_en: 'What signals a method has more than one responsibility?', a_ar: 'أن يحتاج وصفها لكلمة «و»، مثل save_and_send.', a_en: 'Its description needs the word "and", like save_and_send.' }
+        ]
+      },
+      {
+        title_ar: 'التغليف ومحددات الوصول',
+        title_en: 'Encapsulation and Access Modifiers',
+        lead_ar: 'التغليف أن تخفي تفاصيل الكائن الداخلية وتتيح التعامل معه عبر واجهة محددة، فلا يفسد أحد حالته من الخارج.',
+        lead_en: 'Encapsulation hides an object internal details and exposes a defined interface, so nobody corrupts its state from outside.',
+        body_ar: [
+          'حين تترك خصائص الكائن مفتوحة للجميع، يقدر أي كود في المشروع أن يغيّرها بأي قيمة. فلو كان رصيد الحساب خاصية مفتوحة، أمكن لسطر واحد أن يجعله سالباً بمليون، ولن تعرف أي سطر فعلها من بين آلاف السطور. والتغليف يحل هذا: تُغلق الخاصية ويُتاح تعديلها عبر دالة تفحص القيمة قبل قبولها.',
+          'وبايثون لا تفرض المنع فرضاً صارماً كبعض اللغات، وإنما تعتمد اصطلاحاً متفقاً عليه: الاسم المسبوق بشرطة سفلية واحدة _balance يعني «هذا داخلي فلا تمسّه»، وهو تحذير للمبرمج لا قيد على المفسّر. والمسبوق بشرطتين __balance يذهب أبعد: تُبدّل بايثون اسمه داخلياً فيصعب الوصول إليه بالخطأ.',
+          'ولهذا التبديل أثر مهم يخفى على كثيرين: الخاصية المسبوقة بشرطتين لا تُورَث للابن بالاسم نفسه، لأن الاسم يُبدَّل باسم الكلاس الذي عرّفها. فإن ورث كلاس ابن من أب فيه __balance، لن يجدها بهذا الاسم — وهذا مقصود لا خلل.',
+          'والواجهة المتاحة تكون بدوال: دالة قراءة ترجع القيمة، ودالة تعديل تفحص قبل أن تقبل. فدالة الإيداع ترفض المبلغ السالب، ودالة السحب ترفض ما يتجاوز الرصيد. وبهذا يصير من المستحيل — لا الممنوع فقط — أن يصل الكائن لحالة غير صحيحة.',
+          'وأهم ثمرة عملية للتغليف أنها تحرر يدك في التعديل: ما دام الخارج لا يتعامل إلا مع الواجهة، تقدر تغيّر التمثيل الداخلي كلياً — تحوّل الرصيد من رقم إلى سجل عمليات مثلاً — بلا أن يتأثر سطر واحد خارج الكلاس. وهذا هو الفرق بين كود يقبل التطور وكود يتحجّر.',
+          'والقاعدة العملية: اجعل كل شيء داخلياً بالأصل، ثم افتح ما تحتاج الواجهة فتحه فقط. الفتح لاحقاً سهل، والإغلاق بعد أن يعتمد عليه نصف المشروع مؤلم.'
+        ],
+        body_en: [
+          'Leaving object attributes open to everyone lets any code in the project set them to any value. If an account balance were an open attribute, one line could make it negative by a million, and you would not know which of thousands of lines did it. Encapsulation solves this: the attribute is closed and changed through a method that validates first.',
+          'Python does not enforce this strictly like some languages; it relies on convention. A single leading underscore, _balance, means "this is internal, do not touch": a warning to the programmer, not a restriction on the interpreter. A double underscore, __balance, goes further: Python mangles the name internally so it is hard to reach by accident.',
+          'That mangling has an important consequence many miss: a double-underscore attribute is not inherited under the same name, because the name carries the defining class. A child inheriting from a parent with __balance will not find it by that name, and this is deliberate, not a defect.',
+          'The exposed interface is methods: a reader returning the value, and a writer validating before accepting. A deposit method rejects a negative amount, a withdrawal rejects more than the balance. This makes reaching an invalid state impossible, not merely forbidden.',
+          'The most valuable practical result is freedom to change: as long as outside code touches only the interface, you can change the internal representation entirely, turning a balance from a number into a transaction log, without affecting a single line outside the class. That is the difference between code that evolves and code that ossifies.',
+          'Practical rule: make everything internal by default, then open only what the interface needs. Opening later is easy; closing after half the project depends on it is painful.'
+        ],
+        table: {
+          head_ar: ['الكتابة', 'المعنى', 'يمنعه المفسّر؟'],
+          head_en: ['Notation', 'Meaning', 'Enforced?'],
+          rows: [
+            ['balance', 'متاح للجميع', 'لا'],
+            ['_balance', 'داخلي باصطلاح متفق عليه', 'لا'],
+            ['__balance', 'يُبدَّل اسمه فيصعب الوصول', 'شبه محمي'],
+            ['get_balance()', 'واجهة قراءة معلنة', '—']
+          ]
+        },
+        keyPoints_ar: [
+          'التغليف يمنع الوصول لحالة غير صحيحة، لا يكتفي بمنع التعديل.',
+          'الشرطة الواحدة اصطلاح تحذيري، والشرطتان تبدّلان الاسم داخلياً.',
+          'الخاصية بشرطتين لا يجدها الابن بالاسم نفسه — وهذا مقصود.',
+          'الفحص يكون في دالة التعديل لا في الخارج.',
+          'التغليف يحرر تغيير التمثيل الداخلي بلا كسر ما بالخارج.'
+        ],
+        keyPoints_en: [
+          'Encapsulation prevents invalid states, not merely edits.',
+          'One underscore is a warning convention; two mangle the name internally.',
+          'A double-underscore attribute is not found by the child under the same name, deliberately.',
+          'Validation belongs in the setter method, not outside.',
+          'Encapsulation frees you to change the internal representation without breaking outside code.'
+        ],
+        analogy_ar: 'تخيّل ماكينة صرّاف آلي. رصيدك ليس صندوقاً مفتوحاً تمد يدك فيه، بل تصل إليه عبر أزرار محددة: إيداع وسحب واستعلام. والماكينة تفحص كل طلب قبل تنفيذه فترفض سحباً يتجاوز رصيدك. ولأن التعامل عبر الأزرار فقط، يقدر البنك يغيّر نظامه الداخلي كاملاً وأنت لا تلاحظ شيئاً.',
+        analogy_en: 'Picture an ATM. Your balance is not an open box you reach into; you touch it through defined buttons: deposit, withdraw, enquire. The machine validates each request and refuses a withdrawal beyond your balance. Because interaction happens only through buttons, the bank can replace its entire internal system without you noticing.',
+        terms: [
+          { term: 'Encapsulation', def_ar: 'إخفاء التفاصيل الداخلية وإتاحة التعامل عبر واجهة محددة.', def_en: 'Hiding internal details and exposing a defined interface.' },
+          { term: 'Name Mangling', def_ar: 'تبديل بايثون لاسم الخاصية المسبوقة بشرطتين ليصعب الوصول إليها.', def_en: 'Python renaming of a double-underscore attribute to make access harder.' },
+          { term: 'Getter', def_ar: 'دالة تُرجع قيمة خاصية داخلية للقراءة.', def_en: 'A method returning an internal attribute for reading.' },
+          { term: 'Setter', def_ar: 'دالة تعدّل خاصية داخلية بعد فحص القيمة.', def_en: 'A method changing an internal attribute after validating the value.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين _name و__name ؟', q_en: 'Difference between _name and __name ?', a_ar: 'الأولى اصطلاح تحذيري لا يمنعه المفسّر، والثانية يُبدَّل اسمها داخلياً فيصعب الوصول إليها.', a_en: 'The first is a warning convention the interpreter does not enforce; the second is name-mangled so access is hard.' },
+          { q_ar: 'لماذا يوضع الفحص في دالة التعديل؟', q_en: 'Why put validation in the setter?', a_ar: 'ليصير بلوغ حالة غير صحيحة مستحيلاً، لا معتمداً على انضباط من يكتب في الخارج.', a_en: 'So an invalid state becomes impossible rather than depending on outside discipline.' },
+          { q_ar: 'ما أكبر مكسب عملي من التغليف؟', q_en: 'What is the biggest practical gain of encapsulation?', a_ar: 'حرية تغيير التمثيل الداخلي كلياً بلا كسر أي كود خارج الكلاس.', a_en: 'Freedom to change the internal representation entirely without breaking code outside the class.' },
+          { q_ar: 'هل يرث الابن خاصية مسبوقة بشرطتين بالاسم نفسه؟', q_en: 'Does a child inherit a double-underscore attribute under the same name?', a_ar: 'لا، لأن الاسم يُبدَّل باسم الكلاس الذي عرّفها، وهذا سلوك مقصود.', a_en: 'No, because the name carries the defining class, and this is deliberate behaviour.' }
+        ]
+      },
+      {
+        title_ar: 'الوراثة وتعدد الأشكال',
+        title_en: 'Inheritance and Polymorphism',
+        lead_ar: 'الوراثة تجعل كلاساً يأخذ كل ما في آخر ويزيد عليه أو يغيّره، وتعدد الأشكال يجعل الاستدعاء الواحد يعمل مع أنواع مختلفة.',
+        lead_en: 'Inheritance lets one class take everything from another and extend or change it, and polymorphism lets one call work across different types.',
+        body_ar: [
+          'حين تجد كلاسين يتشاركان أغلب البيانات والدوال ويختلفان في القليل، فتكرار المشترك بينهما خطأ: أي إصلاح ستضطر لتكراره مرتين، وستنسى إحداهما يوماً. والوراثة تحل هذا: تضع المشترك في كلاس أب، ويرث الابن كل ما فيه ويضيف ما يخصه.',
+          'والابن يحصل على خصائص الأب ودوالّه كأنها له، ويقدر أن يضيف عليها، ويقدر أن يستبدل تنفيذ دالة موروثة بتنفيذ خاص به — وهذا هو تجاوز الدوال Overriding. فالكلاس Animal فيه دالة صوت عامة، وكل حيوان يستبدلها بصوته.',
+          'وإذا احتاج الابن أن يبني على تنفيذ الأب لا أن يلغيه، ينادي دالة الأب بـsuper ثم يضيف بعدها. وهذا شائع في الباني: يستدعي الابن باني الأب ليضبط الخصائص المشتركة، ثم يضبط ما يخصه وحده — فلا يُكرَّر ضبط المشترك.',
+          'وتعدد الأشكال هو الثمرة الكبرى: كائنات مختلفة تستجيب للاستدعاء نفسه بطريقتها الخاصة. فإذا كان لديك قائمة فيها كلب وقط وطائر، ومررت عليها تنادي دالة الصوت في كل واحد، نطق كل واحد بصوته دون أن يعرف الكود الذي يناديها نوعَ الكائن أصلاً.',
+          'وهذي هي فكرة الواجهة المشتركة التي تُبنى عليها المكتبات الكبيرة: كل نماذج التعلّم الآلي في مكتبة واحدة لها الدوال الثلاث نفسها، فتقدر تبدّل نموذجاً بنموذج دون أن تعيد كتابة الكود الذي يستخدمه. القوة ليست في الوراثة نفسها، بل في أن الكود المستدعي لا يحتاج معرفة النوع.',
+          'وتحذير مهم: الوراثة تُساء بكثرة. اسأل قبل أن ترث: هل الابن حقاً «نوع من» الأب؟ فالمربع نوع من الأشكال فترث صحيحة، أما الموظف فليس نوعاً من الشركة وإن كان جزءاً منها — وهنا يصلح الاحتواء لا الوراثة. وسلسلة وراثة عميقة بخمسة مستويات علامة تصميم مضطرب لا تصميم متقن.'
+        ],
+        body_en: [
+          'When two classes share most data and methods and differ in little, duplicating the shared part is a mistake: every fix must be repeated twice and one day you will forget one. Inheritance solves this: put the shared part in a parent class, and the child inherits it and adds its own.',
+          'The child receives the parent attributes and methods as if its own, may add to them, and may replace an inherited method with its own implementation, which is overriding. An Animal class has a generic sound method, and each animal replaces it with its own.',
+          'When the child needs to build on the parent implementation rather than discard it, it calls the parent method with super then adds afterwards. This is common in constructors: the child calls the parent constructor to set shared attributes, then sets its own, so shared setup is never duplicated.',
+          'Polymorphism is the great harvest: different objects answer the same call in their own way. Given a list holding a dog, a cat and a bird, looping and calling the sound method makes each speak its own sound while the calling code never knows the object type.',
+          'This is the shared-interface idea large libraries are built on: every machine-learning model in one library exposes the same three methods, so you swap one model for another without rewriting the code that uses it. The power is not inheritance itself but that the calling code needs no knowledge of the type.',
+          'An important warning: inheritance is widely misused. Ask before inheriting whether the child truly is a kind of the parent. A square is a kind of shape, so inheriting is right; an employee is not a kind of company although part of one, and there containment fits rather than inheritance. A five-level inheritance chain signals confused design, not craftsmanship.'
+        ],
+        table: {
+          head_ar: ['المفهوم', 'ما يفعله', 'الكلمة المفتاحية'],
+          head_en: ['Concept', 'What it does', 'Keyword'],
+          rows: [
+            ['الوراثة', 'الابن يأخذ ما في الأب', 'class Child(Parent)'],
+            ['التجاوز', 'استبدال تنفيذ دالة موروثة', 'إعادة تعريفها في الابن'],
+            ['super', 'استدعاء تنفيذ الأب والبناء عليه', 'super().method()'],
+            ['تعدد الأشكال', 'استجابة مختلفة لاستدعاء واحد', '—']
+          ]
+        },
+        keyPoints_ar: [
+          'الوراثة تمنع تكرار المشترك، فالإصلاح يقع في مكان واحد.',
+          'التجاوز استبدال تنفيذ دالة موروثة، وsuper بناء عليه لا إلغاؤه.',
+          'تعدد الأشكال: الكود المستدعي لا يحتاج معرفة نوع الكائن.',
+          'لا ترث إلا إذا كان الابن حقاً «نوعاً من» الأب.',
+          'سلسلة وراثة عميقة علامة تصميم مضطرب.'
+        ],
+        keyPoints_en: [
+          'Inheritance removes duplication so a fix lands in one place.',
+          'Overriding replaces an inherited implementation; super builds on it instead of discarding it.',
+          'Polymorphism means the calling code needs no knowledge of the type.',
+          'Inherit only when the child truly is a kind of the parent.',
+          'A deep inheritance chain signals confused design.'
+        ],
+        analogy_ar: 'تخيّل نموذج سيارة أساسياً عند المصنع فيه الهيكل والعجلات. النسخة الكهربائية ترث كل شي وتستبدل المحرّك فقط — هذا هو التجاوز. وحين تقول لأي سيارة «انطلقي» تنطلق كل واحدة بطريقتها: البنزين تشغّل محركها والكهربائية تدير موتورها. أنت ضغطت الدوّاسة نفسها ولم تسأل عن النوع، وهذا تعدد الأشكال.',
+        analogy_en: 'Picture a base car model at the factory with a chassis and wheels. The electric version inherits everything and replaces only the engine, which is overriding. Telling any car to go makes each go its own way: petrol fires its engine, electric spins its motor. You pressed the same pedal and never asked the type, and that is polymorphism.',
+        terms: [
+          { term: 'Inheritance', def_ar: 'أخذ كلاس ابن كل ما في كلاس أب مع إمكان الزيادة والتغيير.', def_en: 'A child class taking all a parent has, with room to extend and change.' },
+          { term: 'Override', def_ar: 'إعادة تعريف دالة موروثة بتنفيذ خاص بالابن.', def_en: 'Redefining an inherited method with the child own implementation.' },
+          { term: 'super', def_ar: 'استدعاء تنفيذ الأب من داخل الابن للبناء عليه.', def_en: 'Calling the parent implementation from the child to build on it.' },
+          { term: 'Polymorphism', def_ar: 'استجابة كائنات مختلفة للاستدعاء نفسه بطريقة كل منها.', def_en: 'Different objects answering the same call each in its own way.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين التجاوز واستخدام super ؟', q_en: 'Difference between overriding and using super?', a_ar: 'التجاوز يستبدل تنفيذ الأب كلياً، وsuper ينادي تنفيذ الأب ثم يبني عليه.', a_en: 'Overriding replaces the parent implementation entirely; super calls it then builds on top.' },
+          { q_ar: 'ما السؤال الذي يحسم صحة الوراثة؟', q_en: 'What question settles whether inheritance is right?', a_ar: 'هل الابن حقاً «نوع من» الأب؟ فإن لم يكن، فالاحتواء أصح.', a_en: 'Is the child truly a kind of the parent? If not, containment is the right choice.' },
+          { q_ar: 'ما الذي يجعل تعدد الأشكال قوياً؟', q_en: 'What makes polymorphism powerful?', a_ar: 'أن الكود المستدعي يعمل مع أي نوع بلا أن يعرف نوعه، فتُبدَّل الأنواع بلا إعادة كتابة.', a_en: 'The calling code works with any type without knowing it, so types can be swapped with no rewrite.' },
+          { q_ar: 'لماذا يُستدعى باني الأب داخل باني الابن؟', q_en: 'Why call the parent constructor inside the child one?', a_ar: 'ليضبط الخصائص المشتركة مرة واحدة، فلا يُكرَّر ضبطها في كل ابن.', a_en: 'To set shared attributes once so the setup is not duplicated in every child.' }
+        ]
+      },
+      {
+        title_ar: 'التجريد والواجهات ومبادئ SOLID وأنماط التصميم',
+        title_en: 'Abstraction, Interfaces, SOLID and Design Patterns',
+        lead_ar: 'التجريد يحدد ما يجب أن يفعله الشيء بلا كيف، وSOLID مبادئ تحفظ الكود قابلاً للتغيير، وأنماط التصميم حلول مجرّبة لمشاكل متكررة.',
+        lead_en: 'Abstraction defines what a thing must do without the how, SOLID keeps code changeable, and design patterns are proven solutions to recurring problems.',
+        body_ar: [
+          'التجريد في الكائنية أن تعرّف كلاساً يقول ما الذي يجب أن تفعله الأنواع الوارثة منه، دون أن يحدد كيف تفعله. فكلاس الشكل يفرض وجود دالة مساحة، ولا يعرف كيف تُحسب المساحة — فالدائرة تحسبها بطريقة والمربع بأخرى. وبهذا تضمن أن كل شكل قابل لحساب مساحته، وهذا هو العقد.',
+          'والواجهة هي هذا العقد في أنقى صوره: قائمة دوال يجب أن يوفرها من يلتزم بها. وقيمتها أن الكود المستدعي يعتمد على العقد لا على التنفيذ، فيصير تبديل التنفيذ ممكناً بلا لمس المستدعي. وهذا ما يجعل مكتبة كاملة قابلة للاستبدال بأخرى.',
+          'ومبادئ SOLID خمسة تحفظ الكود قابلاً للتغيير. أولها المسؤولية الواحدة: للكلاس سبب واحد للتغيير، فكلاس يطبع التقارير ويحسب الرواتب سيتغيّر لسببين مختلفين ويتصادم من يعدّله. وثانيها الانفتاح والانغلاق: مفتوح للامتداد مغلق للتعديل، فتضيف سلوكاً جديداً بكلاس جديد لا بتعديل كلاس مستقر يعمل.',
+          'وثالثها استبدال ليسكوف: كل كائن ابن يجب أن يصلح مكان أبيه بلا أن يكسر شيئاً. فإن ورث كلاس من آخر ثم رفض تنفيذ نصف دوالّه أو غيّر معناها، فالوراثة كانت خاطئة أصلاً. ورابعها فصل الواجهات: واجهات صغيرة متخصصة خير من واجهة ضخمة تُجبِر من يلتزم بها على تنفيذ ما لا يخصه.',
+          'وخامسها عكس الاعتماد: اعتمد على التجريدات لا على التفاصيل. فكلاس الطلبات لا يعتمد على قاعدة بيانات بعينها، وإنما على واجهة تخزين — فتبدّل القاعدة بأخرى بلا أن يتغيّر كلاس الطلبات. وهذا المبدأ هو ما يجعل الاختبار ممكناً: تمرّر تخزيناً وهمياً وقت الاختبار.',
+          'وأنماط التصميم حلول موثّقة لمشاكل تتكرر. فنمط المفرد يضمن كائناً واحداً في البرنامج كله كإعدادات التطبيق، ونمط المصنع ينشئ الكائن المناسب حسب الحالة فلا يتفرّق شرط الإنشاء في الكود، ونمط المراقب يجعل عدة أطراف تُخطَر تلقائياً عند تغيّر حالة، ونمط الاستراتيجية يبدّل الخوارزمية وقت التشغيل.',
+          'وتحذير ختامي يهم أكثر من الأنماط نفسها: النمط أداة لا هدف. من يبدأ بالسؤال «أي نمط أستخدم؟» قبل أن تظهر المشكلة، ينتج كوداً معقّداً بلا سبب. اكتب أبسط ما يحل المشكلة، فإذا تكرر الألم في موضع بعينه، فحينها ابحث عن النمط الذي يعالجه.'
+        ],
+        body_en: [
+          'Abstraction in OOP defines a class stating what inheriting types must do without dictating how. A Shape class requires an area method without knowing how area is computed, since a circle computes it one way and a square another. This guarantees every shape can report an area, and that guarantee is the contract.',
+          'An interface is that contract in its purest form: a list of methods any implementer must provide. Its value is that calling code depends on the contract rather than the implementation, so implementations swap without touching the caller. This is what makes a whole library replaceable by another.',
+          'SOLID is five principles keeping code changeable. First, single responsibility: a class has one reason to change, so a class printing reports and computing salaries changes for two reasons and its editors collide. Second, open-closed: open to extension and closed to modification, so new behaviour arrives as a new class rather than edits to a stable working one.',
+          'Third, Liskov substitution: any child object must serve in place of its parent without breaking anything. If a class inherits then refuses half the inherited methods or changes their meaning, the inheritance was wrong to begin with. Fourth, interface segregation: small focused interfaces beat one huge interface forcing implementers to provide what does not concern them.',
+          'Fifth, dependency inversion: depend on abstractions rather than details. An orders class does not depend on a specific database but on a storage interface, so the database can be swapped without changing it. This principle is what makes testing possible: you pass a fake storage at test time.',
+          'Design patterns are documented solutions to recurring problems. Singleton guarantees one object across the program, such as application settings; Factory creates the right object for the case so creation conditions do not scatter; Observer notifies several parties automatically when state changes; Strategy swaps the algorithm at run time.',
+          'A closing warning that matters more than the patterns: a pattern is a tool, not a goal. Starting from "which pattern should I use?" before the problem appears produces needlessly complex code. Write the simplest thing that solves the problem, and when pain repeats in one spot, look for the pattern that treats it.'
+        ],
+        table: {
+          head_ar: ['المبدأ', 'مختصره', 'الخلل الذي يمنعه'],
+          head_en: ['Principle', 'In brief', 'Defect prevented'],
+          rows: [
+            ['S · المسؤولية الواحدة', 'سبب واحد للتغيير', 'كلاس ينفجر بمسؤوليات'],
+            ['O · الانفتاح والانغلاق', 'أضف بلا تعديل', 'كسر كود مستقر يعمل'],
+            ['L · استبدال ليسكوف', 'الابن يصلح مكان الأب', 'وراثة خاطئة تكسر المستدعي'],
+            ['I · فصل الواجهات', 'واجهات صغيرة متخصصة', 'إجبار على تنفيذ ما لا يخص'],
+            ['D · عكس الاعتماد', 'اعتمد على التجريد', 'ارتباط بتقنية بعينها']
+          ]
+        },
+        keyPoints_ar: [
+          'التجريد يحدد «ماذا» ويترك «كيف» للوارث.',
+          'الواجهة عقد يعتمد عليه المستدعي، فيصير التنفيذ قابلاً للاستبدال.',
+          'المسؤولية الواحدة: سبب واحد للتغيير في كل كلاس.',
+          'عكس الاعتماد هو ما يجعل الاختبار ممكناً بتمرير بديل وهمي.',
+          'النمط أداة تُستدعى عند تكرار الألم، لا هدف يُبدأ به.'
+        ],
+        keyPoints_en: [
+          'Abstraction defines the what and leaves the how to the implementer.',
+          'An interface is a contract the caller depends on, making implementations swappable.',
+          'Single responsibility: one reason to change per class.',
+          'Dependency inversion is what makes testing possible by passing a fake.',
+          'A pattern is a tool summoned when pain repeats, not a starting goal.'
+        ],
+        analogy_ar: 'تخيّل مقبس الكهرباء في الجدار. المقبس عقد: ثلاثة أطراف بجهد معلوم. لا يهمه أوصلت مصباحاً أم غسالة أم شاحناً، ولا يهم الجهاز من أي مصنع جاءت الكهرباء. ولهذا تبدّل الجهاز بجهاز والمحطة بمحطة بلا أن يتغيّر الجدار. الواجهة في الكود هي هذا المقبس بالضبط.',
+        analogy_en: 'Picture a wall power socket. The socket is a contract: three terminals at a known voltage. It does not care whether you plug in a lamp, a washing machine or a charger, and the device does not care which plant produced the electricity. So devices and plants swap freely while the wall stays. An interface in code is exactly that socket.',
+        terms: [
+          { term: 'Abstraction', def_ar: 'تحديد ما يجب أن يفعله الشيء دون كيف يفعله.', def_en: 'Defining what a thing must do without how it does it.' },
+          { term: 'Interface', def_ar: 'عقد بقائمة دوال يجب أن يوفرها كل من يلتزم به.', def_en: 'A contract listing methods every implementer must provide.' },
+          { term: 'Singleton', def_ar: 'نمط يضمن وجود كائن واحد فقط في البرنامج كله.', def_en: 'A pattern guaranteeing a single object across the program.' },
+          { term: 'Factory', def_ar: 'نمط ينشئ الكائن المناسب حسب الحالة في موضع واحد.', def_en: 'A pattern creating the right object for the case in one place.' },
+          { term: 'Observer', def_ar: 'نمط يُخطِر أطرافاً متعددة تلقائياً عند تغيّر حالة.', def_en: 'A pattern notifying several parties automatically when state changes.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي يحدده التجريد وما الذي يتركه؟', q_en: 'What does abstraction define and what does it leave out?', a_ar: 'يحدد «ماذا يجب أن يفعل» ويترك «كيف يفعله» لكل نوع وارث.', a_en: 'It defines what must be done and leaves how to each implementing type.' },
+          { q_ar: 'ما مبدأ المسؤولية الواحدة؟', q_en: 'What is the single responsibility principle?', a_ar: 'أن يكون للكلاس سبب واحد فقط للتغيير.', a_en: 'A class should have only one reason to change.' },
+          { q_ar: 'كيف يجعل عكس الاعتماد الاختبار ممكناً؟', q_en: 'How does dependency inversion make testing possible?', a_ar: 'لأن الكلاس يعتمد على واجهة، فتُمرَّر له نسخة وهمية وقت الاختبار بدل التقنية الحقيقية.', a_en: 'Because the class depends on an interface, so a fake implementation is passed at test time instead of the real technology.' },
+          { q_ar: 'متى يُلجأ إلى نمط تصميم؟', q_en: 'When should a design pattern be used?', a_ar: 'عند تكرار مشكلة بعينها فعلاً، لا قبل ظهورها — فالبدء بالنمط يعقّد بلا سبب.', a_en: 'When a specific problem actually recurs, not before it appears, since starting from the pattern adds needless complexity.' }
+        ]
+      }
     ]
   }
 };
