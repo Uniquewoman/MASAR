@@ -8265,6 +8265,325 @@ export const sectionGuides = {
           { q_ar: 'ما ثمن الشبكة المتراكبة عند التشخيص؟', q_en: 'What does an overlay cost at diagnosis time?', a_ar: 'طبقة إضافية: من ينظر للمادية وحدها يراها سليمة بينما المشكلة كلها في المتراكبة فوقها.', a_en: 'An extra layer: whoever looks at the physical alone sees it healthy while the whole problem sits in the overlay.' }
         ]
       }
+    ],
+
+    // ─────────── أمن الشبكات ───────────
+    5: [
+      {
+        title_ar: 'مبادئ أمن الشبكات وتهديداتها',
+        title_en: 'Network Security Principles and Threats',
+        lead_ar: 'الشبكة بُنيت على الثقة لا على الأمن، فأغلب هجماتها استغلال لبروتوكولات تصدّق ما يُقال لها — والدفاع إضافة تحقق لم يكن في التصميم الأصلي.',
+        lead_en: 'The network was built on trust rather than security, so most attacks on it exploit protocols that believe what they are told, and defence means adding verification the original design never had.',
+        body_ar: [
+          'حقيقة تأسيسية يجب استيعابها: بروتوكولات الشبكة الأساسية صُمِّمت بين جهات تثق ببعضها، فلم يكن التحقق من الهوية جزءاً من التصميم. ولهذا تُصدِّق كثير منها ما يُقال لها بلا برهان — وأغلب هجمات الشبكة استغلال لهذي الثقة الأصلية لا ثغرات برمجية.',
+          'وأول أنماط الهجوم الانتحال: إرسال حزم بعنوان مصدر ليس عنوانك. وفي الشبكة المحلية يأخذ صورة تسميم جدول العناوين المادية: يعلن المهاجم أنه صاحب عنوان البوابة، فتصدّقه الأجهزة وترسل له كل شيء. ولا يحتاج ذلك ثغرة، لأن البروتوكول يقبل الإعلان بلا تحقق أصلاً.',
+          'ونمط ثانٍ الاعتراض: وضع النفس في منتصف الطريق لقراءة الحركة أو تعديلها. وهو يتلو الانتحال غالباً، ويصير المهاجم قادراً على قراءة كل ما ليس مشفّراً وتعديل ما يمر — والضحية لا تلاحظ شيئاً لأن الاتصال يعمل تماماً.',
+          'ونمط ثالث الإغراق: استهلاك مورد حتى يعجز عن خدمة الشرعيين. ولا يحتاج اختراقاً وإنما حجماً، ويصير أشد حين يُوزَّع على آلاف المصادر فيتعذّر حجبها بقاعدة واحدة. وأخبثه ما يستغل خدمة تجيب بردّ أكبر من الطلب فيتضاعف الأثر.',
+          'ونمط رابع أخطر عملياً: الحركة الجانبية بعد الدخول. فالمهاجم نادراً ما يصل هدفه مباشرة، وإنما يدخل من جهاز موظف ثم يتنقّل. ولهذا فشبكة مسطّحة بلا تقسيم تعني أن اختراق جهاز واحد اختراق لكل شيء.',
+          'ومبادئ الدفاع أربعة تتكرر في كل قرار: أقل صلاحية فلا يصل جهاز ما لا يحتاجه، ودفاع في العمق فلا تعتمد الحماية على ضابط واحد، وتقسيم يحصر أي اختراق في نطاقه، ومراقبة تكشف ما نجح في تجاوز الثلاثة. وهذي الأربعة تصمد وإن تغيّرت كل الأدوات والتقنيات.'
+        ],
+        body_en: [
+          'A founding fact to absorb: core network protocols were designed between mutually trusting parties, so identity verification was never part of the design. Many of them therefore believe what they are told without proof, and most network attacks exploit that original trust rather than software vulnerabilities.',
+          'The first attack pattern is spoofing: sending packets with a source address that is not yours. On a local network it takes the form of poisoning the physical address table: the attacker announces they own the gateway address, devices believe it and send them everything. That needs no vulnerability, because the protocol accepts the announcement with no verification at all.',
+          'A second pattern is interception: placing oneself in the middle of the path to read or alter traffic. It usually follows spoofing, and the attacker becomes able to read everything unencrypted and modify what passes, while the victim notices nothing because the connection works perfectly.',
+          'A third pattern is flooding: consuming a resource until it can no longer serve legitimate users. It needs no breach but volume, and it grows severe when distributed across thousands of sources so no single rule can block it. Its nastiest form exploits a service replying with more than it was asked, multiplying the effect.',
+          'A fourth pattern is more dangerous in practice: lateral movement after entry. An attacker rarely reaches their target directly; they enter through an employee machine then move. So a flat network with no segmentation means breaching one device is breaching everything.',
+          'Four defence principles recur in every decision: least privilege so a device reaches nothing it does not need, defence in depth so protection never rests on one control, segmentation confining any breach to its zone, and monitoring catching whatever passed the other three. These four endure even as every tool and technique changes.'
+        ],
+        table: {
+          head_ar: ['النمط', 'ما يستغله', 'أول ضابط يوقفه'],
+          head_en: ['Pattern', 'What it exploits', 'First control stopping it'],
+          rows: [
+            ['الانتحال', 'قبول الإعلان بلا تحقق', 'فحص الإعلانات على المُحوِّل'],
+            ['الاعتراض', 'نقل بلا تشفير', 'التشفير من الطرف للطرف'],
+            ['الإغراق', 'حدود سعة المورد', 'تحديد المعدل والترشيح'],
+            ['الحركة الجانبية', 'شبكة مسطّحة بلا تقسيم', 'التقسيم الدقيق']
+          ]
+        },
+        keyPoints_ar: [
+          'البروتوكولات الأساسية بُنيت على الثقة، فأغلب الهجمات استغلال لها لا ثغرات برمجية.',
+          'الانتحال لا يحتاج ثغرة لأن البروتوكول يقبل الإعلان بلا تحقق.',
+          'الاعتراض لا تلاحظه الضحية لأن الاتصال يعمل تماماً أثناءه.',
+          'الإغراق الموزّع يتعذّر حجبه بقاعدة واحدة، وأخبثه ما يضاعف الرد.',
+          'الشبكة المسطّحة تعني أن اختراق جهاز واحد اختراق لكل شيء.',
+          'أربعة مبادئ تصمد: أقل صلاحية، دفاع في العمق، تقسيم، ومراقبة.'
+        ],
+        keyPoints_en: [
+          'Core protocols were built on trust, so most attacks exploit that rather than software flaws.',
+          'Spoofing needs no vulnerability because the protocol accepts announcements unverified.',
+          'The victim never notices interception because the connection works perfectly throughout.',
+          'Distributed flooding cannot be blocked by one rule, and its nastiest form amplifies the reply.',
+          'A flat network means breaching one device is breaching everything.',
+          'Four principles endure: least privilege, defence in depth, segmentation and monitoring.'
+        ],
+        analogy_ar: 'تخيّل حياً قديماً بُني حين كان الجميع يعرف بعضه: لا أحد يسأل عن الهوية عند الباب لأن السؤال لم يخطر لأحد. ثم كبر الحي ودخله غرباء، فصار من السهل أن يقف أحدهم في الشارع ويقول «أنا ساعي البريد» فيسلّمه الجميع رسائلهم. والحلّ ليس هدم الحي وإنما إضافة تحقق لم يكن في تصميمه: بطاقة، وباب، وحارس يسأل. وهذا بالضبط ما فعله أمن الشبكات ببروتوكولات وُلدت بلا سؤال.',
+        analogy_en: 'Picture an old neighbourhood built when everyone knew everyone: nobody asks for identity at the door because the question never occurred to anyone. Then it grew and strangers came in, so it became easy for someone to stand in the street saying I am the postman and receive everyone letters. The fix is not demolishing the neighbourhood but adding verification its design never had: a badge, a door and a guard who asks. That is exactly what network security did to protocols born without the question.',
+        terms: [
+          { term: 'Spoofing', def_ar: 'إرسال حزم بعنوان مصدر ليس للمرسِل.', def_en: 'Sending packets with a source address not the sender own.' },
+          { term: 'ARP Poisoning', def_ar: 'إعلان كاذب بملكية عنوان مادي لاعتراض الحركة.', def_en: 'A false claim to a physical address to intercept traffic.' },
+          { term: 'Amplification', def_ar: 'استغلال خدمة تجيب بردّ أكبر من الطلب.', def_en: 'Exploiting a service whose reply exceeds the request.' },
+          { term: 'Lateral Movement', def_ar: 'تنقّل المهاجم داخل الشبكة بعد أول دخول.', def_en: 'An attacker moving inside the network after initial entry.' },
+          { term: 'Flat Network', def_ar: 'شبكة بلا تقسيم يصل كل ما فيها كل شيء.', def_en: 'An unsegmented network where everything reaches everything.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا يحتاج الانتحال ثغرة برمجية؟', q_en: 'Why does spoofing need no software vulnerability?', a_ar: 'لأن البروتوكول يقبل الإعلان بلا تحقق أصلاً، فالثقة جزء من تصميمه لا خطأ فيه.', a_en: 'The protocol accepts announcements with no verification, so the trust is part of its design rather than a flaw in it.' },
+          { q_ar: 'لماذا لا تلاحظ الضحية الاعتراض؟', q_en: 'Why does a victim not notice interception?', a_ar: 'لأن الاتصال يعمل تماماً أثناءه، فلا عرض ظاهر يدل على وجود طرف ثالث في المنتصف.', a_en: 'The connection works perfectly throughout, so no visible symptom reveals a third party in the middle.' },
+          { q_ar: 'لماذا يصعب صدّ الإغراق الموزّع؟', q_en: 'Why is distributed flooding hard to block?', a_ar: 'لأنه يأتي من آلاف المصادر فلا تكفي قاعدة حجب واحدة، ولا يحتاج اختراقاً وإنما حجماً.', a_en: 'It comes from thousands of sources so one blocking rule is insufficient, and it needs volume rather than a breach.' },
+          { q_ar: 'ما خطر الشبكة المسطّحة؟', q_en: 'What is the danger of a flat network?', a_ar: 'أن اختراق جهاز واحد يصير اختراقاً لكل شيء، لأن الحركة الجانبية بلا حاجز.', a_en: 'Breaching one device becomes breaching everything, since lateral movement meets no barrier.' }
+        ]
+      },
+      {
+        title_ar: 'جدران الحماية',
+        title_en: 'Firewalls',
+        lead_ar: 'الجدار الناري يفرض سياسة لا يكتشف نية: يمنع ما لم يُسمَح به صراحة — وقيمته في السياسة المكتوبة لا في الجهاز.',
+        lead_en: 'A firewall enforces policy rather than detecting intent: it blocks whatever is not explicitly allowed, and its value lies in the written policy rather than the appliance.',
+        body_ar: [
+          'الجدار الناري ضابط يفرض قواعد على ما يعبر بين نطاقين. وأجياله تختلف بعمق ما تفحصه. فالجيل الأول ينظر للحزمة منفردة: عنوان مصدر ووجهة ومنفذ وبروتوكول، ويقرر بلا معرفة بما قبلها. وهو سريع جداً وسطحي جداً.',
+          'والجيل الحافظ للحالة يتتبّع الجلسات: يعرف أن هذي الحزمة رد على طلب خرج من الداخل فيسمح لها، ويرفض حزمة واردة لا تقابل جلسة. وهذا التطوّر جوهري لأنه يغني عن فتح منافذ واسعة للردود.',
+          'وجدار التطبيقات يفهم البروتوكول نفسه: يقرأ محتوى طلب الويب ويميّز طلباً مشروعاً من محاولة حقن. والجيل التالي يجمع ذلك مع التعرّف على التطبيق بصرف النظر عن منفذه، لأن كثيراً من التطبيقات صارت تتنكّر في منفذ الويب لتجاوز القواعد البسيطة.',
+          'وترتيب القواعد ليس تفصيلاً: تُقرأ من الأعلى للأسفل وتُطبَّق أول قاعدة تطابق، فقاعدة عامة موضوعة فوق قاعدة خاصة تُلغيها عملياً وهي موجودة في السياسة. وهذا أشهر أخطاء الإعداد وأصعبها اكتشافاً لأن القاعدة تبدو مكتوبة وصحيحة.',
+          'والقاعدة الافتراضية يجب أن تكون المنع: يُسمَح بالمعروف المطلوب ويُمنَع الباقي. وسياسة تسمح افتراضياً وتمنع المعروف خطراً تفشل حتماً، لأن الخطر الذي لم تعرفه بعد يمر بلا اعتراض.',
+          'وأشهر ما يُنسى: الجدار الناري لا يرى ما لا يمر به. فحركة بين جهازين في الشبكة الفرعية نفسها لا تلمسه أصلاً، وحركة مشفّرة تمر عبره كصندوق مغلق ما لم يُفَك التشفير عنده. ولهذا فالاعتماد عليه وحده كضابط للحماية وهم — وهو أول عناصر الدفاع لا آخرها.'
+        ],
+        body_en: [
+          'A firewall is a control enforcing rules on what crosses between two zones. Its generations differ by inspection depth. The first looks at a packet alone: source and destination address, port and protocol, deciding with no knowledge of what came before. It is very fast and very shallow.',
+          'The stateful generation tracks sessions: it knows a packet is the reply to a request that left from inside and allows it, and rejects an inbound packet matching no session. That development is fundamental because it removes the need to open wide ports for replies.',
+          'An application firewall understands the protocol itself: reading web request content and distinguishing a legitimate request from an injection attempt. The next generation combines that with recognising the application regardless of its port, because many applications now disguise themselves in the web port to bypass simple rules.',
+          'Rule order is no detail: rules are read top to bottom and the first match applies, so a general rule placed above a specific one effectively cancels it while it still sits in the policy. That is the most common configuration error and the hardest to spot because the rule looks written and correct.',
+          'The default rule must be denial: allow the known and needed and block the rest. A policy allowing by default and blocking known dangers inevitably fails, because the danger you do not yet know passes unchallenged.',
+          'The most forgotten point: a firewall does not see what does not pass through it. Traffic between two devices on the same subnet never touches it, and encrypted traffic crosses it as a sealed box unless decrypted there. So relying on it alone as the protection control is an illusion, and it is the first element of defence rather than the last.'
+        ],
+        table: {
+          head_ar: ['الجيل', 'ما يفحصه', 'ما يعجز عنه'],
+          head_en: ['Generation', 'What it inspects', 'What it cannot do'],
+          rows: [
+            ['فحص الحزمة', 'عناوين ومنافذ', 'لا يعرف سياق الجلسة'],
+            ['حافظ للحالة', 'الجلسة كاملة', 'لا يقرأ المحتوى'],
+            ['جدار التطبيقات', 'محتوى البروتوكول', 'أبطأ وأثقل'],
+            ['الجيل التالي', 'التطبيق بصرف النظر عن منفذه', 'لا يرى المشفّر بلا فكّ']
+          ]
+        },
+        keyPoints_ar: [
+          'الجدار يفرض سياسة ولا يكتشف نية، وقيمته في السياسة لا في الجهاز.',
+          'حفظ الحالة يغني عن فتح منافذ واسعة لاستقبال الردود.',
+          'التطبيقات تتنكّر في منفذ الويب، فيلزم تعرّف على التطبيق لا على المنفذ.',
+          'أول قاعدة تطابق تُطبَّق، فقاعدة عامة فوق خاصة تُلغيها وهي مكتوبة.',
+          'الافتراضي منع: السماح افتراضياً يمرّر كل خطر لم يُعرَف بعد.',
+          'لا يرى ما لا يمر به ولا ما هو مشفّر، فالاعتماد عليه وحده وهم.'
+        ],
+        keyPoints_en: [
+          'A firewall enforces policy rather than detecting intent, and its value is the policy not the appliance.',
+          'Statefulness removes the need to open wide ports to receive replies.',
+          'Applications disguise themselves in the web port, so application recognition beats port matching.',
+          'The first matching rule applies, so a general rule above a specific one cancels it while still written.',
+          'The default is denial: allowing by default passes every danger not yet known.',
+          'It sees neither what bypasses it nor what is encrypted, so relying on it alone is an illusion.'
+        ],
+        analogy_ar: 'تخيّل حارساً عند بوابة ومعه قائمة تعليمات مرقّمة ينفّذ أولها انطباقاً. لو كُتِب في السطر الأول «اسمح لكل من يلبس بدلة» وفي العاشر «امنع فلاناً»، فسيدخل فلان بالبدلة ولن يبلغ الحارس السطر العاشر أبداً — والتعليمة موجودة وصحيحة ولا تعمل. ولاحظ أيضاً أن هذا الحارس لا يرى من انتقل بين مكتبين داخل المبنى بلا أن يمر عليه، ولا يعرف ما في الحقيبة المقفلة التي سمح بدخولها.',
+        analogy_en: 'Picture a guard at a gate with a numbered instruction list, executing the first that matches. If line one says allow anyone in a suit and line ten says deny that person, then that person enters in a suit and the guard never reaches line ten, while the instruction sits there written and correct and inoperative. Note too that this guard never sees whoever moved between two offices inside the building without passing them, and does not know what is inside the locked bag they allowed in.',
+        terms: [
+          { term: 'Stateful Inspection', def_ar: 'تتبّع الجلسة فيُسمَح للرد المقابل لطلب خرج.', def_en: 'Tracking a session so the reply to an outbound request is allowed.' },
+          { term: 'Default Deny', def_ar: 'منع كل ما لم يُسمَح به صراحة.', def_en: 'Blocking everything not explicitly allowed.' },
+          { term: 'Rule Shadowing', def_ar: 'إلغاء قاعدة عامة لقاعدة خاصة تحتها.', def_en: 'A general rule cancelling a specific one beneath it.' },
+          { term: 'Application Awareness', def_ar: 'تعرّف على التطبيق بصرف النظر عن المنفذ.', def_en: 'Recognising the application regardless of its port.' },
+          { term: 'Inspection Blind Spot', def_ar: 'حركة لا تمر بالجدار فلا يراها أصلاً.', def_en: 'Traffic bypassing the firewall so it never sees it.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي أضافه حفظ الحالة؟', q_en: 'What did statefulness add?', a_ar: 'تتبّع الجلسات فيُسمَح للرد المقابل لطلب خرج، بلا فتح منافذ واسعة لاستقبال الردود.', a_en: 'Session tracking so replies to outbound requests are allowed without opening wide ports.' },
+          { q_ar: 'لماذا يخطر ترتيب القواعد؟', q_en: 'Why does rule order matter?', a_ar: 'لأن أول قاعدة تطابق تُطبَّق، فقاعدة عامة فوق خاصة تُلغيها عملياً وهي مكتوبة وتبدو صحيحة.', a_en: 'The first matching rule applies, so a general rule above a specific one cancels it while written and looking correct.' },
+          { q_ar: 'لماذا يجب أن يكون الافتراضي منعاً؟', q_en: 'Why must the default be denial?', a_ar: 'لأن السماح افتراضياً يمرّر كل خطر لم يُعرَف بعد، فالسياسة تفشل أمام الجديد حتماً.', a_en: 'Allowing by default passes every danger not yet known, so the policy inevitably fails against the new.' },
+          { q_ar: 'ما الذي لا يراه الجدار الناري؟', q_en: 'What does a firewall not see?', a_ar: 'ما لا يمر به كحركة داخل الشبكة الفرعية نفسها، وما هو مشفّر ما لم يُفَك عنده.', a_en: 'What bypasses it such as traffic within one subnet, and what is encrypted unless decrypted there.' }
+        ]
+      },
+      {
+        title_ar: 'أنظمة كشف التسلل ومنعه',
+        title_en: 'Intrusion Detection and Prevention',
+        lead_ar: 'الكاشف يراقب نسخة ويُنذِر، والمانع يقف في الطريق ويقطع — والفرق بينهما ليس تقنياً وإنما قرار مقايضة بين الأمان والتوافر.',
+        lead_en: 'A detector watches a copy and alerts while a preventer stands in the path and cuts, and the difference is not technical but a trade decision between safety and availability.',
+        body_ar: [
+          'الجدار الناري يعرف من يمر ولا يعرف ماذا يحمل. وأنظمة الكشف تكمّله: تفحص الحركة بحثاً عن نمط هجوم معروف أو سلوك شاذ، وتنبّه أو تتدخل بحسب وضعها.',
+          'والفرق بين الكشف والمنع في الموضع لا في التقنية. فالكاشف يوضَع خارج المسار ويستقبل نسخة من الحركة، فلا يؤخّرها ولا يقطعها ولو تعطّل. والمانع يوضَع داخل المسار فتمر الحركة عبره فعلياً، فيستطيع القطع ويصير عطله انقطاعاً للشبكة.',
+          'وهذي المقايضة صريحة: المنع أقوى أمناً وأخطر توافراً. فإنذار كاذب في الكاشف رسالة تُقرأ وتُغلَق، وفي المانع قطع لخدمة مشروعة قد يعطّل عملاً كاملاً. ولهذا يُبدَأ عادة بوضع المراقبة ثم يُنقَل تدريجياً للمنع بعد ضبط القواعد.',
+          'وطريقتا الكشف مختلفتان جذرياً. الأولى بالتوقيعات: مطابقة أنماط معروفة، فدقتها عالية وإنذاراتها الكاذبة قليلة، وعجزها كامل أمام هجوم جديد لا توقيع له. والثانية بالسلوك: مقارنة بخط أساس للطبيعي، فتكشف الجديد وتنتج إنذارات كاذبة أكثر.',
+          'وبناء خط الأساس هو الخطوة الحرجة في الثانية: لو بُني في فترة كان الاختراق فيها قائماً، صار الشاذ طبيعياً في نظر النظام ولن يُنذِر عنه أبداً. ولهذا يُبنى الخط في فترة موثوقة ويُراجَع دورياً.',
+          'وعمى النظام أمام التشفير قيد جوهري: لا يرى داخل الحركة المشفّرة ما لم يُفَك التشفير عنده، وفكّه يثير أسئلة خصوصية وأداء. ومنطقة الوضع مهمة كذلك: خارج الجدار يرى كل محاولات الإنترنت فيُغرَق بالضجيج، وخلفه يرى ما نجح في العبور فقط — وهذا الأنفع عملياً لأن ما أوقفه الجدار لا يحتاج تحقيقاً.'
+        ],
+        body_en: [
+          'A firewall knows who passes and not what they carry. Intrusion systems complement it: inspecting traffic for a known attack pattern or anomalous behaviour, and alerting or intervening by their placement.',
+          'The difference between detection and prevention is position rather than technology. A detector sits outside the path and receives a copy of traffic, so it neither delays nor cuts it even if it fails. A preventer sits inside the path so traffic actually passes through it, letting it cut and making its failure a network outage.',
+          'That trade is explicit: prevention is stronger in safety and riskier in availability. A false positive in a detector is a message read and closed, while in a preventer it is a legitimate service cut that may halt entire operations. So deployment usually starts in monitoring mode and moves gradually to prevention after rule tuning.',
+          'The two detection methods differ fundamentally. The first uses signatures: matching known patterns, so its accuracy is high and false positives few, and it is entirely helpless against a new attack with no signature. The second uses behaviour: comparing against a baseline of normal, so it catches the new and produces more false positives.',
+          'Building the baseline is the critical step in the second: if built during a period when a breach was already present, the abnormal becomes normal in the system view and it will never alert on it. So the baseline is built in a trusted period and reviewed periodically.',
+          'Blindness to encryption is a fundamental constraint: the system does not see inside encrypted traffic unless it is decrypted there, and decrypting raises privacy and performance questions. Placement matters too: outside the firewall it sees every internet attempt and drowns in noise, while behind it it sees only what got through, and that is more useful practically because what the firewall stopped needs no investigation.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'الكشف', 'المنع'],
+          head_en: ['Aspect', 'Detection', 'Prevention'],
+          rows: [
+            ['الموضع', 'خارج المسار بنسخة', 'داخل المسار'],
+            ['رد الفعل', 'إنذار فقط', 'قطع فوري'],
+            ['أثر العطل', 'لا يوقف الحركة', 'انقطاع الشبكة'],
+            ['الإنذار الكاذب', 'رسالة تُغلَق', 'قطع خدمة مشروعة']
+          ]
+        },
+        keyPoints_ar: [
+          'الجدار يعرف من يمر، والكاشف يعرف ماذا يحمل.',
+          'الفرق بين الكشف والمنع موضع لا تقنية: خارج المسار أم داخله.',
+          'المنع أقوى أمناً وأخطر توافراً، فيُبدَأ بالمراقبة ثم يُنقَل تدريجياً.',
+          'التوقيعات دقيقة وعاجزة عن الجديد، والسلوك يكشف الجديد بإنذارات أكثر.',
+          'خط أساس بُني أثناء اختراق قائم يجعل الشاذ طبيعياً فلا يُنذَر عنه أبداً.',
+          'الوضع خلف الجدار أنفع لأن ما أوقفه الجدار لا يحتاج تحقيقاً.'
+        ],
+        keyPoints_en: [
+          'A firewall knows who passes while a detector knows what they carry.',
+          'Detection versus prevention is a matter of position rather than technology.',
+          'Prevention is stronger in safety and riskier in availability, so start in monitoring and move gradually.',
+          'Signatures are accurate and helpless against the new; behaviour catches the new with more false alerts.',
+          'A baseline built during an existing breach makes the abnormal normal so it never alerts.',
+          'Placement behind the firewall is more useful because what it stopped needs no investigation.'
+        ],
+        analogy_ar: 'تخيّل كاميرا مراقبة وبوابة دوّارة تُغلَق آلياً. الكاميرا ترى وتسجّل وتنبّه، ولو تعطّلت لم يتوقف أحد عن الدخول. والبوابة تمنع فعلاً، ولو أخطأت حبست موظفاً بريئاً في الممر، ولو تعطّلت أُغلِق المدخل على الجميع. وكلاهما مفيد — لكن من يركّب بوابة قبل أن يتأكد أن معاييرها مضبوطة سيعطّل عمل الشركة قبل أن يمنع لصاً واحداً.',
+        analogy_en: 'Picture a security camera and an automatic turnstile that locks. The camera sees, records and alerts, and if it fails nobody stops entering. The turnstile actually blocks, and when it errs it traps an innocent employee in the corridor, and when it fails it seals the entrance for everyone. Both are useful, yet whoever installs the turnstile before confirming its criteria are tuned will halt the company work before stopping a single thief.',
+        terms: [
+          { term: 'Inline Deployment', def_ar: 'وضع النظام داخل مسار الحركة فيقدر على القطع.', def_en: 'Placing the system inside the traffic path so it can cut.' },
+          { term: 'Out-of-band', def_ar: 'وضع النظام خارج المسار يستقبل نسخة فقط.', def_en: 'Placing the system outside the path receiving a copy only.' },
+          { term: 'Signature Detection', def_ar: 'كشف بمطابقة أنماط هجوم معروفة.', def_en: 'Detection by matching known attack patterns.' },
+          { term: 'Anomaly Detection', def_ar: 'كشف بمقارنة السلوك بخط أساس للطبيعي.', def_en: 'Detection by comparing behaviour against a normal baseline.' },
+          { term: 'Monitoring Mode', def_ar: 'تشغيل المانع بلا قطع حتى تُضبَط قواعده.', def_en: 'Running a preventer without cutting until its rules are tuned.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق الحقيقي بين الكشف والمنع؟', q_en: 'What truly separates detection from prevention?', a_ar: 'الموضع: الكاشف خارج المسار بنسخة فلا يقطع، والمانع داخل المسار فيقطع ويصير عطله انقطاعاً.', a_en: 'Position: a detector sits outside the path on a copy and cannot cut, while a preventer sits inline so it cuts and its failure is an outage.' },
+          { q_ar: 'لماذا يُبدَأ بوضع المراقبة؟', q_en: 'Why start in monitoring mode?', a_ar: 'لأن الإنذار الكاذب في المنع قطع لخدمة مشروعة، فتُضبَط القواعد أولاً ثم يُنقَل تدريجياً.', a_en: 'A false positive in prevention cuts a legitimate service, so rules are tuned first then it moves gradually.' },
+          { q_ar: 'ما خطر بناء خط الأساس في وقت خاطئ؟', q_en: 'What is the risk of building a baseline at the wrong time?', a_ar: 'لو بُني أثناء اختراق قائم صار الشاذ طبيعياً في نظر النظام فلن يُنذِر عنه أبداً.', a_en: 'Built during an existing breach, the abnormal becomes normal in its view and it never alerts on it.' },
+          { q_ar: 'لماذا يُفضَّل الوضع خلف الجدار الناري؟', q_en: 'Why is placement behind the firewall preferred?', a_ar: 'لأنه يرى ما نجح في العبور فقط، وما أوقفه الجدار لا يحتاج تحقيقاً فيقلّ الضجيج كثيراً.', a_en: 'It sees only what got through, and what the firewall stopped needs no investigation, so noise drops sharply.' }
+        ]
+      },
+      {
+        title_ar: 'قوائم التحكم وتقسيم الشبكة',
+        title_en: 'Access Lists and Network Segmentation',
+        lead_ar: 'القائمة تحدد من يصل من، وموضعها يحدد كم من النطاق يُهدَر قبل المنع — وقاعدة صحيحة في مكان خاطئ تعمل وتكلّف.',
+        lead_en: 'An access list decides who reaches whom, and its placement decides how much bandwidth is wasted before the block, so a correct rule in the wrong place works and costs.',
+        body_ar: [
+          'قائمة التحكم مرشّح على المُوجِّه أو المُحوِّل يقرر ما يمر وما يُسقَط بحسب العناوين والمنافذ. وهي أبسط من الجدار الناري وأخفّ حملاً، وتُستخدم لتنفيذ سياسة الفصل بين أجزاء الشبكة الداخلية حيث لا يوجد جدار.',
+          'وموضعها قرار عملي مهم: قاعدة تمنع حركة عند وجهتها تسمح لها بعبور الشبكة كلها ثم تُسقِطها في آخر خطوة، فتُهدَر السعة على حركة كان قرارها المنع من البداية. والأصل وضع المنع أقرب ما يمكن لمصدر الحركة.',
+          'وترتيب البنود يعمل بالمنطق نفسه في الجدار: أول بند مطابق يُطبَّق. وفي نهاية كل قائمة منع ضمني لكل ما لم يُذكَر — وهذا يفاجئ المبتدئ: يكتب قاعدة سماح واحدة فيتوقف كل شيء آخر فجأة، ويظن أن القائمة معطوبة وهي تعمل تماماً كما صُمِّمت.',
+          'والتقسيم أوسع من القوائم: تصميم يفصل الشبكة لنطاقات بحسب الحساسية والوظيفة. فالخوادم المنشورة للإنترنت تُعزَل في منطقة منزوعة السلاح: يصلها الخارج ولا تصل هي الشبكة الداخلية إلا بقواعد ضيقة محددة. فاختراق خادم ويب لا يعطي المهاجم إلا خادم الويب.',
+          'والتقسيم الدقيق يمضي لأبعد: فصل بمستوى الحمل الواحد لا الشبكة الفرعية، فلا يصل خادم تطبيق خادم تطبيق آخر ولو كانا في الشبكة نفسها. وهذا ما يقطع الحركة الجانبية فعلياً، وهو الفرق بين اختراق محصور واختراق شامل.',
+          'وأخطر ما يُنسى في التقسيم شبكات الإدارة والأجهزة الطرفية: واجهات إدارة المُحوِّلات والكاميرات وأجهزة الاستشعار في شبكة المستخدمين نفسها تعني أن أي جهاز مصاب يصل واجهة إدارة كل عتاد الشبكة. وهذي الأجهزة نادراً ما تُحدَّث وكلماتها الافتراضية معروفة — فعزلها في شبكة إدارة مستقلة من أعلى الإجراءات مردوداً وأقلها كلفة.'
+        ],
+        body_en: [
+          'An access list is a filter on a router or switch deciding what passes and what is dropped by addresses and ports. It is simpler and lighter than a firewall, used to enforce separation policy between internal network parts where no firewall exists.',
+          'Its placement is an important practical decision: a rule blocking traffic at its destination lets it cross the whole network then drops it at the last hop, wasting capacity on traffic whose verdict was denial from the start. The principle is placing the block as close to the source as possible.',
+          'Entry order follows the same logic as a firewall: the first matching entry applies. At the end of every list is an implicit deny for everything unmentioned, and that surprises beginners: they write one permit rule and everything else suddenly stops, and they assume the list is broken while it works exactly as designed.',
+          'Segmentation is broader than lists: a design separating the network into zones by sensitivity and function. Servers published to the internet are isolated in a demilitarised zone: the outside reaches them and they reach the internal network only through narrow specified rules. So breaching a web server gives the attacker nothing but the web server.',
+          'Micro-segmentation goes further: separation at the level of a single workload rather than a subnet, so one application server does not reach another even on the same network. That is what actually severs lateral movement, and it is the difference between a contained breach and a total one.',
+          'The most forgotten part of segmentation is management and peripheral device networks: switch management interfaces, cameras and sensors on the same user network mean any infected device reaches the management interface of all network hardware. Such devices are rarely updated and their default passwords are well known, so isolating them in a separate management network is among the highest-return and lowest-cost measures.'
+        ],
+        table: {
+          head_ar: ['القرار', 'الخيار الصحيح', 'أثر الخطأ'],
+          head_en: ['Decision', 'Correct choice', 'Effect of error'],
+          rows: [
+            ['موضع المنع', 'أقرب ما يمكن للمصدر', 'إهدار سعة الشبكة كلها'],
+            ['ترتيب البنود', 'الخاص قبل العام', 'بند لا يُبلَغ أبداً'],
+            ['نهاية القائمة', 'منع ضمني لما لم يُذكَر', 'توقّف مفاجئ لما لم يُسمَح'],
+            ['الخوادم المنشورة', 'منطقة منزوعة السلاح', 'اختراقها اختراق للداخل'],
+            ['واجهات الإدارة', 'شبكة إدارة معزولة', 'جهاز مصاب يصل كل العتاد']
+          ]
+        },
+        keyPoints_ar: [
+          'القائمة أخفّ من الجدار وتنفّذ الفصل الداخلي حيث لا جدار.',
+          'المنع يُوضَع أقرب ما يمكن للمصدر، وإلا أُهدِرت سعة الشبكة كلها.',
+          'أول بند مطابق يُطبَّق، وفي النهاية منع ضمني لكل ما لم يُذكَر.',
+          'المنطقة منزوعة السلاح تجعل اختراق خادم الويب اختراقاً له وحده.',
+          'التقسيم الدقيق يفصل بمستوى الحمل، وهو ما يقطع الحركة الجانبية فعلاً.',
+          'عزل شبكة الإدارة والأجهزة الطرفية من أعلى الإجراءات مردوداً وأقلها كلفة.'
+        ],
+        keyPoints_en: [
+          'A list is lighter than a firewall and enforces internal separation where no firewall exists.',
+          'Blocks go as close to the source as possible, or the whole network capacity is wasted.',
+          'The first matching entry applies, and an implicit deny ends every list.',
+          'A demilitarised zone makes breaching the web server a breach of it alone.',
+          'Micro-segmentation separates at workload level and is what actually severs lateral movement.',
+          'Isolating management and peripheral devices is among the highest-return and lowest-cost measures.'
+        ],
+        analogy_ar: 'تخيّل زائراً ممنوعاً من دخول قاعة في الطابق العاشر. لو أوقفته عند باب القاعة فقد مشى في كل المبنى ومرّ بكل الممرات ليُمنَع في آخر متر. والأصل أن يُمنَع عند البوابة الخارجية. ولاحظ أن آخر سطر في تعليمات الحارس دائماً «وامنع كل من لم يُذكَر» — فمن كتب اسماً واحداً مسموحاً ظنّ أنه سمح لواحد، وهو في الحقيقة منع كل من عداه.',
+        analogy_en: 'Picture a visitor barred from a hall on the tenth floor. Stopping them at the hall door means they walked the whole building and every corridor to be blocked in the last metre. The principle is stopping them at the outer gate. Note too that the last line of the guard instructions is always deny everyone unmentioned, so whoever wrote one permitted name thought they allowed one person while in fact they barred everyone else.',
+        terms: [
+          { term: 'Access List', def_ar: 'مرشّح يقرر ما يمر بحسب العناوين والمنافذ.', def_en: 'A filter deciding what passes by addresses and ports.' },
+          { term: 'Implicit Deny', def_ar: 'منع ضمني في نهاية القائمة لكل ما لم يُذكَر.', def_en: 'An implicit block at the list end for everything unmentioned.' },
+          { term: 'DMZ', def_ar: 'منطقة معزولة للخوادم المنشورة للإنترنت.', def_en: 'An isolated zone for servers published to the internet.' },
+          { term: 'Micro-segmentation', def_ar: 'فصل بمستوى الحمل الواحد لا الشبكة الفرعية.', def_en: 'Separation at single workload level rather than subnet.' },
+          { term: 'Management Network', def_ar: 'شبكة معزولة لواجهات إدارة العتاد.', def_en: 'An isolated network for hardware management interfaces.' }
+        ],
+        cards: [
+          { q_ar: 'أين يُوضَع المنع ولماذا؟', q_en: 'Where is a block placed and why?', a_ar: 'أقرب ما يمكن لمصدر الحركة، وإلا عبرت الشبكة كلها وأُهدِرت السعة لتُسقَط في آخر خطوة.', a_en: 'As close to the traffic source as possible, or it crosses the whole network and wastes capacity to be dropped at the last hop.' },
+          { q_ar: 'لماذا يتوقف كل شيء بعد كتابة قاعدة سماح واحدة؟', q_en: 'Why does everything stop after one permit rule?', a_ar: 'لأن في نهاية كل قائمة منعاً ضمنياً لكل ما لم يُذكَر، فالقائمة تعمل كما صُمِّمت لا معطوبة.', a_en: 'Every list ends with an implicit deny for everything unmentioned, so it works as designed rather than being broken.' },
+          { q_ar: 'ما فائدة المنطقة منزوعة السلاح؟', q_en: 'What is a demilitarised zone for?', a_ar: 'تعزل الخوادم المنشورة فلا تصل الداخل إلا بقواعد ضيقة، فاختراق خادم الويب لا يتجاوزه.', a_en: 'It isolates published servers so they reach the inside only through narrow rules, keeping a web server breach to itself.' },
+          { q_ar: 'لماذا عزل شبكة الإدارة مرتفع المردود؟', q_en: 'Why is isolating the management network high-return?', a_ar: 'لأن الأجهزة الطرفية نادراً ما تُحدَّث وكلماتها الافتراضية معروفة، ووجودها مع المستخدمين يمنح أي مصاب واجهات إدارة كل العتاد.', a_en: 'Peripheral devices are rarely updated with well-known default passwords, and placing them with users gives any infected machine the management interfaces of all hardware.' }
+        ]
+      },
+      {
+        title_ar: 'تصميم شبكة آمنة',
+        title_en: 'Designing a Secure Network',
+        lead_ar: 'الأمن يُصمَّم في البنية لا يُضاف عليها: شبكة صُمِّمت مسطّحة لا يُصلِحها جدار ناري مهما كان متقدماً.',
+        lead_en: 'Security is designed into the architecture rather than added to it: a network designed flat is not fixed by a firewall however advanced.',
+        body_ar: [
+          'القاعدة الحاكمة أن الأمن خاصية في التصميم لا طبقة تُلصَق لاحقاً. فشبكة مسطّحة بُنيت بلا تقسيم ستبقى هشّة مهما رُكِّب على حافتها من أجهزة، لأن الحركة الداخلية لا تمر بها أصلاً. وإعادة التصميم لاحقاً تكلّف أضعاف بنائه صحيحاً من البداية.',
+          'ويبدأ التصميم بتصنيف الأصول: ما البيانات الأكثر حساسية وأين تقيم وما الذي يجب أن يصلها فعلاً؟ ثم تُبنى النطاقات حولها لا العكس. فمن يبدأ برسم الشبكة ثم يسأل أين نضع البيانات يكون قد اتخذ قراراته الأمنية قبل أن يعرفها.',
+          'والطبقات الثلاث تنظّم البنية: طبقة وصول يتصل بها المستخدمون وتُطبَّق عندها ضوابط المنفذ، وطبقة تجميع تلتقي عندها سياسات التوجيه والفصل، وطبقة أساسية تنقل بسرعة عالية بلا ترشيح. ووضع سياسة معقدة في الطبقة الأساسية خطأ يبطئ الشبكة كلها.',
+          'وضوابط الوصول عند المنفذ من أفعل ما يمكن: تقييد عدد العناوين المسموح لها بمنفذ يمنع توصيل مُحوِّل غير مصرّح به، وفحص إعلانات توزيع العناوين يوقف خادماً غير مصرّح به، وفحص إعلانات العناوين المادية يوقف تسميم الجداول. وهذي الثلاثة تُغلِق أشهر هجمات الشبكة المحلية بإعداد لا بشراء.',
+          'والتوافر جزء من الأمن لا منفصل عنه: خدمة معطّلة خرق للتوافر ولو لم تُسرَق منها بيانة. ولهذا يُبنى التكرار في الوصلات والأجهزة والمسارات — ويُختبَر فعلاً بقطع مخطَّط، لأن تكراراً لم يُختبَر ليس تكراراً وإنما افتراضاً.',
+          'والتوثيق الحيّ آخر ما يُذكَر وأول ما يُهمَل: مخطط محدَّث ونطاقات موثّقة وقواعد مشروحة بسببها لا بمفعولها. فقاعدة مكتوب عندها «مطلوبة لنظام الفوترة، طلبها فلان بتاريخ كذا» تُراجَع وتُحذَف حين يزول سببها. وقاعدة بلا تفسير تبقى إلى الأبد لأن أحداً لا يجرؤ على حذفها — وتراكمها هو ما يحوّل سياسة محكمة لغربال بعد سنوات.'
+        ],
+        body_en: [
+          'The governing rule is that security is a property of the design rather than a layer glued on later. A flat network built without segmentation stays fragile whatever appliances sit at its edge, because internal traffic never passes them. Redesigning later costs many times building it correctly from the start.',
+          'Design begins by classifying assets: which data is most sensitive, where it lives, and what genuinely needs to reach it. Zones are then built around them rather than the reverse. Whoever draws the network first then asks where to put the data has made their security decisions before knowing them.',
+          'Three layers organise the architecture: an access layer where users connect and port controls apply, an aggregation layer where routing and separation policies meet, and a core layer moving traffic at high speed with no filtering. Placing complex policy in the core is an error that slows the whole network.',
+          'Port-level access controls are among the most effective possible: limiting how many addresses a port allows prevents an unauthorised switch being plugged in, inspecting address distribution announcements stops an unauthorised server, and inspecting physical address announcements stops table poisoning. These three close the best-known local network attacks by configuration rather than purchase.',
+          'Availability is part of security rather than separate from it: a service that is down is a breach of availability even if no data was stolen. So redundancy is built into links, devices and paths, and actually tested by a planned cut, because untested redundancy is not redundancy but an assumption.',
+          'Living documentation is mentioned last and neglected first: an updated diagram, documented ranges, and rules explained by their reason rather than their effect. A rule annotated as required for the billing system, requested by that person on that date, gets reviewed and removed when its reason disappears. A rule with no explanation stays forever because nobody dares delete it, and their accumulation is what turns a tight policy into a sieve after a few years.'
+        ],
+        table: {
+          head_ar: ['الطبقة', 'وظيفتها', 'ما يُوضَع فيها'],
+          head_en: ['Layer', 'Its function', 'What belongs there'],
+          rows: [
+            ['الوصول', 'اتصال المستخدمين', 'ضوابط المنفذ والمصادقة'],
+            ['التجميع', 'التقاء السياسات', 'التوجيه والفصل والترشيح'],
+            ['الأساسية', 'نقل سريع', 'لا ترشيح ولا سياسات معقدة']
+          ]
+        },
+        keyPoints_ar: [
+          'الأمن خاصية في التصميم، وشبكة مسطّحة لا يُصلِحها جدار على الحافة.',
+          'ابدأ بتصنيف الأصول ثم ابنِ النطاقات حولها لا العكس.',
+          'الطبقة الأساسية للنقل السريع، ووضع سياسة معقدة فيها يبطئ الشبكة كلها.',
+          'ضوابط المنفذ الثلاثة تغلق أشهر هجمات الشبكة المحلية بإعداد لا بشراء.',
+          'التوافر جزء من الأمن، وتكرار لم يُختبَر بقطع مخطَّط ليس تكراراً.',
+          'قاعدة موثّقة بسببها تُحذَف حين يزول، وقاعدة بلا تفسير تبقى للأبد.'
+        ],
+        keyPoints_en: [
+          'Security is a design property, and a flat network is not fixed by an edge firewall.',
+          'Start by classifying assets then build zones around them rather than the reverse.',
+          'The core layer is for fast transport, and complex policy there slows the whole network.',
+          'Three port controls close the best-known local attacks by configuration rather than purchase.',
+          'Availability is part of security, and redundancy untested by a planned cut is not redundancy.',
+          'A rule documented with its reason is removed when it lapses; an unexplained one stays forever.'
+        ],
+        analogy_ar: 'تخيّل مبنى صُمِّم قاعة واحدة مفتوحة، ثم أردت تأمين الخزنة فيه. تستطيع أن تضع حارساً على الباب الخارجي، لكن من دخل بأي حجة صار على بعد خطوات من الخزنة بلا جدار واحد بينهما. ولن يعالج ذلك حارس أقوى ولا كاميرا أدق — العلاج جدران، وهي قرار معماري يُتخَذ قبل صبّ الأساس. وأما دفتر التعليمات فيمتلئ عبر السنين بأوامر لا يعرف أحد سببها فلا يجرؤ أحد على حذفها، حتى يصير أطول من أن يُقرأ.',
+        analogy_en: 'Picture a building designed as one open hall, then you want to secure the vault inside it. You can put a guard at the outer door, but whoever enters on any pretext stands paces from the vault with not one wall between. No stronger guard and no sharper camera fixes that: the fix is walls, an architectural decision taken before the foundation is poured. As for the instruction book, over the years it fills with orders nobody knows the reason for so nobody dares delete, until it grows too long to read.',
+        terms: [
+          { term: 'Security by Design', def_ar: 'بناء الأمن في البنية لا إضافته لاحقاً.', def_en: 'Building security into the architecture rather than adding it later.' },
+          { term: 'Asset Classification', def_ar: 'تحديد حساسية البيانات وموقعها قبل رسم الشبكة.', def_en: 'Determining data sensitivity and location before drawing the network.' },
+          { term: 'Port Security', def_ar: 'تقييد العناوين المسموح بها على منفذ المُحوِّل.', def_en: 'Limiting the addresses allowed on a switch port.' },
+          { term: 'Tested Redundancy', def_ar: 'تكرار يُثبَت بقطع مخطَّط لا يُفترَض.', def_en: 'Redundancy proven by a planned cut rather than assumed.' },
+          { term: 'Rule Documentation', def_ar: 'توثيق سبب القاعدة لا مفعولها لتُراجَع لاحقاً.', def_en: 'Documenting a rule reason rather than its effect so it can be reviewed.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا يُصلِح الجدار الناري شبكة مسطّحة؟', q_en: 'Why does a firewall not fix a flat network?', a_ar: 'لأن الحركة الداخلية لا تمر به أصلاً، فالأمن خاصية في التصميم لا طبقة تُلصَق على الحافة.', a_en: 'Internal traffic never passes it, since security is a design property rather than a layer glued at the edge.' },
+          { q_ar: 'بم يبدأ التصميم الآمن؟', q_en: 'What does secure design begin with?', a_ar: 'بتصنيف الأصول ومعرفة أين تقيم البيانات الحساسة، ثم بناء النطاقات حولها لا العكس.', a_en: 'Classifying assets and knowing where sensitive data lives, then building zones around them rather than the reverse.' },
+          { q_ar: 'لماذا لا تُوضَع السياسات في الطبقة الأساسية؟', q_en: 'Why is policy kept out of the core layer?', a_ar: 'لأن وظيفتها النقل السريع، والترشيح المعقد فيها يبطئ الشبكة كلها لا جزءاً منها.', a_en: 'Its function is fast transport, and complex filtering there slows the whole network rather than a part.' },
+          { q_ar: 'لماذا يجب توثيق سبب كل قاعدة؟', q_en: 'Why document the reason for every rule?', a_ar: 'لتُحذَف حين يزول سببها؛ فالقاعدة بلا تفسير تبقى للأبد وتراكمها يحوّل السياسة لغربال.', a_en: 'So it is removed when its reason lapses; an unexplained rule stays forever and their accumulation turns policy into a sieve.' }
+        ]
+      }
     ]
   }
 };
