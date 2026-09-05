@@ -5047,6 +5047,325 @@ export const sectionGuides = {
           { q_ar: 'هل تغني الشبكة الخاصة عن TLS ؟', q_en: 'Does a VPN replace TLS?', a_ar: 'لا: TLS يحمي المحتوى بين طرفيه، والشبكة الخاصة تحمي المسار — ولكل دوره.', a_en: 'No: TLS protects content between its ends while a VPN protects the path, and each has its role.' }
         ]
       }
+    ],
+
+    // ─────────── أمن الأنظمة وأنظمة التشغيل ───────────
+    2: [
+      {
+        title_ar: 'أمن لينكس',
+        title_en: 'Linux Security',
+        lead_ar: 'لينكس يشغّل أغلب الخوادم، وأمنه يقوم على نموذج صلاحيات بسيط الظاهر عميق الأثر — وأخطر ما فيه حساب الجذر الذي لا يسأل ولا يتراجع.',
+        lead_en: 'Linux runs most servers, and its security rests on a permission model simple in appearance and deep in effect, its greatest danger being the root account that neither asks nor undoes.',
+        body_ar: [
+          'كل شيء في لينكس ملف: المستندات ملفات، والأجهزة ملفات، وحتى العمليات لها تمثيل في نظام ملفات. وهذا المبدأ يبسّط الأمن كثيراً، لأن حماية النظام تصير في جوهرها ضبطاً لصلاحيات الملفات.',
+          'ونموذج الصلاحيات ثلاثي في بُعدين: ثلاث فئات — المالك والمجموعة والآخرون، وثلاث صلاحيات — قراءة وكتابة وتنفيذ. فتُقرأ صلاحية أي ملف بتسعة مواضع تخبرك من يستطيع أن يفعل ماذا. وصلاحية التنفيذ على المجلد لها معنى مختلف عن الملف: تعني القدرة على الدخول إليه واجتيازه، لا تشغيله.',
+          'وحساب الجذر يتجاوز كل هذي الصلاحيات: يقرأ ويكتب ويحذف أي شيء بلا سؤال ولا تراجع. ولهذا القاعدة الحاكمة ألا يُستخدم للعمل اليومي أبداً، وأن يُرفَع الامتياز مؤقتاً لأمر بعينه عند الحاجة فقط. فخطأ مطبعي في أمر حذف بصلاحية عادية يفشل، وبصلاحية الجذر يمحو النظام.',
+          'ورفع الامتياز المؤقت له فائدة ثانية لا تقل أهمية: يُسجَّل. فيبقى أثر يبيّن من نفّذ أي أمر امتيازي ومتى، وهذا ما يجعل التحقيق ممكناً بعد أي حادث — بخلاف من يعمل بحساب الجذر دائماً فلا يفرّق سجلّه بين مسؤول ومهاجم استولى على الحساب.',
+          'وأهم ما يُضبط في خادم جديد: تعطيل دخول الجذر مباشرة عن بُعد، واستخدام المفاتيح بدل كلمات المرور للاتصال البعيد لأن المفتاح لا يُخمَّن ولا يُنتزع بالتصيّد، وإغلاق كل خدمة لا حاجة لها، وتفعيل التحديث التلقائي للتصحيحات الأمنية.',
+          'والسجلات هي عين النظام: تسجّل محاولات الدخول الفاشلة، وأوامر الامتياز، وتغيّرات الحسابات. ومراجعتها ليست ترفاً — فمحاولات دخول فاشلة متكررة من عنوان واحد إشارة تخمين آلي، ونجاح واحد بعدها إشارة اختراق. والسجل الذي لا يُقرأ ولا يُنبَّه على أنماطه سجل بلا قيمة.'
+        ],
+        body_en: [
+          'Everything in Linux is a file: documents are files, devices are files, and even processes have a filesystem representation. This principle greatly simplifies security, because protecting the system becomes in essence a matter of setting file permissions.',
+          'The permission model is three by three: three classes, owner, group and others, and three permissions, read, write and execute. Any file permission reads as nine positions telling who can do what. Execute on a directory means something different from a file: the ability to enter and traverse it rather than run it.',
+          'The root account bypasses all these permissions: it reads, writes and deletes anything with no question and no undo. So the governing rule is never using it for daily work and elevating privilege temporarily for a specific command only when needed. A typo in a delete command fails under ordinary permissions and wipes the system under root.',
+          'Temporary elevation has a second and equally important benefit: it is logged. A trail remains showing who ran which privileged command and when, and that is what makes investigation possible after an incident, unlike someone always working as root whose log cannot distinguish an administrator from an attacker who seized the account.',
+          'The most important settings on a new server: disabling direct remote root login, using keys instead of passwords for remote access since a key is neither guessed nor phished, closing every unneeded service, and enabling automatic security patching.',
+          'Logs are the system eye: recording failed login attempts, privileged commands and account changes. Reviewing them is not a luxury, since repeated failed logins from one address signal automated guessing and a single success afterwards signals a breach. A log nobody reads and no alert watches is a log with no value.'
+        ],
+        table: {
+          head_ar: ['الصلاحية', 'على ملف', 'على مجلد'],
+          head_en: ['Permission', 'On a file', 'On a directory'],
+          rows: [
+            ['قراءة', 'عرض محتواه', 'سرد أسماء ما فيه'],
+            ['كتابة', 'تعديل محتواه', 'إضافة وحذف ملفات فيه'],
+            ['تنفيذ', 'تشغيله كبرنامج', 'الدخول إليه واجتيازه'],
+            ['الجذر', 'يتجاوز كل ما سبق', 'بلا سؤال ولا تراجع']
+          ]
+        },
+        keyPoints_ar: [
+          'كل شيء في لينكس ملف، فأمن النظام في جوهره ضبط صلاحيات.',
+          'ثلاث فئات وثلاث صلاحيات، والتنفيذ على المجلد يعني الاجتياز لا التشغيل.',
+          'لا تعمل بحساب الجذر: ارفع الامتياز مؤقتاً لأمر بعينه.',
+          'رفع الامتياز يُسجَّل، فيبقى أثر يميّز المسؤول من مهاجم استولى على الحساب.',
+          'خادم جديد: امنع دخول الجذر عن بُعد، واستخدم المفاتيح، وأغلق الخدمات الزائدة.',
+          'سجل لا يُقرأ ولا يُنبَّه على أنماطه سجل بلا قيمة.'
+        ],
+        keyPoints_en: [
+          'Everything in Linux is a file, so system security is essentially permission management.',
+          'Three classes and three permissions, and execute on a directory means traversal rather than running.',
+          'Never work as root: elevate privilege temporarily for a specific command.',
+          'Elevation is logged, leaving a trail separating an administrator from an attacker holding the account.',
+          'On a new server: block remote root login, use keys, and close unneeded services.',
+          'A log nobody reads with no alerting on its patterns has no value.'
+        ],
+        analogy_ar: 'تخيّل مبنى فيه ثلاث فئات: صاحب المكتب، وزملاؤه في القسم، وبقية الناس. ولكل فئة ما تستطيعه: الدخول، والتعديل، والاطّلاع. وحساب الجذر مفتاح عام يفتح كل باب في المبنى بلا تسجيل ولا سؤال. ولهذا لا يتجوّل به أحد في عمله اليومي، ويُستعار لمهمة محددة ثم يُعاد — لأن من يحمله دائماً، لو ضاع منه، ضاع المبنى كله ولا يُعرف من دخل ماذا.',
+        analogy_en: 'Picture a building with three classes: the office owner, their department colleagues, and everyone else, each with what they may do: enter, modify, view. The root account is a master key opening every door with no logging and no question. So nobody carries it in daily work; it is borrowed for a specific task and returned, because whoever always holds it loses the whole building if they lose it, with no record of who entered what.',
+        terms: [
+          { term: 'Root', def_ar: 'حساب يتجاوز كل الصلاحيات بلا قيد.', def_en: 'An account bypassing all permissions with no restriction.' },
+          { term: 'Privilege Elevation', def_ar: 'رفع الصلاحية مؤقتاً لأمر بعينه مع تسجيله.', def_en: 'Temporarily raising privilege for a specific logged command.' },
+          { term: 'SSH Key', def_ar: 'مفتاح للاتصال البعيد لا يُخمَّن ولا يُنتزع بالتصيّد.', def_en: 'A remote access key that is neither guessed nor phished.' },
+          { term: 'Hardening', def_ar: 'إغلاق ما لا يُحتاج وتضييق الإعدادات الافتراضية.', def_en: 'Closing what is unneeded and tightening default settings.' }
+        ],
+        cards: [
+          { q_ar: 'ما معنى صلاحية التنفيذ على مجلد؟', q_en: 'What does execute mean on a directory?', a_ar: 'القدرة على الدخول إليه واجتيازه، لا تشغيله كبرنامج.', a_en: 'The ability to enter and traverse it rather than run it as a program.' },
+          { q_ar: 'لماذا لا يُعمل بحساب الجذر يومياً؟', q_en: 'Why not work as root daily?', a_ar: 'لأنه يتجاوز كل الصلاحيات بلا سؤال ولا تراجع، فخطأ مطبعي واحد قد يمحو النظام.', a_en: 'It bypasses every permission with no question or undo, so one typo may wipe the system.' },
+          { q_ar: 'ما الفائدة الأمنية الثانية لرفع الامتياز المؤقت؟', q_en: 'What is the second security benefit of temporary elevation?', a_ar: 'أنه يُسجَّل، فيبقى أثر يبيّن من نفّذ أي أمر امتيازي ومتى.', a_en: 'It is logged, leaving a trail of who ran which privileged command and when.' },
+          { q_ar: 'ما دلالة محاولات دخول فاشلة متكررة ثم نجاح واحد؟', q_en: 'What do repeated failed logins then one success indicate?', a_ar: 'تخمين آلي نجح، أي اختراق محتمل يستوجب استجابة فورية.', a_en: 'Successful automated guessing, a likely breach requiring immediate response.' }
+        ]
+      },
+      {
+        title_ar: 'ويندوز وActive Directory',
+        title_en: 'Windows and Active Directory',
+        lead_ar: 'الدليل النشط عقل شبكة المؤسسة: يحفظ الهويات والصلاحيات كلها — ولهذا يكون هدف المهاجم الأول، والسيطرة عليه سيطرة على كل شيء.',
+        lead_en: 'Active Directory is the brain of a corporate network holding every identity and permission, which makes it the attacker first target, and controlling it means controlling everything.',
+        body_ar: [
+          'الدليل النشط قاعدة مركزية تحفظ حسابات المستخدمين والأجهزة والمجموعات وصلاحياتها في المؤسسة. فبدل ضبط كل جهاز على حدة، تُدار الهويات والسياسات من مكان واحد. وهذي المركزية قوة إدارية وخطر أمني في آن: من يسيطر عليه يسيطر على كل جهاز فيه.',
+          'وبنيته هرمية: النطاق يجمع الكائنات تحت إدارة واحدة، والوحدات التنظيمية تقسّم النطاق داخلياً لتطبيق سياسات مختلفة، والمجموعات تجمع المستخدمين لمنح صلاحيات جماعية بدل فردية. وهذا التجميع هو مصدر أشهر خلل إداري: مستخدم يبقى في مجموعة امتيازية بعد انتقاله لقسم آخر.',
+          'وسياسات المجموعة أداة الضبط المركزي: تفرض إعدادات على آلاف الأجهزة دفعة واحدة — تعقيد كلمات المرور، وقفل الشاشة، ومنع تشغيل برامج غير معتمدة. وقوتها في اتساعها وخطرها كذلك: سياسة خاطئة تنتشر على المؤسسة كلها في دقائق.',
+          'والمصادقة فيه تقوم على تذاكر: يحصل المستخدم على تذكرة بعد إثبات هويته، ثم يقدّمها للخدمات بدل إعادة إدخال كلمة المرور. وهذا مريح وآمن نسبياً، لكنه يفتح باب هجمات سرقة التذاكر: من يسرق تذكرة صالحة يتصرّف بصلاحيات صاحبها بلا أن يعرف كلمة مروره أصلاً.',
+          'وهدف المهاجم في هذي البيئة معروف: التصعيد من مستخدم عادي إلى مسؤول نطاق. ومساره المعتاد ثلاث خطوات: يدخل بجهاز واحد بالتصيّد، ثم ينتقل جانبياً بين الأجهزة بحثاً عن بيانات اعتماد مخزّنة، ثم يجد حساباً امتيازياً استُخدم على جهاز عادي فيسرق تذكرته.',
+          'ومن هنا الدفاع الأهم: طبقات الإدارة. ألا تُستخدم حسابات المسؤولين على الأجهزة العادية أبداً، فالحساب الامتيازي الذي يسجّل الدخول على جهاز مخترق يترك أثراً يُسرق. ومعها: حسابات إدارية منفصلة عن حسابات العمل اليومي، ومراقبة إنشاء الحسابات وتغيّر العضوية في المجموعات الامتيازية، وأقل صلاحية في كل مجموعة.'
+        ],
+        body_en: [
+          'Active Directory is a central database holding user accounts, machines, groups and their permissions across an organisation. Instead of configuring each machine separately, identities and policies are managed from one place. That centralisation is administrative strength and security danger at once: whoever controls it controls every machine in it.',
+          'Its structure is hierarchical: a domain gathers objects under one administration, organisational units divide a domain internally to apply different policies, and groups gather users to grant permissions collectively rather than individually. That grouping is the source of the most common administrative flaw: a user remaining in a privileged group after moving to another department.',
+          'Group policies are the central control tool: enforcing settings on thousands of machines at once, password complexity, screen locking, blocking unapproved software. Their power lies in their reach and so does their danger: a wrong policy spreads across the whole organisation in minutes.',
+          'Authentication there rests on tickets: a user receives a ticket after proving identity then presents it to services instead of re-entering the password. That is convenient and relatively safe, yet it opens the door to ticket theft attacks: whoever steals a valid ticket acts with its owner permissions without ever knowing their password.',
+          'The attacker goal in this environment is known: escalating from an ordinary user to a domain administrator. Their usual path has three steps: entering one machine through phishing, moving laterally between machines hunting stored credentials, then finding a privileged account that was used on an ordinary machine and stealing its ticket.',
+          'Hence the most important defence: administrative tiering. Administrator accounts are never used on ordinary machines, because a privileged account logging into a compromised machine leaves a trace that gets stolen. With it: administrative accounts separate from daily work accounts, monitoring account creation and privileged group membership changes, and least privilege within every group.'
+        ],
+        table: {
+          head_ar: ['المكوّن', 'دوره', 'خطره الأمني'],
+          head_en: ['Component', 'Its role', 'Its security risk'],
+          rows: [
+            ['النطاق', 'إدارة موحّدة للكائنات', 'السيطرة عليه سيطرة على الكل'],
+            ['المجموعات', 'منح صلاحيات جماعية', 'عضوية قديمة لم تُزَل'],
+            ['سياسات المجموعة', 'ضبط مركزي للأجهزة', 'سياسة خاطئة تنتشر بدقائق'],
+            ['التذاكر', 'مصادقة بلا إعادة كلمة المرور', 'سرقة تذكرة تعني انتحال الهوية']
+          ]
+        },
+        keyPoints_ar: [
+          'المركزية قوة إدارية وخطر أمني: من يسيطر على الدليل يسيطر على كل جهاز.',
+          'أشهر خلل إداري: بقاء المستخدم في مجموعة امتيازية بعد انتقاله.',
+          'سياسة خاطئة تنتشر على المؤسسة كلها في دقائق.',
+          'سرقة تذكرة صالحة تعني انتحال الهوية بلا معرفة كلمة المرور.',
+          'مسار المهاجم: دخول بجهاز، ثم انتقال جانبي، ثم تصعيد بتذكرة امتيازية.',
+          'الدفاع الأهم: ألا تُستخدم حسابات المسؤولين على الأجهزة العادية أبداً.'
+        ],
+        keyPoints_en: [
+          'Centralisation is administrative strength and security danger: controlling the directory controls every machine.',
+          'The commonest administrative flaw is a user remaining in a privileged group after moving.',
+          'A wrong policy spreads across the entire organisation in minutes.',
+          'Stealing a valid ticket means impersonation with no knowledge of the password.',
+          'The attacker path: enter one machine, move laterally, then escalate with a privileged ticket.',
+          'The key defence: administrator accounts are never used on ordinary machines.'
+        ],
+        analogy_ar: 'تخيّل مبنى إدارياً فيه غرفة واحدة تحفظ كل المفاتيح وسجل من يملك أيها. إدارتها مريحة: تلغي مفتاحاً واحداً فتغلق كل الأبواب أمام موظف غادر. لكن من يدخل تلك الغرفة يملك المبنى. ولهذا لا يُدخِلها المدير مفتاحه العام أبداً في زيارة عابرة لمكتب عادي — فلو كان المكتب مراقَباً، صُوِّر المفتاح. وهذا بالضبط معنى ألا يسجّل المسؤول دخوله على جهاز عادي.',
+        analogy_en: 'Picture an administrative building with one room holding every key and a register of who owns which. Managing it is convenient: cancel one key and every door closes to a departed employee. But whoever enters that room owns the building. So a manager never brings their master key into a casual visit to an ordinary office, because if that office is watched the key gets photographed. That is exactly what it means for an administrator never to log into an ordinary machine.',
+        terms: [
+          { term: 'Domain', def_ar: 'نطاق يجمع كائنات الشبكة تحت إدارة موحّدة.', def_en: 'A domain gathering network objects under one administration.' },
+          { term: 'Group Policy', def_ar: 'إعدادات تُفرض مركزياً على آلاف الأجهزة.', def_en: 'Settings enforced centrally across thousands of machines.' },
+          { term: 'Lateral Movement', def_ar: 'انتقال المهاجم بين الأجهزة بحثاً عن بيانات اعتماد.', def_en: 'An attacker moving between machines hunting credentials.' },
+          { term: 'Privilege Escalation', def_ar: 'الارتقاء من مستخدم عادي إلى صلاحيات إدارية.', def_en: 'Rising from an ordinary user to administrative permissions.' },
+          { term: 'Administrative Tiering', def_ar: 'فصل حسابات الإدارة عن الأجهزة والحسابات العادية.', def_en: 'Separating administrative accounts from ordinary machines and accounts.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يكون الدليل النشط هدف المهاجم الأول؟', q_en: 'Why is Active Directory the first target?', a_ar: 'لأنه يحفظ الهويات والصلاحيات كلها مركزياً، فالسيطرة عليه سيطرة على كل جهاز فيه.', a_en: 'It centrally holds every identity and permission, so controlling it controls every machine in it.' },
+          { q_ar: 'ما مسار المهاجم المعتاد في هذي البيئة؟', q_en: 'What is the usual attacker path here?', a_ar: 'دخول جهاز واحد بالتصيّد، ثم انتقال جانبي بحثاً عن بيانات اعتماد، ثم تصعيد بتذكرة امتيازية.', a_en: 'Entering one machine by phishing, moving laterally hunting credentials, then escalating with a privileged ticket.' },
+          { q_ar: 'لماذا لا يسجّل المسؤول دخوله على جهاز عادي؟', q_en: 'Why must an administrator not log into an ordinary machine?', a_ar: 'لأن الحساب الامتيازي يترك أثراً على الجهاز، فإن كان مخترقاً سُرق الأثر واستُخدم للتصعيد.', a_en: 'A privileged account leaves a trace on the machine, and if it is compromised the trace is stolen and used to escalate.' },
+          { q_ar: 'ما أشهر خلل إداري في المجموعات؟', q_en: 'What is the commonest group administration flaw?', a_ar: 'بقاء المستخدم في مجموعة امتيازية بعد انتقاله لقسم آخر لا يحتاجها.', a_en: 'A user remaining in a privileged group after moving to a department that does not need it.' }
+        ]
+      },
+      {
+        title_ar: 'الصلاحيات والهوية',
+        title_en: 'Permissions and Identity',
+        lead_ar: 'الهوية هي المحيط الأمني الجديد بعد أن ذاب حدّ الشبكة، وكل ثغرة صلاحيات تبدأ بسؤال واحد: لماذا يملك هذا الحساب هذي القدرة؟',
+        lead_en: 'Identity is the new security perimeter now the network boundary has dissolved, and every permission flaw starts with one question: why does this account hold this capability?',
+        body_ar: [
+          'التوثيق يثبت من أنت، وله ثلاثة عوامل: ما تعرفه ككلمة المرور، وما تملكه كهاتف أو مفتاح مادي، وما أنت عليه كبصمة أو وجه. والتحقق متعدد العوامل أن تجمع عاملين من فئتين مختلفتين — لا كلمتَي مرور، فهما من الفئة نفسها.',
+          'وقيمته أنه يبطل أثر سرقة كلمة المرور وحدها، وهي أشهر طرق الاختراق. ولهذا يُعدّ تفعيله أعلى إجراء أمني عائداً مقابل كلفته على الإطلاق: يمنع أغلب الهجمات الآلية بضغطة إعداد.',
+          'لكن ليست كل العوامل الثانية متساوية: الرسالة النصية أضعفها لأنها تُختطف بنقل رقم الهاتف احتيالاً أو باعتراض الشبكة، وتطبيق المصادقة أقوى، والمفتاح المادي أقواها لأنه يتحقق من عنوان الموقع فلا يُخدَع بصفحة تصيّد تشبه الأصل.',
+          'والتفويض يحدد ما يحق لك بعد إثبات هويتك، وأشهر نموذجين: التحكم بالأدوار حيث تُمنح الصلاحيات للدور لا للشخص فيرثها كل من يشغله، والتحكم بالسمات حيث يُبنى القرار على خصائص السياق كالوقت والموقع وحساسية المورد. والأول أبسط إدارةً، والثاني أدق تعبيراً.',
+          'ومبدأ أقل صلاحية هو الحاكم: يُعطى كل حساب أقل ما يكفيه لعمله ولا شيء زيادة. وعدوّه الزحف الوظيفي: موظف ينتقل بين الأقسام فيراكم صلاحيات كل قسم مرّ به بلا أن تُزال القديمة، حتى يصير حسابه أوسع صلاحية من أي مسؤول.',
+          'وعلاجه المراجعة الدورية للصلاحيات: أن يؤكد مالك كل نظام دورياً أن من يملك وصولاً إليه ما زال يحتاجه. ومعها إلغاء الوصول فور انتهاء الحاجة لا بعد أسابيع — والحسابات الخاملة لموظفين غادروا من أخطر ما يوجد، لأن أحداً لا يراقبها ولا يلاحظ استخدامها.'
+        ],
+        body_en: [
+          'Authentication proves who you are through three factors: something you know such as a password, something you have such as a phone or hardware key, and something you are such as a fingerprint or face. Multi-factor verification combines two factors from different categories, not two passwords, since those belong to one category.',
+          'Its value is nullifying the effect of a stolen password alone, the commonest breach route. So enabling it is the highest-return security measure relative to its cost, blocking most automated attacks with one configuration change.',
+          'Yet not all second factors are equal: a text message is the weakest because it is hijacked by fraudulent number transfer or network interception, an authenticator app is stronger, and a hardware key is strongest because it verifies the site address so it is not fooled by a phishing page resembling the original.',
+          'Authorisation defines what you may do once identified, with two well-known models: role-based control where permissions are granted to a role rather than a person so anyone holding it inherits them, and attribute-based control where the decision rests on contextual properties such as time, location and resource sensitivity. The first is simpler to administer and the second more precise.',
+          'Least privilege is the governing principle: every account receives the minimum for its work and nothing more. Its enemy is privilege creep: an employee moving between departments accumulating each department permissions with the old ones never removed, until their account is broader than any administrator.',
+          'Its remedy is periodic access review: each system owner periodically confirming that everyone with access still needs it. With it, revoking access the moment the need ends rather than weeks later, since dormant accounts of departed employees are among the most dangerous things that exist, because nobody watches them or notices their use.'
+        ],
+        table: {
+          head_ar: ['العامل الثاني', 'قوته', 'كيف يُخترق'],
+          head_en: ['Second factor', 'Its strength', 'How it is defeated'],
+          rows: [
+            ['رسالة نصية', 'الأضعف', 'نقل رقم احتيالاً أو اعتراض'],
+            ['تطبيق مصادقة', 'أقوى', 'تصيّد لحظي للرمز'],
+            ['مفتاح مادي', 'الأقوى', 'يشترط سرقته مادياً'],
+            ['بصمة أو وجه', 'مريح', 'يصعب تغييره إن تسرّب']
+          ]
+        },
+        keyPoints_ar: [
+          'التحقق متعدد العوامل يجمع عاملين من فئتين مختلفتين لا كلمتَي مرور.',
+          'تفعيله أعلى إجراء أمني عائداً مقابل كلفته على الإطلاق.',
+          'الرسالة النصية أضعف عامل ثانٍ، والمفتاح المادي أقواها لأنه يتحقق من العنوان.',
+          'التحكم بالأدوار أبسط إدارةً، والتحكم بالسمات أدق تعبيراً عن السياق.',
+          'زحف الصلاحيات يجعل حساب موظف منتقل أوسع من أي مسؤول.',
+          'الحسابات الخاملة لمن غادروا من أخطر ما يوجد لأن أحداً لا يراقبها.'
+        ],
+        keyPoints_en: [
+          'Multi-factor verification combines two factors from different categories, not two passwords.',
+          'Enabling it is the highest-return security measure relative to cost.',
+          'Text messages are the weakest second factor and hardware keys the strongest since they verify the address.',
+          'Role-based control is simpler to administer while attribute-based expresses context more precisely.',
+          'Privilege creep makes a transferred employee account broader than any administrator.',
+          'Dormant accounts of departed staff are among the most dangerous since nobody watches them.'
+        ],
+        analogy_ar: 'تخيّل موظفاً عمل في المستودع فأخذ مفتاحه، ثم انتقل للمحاسبة فأخذ مفتاحها، ثم للمشتريات. بعد خمس سنوات صار يملك مفاتيح لا يملكها المدير نفسه — لا لأن أحداً منحه ثقة استثنائية، بل لأن أحداً لم يسترد القديم. وهذا زحف الصلاحيات. والمراجعة الدورية أن يُسأل كل مسؤول قسم: هل ما زال هؤلاء يحتاجون مفاتيحك؟',
+        analogy_en: 'Picture an employee who worked in the warehouse and took its key, then moved to accounting and took that key, then to procurement. After five years they hold keys the manager does not, not because anyone granted exceptional trust but because nobody reclaimed the old ones. That is privilege creep. Periodic review is asking each department head whether these people still need your keys.',
+        terms: [
+          { term: 'Multi-factor Authentication', def_ar: 'الجمع بين عاملين من فئتين مختلفتين لإثبات الهوية.', def_en: 'Combining two factors from different categories to prove identity.' },
+          { term: 'RBAC', def_ar: 'منح الصلاحيات للدور فيرثها كل من يشغله.', def_en: 'Granting permissions to a role inherited by whoever holds it.' },
+          { term: 'Privilege Creep', def_ar: 'تراكم صلاحيات الأقسام السابقة على حساب واحد.', def_en: 'Permissions from former departments accumulating on one account.' },
+          { term: 'Access Review', def_ar: 'مراجعة دورية يؤكد فيها المالك بقاء الحاجة للوصول.', def_en: 'A periodic review where the owner confirms access is still needed.' },
+          { term: 'Dormant Account', def_ar: 'حساب لم يُستخدم ولم يُلغَ بعد مغادرة صاحبه.', def_en: 'An unused account never revoked after its owner left.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا تُعدّ كلمتا مرور تحققاً متعدد العوامل؟', q_en: 'Why are two passwords not multi-factor?', a_ar: 'لأنهما من فئة واحدة: «ما تعرفه»؛ والتعدد يشترط عاملين من فئتين مختلفتين.', a_en: 'They belong to one category, something you know, while multi-factor requires two different categories.' },
+          { q_ar: 'لماذا المفتاح المادي أقوى عامل ثانٍ؟', q_en: 'Why is a hardware key the strongest second factor?', a_ar: 'لأنه يتحقق من عنوان الموقع، فلا يُخدَع بصفحة تصيّد تشبه الأصل.', a_en: 'It verifies the site address so it is not fooled by a phishing page resembling the original.' },
+          { q_ar: 'ما زحف الصلاحيات وكيف يُعالَج؟', q_en: 'What is privilege creep and how is it treated?', a_ar: 'تراكم صلاحيات الأقسام السابقة بلا إزالة؛ ويُعالَج بمراجعة دورية يؤكد فيها المالك بقاء الحاجة.', a_en: 'Permissions from former departments accumulating unremoved; treated by periodic reviews where owners confirm need.' },
+          { q_ar: 'لماذا تخطر الحسابات الخاملة؟', q_en: 'Why are dormant accounts dangerous?', a_ar: 'لأن أحداً لا يراقبها ولا يلاحظ استخدامها، فاختراقها يمر بلا انتباه.', a_en: 'Nobody watches them or notices their use, so a compromise passes unnoticed.' }
+        ]
+      },
+      {
+        title_ar: 'تقوية الأنظمة',
+        title_en: 'System Hardening',
+        lead_ar: 'الإعداد الافتراضي مصمَّم للتشغيل السريع لا للأمان، وتقوية النظام هي إغلاق كل ما لا تحتاجه قبل أن يجده غيرك.',
+        lead_en: 'Default configuration is designed for quick setup rather than safety, and hardening is closing everything you do not need before someone else finds it.',
+        body_ar: [
+          'أي نظام يُثبَّت بإعدادات افتراضية غرضها أن يعمل بأسرع ما يمكن لأكبر عدد من الحالات: خدمات كثيرة مفعّلة، وحسابات تجريبية، وكلمات مرور معروفة، وصلاحيات واسعة. وكل واحدة من هذي ملائمة للتشغيل وثغرة للأمن.',
+          'وأول خطوة في التقوية تقليص سطح الهجوم: كل خدمة لا تُستخدم تُغلَق، وكل منفذ لا يُحتاج يُسدّ، وكل حساب تجريبي يُحذَف، وكل برنامج مثبّت بلا حاجة يُزال. والقاعدة: ما لا يعمل لا يُخترَق، وأبسط طريقة لتأمين خدمة هي ألا تشغّلها أصلاً.',
+          'والتحديث ثاني الخطوات وأكثرها إهمالاً. فأغلب الاختراقات لا تستغل ثغرة مجهولة، وإنما ثغرة معروفة صدر تصحيحها قبل شهور ولم يُطبَّق. والمهاجمون يفحصون الإنترنت بحثاً عن الإصدارات القديمة تحديداً، فالتأخير في التحديث دعوة مفتوحة.',
+          'وإدارة التصحيحات ليست «حدّث كل شيء فوراً» فهذا يكسر الأنظمة، وإنما عملية: تصنيف حسب خطورة الثغرة، واختبار في بيئة مشابهة، ثم نشر مرحلي مع خطة تراجع. والثغرات الحرجة المستغَلّة فعلياً تُعالَج بساعات لا أسابيع.',
+          'وضبط الإعدادات الافتراضية يشمل: تغيير كل كلمة مرور افتراضية، وتعطيل الحسابات غير المستخدمة، وتقييد من يستطيع الاتصال عن بُعد وبأي طريقة، وتفعيل التشفير للتخزين والنقل، وضبط مهلة إنهاء الجلسات الخاملة.',
+          'والمعايير المرجعية توفّر عليك الاجتهاد الفردي: هي قوائم ضبط منشورة لكل نظام تفصّل ما يجب تغييره ولماذا. والقاعدة الحاكمة أخيراً: التقوية ليست حدثاً بل عملية — فنظام قُوّي مرة ثم أُضيفت له خدمات وتغيّرت إعداداته عاد إلى حاله، ولهذا تُراجَع الإعدادات دورياً وتُقارَن بالمعيار.'
+        ],
+        body_en: [
+          'Any system installs with defaults meant to work as quickly as possible across the widest range of cases: many services enabled, sample accounts, known passwords, and broad permissions. Every one of those suits operation and is a security hole.',
+          'The first hardening step is reducing the attack surface: every unused service is stopped, every unneeded port closed, every sample account deleted, and every needlessly installed program removed. The rule: what does not run cannot be breached, and the simplest way to secure a service is not running it at all.',
+          'Patching is the second step and the most neglected. Most breaches do not exploit an unknown vulnerability but a known one whose fix shipped months earlier and was never applied. Attackers scan the internet specifically for old versions, so delay in patching is an open invitation.',
+          'Patch management is not "update everything immediately", which breaks systems, but a process: classifying by vulnerability severity, testing in a similar environment, then staged rollout with a rollback plan. Critical vulnerabilities under active exploitation are handled in hours rather than weeks.',
+          'Adjusting defaults includes: changing every default password, disabling unused accounts, restricting who may connect remotely and how, enabling encryption for storage and transit, and setting idle session timeouts.',
+          'Benchmark standards spare you individual improvisation: they are published checklists per system detailing what must change and why. The final governing rule: hardening is a process rather than an event, since a system hardened once then given new services and altered settings returns to its former state, which is why configurations are reviewed periodically and compared against the benchmark.'
+        ],
+        table: {
+          head_ar: ['الإجراء', 'ما يمنعه', 'الإهمال الشائع فيه'],
+          head_en: ['Measure', 'What it prevents', 'Common neglect'],
+          rows: [
+            ['إغلاق الخدمات الزائدة', 'استغلال خدمة منسية', 'تُترك «قد نحتاجها لاحقاً»'],
+            ['تحديث التصحيحات', 'استغلال ثغرة معروفة', 'تأجيل خوفاً من الكسر'],
+            ['تغيير كلمات المرور الافتراضية', 'دخولاً بلا جهد', 'تُنسى على أجهزة الشبكة'],
+            ['مهلة الجلسات الخاملة', 'استغلال جهاز مفتوح', 'تُعطَّل لأنها مزعجة']
+          ]
+        },
+        keyPoints_ar: [
+          'الإعداد الافتراضي مصمَّم للتشغيل السريع لا للأمان.',
+          'ما لا يعمل لا يُخترَق: أبسط تأمين لخدمة ألا تشغّلها.',
+          'أغلب الاختراقات تستغل ثغرة معروفة صدر تصحيحها ولم يُطبَّق.',
+          'إدارة التصحيحات عملية: تصنيف واختبار ونشر مرحلي وخطة تراجع.',
+          'المعايير المرجعية قوائم منشورة تغنيك عن الاجتهاد الفردي.',
+          'التقوية عملية لا حدث، فالإعدادات تعود بالإهمال ويجب أن تُراجَع دورياً.'
+        ],
+        keyPoints_en: [
+          'Defaults are designed for quick operation rather than safety.',
+          'What does not run cannot be breached: the simplest way to secure a service is not running it.',
+          'Most breaches exploit a known vulnerability whose fix shipped and was never applied.',
+          'Patch management is a process: classification, testing, staged rollout and a rollback plan.',
+          'Benchmarks are published checklists sparing you individual improvisation.',
+          'Hardening is a process rather than an event, since settings drift back and must be reviewed periodically.'
+        ],
+        analogy_ar: 'تخيّل بيتاً جديداً سُلِّم لك بكل نوافذه مفتوحة وأقفاله على الرمز الافتراضي المطبوع في الكتيّب، وبابه الخلفي مفتوح لأن العمّال كانوا يستخدمونه. لا أحد يقصد أذاك — البيت سُلِّم بحالة تسهّل العمل لا بحالة تحميك. والتقوية أن تمشي على كل نافذة وتغلقها، وتغيّر كل رمز، وتسأل عن كل باب: من يستخدمه ولماذا؟',
+        analogy_en: 'Picture a new house handed to you with every window open, its locks on the default code printed in the manual, and its back door open because the workmen used it. Nobody meant you harm: the house was handed over in a state that eases work rather than one that protects you. Hardening is walking to every window and closing it, changing every code, and asking of every door who uses it and why.',
+        terms: [
+          { term: 'Attack Surface', def_ar: 'مجموع النقاط التي يمكن مهاجمة النظام منها.', def_en: 'The total points from which a system can be attacked.' },
+          { term: 'Patch Management', def_ar: 'عملية تصنيف التصحيحات واختبارها ونشرها مرحلياً.', def_en: 'The process of classifying, testing and staging patch rollout.' },
+          { term: 'Default Credentials', def_ar: 'بيانات دخول مصنعية معروفة يجب تغييرها فوراً.', def_en: 'Known factory credentials that must be changed immediately.' },
+          { term: 'Benchmark', def_ar: 'قائمة ضبط منشورة تفصّل إعدادات التقوية لنظام بعينه.', def_en: 'A published checklist detailing hardening settings for a system.' },
+          { term: 'Configuration Drift', def_ar: 'ابتعاد الإعدادات عن المعيار بمرور الوقت.', def_en: 'Settings drifting away from the benchmark over time.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا الإعداد الافتراضي غير آمن؟', q_en: 'Why are defaults insecure?', a_ar: 'لأنه مصمَّم ليعمل بسرعة لأكبر عدد من الحالات: خدمات مفعّلة وحسابات تجريبية وكلمات مرور معروفة.', a_en: 'They are designed to work quickly across the widest range: enabled services, sample accounts and known passwords.' },
+          { q_ar: 'ما نوع الثغرات التي تستغلها أغلب الاختراقات؟', q_en: 'Which vulnerabilities do most breaches exploit?', a_ar: 'ثغرات معروفة صدر تصحيحها قبل شهور ولم يُطبَّق، لا ثغرات مجهولة.', a_en: 'Known vulnerabilities whose fixes shipped months earlier and were never applied, not unknown ones.' },
+          { q_ar: 'لماذا لا يُحدَّث كل شيء فوراً؟', q_en: 'Why not update everything immediately?', a_ar: 'لأن التحديث بلا اختبار يكسر الأنظمة؛ فالعملية تصنيف واختبار ونشر مرحلي مع خطة تراجع.', a_en: 'Untested updates break systems, so the process is classification, testing and staged rollout with rollback.' },
+          { q_ar: 'لماذا التقوية عملية لا حدث؟', q_en: 'Why is hardening a process rather than an event?', a_ar: 'لأن الإعدادات تنحرف مع إضافة الخدمات والتغييرات، فتعود لحالها ما لم تُراجَع دورياً.', a_en: 'Settings drift as services and changes are added, returning to their former state unless reviewed periodically.' }
+        ]
+      },
+      {
+        title_ar: 'السجلات والمراقبة',
+        title_en: 'Logging and Monitoring',
+        lead_ar: 'ما لا تراه لا تستطيع إيقافه، والسجل الذي لا يُقرأ لا يحمي — والفرق بين اكتشاف الاختراق في ساعة أو في ستة أشهر هو المراقبة.',
+        lead_en: 'You cannot stop what you cannot see, and a log nobody reads protects nothing, and the difference between detecting a breach in an hour or in six months is monitoring.',
+        body_ar: [
+          'كل نظام ينتج سجلات: من دخل ومتى ومن أين، وأي أمر امتيازي نُفِّذ، وأي ملف تغيّر، وأي اتصال شبكي بدأ. وقيمة السجل ليست في وجوده بل في قراءته: مؤسسات كثيرة تحتفظ بتيرابايتات من السجلات ولا ينظر فيها أحد إلا بعد الحادث.',
+          'وأول قرار عملي: ماذا نسجّل؟ فتسجيل كل شيء يغرقك في ضجيج ويستهلك تخزيناً هائلاً، وتسجيل القليل يعميك. والقاعدة أن يُسجَّل ما يجيب أسئلة التحقيق: من فعل، وماذا فعل، ومتى، ومن أين، وهل نجح.',
+          'وثاني قرار: أين تُحفَظ؟ والجواب الأمني قاطع: على نظام مركزي منفصل يُرسَل إليه فوراً. فالمهاجم الذي يسيطر على جهاز أول ما يفعله محو السجلات ليخفي أثره، فإن كانت السجلات محفوظة على الجهاز نفسه ضاع دليلك مع الجهاز.',
+          'ونظام إدارة الأحداث الأمنية يجمع السجلات من كل المصادر ويربطها: فيرى ما لا يراه أي جهاز منفرد. فمحاولة دخول فاشلة على خادم لا تعني شيئاً، لكن محاولات فاشلة على عشرين خادماً من عنوان واحد خلال دقيقة نمط واضح — والربط هو ما يكشفه.',
+          'والفرق بين الإنذار والحدث فرق عملي حاسم: الحدث سطر في السجل، والإنذار حدث بلغ عتبة تستدعي نظر إنسان. ومن يجعل كل حدث إنذاراً ينتج آلاف الإنذارات يومياً فيتجاهلها الفريق — وهذا «إرهاق الإنذارات»، وهو سبب موثّق في اختراقات كبرى: كان الإنذار موجوداً ولم ينظر فيه أحد.',
+          'وقياسان يحكمان نضج المراقبة: زمن الاكتشاف من لحظة الاختراق حتى ملاحظته، وزمن الاحتواء من الملاحظة حتى إيقافه. والمتوسط العالمي للاكتشاف يُقاس بالأشهر لا الأيام، وهذي الفجوة هي ما يستغله المهاجم للانتقال والتصعيد وسحب البيانات على مهل.'
+        ],
+        body_en: [
+          'Every system produces logs: who logged in, when and from where, which privileged command ran, which file changed, and which network connection opened. A log value is not its existence but its reading: many organisations keep terabytes of logs nobody examines until after an incident.',
+          'The first practical decision is what to log. Logging everything drowns you in noise and consumes vast storage, while logging little blinds you. The rule is logging what answers investigation questions: who acted, what they did, when, from where, and whether they succeeded.',
+          'The second decision is where logs are kept, and the security answer is categorical: on a separate central system they are shipped to immediately. An attacker controlling a machine first erases logs to hide their trail, so logs kept on that machine vanish with it.',
+          'A security event management system gathers logs from every source and correlates them, seeing what no single device can. A failed login on one server means nothing, while failed attempts on twenty servers from one address within a minute is a clear pattern, and correlation is what reveals it.',
+          'The difference between an event and an alert is practically decisive: an event is a line in a log while an alert is an event crossing a threshold that warrants human attention. Whoever makes every event an alert produces thousands daily and the team ignores them, which is alert fatigue, a documented cause in major breaches: the alert existed and nobody looked.',
+          'Two measures define monitoring maturity: time to detect, from the breach to noticing it, and time to contain, from noticing to stopping it. The global average detection time is measured in months rather than days, and that gap is what an attacker uses to move, escalate and exfiltrate at leisure.'
+        ],
+        table: {
+          head_ar: ['السؤال', 'ما يُسجَّل للإجابة عنه'],
+          head_en: ['Question', 'What is logged to answer it'],
+          rows: [
+            ['من فعل؟', 'هوية الحساب ومصدر الاتصال'],
+            ['ماذا فعل؟', 'الأمر أو العملية والمورد المتأثر'],
+            ['متى؟', 'طابع زمني موحّد المنطقة'],
+            ['هل نجح؟', 'نتيجة العملية ورمز الحالة'],
+            ['هل تكرر؟', 'تجميع الأحداث المتشابهة للربط']
+          ]
+        },
+        keyPoints_ar: [
+          'قيمة السجل في قراءته لا في وجوده، والاحتفاظ بلا مراجعة بلا فائدة.',
+          'سجّل ما يجيب: من فعل، وماذا، ومتى، ومن أين، وهل نجح.',
+          'السجلات تُرسَل فوراً لنظام مركزي منفصل، لأن المهاجم يمحوها أولاً.',
+          'الربط بين المصادر يكشف أنماطاً لا يراها أي جهاز منفرد.',
+          'إرهاق الإنذارات سبب موثّق في اختراقات كبرى: الإنذار موجود ولم يُنظر فيه.',
+          'زمن الاكتشاف وزمن الاحتواء هما مقياسا نضج المراقبة.'
+        ],
+        keyPoints_en: [
+          'A log value lies in reading it, and retention without review is useless.',
+          'Log what answers who acted, what they did, when, from where, and whether they succeeded.',
+          'Ship logs immediately to a separate central system, since an attacker erases them first.',
+          'Correlation across sources reveals patterns no single device sees.',
+          'Alert fatigue is a documented cause in major breaches: the alert existed and nobody looked.',
+          'Time to detect and time to contain are the measures of monitoring maturity.'
+        ],
+        analogy_ar: 'تخيّل مبنى فيه خمسون كاميرا تسجّل على قرص داخل كل غرفة. لصّ يدخل غرفة يأخذ القرص معه، فتختفي جريمته. ولهذا تُنقل التسجيلات فوراً لغرفة تحكم مغلقة. وأما إرهاق الإنذارات فتخيّل جهاز إنذار يرنّ كل مرة يمرّ قط في الحديقة: بعد أسبوع، لن يقوم أحد لسماعه — وحين يدخل اللص فعلاً، يرنّ ولا يتحرّك أحد.',
+        analogy_en: 'Picture a building with fifty cameras recording to a disk inside each room. A thief entering a room takes the disk with them and their crime disappears, which is why recordings are shipped immediately to a locked control room. As for alert fatigue, picture an alarm ringing every time a cat crosses the garden: after a week nobody rises for it, and when a thief actually enters it rings and nobody moves.',
+        terms: [
+          { term: 'Centralised Logging', def_ar: 'إرسال السجلات فوراً لنظام منفصل عن مصدرها.', def_en: 'Shipping logs immediately to a system separate from their source.' },
+          { term: 'Correlation', def_ar: 'ربط أحداث من مصادر مختلفة لكشف نمط واحد.', def_en: 'Linking events from different sources to reveal one pattern.' },
+          { term: 'Alert Fatigue', def_ar: 'كثرة الإنذارات حتى يتجاهلها الفريق فيفوت الحقيقي.', def_en: 'Alerts so numerous the team ignores them and misses the real one.' },
+          { term: 'Time to Detect', def_ar: 'المدة من وقوع الاختراق حتى ملاحظته.', def_en: 'The time from a breach occurring to noticing it.' },
+          { term: 'Time to Contain', def_ar: 'المدة من ملاحظة الاختراق حتى إيقافه.', def_en: 'The time from noticing a breach to stopping it.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا تُرسَل السجلات لنظام مركزي منفصل؟', q_en: 'Why ship logs to a separate central system?', a_ar: 'لأن المهاجم الذي يسيطر على جهاز يمحو سجلاته أولاً ليخفي أثره.', a_en: 'An attacker controlling a machine erases its logs first to hide their trail.' },
+          { q_ar: 'ما الذي يكشفه الربط بين المصادر؟', q_en: 'What does correlation across sources reveal?', a_ar: 'أنماطاً لا يراها أي جهاز منفرد، كمحاولات فاشلة على عشرين خادماً من عنوان واحد.', a_en: 'Patterns no single device sees, such as failed attempts on twenty servers from one address.' },
+          { q_ar: 'ما إرهاق الإنذارات ولماذا يخطر؟', q_en: 'What is alert fatigue and why is it dangerous?', a_ar: 'كثرة الإنذارات حتى يتجاهلها الفريق، فيمر الإنذار الحقيقي بلا نظر — وهو سبب موثّق في اختراقات كبرى.', a_en: 'Alerts so numerous the team ignores them so the real one passes unexamined, a documented cause in major breaches.' },
+          { q_ar: 'ما مقياسا نضج المراقبة؟', q_en: 'What are the two measures of monitoring maturity?', a_ar: 'زمن الاكتشاف من الاختراق للملاحظة، وزمن الاحتواء من الملاحظة للإيقاف.', a_en: 'Time to detect from breach to noticing, and time to contain from noticing to stopping.' }
+        ]
+      }
     ]
   }
 };
