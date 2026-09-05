@@ -42,6 +42,21 @@ for (let off = 0; ; off += 1000) {
 }
 console.log(`عناوين المسار «${track}» القائمة: ${existing.size}`);
 
+// ─────────── الدفعات المعلّقة لم تُدخَل بعد ───────────
+// القاعدة الحيّة لا تعرفها، فلو اكتُفي بها لمرّ تكرار بين دفعتين
+// كُتِبتا قبل الإدخال. تُضاف عناوينها لمجموعة المقارنة.
+const here = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const mine = path.resolve(file);
+let pending = 0;
+for (const f of fs.readdirSync(here).filter(f => f.endsWith('.mjs') && !['check.mjs', 'gen-sql.mjs'].includes(f))) {
+  const full = path.join(here, f);
+  if (path.resolve(full) === mine) continue;
+  const mod = await import(pathToFileURL(full).href);
+  if (mod.questions?.[0]?.track_id !== track) continue;
+  mod.questions.forEach(q => { if (!existing.has(q.question)) { existing.add(q.question); pending++; } });
+}
+if (pending) console.log(`+ ${pending} عنواناً من دفعات معلّقة في المسار نفسه`);
+
 const fail = [];
 const warn = [];
 const ok = (m) => console.log('  ✓ ' + m);
