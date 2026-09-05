@@ -5685,6 +5685,324 @@ export const sectionGuides = {
           { q_ar: 'لماذا يُدمَج الفحص في دورة التطوير؟', q_en: 'Why integrate scanning into the development cycle?', a_ar: 'لأن ثغرة تُكتشف يوم كتابتها تُصلَح بدقائق، وبعد سنة قد تحتاج إعادة تصميم.', a_en: 'A vulnerability caught the day it was written takes minutes, while a year later it may need redesign.' }
         ]
       }
+    ],
+
+    // ─────────── الاختراق الأخلاقي واختبار الاختراق ───────────
+    4: [
+      {
+        title_ar: 'المنهجية والإطار القانوني',
+        title_en: 'Methodology and the Legal Framework',
+        lead_ar: 'الفرق بين مختبر اختراق ومجرم ليس المهارة ولا الأداة، وإنما ورقة تفويض مكتوبة تحدد ما يجوز ومتى وعلى أي أنظمة.',
+        lead_en: 'What separates a penetration tester from a criminal is neither skill nor tools but a written authorisation defining what is permitted, when, and on which systems.',
+        body_ar: [
+          'الأدوات نفسها والتقنيات نفسها يستخدمها الطرفان. والفارق الوحيد قانوني: تفويض مكتوب موقّع من مالك النظام يحدد النطاق والوقت والحدود. وبلا هذي الورقة، الفعل جريمة حاسوبية مهما كانت النية حسنة — والقانون في أغلب الدول لا يسأل عن نيتك بل عن إذنك.',
+          'ووثيقة النطاق أهم ما يُكتب قبل أي اختبار: ما الأنظمة والعناوين المشمولة، وما المستثنى صراحةً، وما الأوقات المسموح فيها، وما التقنيات الممنوعة كهجمات الحرمان من الخدمة على أنظمة إنتاج. وكل ما لم يُذكر صراحةً يُعتبر خارج النطاق — لا داخله.',
+          'ومعها بيانات اتصال طوارئ وشرط توقف: ماذا يفعل المختبِر إن اكتشف اختراقاً قائماً بالفعل، أو تسبّب بتعطّل غير مقصود، أو وصل لبيانات حسّاسة جداً؟ فالإجابة تُتفق عليها قبل لا أثناء.',
+          'وأنواع الاختبار ثلاثة بحسب المعرفة الممنوحة: الصندوق الأسود بلا أي معلومات فيحاكي مهاجماً خارجياً ويستغرق وقتاً في الاستطلاع، والصندوق الأبيض بمعرفة كاملة تشمل الكود والبنية فيغطي أعمق في الوقت نفسه، والرمادي بمعرفة جزئية كحساب مستخدم عادي فيحاكي موظفاً أو مهاجماً نجح في خطوة أولى.',
+          'والصندوق الأبيض أكفأ عادةً رغم أنه يبدو «أقل واقعية»: لأن هدفك إيجاد أكبر عدد من الثغرات بالوقت المتاح لا محاكاة مثالية. والمهاجم الحقيقي عنده شهور، والمختبِر عنده أسبوعان — فحجب المعلومات عنه يهدر وقته في ما يعرفه المهاجم أصلاً.',
+          'والمنهجية المعتمدة سبع مراحل: التخطيط والاتفاق، ثم الاستطلاع، ثم الفحص، ثم تحليل الثغرات، ثم الاستغلال، ثم ما بعد الاستغلال، ثم التقرير. والتقرير هو المنتج الحقيقي لا الاختراق: فمختبِر يخترق ولا يوثّق مساره بحيث يُعاد ويُصلَح لم يقدّم شيئاً ذا قيمة.'
+        ],
+        body_en: [
+          'Both sides use the same tools and the same techniques. The only difference is legal: a written authorisation signed by the system owner defining scope, timing and limits. Without that document the act is a computer crime however good the intent, and the law in most countries asks not about your intent but your permission.',
+          'The scope document is the most important thing written before any test: which systems and addresses are included, what is explicitly excluded, which times are permitted, and which techniques are forbidden such as denial of service against production systems. Anything not explicitly listed counts as out of scope rather than in it.',
+          'With it come emergency contacts and a stop condition: what does the tester do on discovering an existing breach, causing an unintended outage, or reaching extremely sensitive data? Those answers are agreed beforehand rather than during.',
+          'Testing has three kinds by knowledge granted: black box with no information, simulating an external attacker and spending time on reconnaissance; white box with full knowledge including code and architecture, covering more deeply in the same time; and grey box with partial knowledge such as an ordinary user account, simulating an employee or an attacker who succeeded at a first step.',
+          'White box is usually more efficient despite appearing less realistic, because your goal is finding the most vulnerabilities in the available time rather than a perfect simulation. A real attacker has months while a tester has two weeks, so withholding information wastes their time on what the attacker already knows.',
+          'The established methodology has seven phases: planning and agreement, reconnaissance, scanning, vulnerability analysis, exploitation, post-exploitation, then reporting. The report is the real product rather than the breach: a tester who breaks in without documenting their path so it can be reproduced and fixed has delivered nothing of value.'
+        ],
+        table: {
+          head_ar: ['النوع', 'المعرفة الممنوحة', 'يحاكي', 'كفاءته بالوقت'],
+          head_en: ['Type', 'Knowledge granted', 'Simulates', 'Time efficiency'],
+          rows: [
+            ['صندوق أسود', 'لا شيء', 'مهاجماً خارجياً', 'الأدنى'],
+            ['صندوق رمادي', 'جزئية كحساب مستخدم', 'موظفاً أو مخترقاً أولياً', 'متوسطة'],
+            ['صندوق أبيض', 'كاملة تشمل الكود', 'مراجعة معمّقة', 'الأعلى']
+          ]
+        },
+        keyPoints_ar: [
+          'الفارق عن الجريمة تفويض مكتوب لا مهارة ولا نية حسنة.',
+          'كل ما لم يُذكر في وثيقة النطاق صراحةً يُعتبر خارجه.',
+          'شرط التوقف وجهة الاتصال يُتفق عليهما قبل الاختبار لا أثناءه.',
+          'الصندوق الأبيض أكفأ بالوقت المتاح رغم أنه يبدو أقل واقعية.',
+          'المهاجم عنده شهور والمختبِر عنده أسبوعان، فحجب المعلومات يهدر وقته.',
+          'التقرير هو المنتج الحقيقي، والاختراق بلا توثيق قابل للإصلاح بلا قيمة.'
+        ],
+        keyPoints_en: [
+          'What separates this from crime is written authorisation, not skill or good intent.',
+          'Anything not explicitly listed in the scope document counts as outside it.',
+          'The stop condition and contact point are agreed before the test rather than during.',
+          'White box is more time-efficient despite appearing less realistic.',
+          'An attacker has months while a tester has two weeks, so withholding information wastes their time.',
+          'The report is the real product, and a breach without reproducible documentation has no value.'
+        ],
+        analogy_ar: 'تخيّل خبير أقفال استأجرته لتفحص أمان بيتك. مهارته نفسها مهارة اللص، والأداة نفسها. والذي يجعله خبيراً لا لصاً ورقة منك تقول: «أذنت له بفحص الباب الأمامي والنوافذ الأرضية يوم الثلاثاء، ولا يدخل غرفة النوم». ولو تجاوز ذلك ولو بحسن نية، صار داخلاً بلا إذن. والتقرير هو ما تدفع مقابله: لا يكفي أن يخبرك أنه دخل، بل كيف دخل وكيف تمنعه.',
+        analogy_en: 'Picture hiring a lock expert to test your home security. Their skill is a burglar skill and their tools the same. What makes them an expert rather than a burglar is a paper from you saying: they may test the front door and ground-floor windows on Tuesday and must not enter the bedroom. Exceeding that, even in good faith, makes them an intruder. The report is what you pay for: knowing they got in is not enough; you need how they got in and how to stop it.',
+        terms: [
+          { term: 'Authorisation', def_ar: 'إذن مكتوب من مالك النظام يحدد ما يجوز فعله.', def_en: 'Written permission from the system owner defining what may be done.' },
+          { term: 'Scope', def_ar: 'الأنظمة والأوقات والتقنيات المشمولة بالاختبار.', def_en: 'The systems, times and techniques the test covers.' },
+          { term: 'Black Box', def_ar: 'اختبار بلا أي معلومات مسبقة عن الهدف.', def_en: 'Testing with no prior information about the target.' },
+          { term: 'White Box', def_ar: 'اختبار بمعرفة كاملة تشمل الكود والبنية.', def_en: 'Testing with full knowledge including code and architecture.' },
+          { term: 'Rules of Engagement', def_ar: 'قواعد تحدد الحدود وشرط التوقف وجهات الاتصال.', def_en: 'Rules defining limits, the stop condition and contact points.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي يفرّق مختبِر الاختراق عن المجرم؟', q_en: 'What separates a penetration tester from a criminal?', a_ar: 'تفويض مكتوب موقّع من مالك النظام يحدد النطاق والوقت والحدود — لا المهارة ولا النية.', a_en: 'Written authorisation signed by the system owner defining scope, timing and limits, not skill or intent.' },
+          { q_ar: 'ما حكم ما لم يُذكر في وثيقة النطاق؟', q_en: 'What about anything unlisted in the scope document?', a_ar: 'يُعتبر خارج النطاق لا داخله، فالأصل المنع حتى يُذكر الإذن صراحةً.', a_en: 'It counts as out of scope, since the default is denial until permission is explicit.' },
+          { q_ar: 'لماذا يكون الصندوق الأبيض أكفأ رغم قلة واقعيته؟', q_en: 'Why is white box more efficient despite less realism?', a_ar: 'لأن الهدف إيجاد أكبر عدد من الثغرات في وقت محدود، وحجب المعلومات يهدر الوقت في ما يعرفه المهاجم أصلاً.', a_en: 'The goal is finding the most vulnerabilities in limited time, and withholding information wastes it on what the attacker already knows.' },
+          { q_ar: 'ما المنتج الحقيقي لاختبار الاختراق؟', q_en: 'What is the real product of a penetration test?', a_ar: 'التقرير: توثيق المسار بحيث يُعاد ويُصلَح — لا مجرد إثبات القدرة على الاختراق.', a_en: 'The report: documenting the path so it can be reproduced and fixed, rather than merely proving a breach was possible.' }
+        ]
+      },
+      {
+        title_ar: 'الاستطلاع',
+        title_en: 'Reconnaissance',
+        lead_ar: 'أطول مراحل الاختراق وأهمها لا تلمس هدفك أصلاً: جمع ما نشرته المؤسسة عن نفسها بلا أن تدري.',
+        lead_en: 'The longest and most important attack phase never touches your target: gathering what the organisation published about itself without realising.',
+        body_ar: [
+          'الاستطلاع جمع المعلومات عن الهدف قبل أي محاولة وصول، وينقسم قسمين. السلبي لا يلمس أنظمة الهدف إطلاقاً بل يجمع من مصادر عامة، فلا يترك أثراً في سجلاتهم. والنشط يتفاعل مع أنظمتهم مباشرة كفحص المنافذ، فيترك أثراً قابلاً للكشف.',
+          'والمعلومات مفتوحة المصدر أغنى مما يُتصوَّر: سجلات النطاقات، وشهادات المواقع التي تكشف نطاقات فرعية لم تكن تعلن عنها، ومحركات البحث المتخصصة في الأجهزة المتصلة، والوثائق المنشورة على موقع المؤسسة وما تحمله من بيانات وصفية تكشف أسماء الموظفين وإصدارات البرامج المستخدمة.',
+          'وأخطر مصدر على الإطلاق هو الموظفون أنفسهم بلا قصد: إعلان وظيفي يذكر التقنيات المستخدمة بالتفصيل يعطي المهاجم خريطة بنيتك، وسؤال تقني على منتدى عام من بريد المؤسسة يكشف نظاماً بعينه ومشكلة فيه، وصورة مكتب على منصة اجتماعية تُظهر شاشة أو بطاقة دخول.',
+          'وصيغة البريد الإلكتروني في المؤسسة تُستنتَج من مثال واحد، ومنها تُبنى قائمة بريد لكل من ظهر اسمه علناً — وهذي القائمة هي مادة حملة التصيّد الموجّه. فالاستطلاع لا ينتهي بمعلومات تقنية بل بأسماء وأدوار وعلاقات.',
+          'ومن هنا الدفاع: تقليل البصمة الرقمية. مراجعة ما يُنشر في الإعلانات الوظيفية فلا تُذكر الإصدارات، وتنظيف البيانات الوصفية من الوثائق قبل نشرها، وحصر النطاقات الفرعية المكشوفة وإغلاق ما لا يُحتاج، وتوعية الموظفين بما يكشفه نشرهم.',
+          'والاستطلاع النشط يبدأ بعد ذلك: تحديد ما يعمل فعلاً من العناوين والخدمات. والفرق أنه مرصود — فمن يراقب شبكته يرى فحص المنافذ قبل الهجوم بأيام، وهذا الرصد المبكر أحياناً هو ما يمنح فريق الأمن الفرصة الوحيدة للاستعداد قبل أن يبدأ الاستغلال.'
+        ],
+        body_en: [
+          'Reconnaissance gathers information about a target before any access attempt, and it splits in two. Passive never touches the target systems at all, collecting from public sources so it leaves no trace in their logs. Active interacts with their systems directly, such as port scanning, leaving a detectable trace.',
+          'Open-source information is richer than imagined: domain registries, site certificates revealing subdomains never advertised, search engines specialised in connected devices, and documents published on the organisation site carrying metadata exposing employee names and software versions in use.',
+          'The most dangerous source of all is employees themselves, unintentionally: a job advertisement listing technologies in detail hands an attacker a map of your architecture, a technical question on a public forum from a corporate address reveals a specific system and a problem in it, and an office photo on social media shows a screen or an access badge.',
+          'The organisation email format is inferred from one example, and from it a mailing list is built for everyone whose name appeared publicly, and that list is the raw material of a spear phishing campaign. Reconnaissance ends not with technical facts but with names, roles and relationships.',
+          'Hence the defence: reducing your digital footprint. Reviewing what job advertisements publish so versions are never named, stripping metadata from documents before publishing, inventorying exposed subdomains and closing what is unneeded, and making employees aware of what their posts reveal.',
+          'Active reconnaissance begins afterwards: identifying which addresses and services actually run. The difference is that it is observable, since whoever monitors their network sees port scanning days before an attack, and that early detection is sometimes the security team only chance to prepare before exploitation begins.'
+        ],
+        table: {
+          head_ar: ['النوع', 'يلمس الهدف؟', 'يترك أثراً؟', 'مصادره'],
+          head_en: ['Type', 'Touches target?', 'Leaves a trace?', 'Its sources'],
+          rows: [
+            ['سلبي', 'لا', 'لا', 'سجلات عامة ووثائق ومنصات'],
+            ['نشط', 'نعم', 'نعم', 'فحص منافذ وخدمات'],
+            ['بشري', 'أحياناً', 'حسب الأسلوب', 'إعلانات وظيفية ومنشورات'],
+            ['وثائقي', 'لا', 'لا', 'بيانات وصفية في الملفات']
+          ]
+        },
+        keyPoints_ar: [
+          'السلبي لا يترك أثراً، والنشط مرصود — وهذا الفرق يحدد فرصة الدفاع.',
+          'الشهادات تكشف نطاقات فرعية لم تُعلن، والوثائق تكشف أسماء وإصدارات.',
+          'الإعلان الوظيفي المفصّل يعطي المهاجم خريطة بنيتك التقنية.',
+          'صيغة البريد تُستنتَج من مثال واحد، ومنها تُبنى قائمة التصيّد الموجّه.',
+          'الدفاع تقليل البصمة: تنظيف البيانات الوصفية وحصر النطاقات والتوعية.',
+          'رصد الفحص النشط قد يكون الفرصة الوحيدة للاستعداد قبل الاستغلال.'
+        ],
+        keyPoints_en: [
+          'Passive leaves no trace while active is observable, and that difference defines the defensive window.',
+          'Certificates reveal unadvertised subdomains and documents reveal names and versions.',
+          'A detailed job advertisement hands an attacker a map of your technical architecture.',
+          'The email format is inferred from one example and builds the spear phishing list.',
+          'Defence is reducing the footprint: stripping metadata, inventorying subdomains and raising awareness.',
+          'Detecting active scanning may be the only chance to prepare before exploitation.'
+        ],
+        analogy_ar: 'تخيّل لصاً يدرس بيتاً قبل أن يقترب منه. لن يبدأ بجسّ الأبواب — سيقرأ إعلان بيع البيت المجاور فيعرف المخطط، وينظر لصور المناسبات المنشورة فيعرف من يسكن ومتى يسافرون، ويلاحظ فاتورة على الباب فيها اسم الشركة. كل هذا بلا أن يلمس البيت ولا يراه أحد. ثم — وفقط ثم — يمرّ بالسيارة ليجسّ الباب، وهذي أول لحظة يمكن أن يُرى فيها.',
+        analogy_en: 'Picture a burglar studying a house before approaching it. They will not start by trying doors: they read the neighbouring house sale listing to learn the layout, look at published event photos to learn who lives there and when they travel, and notice a bill on the door bearing a company name. All of this without touching the house and without anyone seeing them. Then, and only then, they drive past to try the door, and that is the first moment they can be seen.',
+        terms: [
+          { term: 'Passive Reconnaissance', def_ar: 'جمع معلومات من مصادر عامة بلا لمس أنظمة الهدف.', def_en: 'Gathering from public sources without touching target systems.' },
+          { term: 'Active Reconnaissance', def_ar: 'التفاعل مع أنظمة الهدف مباشرة فيترك أثراً.', def_en: 'Interacting directly with target systems, leaving a trace.' },
+          { term: 'OSINT', def_ar: 'الاستخبارات مفتوحة المصدر من سجلات ومنصات ووثائق.', def_en: 'Open-source intelligence from registries, platforms and documents.' },
+          { term: 'Metadata', def_ar: 'بيانات مخفية في الملفات تكشف مؤلفها وبرنامجها.', def_en: 'Hidden data in files revealing author and software.' },
+          { term: 'Digital Footprint', def_ar: 'مجموع ما تكشفه المؤسسة عن نفسها علناً.', def_en: 'The total an organisation publicly reveals about itself.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين الاستطلاع السلبي والنشط؟', q_en: 'Difference between passive and active reconnaissance?', a_ar: 'السلبي يجمع من مصادر عامة بلا أثر، والنشط يتفاعل مع الأنظمة فيُرصد.', a_en: 'Passive gathers from public sources with no trace; active interacts with systems and is detectable.' },
+          { q_ar: 'كيف يخدم الإعلان الوظيفي المهاجم؟', q_en: 'How does a job advertisement serve an attacker?', a_ar: 'يذكر التقنيات وإصداراتها بالتفصيل، فيعطيه خريطة بنيتك التقنية بلا جهد.', a_en: 'It names technologies and versions in detail, handing them a map of your architecture effortlessly.' },
+          { q_ar: 'ما الذي تكشفه شهادات المواقع؟', q_en: 'What do site certificates reveal?', a_ar: 'نطاقات فرعية لم تُعلن عنها المؤسسة، وقد تكون أنظمة داخلية لم يُقصد كشفها.', a_en: 'Subdomains the organisation never advertised, possibly internal systems never meant to be exposed.' },
+          { q_ar: 'لماذا يهم رصد الفحص النشط؟', q_en: 'Why does detecting active scanning matter?', a_ar: 'لأنه قد يكون الفرصة الوحيدة للاستعداد قبل أن يبدأ الاستغلال بأيام.', a_en: 'It may be the only chance to prepare days before exploitation begins.' }
+        ]
+      },
+      {
+        title_ar: 'الفحص وتحليل الثغرات',
+        title_en: 'Scanning and Vulnerability Analysis',
+        lead_ar: 'الفحص يعطيك قائمة ثغرات محتملة، والتحليل هو ما يحوّلها إلى أولويات — فأداة تعطي ألف نتيجة بلا ترتيب تشلّ الفريق ولا تحميه.',
+        lead_en: 'Scanning gives a list of possible vulnerabilities and analysis turns it into priorities, since a tool producing a thousand unranked findings paralyses a team rather than protecting it.',
+        body_ar: [
+          'الفحص يحدد ما يعمل فعلاً: أي عناوين حيّة، وأي منافذ مفتوحة، وأي خدمة خلف كل منفذ وبأي إصدار. وتحديد الإصدار هو الخطوة الحاسمة، لأن معرفة الخدمة وإصدارها تفتح قواعد بيانات الثغرات المعروفة لذلك الإصدار تحديداً.',
+          'وماسح الثغرات يؤتمت هذا: يقارن ما وجده بقاعدة ثغرات معروفة ويخرج بتقرير مصنّف. لكن مخرجه ليس حقيقة نهائية: يعطي إنذارات كاذبة لأنه يستنتج من الإصدار المعلن لا من الاستغلال الفعلي، ويفوته ما لا نمط له كخلل منطق العمل.',
+          'ولذلك يأتي التحليل البشري: التحقق من كل نتيجة عالية الخطورة يدوياً، واستبعاد ما لا ينطبق فعلياً — كثغرة في وحدة غير مفعّلة أصلاً، أو خدمة محمية بضابط آخر يمنع الوصول إليها.',
+          'وترتيب الأولويات ليس بدرجة الخطورة وحدها: ثغرة حرجة على خادم داخلي لا يصله أحد أقل إلحاحاً من ثغرة متوسطة على خادم مكشوف للإنترنت يحمل بيانات عملاء. فالمعادلة تجمع ثلاثة: خطورة الثغرة، وإمكان الوصول إليها فعلياً، وقيمة ما تحميه.',
+          'والاستغلال المتاح عامل رابع حاسم: ثغرة صدر لها كود استغلال جاهز منشور ترتفع أولويتها فوراً، لأن استغلالها لم يعد يحتاج خبيراً بل صار في متناول أي أحد. وهذي المعلومة تغيّر الترتيب بين ليلة وضحاها.',
+          'وقياس النضج الحقيقي ليس عدد الثغرات المكتشفة بل زمن معالجتها: مؤسسة تكتشف مئة وتعالج تسعين خلال أسبوعين أنضج من مؤسسة تكتشف ألفاً وتترك أغلبها مفتوحاً. فالفحص بلا عملية معالجة يولّد قوائم متراكمة تعطي إحساساً بالعمل وتترك المؤسسة مكشوفة.'
+        ],
+        body_en: [
+          'Scanning establishes what actually runs: which addresses are alive, which ports are open, and which service sits behind each port at which version. Version identification is the decisive step, because knowing a service and its version unlocks databases of vulnerabilities known for that exact version.',
+          'A vulnerability scanner automates this: comparing what it found against a known vulnerability database and producing a classified report. But its output is not final truth: it raises false positives because it infers from the announced version rather than actual exploitation, and it misses anything without a pattern such as business logic flaws.',
+          'Hence human analysis: manually verifying every high-severity finding and dismissing what does not truly apply, such as a vulnerability in a module never enabled, or a service protected by another control preventing access to it.',
+          'Prioritisation rests on more than severity alone: a critical vulnerability on an internal server nobody reaches is less urgent than a medium one on an internet-facing server holding customer data. The equation combines three things: vulnerability severity, actual reachability, and the value of what it protects.',
+          'Available exploitation is a decisive fourth factor: a vulnerability with published ready exploit code rises in priority immediately, because exploiting it no longer needs an expert and is within anyone reach. That information reshuffles priorities overnight.',
+          'True maturity is measured not by vulnerabilities discovered but by time to remediate: an organisation finding a hundred and fixing ninety within two weeks is more mature than one finding a thousand and leaving most open. Scanning without a remediation process generates accumulating lists that feel like work and leave the organisation exposed.'
+        ],
+        table: {
+          head_ar: ['العامل', 'سؤاله', 'أثره على الأولوية'],
+          head_en: ['Factor', 'Its question', 'Effect on priority'],
+          rows: [
+            ['خطورة الثغرة', 'ما أثرها لو استُغلت؟', 'أساس التصنيف'],
+            ['إمكان الوصول', 'هل يصلها أحد فعلاً؟', 'يخفضها كثيراً إن كانت معزولة'],
+            ['قيمة الأصل', 'ماذا تحمي؟', 'يرفعها على البيانات الحسّاسة'],
+            ['استغلال منشور', 'هل الكود متاح للجميع؟', 'يرفعها فوراً وبشدة']
+          ]
+        },
+        keyPoints_ar: [
+          'تحديد الإصدار خطوة حاسمة لأنه يفتح قواعد ثغرات ذلك الإصدار تحديداً.',
+          'مخرج الماسح ليس حقيقة نهائية: إنذارات كاذبة وثغرات منطق يفوتها.',
+          'الأولوية تجمع الخطورة وإمكان الوصول وقيمة الأصل.',
+          'ثغرة لها كود استغلال منشور ترتفع أولويتها فوراً لأنها في متناول الجميع.',
+          'النضج يُقاس بزمن المعالجة لا بعدد الثغرات المكتشفة.',
+          'فحص بلا عملية معالجة يولّد قوائم تعطي إحساساً بالعمل وتترك الانكشاف.'
+        ],
+        keyPoints_en: [
+          'Version identification is decisive because it unlocks vulnerabilities known for that exact version.',
+          'Scanner output is not final truth: false positives and missed logic flaws.',
+          'Priority combines severity, reachability and asset value.',
+          'A vulnerability with published exploit code rises immediately since it is within anyone reach.',
+          'Maturity is measured by remediation time rather than discovered count.',
+          'Scanning without remediation generates lists that feel like work and leave exposure.'
+        ],
+        analogy_ar: 'تخيّل تقرير فحص لمبنى يذكر مئة عيب: شرخ في جدار القبو، ونافذة أرضية بلا قفل، وسلك مكشوف في غرفة مغلقة. لو عالجتها بالترتيب الأبجدي لأهدرت شهوراً. الأولوية للنافذة الأرضية: عيب متوسط لكنه مكشوف للشارع وخلفه غرفة المستندات. وأما الشرخ في القبو المغلق فمهم لكنه لا يصله أحد. وحين يُنشَر أن مفاتيح ذلك النوع من الأقفال تُفتح بأداة رخيصة، تقفز النافذة لأول القائمة.',
+        analogy_en: 'Picture an inspection report on a building listing a hundred defects: a crack in the basement wall, a ground-floor window with no lock, an exposed wire in a locked room. Fixing them alphabetically wastes months. Priority goes to the ground-floor window: a medium defect facing the street with the records room behind it. The basement crack matters yet nobody reaches it. And when it is published that this lock type opens with a cheap tool, the window jumps to the top of the list.',
+        terms: [
+          { term: 'Service Fingerprinting', def_ar: 'تحديد الخدمة وإصدارها خلف منفذ مفتوح.', def_en: 'Identifying the service and version behind an open port.' },
+          { term: 'Vulnerability Scanner', def_ar: 'أداة تقارن ما وجدته بقاعدة ثغرات معروفة.', def_en: 'A tool comparing findings against a known vulnerability database.' },
+          { term: 'False Positive', def_ar: 'نتيجة تشير لثغرة غير موجودة أو لا تنطبق فعلياً.', def_en: 'A finding pointing at a vulnerability that is absent or inapplicable.' },
+          { term: 'Exploitability', def_ar: 'مدى سهولة استغلال الثغرة عملياً وتوفّر كودها.', def_en: 'How practically exploitable a vulnerability is and whether code exists.' },
+          { term: 'Remediation Time', def_ar: 'المدة من اكتشاف الثغرة حتى إغلاقها.', def_en: 'The time from discovering a vulnerability to closing it.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا تحديد الإصدار خطوة حاسمة؟', q_en: 'Why is version identification decisive?', a_ar: 'لأنه يفتح قواعد بيانات الثغرات المعروفة لذلك الإصدار تحديداً.', a_en: 'It unlocks databases of vulnerabilities known for that exact version.' },
+          { q_ar: 'ما العوامل التي تحدد أولوية معالجة ثغرة؟', q_en: 'Which factors set remediation priority?', a_ar: 'خطورتها، وإمكان الوصول إليها فعلياً، وقيمة ما تحميه، وتوفّر كود استغلال منشور.', a_en: 'Its severity, actual reachability, the value of what it protects, and whether public exploit code exists.' },
+          { q_ar: 'لماذا لا يُعتمد على مخرج الماسح كما هو؟', q_en: 'Why not take scanner output as is?', a_ar: 'لأنه يستنتج من الإصدار المعلن فيعطي إنذارات كاذبة، ويفوته ما لا نمط له كخلل المنطق.', a_en: 'It infers from the announced version so it raises false positives, and it misses patternless flaws such as logic errors.' },
+          { q_ar: 'بم يُقاس نضج إدارة الثغرات؟', q_en: 'How is vulnerability management maturity measured?', a_ar: 'بزمن المعالجة لا بعدد الثغرات المكتشفة؛ فالاكتشاف بلا إغلاق قوائم متراكمة.', a_en: 'By remediation time rather than discovery count, since finding without closing is an accumulating list.' }
+        ]
+      },
+      {
+        title_ar: 'الاستغلال',
+        title_en: 'Exploitation',
+        lead_ar: 'الاستغلال إثبات أن الثغرة حقيقية لا نظرية، وفي الاختبار الأخلاقي يتوقف عند حدّ الإثبات — لا عند حدّ الضرر.',
+        lead_en: 'Exploitation proves a vulnerability is real rather than theoretical, and in ethical testing it stops at the point of proof rather than the point of damage.',
+        body_ar: [
+          'الاستغلال تحويل ثغرة نظرية إلى وصول فعلي. وقيمته أنه يحسم الجدل: فرق كبير بين تقرير يقول «هذا الإصدار فيه ثغرة معروفة» وتقرير يقول «استخدمت هذي الثغرة وحصلت على صلاحيات مسؤول وهذي لقطة الشاشة». الأول قد يُؤجَّل والثاني يُعالَج غداً.',
+          'ومسار الاستغلال المعتاد ثلاث خطوات: الوصول الأولي بثغرة أو باعتماد مسروق أو بتصيّد، ثم ترسيخ الوجود بآلية عودة لا تعتمد على الثغرة الأولى، ثم التصعيد من صلاحية محدودة إلى صلاحية إدارية.',
+          'والتصعيد نوعان: رأسي بالانتقال من مستخدم عادي إلى مسؤول على الجهاز نفسه، وأفقي بالوصول إلى حساب مستخدم آخر بالصلاحية نفسها — والثاني يُهمَل رغم خطورته، لأن الوصول لبيانات ألف عميل لا يحتاج صلاحية مسؤول بل حساب موظف خدمة عملاء واحد.',
+          'وحدود الاختبار الأخلاقي هنا صارمة: يتوقف المختبِر عند إثبات الوصول ولا يستخرج بيانات حقيقية، ولا يعدّل ولا يحذف شيئاً، ولا يعطّل خدمة إنتاج. فإثبات القدرة على قراءة قاعدة البيانات يكفي بلقطة لسجل واحد مموّه، ولا يحتاج تنزيلها.',
+          'ولا يقل عن ذلك أهمية: توثيق كل خطوة أثناء تنفيذها لا بعده. فالمختبِر يسجّل الوقت والأمر والنتيجة، ليكون التقرير قابلاً لإعادة الإنتاج، وليمكن التفريق بين نشاطه ونشاط مهاجم حقيقي لو تزامنا — وهذي حالة تقع فعلاً وتربك التحقيق إن لم يوجد سجل دقيق.',
+          'والدفاع في هذي المرحلة يقوم على افتراض النجاح لا المنع: تقسيم الشبكة فلا يصل من اخترق جهازاً إلى بقيتها، وأقل صلاحية فلا يجد ما يصعّد به، ومراقبة السلوك الشاذ داخل الشبكة لا عند حدودها فقط — لأن المهاجم بعد الوصول الأولي يبدو مستخدماً شرعياً.'
+        ],
+        body_en: [
+          'Exploitation turns a theoretical vulnerability into actual access. Its value is settling the argument: there is a vast difference between a report saying this version has a known vulnerability and one saying I used this vulnerability, gained administrator permissions, and here is the screenshot. The first gets deferred and the second gets fixed tomorrow.',
+          'The usual exploitation path has three steps: initial access through a vulnerability, stolen credentials or phishing; then establishing persistence with a return mechanism not depending on the first vulnerability; then escalating from limited to administrative permissions.',
+          'Escalation comes in two kinds: vertical, moving from an ordinary user to an administrator on the same machine, and horizontal, reaching another user account at the same permission level. The second is neglected despite its danger, because reaching a thousand customers data needs not administrator rights but one customer service employee account.',
+          'Ethical testing limits here are strict: the tester stops at proving access and never extracts real data, modifies or deletes anything, or disrupts a production service. Proving the database is readable is satisfied by a screenshot of one redacted record and never requires downloading it.',
+          'Equally important: documenting every step while performing it rather than afterwards. The tester records time, command and result so the report is reproducible and so their activity can be distinguished from a real attacker if the two coincide, a situation that genuinely occurs and confuses investigation when no precise log exists.',
+          'Defence at this stage rests on assuming success rather than prevention: network segmentation so whoever breaches one machine does not reach the rest, least privilege so they find nothing to escalate with, and watching anomalous behaviour inside the network rather than only at its edge, because after initial access an attacker looks like a legitimate user.'
+        ],
+        table: {
+          head_ar: ['الخطوة', 'هدفها', 'دفاعها'],
+          head_en: ['Step', 'Its goal', 'Its defence'],
+          rows: [
+            ['الوصول الأولي', 'موطئ قدم أول', 'تصحيحات وتوعية وتحقق متعدد'],
+            ['ترسيخ الوجود', 'عودة بلا الثغرة الأولى', 'مراقبة التغيّرات والمهامّ المجدولة'],
+            ['التصعيد الرأسي', 'صلاحية إدارية', 'أقل صلاحية وطبقات إدارة'],
+            ['التصعيد الأفقي', 'حسابات مستخدمين آخرين', 'فحص ملكية المورد']
+          ]
+        },
+        keyPoints_ar: [
+          'الاستغلال يحسم الجدل: إثبات عملي يُعالَج غداً وتقرير نظري يُؤجَّل.',
+          'المسار: وصول أولي، ثم ترسيخ وجود، ثم تصعيد صلاحية.',
+          'التصعيد الأفقي مهمَل رغم خطورته: بيانات ألف عميل بحساب موظف واحد.',
+          'المختبِر يتوقف عند الإثبات: لا استخراج بيانات ولا تعديل ولا تعطيل.',
+          'التوثيق أثناء التنفيذ يميّز نشاط المختبِر عن مهاجم حقيقي لو تزامنا.',
+          'الدفاع يفترض النجاح: تقسيم الشبكة وأقل صلاحية ومراقبة الداخل.'
+        ],
+        keyPoints_en: [
+          'Exploitation settles the argument: practical proof gets fixed tomorrow while a theoretical report gets deferred.',
+          'The path: initial access, then persistence, then privilege escalation.',
+          'Horizontal escalation is neglected despite its danger: a thousand customers reached through one employee account.',
+          'The tester stops at proof: no data extraction, no modification, no disruption.',
+          'Documenting during execution distinguishes tester activity from a real attacker if they coincide.',
+          'Defence assumes success: segmentation, least privilege and watching inside the network.'
+        ],
+        analogy_ar: 'تخيّل خبير الأقفال الذي استأجرته. لن يكتفي بأن يقول «قفلك من نوع يُفتح»، بل يفتحه أمامك ويصوّر يده على المقبض — هذا الإثبات. لكنه لا يدخل ولا يأخذ شيئاً ولا يترك الباب مفتوحاً. ويكتب في تقريره: الساعة الثالثة، جرّبت هذي الأداة، فُتح خلال دقيقتين. فلو دخل لصّ حقيقي في اليوم نفسه، عرفت أي الأثرين له.',
+        analogy_en: 'Picture the lock expert you hired. They will not settle for saying your lock type opens; they open it in front of you and photograph their hand on the handle, and that is the proof. But they do not enter, take anything, or leave the door open. And they write in the report: at three in the afternoon, tried this tool, opened in two minutes. So if a real burglar entered the same day, you know which trace is whose.',
+        terms: [
+          { term: 'Initial Access', def_ar: 'أول موطئ قدم للمهاجم داخل البيئة.', def_en: 'An attacker first foothold inside the environment.' },
+          { term: 'Persistence', def_ar: 'آلية عودة لا تعتمد على الثغرة الأولى.', def_en: 'A return mechanism not depending on the first vulnerability.' },
+          { term: 'Vertical Escalation', def_ar: 'الانتقال من مستخدم عادي إلى صلاحية إدارية.', def_en: 'Moving from an ordinary user to administrative permissions.' },
+          { term: 'Horizontal Escalation', def_ar: 'الوصول لحساب مستخدم آخر بالصلاحية نفسها.', def_en: 'Reaching another user account at the same permission level.' },
+          { term: 'Proof of Concept', def_ar: 'إثبات عملي محدود أن الثغرة قابلة للاستغلال.', def_en: 'Limited practical proof that a vulnerability is exploitable.' }
+        ],
+        cards: [
+          { q_ar: 'ما قيمة الاستغلال في تقرير الاختبار؟', q_en: 'What is exploitation value in a test report?', a_ar: 'يحوّل الثغرة من احتمال نظري إلى إثبات عملي، فتُعالَج فوراً بدل أن تُؤجَّل.', a_en: 'It turns a vulnerability from theoretical possibility into practical proof so it is fixed immediately rather than deferred.' },
+          { q_ar: 'ما التصعيد الأفقي ولماذا يُهمَل؟', q_en: 'What is horizontal escalation and why is it neglected?', a_ar: 'الوصول لحساب مستخدم آخر بالصلاحية نفسها؛ ويُهمَل لأن الأنظار على الصلاحية الإدارية، بينما بيانات ألف عميل قد تُبلَغ بحساب موظف واحد.', a_en: 'Reaching another same-level account; neglected because attention goes to admin rights while a thousand customers may be reached through one employee account.' },
+          { q_ar: 'أين يتوقف المختبِر الأخلاقي؟', q_en: 'Where does an ethical tester stop?', a_ar: 'عند إثبات الوصول: بلا استخراج بيانات حقيقية ولا تعديل ولا تعطيل خدمة.', a_en: 'At proving access: no real data extraction, no modification, no service disruption.' },
+          { q_ar: 'لماذا يوثّق المختبِر أثناء التنفيذ لا بعده؟', q_en: 'Why document during execution rather than after?', a_ar: 'ليكون التقرير قابلاً لإعادة الإنتاج، وليُميَّز نشاطه عن نشاط مهاجم حقيقي لو تزامنا.', a_en: 'So the report is reproducible and so their activity is distinguishable from a real attacker if the two coincide.' }
+        ]
+      },
+      {
+        title_ar: 'ما بعد الاستغلال والتقارير',
+        title_en: 'Post-Exploitation and Reporting',
+        lead_ar: 'التقرير هو المنتج، ونجاحه لا يُقاس بعدد الثغرات وإنما بعدد ما أُصلِح منها — فتقرير لا يُقرأ ولا يُنفَّذ اختبار لم يحدث.',
+        lead_en: 'The report is the product, and its success is measured not by vulnerabilities found but by how many were fixed, since a report nobody reads or acts on is a test that never happened.',
+        body_ar: [
+          'ما بعد الاستغلال مرحلة تحديد الأثر الحقيقي: ماذا يستطيع المهاجم فعلاً بعد أن دخل؟ إلى أي بيانات يصل؟ وإلى أي أنظمة أخرى ينتقل؟ وكم يستطيع البقاء بلا أن يُكشَف؟ وهذي الأسئلة هي ما يحوّل «ثغرة» إلى «مخاطرة عمل» يفهمها من يوقّع على الميزانية.',
+          'والانتقال الجانبي جوهر هذي المرحلة: نادراً ما يكون الجهاز الأول هو الهدف، وإنما نقطة انطلاق. فيبحث المهاجم عن بيانات اعتماد مخزّنة على الجهاز، وعن ثقة بينه وبين أجهزة أخرى، وعن مشاركات شبكية مفتوحة.',
+          'وتنظيف الأثر جزء من عمل المختبِر الأخلاقي وليس من عمل المهاجم: يزيل ما زرعه من آليات وصول، ويوثّق كل تغيير أجراه ليُعاد. أما المهاجم الحقيقي فيمحو السجلات ليخفي مساره — ومن هنا أهمية إرسال السجلات فوراً لنظام منفصل.',
+          'والتقرير طبقتان لجمهورين: ملخص تنفيذي بلغة العمل يجيب ثلاثة أسئلة — ما الذي وجدناه، وما أثره على المؤسسة، وما الذي نوصي به وبأي أولوية. وتفصيل تقني لكل ثغرة: كيف تُعاد وما دليلها وما إصلاحها بالضبط.',
+          'وأكثر ما يفشل فيه المختبِرون كتابة الأثر بلغة تقنية: «ثغرة حقن في المعامل الثالث» لا تعني شيئاً لمدير مالي. والصياغة الصحيحة: «يستطيع أي زائر للموقع قراءة قاعدة بيانات العملاء كاملة بلا حساب» — الجملتان تصفان الشيء نفسه، والثانية وحدها تُنتج قراراً.',
+          'وإعادة الاختبار بعد الإصلاح هي ما يغلق الدورة: التحقق أن الإصلاح فعّال وأنه لم يفتح ثغرة جديدة. ومقياس نجاح البرنامج كله ليس عدد ما وُجِد بل نسبة ما أُغلِق وزمن إغلاقه — والمؤسسة التي تُجري اختباراً سنوياً وتحفظ تقريره بلا تنفيذ اشترت ورقة لا أماناً.'
+        ],
+        body_en: [
+          'Post-exploitation is the phase of establishing real impact: what can an attacker actually do once inside? Which data do they reach? Which other systems do they move to? How long can they remain undetected? These questions turn a vulnerability into a business risk understood by whoever signs the budget.',
+          'Lateral movement is the core of this phase: the first machine is rarely the target but a launch point. So the attacker hunts credentials stored on it, trust relationships between it and other machines, and open network shares.',
+          'Cleaning up traces is part of an ethical tester work rather than an attacker: removing access mechanisms they planted and documenting every change made so it can be reversed. A real attacker instead erases logs to hide their path, which is why logs must ship immediately to a separate system.',
+          'The report has two layers for two audiences: an executive summary in business language answering three questions, what we found, what it means for the organisation, and what we recommend at what priority. And technical detail per vulnerability: how to reproduce it, its evidence, and exactly how to fix it.',
+          'What testers most often get wrong is writing impact in technical language: an injection vulnerability in the third parameter means nothing to a finance director. The correct phrasing: any visitor to the site can read the entire customer database with no account. Both sentences describe the same thing and only the second produces a decision.',
+          'Retesting after remediation closes the loop: verifying the fix works and opened no new vulnerability. The success measure of the whole programme is not how much was found but the share closed and the time to close it, and an organisation running an annual test and filing the report without acting bought paper rather than security.'
+        ],
+        table: {
+          head_ar: ['قسم التقرير', 'جمهوره', 'يجيب عن'],
+          head_en: ['Report section', 'Its audience', 'It answers'],
+          rows: [
+            ['الملخص التنفيذي', 'الإدارة', 'ما الأثر وما الأولوية'],
+            ['تحليل المخاطر', 'الإدارة والأمن', 'ما احتمال الاستغلال وأثره'],
+            ['التفصيل التقني', 'الفرق التقنية', 'كيف يُعاد وكيف يُصلَح'],
+            ['خطة المعالجة', 'الجميع', 'من يفعل ماذا ومتى']
+          ]
+        },
+        keyPoints_ar: [
+          'ما بعد الاستغلال يحدد الأثر الحقيقي فيحوّل الثغرة إلى مخاطرة عمل.',
+          'الجهاز الأول نقطة انطلاق نادراً ما يكون الهدف.',
+          'المختبِر ينظّف أثره ويوثّقه، والمهاجم يمحو السجلات ليخفي مساره.',
+          'التقرير طبقتان: ملخص بلغة العمل وتفصيل تقني قابل لإعادة الإنتاج.',
+          'صياغة الأثر بلغة تقنية تُفقده قيمته عند من يقرر الميزانية.',
+          'مقياس النجاح نسبة ما أُغلِق وزمنه لا عدد ما وُجِد.'
+        ],
+        keyPoints_en: [
+          'Post-exploitation establishes real impact, turning a vulnerability into a business risk.',
+          'The first machine is a launch point and rarely the target.',
+          'A tester cleans and documents their traces while an attacker erases logs to hide their path.',
+          'The report has two layers: a business-language summary and reproducible technical detail.',
+          'Phrasing impact technically strips its value for whoever decides the budget.',
+          'Success is measured by the share closed and the time taken, not the count found.'
+        ],
+        analogy_ar: 'تخيّل تقريرين عن البيت نفسه. الأول: «القفل من طراز ٢٠١٤ ذو أسطوانة قابلة للانحراف». والثاني: «أي شخص يقف عند بابك يفتحه في دقيقتين بأداة تُباع بعشرين ريالاً، ويصل لغرفة المستندات». الجملتان صحيحتان، والثانية وحدها تجعل صاحب البيت يتصل بالنجّار اليوم. والتقرير الذي لا يُنتج مكالمة النجّار لم يحمِ شيئاً مهما كان دقيقاً.',
+        analogy_en: 'Picture two reports on the same house. The first: the lock is a 2014 model with a pickable cylinder. The second: anyone standing at your door opens it in two minutes with a tool sold for twenty riyals and reaches the records room. Both are true and only the second makes the owner call the locksmith today. A report that produces no locksmith call protected nothing however precise it was.',
+        terms: [
+          { term: 'Post-exploitation', def_ar: 'مرحلة تحديد ما يستطيعه المهاجم بعد الدخول.', def_en: 'The phase establishing what an attacker can do once inside.' },
+          { term: 'Lateral Movement', def_ar: 'الانتقال من الجهاز المخترق إلى أجهزة أخرى.', def_en: 'Moving from the breached machine to others.' },
+          { term: 'Executive Summary', def_ar: 'ملخص بلغة العمل يجيب عن الأثر والأولوية.', def_en: 'A business-language summary answering impact and priority.' },
+          { term: 'Retest', def_ar: 'إعادة اختبار بعد الإصلاح للتحقق من فعاليته.', def_en: 'Testing again after remediation to verify effectiveness.' },
+          { term: 'Remediation Rate', def_ar: 'نسبة الثغرات التي أُغلِقت فعلاً من المكتشفة.', def_en: 'The share of discovered vulnerabilities actually closed.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي تحدده مرحلة ما بعد الاستغلال؟', q_en: 'What does post-exploitation establish?', a_ar: 'الأثر الحقيقي: إلى أي بيانات يصل المهاجم، وأي أنظمة ينتقل إليها، وكم يبقى بلا كشف.', a_en: 'Real impact: which data the attacker reaches, which systems they move to, and how long they remain undetected.' },
+          { q_ar: 'لماذا يُكتب الأثر بلغة العمل لا بلغة تقنية؟', q_en: 'Why write impact in business language?', a_ar: 'لأن الوصف التقني لا يُنتج قراراً عند من يوقّع الميزانية، والوصف بلغة الأثر ينتجه.', a_en: 'A technical description produces no decision from whoever signs the budget, while an impact description does.' },
+          { q_ar: 'ما دور إعادة الاختبار؟', q_en: 'What is the role of retesting?', a_ar: 'التحقق أن الإصلاح فعّال وأنه لم يفتح ثغرة جديدة، وبها تُغلَق الدورة.', a_en: 'Verifying the fix works and opened no new vulnerability, which closes the loop.' },
+          { q_ar: 'بم يُقاس نجاح برنامج اختبار الاختراق؟', q_en: 'How is a penetration testing programme measured?', a_ar: 'بنسبة الثغرات المغلقة وزمن إغلاقها لا بعدد ما اكتُشف.', a_en: 'By the share of vulnerabilities closed and the time taken, not the number discovered.' }
+        ]
+      }
     ]
   }
 };
