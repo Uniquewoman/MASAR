@@ -9232,6 +9232,325 @@ export const sectionGuides = {
           { q_ar: 'ما القاعدة لقراءة أي اتجاه جديد؟', q_en: 'What rule reads any new direction?', a_ar: 'اسألي ما المشكلة الحقيقية التي يحلّها؛ فما بُني على حماس السوق وحده يزول بزواله.', a_en: 'Ask what real problem it solves, since what was built on market enthusiasm alone vanishes with it.' }
         ]
       }
+    ],
+
+    // ─────────── الدفع الرقمي ───────────
+    1: [
+      {
+        title_ar: 'أنظمة الدفع وأطرافها',
+        title_en: 'Payment Systems and Their Parties',
+        lead_ar: 'الدفعة الواحدة ثلاث مراحل منفصلة: تفويض ومقاصة وتسوية — وخلطها سبب أشهر سوء فهم: «خُصِم المبلغ ولم يصل التاجر».',
+        lead_en: 'One payment has three separate stages, authorisation, clearing and settlement, and conflating them causes the commonest confusion: the amount was deducted and the merchant never received it.',
+        body_ar: [
+          'الدفعة ليست حدثاً واحداً وإنما ثلاث مراحل متتابعة. الأولى التفويض: سؤال لحظي هل هذا الحساب صالح وفيه رصيد؟ والجواب في ثوانٍ، وأثره حجز المبلغ لا نقله. والثانية المقاصة: احتساب من يدين لمن في نهاية اليوم بين المؤسسات. والثالثة التسوية: نقل الأموال فعلياً.',
+          'وهذا الفصل هو ما يفسّر ظاهرة يحتار فيها كثيرون: خُصِم من حسابك وشاشة التاجر تقول لم يصل شيء. والحقيقة أن التفويض تم فحُجِز المبلغ، والتسوية لم تتم بعد وقد تتأخر يوماً أو أكثر. والحجز يُفكّ تلقائياً إن لم تكتمل المعاملة، وهذي المدة سبب معظم شكاوى العملاء.',
+          'ونموذج الأطراف الأربعة هو الهيكل السائد: حامل البطاقة، والتاجر، والبنك المستحوذ الذي يخدم التاجر، والبنك المُصدِر الذي أصدر البطاقة للعميل. وتقف بينهم شبكة البطاقات تنقل الرسائل وتضع القواعد ولا تحمل الأموال.',
+          'ونموذج الأطراف الثلاثة أبسط: جهة واحدة تلعب دور المُصدِر والمستحوذ معاً. فتقلّ الأطراف وتتسارع القرارات وتزيد كلفة قبول التاجر عادة، لأن المنافسة على جانب الاستحواذ تختفي.',
+          'وتوزيع الرسوم يفسّر اقتصاد القطاع كله: التاجر يدفع خصماً على كل عملية، ويذهب معظمه للبنك المُصدِر كرسم تبادل، وجزء لشبكة البطاقات، وما بقي للمستحوذ. ولهذا يهتم البنك المُصدِر باستخدامك بطاقته: كل عملية تعطيه دخلاً.',
+          'وحق الاسترداد ميزة جوهرية في نظام البطاقات: يستطيع العميل الاعتراض على عملية فتُسحَب من التاجر حتى يثبت صحتها. وهو يعطي المشتري حماية حقيقية ويحمّل التاجر عبء الإثبات، ولهذا يقبل التجار كلفة البطاقة رغم ارتفاعها — لأن بديلها نظام بلا حماية يتردد فيه المشتري أصلاً.'
+        ],
+        body_en: [
+          'A payment is not one event but three successive stages. First, authorisation: an instant question of whether this account is valid and funded. The answer takes seconds and its effect is holding the amount rather than moving it. Second, clearing: calculating who owes whom at the end of the day between institutions. Third, settlement: actually moving the funds.',
+          'That separation explains a phenomenon that puzzles many: your account is debited while the merchant screen says nothing arrived. In truth authorisation completed so the amount was held, settlement has not happened and may take a day or more. The hold releases automatically if the transaction never completes, and that interval causes most customer complaints.',
+          'The four-party model is the dominant structure: the cardholder, the merchant, the acquiring bank serving the merchant, and the issuing bank that issued the card. Between them stands the card network carrying messages and setting rules while holding no funds.',
+          'The three-party model is simpler: one entity playing both issuer and acquirer. Parties are fewer, decisions faster, and merchant acceptance cost usually higher because competition on the acquiring side disappears.',
+          'Fee distribution explains the economics of the whole sector: the merchant pays a discount on every transaction, most of which goes to the issuing bank as an interchange fee, a portion to the card network, and the remainder to the acquirer. That is why the issuing bank cares about you using its card: every transaction earns it income.',
+          'The chargeback right is a fundamental feature of the card system: a customer may dispute a transaction and it is pulled back from the merchant until validity is proven. It gives buyers real protection and places the burden of proof on the merchant, which is why merchants accept the high cost of cards, since the alternative is an unprotected system in which buyers hesitate in the first place.'
+        ],
+        table: {
+          head_ar: ['المرحلة', 'ماذا يحدث', 'زمنها'],
+          head_en: ['Stage', 'What happens', 'Its timing'],
+          rows: [
+            ['التفويض', 'سؤال عن الصلاحية وحجز المبلغ', 'ثوانٍ'],
+            ['المقاصة', 'احتساب من يدين لمن', 'نهاية اليوم عادة'],
+            ['التسوية', 'نقل الأموال فعلياً', 'يوم أو أكثر'],
+            ['الاسترداد', 'سحب المبلغ عند اعتراض مقبول', 'أسابيع']
+          ]
+        },
+        keyPoints_ar: [
+          'التفويض يحجز ولا ينقل، والتسوية وحدها تنقل الأموال فعلاً.',
+          '«خُصِم ولم يصل» تفسيره حجز تم وتسوية لم تكتمل بعد.',
+          'شبكة البطاقات تنقل الرسائل وتضع القواعد ولا تحمل الأموال.',
+          'نموذج الأطراف الثلاثة أبسط وأغلى غالباً لغياب المنافسة على الاستحواذ.',
+          'معظم خصم التاجر يذهب للبنك المُصدِر، ولهذا يهمّه استخدامك بطاقته.',
+          'حق الاسترداد يحمّل التاجر عبء الإثبات وهو سبب قبوله كلفة البطاقة.'
+        ],
+        keyPoints_en: [
+          'Authorisation holds rather than moves, and only settlement actually transfers funds.',
+          'Debited but not received means a hold completed while settlement has not.',
+          'The card network carries messages and sets rules while holding no funds.',
+          'The three-party model is simpler and usually costlier for lack of acquiring competition.',
+          'Most of the merchant discount goes to the issuing bank, which is why it wants you using its card.',
+          'The chargeback right places proof on the merchant and is why they accept card costs.'
+        ],
+        analogy_ar: 'تخيّل حجز غرفة فندق ببطاقتك. الفندق يتصل ببنكك ويسأل: هل هذا العميل يستطيع دفع ألف؟ فيجيب البنك نعم ويحجز الألف من رصيدك المتاح بلا أن ينقلها. وأنت ترى رصيدك نقص فتظن أنك دفعت. والفندق لم يستلم شيئاً بعد. ولو ألغيت الحجز، عاد المبلغ لرصيدك بعد أيام لا فوراً — لأن ما جرى كان وعداً بالدفع لا دفعاً.',
+        analogy_en: 'Picture booking a hotel room with your card. The hotel asks your bank whether this customer can pay a thousand, the bank says yes and holds a thousand from your available balance without moving it. You see your balance drop and assume you paid. The hotel has received nothing yet. And if you cancel, the amount returns to your balance after days rather than instantly, because what happened was a promise to pay rather than a payment.',
+        terms: [
+          { term: 'Authorisation', def_ar: 'سؤال لحظي عن الصلاحية ينتج حجزاً لا نقلاً.', def_en: 'An instant validity check producing a hold rather than a transfer.' },
+          { term: 'Clearing', def_ar: 'احتساب المديونيات بين المؤسسات قبل النقل.', def_en: 'Calculating obligations between institutions before transfer.' },
+          { term: 'Settlement', def_ar: 'نقل الأموال فعلياً بين الحسابات.', def_en: 'Actually moving funds between accounts.' },
+          { term: 'Interchange Fee', def_ar: 'رسم يدفعه المستحوذ للمُصدِر عن كل عملية.', def_en: 'A fee the acquirer pays the issuer per transaction.' },
+          { term: 'Chargeback', def_ar: 'سحب مبلغ من التاجر بناءً على اعتراض العميل.', def_en: 'Pulling an amount back from a merchant on a customer dispute.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين التفويض والتسوية؟', q_en: 'Difference between authorisation and settlement?', a_ar: 'التفويض سؤال لحظي يحجز المبلغ، والتسوية هي نقل الأموال فعلياً وقد تتأخر يوماً أو أكثر.', a_en: 'Authorisation is an instant check holding the amount; settlement actually moves the funds and may take a day or more.' },
+          { q_ar: 'كيف يُفسَّر «خُصِم المبلغ ولم يصل التاجر»؟', q_en: 'How is debited but not received explained?', a_ar: 'بأن التفويض تم فحُجِز المبلغ من رصيدك المتاح، ولم تكتمل التسوية بعد.', a_en: 'Authorisation completed so the amount was held from your available balance, and settlement has not completed.' },
+          { q_ar: 'أين يذهب معظم خصم التاجر؟', q_en: 'Where does most of the merchant discount go?', a_ar: 'للبنك المُصدِر كرسم تبادل، ولهذا يهمّه أن تستخدم بطاقته في كل عملية.', a_en: 'To the issuing bank as an interchange fee, which is why it wants you using its card in every transaction.' },
+          { q_ar: 'لماذا يقبل التجار كلفة البطاقة المرتفعة؟', q_en: 'Why do merchants accept high card costs?', a_ar: 'لأن حق الاسترداد يعطي المشتري حماية تجعله يشتري أصلاً، والبديل نظام بلا حماية يتردد فيه.', a_en: 'The chargeback right gives buyers protection that makes them buy at all, and the alternative is an unprotected system where they hesitate.' }
+        ]
+      },
+      {
+        title_ar: 'البطاقات ودورة المعاملة',
+        title_en: 'Cards and the Transaction Cycle',
+        lead_ar: 'رقم البطاقة ليس سراً كافياً، ولهذا بُني حول المعاملة سياج من الشريحة والرمز البديل والتحقق الإضافي — وكل طبقة تنقل المسؤولية لا تلغيها.',
+        lead_en: 'A card number is not a sufficient secret, so a fence of chip, token and additional verification was built around the transaction, and each layer shifts responsibility rather than abolishing it.',
+        body_ar: [
+          'البطاقة أنواع تختلف في مصدر المال لا في شكلها: بطاقة الخصم تسحب من رصيدك مباشرة، وبطاقة الائتمان تسحب من حدّ ائتماني يمنحه البنك وتسدده لاحقاً، والمدفوعة مسبقاً تحمل رصيداً مشحوناً بلا حساب مصرفي. والأخيرة أداة شمول مالي مهمة لمن لا يملك حساباً.',
+          'ورقم البطاقة نفسه ليس عشوائياً: أوائل أرقامه تحدد الجهة المُصدِرة ونوع الشبكة، وآخر رقم خانة تحقق تُحسَب من الباقي بمعادلة بسيطة. وفائدتها منع الأخطاء المطبعية لا الاحتيال — فمن يخطئ رقماً واحداً يُرفَض فوراً بلا إرسال الطلب أصلاً.',
+          'وأمن البطاقة تدرّج عبر ثلاث نقلات. الشريحة حلّت محل الشريط الممغنط لأن الشريط يُنسَخ بسهولة والشريحة تولّد رمزاً مختلفاً لكل عملية. ومع الشريحة انتقلت المسؤولية: من لم يدعم الشريحة من الطرفين يتحمّل خسارة الاحتيال.',
+          'والترميز نقلة ثانية: استبدال رقم البطاقة برمز بديل بلا قيمة خارج سياقه. فالتاجر لا يحتفظ برقم حقيقي، وتسريب قاعدة بياناته لا يعطي المهاجم ما يستخدمه. وعليه تقوم المحافظ التي تدفع بالهاتف: ما يُرسَل رمز لهذا الجهاز لا رقم بطاقتك.',
+          'والتحقق الإضافي في المعاملات عبر الإنترنت نقلة ثالثة: خطوة تأكيد لدى البنك المُصدِر لأن البطاقة غير حاضرة فيزيائياً. وأثرها المهم نقل مسؤولية الاحتيال من التاجر للبنك حين تُنفَّذ — ولهذا يحرص التجار عليها رغم أنها تضيف احتكاكاً قد يخسّرهم عملاء.',
+          'ومعاملات البطاقة غير الحاضرة أعلى مخاطرة وأعلى رسماً لهذا السبب. وقاعدة عملية حاسمة: رمز التحقق خلف البطاقة لا يجوز تخزينه بأي حال ولا بأي تشفير بعد إتمام المعاملة — وهذي من أوضح قواعد المعيار الأمني للبطاقات وأكثرها انتهاكاً في الأنظمة المبنية بلا مراجعة.'
+        ],
+        body_en: [
+          'Cards differ by the source of money rather than their appearance: a debit card draws from your balance directly, a credit card draws on a credit limit the bank grants and you repay later, and a prepaid card carries a loaded balance with no bank account. The last is an important inclusion tool for those without an account.',
+          'The card number itself is not random: its leading digits identify the issuer and network type, and its last digit is a check digit computed from the rest by a simple formula. Its purpose is preventing typing errors rather than fraud, since one mistyped digit is rejected immediately without the request even being sent.',
+          'Card security advanced through three shifts. The chip replaced the magnetic stripe because a stripe is easily copied while a chip generates a different code per transaction. With the chip came a liability shift: whichever side did not support the chip bears the fraud loss.',
+          'Tokenisation is the second shift: replacing the card number with a substitute worthless outside its context. The merchant keeps no real number, and a breach of their database gives the attacker nothing usable. Phone-based wallets rest on it: what is sent is a token for this device rather than your card number.',
+          'Additional verification in online transactions is the third shift: a confirmation step at the issuing bank because the card is not physically present. Its important effect is moving fraud liability from the merchant to the bank when performed, which is why merchants favour it despite the friction that may cost them customers.',
+          'Card-not-present transactions carry higher risk and higher fees for that reason. A decisive practical rule: the verification code on the back of a card may never be stored in any form or under any encryption after the transaction completes, one of the clearest rules of the card security standard and among the most violated in systems built without review.'
+        ],
+        table: {
+          head_ar: ['الطبقة', 'ما تحلّه', 'أثرها على المسؤولية'],
+          head_en: ['Layer', 'What it solves', 'Effect on liability'],
+          rows: [
+            ['الشريحة', 'نسخ الشريط الممغنط', 'من لم يدعمها يتحمّل الخسارة'],
+            ['الترميز', 'تسريب أرقام من التجار', 'يقلّل نطاق ما يُحفَظ'],
+            ['التحقق الإضافي', 'غياب البطاقة فيزيائياً', 'ينقل المسؤولية للبنك'],
+            ['خانة التحقق', 'الأخطاء المطبعية', 'لا علاقة لها بالاحتيال']
+          ]
+        },
+        keyPoints_ar: [
+          'الأنواع تختلف في مصدر المال: رصيدك، أو حدّ ائتماني، أو رصيد مشحون.',
+          'خانة التحقق تمنع الأخطاء المطبعية لا الاحتيال.',
+          'الشريحة تولّد رمزاً مختلفاً لكل عملية، ومعها انتقلت مسؤولية الاحتيال.',
+          'الترميز يجعل تسريب قاعدة التاجر بلا قيمة للمهاجم.',
+          'التحقق الإضافي ينقل مسؤولية الاحتيال من التاجر للبنك.',
+          'رمز التحقق خلف البطاقة لا يُخزَّن بأي حال ولا بأي تشفير.'
+        ],
+        keyPoints_en: [
+          'Types differ by money source: your balance, a credit limit, or a loaded balance.',
+          'The check digit prevents typing errors rather than fraud.',
+          'The chip generates a different code per transaction, and with it fraud liability shifted.',
+          'Tokenisation makes a merchant database breach worthless to an attacker.',
+          'Additional verification moves fraud liability from the merchant to the bank.',
+          'The verification code on the back is never stored in any form or encryption.'
+        ],
+        analogy_ar: 'تخيّل مفتاحاً لغرفة الخزنة تعطيه لكل متجر تشتري منه. لو سُرِق دفتر أحدهم سُرِق مفتاحك. وحلّ الترميز أن تعطي كل متجر مفتاحاً يفتح بابك من هذا المتجر وحده وفي هذا الوقت وحده — فلو سُرِق لم يفتح شيئاً في مكان آخر. وأما الشريحة فمثل قفل يغيّر تركيبه بعد كل استخدام: من صوّرك وأنت تفتحه لا يستطيع تكرار ما رآه.',
+        analogy_en: 'Picture a key to your vault room handed to every shop you buy from. If one shop ledger is stolen, your key is stolen. Tokenisation gives each shop a key that opens your door from that shop alone and at that time alone, so if stolen it opens nothing elsewhere. The chip is like a lock that changes its combination after every use: whoever filmed you opening it cannot repeat what they saw.',
+        terms: [
+          { term: 'Debit Card', def_ar: 'بطاقة تسحب من رصيد الحساب مباشرة.', def_en: 'A card drawing directly from an account balance.' },
+          { term: 'Check Digit', def_ar: 'خانة تُحسَب من الرقم تكشف الخطأ المطبعي.', def_en: 'A digit computed from the number revealing a typing error.' },
+          { term: 'Liability Shift', def_ar: 'انتقال تحمّل خسارة الاحتيال بحسب دعم التقنية.', def_en: 'Fraud loss moving to whichever side lacked the technology.' },
+          { term: 'Tokenisation', def_ar: 'استبدال رقم البطاقة برمز بلا قيمة خارج سياقه.', def_en: 'Replacing the card number with a token worthless out of context.' },
+          { term: 'Card Not Present', def_ar: 'معاملة بلا بطاقة فيزيائية، أعلى مخاطرة ورسماً.', def_en: 'A transaction with no physical card, higher in risk and fee.' }
+        ],
+        cards: [
+          { q_ar: 'ما وظيفة خانة التحقق في رقم البطاقة؟', q_en: 'What is the check digit for?', a_ar: 'كشف الأخطاء المطبعية فوراً قبل إرسال الطلب، ولا علاقة لها بالحماية من الاحتيال.', a_en: 'Catching typing errors immediately before the request is sent, with no relation to fraud protection.' },
+          { q_ar: 'لماذا حلّت الشريحة محل الشريط الممغنط؟', q_en: 'Why did the chip replace the magnetic stripe?', a_ar: 'لأن الشريط يُنسَخ بسهولة، والشريحة تولّد رمزاً مختلفاً لكل عملية فلا ينفع تسجيلها.', a_en: 'A stripe is easily copied while a chip generates a different code per transaction, so recording it is useless.' },
+          { q_ar: 'ما فائدة الترميز عند التاجر؟', q_en: 'What does tokenisation do for a merchant?', a_ar: 'يجعله لا يحتفظ برقم حقيقي، فتسريب قاعدة بياناته لا يعطي المهاجم شيئاً قابلاً للاستخدام.', a_en: 'It keeps no real number, so a database breach gives an attacker nothing usable.' },
+          { q_ar: 'ما القاعدة القاطعة في رمز التحقق خلف البطاقة؟', q_en: 'What is the absolute rule on the code on the back?', a_ar: 'لا يُخزَّن بأي حال ولا بأي تشفير بعد إتمام المعاملة.', a_en: 'It is never stored in any form or under any encryption after the transaction completes.' }
+        ]
+      },
+      {
+        title_ar: 'بوابات الدفع ومعالجوه',
+        title_en: 'Payment Gateways and Processors',
+        lead_ar: 'البوابة تنقل الطلب والمعالج ينفّذه والمستحوذ يحمل الحساب — وثلاثتها قد تكون شركة واحدة، والخلط بينها يربك كل تشخيص.',
+        lead_en: 'The gateway carries the request, the processor executes it and the acquirer holds the account, and all three may be one company, and confusing them muddles every diagnosis.',
+        body_ar: [
+          'ثلاثة أدوار تُخلَط دائماً. البوابة واجهة تقنية تستقبل بيانات الدفع من موقع التاجر وتنقلها بأمان. والمعالج ينفّذ العملية ويتواصل مع الشبكات والبنوك. والمستحوذ مؤسسة مالية مرخَّصة تحمل حساب التاجر وتتحمّل مخاطره. وقد تجمعها شركة واحدة، لكن الأدوار تبقى ثلاثة.',
+          'ومقياس البوابة الجيدة ثلاثة أشياء لا سعرها وحده: نسبة نجاح المعاملات، ووضوح رسائل الرفض، وجودة أدوات التسوية والتقارير. فبوابة أرخص بنصف في المئة وتخفض نسبة النجاح بواحد في المئة خسارة صافية للتاجر لا توفيراً.',
+          'ورسائل الرفض من أهم ما يُقيَّم: رفض «رصيد غير كافٍ» يُعالَج بإخبار العميل، ورفض «اشتباه احتيال» يُعالَج بمراجعة، ورفض «بطاقة منتهية» يُعالَج بطلب تحديث. وبوابة تعطي رمز رفض عاماً لكل الحالات تترك التاجر بلا فعل ممكن.',
+          'والتسوية للتاجر تحدث بعد مدة تختلف بين مزوّد وآخر، وقد تُحتجَز نسبة احتياطاً لتغطية استردادات محتملة. وهذا الاحتجاز مشروع لكنه يفاجئ التجار الجدد ويؤثر في تدفقهم النقدي — ولهذا يجب أن يُقرأ في العقد قبل التوقيع لا بعد أول تسوية.',
+          'وتصميم صفحة الدفع يوازن بين الأمان والاحتكاك: كل خطوة إضافية تحمي وتخسّر جزءاً من العملاء. والقاعدة العملية أن يتناسب التحقق مع المخاطرة: عملية صغيرة معتادة تمر بلا احتكاك، وكبيرة أو غير معتادة تستحق خطوة إضافية.',
+          'وإعادة المحاولة الذكية مكسب مهمل: كثير من الرفوضات مؤقتة وتنجح لو أُعيدت لاحقاً. لكن الإعادة الفورية المتكررة تُقرأ كسلوك مشبوه فتُرفَض كلها. والصحيح إعادة محسوبة بفواصل متباعدة ولمرات محدودة — والفرق بين الطريقتين قد يكون نقاطاً مئوية في الإيراد.'
+        ],
+        body_en: [
+          'Three roles are constantly confused. The gateway is a technical interface receiving payment data from the merchant site and carrying it securely. The processor executes the operation and communicates with networks and banks. The acquirer is a licensed financial institution holding the merchant account and bearing its risk. One company may combine them, yet the roles remain three.',
+          'A good gateway is measured by three things rather than price alone: transaction success rate, clarity of decline messages, and the quality of settlement and reporting tools. A gateway half a percent cheaper that lowers success by one percent is a net loss for the merchant rather than a saving.',
+          'Decline messages are among the most important things to evaluate: an insufficient funds decline is handled by telling the customer, a suspected fraud decline by review, and an expired card decline by requesting an update. A gateway returning one generic decline code for every case leaves the merchant with no possible action.',
+          'Merchant settlement occurs after a period that varies between providers, and a percentage may be held in reserve to cover potential chargebacks. That reserve is legitimate yet surprises new merchants and affects their cash flow, so it must be read in the contract before signing rather than after the first settlement.',
+          'Checkout page design balances security against friction: every extra step protects and loses a share of customers. The practical rule is matching verification to risk: a small routine transaction passes frictionlessly while a large or unusual one deserves an extra step.',
+          'Smart retrying is a neglected gain: many declines are temporary and succeed if retried later. Yet immediate repeated retries read as suspicious behaviour and all get declined. The correct approach is measured retries at spaced intervals and limited counts, and the difference between the two approaches can be percentage points of revenue.'
+        ],
+        table: {
+          head_ar: ['الدور', 'ما يفعله', 'هل مرخَّص مالياً'],
+          head_en: ['Role', 'What it does', 'Financially licensed'],
+          rows: [
+            ['البوابة', 'تستقبل بيانات الدفع وتنقلها', 'ليس بالضرورة'],
+            ['المعالج', 'ينفّذ ويتواصل مع الشبكات', 'ليس بالضرورة'],
+            ['المستحوذ', 'يحمل حساب التاجر ومخاطره', 'نعم إلزاماً'],
+            ['شبكة البطاقات', 'تنقل الرسائل وتضع القواعد', 'دور خاص']
+          ]
+        },
+        keyPoints_ar: [
+          'ثلاثة أدوار قد تجمعها شركة واحدة: بوابة ومعالج ومستحوذ.',
+          'قيّمي البوابة بنسبة النجاح لا بالسعر: نصف بالمئة توفيراً قد تخسر واحداً بالمئة نجاحاً.',
+          'رمز رفض عام لكل الحالات يترك التاجر بلا فعل ممكن.',
+          'احتجاز نسبة احتياطاً مشروع، ويجب قراءته في العقد قبل التوقيع.',
+          'التحقق يتناسب مع المخاطرة: الصغير المعتاد بلا احتكاك والكبير بخطوة إضافية.',
+          'الإعادة الفورية المتكررة تُقرأ سلوكاً مشبوهاً، والصحيح إعادة متباعدة محدودة.'
+        ],
+        keyPoints_en: [
+          'Three roles one company may combine: gateway, processor and acquirer.',
+          'Judge a gateway by success rate rather than price: half a percent saved may cost one percent in success.',
+          'A generic decline code for every case leaves the merchant with no possible action.',
+          'A reserve holdback is legitimate and must be read in the contract before signing.',
+          'Verification matches risk: small and routine frictionless, large deserving an extra step.',
+          'Immediate repeated retries read as suspicious; correct retries are spaced and limited.'
+        ],
+        analogy_ar: 'تخيّل مطعماً يستقبل طلباً بالهاتف. موظف الاستقبال يكتب الطلب وينقله — هذي البوابة. والمطبخ ينفّذه — هذا المعالج. وصاحب الرخصة الذي يتحمّل مسؤولية السلامة الغذائية — هذا المستحوذ. وقد يكون الثلاثة شخصاً واحداً في مطعم صغير، لكن حين تشتكي من طلب متأخر يجب أن تعرف: هل الاستقبال أخطأ في الكتابة، أم المطبخ متأخر، أم المطعم مغلق أصلاً؟ فالحلول الثلاثة مختلفة تماماً.',
+        analogy_en: 'Picture a restaurant taking a phone order. The receptionist writes and passes the order, that is the gateway. The kitchen executes it, that is the processor. The licence holder bearing food safety responsibility is the acquirer. All three may be one person in a small restaurant, yet when you complain about a late order you must know whether reception mis-wrote it, the kitchen is behind, or the restaurant is closed entirely, since the three remedies differ completely.',
+        terms: [
+          { term: 'Payment Gateway', def_ar: 'واجهة تستقبل بيانات الدفع وتنقلها بأمان.', def_en: 'An interface receiving payment data and carrying it securely.' },
+          { term: 'Processor', def_ar: 'من ينفّذ العملية ويتواصل مع الشبكات والبنوك.', def_en: 'The party executing the operation and talking to networks and banks.' },
+          { term: 'Acquirer', def_ar: 'مؤسسة مرخَّصة تحمل حساب التاجر ومخاطره.', def_en: 'A licensed institution holding the merchant account and its risk.' },
+          { term: 'Authorisation Rate', def_ar: 'نسبة المعاملات التي تنجح من المحاولات.', def_en: 'The share of attempted transactions that succeed.' },
+          { term: 'Rolling Reserve', def_ar: 'نسبة محتجزة لتغطية استردادات محتملة.', def_en: 'A held percentage covering potential chargebacks.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين البوابة والمستحوذ؟', q_en: 'Difference between a gateway and an acquirer?', a_ar: 'البوابة واجهة تقنية تنقل البيانات، والمستحوذ مؤسسة مرخَّصة تحمل حساب التاجر وتتحمّل مخاطره.', a_en: 'The gateway is a technical interface carrying data; the acquirer is a licensed institution holding the merchant account and its risk.' },
+          { q_ar: 'لماذا لا يكفي السعر لتقييم بوابة؟', q_en: 'Why is price not enough to judge a gateway?', a_ar: 'لأن نصف بالمئة توفيراً مع انخفاض واحد بالمئة في نسبة النجاح خسارة صافية لا توفيراً.', a_en: 'Half a percent saved with one percent lower success is a net loss rather than a saving.' },
+          { q_ar: 'لماذا تهمّ تفاصيل رسالة الرفض؟', q_en: 'Why do decline message details matter?', a_ar: 'لأن كل سبب له علاج مختلف؛ ورمز عام واحد يترك التاجر بلا فعل ممكن.', a_en: 'Each cause has a different remedy, and one generic code leaves the merchant with no possible action.' },
+          { q_ar: 'كيف تُعاد المحاولة بعد رفض مؤقت؟', q_en: 'How should a temporary decline be retried?', a_ar: 'بفواصل متباعدة ومرات محدودة؛ فالإعادة الفورية المتكررة تُقرأ سلوكاً مشبوهاً فتُرفَض كلها.', a_en: 'At spaced intervals and limited counts, since immediate repeated retries read as suspicious and all get declined.' }
+        ]
+      },
+      {
+        title_ar: 'المحافظ الرقمية والمدفوعات الفورية',
+        title_en: 'Digital Wallets and Instant Payments',
+        lead_ar: 'المحفظة إما تمرّر أداة قائمة وإما تحمل رصيداً بنفسها — والفرق بينهما تنظيمي ثقيل لا تفصيل تقني.',
+        lead_en: 'A wallet either passes through an existing instrument or holds a balance itself, and the difference between them is heavy regulation rather than a technical detail.',
+        body_ar: [
+          'المحافظ نوعان مختلفان جوهرياً. الأولى محفظة تمرير: لا تحمل مالاً وإنما تخزّن بطاقتك وترمّزها وتمرر الدفع لها. والثانية محفظة رصيد: تحمل مالاً فعلياً تشحنه فيها وتنفق منه. والثانية تخضع لتنظيم أثقل بكثير لأنها تحفظ أموال الجمهور.',
+          'وهذا الفرق ليس تفصيلاً: محفظة الرصيد قد تحتاج ترخيص نقود إلكترونية وفصل أموال العملاء عن أموال الشركة وحفظها في حساب ضمان. فلو أفلست الشركة بقيت أموال العملاء محمية — وغياب هذا الفصل هو ما يحوّل إفلاس شركة إلى ضياع مدخرات آلاف.',
+          'والدفع بالهاتف قرب نقطة البيع يقوم على الاتصال قريب المدى مع الترميز: يُرسَل رمز خاص بهذا الجهاز لا رقم بطاقتك، ويُوثَّق بالبصمة أو الوجه على الجهاز نفسه. فالتاجر لا يرى رقمك، والجهاز لا يرسل شيئاً قبل تحققك.',
+          'والمدفوعات الفورية بين الحسابات تحوّل خلال ثوانٍ على مدار الساعة، وتُبنى على معرّف بسيط كرقم الهاتف بدل رقم حساب طويل. وقيمتها كلفة أقل بكثير من شبكات البطاقات وسرعة أعلى — ولهذا تبنّتها دول كثيرة كبنية وطنية.',
+          'وخاصيتها الحاسمة أنها نهائية غير قابلة للإلغاء: ما وصل وصل. وهذا ميزة للتاجر ومخاطرة للمشتري، لأن الاسترداد الذي تتيحه البطاقة غير موجود هنا. ولهذا يستهدف المحتالون هذي القنوات تحديداً بالهندسة الاجتماعية: يقنعونك بالتحويل بنفسك فيصير المال غير قابل للاسترجاع.',
+          'وأدوات الحماية فيها مختلفة بالضرورة: تأكيد اسم المستفيد قبل الإرسال، وحدود على التحويلات الجديدة، وتأخير مقصود لأول تحويل لمستفيد جديد. وكلها تعالج أن النهائية لا تسمح بالتراجع بعد وقوع الخطأ — فالحماية يجب أن تقع قبل الضغط على زر الإرسال لا بعده.'
+        ],
+        body_en: [
+          'Wallets come in two fundamentally different kinds. The first is a pass-through wallet: holding no money and instead storing your card, tokenising it and passing the payment to it. The second is a stored-value wallet: holding real money you load and spend from. The second faces far heavier regulation because it safeguards public funds.',
+          'That difference is no detail: a stored-value wallet may need an electronic money licence, segregation of customer funds from company funds, and their keeping in a safeguarding account. If the company fails, customer money stays protected, and the absence of that segregation is what turns a company bankruptcy into thousands of people losing their savings.',
+          'Phone payment at a point of sale rests on near-field communication with tokenisation: a token specific to this device is sent rather than your card number, authenticated by fingerprint or face on the device itself. The merchant never sees your number and the device sends nothing before you verify.',
+          'Instant account-to-account payments transfer within seconds around the clock, built on a simple identifier such as a phone number instead of a long account number. Their value is a cost far below card networks and higher speed, which is why many countries adopted them as national infrastructure.',
+          'Their decisive property is finality: what arrived has arrived and cannot be reversed. That is an advantage for the merchant and a risk for the buyer, because the chargeback a card allows does not exist here. So fraudsters target these channels specifically with social engineering: convincing you to transfer yourself so the money becomes unrecoverable.',
+          'Their protections are necessarily different: confirming the beneficiary name before sending, limits on new transfers, and a deliberate delay on a first transfer to a new beneficiary. All address the fact that finality permits no reversal once the error occurs, so protection must happen before the send button rather than after it.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'محفظة تمرير', 'محفظة رصيد'],
+          head_en: ['Aspect', 'Pass-through wallet', 'Stored-value wallet'],
+          rows: [
+            ['هل تحمل مالاً', 'لا', 'نعم'],
+            ['العبء التنظيمي', 'أخف', 'ترخيص وفصل أموال'],
+            ['عند إفلاس الشركة', 'أموالك في بنكك', 'محمية إن فُصِلت فقط'],
+            ['ما يُرسَل للتاجر', 'رمز بديل للبطاقة', 'حركة داخل المحفظة']
+          ]
+        },
+        keyPoints_ar: [
+          'محفظة التمرير لا تحمل مالاً، ومحفظة الرصيد تحمله فتُنظَّم أثقل بكثير.',
+          'فصل أموال العملاء في حساب ضمان هو ما يحميها عند إفلاس الشركة.',
+          'الدفع بالهاتف يرسل رمزاً لهذا الجهاز لا رقم بطاقتك.',
+          'المدفوعات الفورية أرخص وأسرع، وتُبنى على معرّف بسيط كرقم الهاتف.',
+          'نهائيتها ميزة للتاجر ومخاطرة للمشتري: لا استرداد كما في البطاقة.',
+          'الحماية فيها تقع قبل الإرسال: تأكيد الاسم وحدود وتأخير لأول تحويل.'
+        ],
+        keyPoints_en: [
+          'A pass-through wallet holds no money while a stored-value one does and is regulated far more heavily.',
+          'Segregating customer funds in a safeguarding account is what protects them if the company fails.',
+          'Phone payment sends a token for that device rather than your card number.',
+          'Instant payments are cheaper and faster, built on a simple identifier such as a phone number.',
+          'Their finality favours the merchant and risks the buyer: no chargeback as with a card.',
+          'Protection happens before sending: name confirmation, limits and a delay on a first transfer.'
+        ],
+        analogy_ar: 'تخيّل الفرق بين حافظة تحمل فيها بطاقتك، وبين خزنة صغيرة تضع فيها نقداً. الحافظة لو ضاعت بقي مالك في البنك وأُلغيت البطاقة. والخزنة لو ضاعت ضاع ما فيها. ولهذا يُطلَب ممّن يحفظ نقد الناس ضمانات لا تُطلَب ممّن يحمل بطاقاتهم فقط. وأما التحويل الفوري فكتسليم نقد باليد: بمجرد أن تخرج من يدك لا تعود بكلمة — ولهذا يُسأل عن اسم المستلم قبل التسليم لا بعده.',
+        analogy_en: 'Picture the difference between a card holder carrying your card and a small safe holding cash. If the holder is lost your money stays in the bank and the card is cancelled. If the safe is lost, what is in it is gone. So whoever keeps people cash is asked for guarantees never asked of whoever merely carries their cards. As for an instant transfer, it is like handing over cash: once it leaves your hand no word brings it back, which is why the recipient name is checked before handing over rather than after.',
+        terms: [
+          { term: 'Pass-through Wallet', def_ar: 'محفظة تخزّن أداة قائمة ولا تحمل رصيداً.', def_en: 'A wallet storing an existing instrument and holding no balance.' },
+          { term: 'Stored Value', def_ar: 'رصيد نقدي محفوظ داخل المحفظة نفسها.', def_en: 'A cash balance held inside the wallet itself.' },
+          { term: 'Safeguarding Account', def_ar: 'حساب منفصل يحفظ أموال العملاء عن أموال الشركة.', def_en: 'A separate account keeping customer funds apart from company funds.' },
+          { term: 'Payment Finality', def_ar: 'عدم قابلية التحويل للإلغاء بعد وصوله.', def_en: 'A transfer being irreversible once it has arrived.' },
+          { term: 'Confirmation of Payee', def_ar: 'تأكيد اسم المستفيد قبل تنفيذ التحويل.', def_en: 'Confirming the beneficiary name before executing a transfer.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق التنظيمي بين نوعي المحافظ؟', q_en: 'What is the regulatory difference between wallet kinds?', a_ar: 'محفظة الرصيد تحفظ أموال الجمهور فتحتاج ترخيصاً وفصلاً لأموال العملاء، بخلاف محفظة التمرير.', a_en: 'A stored-value wallet safeguards public funds so it needs a licence and fund segregation, unlike a pass-through wallet.' },
+          { q_ar: 'ما الذي يحمي أموال العملاء عند إفلاس الشركة؟', q_en: 'What protects customer funds if the company fails?', a_ar: 'فصلها عن أموال الشركة وحفظها في حساب ضمان؛ وبغيابه يتحوّل الإفلاس لضياع مدخرات آلاف.', a_en: 'Segregating them from company funds in a safeguarding account; without it bankruptcy becomes thousands losing savings.' },
+          { q_ar: 'لماذا يستهدف المحتالون التحويلات الفورية؟', q_en: 'Why do fraudsters target instant transfers?', a_ar: 'لنهائيتها: لا استرداد فيها كالبطاقة، فيقنعون الضحية بالتحويل بنفسها فيصير المال غير قابل للاسترجاع.', a_en: 'For their finality: no chargeback as with a card, so they convince the victim to transfer themselves and the money becomes unrecoverable.' },
+          { q_ar: 'متى تقع الحماية في المدفوعات الفورية؟', q_en: 'When does protection happen in instant payments?', a_ar: 'قبل الإرسال: تأكيد اسم المستفيد وحدود وتأخير أول تحويل، لأن النهائية لا تسمح بالتراجع.', a_en: 'Before sending: beneficiary name confirmation, limits and a first-transfer delay, because finality permits no reversal.' }
+        ]
+      },
+      {
+        title_ar: 'أمن المدفوعات ومعيار بيانات البطاقات',
+        title_en: 'Payment Security and the Card Data Standard',
+        lead_ar: 'المعيار لا يسألك أن تحمي البيانات جيداً وإنما أن تقلّل ما تحمله أصلاً — فأفضل بيانة تحميها هي التي لا تخزّنها.',
+        lead_en: 'The standard does not ask you to protect data well but to hold less of it, since the best datum you protect is the one you never store.',
+        body_ar: [
+          'أمن المدفوعات يقوم على مبدأ يخالف الحدس: تقليل النطاق قبل تقوية الحماية. فكل نظام يلمس بيانات البطاقة يدخل نطاق المتطلبات، وكلما ضاق النطاق قلّت الكلفة والمخاطرة معاً. والتصميم الذي يمرّر البيانات لمزوّد متخصص بلا أن تلمس خوادمك أرخص وأأمن من تصميم يخزّنها ويحميها بإتقان.',
+          'وقواعد التخزين حاسمة ولا اجتهاد فيها: رقم البطاقة يجوز تخزينه مقنّعاً أو مشفّراً عند الحاجة الحقيقية، وتاريخ الانتهاء يجوز، أما رمز التحقق فلا يجوز تخزينه بعد التفويض بأي حال ولا بأي تشفير. وهذي قاعدة قاطعة لا استثناء لها.',
+          'والتقنيات الثلاث التي تقلّل النطاق: الترميز فلا تحفظ إلا رمزاً بلا قيمة، والتشفير من نقطة الالتقاط حتى وجهته فلا تمر البيانات مكشوفة في أنظمتك، والاستضافة المستضافة لصفحة الدفع فتُدخَل البيانات في نطاق المزوّد لا نطاقك.',
+          'وكشف الاحتيال في الدفع يوازن بين خطأين: قبول عملية احتيالية وهي خسارة مباشرة، ورفض عملية مشروعة وهي خسارة مبيعات وعميل معاً. والثاني أشد أثراً مما يُظَن: العميل المرفوض خطأً قد لا يعود أبداً، والخسارة الظاهرة عملية واحدة والحقيقية علاقة كاملة.',
+          'ومؤشرات الاحتيال تُقرأ مجتمعة لا منفردة: عنوان شحن يختلف عن عنوان الفوترة، ومحاولات متعددة ببطاقات مختلفة من الجهاز نفسه، وشراء يخالف نمط العميل، وسرعة إتمام غير بشرية. وكل مؤشر وحده ضعيف، واجتماع ثلاثة يصنع حالة تستحق التوقف.',
+          'وقاعدة تشغيلية أخيرة: الاختبار لا يُجرى ببيانات بطاقات حقيقية إطلاقاً، وإنما بأرقام اختبار مخصصة تصدرها الشبكات. فبيئات الاختبار أضعف حماية بطبيعتها ونسخها تُنسَخ وتُشارَك — ونسخة قاعدة إنتاج في بيئة اختبار من أشهر مصادر تسريب بيانات البطاقات على الإطلاق.'
+        ],
+        body_en: [
+          'Payment security rests on a counter-intuitive principle: reducing scope before strengthening protection. Every system touching card data enters the requirement scope, and the narrower the scope the lower both cost and risk. A design passing data to a specialist provider without touching your servers is cheaper and safer than one storing it and protecting it expertly.',
+          'Storage rules are decisive and admit no judgement: the card number may be stored masked or encrypted where genuinely needed, the expiry date may be stored, and the verification code may never be stored after authorisation in any form or under any encryption. That is an absolute rule with no exception.',
+          'Three technologies reduce scope: tokenisation so you keep only a worthless token, encryption from the capture point to its destination so data never travels exposed through your systems, and a hosted checkout page so data is entered in the provider scope rather than yours.',
+          'Payment fraud detection balances two errors: accepting a fraudulent transaction, a direct loss, and declining a legitimate one, a loss of both a sale and a customer. The second bites harder than assumed: a wrongly declined customer may never return, so the visible loss is one transaction and the real loss an entire relationship.',
+          'Fraud indicators are read together rather than singly: a shipping address differing from billing, multiple attempts with different cards from one device, a purchase departing from the customer pattern, and an inhumanly fast completion. Each alone is weak, and three together make a case worth pausing on.',
+          'A final operational rule: testing is never performed with real card data and instead uses dedicated test numbers the networks issue. Test environments are inherently less protected and their copies are duplicated and shared, and a production database copy in a test environment is among the most common sources of card data leaks of all.'
+        ],
+        table: {
+          head_ar: ['البيانة', 'هل تُخزَّن', 'الشرط'],
+          head_en: ['Datum', 'May be stored', 'Condition'],
+          rows: [
+            ['رقم البطاقة', 'نعم عند الحاجة', 'مقنّع أو مشفّر'],
+            ['تاريخ الانتهاء', 'نعم', 'مع حماية مناسبة'],
+            ['رمز التحقق', 'لا إطلاقاً', 'ولا بأي تشفير بعد التفويض'],
+            ['الرمز البديل', 'نعم', 'بلا قيمة خارج سياقه']
+          ]
+        },
+        keyPoints_ar: [
+          'قلّلي النطاق قبل أن تقوّي الحماية: أفضل بيانة هي التي لا تخزّنينها.',
+          'رمز التحقق لا يُخزَّن بعد التفويض بأي حال ولا بأي تشفير.',
+          'ثلاث تقنيات تضيّق النطاق: الترميز، والتشفير من نقطة الالتقاط، والصفحة المستضافة.',
+          'الرفض الخاطئ يخسّرك عملية ظاهرة وعلاقة كاملة في الحقيقة.',
+          'مؤشرات الاحتيال تُقرأ مجتمعة، فاجتماع ثلاثة يصنع حالة تستحق التوقف.',
+          'لا تُختبَر الأنظمة ببيانات حقيقية؛ نسخة إنتاج في بيئة اختبار من أشهر مصادر التسريب.'
+        ],
+        keyPoints_en: [
+          'Reduce scope before strengthening protection: the best datum is the one you never store.',
+          'The verification code is never stored after authorisation in any form or encryption.',
+          'Three technologies narrow scope: tokenisation, encryption from capture, and a hosted page.',
+          'A wrong decline costs a visible transaction and in truth an entire relationship.',
+          'Fraud indicators are read together, and three combined make a case worth pausing on.',
+          'Never test with real data; a production copy in a test environment is a top leak source.'
+        ],
+        analogy_ar: 'تخيّل متجراً يحتفظ بصور هويات كل زبائنه في درج. مهما اشترى أقفالاً وكاميرات، يبقى الدرج هدفاً وتبقى مسؤوليته ثقيلة. والحلّ ليس قفلاً أغلى، وإنما ألا يحتفظ بالصور أصلاً: يتحقق ويعيدها. والمخزون الذي لا يوجد لا يُسرَق ولا يحتاج حراسة ولا تأميناً — وهذي بالضبط فلسفة تقليل النطاق.',
+        analogy_en: 'Picture a shop keeping photographs of every customer identity document in a drawer. However many locks and cameras it buys, the drawer stays a target and its liability stays heavy. The answer is not a dearer lock but not keeping the photographs at all: verify and hand them back. Stock that does not exist is not stolen, needs no guarding and no insurance, and that is exactly the philosophy of scope reduction.',
+        terms: [
+          { term: 'Scope Reduction', def_ar: 'تقليل الأنظمة التي تلمس بيانات البطاقة.', def_en: 'Reducing the systems that touch card data.' },
+          { term: 'Masking', def_ar: 'إخفاء أغلب خانات الرقم وإظهار طرفيه.', def_en: 'Hiding most digits of a number and showing its ends.' },
+          { term: 'Point-to-Point Encryption', def_ar: 'تشفير من نقطة الالتقاط حتى الوجهة.', def_en: 'Encryption from the capture point to the destination.' },
+          { term: 'False Decline', def_ar: 'رفض عملية مشروعة يخسّر مبيعاً وعميلاً.', def_en: 'Declining a legitimate transaction, losing a sale and a customer.' },
+          { term: 'Test Card Number', def_ar: 'رقم مخصص للاختبار تصدره الشبكات.', def_en: 'A dedicated testing number issued by the networks.' }
+        ],
+        cards: [
+          { q_ar: 'ما المبدأ الأول في أمن المدفوعات؟', q_en: 'What is the first principle of payment security?', a_ar: 'تقليل النطاق قبل تقوية الحماية؛ فأفضل بيانة تحميها هي التي لا تخزّنها أصلاً.', a_en: 'Reducing scope before strengthening protection, since the best datum is the one you never store.' },
+          { q_ar: 'ما القاعدة القاطعة في رمز التحقق؟', q_en: 'What is the absolute rule on the verification code?', a_ar: 'لا يُخزَّن بعد التفويض بأي حال ولا بأي تشفير، ولا استثناء لهذي القاعدة.', a_en: 'It is never stored after authorisation in any form or under any encryption, with no exception.' },
+          { q_ar: 'لماذا الرفض الخاطئ أشد أثراً مما يُظَن؟', q_en: 'Why does a false decline bite harder than assumed?', a_ar: 'لأن الخسارة الظاهرة عملية واحدة والحقيقية علاقة كاملة: العميل المرفوض خطأً قد لا يعود.', a_en: 'The visible loss is one transaction and the real loss an entire relationship, since a wrongly declined customer may never return.' },
+          { q_ar: 'لماذا يُمنَع الاختبار ببيانات حقيقية؟', q_en: 'Why is testing with real data forbidden?', a_ar: 'لأن بيئات الاختبار أضعف حماية وتُنسَخ وتُشارَك، ونسخة إنتاج فيها من أشهر مصادر التسريب.', a_en: 'Test environments are less protected and get copied and shared, and a production copy there is a top leak source.' }
+        ]
+      }
     ]
   }
 };
