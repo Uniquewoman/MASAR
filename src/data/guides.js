@@ -8584,6 +8584,329 @@ export const sectionGuides = {
           { q_ar: 'لماذا يجب توثيق سبب كل قاعدة؟', q_en: 'Why document the reason for every rule?', a_ar: 'لتُحذَف حين يزول سببها؛ فالقاعدة بلا تفسير تبقى للأبد وتراكمها يحوّل السياسة لغربال.', a_en: 'So it is removed when its reason lapses; an unexplained rule stays forever and their accumulation turns policy into a sieve.' }
         ]
       }
+    ],
+
+    // ─────────── إدارة الشبكات واستكشاف الأعطال ───────────
+    6: [
+      {
+        title_ar: 'أدوات التشخيص وقراءة مخرجاتها',
+        title_en: 'Diagnostic Tools and Reading Their Output',
+        lead_ar: 'الأدوات سهلة والخطأ في تفسير مخرجاتها: «لا رد» لا تعني أن الجهاز ساقط، وقفزة بطيئة في منتصف المسار لا تعني أن العطل عندها.',
+        lead_en: 'The tools are easy and the error lies in reading them: no reply does not mean the host is down, and a slow hop in the middle of a path does not mean the fault is there.',
+        body_ar: [
+          'أدوات التشخيص قليلة ومعروفة، والفارق بين مهندس ومبتدئ ليس في معرفتها وإنما في تفسير مخرجاتها. فكل أداة تجيب سؤالاً محدداً، وقراءة جوابها على أنه جواب سؤال آخر أصل أكثر الاستنتاجات الخاطئة في المجال.',
+          'وأداة اختبار الوصول تجيب: هل يصل ويعود رد؟ وأشهر خطأ فيها اعتبار «لا رد» دليلاً على أن الجهاز ساقط. وقد يكون عاملاً تماماً وجدار ناري يمنع نوع الرسالة، أو يمنعها الجهاز نفسه بإعداده. فالرد إثبات للعمل، وغيابه ليس إثباتاً للسقوط.',
+          'وأداة تتبّع المسار تكشف القفزات بينك وبين الوجهة. وأشهر خطأ فيها اتهام القفزة التي تظهر بزمن عالٍ. فالمُوجِّهات تعطي أولوية دنيا للردّ على رسائل التتبّع لأنها ليست عملها الأساسي، فتظهر بطيئة وهي تمرر حركتك الحقيقية بسرعة تامة. والمؤشر المعتبر أن يستمر الارتفاع لكل ما بعدها حتى الوجهة.',
+          'وقد يكون المسار غير متماثل: الذهاب بطريق والعودة بآخر، فما تراه في التتبّع نصف القصة فقط. ولهذا فالتتبّع من الطرفين يكشف ما لا يكشفه من طرف واحد — وهذي خطوة تُهمَل كثيراً وتوفّر ساعات حين تُنفَّذ.',
+          'وأداة الاستعلام عن الأسماء يجب أن تُوجَّه لخادم محدد لا للافتراضي: فسؤال الخادم الموثوق مباشرة يتجاوز كل مخزن مؤقت، ويجيب هل السجل صحيح فعلاً أم أن ما تراه نسخة قديمة. والفرق بين الجوابين يحسم تشخيصاً كاملاً.',
+          'وعدّادات الواجهة على المُحوِّل من أغنى المصادر وأقلها استخداماً: أخطاء الاختبار تشير لمشكلة مادية في الكابل أو الموصل، والتصادمات المتأخرة تشير لعدم توافق في نمط الازدواج. وأما التقاط الحزم فهو الحقيقة النهائية حين تتعارض الأدلة — لكنه أثقلها، فيُلجأ إليه بعد أن تُضيّق الدائرة لا في البداية.'
+        ],
+        body_en: [
+          'Diagnostic tools are few and well known, and what separates an engineer from a beginner is not knowing them but interpreting their output. Each tool answers a specific question, and reading its answer as the answer to a different question is the root of most wrong conclusions in the field.',
+          'The reachability tool answers whether a packet arrives and a reply returns. Its commonest error is treating no reply as proof the host is down. It may be perfectly healthy with a firewall blocking that message type, or the host itself blocking it by configuration. A reply proves operation while its absence proves nothing.',
+          'The path tracing tool reveals the hops between you and the destination. Its commonest error is blaming a hop showing high time. Routers give lowest priority to replying to tracing messages because that is not their main job, so they appear slow while forwarding your real traffic at full speed. The meaningful indicator is the elevation persisting for every hop after it all the way to the destination.',
+          'The path may be asymmetric: going one way and returning another, so what you see in a trace is only half the story. Tracing from both ends reveals what one end cannot, a step frequently skipped that saves hours when performed.',
+          'The name query tool should be pointed at a specific server rather than the default: asking the authoritative server directly bypasses every cache and answers whether the record is genuinely correct or what you see is a stale copy. The difference between those two answers settles an entire diagnosis.',
+          'Interface counters on a switch are among the richest and least used sources: check errors point to a physical problem in a cable or connector, and late collisions point to a duplex mismatch. Packet capture is the final truth when evidence conflicts, yet it is the heaviest, so it is reached for after narrowing the field rather than at the start.'
+        ],
+        table: {
+          head_ar: ['الأداة', 'السؤال الذي تجيبه', 'سوء التفسير الشائع'],
+          head_en: ['Tool', 'The question it answers', 'Common misreading'],
+          rows: [
+            ['اختبار الوصول', 'هل يصل ويعود رد؟', 'لا رد يعني الجهاز ساقط'],
+            ['تتبّع المسار', 'ما القفزات بيني والوجهة؟', 'القفزة البطيئة هي العطل'],
+            ['استعلام الأسماء', 'ما السجل المسجَّل فعلاً؟', 'سؤال الافتراضي بدل الموثوق'],
+            ['عدّادات الواجهة', 'هل الطبقة المادية سليمة؟', 'تجاهلها كلياً'],
+            ['التقاط الحزم', 'ماذا جرى فعلاً؟', 'البدء به قبل تضييق الدائرة']
+          ]
+        },
+        keyPoints_ar: [
+          'الفارق في تفسير المخرجات لا في معرفة الأدوات.',
+          'الرد إثبات للعمل، وغيابه ليس إثباتاً للسقوط.',
+          'القفزة البطيئة في التتبّع قد تمرر حركتك بسرعة تامة، والمؤشر استمرار الارتفاع بعدها.',
+          'المسار قد يكون غير متماثل، فالتتبّع من الطرفين يكشف نصف القصة الغائب.',
+          'اسألي الخادم الموثوق مباشرة لتجاوز كل مخزن مؤقت.',
+          'أخطاء الاختبار تشير للمادي، والتصادمات المتأخرة لعدم توافق الازدواج.'
+        ],
+        keyPoints_en: [
+          'The difference lies in interpreting output rather than knowing the tools.',
+          'A reply proves operation while its absence proves nothing.',
+          'A slow hop may forward your traffic at full speed; the indicator is elevation persisting beyond it.',
+          'A path may be asymmetric, so tracing from both ends reveals the missing half of the story.',
+          'Ask the authoritative server directly to bypass every cache.',
+          'Check errors point to the physical layer and late collisions to a duplex mismatch.'
+        ],
+        analogy_ar: 'تخيّل أنك تطرق باب جارك فلا يفتح. هل هو غائب؟ ربما، وربما هو نائم أو لا يفتح للغرباء. فغياب الجواب ليس جواباً. وتخيّل أنك تسأل عن طريق فيتأخر شرطي في وسط الطريق بالرد لأنه مشغول بتنظيم السير — تأخّره في الرد لا يعني أن السير عنده متوقف، بل ربما هو أسرع مقطع في الرحلة كلها. ومن يستنتج من بطء ردّه أن الازدحام عنده يذهب يبحث في المكان الخطأ.',
+        analogy_en: 'Picture knocking on your neighbour door with no answer. Are they out? Perhaps, or asleep, or they do not open to strangers. The absence of an answer is not an answer. And picture asking directions from a police officer mid-route who is slow to reply because they are busy directing traffic: their slow reply does not mean traffic is stalled there, and it may be the fastest stretch of the whole journey. Whoever concludes congestion from their slow reply searches the wrong place.',
+        terms: [
+          { term: 'Echo Request', def_ar: 'رسالة اختبار وصول تنتظر ردّاً مقابلاً.', def_en: 'A reachability test message awaiting a matching reply.' },
+          { term: 'Path Trace', def_ar: 'كشف القفزات بينك وبين الوجهة.', def_en: 'Revealing the hops between you and the destination.' },
+          { term: 'Asymmetric Path', def_ar: 'ذهاب بطريق وعودة بطريق آخر.', def_en: 'Going by one path and returning by another.' },
+          { term: 'Interface Counters', def_ar: 'إحصاءات الأخطاء والتصادمات على منفذ المُحوِّل.', def_en: 'Error and collision statistics on a switch port.' },
+          { term: 'Packet Capture', def_ar: 'تسجيل الحزم كما هي، وهو الحقيقة النهائية.', def_en: 'Recording packets as they are, the final truth.' }
+        ],
+        cards: [
+          { q_ar: 'ماذا يعني غياب الرد على اختبار الوصول؟', q_en: 'What does no reply to a reachability test mean?', a_ar: 'لا يعني السقوط: قد يكون الجهاز عاملاً وجدار أو إعداده يمنع نوع الرسالة.', a_en: 'Not that the host is down: it may be healthy with a firewall or its own configuration blocking that message type.' },
+          { q_ar: 'متى تكون القفزة البطيئة مؤشراً حقيقياً؟', q_en: 'When is a slow hop a real indicator?', a_ar: 'حين يستمر الارتفاع لكل ما بعدها حتى الوجهة؛ وبطؤها وحدها قد يكون أولوية دنيا للرد فقط.', a_en: 'When the elevation persists for every hop after it to the destination; alone it may be mere reply deprioritisation.' },
+          { q_ar: 'لماذا يُسأل الخادم الموثوق مباشرة؟', q_en: 'Why ask the authoritative server directly?', a_ar: 'لتجاوز كل مخزن مؤقت ومعرفة السجل الصحيح فعلاً لا نسخة قديمة منه.', a_en: 'To bypass every cache and learn the genuinely correct record rather than a stale copy.' },
+          { q_ar: 'متى يُلجأ لالتقاط الحزم؟', q_en: 'When is packet capture reached for?', a_ar: 'بعد تضييق الدائرة وعند تعارض الأدلة، لا في البداية لأنه أثقل الأدوات.', a_en: 'After narrowing the field and when evidence conflicts, not at the start because it is the heaviest tool.' }
+        ]
+      },
+      {
+        title_ar: 'منهجية استكشاف الأعطال',
+        title_en: 'Troubleshooting Methodology',
+        lead_ar: 'المنهجية أهم من الأدوات: من يغيّر ثلاثة أشياء معاً لن يعرف أيها أصلح ولو نجح، ومن يبدأ بأول ما خطر له يبحث حيث يحب لا حيث يُرجَّح.',
+        lead_en: 'Method beats tools: whoever changes three things at once will not know which fixed it even on success, and whoever starts from the first idea searches where they like rather than where it is likely.',
+        body_ar: [
+          'أول خطوة تحديد المشكلة بدقة لا نقل شكوى: «الإنترنت لا يعمل» ليست مشكلة قابلة للتحقيق. والصياغة المفيدة تحدد من ومتى وماذا بالضبط: أي المستخدمين، ومنذ متى، وما الذي يفشل تحديداً، وهل يفشل دائماً أم أحياناً، وهل عمل من قبل.',
+          'وسؤال «ما الذي تغيّر؟» يختصر أكثر من كل الأدوات مجتمعة. فأغلب الأعطال تتلو تغييراً: تحديثاً أو إعداداً أو انتقالاً أو انتهاء شهادة أو عقد. ومشكلة ظهرت فجأة في نظام مستقر منذ سنة سببها في الغالب شيء تغيّر لا شيء تعطّل.',
+          'وثلاث طرق للتضييق. من الأسفل للأعلى تبدأ بالمادي فالشبكة فالتطبيق، وتناسب حين يكون عطل الطبقات الدنيا محتملاً. ومن الأعلى للأسفل تبدأ بالتطبيق، وتناسب حين يعمل كل شيء آخر ويفشل تطبيق واحد.',
+          'والثالثة القسمة والغلبة: تبدأ من المنتصف فتستبعد نصف الاحتمالات بخطوة واحدة. مثالها اختبار الوصول للبوابة: نجاحه ينفي الطبقتين الأولى والثانية دفعة واحدة، وفشله يحصر البحث فيهما. وهذي أسرع الطرق حين لا يوجد مرجّح واضح.',
+          'وقاعدة التغيير الواحد لا تُخرَق: غيّري شيئاً واحداً واختبري قبل الثاني. فمن غيّر ثلاثة معاً ونجح لا يعرف أيها أصلح، وقد يكون أدخل عطلين جديدين ألغى أحدهما الآخر مؤقتاً. وهذا يعود عليه بعد أسابيع في صورة عطل لا يفسّره شيء.',
+          'وتقسيم الحالة يوجّه البحث: عطل لمستخدم واحد يُبحَث في جهازه وحسابه ومنفذه، ولقسم كامل يُبحَث في مُحوِّله وشبكته الافتراضية، وللجميع يُبحَث في الخدمات المشتركة كالخروج والأسماء. والتوثيق يختم كل حالة: ما العرض، وما السبب الجذري، وما الإصلاح — فالعطل الموثَّق يُحَل في دقائق حين يتكرر، وغير الموثَّق يُعاد تشخيصه من الصفر كل مرة.'
+        ],
+        body_en: [
+          'The first step is defining the problem precisely rather than relaying a complaint: the internet is down is not an investigable problem. A useful statement fixes who, when and what exactly: which users, since when, what precisely fails, whether it fails always or sometimes, and whether it ever worked.',
+          'The question what changed shortcuts more than all the tools combined. Most faults follow a change: an update, a setting, a migration, an expired certificate or contract. A problem appearing suddenly in a system stable for a year is usually caused by something that changed rather than something that broke.',
+          'Three narrowing approaches exist. Bottom up starts at the physical then network then application, suiting cases where a lower layer fault is plausible. Top down starts at the application, suiting cases where everything else works and one application fails.',
+          'The third is divide and conquer: starting in the middle to eliminate half the possibilities in one step. Its classic example is testing reachability to the gateway: success rules out the first two layers at once, and failure confines the search to them. It is the fastest approach when no candidate stands out.',
+          'The one-change rule is never broken: change one thing and test before the second. Whoever changed three at once and succeeded does not know which fixed it, and may have introduced two new faults that temporarily cancelled each other. That returns weeks later as a fault nothing explains.',
+          'Case partitioning directs the search: a fault for one user is investigated in their machine, account and port; for a whole department in its switch and virtual network; for everyone in shared services such as egress and names. Documentation closes every case: the symptom, the root cause and the fix, since a documented fault is solved in minutes when it recurs while an undocumented one is diagnosed from scratch every time.'
+        ],
+        table: {
+          head_ar: ['النطاق', 'أين تبحث أولاً', 'ما تستبعده'],
+          head_en: ['Scope', 'Where to look first', 'What it rules out'],
+          rows: [
+            ['مستخدم واحد', 'جهازه وحسابه ومنفذه', 'الخدمات المشتركة'],
+            ['قسم كامل', 'مُحوِّله وشبكته الافتراضية', 'أجهزة المستخدمين'],
+            ['الجميع', 'الخروج والأسماء والبوابة', 'كل ما هو محلي'],
+            ['موقع واحد', 'وصلته الواسعة ومُوجِّهه', 'المقر والخدمات المركزية']
+          ]
+        },
+        keyPoints_ar: [
+          '«الإنترنت لا يعمل» ليست مشكلة قابلة للتحقيق، فحدّدي من ومتى وماذا.',
+          'سؤال «ما الذي تغيّر؟» يختصر أكثر من كل الأدوات مجتمعة.',
+          'القسمة والغلبة تستبعد نصف الاحتمالات بخطوة، وأشهرها اختبار البوابة.',
+          'من الأسفل للأعلى للأعطال المادية المحتملة، ومن الأعلى للأسفل لتطبيق واحد يفشل.',
+          'غيّري شيئاً واحداً واختبري، وإلا لم تعرفي ما أصلح وقد تُدخِلي عطلين متعادلين.',
+          'التوثيق يجعل العطل المتكرر يُحَل في دقائق بدل تشخيص من الصفر.'
+        ],
+        keyPoints_en: [
+          'The internet is down is not investigable, so fix who, when and what.',
+          'The question what changed shortcuts more than all tools combined.',
+          'Divide and conquer eliminates half the possibilities in one step, classically the gateway test.',
+          'Bottom up suits plausible physical faults; top down suits one failing application.',
+          'Change one thing and test, or you will not know what fixed it and may add two cancelling faults.',
+          'Documentation turns a recurring fault into a minutes-long fix instead of diagnosis from scratch.'
+        ],
+        analogy_ar: 'تخيّل طبيباً يستقبل مريضاً يقول «أشعر بتعب». لن يفيد شيئاً حتى يسأل: منذ متى، وأين بالضبط، وهل يزيد بحالة معيّنة، وما الذي تغيّر في حياتك مؤخراً؟ ثم لا يعطيه ثلاثة أدوية معاً، لأنه لو تحسّن لن يعرف أيها نفع ولو ساءت حاله لن يعرف أيها ضرّ. والطبيب الماهر يبدأ بالفحص الذي يستبعد أكبر عدد من الاحتمالات لا بالفحص الذي يخطر له أولاً.',
+        analogy_en: 'Picture a doctor receiving a patient who says I feel tired. Nothing helps until they ask: since when, where exactly, does anything make it worse, and what changed in your life recently? Then they do not prescribe three medicines together, because if the patient improves they will not know which worked and if they worsen they will not know which harmed. A skilled doctor begins with the test eliminating the most possibilities rather than the one that came to mind first.',
+        terms: [
+          { term: 'Problem Statement', def_ar: 'صياغة تحدد من ومتى وماذا يفشل بالضبط.', def_en: 'A statement fixing who, when and what exactly fails.' },
+          { term: 'Divide and Conquer', def_ar: 'البدء من المنتصف لاستبعاد نصف الاحتمالات.', def_en: 'Starting in the middle to eliminate half the possibilities.' },
+          { term: 'Change Window', def_ar: 'ما جرى تغييره قبيل ظهور العطل.', def_en: 'What was changed just before the fault appeared.' },
+          { term: 'One Change Rule', def_ar: 'تغيير واحد ثم اختبار قبل التالي.', def_en: 'One change then a test before the next.' },
+          { term: 'Root Cause', def_ar: 'السبب الجذري لا العرض الذي ظهر.', def_en: 'The underlying cause rather than the visible symptom.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا تصلح «الإنترنت لا يعمل» كتعريف للمشكلة؟', q_en: 'Why does the internet is down fail as a problem statement?', a_ar: 'لأنها شكوى بلا نطاق: لا تحدد من ومتى وما الذي يفشل تحديداً، فلا تُوجِّه بحثاً.', a_en: 'It is a complaint with no scope: it fixes neither who nor when nor what exactly fails, so it directs no search.' },
+          { q_ar: 'أي سؤال يختصر أكثر من الأدوات؟', q_en: 'Which question shortcuts more than the tools?', a_ar: '«ما الذي تغيّر؟» لأن أغلب الأعطال تتلو تغييراً لا تعطّلاً مفاجئاً بلا سبب.', a_en: 'What changed, because most faults follow a change rather than a sudden causeless breakage.' },
+          { q_ar: 'ما مثال القسمة والغلبة العملي؟', q_en: 'What is the practical divide and conquer example?', a_ar: 'اختبار الوصول للبوابة: نجاحه ينفي الطبقتين الدنيين معاً، وفشله يحصر البحث فيهما.', a_en: 'Testing reachability to the gateway: success rules out both lower layers and failure confines the search to them.' },
+          { q_ar: 'ما خطر تغيير ثلاثة أشياء معاً؟', q_en: 'What is the risk of changing three things at once?', a_ar: 'لن تعرفي أيها أصلح، وقد تكوني أدخلتِ عطلين ألغى أحدهما الآخر فيظهران لاحقاً بلا تفسير.', a_en: 'You will not know which fixed it, and you may have added two faults cancelling each other that surface later unexplained.' }
+        ]
+      },
+      {
+        title_ar: 'أعطال الطبقات الدنيا',
+        title_en: 'Lower Layer Faults',
+        lead_ar: 'أعطال الطبقتين الأولى والثانية أشدها خداعاً: الوصلة تظهر عاملة والأرقام تبدو سليمة، والأداء منهار لسبب لا يُرى في أي واجهة.',
+        lead_en: 'Faults in the first two layers are the most deceptive: the link shows up, the numbers look sound, and performance collapses for a reason no interface reveals.',
+        body_ar: [
+          'القاعدة الذهبية أن يُفحَص المادي أولاً لأنه الأرخص فحصاً والأكثر وقوعاً. وكابل تالف أو موصل غير مُحكَم أو منفذ معطّل يسبب أعراضاً تبدو معقدة جداً: بطء متقطّع وانقطاعات عشوائية وأخطاء متزايدة بلا نمط واضح.',
+          'وعدّاد أخطاء الاختبار على الواجهة أول ما يُنظَر إليه: ارتفاعه المستمر دليل قاطع على مشكلة مادية في الكابل أو الموصل أو التداخل الكهرومغناطيسي. وهو دليل لا يحتاج تفسيراً — بخلاف البطء الذي قد يحتمل عشرة أسباب.',
+          'وعدم توافق نمط الازدواج من أخبث الأعطال: طرف يعمل بالنمط الكامل وطرف بالنصفي. والوصلة تعمل والاتصال يمر، لكن الأداء ينهار لأن أحد الطرفين يعتبر إرسال الآخر تصادماً. وعلامته التصادمات المتأخرة والأخطاء على طرف واحد فقط — والحل ضبط الطرفين على التفاوض التلقائي أو تثبيتهما يدوياً على القيم نفسها.',
+          'وعدم توافق وحدة النقل القصوى عطل يبدو مستحيل التفسير: الاتصال يعمل والحزم الصغيرة تصل، والكبيرة تُسقَط بصمت. فيفتح المستخدم صفحة نصية بلا مشكلة ويفشل في تحميل ملف أو فتح صفحة ثقيلة. وسببه غالباً نفق يضيف ترويسة تتجاوز الحد المسموح.',
+          'وعدم توافق الشبكة الافتراضية على الوصلة الجذعية عطل شائع في التبديل: شبكة تعمل وأخرى لا تعمل عبر الوصلة نفسها، لأن إحداها غير مسموح لها على أحد الطرفين. وأعراضه انتقائية بشكل مربك لمن لا يفحص إعداد الجذع نفسه.',
+          'وحلقات التبديل أشدها أثراً: بثّ يدور فيغرق الشبكة، ومؤشرات المنافذ تومض بجنون، وكل شيء يتوقف معاً بلا أن يتغيّر شيء في الإعداد. وسببها في الغالب وصلة أضافها أحدهم بحسن نية أو جهاز صغير رُبِط بمنفذين — ولهذا تُفعَّل حماية الحلقات على منافذ المستخدمين وتبقى الشجرة الممتدة عاملة دائماً.'
+        ],
+        body_en: [
+          'The golden rule is inspecting the physical first because it is the cheapest to check and the most common. A damaged cable, a loose connector or a failed port causes symptoms that look highly complex: intermittent slowness, random drops and rising errors with no clear pattern.',
+          'The check error counter on an interface is the first thing examined: its steady rise is conclusive proof of a physical problem in the cable, the connector or electromagnetic interference. It is evidence needing no interpretation, unlike slowness which may carry ten causes.',
+          'A duplex mismatch is among the nastiest faults: one end running full and the other half. The link is up and traffic passes, yet performance collapses because one end treats the other transmission as a collision. Its signature is late collisions and errors on one end only, and the fix is setting both ends to auto-negotiation or pinning both manually to the same values.',
+          'A maximum transmission unit mismatch is a fault that looks inexplicable: the connection works, small packets arrive and large ones are silently dropped. The user opens a text page with no trouble and fails to download a file or load a heavy page. Its usual cause is a tunnel adding a header that exceeds the permitted size.',
+          'A virtual network mismatch on a trunk is a common switching fault: one network works and another does not over the same link, because one is not permitted at one end. Its symptoms are confusingly selective for whoever does not inspect the trunk configuration itself.',
+          'Switching loops have the greatest impact: a broadcast circles and floods the network, port indicators blink wildly, and everything stops at once with nothing changed in configuration. The usual cause is a link someone added in good faith or a small device connected to two ports, which is why loop protection is enabled on user ports and spanning tree is always left running.'
+        ],
+        table: {
+          head_ar: ['العطل', 'العرض المميّز', 'الفحص الحاسم'],
+          head_en: ['Fault', 'Distinctive symptom', 'Decisive check'],
+          rows: [
+            ['كابل أو موصل', 'أخطاء اختبار متزايدة', 'عدّاد الأخطاء على الواجهة'],
+            ['عدم توافق الازدواج', 'وصلة تعمل وأداء منهار', 'تصادمات متأخرة على طرف واحد'],
+            ['وحدة النقل القصوى', 'الصغير يصل والكبير يُسقَط', 'اختبار بحجم حزمة كبير'],
+            ['شبكة افتراضية ناقصة', 'شبكة تعمل وأخرى لا عبر الجذع نفسه', 'قائمة الشبكات المسموحة'],
+            ['حلقة تبديل', 'كل شيء يتوقف والمؤشرات تومض', 'حالة الشجرة الممتدة']
+          ]
+        },
+        keyPoints_ar: [
+          'افحصي المادي أولاً: الأرخص فحصاً والأكثر وقوعاً.',
+          'ارتفاع أخطاء الاختبار دليل قاطع لا يحتمل تفسيراً آخر.',
+          'عدم توافق الازدواج: الوصلة تعمل والأداء ينهار، وعلامته التصادمات المتأخرة.',
+          'عدم توافق وحدة النقل: الصغير يمر والكبير يُسقَط بصمت، وسببه نفق غالباً.',
+          'شبكة تعمل وأخرى لا عبر الجذع نفسه تعني قائمة سماح ناقصة.',
+          'الحلقة توقف كل شيء بلا تغيير في الإعداد، فأبقي الشجرة الممتدة عاملة دائماً.'
+        ],
+        keyPoints_en: [
+          'Inspect the physical first: cheapest to check and most common.',
+          'Rising check errors are conclusive evidence admitting no other reading.',
+          'A duplex mismatch keeps the link up and collapses performance, signed by late collisions.',
+          'An MTU mismatch passes the small and silently drops the large, usually caused by a tunnel.',
+          'One network working and another not over the same trunk means an incomplete permit list.',
+          'A loop stops everything with no configuration change, so keep spanning tree always running.'
+        ],
+        analogy_ar: 'تخيّل شخصين يتحدثان في الهاتف، أحدهما يظن أن الاتفاق أن يتكلم كل واحد بدوره، والآخر يظن أن الكلام معاً مسموح. الخط سليم والصوت يصل، لكن نصف الجمل تضيع لأن الأول يصمت كلما سمع الآخر ظاناً أنه قاطعه. ولن تجد عطلاً في الخط ولا في الهاتفين — العطل في اتفاق لم يتطابق. وهذا عدم توافق الازدواج حرفياً: كل طرف سليم وحده والوصلة قائمة والنتيجة كارثية.',
+        analogy_en: 'Picture two people on a phone call, one believing the agreement is to speak in turn and the other believing simultaneous speech is fine. The line is sound and the voice arrives, yet half the sentences are lost because the first falls silent whenever they hear the other, assuming they were interrupted. You will find no fault in the line or either handset: the fault is in an agreement that did not match. That is a duplex mismatch literally: each end is sound alone, the link is up, and the result is disastrous.',
+        terms: [
+          { term: 'CRC Error', def_ar: 'خطأ اختبار يدل على تلف مادي في النقل.', def_en: 'A check error indicating physical corruption in transmission.' },
+          { term: 'Duplex Mismatch', def_ar: 'طرف بالنمط الكامل وطرف بالنصفي على وصلة واحدة.', def_en: 'One end full duplex and the other half on one link.' },
+          { term: 'Late Collision', def_ar: 'تصادم متأخر، علامة مميّزة لعدم توافق الازدواج.', def_en: 'A late collision, the distinctive sign of a duplex mismatch.' },
+          { term: 'MTU', def_ar: 'أقصى حجم حزمة تمر بلا تجزئة.', def_en: 'The largest packet size passing without fragmentation.' },
+          { term: 'Loop Protection', def_ar: 'ضابط على منافذ المستخدمين يمنع نشوء حلقة.', def_en: 'A control on user ports preventing a loop from forming.' }
+        ],
+        cards: [
+          { q_ar: 'ما دلالة ارتفاع أخطاء الاختبار؟', q_en: 'What do rising check errors indicate?', a_ar: 'مشكلة مادية في الكابل أو الموصل أو تداخل كهرومغناطيسي، وهو دليل لا يحتمل تفسيراً آخر.', a_en: 'A physical problem in cable, connector or electromagnetic interference, evidence admitting no other reading.' },
+          { q_ar: 'كيف تُميَّز حالة عدم توافق الازدواج؟', q_en: 'How is a duplex mismatch identified?', a_ar: 'وصلة تعمل وأداء منهار، مع تصادمات متأخرة وأخطاء على طرف واحد فقط.', a_en: 'The link is up with collapsed performance, plus late collisions and errors on one end only.' },
+          { q_ar: 'ما تفسير وصول الحزم الصغيرة دون الكبيرة؟', q_en: 'Why do small packets arrive and large ones not?', a_ar: 'عدم توافق في وحدة النقل القصوى، وسببه غالباً نفق يضيف ترويسة تتجاوز الحد.', a_en: 'A maximum transmission unit mismatch, usually caused by a tunnel adding a header that exceeds the limit.' },
+          { q_ar: 'ما الذي يسبب توقف كل شيء بلا تغيير في الإعداد؟', q_en: 'What stops everything with no configuration change?', a_ar: 'حلقة تبديل أحدثتها وصلة أُضيفت بحسن نية، فيدور البثّ ويغرق الشبكة كلها.', a_en: 'A switching loop from a link added in good faith, so a broadcast circles and floods the whole network.' }
+        ]
+      },
+      {
+        title_ar: 'أعطال الطبقات العليا',
+        title_en: 'Upper Layer Faults',
+        lead_ar: 'حين تسلم الطبقات الدنيا يبقى المشتبهون قلة معروفة: الأسماء، والشهادات، والمنافذ، والمهل، والوسطاء — وكل واحد له عرض يميّزه.',
+        lead_en: 'When the lower layers are sound the suspects are a known few: names, certificates, ports, timeouts and intermediaries, and each has its distinctive symptom.',
+        body_ar: [
+          'حين يثبت أن الشبكة توصل، ينتقل البحث لطبقات أعلى. والفارق أن الأعراض هنا انتقائية: يعمل كل شيء إلا خدمة، أو تعمل الخدمة إلا لمستخدمين، أو تعمل ثم تنقطع بعد مدة ثابتة. وهذي الانتقائية نفسها دليل يوجّه البحث.',
+          'وأول المشتبهين الأسماء: يفشل الاسم ويعمل العنوان مباشرة. وهذا يحسم التشخيص في خطوة واحدة — إن عمل بالعنوان فالشبكة سليمة والمشكلة في الترجمة وحدها. وقد يكون سجلاً خاطئاً أو مخزناً قديماً أو خادم أسماء لا يجيب.',
+          'وثانيها الشهادات: انتهاء صلاحية شهادة يوقف خدمة كاملة في لحظة محددة سلفاً بلا أي تغيير في الشبكة. وعرضه مميز: العطل يبدأ في وقت دقيق ويصيب الجميع معاً، والمتصفح يعطي تحذيراً صريحاً. وعلاجه سهل والمشكلة أنه يتكرر كل سنة، فالمراقبة الاستباقية لتواريخ الانتهاء هي الحل الحقيقي.',
+          'وثالثها المهل: خدمة تعمل ثم تنقطع بعد مدة ثابتة بالضبط. وهذي علامة على مهلة مضبوطة في وسيط: موازن حمل أو جدار ناري يغلق الجلسات الخاملة. وثباتها الزمني هو ما يميّزها — فعطل عشوائي لا يقع دائماً عند الدقيقة نفسها.',
+          'ورابعها الوسطاء: بوابة أو تخزين مؤقت أو موازن يقدّم محتوى قديماً أو يوجّه لخادم معطّل. ومن أعراضها المميزة أن بعض المستخدمين يعملون وبعضهم لا، بحسب أي خادم خلف الموازن وصلوه.',
+          'وقاعدة عامة نافعة: قارني الحالة الفاشلة بحالة ناجحة مطابقة قدر الإمكان. مستخدم يعمل وآخر لا، أو جهاز يعمل وآخر لا في المكتب نفسه — فالفرق بينهما هو السبب، والبحث عن الفرق أسرع من البحث عن العطل. ومن لم يجد حالة ناجحة يقارن بها فليصنعها: جهاز نظيف على المنفذ نفسه يفصل عطل الشبكة عن عطل الجهاز في دقيقتين.'
+        ],
+        body_en: [
+          'Once the network proves it delivers, the search moves to higher layers. The difference is that symptoms here are selective: everything works but one service, or a service works but not for some users, or it works then drops after a fixed interval. That selectivity is itself evidence directing the search.',
+          'The first suspect is names: the name fails while the address works directly. That settles the diagnosis in one step, since working by address means the network is sound and the problem is translation alone. It may be a wrong record, a stale cache or an unresponsive name server.',
+          'The second is certificates: an expiry stops an entire service at a moment fixed in advance with no network change at all. Its symptom is distinctive: the fault begins at a precise time and hits everyone at once, and the browser gives an explicit warning. The fix is easy and the trouble is that it recurs yearly, so proactive monitoring of expiry dates is the real solution.',
+          'The third is timeouts: a service works then drops after exactly a fixed interval. That is the mark of a timeout configured in an intermediary: a load balancer or firewall closing idle sessions. Its temporal consistency is what identifies it, since a random fault does not always strike at the same minute.',
+          'The fourth is intermediaries: a gateway, cache or balancer serving stale content or directing to a failed server. Among its distinctive symptoms is that some users work and others do not, depending on which server behind the balancer they reached.',
+          'A useful general rule: compare the failing case with a succeeding one as similar as possible. One user works and another does not, or one machine works and another does not in the same office, so the difference between them is the cause, and searching for the difference is faster than searching for the fault. Whoever has no succeeding case should create one: a clean machine on the same port separates a network fault from a device fault in two minutes.'
+        ],
+        table: {
+          head_ar: ['العرض', 'المشتبه به', 'الفحص'],
+          head_en: ['Symptom', 'Suspect', 'The check'],
+          rows: [
+            ['يفشل بالاسم ويعمل بالعنوان', 'ترجمة الأسماء', 'استعلام من الخادم الموثوق'],
+            ['يبدأ في وقت دقيق ويصيب الجميع', 'انتهاء شهادة', 'تاريخ صلاحية الشهادة'],
+            ['ينقطع بعد مدة ثابتة', 'مهلة في وسيط', 'إعداد المهل بالموازن والجدار'],
+            ['بعض المستخدمين فقط', 'خادم معطّل خلف موازن', 'حالة الخوادم الخلفية'],
+            ['خدمة واحدة فقط', 'منفذها أو تطبيقها', 'استماع المنفذ وسجل التطبيق']
+          ]
+        },
+        keyPoints_ar: [
+          'انتقائية الأعراض في الطبقات العليا دليل يوجّه البحث لا تعقيد.',
+          'الفشل بالاسم مع نجاح العنوان يحسم التشخيص في خطوة واحدة.',
+          'انتهاء الشهادة يبدأ في وقت دقيق ويصيب الجميع، وعلاجه مراقبة استباقية للتواريخ.',
+          'الانقطاع بعد مدة ثابتة بالضبط علامة مهلة في وسيط لا عطل عشوائي.',
+          'عمل بعض المستخدمين دون بعض يشير لخادم معطّل خلف موازن.',
+          'قارني الفاشل بناجح مطابق: الفرق بينهما هو السبب، وإن لم تجدي فاصنعي حالة ناجحة.'
+        ],
+        keyPoints_en: [
+          'Selective symptoms at upper layers are evidence directing the search rather than complexity.',
+          'Failing by name while the address works settles the diagnosis in one step.',
+          'A certificate expiry starts at a precise time and hits everyone; the cure is proactive date monitoring.',
+          'Dropping after exactly a fixed interval marks an intermediary timeout rather than a random fault.',
+          'Some users working and others not points to a failed server behind a balancer.',
+          'Compare the failing case with a matching successful one, and create one if none exists.'
+        ],
+        analogy_ar: 'تخيّل جهازين متطابقين على المكتب نفسه، أحدهما يفتح النظام والآخر لا. لا داعي لفحص الشبكة كلها — الجواب في الفرق بينهما لا في البحث في كل شيء. وتخيّل خدمة تتوقف كل يوم الساعة الثانية بالضبط: لا يوجد عطل عشوائي بهذي الدقة، فمن يبحث عن كابل تالف يبحث في المكان الخطأ، لأن الكابل التالف لا يعرف كم الساعة.',
+        analogy_en: 'Picture two identical machines on the same desk, one opening the system and the other not. There is no need to examine the whole network: the answer is in the difference between them rather than in searching everything. And picture a service stopping every day at exactly two o clock: no random fault is that punctual, so whoever looks for a damaged cable is looking in the wrong place, because a damaged cable does not know the time.',
+        terms: [
+          { term: 'Resolution Failure', def_ar: 'فشل بالاسم مع نجاح الاتصال بالعنوان.', def_en: 'Failing by name while connecting by address succeeds.' },
+          { term: 'Certificate Expiry', def_ar: 'انتهاء صلاحية يوقف الخدمة في وقت محدد سلفاً.', def_en: 'An expiry stopping a service at a predetermined moment.' },
+          { term: 'Idle Timeout', def_ar: 'إغلاق وسيط للجلسات الخاملة بعد مدة ثابتة.', def_en: 'An intermediary closing idle sessions after a fixed period.' },
+          { term: 'Backend Pool', def_ar: 'مجموعة الخوادم خلف موازن الحمل.', def_en: 'The group of servers behind a load balancer.' },
+          { term: 'Differential Diagnosis', def_ar: 'مقارنة حالة فاشلة بناجحة مطابقة لعزل السبب.', def_en: 'Comparing a failing case with a matching successful one to isolate the cause.' }
+        ],
+        cards: [
+          { q_ar: 'ماذا يعني نجاح الاتصال بالعنوان وفشله بالاسم؟', q_en: 'What does connecting by address but not by name mean?', a_ar: 'أن الشبكة سليمة والمشكلة في ترجمة الأسماء وحدها: سجل خاطئ أو مخزن قديم أو خادم لا يجيب.', a_en: 'The network is sound and the problem is name resolution alone: a wrong record, a stale cache or an unresponsive server.' },
+          { q_ar: 'ما علامة انتهاء الشهادة؟', q_en: 'What marks a certificate expiry?', a_ar: 'عطل يبدأ في وقت دقيق ويصيب الجميع معاً بلا أي تغيير في الشبكة، مع تحذير صريح من المتصفح.', a_en: 'A fault beginning at a precise time hitting everyone at once with no network change, plus an explicit browser warning.' },
+          { q_ar: 'ما دلالة الانقطاع بعد مدة ثابتة بالضبط؟', q_en: 'What does dropping after exactly a fixed interval indicate?', a_ar: 'مهلة مضبوطة في وسيط كموازن أو جدار يغلق الجلسات الخاملة، لأن العشوائي لا يقع بهذي الدقة.', a_en: 'A timeout configured in an intermediary such as a balancer or firewall closing idle sessions, since randomness is not that punctual.' },
+          { q_ar: 'ما أسرع طريقة لعزل السبب؟', q_en: 'What is the fastest way to isolate a cause?', a_ar: 'مقارنة الحالة الفاشلة بناجحة مطابقة، فالفرق بينهما هو السبب — وإن لم توجد فاصنعيها.', a_en: 'Comparing the failing case with a matching successful one, since the difference is the cause, and creating one if none exists.' }
+        ]
+      },
+      {
+        title_ar: 'تحسين الأداء',
+        title_en: 'Performance Optimisation',
+        lead_ar: 'الأداء لا يُحسَّن بزيادة السرعة وإنما بمعرفة أي مورد هو المقيّد فعلاً — وزيادة السعة على وصلة مشكلتها زمن الاستجابة إنفاق بلا أثر.',
+        lead_en: 'Performance is not improved by adding speed but by knowing which resource is actually the constraint, and adding capacity to a link whose problem is latency is spending with no effect.',
+        body_ar: [
+          'القاعدة الأولى قياس قبل تغيير: أي مورد هو المقيّد فعلاً؟ فقد يكون النطاق، أو زمن الاستجابة، أو معالجة جهاز وسيط، أو حدّاً في التطبيق نفسه. وشراء سعة أكبر لحلّ مشكلة في زمن الاستجابة أشهر إنفاق بلا أثر في المجال.',
+          'وحاصل ضرب النطاق في زمن الاستجابة يفسّر ظاهرة محيّرة: وصلة بسعة هائلة إلى قارة بعيدة تعطي إنتاجية ضعيفة لجلسة واحدة. والسبب أن المرسل يتوقف بانتظار الإشعار حين تمتلئ نافذته، فيبقى الطريق فارغاً معظم الوقت. والعلاج توسيع النافذة أو استخدام جلسات متوازية — لا زيادة السعة.',
+          'وإدارة جودة الخدمة تصنيف وأولوية: تُعطى الحركة الحساسة لزمن الاستجابة كالصوت أولوية على التحميلات التي لا يضرّها التأخير. وهي لا تخلق سعة وإنما تقرر من يتأخر عند الازدحام — ولهذا لا تصلح علاجاً لوصلة مشبعة دائماً، فتحديد الأولوية على وصلة ممتلئة طوال الوقت تأجيل لا حلّ.',
+          'وتضخم الذاكرة المؤقتة عطل يخالف الحدس: ذاكرة كبيرة في جهاز وسيط تحبس الحزم بدل إسقاطها، فتصل متأخرة جداً. والأسوأ أن آلية التحكم في الازدحام تعتمد على فقد الحزم كإشارة للإبطاء، فبإخفاء الفقد يستمر المرسل في الإسراع ويسوء الوضع. فالإسقاط المبكر أنفع من الاحتجاز الطويل.',
+          'والتخزين المؤقت للمحتوى أعلى المكاسب مردوداً وأقلها كلفة: خدمة الطلب من نسخة قريبة توفّر السعة وتقلّل زمن الاستجابة معاً. وكذلك ضغط ما يُنقَل، وتقليل عدد الطلبات، ووضع المحتوى قرب المستخدم جغرافياً.',
+          'وأخيراً قاعدة نافعة: ابحثي عن عنق الزجاجة الواحد ولا تحسّني كل شيء معاً. فتحسين مورد ليس مقيّداً لا يعطي فرقاً مقاساً، ويستهلك وقتاً وميزانية، ويخفي المشكلة الحقيقية خلف نشاط يبدو منتجاً. والقياس قبل التحسين وبعده هو ما يفرّق بين هندسة وتخمين.'
+        ],
+        body_en: [
+          'The first rule is measuring before changing: which resource is actually the constraint? It may be bandwidth, latency, an intermediary device processing, or a limit in the application itself. Buying more capacity to solve a latency problem is the most famous effect-free spending in the field.',
+          'The product of bandwidth and latency explains a puzzling phenomenon: a link of enormous capacity to a distant continent yields poor throughput for a single session. The reason is the sender pausing for acknowledgement once its window fills, leaving the road empty most of the time. The cure is widening the window or using parallel sessions rather than adding capacity.',
+          'Quality of service management is classification and priority: latency-sensitive traffic such as voice is given priority over downloads that delay does not harm. It creates no capacity and merely decides who waits under congestion, so it is no cure for a permanently saturated link, where prioritising is postponement rather than a solution.',
+          'Buffer bloat is a counter-intuitive fault: a large buffer in an intermediary holds packets instead of dropping them so they arrive far too late. Worse, congestion control relies on packet loss as its slow-down signal, so hiding the loss keeps the sender accelerating and the situation worsens. Early dropping serves better than long holding.',
+          'Content caching offers the highest return at the lowest cost: serving a request from a nearby copy saves capacity and cuts latency together. So do compressing what is carried, reducing the number of requests, and placing content geographically near users.',
+          'Finally a useful rule: look for the single bottleneck rather than improving everything at once. Improving a resource that is not the constraint yields no measurable difference, consumes time and budget, and hides the real problem behind activity that looks productive. Measuring before and after an improvement is what separates engineering from guesswork.'
+        ],
+        table: {
+          head_ar: ['المقيّد', 'العرض', 'العلاج الصحيح'],
+          head_en: ['Constraint', 'Symptom', 'Correct remedy'],
+          rows: [
+            ['النطاق', 'إشباع مستمر في الذروة', 'زيادة السعة أو تقليل النقل'],
+            ['زمن الاستجابة', 'إنتاجية ضعيفة رغم سعة كبيرة', 'توسيع النافذة أو جلسات متوازية'],
+            ['الازدحام اللحظي', 'تقطّع الصوت عند الذروة فقط', 'جودة الخدمة بالأولوية'],
+            ['تضخم الذاكرة', 'زمن استجابة عالٍ بلا فقد', 'إسقاط مبكر بدل احتجاز'],
+            ['تكرار الطلبات', 'تحميل المحتوى نفسه مراراً', 'تخزين مؤقت قرب المستخدم']
+          ]
+        },
+        keyPoints_ar: [
+          'قيسي قبل أن تغيّري: أي مورد هو المقيّد فعلاً؟',
+          'سعة كبيرة لمسافة بعيدة تعطي إنتاجية ضعيفة لجلسة واحدة، والعلاج النافذة لا السعة.',
+          'جودة الخدمة تقرر من يتأخر ولا تخلق سعة، فلا تصلح لوصلة مشبعة دائماً.',
+          'الذاكرة المؤقتة الكبيرة تحبس الحزم وتُخفي إشارة الفقد فيستمر المرسل في الإسراع.',
+          'التخزين المؤقت قرب المستخدم أعلى المكاسب مردوداً وأقلها كلفة.',
+          'حسّني عنق الزجاجة الواحد؛ وتحسين غير المقيّد نشاط يبدو منتجاً ويخفي المشكلة.'
+        ],
+        keyPoints_en: [
+          'Measure before changing: which resource is actually the constraint?',
+          'High capacity over long distance yields poor single-session throughput; the cure is the window not capacity.',
+          'Quality of service decides who waits and creates no capacity, so it cannot cure a saturated link.',
+          'A large buffer holds packets and hides the loss signal so the sender keeps accelerating.',
+          'Caching near the user is the highest-return, lowest-cost gain.',
+          'Improve the single bottleneck; improving a non-constraint looks productive and hides the problem.'
+        ],
+        analogy_ar: 'تخيّل خط إنتاج فيه ثماني محطات، واحدة منها بطيئة. لو حسّنت السبع الأخرى وضاعفت سرعتها لما زاد إنتاج المصنع قطعة واحدة، لأن كل شيء ينتظر عند المحطة البطيئة. وأما الذاكرة المؤقتة الكبيرة فكرفٍّ طويل أمام تلك المحطة: يمتلئ بالقطع فلا يرى المشرف تكدّساً على الأرض ويظن أن كل شيء بخير، بينما القطعة الواحدة صارت تنتظر ساعتين بدل أن تُرَدّ فوراً فيُعرَف أن ثمة مشكلة.',
+        analogy_en: 'Picture a production line of eight stations with one slow. Improving the other seven and doubling their speed adds not one piece to factory output, because everything waits at the slow station. As for a large buffer, it is a long shelf in front of that station: it fills with pieces so the supervisor sees no pile on the floor and assumes all is well, while a single piece now waits two hours instead of being turned back at once so the problem is known.',
+        terms: [
+          { term: 'Bottleneck', def_ar: 'المورد المقيّد الذي يحدّ الأداء وحده.', def_en: 'The constraining resource that alone caps performance.' },
+          { term: 'Bandwidth-Delay Product', def_ar: 'حاصل النطاق في زمن الاستجابة، يحدد حجم النافذة اللازم.', def_en: 'Bandwidth times latency, setting the needed window size.' },
+          { term: 'Quality of Service', def_ar: 'تصنيف وأولوية تقرر من يتأخر عند الازدحام.', def_en: 'Classification and priority deciding who waits under congestion.' },
+          { term: 'Buffer Bloat', def_ar: 'احتجاز طويل في ذاكرة كبيرة يرفع زمن الاستجابة.', def_en: 'Long holding in a large buffer raising latency.' },
+          { term: 'Content Caching', def_ar: 'خدمة الطلب من نسخة قريبة توفّر السعة والزمن.', def_en: 'Serving a request from a nearby copy, saving capacity and time.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا تكفي زيادة السعة أحياناً؟', q_en: 'Why is adding capacity sometimes useless?', a_ar: 'لأن المقيّد قد يكون زمن الاستجابة أو جهازاً وسيطاً، وزيادة السعة لا تمسّهما إطلاقاً.', a_en: 'The constraint may be latency or an intermediary device, and added capacity touches neither.' },
+          { q_ar: 'لماذا تضعف الإنتاجية على وصلة كبيرة لمسافة بعيدة؟', q_en: 'Why is throughput poor on a large long-distance link?', a_ar: 'لأن المرسل يتوقف بانتظار الإشعار حين تمتلئ نافذته، فالعلاج توسيعها أو جلسات متوازية.', a_en: 'The sender pauses for acknowledgement once its window fills, so the cure is widening it or parallel sessions.' },
+          { q_ar: 'هل تصلح جودة الخدمة لوصلة مشبعة دائماً؟', q_en: 'Does quality of service cure a permanently saturated link?', a_ar: 'لا، فهي تقرر من يتأخر ولا تخلق سعة، فتصير تأجيلاً لا حلاً.', a_en: 'No, it decides who waits and creates no capacity, so it becomes postponement rather than a solution.' },
+          { q_ar: 'لماذا يضرّ حجم الذاكرة المؤقتة الكبير؟', q_en: 'Why does a large buffer cause harm?', a_ar: 'لأنه يحبس الحزم بدل إسقاطها فيُخفي إشارة الفقد التي يُبطئ بها المرسل، فيستمر في الإسراع.', a_en: 'It holds packets instead of dropping them, hiding the loss signal the sender slows by, so it keeps accelerating.' }
+        ]
+      }
     ]
   }
 };
