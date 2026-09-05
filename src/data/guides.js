@@ -37,6 +37,16 @@ export const sectionGuides = {
           'A comment is a line starting with # in Python, ignored entirely at run time. Its value comes from code being read far more often than written: you will return to your own code in two months as a stranger. A good comment does not restate the code; it explains why you did something.',
           'Comments have a second practical use: temporarily disabling a line while hunting a bug, by putting # before it so it stops executing without being deleted. It is a fast way to isolate a suspect line.'
         ],
+        table: {
+          head_ar: ['الكتابة', 'ما تعنيه', 'الخطأ الشائع'],
+          head_en: ['Notation', 'What it means', 'Common mistake'],
+          rows: [
+            ['x = 5', 'إسناد: ضع ٥ في x', 'قراءتها «يساوي» رياضياً'],
+            ['x == 5', 'مقارنة: هل x يساوي ٥؟', 'استخدامها مكان الإسناد'],
+            ['x = x + 1', 'اقرأ ثم زد ثم خزّن', 'ظنها مستحيلة رياضياً'],
+            ['# تعليق', 'نص يتجاهله المفسّر', 'إعادة ما يقوله الكود']
+          ]
+        },
         keyPoints_ar: [
           'المتغيّر اسم لمكان في الذاكرة، وعلامة = إسناد لا مساواة.',
           'x = x + 1 صحيح برمجياً: اقرأ القيمة، عدّلها، أعد تخزينها.',
@@ -6324,6 +6334,326 @@ export const sectionGuides = {
           { q_ar: 'ما المعضلة الدائمة في الاحتواء؟', q_en: 'What is the permanent containment dilemma?', a_ar: 'بين وقف الضرر بعزل الجهاز وبين حفظ أدلة الذاكرة التي تزول بالإطفاء.', a_en: 'Between stopping damage by isolating the machine and preserving memory evidence that vanishes on power off.' },
           { q_ar: 'ما أكثر ما يُنسى في الاستئصال؟', q_en: 'What is most forgotten in eradication?', a_ar: 'آليات العودة التي زرعها المهاجم، فيعود بعد أسبوع من باب خلفي لم يُفتَّش عنه.', a_en: 'The persistence mechanisms the attacker planted, so they return a week later through an unsearched backdoor.' },
           { q_ar: 'ما شرط جلسة الدروس المستفادة؟', q_en: 'What condition must a lessons session meet?', a_ar: 'ألا تكون جلسة لوم، فالفريق الذي يُحاسَب على الأخطاء يخفيها في الحادث القادم.', a_en: 'It must not be a blame session, since a team punished for mistakes hides them in the next incident.' }
+        ]
+      }
+    ],
+
+    // ─────────── أمن السحابة والدفاع السيبراني المتقدم ───────────
+    6: [
+      {
+        title_ar: 'نماذج الخدمات السحابية والمسؤولية المشتركة',
+        title_en: 'Cloud Service Models and Shared Responsibility',
+        lead_ar: 'السحابة لا تنقل مسؤوليتك الأمنية بل تقسمها، وأغلب حوادث السحابة سببها سوء إعداد من العميل لا اختراق للمزوّد.',
+        lead_en: 'The cloud does not transfer your security responsibility but divides it, and most cloud incidents come from customer misconfiguration rather than a provider breach.',
+        body_ar: [
+          'النماذج ثلاثة بحسب ما يديره المزوّد: البنية كخدمة حيث تستأجر خوادم افتراضية وتدير كل ما فوقها من نظام تشغيل وتطبيقات، والمنصة كخدمة حيث يدير المزوّد النظام والبيئة وتقدّم أنت الكود، والبرمجية كخدمة حيث تستخدم تطبيقاً جاهزاً ولا تدير إلا بياناتك ومستخدميك.',
+          'ونموذج المسؤولية المشتركة هو أهم ما يجب فهمه: المزوّد مسؤول عن أمن السحابة نفسها — مراكز البيانات والعتاد والبنية، وأنت مسؤول عن أمنك في السحابة — بياناتك وإعداداتك وهوياتك وصلاحياتك. والحد بينهما يتحرك بحسب النموذج، لكنه لا يختفي أبداً.',
+          'وسوء فهم هذا الحد سبب أغلب حوادث السحابة: مؤسسة تظن أن المزوّد يحمي بياناتها فتترك مخزناً مفتوحاً للعموم. ولم يُخترَق المزوّد — الإعداد كان خاطئاً، والمزوّد نفّذه كما طُلب منه. وهذي الحوادث تتكرر بانتظام وتكشف ملايين السجلات.',
+          'والفروق العملية عن البيئة التقليدية ثلاثة. الأول أن كل شيء واجهة برمجية: إنشاء خادم وحذف قاعدة بيانات أمر واحد، فاعتماد مسروق واحد قد يعني حذف بنية كاملة في دقائق. والثاني أن المحيط ذاب: لا حدود شبكية واضحة، والهوية هي الحد الجديد.',
+          'والثالث أن البصمة تتغيّر بسرعة: موارد تُنشأ وتُحذَف تلقائياً، فقائمة الأصول الثابتة لم تعد ممكنة. ولهذا تُستبدل بالجرد اللحظي المستمر — ولا يمكن حماية ما لا تعرف وجوده، والموارد المؤقتة المنسية من أشهر مصادر الانكشاف.',
+          'وميزة السحابة الأمنية الحقيقية أن الأمن يصير كوداً: تُوصَف البنية في ملفات تُراجَع وتُنشَر آلياً، فيمكن فحص الإعدادات قبل تطبيقها ومنع الخاطئ منها بلا نقاش. وهذي قدرة لم تكن ممكنة في مراكز البيانات التقليدية، وهي ما يجعل السحابة أكثر أماناً لمن أتقنها وأخطر لمن أهملها.'
+        ],
+        body_en: [
+          'There are three models by what the provider manages: infrastructure as a service where you rent virtual servers and manage everything above them including the operating system and applications; platform as a service where the provider manages the system and environment and you supply the code; and software as a service where you use a ready application and manage only your data and users.',
+          'The shared responsibility model is the most important thing to understand: the provider is responsible for the security of the cloud, its data centres, hardware and infrastructure, while you are responsible for your security in the cloud, your data, configurations, identities and permissions. The line between them moves with the model but never disappears.',
+          'Misunderstanding that line causes most cloud incidents: an organisation assuming the provider protects its data leaves a storage bucket open to the public. The provider was never breached; the configuration was wrong and the provider executed it as instructed. Such incidents recur regularly and expose millions of records.',
+          'Three practical differences from traditional environments exist. First, everything is an API: creating a server or deleting a database is one call, so one stolen credential may mean an entire infrastructure deleted in minutes. Second, the perimeter dissolved: there are no clear network boundaries and identity is the new boundary.',
+          'Third, the footprint changes fast: resources are created and destroyed automatically so a static asset list is no longer possible. It is replaced by continuous live inventory, since you cannot protect what you do not know exists, and forgotten temporary resources are a classic exposure source.',
+          'The genuine security advantage of the cloud is that security becomes code: infrastructure is described in files that are reviewed and deployed automatically, so configurations can be checked before applying and wrong ones blocked without debate. That capability never existed in traditional data centres, and it is what makes the cloud safer for whoever masters it and more dangerous for whoever neglects it.'
+        ],
+        table: {
+          head_ar: ['النموذج', 'يديره المزوّد', 'تديره أنت'],
+          head_en: ['Model', 'Provider manages', 'You manage'],
+          rows: [
+            ['البنية كخدمة', 'العتاد والافتراضية', 'النظام والتطبيق والبيانات'],
+            ['المنصة كخدمة', 'النظام والبيئة', 'الكود والبيانات والصلاحيات'],
+            ['البرمجية كخدمة', 'كل شيء تقنياً', 'بياناتك ومستخدموك وصلاحياتهم'],
+            ['في كل النماذج', 'أمن السحابة نفسها', 'أمنك داخل السحابة']
+          ]
+        },
+        keyPoints_ar: [
+          'المسؤولية مقسومة لا منقولة: المزوّد يؤمّن السحابة وأنت تؤمّن ما فيها.',
+          'أغلب حوادث السحابة سوء إعداد من العميل لا اختراق للمزوّد.',
+          'كل شيء واجهة برمجية، فاعتماد مسروق واحد قد يحذف بنية كاملة بدقائق.',
+          'المحيط ذاب والهوية صارت الحد الجديد.',
+          'الموارد تُنشأ وتُحذَف تلقائياً، فالجرد يجب أن يكون لحظياً مستمراً.',
+          'الأمن كوداً يتيح فحص الإعداد قبل تطبيقه — وهذي ميزة السحابة الحقيقية.'
+        ],
+        keyPoints_en: [
+          'Responsibility is divided rather than transferred: the provider secures the cloud and you secure what is in it.',
+          'Most cloud incidents are customer misconfiguration rather than provider breaches.',
+          'Everything is an API, so one stolen credential may delete an entire infrastructure in minutes.',
+          'The perimeter dissolved and identity became the new boundary.',
+          'Resources appear and disappear automatically, so inventory must be continuous and live.',
+          'Security as code allows checking configuration before applying, the cloud genuine advantage.'
+        ],
+        analogy_ar: 'تخيّل شقة في برج مؤمَّن. إدارة البرج مسؤولة عن الأسوار والحراسة والكاميرات في المداخل. وأنت مسؤول عن قفل باب شقتك وعمّن تعطيه المفتاح. فلو تركت بابك مفتوحاً ودخل أحد، لن يقول أحد إن البرج اختُرق. وهذي بالضبط حوادث المخازن السحابية المفتوحة: المزوّد آمن، والباب تركه صاحبه مفتوحاً بيده.',
+        analogy_en: 'Picture a flat in a secured tower. The building management is responsible for the walls, guards and entrance cameras. You are responsible for locking your own door and whom you give the key. If you leave your door open and someone walks in, nobody says the tower was breached. That is exactly what open cloud storage incidents are: the provider was secure and the owner left the door open themselves.',
+        terms: [
+          { term: 'IaaS', def_ar: 'استئجار بنية افتراضية وإدارة كل ما فوقها.', def_en: 'Renting virtual infrastructure and managing everything above it.' },
+          { term: 'Shared Responsibility', def_ar: 'تقسيم الأمن بين المزوّد والعميل بحسب النموذج.', def_en: 'Dividing security between provider and customer by model.' },
+          { term: 'Misconfiguration', def_ar: 'إعداد خاطئ يكشف مورداً كان يجب أن يبقى مغلقاً.', def_en: 'A wrong setting exposing a resource that should have stayed closed.' },
+          { term: 'Infrastructure as Code', def_ar: 'وصف البنية في ملفات تُراجَع وتُنشَر آلياً.', def_en: 'Describing infrastructure in files reviewed and deployed automatically.' },
+          { term: 'Continuous Inventory', def_ar: 'جرد لحظي مستمر للموارد المتغيّرة تلقائياً.', def_en: 'Continuous live inventory of automatically changing resources.' }
+        ],
+        cards: [
+          { q_ar: 'ما نموذج المسؤولية المشتركة؟', q_en: 'What is the shared responsibility model?', a_ar: 'المزوّد مسؤول عن أمن السحابة نفسها، وأنت مسؤول عن أمن ما فيها من بيانات وإعدادات وهويات.', a_en: 'The provider secures the cloud itself while you secure what is in it: data, configurations and identities.' },
+          { q_ar: 'ما سبب أغلب حوادث السحابة؟', q_en: 'What causes most cloud incidents?', a_ar: 'سوء إعداد من العميل كترك مخزن مفتوحاً للعموم، لا اختراق للمزوّد.', a_en: 'Customer misconfiguration such as leaving storage public, rather than a provider breach.' },
+          { q_ar: 'لماذا يخطر اعتماد مسروق في السحابة أكثر؟', q_en: 'Why is a stolen credential more dangerous in the cloud?', a_ar: 'لأن كل شيء واجهة برمجية، فحذف بنية كاملة قد يتم بأوامر قليلة في دقائق.', a_en: 'Everything is an API, so deleting an entire infrastructure may take a few calls in minutes.' },
+          { q_ar: 'ما ميزة السحابة الأمنية الحقيقية؟', q_en: 'What is the cloud genuine security advantage?', a_ar: 'الأمن كوداً: وصف البنية في ملفات تُفحَص قبل تطبيقها فيُمنع الإعداد الخاطئ آلياً.', a_en: 'Security as code: infrastructure described in files checked before applying so wrong settings are blocked automatically.' }
+        ]
+      },
+      {
+        title_ar: 'إدارة الهوية والوصول',
+        title_en: 'Identity and Access Management',
+        lead_ar: 'في السحابة، الهوية هي المحيط: من يملك الاعتماد يملك الوصول أينما كان — ولهذا صار تسريب مفتاح أخطر من ثغرة في خادم.',
+        lead_en: 'In the cloud identity is the perimeter: whoever holds the credential holds the access from anywhere, which makes a leaked key more dangerous than a server vulnerability.',
+        body_ar: [
+          'في مركز البيانات التقليدي كان الوصول يحتاج وجوداً في الشبكة، فكانت الشبكة نفسها طبقة حماية. وفي السحابة لا يوجد هذا القيد: من يملك اعتماداً صالحاً يصل من أي مكان في العالم. ولهذا صارت إدارة الهوية هي الضابط الأمني الأول لا الجدار الناري.',
+          'ومبدأ أقل صلاحية أشد إلحاحاً هنا: صلاحية واسعة في السحابة قد تعني حذف كل شيء أو إنشاء موارد بتكاليف هائلة أو الوصول لكل البيانات. والممارسة الشائعة الخاطئة منح صلاحيات واسعة «مؤقتاً» لحل مشكلة عاجلة ثم نسيانها — وهذي المؤقتات تصير دائمة.',
+          'والأدوار خير من المستخدمين الدائمين: بدل إنشاء حساب باعتماد ثابت لكل خدمة، تُمنَح الخدمة دوراً تتقمّصه فتحصل على اعتماد مؤقت ينتهي تلقائياً. فلو تسرّب، انتهت صلاحيته خلال ساعة — بخلاف مفتاح ثابت قد يبقى صالحاً سنوات.',
+          'وتسريب المفاتيح في مستودعات الكود من أشهر أسباب اختراق السحابة على الإطلاق. والمهاجمون يشغّلون فاحصات آلية تراقب المستودعات العامة، فمفتاح يُرفَع بالخطأ يُكتشَف ويُستغَل خلال دقائق. ولهذا: المفاتيح في مخازن أسرار مخصصة، وفحص آلي يمنع رفعها، وتدوير دوري لها.',
+          'والحسابات الجذرية للاشتراك السحابي حالة خاصة: صلاحياتها مطلقة ولا يمكن تقييدها. فتُؤمَّن بتحقق متعدد العوامل بمفتاح مادي، ولا تُستخدم للعمل اليومي إطلاقاً، وتُراقَب أي عملية تُنفَّذ بها فوراً.',
+          'والمراجعة المستمرة ضرورة لأن الصلاحيات في السحابة تتراكم بصمت: أدوار أُنشئت لتجربة، وصلاحيات مُنِحت لخدمة لم تعد تعمل، وحسابات لمتعاقدين انتهت عقودهم. وأدوات تحليل الوصول تكشف الفجوة بين ما هو ممنوح وما هو مستخدَم فعلاً — والفارق بينهما هو مساحة الخطر الحقيقية.'
+        ],
+        body_en: [
+          'In a traditional data centre access required presence on the network, so the network itself was a protection layer. The cloud has no such constraint: whoever holds a valid credential reaches it from anywhere in the world. So identity management became the first security control rather than the firewall.',
+          'Least privilege is more urgent here: broad cloud permissions may mean deleting everything, creating resources at enormous cost, or reaching all data. A common wrong practice is granting broad permissions temporarily to solve an urgent problem then forgetting them, and those temporary grants become permanent.',
+          'Roles beat permanent users: instead of creating an account with a fixed credential per service, a service is granted a role it assumes to receive a temporary credential expiring automatically. If leaked, it expires within an hour, unlike a fixed key that may stay valid for years.',
+          'Leaking keys in code repositories is among the most common causes of cloud breaches. Attackers run automated scanners watching public repositories, so a key pushed by mistake is discovered and exploited within minutes. Hence: keys in dedicated secret stores, automated scanning blocking their commit, and periodic rotation.',
+          'Root accounts for a cloud subscription are a special case: their permissions are absolute and cannot be restricted. They are protected with multi-factor verification using a hardware key, never used for daily work, and any operation performed with them is alerted immediately.',
+          'Continuous review is essential because cloud permissions accumulate silently: roles created for an experiment, permissions granted to a service no longer running, accounts for contractors whose contracts ended. Access analysis tools reveal the gap between what is granted and what is actually used, and that gap is the real risk surface.'
+        ],
+        table: {
+          head_ar: ['الممارسة', 'البديل الآمن', 'لماذا'],
+          head_en: ['Practice', 'Safer alternative', 'Why'],
+          rows: [
+            ['مفتاح ثابت للخدمة', 'دور باعتماد مؤقت', 'ينتهي تلقائياً لو تسرّب'],
+            ['صلاحية واسعة مؤقتة', 'صلاحية محددة موثّقة', 'المؤقت يصير دائماً'],
+            ['مفتاح في الكود', 'مخزن أسرار مخصص', 'الفاحصات تكتشفه بدقائق'],
+            ['استخدام الحساب الجذري', 'حساب إداري محدود', 'صلاحياته لا تُقيَّد']
+          ]
+        },
+        keyPoints_ar: [
+          'الهوية هي المحيط: من يملك الاعتماد يصل من أي مكان في العالم.',
+          'الأدوار باعتماد مؤقت خير من مفاتيح ثابتة قد تبقى صالحة سنوات.',
+          'الصلاحيات «المؤقتة» الواسعة تصير دائمة إن لم تُوثَّق بموعد انتهاء.',
+          'مفتاح مرفوع لمستودع عام يُكتشَف ويُستغَل خلال دقائق.',
+          'الحساب الجذري لا يُستخدم يومياً ويُؤمَّن بمفتاح مادي وتُراقَب عملياته.',
+          'الفجوة بين الصلاحيات الممنوحة والمستخدَمة فعلاً هي مساحة الخطر.'
+        ],
+        keyPoints_en: [
+          'Identity is the perimeter: whoever holds the credential reaches it from anywhere.',
+          'Roles with temporary credentials beat fixed keys that may stay valid for years.',
+          'Broad temporary permissions become permanent unless documented with an expiry.',
+          'A key pushed to a public repository is discovered and exploited within minutes.',
+          'The root account is never used daily, is protected with a hardware key, and its operations are alerted.',
+          'The gap between granted and actually used permissions is the real risk surface.'
+        ],
+        analogy_ar: 'تخيّل مفتاحين لمستودع. الأول مفتاح معدني دائم تعطيه للمورّد: لو نسخه أو فقده بقي صالحاً سنوات ولا تعرف. والثاني بطاقة تنتهي صلاحيتها بعد ساعة وتُصدَر عند كل زيارة: لو ضاعت لم تنفع أحداً بعد الغداء. والسحابة تتيح لك الثاني بلا كلفة إضافية — ومع ذلك يصرّ كثيرون على المفتاح المعدني لأنه أسهل.',
+        analogy_en: 'Picture two keys to a warehouse. The first is a permanent metal key you hand a supplier: if they copy or lose it, it stays valid for years and you never know. The second is a badge expiring after an hour, issued per visit: if lost it helps nobody after lunch. The cloud offers you the second at no extra cost, and many still insist on the metal key because it is easier.',
+        terms: [
+          { term: 'Role Assumption', def_ar: 'تقمّص خدمة لدور فتحصل على اعتماد مؤقت.', def_en: 'A service assuming a role to receive a temporary credential.' },
+          { term: 'Secret Store', def_ar: 'مخزن مخصص للمفاتيح والاعتمادات بعيداً عن الكود.', def_en: 'A dedicated store for keys and credentials away from code.' },
+          { term: 'Key Rotation', def_ar: 'تغيير المفاتيح دورياً لتقليل أثر تسريبها.', def_en: 'Periodically changing keys to reduce leak impact.' },
+          { term: 'Root Account', def_ar: 'حساب الاشتراك ذو الصلاحيات المطلقة غير القابلة للتقييد.', def_en: 'The subscription account with absolute, unrestrictable permissions.' },
+          { term: 'Access Analyser', def_ar: 'أداة تكشف الفجوة بين الصلاحيات الممنوحة والمستخدَمة.', def_en: 'A tool revealing the gap between granted and used permissions.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا صارت الهوية أهم من الجدار الناري في السحابة؟', q_en: 'Why did identity surpass the firewall in the cloud?', a_ar: 'لأن الوصول لم يعد يشترط وجوداً في الشبكة: من يملك اعتماداً صالحاً يصل من أي مكان.', a_en: 'Access no longer requires network presence: whoever holds a valid credential reaches it from anywhere.' },
+          { q_ar: 'لماذا الأدوار خير من المفاتيح الثابتة؟', q_en: 'Why are roles better than fixed keys?', a_ar: 'لأن اعتمادها مؤقت ينتهي تلقائياً، فتسريبه محدود الأثر بخلاف مفتاح يبقى صالحاً سنوات.', a_en: 'Their credential is temporary and expires automatically, limiting leak impact unlike a key valid for years.' },
+          { q_ar: 'ماذا يحدث لمفتاح يُرفَع لمستودع عام؟', q_en: 'What happens to a key pushed to a public repository?', a_ar: 'تكتشفه فاحصات آلية يشغّلها المهاجمون ويُستغَل خلال دقائق.', a_en: 'Automated scanners attackers run discover it and it is exploited within minutes.' },
+          { q_ar: 'ما الذي تكشفه أدوات تحليل الوصول؟', q_en: 'What do access analysis tools reveal?', a_ar: 'الفجوة بين الصلاحيات الممنوحة والمستخدَمة فعلاً، وهي مساحة الخطر الحقيقية.', a_en: 'The gap between granted and actually used permissions, which is the real risk surface.' }
+        ]
+      },
+      {
+        title_ar: 'مراكز العمليات الأمنية وأنظمة SIEM',
+        title_en: 'Security Operations Centres and SIEM',
+        lead_ar: 'المركز ليس غرفة شاشات، وإنما عملية: جمع وربط وفرز وتصعيد — ونجاحه يُقاس بزمن الاستجابة لا بعدد الإنذارات.',
+        lead_en: 'A security operations centre is not a room of screens but a process of collecting, correlating, triaging and escalating, and its success is measured by response time rather than alert count.',
+        body_ar: [
+          'مركز العمليات الأمنية الوظيفة التي تراقب وتكشف وتستجيب على مدار الساعة. وقيمته ليست في الأدوات وإنما في العملية: كيف يصل الإنذار، ومن يفرزه، وبأي معيار يُصعَّد، وكم يستغرق حتى يُتخذ قرار.',
+          'ونظام إدارة الأحداث الأمنية أداته المركزية: يجمع السجلات من كل المصادر، ويوحّد صيغتها، ويربط بينها بقواعد وارتباطات، ويولّد إنذارات. وقيمة الربط أنه يكشف ما لا يظهر في أي مصدر منفرد: دخول ناجح من دولة بعيدة بعد ثوانٍ من دخول من الرياض للحساب نفسه — كل حدث وحده طبيعي، واجتماعهما مستحيل.',
+          'وفرز الإنذارات المهارة الأهم: التمييز بين ما يستحق النظر وما هو ضجيج. ومستويات الفرز ثلاثة عادة: مستوى أول يفرز ويغلق الواضح، وثانٍ يحقق في المعقّد، وثالث يتعامل مع الحوادث الكبرى ويطوّر قواعد الكشف.',
+          'وأشهر أمراض المراكز إرهاق الإنذارات: نظام يولّد آلافاً يومياً أغلبها كاذب، فيتعوّد الفريق على الإغلاق السريع، فيمر الحقيقي بينها. وعلاجه ليس زيادة المحللين وإنما ضبط القواعد وتقليل الضجيج — فمركز بمئة إنذار دقيق يومياً أنفع من مركز بعشرة آلاف.',
+          'والأتمتة ضرورة لا رفاهية: الاستجابة الآلية للحالات المعروفة — عزل جهاز، تعطيل حساب، حظر عنوان — توفّر دقائق حاسمة وتحرّر المحللين للحالات التي تحتاج حكماً بشرياً. والقاعدة: أتمِت ما تكرر ووثّق ما لم يتكرر بعد.',
+          'ومقاييس المركز الحقيقية ثلاثة: زمن الكشف، وزمن الفرز، وزمن الاحتواء. أما عدد الإنذارات المعالَجة فمقياس مضلّل: مركز يغلق عشرة آلاف إنذار يومياً قد يكون يغرق في الضجيج لا ينتج أماناً. والسؤال الصحيح: كم حادثة حقيقية كُشِفت، وكم استغرق احتواؤها؟'
+        ],
+        body_en: [
+          'A security operations centre is the function that monitors, detects and responds around the clock. Its value lies not in tools but in process: how an alert arrives, who triages it, by what criterion it escalates, and how long until a decision is made.',
+          'A security information and event management system is its central tool: gathering logs from every source, normalising their formats, correlating them with rules and relationships, and generating alerts. Correlation value is revealing what no single source shows: a successful login from a distant country seconds after a login from Riyadh to the same account, where each event alone is normal and their combination is impossible.',
+          'Alert triage is the most important skill: distinguishing what deserves attention from noise. Triage usually has three levels: a first that sorts and closes the obvious, a second that investigates the complex, and a third that handles major incidents and develops detection rules.',
+          'The most common centre ailment is alert fatigue: a system generating thousands daily, mostly false, so the team grows accustomed to fast closure and the real one passes among them. Its cure is not more analysts but tuning rules and reducing noise, since a centre with a hundred precise daily alerts outperforms one with ten thousand.',
+          'Automation is a necessity rather than a luxury: automated response for known cases, isolating a machine, disabling an account, blocking an address, saves decisive minutes and frees analysts for cases needing human judgement. The rule: automate what recurs and document what has not recurred yet.',
+          'The centre real measures are three: time to detect, time to triage and time to contain. Alert volume handled is a misleading measure: a centre closing ten thousand alerts daily may be drowning in noise rather than producing safety. The right question is how many real incidents were detected and how long containment took.'
+        ],
+        table: {
+          head_ar: ['المقياس', 'ماذا يقيس', 'هل يصلح للحكم'],
+          head_en: ['Measure', 'What it measures', 'Fit to judge by'],
+          rows: [
+            ['زمن الكشف', 'من الاختراق للملاحظة', 'نعم — الأهم'],
+            ['زمن الفرز', 'من الإنذار لقرار التصعيد', 'نعم'],
+            ['زمن الاحتواء', 'من القرار لوقف الضرر', 'نعم'],
+            ['عدد الإنذارات', 'حجم الضجيج غالباً', 'لا — مضلّل']
+          ]
+        },
+        keyPoints_ar: [
+          'قيمة المركز في العملية لا في الأدوات: كيف يُفرَز ويُصعَّد ومتى يُقرَّر.',
+          'الربط يكشف المستحيل من اجتماع أحداث كل واحد منها طبيعي وحده.',
+          'إرهاق الإنذارات يُعالَج بضبط القواعد لا بزيادة المحللين.',
+          'مئة إنذار دقيق يومياً أنفع من عشرة آلاف مليئة بالكاذب.',
+          'أتمِت ما تكرر لتوفير دقائق حاسمة، ووثّق ما لم يتكرر بعد.',
+          'عدد الإنذارات المعالَجة مقياس مضلّل، والمقاييس الحقيقية أزمنة الكشف والفرز والاحتواء.'
+        ],
+        keyPoints_en: [
+          'Centre value lies in process rather than tools: how alerts are triaged, escalated and decided.',
+          'Correlation reveals the impossible from events each normal on its own.',
+          'Alert fatigue is cured by tuning rules rather than adding analysts.',
+          'A hundred precise daily alerts outperform ten thousand full of false ones.',
+          'Automate what recurs to save decisive minutes and document what has not recurred yet.',
+          'Alert volume is a misleading measure; the real ones are detect, triage and contain times.'
+        ],
+        analogy_ar: 'تخيّل غرفة تحكم مطار. قيمتها ليست في عدد الشاشات، بل في أن المراقب يعرف أي إشارة تستدعي تحركاً وأيها روتين. ولو ضُبِط النظام ليطلق إنذاراً كلما اقترب طائر من المدرج، لصار الإنذار خلفية صوتية يتجاهلها الجميع — وحين تقترب طائرة فعلاً خارج مسارها، لن يلتفت أحد. ضبط الحساسية ليس تفصيلاً تقنياً، هو الفرق بين مركز يحمي ومركز يُصدِر ضجيجاً.',
+        analogy_en: 'Picture an airport control room. Its value is not in the number of screens but in the controller knowing which signal demands action and which is routine. If the system were tuned to alarm whenever a bird nears the runway, the alarm becomes background noise everyone ignores, and when an aircraft genuinely strays off course nobody looks up. Tuning sensitivity is not a technical detail; it is the difference between a centre that protects and one that emits noise.',
+        terms: [
+          { term: 'SOC', def_ar: 'وظيفة المراقبة والكشف والاستجابة على مدار الساعة.', def_en: 'The round-the-clock monitoring, detection and response function.' },
+          { term: 'SIEM', def_ar: 'نظام يجمع السجلات ويوحّدها ويربطها ويولّد إنذارات.', def_en: 'A system gathering, normalising and correlating logs to generate alerts.' },
+          { term: 'Triage', def_ar: 'فرز الإنذارات وتحديد ما يستحق التحقيق والتصعيد.', def_en: 'Sorting alerts and deciding what deserves investigation and escalation.' },
+          { term: 'Impossible Travel', def_ar: 'دخولان من موقعين متباعدين يستحيل قطع المسافة بينهما.', def_en: 'Two logins from locations too far apart to travel between.' },
+          { term: 'SOAR', def_ar: 'أتمتة الاستجابة للحالات المعروفة بلا تدخل بشري.', def_en: 'Automating response to known cases with no human intervention.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي يكشفه الربط في نظام SIEM ؟', q_en: 'What does correlation in a SIEM reveal?', a_ar: 'ما لا يظهر في مصدر منفرد، كدخولين من موقعين يستحيل قطع المسافة بينهما.', a_en: 'What no single source shows, such as two logins from locations impossible to travel between.' },
+          { q_ar: 'كيف يُعالَج إرهاق الإنذارات؟', q_en: 'How is alert fatigue treated?', a_ar: 'بضبط القواعد وتقليل الضجيج لا بزيادة عدد المحللين.', a_en: 'By tuning rules and reducing noise rather than adding analysts.' },
+          { q_ar: 'ما القاعدة في أتمتة الاستجابة؟', q_en: 'What is the automation rule?', a_ar: 'أتمِت ما تكرر ووثّق ما لم يتكرر بعد، فتُوفَّر دقائق حاسمة ويتفرّغ المحللون للحكم البشري.', a_en: 'Automate what recurs and document what has not, saving decisive minutes and freeing analysts for judgement.' },
+          { q_ar: 'لماذا عدد الإنذارات مقياس مضلّل؟', q_en: 'Why is alert volume a misleading measure?', a_ar: 'لأن كثرتها قد تعني غرقاً في الضجيج؛ والمقياس الصحيح كم حادثة حقيقية كُشِفت وبأي زمن احتواء.', a_en: 'A high volume may mean drowning in noise; the right measure is how many real incidents were detected and how fast contained.' }
+        ]
+      },
+      {
+        title_ar: 'صيد التهديدات',
+        title_en: 'Threat Hunting',
+        lead_ar: 'الصيد بحث استباقي يفترض أن الاختراق واقع بالفعل ولم يُكشَف بعد — فهو عكس انتظار الإنذار تماماً.',
+        lead_en: 'Hunting is a proactive search assuming a breach has already happened and gone undetected, the exact opposite of waiting for an alert.',
+        body_ar: [
+          'المراقبة التقليدية تنتظر إشارة: قاعدة تتحقق فينطلق إنذار. وهذا يكشف المعروف ويعجز عن الجديد الذي لا قاعدة له. وصيد التهديدات يقلب المنطق: يفترض المحلل أن مهاجماً موجود الآن في الشبكة ولم يُكشَف، ويبحث عن أثره بيده.',
+          'ويبدأ الصيد بفرضية لا بأداة: «لو أراد مهاجم سحب بيانات من قاعدة العملاء، فسيظهر نقل كبير في وقت غير معتاد لوجهة خارجية». ثم يُبحَث في البيانات عن شواهد تؤيد الفرضية أو تنفيها. والفرضية الجيدة محددة وقابلة للفحص بالبيانات المتاحة.',
+          'ومصادر الفرضيات ثلاثة: معرفة بأساليب المهاجمين المعروفة وتقنياتهم الموثّقة، وفهم لبيئتك وما هو طبيعي فيها، ونتائج حوادث سابقة عندك أو في قطاعك. والصياد الذي لا يعرف الطبيعي في بيئته لا يميّز الشاذ فيها مهما كانت أدواته.',
+          'وأخصب مناطق الصيد ما لا تغطيه القواعد: الاستخدام المشروع لأدوات النظام لأغراض خبيثة — فمهاجم يستخدم أدوات الإدارة الموجودة أصلاً لا يشغّل برمجية تكشفها المضادات. وكذلك السلوك الشاذ لحسابات شرعية: حساب محاسب يستعلم فجأة عن مخططات الشبكة.',
+          'ومخرج الصيد ليس بالضرورة اكتشاف اختراق: قد ينتهي بلا نتيجة، وهذا نجاح جزئي إن أنتج قاعدة كشف جديدة أو كشف فجوة في السجلات — كأن تكتشف أن نوعاً من الأحداث لا يُسجَّل أصلاً، فتُغلَق ثغرة رؤية كانت ستُعمي التحقيق القادم.',
+          'وكل صيد ناجح يجب أن يتحوّل إلى كشف آلي: ما وجدته يدوياً مرة يجب أن تجده الأداة تلقائياً مستقبلاً. وبهذا يكبر نطاق الكشف الآلي باستمرار ويتفرّغ الصيادون لما هو أحدث — والمركز الذي يصطاد ولا يحوّل نتائجه لقواعد يكرر العمل نفسه إلى الأبد.'
+        ],
+        body_en: [
+          'Traditional monitoring waits for a signal: a rule matches and an alert fires. That catches the known and fails against anything new with no rule. Threat hunting inverts the logic: the analyst assumes an attacker is in the network right now undetected and searches for their trace by hand.',
+          'Hunting starts from a hypothesis rather than a tool: if an attacker wanted to pull data from the customer database, a large transfer would appear at an unusual time to an external destination. Then the data is searched for evidence supporting or refuting it. A good hypothesis is specific and testable with available data.',
+          'Hypotheses come from three sources: knowledge of documented attacker techniques, understanding of your environment and what is normal in it, and results of previous incidents in your organisation or sector. A hunter who does not know what is normal in their environment cannot spot the abnormal however good their tools.',
+          'The richest hunting grounds are what rules do not cover: legitimate system tools used for malicious purposes, since an attacker using existing administration tools runs no malware for antivirus to catch. Likewise anomalous behaviour by legitimate accounts: an accountant account suddenly querying network diagrams.',
+          'A hunt outcome is not necessarily discovering a breach: it may end with nothing, and that is a partial success if it produced a new detection rule or revealed a logging gap, such as discovering a category of events is never recorded, closing a visibility hole that would have blinded the next investigation.',
+          'Every successful hunt must become automated detection: what you found manually once the tool must find automatically thereafter. This continuously grows automated coverage and frees hunters for what is newer, since a centre that hunts without converting results into rules repeats the same work forever.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'المراقبة التقليدية', 'صيد التهديدات'],
+          head_en: ['Aspect', 'Traditional monitoring', 'Threat hunting'],
+          rows: [
+            ['المنطلق', 'انتظار إنذار', 'افتراض اختراق قائم'],
+            ['ما تكشفه', 'المعروف الذي له قاعدة', 'الجديد الذي لا قاعدة له'],
+            ['المحرّك', 'أداة وقاعدة', 'فرضية ومعرفة بالبيئة'],
+            ['مخرجه', 'حادثة أو إغلاق', 'قاعدة كشف جديدة أو فجوة رؤية']
+          ]
+        },
+        keyPoints_ar: [
+          'الصيد يفترض أن الاختراق واقع ولم يُكشَف، فيبحث بدل أن ينتظر.',
+          'يبدأ بفرضية محددة قابلة للفحص لا بأداة.',
+          'من لا يعرف الطبيعي في بيئته لا يميّز الشاذ فيها مهما كانت أدواته.',
+          'أخصب المناطق: استخدام أدوات النظام المشروعة لأغراض خبيثة.',
+          'صيد بلا نتيجة نجاح جزئي إن كشف فجوة في السجلات أو أنتج قاعدة.',
+          'كل صيد ناجح يتحوّل لكشف آلي، وإلا كُرِّر العمل نفسه إلى الأبد.'
+        ],
+        keyPoints_en: [
+          'Hunting assumes a breach happened undetected and searches instead of waiting.',
+          'It starts from a specific testable hypothesis rather than a tool.',
+          'Whoever does not know their environment normal cannot spot the abnormal however good their tools.',
+          'The richest ground is legitimate system tools used maliciously.',
+          'A hunt with no finding is a partial success if it revealed a logging gap or produced a rule.',
+          'Every successful hunt becomes automated detection, or the same work repeats forever.'
+        ],
+        analogy_ar: 'تخيّل حارساً ينتظر أن يرنّ جرس الإنذار — لن يكتشف لصاً عرف كيف يعطّل الجرس. والصياد حارس يقول: «لنفترض أن أحداً دخل ولم يرنّ الجرس، أين سيترك أثراً؟» فيذهب ينظر في غبار الممر ورماد السجائر وأقفال النوافذ. وقد لا يجد شيئاً — لكنه يكتشف أن ممراً كاملاً بلا كاميرا، وهذي وحدها تستحق الجولة.',
+        analogy_en: 'Picture a guard waiting for the alarm bell to ring: they will never catch a thief who knew how to disable it. A hunter is a guard who says: suppose someone entered and the bell never rang, where would they leave a trace? So they go and look at the dust in the corridor, the cigarette ash, the window latches. They may find nothing, yet they discover an entire corridor has no camera, and that alone justified the round.',
+        terms: [
+          { term: 'Threat Hunting', def_ar: 'بحث استباقي عن مهاجم يُفترض وجوده بلا إنذار.', def_en: 'A proactive search for an attacker assumed present with no alert.' },
+          { term: 'Hypothesis', def_ar: 'افتراض محدد قابل للفحص يبدأ به الصيد.', def_en: 'A specific testable assumption a hunt begins from.' },
+          { term: 'Living off the Land', def_ar: 'استخدام أدوات النظام المشروعة لأغراض خبيثة.', def_en: 'Using legitimate system tools for malicious purposes.' },
+          { term: 'Baseline', def_ar: 'ما هو طبيعي في بيئتك، ولا يُعرَف الشاذ إلا به.', def_en: 'What is normal in your environment, without which anomaly is unrecognisable.' },
+          { term: 'Detection Engineering', def_ar: 'تحويل ما وُجِد يدوياً إلى قاعدة كشف آلية.', def_en: 'Turning a manual finding into an automated detection rule.' }
+        ],
+        cards: [
+          { q_ar: 'ما الافتراض الذي ينطلق منه الصيد؟', q_en: 'What assumption does hunting start from?', a_ar: 'أن الاختراق واقع بالفعل ولم يُكشَف، فيُبحَث عن أثره بدل انتظار إنذار.', a_en: 'That a breach has already happened undetected, so its trace is searched for rather than awaiting an alert.' },
+          { q_ar: 'لماذا يعجز الصياد بلا معرفة بيئته؟', q_en: 'Why does a hunter fail without knowing their environment?', a_ar: 'لأن الشاذ لا يُعرَف إلا بمعرفة الطبيعي، وبدونها تصير كل الأنماط متشابهة.', a_en: 'The abnormal is recognised only against the normal, and without it every pattern looks alike.' },
+          { q_ar: 'لماذا يخطر استخدام أدوات النظام المشروعة؟', q_en: 'Why is using legitimate system tools dangerous?', a_ar: 'لأن المهاجم لا يشغّل برمجية تكشفها المضادات، فيبدو نشاطه إدارة عادية.', a_en: 'The attacker runs no malware for antivirus to catch, so their activity looks like ordinary administration.' },
+          { q_ar: 'هل الصيد بلا اكتشاف فشل؟', q_en: 'Is a hunt with no discovery a failure?', a_ar: 'لا، هو نجاح جزئي إن كشف فجوة في السجلات أو أنتج قاعدة كشف جديدة.', a_en: 'No, it is a partial success if it revealed a logging gap or produced a new detection rule.' }
+        ]
+      },
+      {
+        title_ar: 'انعدام الثقة والاتجاهات المتقدمة',
+        title_en: 'Zero Trust and Advanced Directions',
+        lead_ar: 'انعدام الثقة ليس منتجاً يُشترى بل مبدأ يُطبَّق: لا ثقة بموقع ولا شبكة، والتحقق يقع عند كل طلب لا مرة عند الدخول.',
+        lead_en: 'Zero trust is not a product you buy but a principle you apply: no trust in location or network, with verification at every request rather than once at entry.',
+        body_ar: [
+          'النموذج القديم كان قلعة وخندقاً: احمِ المحيط بقوة واعتبر كل ما بالداخل موثوقاً. وقد سقط لسببين: العمل عن بُعد والسحابة أذابا حدود «الداخل»، والمهاجم الذي يخترق نقطة واحدة يجد نفسه في بيئة تثق به بلا فحص فيتحرك بحرية.',
+          'وانعدام الثقة يقوم على ثلاثة مبادئ: تحقّق صريح من كل طلب مهما كان مصدره، ومنح أقل صلاحية لأقصر مدة ممكنة، وافتراض الاختراق واقع في التصميم — أي أن تُصمَّم الأنظمة على أن جزءاً منها مخترَق الآن.',
+          'وقرار الوصول فيه ديناميكي لا ثابت: يُبنى على من المستخدم، وما الجهاز وحالته الأمنية، وما المورد وحساسيته، ومن أين وفي أي وقت. فالمستخدم نفسه قد يُمنَح الوصول من جهازه المُدار ويُمنَع من جهاز شخصي غير محدَّث — والقرار يُعاد تقييمه في كل طلب لا مرة واحدة.',
+          'وتطبيقه العملي تدريجي لا انقلابي: يبدأ بالهوية والتحقق متعدد العوامل، ثم بتقسيم دقيق للشبكة يمنع الحركة الجانبية، ثم بربط قرار الوصول بحالة الجهاز، ثم بمراقبة مستمرة تعيد التقييم. والمؤسسة التي تحاول تطبيقه دفعة واحدة تفشل غالباً.',
+          'ومن الاتجاهات المتقدمة: الخداع الأمني بزرع أصول وهمية جذابة لا يعرفها موظف شرعي، فأي لمسة لها إنذار عالي الدقة بلا كاذب تقريباً. وأمن سلسلة التوريد بعد أن صار المهاجمون يخترقون مزوّداً موثوقاً ليصلوا لعملائه دفعة واحدة.',
+          'والذكاء الاصطناعي في المجال سلاح ذو حدّين: يعزز الدفاع بكشف الأنماط الشاذة في حجم بيانات يعجز عنه الإنسان، ويعزز الهجوم بتصيّد أشد إقناعاً وتوليد صوت وصورة منتحلة. والقاعدة الثابتة عبر كل هذي التحولات: الأمن عملية مستمرة لا حالة تُبلَغ، والمبادئ — أقل صلاحية، ودفاع في العمق، وافتراض الاختراق — تبقى وإن تغيّرت كل الأدوات.'
+        ],
+        body_en: [
+          'The old model was a castle and moat: guard the perimeter heavily and treat everything inside as trusted. It fell for two reasons: remote work and the cloud dissolved the boundaries of inside, and an attacker breaching one point finds themselves in an environment that trusts them unchecked and moves freely.',
+          'Zero trust rests on three principles: explicit verification of every request whatever its source, granting least privilege for the shortest possible duration, and assuming breach in the design, meaning systems are built on the premise that part of them is compromised right now.',
+          'Its access decision is dynamic rather than fixed: built on who the user is, what the device is and its security posture, what the resource is and its sensitivity, and from where and at what time. The same user may be granted access from their managed device and denied from an unpatched personal one, and the decision is re-evaluated at every request rather than once.',
+          'Its practical adoption is gradual rather than revolutionary: starting with identity and multi-factor verification, then fine-grained segmentation preventing lateral movement, then tying the access decision to device posture, then continuous monitoring that re-evaluates. An organisation attempting it all at once usually fails.',
+          'Among advanced directions: security deception, planting attractive decoy assets no legitimate employee knows, so any touch is a high-fidelity alert with almost no false positives. And supply chain security, after attackers took to breaching a trusted vendor to reach all its customers at once.',
+          'Artificial intelligence in the field is double-edged: strengthening defence by spotting anomalous patterns in data volumes beyond human capacity, and strengthening attack through more convincing phishing and synthesised impersonating voice and video. The constant across all these shifts: security is a continuous process rather than a state attained, and the principles of least privilege, defence in depth and assume breach endure even as every tool changes.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'القلعة والخندق', 'انعدام الثقة'],
+          head_en: ['Aspect', 'Castle and moat', 'Zero trust'],
+          rows: [
+            ['الثقة', 'بالموقع داخل الشبكة', 'بلا ثقة بموقع إطلاقاً'],
+            ['التحقق', 'مرة عند الدخول', 'عند كل طلب'],
+            ['الصلاحية', 'واسعة بعد الدخول', 'أقل ما يلزم ولأقصر مدة'],
+            ['الافتراض', 'الداخل آمن', 'جزء منه مخترَق الآن'],
+            ['الحركة الجانبية', 'سهلة بعد الاختراق', 'محصورة بالتقسيم الدقيق']
+          ]
+        },
+        keyPoints_ar: [
+          'القلعة والخندق سقط لأن حدود «الداخل» ذابت والحركة الجانبية صارت سهلة.',
+          'ثلاثة مبادئ: تحقّق صريح، وأقل صلاحية لأقصر مدة، وافتراض الاختراق.',
+          'قرار الوصول ديناميكي يُعاد تقييمه في كل طلب بحسب المستخدم والجهاز والمورد.',
+          'التطبيق تدريجي: هوية ثم تقسيم ثم حالة الجهاز ثم مراقبة مستمرة.',
+          'الأصول الوهمية تعطي إنذارات عالية الدقة لأن لا أحد شرعي يلمسها.',
+          'الأمن عملية مستمرة، والمبادئ تبقى وإن تغيّرت كل الأدوات.'
+        ],
+        keyPoints_en: [
+          'Castle and moat fell because the boundaries of inside dissolved and lateral movement became easy.',
+          'Three principles: explicit verification, least privilege for the shortest time, and assume breach.',
+          'The access decision is dynamic, re-evaluated per request by user, device and resource.',
+          'Adoption is gradual: identity, then segmentation, then device posture, then continuous monitoring.',
+          'Decoy assets give high-fidelity alerts because no legitimate person touches them.',
+          'Security is a continuous process, and the principles endure even as every tool changes.'
+        ],
+        analogy_ar: 'تخيّل مبنى بحارس واحد عند البوابة يفحص البطاقة مرة، وبعدها تمشي في كل الطوابير بلا سؤال. من تجاوز البوابة بحيلة صار حراً في المبنى كله. وانعدام الثقة أن يكون لكل باب قارئ بطاقة يسأل من جديد: من أنت، وهل جهازك محدَّث، وهل يخصّك هذا الطابق، وهل هذا وقتك المعتاد؟ أبطأ قليلاً — لكن من دخل بحيلة يقف عند أول باب داخلي لا في نهاية الممر.',
+        analogy_en: 'Picture a building with one guard at the gate checking a badge once, after which you walk every floor unquestioned. Whoever slips past the gate is free throughout the building. Zero trust puts a reader at every door asking anew: who are you, is your device patched, does this floor concern you, is this your usual hour? Slightly slower, yet whoever slipped in stops at the first internal door rather than at the end of the corridor.',
+        terms: [
+          { term: 'Zero Trust', def_ar: 'مبدأ لا يمنح ثقة لموقع أو شبكة ويتحقق عند كل طلب.', def_en: 'A principle granting no trust to location or network and verifying every request.' },
+          { term: 'Micro-segmentation', def_ar: 'تقسيم دقيق للشبكة يمنع الحركة الجانبية.', def_en: 'Fine-grained network division preventing lateral movement.' },
+          { term: 'Device Posture', def_ar: 'حالة الجهاز الأمنية كعامل في قرار الوصول.', def_en: 'A device security state as a factor in the access decision.' },
+          { term: 'Deception', def_ar: 'زرع أصول وهمية جذابة لكشف من يلمسها.', def_en: 'Planting attractive decoy assets to expose whoever touches them.' },
+          { term: 'Supply Chain Attack', def_ar: 'اختراق مزوّد موثوق للوصول إلى عملائه دفعة واحدة.', def_en: 'Breaching a trusted vendor to reach all its customers at once.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا سقط نموذج القلعة والخندق؟', q_en: 'Why did the castle and moat model fall?', a_ar: 'لأن العمل عن بُعد والسحابة أذابا حدود «الداخل»، ولأن المخترق نقطةً واحدة يتحرك بحرية في بيئة تثق به.', a_en: 'Remote work and the cloud dissolved the boundaries of inside, and whoever breaches one point moves freely in a trusting environment.' },
+          { q_ar: 'ما مبادئ انعدام الثقة الثلاثة؟', q_en: 'What are the three zero-trust principles?', a_ar: 'تحقّق صريح من كل طلب، وأقل صلاحية لأقصر مدة، وافتراض أن الاختراق واقع في التصميم.', a_en: 'Explicit verification of every request, least privilege for the shortest time, and assuming breach in the design.' },
+          { q_ar: 'لماذا تعطي الأصول الوهمية إنذارات دقيقة؟', q_en: 'Why do decoy assets give precise alerts?', a_ar: 'لأن لا موظف شرعي يعرفها ولا سبب للمسها، فأي تفاعل معها مؤشر قوي بلا إنذار كاذب تقريباً.', a_en: 'No legitimate employee knows them or has reason to touch them, so any interaction is a strong indicator with almost no false positives.' },
+          { q_ar: 'ما الذي يبقى ثابتاً رغم تغيّر الأدوات؟', q_en: 'What stays constant as tools change?', a_ar: 'المبادئ: أقل صلاحية، ودفاع في العمق، وافتراض الاختراق — والأمن عملية مستمرة لا حالة تُبلَغ.', a_en: 'The principles: least privilege, defence in depth and assume breach, and that security is a continuous process rather than an attained state.' }
         ]
       }
     ]
