@@ -7945,6 +7945,326 @@ export const sectionGuides = {
           { q_ar: 'كيف تُضبَط عتبة الإنذار؟', q_en: 'How is an alert threshold set?', a_ar: 'تُشتَق من خط أساس الوصلة نفسها لا من رقم مطلق: عشرون بالمئة صارت خمسين حدث يستحق النظر.', a_en: 'Derived from that link own baseline rather than an absolute number: twenty percent rising to fifty is worth examining.' }
         ]
       }
+    ],
+
+    // ─────────── الشبكات اللاسلكية والسحابية ───────────
+    4: [
+      {
+        title_ar: 'أساسيات الاتصال اللاسلكي',
+        title_en: 'Wireless Fundamentals',
+        lead_ar: 'اللاسلكي وسيط مشترك نصف مزدوج: يتكلم واحد في اللحظة، والبقية ينتظرون — ولهذا تنهار سرعته بازدحام المستخدمين لا بضعف الإشارة وحده.',
+        lead_en: 'Wireless is a shared half-duplex medium: one speaks at a time and the rest wait, which is why its speed collapses with user density rather than weak signal alone.',
+        body_ar: [
+          'الفرق الجوهري عن السلكي أن الوسيط مشترك: كل من في نطاق نقطة الوصول يستخدم الهواء نفسه. وهو نصف مزدوج: لا يستطيع جهاز الإرسال والاستقبال في اللحظة نفسها. فالسرعة المعلنة تُقتسَم بين الجميع ولا يحصل عليها أحد وحده.',
+          'ولأن الجهاز لا يسمع أثناء إرساله، لا يستطيع كشف التصادم كما في السلكي، فيعتمد التجنّب: يستمع قبل الإرسال، فإن وجد الهواء مشغولاً انتظر مدة عشوائية ثم أعاد المحاولة. وهذا الانتظار ثمن ثابت يجعل الإنتاجية الفعلية أقل بكثير من الرقم المعلن.',
+          'ومشكلة العقدة المخفية أشد ما يربك المبتدئ: جهازان على طرفي نطاق نقطة الوصول يسمعانها ولا يسمع أحدهما الآخر. فيرى كل منهما الهواء خالياً ويرسل، فيتصادم الإرسالان عند نقطة الوصول وحدها. والحل حجز الهواء برسالة قصيرة قبل الإرسال الكبير.',
+          'ونطاقان شائعان بخصائص متقابلة. الأدنى تردداً يقطع مسافة أطول ويخترق الجدران أفضل، لكنه مزدحم بأجهزة كثيرة غير الشبكات، وقنواته غير المتداخلة ثلاث فقط. والأعلى تردداً أقل مدى وأضعف اختراقاً، وقنواته كثيرة والازدحام فيه أخف.',
+          'والقناة أهم قرار عملي: قناتان متجاورتان تتداخلان فتفسد كل منهما الأخرى، ونقطتان على القناة نفسها تتناوبان الهواء فتقتسمانه بلا إفساد. ولهذا فالنقطتان المتجاورتان على القناة ذاتها أفضل من متداخلتين — والقاعدة استخدام القنوات غير المتداخلة حصراً وتوزيعها بالتناوب.',
+          'ومقياس القوة وحده مضلّل: قد تكون الإشارة قوية والاتصال سيئاً لأن الضجيج في المكان عالٍ. والمقياس الصحيح نسبة الإشارة للضجيج: كم ترتفع إشارتك فوق ضجيج الخلفية. فجهاز بإشارة قوية بجوار فرن مايكروويف قد يكون أسوأ من جهاز بإشارة أضعف في غرفة هادئة.'
+        ],
+        body_en: [
+          'The fundamental difference from wired is a shared medium: everyone within an access point range uses the same air. And it is half duplex: a device cannot transmit and receive at the same instant. So the advertised speed is divided among everyone and nobody gets it alone.',
+          'Because a device cannot listen while transmitting, it cannot detect collisions as wired networks do, so it relies on avoidance: listening before sending, and if the air is busy waiting a random period then retrying. That waiting is a fixed cost making actual throughput far lower than the advertised figure.',
+          'The hidden node problem confuses beginners most: two devices at opposite edges of an access point range hear it but not each other. Each sees the air as free and transmits, and the two transmissions collide at the access point alone. The remedy is reserving the air with a short message before a large transmission.',
+          'Two common bands have opposite properties. The lower frequency travels farther and penetrates walls better, yet it is crowded with many non-network devices and offers only three non-overlapping channels. The higher frequency has shorter range and weaker penetration, with many channels and lighter congestion.',
+          'Channel choice is the most important practical decision: two adjacent channels overlap and each corrupts the other, while two points on the same channel take turns and share the air without corrupting it. So two neighbouring points on the same channel beat two overlapping ones, and the rule is using non-overlapping channels exclusively and alternating them.',
+          'Signal strength alone is misleading: a signal may be strong and the connection poor because ambient noise is high. The right measure is the signal-to-noise ratio: how far your signal rises above background noise. A device with a strong signal beside a microwave oven may fare worse than one with a weaker signal in a quiet room.'
+        ],
+        table: {
+          head_ar: ['الخاصية', 'النطاق الأدنى تردداً', 'النطاق الأعلى تردداً'],
+          head_en: ['Property', 'Lower band', 'Higher band'],
+          rows: [
+            ['المدى', 'أطول', 'أقصر'],
+            ['اختراق الجدران', 'أفضل', 'أضعف'],
+            ['القنوات غير المتداخلة', 'ثلاث فقط', 'كثيرة'],
+            ['الازدحام', 'عالٍ بأجهزة غير شبكية', 'أخف'],
+            ['يناسب', 'تغطية واسعة', 'كثافة وسرعة']
+          ]
+        },
+        keyPoints_ar: [
+          'الوسيط مشترك نصف مزدوج: السرعة المعلنة تُقتسَم ولا يأخذها أحد وحده.',
+          'الجهاز لا يسمع أثناء إرساله، فيتجنّب التصادم ولا يكشفه.',
+          'العقدة المخفية: جهازان لا يسمعان بعضهما فيتصادمان عند نقطة الوصول.',
+          'الأدنى تردداً أبعد وأنفذ لكن قنواته ثلاث فقط والازدحام فيه أعلى.',
+          'المتداخلتان تفسدان بعضهما، والمتجاورتان على القناة ذاتها تتناوبان.',
+          'قوة الإشارة وحدها مضلّلة، والمقياس نسبتها للضجيج.'
+        ],
+        keyPoints_en: [
+          'A shared half-duplex medium: the advertised speed is divided and nobody gets it alone.',
+          'A device cannot listen while transmitting, so it avoids collisions rather than detecting them.',
+          'Hidden node: two devices that cannot hear each other collide at the access point.',
+          'The lower band reaches farther and penetrates better but has only three channels and more congestion.',
+          'Overlapping channels corrupt each other while same-channel neighbours take turns.',
+          'Signal strength alone is misleading; the measure is its ratio to noise.'
+        ],
+        analogy_ar: 'تخيّل غرفة اجتماعات بلا ميكروفونات. لا يتكلم اثنان معاً وإلا لم يُفهَم أحد، فينتظر كل واحد صمتاً ثم يبدأ — ولو بدأ اثنان في اللحظة نفسها صمتا وانتظر كل واحد مدة مختلفة. وقد يجلس شخصان في طرفي الغرفة يسمعان رئيس الجلسة ولا يسمعان بعضهما، فيبدآن معاً وهما يظنان الغرفة صامتة. وكلما زاد الحاضرون قلّ نصيب كل واحد من وقت الكلام مهما كان صوته قوياً.',
+        analogy_en: 'Picture a meeting room with no microphones. Two people cannot speak at once or nobody is understood, so each waits for silence then begins, and if two begin at the same instant both stop and each waits a different interval. Two people at opposite ends may hear the chair but not each other, so they begin together believing the room is silent. And the more attendees, the smaller each one share of speaking time however loud their voice.',
+        terms: [
+          { term: 'Half Duplex', def_ar: 'إرسال واستقبال لا يجتمعان في اللحظة نفسها.', def_en: 'Transmitting and receiving never coinciding in one instant.' },
+          { term: 'Collision Avoidance', def_ar: 'الاستماع قبل الإرسال والانتظار عشوائياً عند الانشغال.', def_en: 'Listening before sending and waiting randomly when busy.' },
+          { term: 'Hidden Node', def_ar: 'جهازان يسمعان نقطة الوصول ولا يسمعان بعضهما.', def_en: 'Two devices hearing the access point but not each other.' },
+          { term: 'Non-overlapping Channel', def_ar: 'قناة لا تتداخل ترددياً مع جاراتها.', def_en: 'A channel not overlapping its neighbours in frequency.' },
+          { term: 'Signal-to-Noise', def_ar: 'ارتفاع الإشارة فوق ضجيج الخلفية، وهو المقياس الحقيقي.', def_en: 'How far the signal rises above background noise, the true measure.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا يكشف اللاسلكي التصادم كالسلكي؟', q_en: 'Why does wireless not detect collisions like wired?', a_ar: 'لأن الجهاز لا يسمع أثناء إرساله، فيعتمد التجنّب بالاستماع قبل الإرسال والانتظار العشوائي.', a_en: 'A device cannot listen while transmitting, so it relies on avoidance by listening first and waiting randomly.' },
+          { q_ar: 'ما مشكلة العقدة المخفية؟', q_en: 'What is the hidden node problem?', a_ar: 'جهازان في طرفي النطاق يسمعان نقطة الوصول ولا يسمعان بعضهما فيرسلان معاً ويتصادمان عندها.', a_en: 'Two devices at opposite edges hear the access point but not each other, so they transmit together and collide at it.' },
+          { q_ar: 'أيهما أفضل: قناتان متداخلتان أم متطابقتان؟', q_en: 'Which is better: overlapping or identical channels?', a_ar: 'المتطابقتان، لأنهما تتناوبان الهواء، بينما المتداخلتان تفسد كل منهما الأخرى.', a_en: 'Identical, because they take turns on the air, while overlapping ones corrupt each other.' },
+          { q_ar: 'لماذا لا تكفي قوة الإشارة للحكم؟', q_en: 'Why is signal strength not enough to judge by?', a_ar: 'لأن الضجيج قد يكون عالياً، والمقياس الصحيح نسبة الإشارة للضجيج لا القوة المجرّدة.', a_en: 'Noise may be high, and the right measure is the signal-to-noise ratio rather than raw strength.' }
+        ]
+      },
+      {
+        title_ar: 'معايير الشبكات اللاسلكية وأمنها',
+        title_en: 'Wireless Standards and Security',
+        lead_ar: 'أجيال المعايير لا تزيد السرعة فحسب وإنما تحسّن التعامل مع الكثافة، وأمنها انتقل من كلمة سر مشتركة إلى هوية لكل مستخدم.',
+        lead_en: 'Standard generations do not merely raise speed but improve density handling, and their security moved from a shared password to an identity per user.',
+        body_ar: [
+          'أجيال المعايير تتعاقب برفع السرعة، لكن الأهم في الأجيال الحديثة معالجة الكثافة: كيف تخدم نقطة وصول واحدة عشرات الأجهزة معاً بدل أن تخدمها بالتناوب. ولهذا قد لا تشعر بفرق في منزل بثلاثة أجهزة، ويظهر الفرق هائلاً في قاعة بمئتين.',
+          'وتقنيات الكثافة ثلاث: تعدد المستخدمين المتزامن بخدمة عدة أجهزة في الإرسال ذاته، وتقسيم القناة لوحدات أصغر تخدم أجهزة مختلفة معاً، وتوجيه الحزمة نحو الجهاز بدل بثّها في كل الاتجاهات. وكلها تخفّف أثر الوسيط المشترك ولا تلغيه.',
+          'والتوافق للخلف قاعدة ثابتة: جهاز قديم ينضم لشبكة حديثة يعمل بسرعته هو، ويُبطئ الشبكة كلها لأنه يشغل الهواء مدة أطول لنقل البيانات نفسها. ولهذا يُنصَح بفصل الأجهزة القديمة على شبكة منفصلة في البيئات الكثيفة.',
+          'وأمن اللاسلكي تطوّر عبر أجيال. الأول كُسِر تماماً منذ سنوات ولا يجوز استخدامه بأي حال. والجيل الذي ساد طويلاً آمن بكلمة سر قوية، لكن كلمة السر مشتركة بين الجميع فمن يعرفها يفك تشفير غيره إن التقط لحظة الانضمام.',
+          'والجيل الأحدث عالج ذلك بمصافحة تمنع تخمين كلمة السر خارج الشبكة وتعطي كل جلسة سرية مستقلة، فلا يفكّ من يعرف كلمة السر ما التقطه من جلسات الآخرين. وهذا التحسين هو أهم ما فيه، لا الأداء.',
+          'والفرق الأكبر بين النمط الشخصي ونمط المؤسسات: الأول كلمة سر واحدة للجميع، ومغادرة موظف تعني تغييرها على كل الأجهزة. والثاني هوية مستقلة لكل مستخدم عبر خادم مصادقة، فيُلغى حساب المغادر وحده. والشبكة المفتوحة للضيوف تُعزَل عن الداخلية دائماً — والاكتفاء بكلمة سر تُكتَب على لوحة الاستقبال يعني عملياً شبكة مفتوحة.'
+        ],
+        body_en: [
+          'Standard generations succeed one another by raising speed, yet what matters most in recent ones is density handling: how one access point serves dozens of devices together rather than in turn. So you may feel no difference in a house with three devices while the difference is enormous in a hall with two hundred.',
+          'Density techniques are three: serving multiple users simultaneously within the same transmission, dividing the channel into smaller units serving different devices together, and steering the beam toward a device rather than radiating in all directions. All ease the shared medium effect without abolishing it.',
+          'Backward compatibility is a fixed rule: an old device joining a modern network works at its own speed and slows the whole network, because it occupies the air longer to carry the same data. So separating legacy devices onto their own network is advised in dense environments.',
+          'Wireless security evolved across generations. The first was thoroughly broken years ago and must never be used. The generation that dominated long is secure with a strong password, yet the password is shared among everyone, so whoever knows it can decrypt another user traffic if they captured the joining moment.',
+          'The newest generation addressed that with a handshake preventing offline password guessing and giving each session its own secrecy, so knowing the password does not decrypt captured sessions of others. That improvement is its most important feature rather than performance.',
+          'The largest difference is between personal and enterprise mode: the first is one password for everyone, so an employee leaving means changing it on every device. The second gives each user an independent identity through an authentication server, so only the departing account is revoked. A guest network is always isolated from the internal one, and relying on a password written on the reception board is practically an open network.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'النمط الشخصي', 'نمط المؤسسات'],
+          head_en: ['Aspect', 'Personal mode', 'Enterprise mode'],
+          rows: [
+            ['الاعتماد', 'كلمة سر واحدة للجميع', 'هوية لكل مستخدم'],
+            ['مغادرة موظف', 'تغييرها على كل الأجهزة', 'إلغاء حسابه وحده'],
+            ['التتبّع', 'لا يميّز مستخدماً', 'يميّز كل جلسة'],
+            ['البنية', 'لا تحتاج خادماً', 'تحتاج خادم مصادقة']
+          ]
+        },
+        keyPoints_ar: [
+          'الأهم في الأجيال الحديثة معالجة الكثافة لا رفع السرعة وحده.',
+          'الجهاز القديم يعمل بسرعته ويُبطئ الشبكة لأنه يشغل الهواء أطول.',
+          'الجيل الأول من التشفير مكسور تماماً ولا يجوز استخدامه بأي حال.',
+          'كلمة السر المشتركة تتيح فكّ حركة الغير لمن التقط لحظة الانضمام.',
+          'الجيل الأحدث يمنع التخمين خارج الشبكة ويعطي كل جلسة سرية مستقلة.',
+          'نمط المؤسسات يلغي حساب المغادر وحده بدل تغيير كلمة سر الجميع.'
+        ],
+        keyPoints_en: [
+          'What matters most in recent generations is density handling rather than speed alone.',
+          'A legacy device works at its own speed and slows the network by occupying the air longer.',
+          'The first encryption generation is thoroughly broken and must never be used.',
+          'A shared password lets whoever captured the joining moment decrypt another user traffic.',
+          'The newest generation blocks offline guessing and gives each session its own secrecy.',
+          'Enterprise mode revokes only the departing account instead of changing everyone password.'
+        ],
+        analogy_ar: 'تخيّل مبنى بمفتاح واحد يحمله مئة موظف. لو غادر واحد لغيّرت القفل ووزّعت مئة مفتاح جديد — ولهذا لا تغيّره أبداً في الواقع. وتخيّل بديله بطاقة شخصية لكل موظف: يُلغى المغادر وحده في ثوانٍ، ويُعرَف من دخل ومتى. وأما كلمة السر المكتوبة على لوحة الاستقبال فهي باب بلا قفل عليه لافتة تقول «مغلق».',
+        analogy_en: 'Picture a building with one key held by a hundred employees. If one leaves you would change the lock and hand out a hundred new keys, which is why in practice you never change it. Now picture a personal badge per employee: the leaver is revoked alone in seconds and it is known who entered and when. As for the password written on the reception board, that is an unlocked door with a sign saying closed.',
+        terms: [
+          { term: 'Beamforming', def_ar: 'توجيه الإشارة نحو الجهاز بدل بثّها كل اتجاه.', def_en: 'Steering the signal toward a device rather than radiating everywhere.' },
+          { term: 'Backward Compatibility', def_ar: 'عمل الجهاز القديم على شبكة حديثة بسرعته هو.', def_en: 'A legacy device working on a modern network at its own speed.' },
+          { term: 'Pre-shared Key', def_ar: 'كلمة سر واحدة يشترك فيها كل مستخدمي الشبكة.', def_en: 'One password shared by every network user.' },
+          { term: 'Enterprise Mode', def_ar: 'مصادقة بهوية مستقلة لكل مستخدم عبر خادم.', def_en: 'Authentication with an independent identity per user through a server.' },
+          { term: 'Guest Isolation', def_ar: 'فصل شبكة الضيوف عن الداخلية فصلاً تاماً.', def_en: 'Fully separating the guest network from the internal one.' }
+        ],
+        cards: [
+          { q_ar: 'ما الأهم في أجيال المعايير الحديثة؟', q_en: 'What matters most in recent standard generations?', a_ar: 'معالجة الكثافة: خدمة عشرات الأجهزة معاً بدل التناوب، لا رفع السرعة وحده.', a_en: 'Density handling: serving dozens of devices together rather than in turn, rather than speed alone.' },
+          { q_ar: 'لماذا يُبطئ جهاز قديم الشبكة كلها؟', q_en: 'Why does one legacy device slow the whole network?', a_ar: 'لأنه يشغل الهواء المشترك مدة أطول لنقل البيانات نفسها، والوسيط مشترك بين الجميع.', a_en: 'It occupies the shared air longer to carry the same data, and the medium is shared by everyone.' },
+          { q_ar: 'ما عيب كلمة السر المشتركة أمنياً؟', q_en: 'What is the security flaw of a shared password?', a_ar: 'من يعرفها ويلتقط لحظة انضمام غيره يستطيع فكّ تشفير حركته.', a_en: 'Whoever knows it and captured another user joining moment can decrypt their traffic.' },
+          { q_ar: 'ما ميزة نمط المؤسسات عند مغادرة موظف؟', q_en: 'What is the enterprise mode advantage when an employee leaves?', a_ar: 'يُلغى حسابه وحده بلا مساس بأحد، بدل تغيير كلمة سر واحدة على كل الأجهزة.', a_en: 'Only their account is revoked with no effect on anyone, instead of changing one password on every device.' }
+        ]
+      },
+      {
+        title_ar: 'تخطيط التغطية اللاسلكية',
+        title_en: 'Wireless Coverage Planning',
+        lead_ar: 'التخطيط ليس زيادة نقاط وصول، فالإكثار منها يخلق تداخلاً يفسد الشبكة أكثر مما يخدمها — والقرار يُبنى على مسح فعلي لا على تخمين.',
+        lead_en: 'Planning is not adding access points, since too many create interference that harms the network more than it serves it, and the decision rests on an actual survey rather than guesswork.',
+        body_ar: [
+          'التخطيط يبدأ بسؤال ليس عن المساحة وإنما عن الكثافة: كم جهازاً في كل منطقة وما نوع استخدامه؟ فقاعة محاضرات بمئتي طالب تحتاج نقاط وصول أكثر من مستودع أوسع منها بعشرة موظفين — والتخطيط بالمساحة وحدها أشهر خطأ في المجال.',
+          'والمسح الموقعي خطوة لا تُختصَر: يُقاس فيه انتشار الإشارة فعلياً في المكان بعد إنشائه، لأن الجدران والمعادن والزجاج والرفوف المعدنية تغيّر الانتشار بما لا يتوقعه أي تخطيط نظري. ورف معدني ممتلئ قد يقطع إشارة كانت تعبر الجدار نفسه وهو فارغ.',
+          'وينتج المسح خريطة حرارية تبيّن قوة التغطية في كل نقطة وتكشف الفجوات ومناطق التداخل. ويُعاد المسح بعد التركيب للتحقق، وعند أي تعديل جوهري في التقسيم الداخلي — فتغيير الجدران يبطل نتائج المسح السابق كله.',
+          'وأشهر خطأ الإفراط في القوة أو العدد: نقاط كثيرة بقدرة قصوى تسمع بعضها وتتداخل، فيتنقّل الجهاز بينها بلا استقرار ويقضي وقته في إعادة الارتباط. والحل خفض قدرة الإرسال وتقليل التداخل، فالإشارة الأقوى ليست الأفضل حين تكون مصدر تداخل لجارتها.',
+          'والتجوال بين النقاط يحتاج تخطيطاً: تداخل تغطية معتدل بين النقاط حتى ينتقل الجهاز قبل انقطاعه، وشبكة واحدة باسم موحّد لا أسماء مختلفة. فالجهاز لا ينتقل عادة حتى تضعف إشارته كثيراً، وقد يتمسك بنقطة بعيدة وهو يقف تحت أخرى.',
+          'والتخطيط يشمل ما ليس لاسلكياً: كل نقطة وصول تحتاج كابلاً وتغذية كهربائية عبره ومنفذ مُحوِّل — والوصلة السلكية خلفها يجب أن تسع مجموع ما تخدمه. فنقطة حديثة سريعة خلفها وصلة قديمة بطيئة تعطي المستخدم سرعة الوصلة لا سرعة النقطة، وهذا سبب متكرر لخيبة أمل بعد ترقية مكلف.'
+        ],
+        body_en: [
+          'Planning begins with a question about density rather than area: how many devices in each zone and what kind of use? A lecture hall with two hundred students needs more access points than a warehouse ten times larger with ten staff, and planning by area alone is the most common mistake in the field.',
+          'A site survey is a step never skipped: signal propagation is measured in the actual space after it is built, because walls, metal, glass and metal shelving alter propagation beyond any theoretical plan. A full metal shelf may block a signal that crossed the same wall when it was empty.',
+          'The survey produces a heat map showing coverage strength at every point and revealing gaps and interference zones. The survey is repeated after installation for verification, and after any substantial change in internal partitioning, since moving walls invalidates all previous survey results.',
+          'The commonest mistake is excess in power or count: many points at maximum power hear one another and interfere, so a device drifts between them unstably and spends its time reassociating. The remedy is lowering transmit power and reducing overlap, since the strongest signal is not the best when it is a source of interference for its neighbour.',
+          'Roaming between points needs planning: moderate coverage overlap so a device moves before dropping, and one network under a unified name rather than different names. A device usually does not move until its signal weakens considerably, and may cling to a distant point while standing under another.',
+          'Planning includes what is not wireless: every access point needs a cable, power over it, and a switch port, and the wired link behind it must carry the sum of what it serves. A fast modern point behind an old slow link gives the user the link speed rather than the point speed, a recurring cause of disappointment after an expensive upgrade.'
+        ],
+        table: {
+          head_ar: ['الخطأ', 'أثره', 'العلاج'],
+          head_en: ['Mistake', 'Its effect', 'The remedy'],
+          rows: [
+            ['التخطيط بالمساحة', 'نقص في المناطق الكثيفة', 'التخطيط بالكثافة والاستخدام'],
+            ['تجاوز المسح الموقعي', 'فجوات لم يتوقعها المخطط', 'قياس فعلي بعد الإنشاء'],
+            ['قدرة إرسال قصوى', 'تداخل وتنقّل غير مستقر', 'خفض القدرة'],
+            ['أسماء مختلفة للنقاط', 'تعثّر التجوال', 'اسم موحّد وتداخل معتدل'],
+            ['وصلة سلكية بطيئة', 'سرعة أقل من قدرة النقطة', 'ترقية الوصلة والمنفذ']
+          ]
+        },
+        keyPoints_ar: [
+          'التخطيط بالكثافة والاستخدام لا بالمساحة وحدها.',
+          'المسح الموقعي يقيس الواقع بعد الإنشاء، فالمواد تغيّر الانتشار بلا توقّع.',
+          'الخريطة الحرارية تكشف الفجوات ومناطق التداخل معاً.',
+          'الإفراط في القوة يخلق تداخلاً وتنقّلاً غير مستقر بين النقاط.',
+          'التجوال يحتاج تداخلاً معتدلاً واسماً موحّداً، فالجهاز يتمسك بنقطته حتى تضعف.',
+          'الوصلة السلكية خلف النقطة تحدّ سرعتها مهما كانت النقطة حديثة.'
+        ],
+        keyPoints_en: [
+          'Plan by density and use rather than by area alone.',
+          'A site survey measures reality after construction, since materials alter propagation unpredictably.',
+          'A heat map reveals both gaps and interference zones.',
+          'Excess power creates interference and unstable drifting between points.',
+          'Roaming needs moderate overlap and a unified name, since a device clings until its signal weakens.',
+          'The wired link behind a point caps its speed however modern the point is.'
+        ],
+        analogy_ar: 'تخيّل إضاءة قاعة. لو وضعت عشرين كشافاً بأقصى سطوع، لتداخلت أضواؤها وأنتجت وهجاً يعمي بدل أن يضيء، ولصار الظل حاداً بين كل كشافين. والإضاءة الجيدة عدد مناسب بقدرة معتدلة وتداخل محسوب عند الحواف. ولن تعرف أين تحتاج كشافاً إلا بعد أن تقف في القاعة نفسها بأثاثها — فرسم القاعة على الورق لا يخبرك أن الرف العالي سيصنع ظلاً في الزاوية.',
+        analogy_en: 'Picture lighting a hall. Twenty floodlights at maximum brightness would overlap into a blinding glare rather than illumination, with harsh shadows between each pair. Good lighting is a suitable number at moderate power with calculated overlap at the edges. And you will not know where a light is needed until you stand in the hall itself with its furniture, since the plan on paper never tells you the tall shelf will cast a shadow in the corner.',
+        terms: [
+          { term: 'Site Survey', def_ar: 'قياس انتشار الإشارة فعلياً في المكان بعد إنشائه.', def_en: 'Measuring actual signal propagation in the space after construction.' },
+          { term: 'Heat Map', def_ar: 'خريطة تبيّن قوة التغطية في كل نقطة.', def_en: 'A map showing coverage strength at every point.' },
+          { term: 'Co-channel Interference', def_ar: 'تداخل نقطتين تسمعان بعضهما على القناة نفسها.', def_en: 'Interference of two points hearing each other on the same channel.' },
+          { term: 'Roaming', def_ar: 'انتقال الجهاز بين نقاط الوصول بلا قطع الجلسة.', def_en: 'A device moving between access points without dropping its session.' },
+          { term: 'Uplink', def_ar: 'الوصلة السلكية خلف نقطة الوصول وهي حدّ سرعتها.', def_en: 'The wired link behind an access point capping its speed.' }
+        ],
+        cards: [
+          { q_ar: 'على أي أساس تُخطَّط التغطية؟', q_en: 'On what basis is coverage planned?', a_ar: 'على الكثافة ونوع الاستخدام لا على المساحة، فقاعة صغيرة كثيفة تحتاج أكثر من مستودع واسع خفيف.', a_en: 'On density and kind of use rather than area, since a small dense hall needs more than a large sparse warehouse.' },
+          { q_ar: 'لماذا لا يُختصَر المسح الموقعي؟', q_en: 'Why is a site survey never skipped?', a_ar: 'لأن الجدران والمعادن والرفوف تغيّر انتشار الإشارة بما لا يتوقعه أي تخطيط نظري.', a_en: 'Walls, metal and shelving alter propagation beyond what any theoretical plan predicts.' },
+          { q_ar: 'ما ضرر رفع قدرة الإرسال للحد الأقصى؟', q_en: 'What harm comes from maximum transmit power?', a_ar: 'تداخل النقاط وسماعها بعضها، فيتنقّل الجهاز بلا استقرار ويقضي وقته في إعادة الارتباط.', a_en: 'Points hear and interfere with each other, so a device drifts unstably and spends its time reassociating.' },
+          { q_ar: 'لماذا لا تعطي نقطة حديثة سرعتها أحياناً؟', q_en: 'Why does a modern point sometimes not deliver its speed?', a_ar: 'لأن الوصلة السلكية خلفها أبطأ، فالمستخدم يحصل على سرعة الوصلة لا سرعة النقطة.', a_en: 'The wired link behind it is slower, so the user gets the link speed rather than the point speed.' }
+        ]
+      },
+      {
+        title_ar: 'الشبكات السحابية',
+        title_en: 'Cloud Networking',
+        lead_ar: 'الشبكة في السحابة تُنشَأ بأمر لا بكابل، فتُبنى في دقائق وتُهدَم بخطأ إعداد واحد — والانضباط فيها أهم منه في مركز البيانات.',
+        lead_en: 'A network in the cloud is created by a command rather than a cable, built in minutes and broken by one configuration error, so discipline matters more there than in a data centre.',
+        body_ar: [
+          'الشبكة الافتراضية الخاصة في السحابة نظير مركز البيانات: نطاق عناوين تختاره، تقسّمه شبكات فرعية، وتربطه ببوابة للخروج. والفرق أن كل ذلك أمر برمجي ينفَّذ في ثوانٍ لا مشروع تمديد يستغرق أسابيع.',
+          'وأول قرار تصميمي: أي شبكات فرعية عامة وأيها خاصة. فالعامة لها طريق مباشر للإنترنت وتُوضَع فيها الموازنات والبوابات، والخاصة بلا طريق وارد وتُوضَع فيها الخوادم وقواعد البيانات. ووضع قاعدة بيانات في شبكة عامة خطأ متكرر وكافٍ وحده لكشفها.',
+          'وضبط الوصول طبقتان تُخلطان كثيراً: مجموعة أمنية تُطبَّق على المورد نفسه وتحفظ الحالة — فما سُمِح بخروجه يعود رده تلقائياً. وقائمة تحكم على مستوى الشبكة الفرعية بلا حفظ حالة، فيجب السماح للذهاب والعودة صراحة. ونسيان قاعدة العودة في الثانية سبب شائع لعطل يبدو غامضاً.',
+          'وربط الشبكات السحابية ببعضها بالتناظر: وصل شبكتين لتتحدث أجهزتهما مباشرة. وقيده أنه لا يتعدّى: شبكة موصولة بأخرى موصولة بثالثة لا تصل الثالثة تلقائياً. ولهذا تُستخدم بوابة انتقال مركزية في البنى الكبيرة بدل شبكة تناظرات متشابكة يصعب فهمها وصيانتها.',
+          'والبنية الهجينة تربط السحابة بمركز البيانات المحلي بنفق مؤمَّن أو وصلة مخصصة. والوصلة المخصصة أعلى كلفة وأثبت أداء لأنها لا تمر بالإنترنت العام، وتُختار للأحمال الحساسة لزمن الاستجابة.',
+          'وثلاثة فروق عملية عن الشبكة التقليدية. الأول أن التسعير على الحركة الخارجة غالباً، فتصميم يعبر البوابة بلا داعٍ يكلّف شهرياً بلا أن يظهر عطل. والثاني أن الجرد يتغيّر تلقائياً فلا تصلح قائمة أصول ثابتة. والثالث أن الشبكة كلها في ملف إعداد: يُراجَع قبل التطبيق كما يُراجَع الكود، وهذي أفضل ضمانة ضد الخطأ الذي يكشف مورداً في ثانية.'
+        ],
+        body_en: [
+          'A virtual private cloud is the data centre counterpart: an address range you choose, divided into subnets and attached to a gateway for egress. The difference is that all of it is a software command executed in seconds rather than a cabling project taking weeks.',
+          'The first design decision: which subnets are public and which private. Public ones have a direct path to the internet and hold balancers and gateways, while private ones have no inbound path and hold servers and databases. Placing a database in a public subnet is a recurring error and sufficient by itself to expose it.',
+          'Access control has two layers frequently confused: a security group applied to the resource itself and stateful, so what was allowed out has its reply returned automatically; and a subnet-level access list that is stateless, requiring explicit permission for both directions. Forgetting the return rule in the second is a common cause of a fault that looks mysterious.',
+          'Cloud networks are linked by peering: joining two networks so their devices talk directly. Its constraint is non-transitivity: a network peered with another that is peered with a third does not reach the third automatically. So a central transit gateway is used in large designs instead of a tangled peering mesh that is hard to understand and maintain.',
+          'A hybrid design links the cloud to a local data centre by a secured tunnel or a dedicated link. The dedicated link costs more and performs more steadily because it avoids the public internet, and it is chosen for latency-sensitive workloads.',
+          'Three practical differences from a traditional network. First, pricing is usually on outbound traffic, so a design crossing the gateway needlessly costs monthly without any visible fault. Second, inventory changes automatically so a static asset list is useless. Third, the entire network lives in a configuration file: reviewed before applying as code is reviewed, and that is the best guarantee against the error that exposes a resource in a second.'
+        ],
+        table: {
+          head_ar: ['الضابط', 'أين يُطبَّق', 'حفظ الحالة'],
+          head_en: ['Control', 'Where applied', 'Stateful'],
+          rows: [
+            ['مجموعة أمنية', 'على المورد نفسه', 'نعم — الرد يعود تلقائياً'],
+            ['قائمة تحكم', 'على الشبكة الفرعية', 'لا — يلزم سماح للاتجاهين'],
+            ['شبكة فرعية عامة', 'لها طريق للإنترنت', 'للموازنات والبوابات'],
+            ['شبكة فرعية خاصة', 'بلا طريق وارد', 'للخوادم وقواعد البيانات']
+          ]
+        },
+        keyPoints_ar: [
+          'الشبكة تُنشَأ بأمر في ثوانٍ، وتُهدَم بخطأ إعداد واحد.',
+          'قواعد البيانات في شبكة فرعية خاصة، ووضعها في عامة كافٍ لكشفها.',
+          'المجموعة الأمنية تحفظ الحالة، والقائمة لا تحفظها فيلزم سماح للعودة.',
+          'التناظر لا يتعدّى: الموصول بموصول لا يصل الثالث تلقائياً.',
+          'التسعير على الحركة الخارجة، فتصميم يعبر البوابة بلا داعٍ يكلّف بصمت.',
+          'الشبكة في ملف إعداد يُراجَع قبل التطبيق كما يُراجَع الكود.'
+        ],
+        keyPoints_en: [
+          'A network is created by a command in seconds and broken by one configuration error.',
+          'Databases belong in private subnets, and placing them in a public one is enough to expose them.',
+          'A security group is stateful while an access list is not, so the return direction needs explicit permission.',
+          'Peering is not transitive: peered with a peer does not reach the third automatically.',
+          'Pricing is on outbound traffic, so a design needlessly crossing the gateway costs silently.',
+          'The network lives in a configuration file reviewed before applying as code is reviewed.'
+        ],
+        analogy_ar: 'تخيّل مدينة تُبنى شوارعها بالكلام: تقول «شارع هنا» فيوجد فوراً. سرعة مذهلة، وخطر مذهل بالقدر نفسه — جملة واحدة خاطئة تفتح طريقاً من الخارج مباشرة إلى الخزنة. ولهذا تكتب المدن الرصينة أوامرها في وثيقة تُراجَع قبل النطق بها. وأما التناظر فكاتفاق مرور بين حيّين: اتفاقك مع الجار لا يجعلك تمر عبر حيّ جاره ما لم تتفق معه أنت أيضاً.',
+        analogy_en: 'Picture a city whose streets are built by speech: you say street here and it exists instantly. Astonishing speed and equally astonishing danger, since one wrong sentence opens a road from outside straight to the vault. So sober cities write their commands in a document reviewed before it is spoken. As for peering, it is like a traffic agreement between two districts: your agreement with a neighbour does not let you cross their neighbour district unless you agree with them too.',
+        terms: [
+          { term: 'Virtual Private Cloud', def_ar: 'شبكة معزولة داخل السحابة بنطاق عناوين تختاره.', def_en: 'An isolated network inside the cloud with an address range you choose.' },
+          { term: 'Security Group', def_ar: 'ضابط على المورد نفسه يحفظ الحالة.', def_en: 'A stateful control applied to the resource itself.' },
+          { term: 'Peering', def_ar: 'وصل شبكتين سحابيتين، ولا يتعدّى لثالثة.', def_en: 'Joining two cloud networks, without transitivity to a third.' },
+          { term: 'Transit Gateway', def_ar: 'بوابة مركزية تربط شبكات كثيرة بدل تناظرات متشابكة.', def_en: 'A central gateway linking many networks instead of a tangled mesh.' },
+          { term: 'Egress Cost', def_ar: 'كلفة الحركة الخارجة من السحابة.', def_en: 'The cost of traffic leaving the cloud.' }
+        ],
+        cards: [
+          { q_ar: 'أين تُوضَع قاعدة البيانات ولماذا؟', q_en: 'Where does a database belong and why?', a_ar: 'في شبكة فرعية خاصة بلا طريق وارد، فوضعها في عامة كافٍ وحده لكشفها.', a_en: 'In a private subnet with no inbound path, since placing it in a public one is enough to expose it.' },
+          { q_ar: 'ما الفرق بين المجموعة الأمنية وقائمة التحكم؟', q_en: 'Difference between a security group and an access list?', a_ar: 'الأولى على المورد وتحفظ الحالة فيعود الرد تلقائياً، والثانية على الشبكة الفرعية بلا حفظ حالة.', a_en: 'The first is on the resource and stateful so replies return automatically; the second is on the subnet and stateless.' },
+          { q_ar: 'ماذا يعني أن التناظر لا يتعدّى؟', q_en: 'What does non-transitive peering mean?', a_ar: 'شبكة موصولة بأخرى موصولة بثالثة لا تصل الثالثة تلقائياً، فتلزم بوابة انتقال في البنى الكبيرة.', a_en: 'A network peered with one peered with a third does not reach the third, so large designs need a transit gateway.' },
+          { q_ar: 'كيف يكلّف تصميم خاطئ بلا عطل ظاهر؟', q_en: 'How does a wrong design cost with no visible fault?', a_ar: 'بعبور الحركة البوابة بلا داعٍ، فالتسعير على الخارج فتظهر الكلفة شهرياً وكل شيء يعمل.', a_en: 'Traffic crosses the gateway needlessly and pricing is on egress, so the cost appears monthly while everything works.' }
+        ]
+      },
+      {
+        title_ar: 'الافتراضية والشبكات المعرَّفة برمجياً',
+        title_en: 'Virtualisation and Software-Defined Networking',
+        lead_ar: 'الفكرة فصل عقل الشبكة عن عضلاتها: مستوى تحكم مركزي يقرر، ومستوى بيانات موزّع ينفّذ — فتُدار الشبكة كنظام واحد لا كأجهزة متفرقة.',
+        lead_en: 'The idea separates the network brain from its muscles: a central control plane that decides and a distributed data plane that executes, so the network is managed as one system rather than scattered devices.',
+        body_ar: [
+          'كل جهاز شبكي تقليدي يجمع وظيفتين: مستوى تحكم يقرر أين تذهب الحركة ويبني الجداول، ومستوى بيانات ينفّذ التمرير بسرعة عالية. وفي الشبكة التقليدية يعيش المستويان داخل كل جهاز، فيقرر كل واحد بمعزل عن الآخرين ويُدار بالدخول عليه فرداً.',
+          'والشبكة المعرَّفة برمجياً تفصلهما: تُنقَل عقول الأجهزة لمتحكم مركزي يرى الشبكة كاملة ويبرمج كل جهاز بما ينفّذه. فيصير تغيير سياسة على مئة جهاز أمراً واحداً لا مئة جلسة إدارية — وهذي القدرة هي كل قيمة النموذج.',
+          'وفوائده ثلاث. الأولى رؤية شاملة تسمح بقرار أفضل من قرار جهاز يرى جواره فقط. والثانية أتمتة كاملة عبر واجهة برمجية. والثالثة تجريد يفصل السياسة عن العتاد، فتُعبَّر النية بلغة الأعمال ويترجمها المتحكم لإعدادات.',
+          'وثمنه أن المتحكم نقطة فشل ونقطة هجوم في آن: من يسيطر عليه يسيطر على الشبكة كلها. ولهذا يُكرَّر دائماً في نُسَخ متعددة، ويُشدَّد الوصول إليه أكثر من أي جهاز آخر في المؤسسة.',
+          'والافتراضية أدخلت الشبكة داخل الخادم نفسه: مُحوِّل افتراضي داخل المضيف يصل الأجهزة الافتراضية ببعضها، فقد تمر حركة كاملة بين خادمين افتراضيين بلا أن تلمس كابلاً أو مُحوِّلاً مادياً. وأثر ذلك في المراقبة كبير: حركة لا تظهر في أي أداة تراقب الشبكة المادية.',
+          'والشبكات المتراكبة تبني شبكة منطقية فوق المادية بالتغليف: تُنقَل حزم الشبكة الافتراضية داخل حزم الشبكة الأساسية. فتنتقل آلة افتراضية بين مراكز بيانات وتبقى في شبكتها المنطقية نفسها بعنوانها نفسه. والثمن طبقة إضافية يجب أن يفهمها من يشخّص عطلاً — فمن ينظر للشبكة المادية وحدها يرى حركة سليمة تماماً بينما المشكلة كلها في الطبقة المتراكبة فوقها.'
+        ],
+        body_en: [
+          'Every traditional network device combines two functions: a control plane deciding where traffic goes and building tables, and a data plane executing forwarding at high speed. In a traditional network both live inside each device, so each decides in isolation and is managed by logging into it individually.',
+          'Software-defined networking separates them: device brains move to a central controller seeing the whole network and programming each device with what to execute. Changing a policy on a hundred devices becomes one command rather than a hundred administrative sessions, and that capability is the entire value of the model.',
+          'It brings three benefits. First, a global view allowing better decisions than a device seeing only its neighbours. Second, full automation through an API. Third, abstraction separating policy from hardware, so intent is expressed in business language and the controller translates it into configuration.',
+          'Its price is that the controller is both a failure point and an attack point: whoever controls it controls the entire network. So it is always replicated across several instances and access to it is hardened beyond any other device in the organisation.',
+          'Virtualisation brought the network inside the server itself: a virtual switch within the host connects virtual machines, so entire traffic between two virtual servers may never touch a cable or a physical switch. The monitoring impact is large: traffic invisible to any tool watching the physical network.',
+          'Overlay networks build a logical network above the physical one by encapsulation: virtual network packets are carried inside underlying network packets. So a virtual machine moves between data centres and stays in the same logical network with the same address. The price is an extra layer whoever diagnoses a fault must understand, since looking at the physical network alone shows perfectly healthy traffic while the whole problem sits in the overlay above it.'
+        ],
+        table: {
+          head_ar: ['المستوى', 'وظيفته', 'أين يعيش تقليدياً', 'أين يعيش برمجياً'],
+          head_en: ['Plane', 'Its function', 'Traditionally', 'Software-defined'],
+          rows: [
+            ['التحكم', 'يقرر ويبني الجداول', 'داخل كل جهاز', 'في متحكم مركزي'],
+            ['البيانات', 'يمرر بسرعة عالية', 'داخل كل جهاز', 'في الأجهزة كما هو'],
+            ['الإدارة', 'الإعداد والمراقبة', 'جلسة لكل جهاز', 'واجهة برمجية واحدة']
+          ]
+        },
+        keyPoints_ar: [
+          'الفصل بين مستوى تحكم يقرر ومستوى بيانات ينفّذ هو أساس النموذج.',
+          'تغيير سياسة على مئة جهاز يصير أمراً واحداً لا مئة جلسة إدارية.',
+          'الرؤية الشاملة تعطي قراراً أفضل من جهاز يرى جواره فقط.',
+          'المتحكم نقطة فشل وهجوم، فيُكرَّر ويُشدَّد الوصول إليه.',
+          'المُحوِّل الافتراضي يمرر حركة لا تلمس كابلاً فلا تظهر في مراقبة الشبكة المادية.',
+          'الشبكة المتراكبة تنقل الآلة بين المراكز بعنوانها، وتضيف طبقة يجب فهمها للتشخيص.'
+        ],
+        keyPoints_en: [
+          'Separating a deciding control plane from an executing data plane is the model foundation.',
+          'Changing a policy on a hundred devices becomes one command rather than a hundred sessions.',
+          'A global view yields better decisions than a device seeing only its neighbours.',
+          'The controller is a failure and attack point, so it is replicated and access to it hardened.',
+          'A virtual switch carries traffic touching no cable, invisible to physical network monitoring.',
+          'An overlay moves a machine between centres with its address and adds a layer diagnosis must understand.'
+        ],
+        analogy_ar: 'تخيّل أسطول شاحنات كل سائق فيه يختار طريقه وحده بما يراه من نافذته: قد يزدحم طريق ويظل عشرة يسلكونه لأن أحداً لا يرى الصورة كاملة. ثم أُنشِئت غرفة تحكم ترى كل الطرق وكل الشاحنات وتوجّه كلاً منها، فصار توزيع الحمولة قراراً واحداً. والسائقون ما زالوا هم من يقود — تغيّر من يقرر لا من ينفّذ. وثمن ذلك أن تعطّل غرفة التحكم أخطر من تعطّل شاحنة، ومن يسيطر عليها يسيطر على الأسطول كله.',
+        analogy_en: 'Picture a lorry fleet where each driver picks their route alone by what they see from their window: a road jams and ten keep taking it because nobody sees the whole picture. Then a control room is built seeing every road and every lorry and directing each, so load distribution becomes one decision. The drivers still drive: what changed is who decides rather than who executes. The price is that the control room failing is graver than one lorry failing, and whoever seizes it seizes the whole fleet.',
+        terms: [
+          { term: 'Control Plane', def_ar: 'مستوى يقرر أين تذهب الحركة ويبني الجداول.', def_en: 'The plane deciding where traffic goes and building tables.' },
+          { term: 'Data Plane', def_ar: 'مستوى ينفّذ التمرير بسرعة عالية.', def_en: 'The plane executing forwarding at high speed.' },
+          { term: 'Controller', def_ar: 'عقل مركزي يبرمج كل الأجهزة برؤية شاملة.', def_en: 'A central brain programming all devices with a global view.' },
+          { term: 'Virtual Switch', def_ar: 'مُحوِّل داخل المضيف يصل الأجهزة الافتراضية.', def_en: 'A switch inside the host connecting virtual machines.' },
+          { term: 'Overlay Network', def_ar: 'شبكة منطقية فوق المادية بالتغليف.', def_en: 'A logical network above the physical one by encapsulation.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفصل الذي يقوم عليه النموذج؟', q_en: 'Which separation founds the model?', a_ar: 'فصل مستوى التحكم الذي يقرر عن مستوى البيانات الذي ينفّذ، ونقل العقل لمتحكم مركزي.', a_en: 'Separating the deciding control plane from the executing data plane and moving the brain to a central controller.' },
+          { q_ar: 'ما المخاطرة الأساسية في المتحكم المركزي؟', q_en: 'What is the core risk of a central controller?', a_ar: 'أنه نقطة فشل وهجوم معاً: من يسيطر عليه يسيطر على الشبكة كلها، فيُكرَّر ويُشدَّد الوصول إليه.', a_en: 'It is both a failure and an attack point: whoever seizes it seizes the whole network, so it is replicated and hardened.' },
+          { q_ar: 'لماذا تغيب حركة الأجهزة الافتراضية عن المراقبة؟', q_en: 'Why does virtual machine traffic escape monitoring?', a_ar: 'لأنها قد تمر عبر مُحوِّل افتراضي داخل المضيف بلا أن تلمس كابلاً أو جهازاً مادياً.', a_en: 'It may pass through a virtual switch inside the host without touching a cable or physical device.' },
+          { q_ar: 'ما ثمن الشبكة المتراكبة عند التشخيص؟', q_en: 'What does an overlay cost at diagnosis time?', a_ar: 'طبقة إضافية: من ينظر للمادية وحدها يراها سليمة بينما المشكلة كلها في المتراكبة فوقها.', a_en: 'An extra layer: whoever looks at the physical alone sees it healthy while the whole problem sits in the overlay.' }
+        ]
+      }
     ]
   }
 };
