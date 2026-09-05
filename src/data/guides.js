@@ -7305,6 +7305,326 @@ export const sectionGuides = {
           { q_ar: 'منفذ مفتوح والخدمة لا تستجيب — أين العطل؟', q_en: 'Port open but the service unresponsive: where is the fault?', a_ar: 'في التطبيق نفسه، لأن انفتاح المنفذ يثبت أن الجدار والخدمة قائمان.', a_en: 'In the application itself, since an open port proves the firewall and service are up.' }
         ]
       }
+    ],
+
+    // ─────────── التوجيه والتبديل ───────────
+    2: [
+      {
+        title_ar: 'التبديل وجدول العناوين المادية',
+        title_en: 'Switching and the MAC Address Table',
+        lead_ar: 'المُحوِّل يتعلّم بنفسه ولا يُبرمَج: يقرأ عنوان المرسِل في كل إطار يمر فيبني خريطته — وحين لا يعرف الوجهة يغمر، وهذا الغمر مصدر أشهر أعطال الشبكة.',
+        lead_en: 'A switch learns by itself rather than being programmed: it reads the sender address in every passing frame to build its map, and when it does not know a destination it floods, and that flooding is the source of the best-known network faults.',
+        body_ar: [
+          'المُحوِّل يبني جدوله بالتعلّم لا بالإعداد اليدوي. فحين يصله إطار، يقرأ عنوان المرسِل ويسجّل: هذا العنوان خلف هذا المنفذ. وبعد دقائق من العمل يكون قد عرف مواضع كل الأجهزة النشطة بلا أن يخبره أحد.',
+          'وقراره في التمرير ثلاثي: إن عرف عنوان الوجهة في جدوله أرسل للمنفذ المسجّل وحده، وإن لم يعرفه غمر كل المنافذ عدا الوارد منه، وإن كان العنوان بثّاً غمر دائماً. فالغمر ليس عطلاً بل سلوك مقصود عند الجهل — لكنه يستهلك النطاق فيجب أن يكون استثناءً لا قاعدة.',
+          'ولكل مدخل في الجدول عمر ينتهي إن لم يُرَ العنوان مدة، فيُحذَف. وهذا يمنع تضخم الجدول ويسمح بانتقال جهاز من منفذ لآخر دون بقاء معلومة قديمة خاطئة. لكنه أيضاً سبب لغمر متكرر: جهاز صامت طويلاً يُنسى فيُغمَر أول إطار يقصده.',
+          'ولكل منفذ في المُحوِّل نطاق تصادم مستقل، فلا تتصادم إشارات جهازين على منفذين. أما نطاق البث فيبقى واحداً للمُحوِّل كله: أي بثّ يصل كل المنافذ. وهذا الفرق هو ما يفسّر لماذا يقلّل المُحوِّل التصادمات ولا يقلّل البثّ — وتقليل البثّ يحتاج تقسيماً منطقياً كما في الموضوع التالي.',
+          'والحلقات كارثة خاصة بالتبديل: لو ارتبط مُحوِّلان بوصلتين، دار البثّ بينهما بلا نهاية ونُسِخ في كل دورة حتى تشلّ الشبكة كاملة خلال ثوانٍ. ولأن إطار الطبقة الثانية لا يحمل عدّاد قفزات كالحزمة، فلا شيء يوقف الدوران ذاتياً.',
+          'وعلاجها بروتوكول الشجرة الممتدة: يكتشف الحلقات ويعطّل الوصلات الزائدة منطقياً ويبقيها احتياطاً، فإن سقطت الوصلة العاملة فعّل البديلة. فالتكرار المادي يبقى للأمان والمسار المنطقي يبقى واحداً بلا حلقة — وتعطيله لتسريع الشبكة خطأ شائع ينتهي بانهيارها عند أول وصلة مكررة.'
+        ],
+        body_en: [
+          'A switch builds its table by learning rather than manual configuration. When a frame arrives it reads the sender address and records that this address sits behind this port. After minutes of operation it knows where every active device is without anyone telling it.',
+          'Its forwarding decision has three cases: if it knows the destination in its table it sends to that port only; if it does not know it, it floods every port except the incoming one; and if the address is a broadcast it always floods. Flooding is not a fault but intended behaviour under ignorance, yet it consumes bandwidth so it must be the exception rather than the rule.',
+          'Every table entry has an age that expires if the address is not seen for a period, and then it is removed. This prevents table bloat and lets a device move from one port to another without a stale wrong entry persisting. It is also a cause of repeated flooding: a long-silent device is forgotten so the first frame addressed to it is flooded.',
+          'Each switch port is its own collision domain, so signals from two devices on two ports never collide. The broadcast domain, however, stays one for the whole switch: any broadcast reaches every port. That difference explains why a switch reduces collisions and does not reduce broadcast, and reducing broadcast requires logical division as in the next topic.',
+          'Loops are a disaster peculiar to switching: if two switches are joined by two links, a broadcast circles between them endlessly and is copied on every turn until it paralyses the entire network within seconds. Because a layer two frame carries no hop counter as a packet does, nothing stops the circling by itself.',
+          'The remedy is the spanning tree protocol: it discovers loops, logically disables the redundant links and keeps them in reserve, activating a standby if the working link fails. Physical redundancy stays for safety while the logical path stays single and loop free, and disabling it to speed the network up is a common mistake ending in collapse at the first duplicated link.'
+        ],
+        table: {
+          head_ar: ['الحالة', 'قرار المُحوِّل', 'أثرها'],
+          head_en: ['Case', 'Switch decision', 'Its effect'],
+          rows: [
+            ['الوجهة معروفة', 'إرسال للمنفذ المسجّل', 'أمثل استخدام للنطاق'],
+            ['الوجهة مجهولة', 'غمر كل المنافذ عدا الوارد', 'استهلاك مؤقت للنطاق'],
+            ['العنوان بثّ', 'غمر دائماً', 'يشغل كل الأجهزة'],
+            ['وصلة مكررة', 'تعطيل منطقي بالشجرة الممتدة', 'تكرار بلا حلقة']
+          ]
+        },
+        keyPoints_ar: [
+          'المُحوِّل يتعلّم من عنوان المرسِل في كل إطار يمر، بلا إعداد يدوي.',
+          'يمرر للمعروف، ويغمر عند الجهل، ويغمر البثّ دائماً.',
+          'انتهاء عمر المدخل يمنع التضخم ويسمح بانتقال الجهاز، ويسبب غمراً للصامتين.',
+          'كل منفذ نطاق تصادم مستقل، والبثّ يبقى نطاقاً واحداً للمُحوِّل كله.',
+          'إطار الطبقة الثانية بلا عدّاد قفزات، فالحلقة تدور بلا نهاية وتشلّ الشبكة.',
+          'الشجرة الممتدة تعطّل الزائد منطقياً وتبقيه احتياطاً، وتعطيلها ينتهي بانهيار.'
+        ],
+        keyPoints_en: [
+          'A switch learns from the sender address in every passing frame with no manual setup.',
+          'It forwards to the known, floods under ignorance, and always floods broadcast.',
+          'Entry ageing prevents bloat and allows device moves, and causes flooding for silent devices.',
+          'Each port is its own collision domain while broadcast stays one domain for the whole switch.',
+          'A layer two frame has no hop counter, so a loop circles endlessly and paralyses the network.',
+          'Spanning tree logically disables the redundant link and keeps it in reserve, and disabling it ends in collapse.'
+        ],
+        analogy_ar: 'تخيّل ساعي بريد جديداً في مبنى لا يملك دليل سكان. كل رسالة تخرج من مكتب يكتب في دفتره: صاحب هذا الاسم في هذا المكتب. وحين تصله رسالة لاسم لم يسجّله بعد، يطرق كل الأبواب حتى يجدها — مزعج لكنه الحل الوحيد وقتها. ولو شطب من دفتره كل اسم لم يرسل شيئاً منذ ساعات، اضطر للطرق على كل الأبواب مرة أخرى لأول رسالة تصل لموظف صامت. وهذا حرفياً ما يفعله المُحوِّل.',
+        analogy_en: 'Picture a new postman in a building with no residents directory. For every letter leaving an office he writes in his notebook that this name is in this office. When a letter arrives for a name he has not recorded, he knocks on every door until he finds it, annoying yet the only option then. And if he crosses out every name that has sent nothing for hours, he must knock on every door again for the first letter to a silent employee. That is literally what a switch does.',
+        terms: [
+          { term: 'MAC Table', def_ar: 'جدول يربط كل عنوان مادي بمنفذه.', def_en: 'A table linking each physical address to its port.' },
+          { term: 'Flooding', def_ar: 'إرسال الإطار لكل المنافذ عند جهل الوجهة.', def_en: 'Sending a frame to every port when the destination is unknown.' },
+          { term: 'Ageing', def_ar: 'حذف المدخل إن لم يُرَ عنوانه مدة محددة.', def_en: 'Removing an entry if its address is unseen for a set period.' },
+          { term: 'Collision Domain', def_ar: 'نطاق قد تتصادم فيه إشارتان، ومنفذ المُحوِّل نطاق مستقل.', def_en: 'A domain where two signals may collide, and each switch port is its own.' },
+          { term: 'Spanning Tree', def_ar: 'بروتوكول يمنع الحلقات بتعطيل الوصلات الزائدة منطقياً.', def_en: 'A protocol preventing loops by logically disabling redundant links.' }
+        ],
+        cards: [
+          { q_ar: 'كيف يبني المُحوِّل جدوله؟', q_en: 'How does a switch build its table?', a_ar: 'بقراءة عنوان المرسِل في كل إطار يمر وتسجيل أنه خلف المنفذ الوارد منه، بلا إعداد يدوي.', a_en: 'By reading the sender address in every passing frame and recording it behind the incoming port, with no manual setup.' },
+          { q_ar: 'ماذا يفعل حين يجهل عنوان الوجهة؟', q_en: 'What does it do when the destination is unknown?', a_ar: 'يغمر كل المنافذ عدا الوارد منه، وهو سلوك مقصود عند الجهل لا عطل.', a_en: 'It floods every port except the incoming one, intended behaviour under ignorance rather than a fault.' },
+          { q_ar: 'لماذا تشلّ الحلقة شبكة الطبقة الثانية؟', q_en: 'Why does a loop paralyse a layer two network?', a_ar: 'لأن الإطار بلا عدّاد قفزات، فالبثّ يدور ويُنسَخ في كل دورة بلا ما يوقفه ذاتياً.', a_en: 'A frame has no hop counter, so a broadcast circles and is copied each turn with nothing stopping it by itself.' },
+          { q_ar: 'هل يقلّل المُحوِّل نطاق البثّ؟', q_en: 'Does a switch reduce the broadcast domain?', a_ar: 'لا، يقلّل نطاقات التصادم فقط؛ والبثّ يبقى نطاقاً واحداً حتى يُقسَّم منطقياً.', a_en: 'No, it reduces collision domains only; broadcast stays one domain until logically divided.' }
+        ]
+      },
+      {
+        title_ar: 'الشبكات الافتراضية والوصلات الجذعية',
+        title_en: 'VLANs and Trunking',
+        lead_ar: 'الشبكة الافتراضية تقسم مُحوِّلاً واحداً لشبكات منفصلة منطقياً — فيصير الفصل بالإعداد لا بشراء أجهزة ومدّ كابلات.',
+        lead_en: 'A virtual LAN divides one switch into logically separate networks, so separation becomes a configuration rather than buying hardware and pulling cables.',
+        body_ar: [
+          'رأينا أن المُحوِّل يبقي نطاق بثّ واحداً. والشبكة الافتراضية هي الحل: تقسّم منافذ المُحوِّل مجموعات منطقية، كل مجموعة نطاق بثّ مستقل، فلا يصل بثّ المحاسبة لأجهزة الهندسة ولو كانت على المُحوِّل نفسه.',
+          'وفوائدها ثلاث. الأولى أمنية: أجهزة شبكتين افتراضيتين لا تتحدث إلا عبر مُوجِّه يمكن أن يفلتر، فيُقيَّد انتشار أي اختراق. والثانية أدائية بتقليل البثّ. والثالثة إدارية: التقسيم بالوظيفة لا بالموقع الجغرافي، فموظف ينتقل لطابق آخر يبقى في شبكته بتغيير إعداد المنفذ.',
+          'ونوعا المنافذ: منفذ وصول ينتمي لشبكة افتراضية واحدة ويوصل جهازاً نهائياً، ومنفذ جذعي يحمل عدة شبكات معاً ويصل مُحوِّلاً بمُحوِّل أو مُحوِّلاً بمُوجِّه. وبلا الجذعي لاحتجت كابلاً مستقلاً لكل شبكة بين كل مُحوِّلين.',
+          'وسؤال بديهي: كيف يميّز المُحوِّل المستقبِل إطاراً جاء عبر جذع؟ الجواب الوسم: يضيف المُحوِّل المرسِل وسماً في الإطار يحمل رقم الشبكة، ويقرؤه المستقبِل ويزيله قبل التسليم للجهاز النهائي. فالجهاز لا يعرف شيئاً عن الشبكات الافتراضية أصلاً.',
+          'والشبكة الأصلية على الجذع استثناء: إطاراتها تمر بلا وسم. وخطؤها الشائع أن تُضبَط برقم مختلف على طرفي الجذع، فيقع تسرّب بين شبكتين يفترض أنهما معزولتان — وهو خطأ لا تكشفه اختبارات الاتصال العادية لأن كل شيء يبدو عاملاً.',
+          'والتوجيه بين الشبكات الافتراضية ضروري لأنها معزولة بالتعريف: أجهزتها لا تتحدث إلا بوسيط في الطبقة الثالثة. وله طريقتان: مُوجِّه بواجهة واحدة تحمل كل الشبكات موسومة، أو مُحوِّل الطبقة الثالثة الذي يوجّه داخلياً بسرعة أعلى. والثاني هو المعتاد في الشبكات الكبيرة لأن كل حركة بين الأقسام تمر بالموجِّه فيصير عنق زجاجة في الأول.'
+        ],
+        body_en: [
+          'We saw that a switch keeps one broadcast domain. The virtual LAN is the answer: it divides switch ports into logical groups, each its own broadcast domain, so an accounting broadcast never reaches engineering devices even on the same switch.',
+          'It brings three benefits. The first is security: devices in two virtual LANs talk only through a router that can filter, limiting the spread of any breach. The second is performance through less broadcast. The third is administrative: division by function rather than geography, so an employee moving to another floor stays in their network by changing a port setting.',
+          'There are two port kinds: an access port belonging to one virtual LAN and connecting an end device, and a trunk port carrying several networks together and joining switch to switch or switch to router. Without trunks you would need a separate cable per network between every pair of switches.',
+          'An obvious question: how does the receiving switch tell which network a frame arriving over a trunk belongs to? The answer is tagging: the sending switch inserts a tag carrying the network number, and the receiver reads and removes it before delivery to the end device. The device knows nothing about virtual LANs at all.',
+          'The native network on a trunk is an exception: its frames pass untagged. Its common error is configuring a different number at each end of the trunk, causing leakage between two supposedly isolated networks, an error ordinary connectivity tests never reveal because everything appears to work.',
+          'Routing between virtual LANs is necessary because they are isolated by definition: their devices talk only through a layer three intermediary. There are two ways: a router with one interface carrying all networks tagged, or a layer three switch routing internally at higher speed. The second is usual in large networks because all inter-department traffic passes the router in the first, making it a bottleneck.'
+        ],
+        table: {
+          head_ar: ['المفهوم', 'ما يفعله', 'أين يُستخدم'],
+          head_en: ['Concept', 'What it does', 'Where used'],
+          rows: [
+            ['منفذ وصول', 'ينتمي لشبكة واحدة', 'جهاز نهائي'],
+            ['منفذ جذعي', 'يحمل عدة شبكات موسومة', 'بين المُحوِّلات'],
+            ['الوسم', 'يضيف رقم الشبكة للإطار', 'على الجذع فقط'],
+            ['الشبكة الأصلية', 'تمر بلا وسم', 'استثناء يجب توحيده'],
+            ['مُحوِّل الطبقة الثالثة', 'يوجّه بين الشبكات داخلياً', 'الشبكات الكبيرة']
+          ]
+        },
+        keyPoints_ar: [
+          'الشبكة الافتراضية تقسم نطاق البثّ منطقياً بلا أجهزة إضافية.',
+          'التقسيم بالوظيفة لا بالموقع، فانتقال الموظف تغيير إعداد لا مدّ كابل.',
+          'منفذ الوصول لشبكة واحدة، والجذعي يحمل عدة شبكات موسومة.',
+          'الوسم يُضاف على الجذع ويُزال قبل التسليم، فالجهاز النهائي لا يعرف شيئاً.',
+          'اختلاف الشبكة الأصلية بين طرفي الجذع تسرّب لا تكشفه اختبارات الاتصال.',
+          'التوجيه بينها ضروري، ومُحوِّل الطبقة الثالثة يتفادى عنق الزجاجة.'
+        ],
+        keyPoints_en: [
+          'A virtual LAN divides the broadcast domain logically with no extra hardware.',
+          'Division follows function rather than location, so an employee move is a setting rather than cabling.',
+          'An access port belongs to one network while a trunk carries several tagged ones.',
+          'The tag is added on the trunk and removed before delivery, so the end device knows nothing.',
+          'A mismatched native network across a trunk leaks traffic and connectivity tests never reveal it.',
+          'Routing between them is necessary, and a layer three switch avoids the bottleneck.'
+        ],
+        analogy_ar: 'تخيّل مبنى مفتوح تسمع فيه كل الأقسام إعلانات بعضها. ثم وضعت جدراناً وأعطيت كل قسم قاعته: صار إعلان المحاسبة لهم وحدهم، ومن أراد الحديث مع الهندسة مرّ ببهو مشترك عليه حارس. والممر الذي يربط طابقين ويمر فيه موظفو كل الأقسام هو الجذع، ولهذا يلبس كل داخل بطاقة قسمه — وهذا الوسم. ولو اتفق الطابقان أن ملابس الميدان تعني الصيانة وفهمها الآخر إدارة، دخل الناس أقساماً ليست لهم بلا أن يمنعهم أحد.',
+        analogy_en: 'Picture an open building where every department hears the others announcements. Then you add walls and give each department its hall: the accounting notice reaches them alone, and anyone wanting engineering passes a shared lobby with a guard. The corridor joining two floors, used by staff of every department, is the trunk, which is why everyone entering wears a department badge, and that is the tag. And if one floor decides field clothing means maintenance while the other reads it as administration, people walk into departments not their own with nobody stopping them.',
+        terms: [
+          { term: 'VLAN', def_ar: 'تقسيم منطقي لمنافذ المُحوِّل لنطاقات بثّ مستقلة.', def_en: 'A logical division of switch ports into separate broadcast domains.' },
+          { term: 'Access Port', def_ar: 'منفذ ينتمي لشبكة افتراضية واحدة ويوصل جهازاً نهائياً.', def_en: 'A port belonging to one virtual LAN and connecting an end device.' },
+          { term: 'Trunk Port', def_ar: 'منفذ يحمل عدة شبكات افتراضية موسومة.', def_en: 'A port carrying several tagged virtual LANs.' },
+          { term: 'Tagging', def_ar: 'إضافة رقم الشبكة للإطار على الوصلة الجذعية.', def_en: 'Adding the network number to a frame on a trunk link.' },
+          { term: 'Native VLAN', def_ar: 'الشبكة التي تمر إطاراتها بلا وسم على الجذع.', def_en: 'The network whose frames pass untagged on a trunk.' }
+        ],
+        cards: [
+          { q_ar: 'ما المشكلة التي تحلّها الشبكة الافتراضية؟', q_en: 'Which problem does a virtual LAN solve?', a_ar: 'بقاء نطاق البثّ واحداً في المُحوِّل، فتقسمه منطقياً بلا شراء أجهزة أو مدّ كابلات.', a_en: 'The switch keeping one broadcast domain, which it divides logically with no new hardware or cabling.' },
+          { q_ar: 'ما الفرق بين منفذ الوصول والجذعي؟', q_en: 'Difference between an access and a trunk port?', a_ar: 'الوصول ينتمي لشبكة واحدة ويوصل جهازاً نهائياً، والجذعي يحمل عدة شبكات موسومة بين المُحوِّلات.', a_en: 'An access port belongs to one network and connects an end device; a trunk carries several tagged networks between switches.' },
+          { q_ar: 'هل يعرف الجهاز النهائي أنه في شبكة افتراضية؟', q_en: 'Does the end device know it is in a virtual LAN?', a_ar: 'لا، لأن الوسم يُضاف على الجذع ويُزال قبل التسليم إليه.', a_en: 'No, because the tag is added on the trunk and removed before delivery to it.' },
+          { q_ar: 'لماذا خطر اختلاف الشبكة الأصلية بين طرفي الجذع؟', q_en: 'Why is a mismatched native network dangerous?', a_ar: 'لأنه يسرّب حركة بين شبكتين معزولتين، ولا تكشفه اختبارات الاتصال لأن كل شيء يبدو عاملاً.', a_en: 'It leaks traffic between two isolated networks, and connectivity tests never reveal it because everything appears to work.' }
+        ]
+      },
+      {
+        title_ar: 'أساسيات التوجيه',
+        title_en: 'Routing Fundamentals',
+        lead_ar: 'المُوجِّه يقرر بقاعدة واحدة: أطول بادئة مطابقة — أي المسار الأكثر تحديداً يفوز مهما كان مصدره.',
+        lead_en: 'A router decides by one rule, the longest matching prefix: the most specific route wins whatever its source.',
+        body_ar: [
+          'وظيفة المُوجِّه إيصال الحزمة من شبكة لأخرى. وحين تصله حزمة يقرأ عنوان الوجهة، ويبحث في جدول التوجيه عن مسار يطابقه، ثم يمررها للواجهة أو الخطوة التالية المسجّلة. وإن لم يجد مطابقاً ولا مساراً افتراضياً أسقط الحزمة وأبلغ المرسِل.',
+          'وجدول التوجيه يجيب سؤالاً واحداً: لبلوغ هذي الشبكة، إلى أين أرسل؟ ولا يعرف المُوجِّه المسار كاملاً حتى الوجهة، وإنما يعرف الخطوة التالية فقط. فكل مُوجِّه في الطريق يعيد القرار من جديد — وهذا ما يجعل الشبكة تتكيّف مع الأعطال ذاتياً.',
+          'وقاعدة القرار حين يطابق أكثر من مسار هي أطول بادئة مطابقة: يفوز الأكثر تحديداً. فلو وُجد مسار لشبكة واسعة وآخر لجزء منها، فُضِّل الثاني لأنه أدقّ. والمسار الافتراضي هو الأقل تحديداً على الإطلاق، ولهذا لا يُستخدم إلا حين لا يطابق شيء آخر.',
+          'والمسار الافتراضي حل عملي لا يُستغنى عنه: بدله كان على كل مُوجِّه في العالم أن يعرف كل شبكات الإنترنت. فيكفي أن يقول: ما لا أعرفه أرسله لمزوّدي. ولهذا يبقى جدول مُوجِّه المكتب صغيراً رغم ضخامة الإنترنت.',
+          'وحين يتساوى المسار في التحديد يُفصَل بمعيارين متتاليين. الأول المسافة الإدارية وهي درجة الثقة بمصدر المعلومة: المسار المضبوط يدوياً أوثق من المتعلَّم آلياً. فلو عرف المُوجِّه الشبكة نفسها من مصدرين، اختار الأوثق ولو كان طريقه أطول.',
+          'والثاني المقياس ويُطبَّق داخل المصدر الواحد: كم يكلّف الطريق بحسب معيار البروتوكول نفسه. وترتيب الفصل هذا مهم عملياً — لأن مساراً يدوياً خاطئاً يهزم مساراً آلياً صحيحاً بلا أن يشتكي أحد، وهذا سبب متكرر لعطل يستعصي على التشخيص بعد إضافة مسار ثابت مؤقت ونسيانه.'
+        ],
+        body_en: [
+          'A router job is delivering a packet from one network to another. When a packet arrives it reads the destination address, searches the routing table for a matching route, then forwards it to the recorded interface or next hop. Finding neither a match nor a default route, it drops the packet and notifies the sender.',
+          'The routing table answers one question: to reach this network, where do I send? A router never knows the full path to the destination, only the next hop. Every router along the way makes the decision anew, and that is what lets the network adapt to failures by itself.',
+          'The decision rule when more than one route matches is the longest matching prefix: the most specific wins. If a route exists for a wide network and another for part of it, the second is preferred as more precise. A default route is the least specific of all, which is why it is used only when nothing else matches.',
+          'The default route is an indispensable practical solution: without it every router in the world would have to know every network on the internet. Instead it suffices to say: send whatever I do not know to my provider. That is why an office router table stays small despite the vastness of the internet.',
+          'When routes tie in specificity, two successive criteria decide. The first is administrative distance, the trust level of the information source: a manually configured route is trusted above a dynamically learned one. So if a router learns the same network from two sources it takes the more trusted one even if its path is longer.',
+          'The second is the metric, applied within one source: how costly the path is by that protocol own measure. This order matters practically, because a wrong manual route defeats a correct dynamic one with nobody complaining, a recurring cause of a fault that resists diagnosis after a temporary static route was added and forgotten.'
+        ],
+        table: {
+          head_ar: ['المعيار', 'متى يُطبَّق', 'ما يرجّحه'],
+          head_en: ['Criterion', 'When applied', 'What it prefers'],
+          rows: [
+            ['أطول بادئة', 'أولاً دائماً', 'المسار الأكثر تحديداً'],
+            ['المسافة الإدارية', 'عند تساوي التحديد', 'المصدر الأوثق'],
+            ['المقياس', 'داخل المصدر الواحد', 'الطريق الأقل كلفة'],
+            ['المسار الافتراضي', 'حين لا يطابق شيء', 'مخرج عام للمجهول']
+          ]
+        },
+        keyPoints_ar: [
+          'المُوجِّه يعرف الخطوة التالية فقط لا المسار كاملاً، فيتكيّف مع الأعطال ذاتياً.',
+          'أطول بادئة مطابقة تفوز: الأكثر تحديداً يهزم الأعمّ.',
+          'المسار الافتراضي أقلّ المسارات تحديداً فلا يُستخدم إلا آخراً.',
+          'بلا مسار افتراضي لاحتاج مُوجِّه المكتب معرفة كل شبكات الإنترنت.',
+          'المسافة الإدارية ثقة بالمصدر، والمقياس كلفة الطريق داخل المصدر.',
+          'مسار يدوي خاطئ يهزم مساراً آلياً صحيحاً بصمت، وهو عطل يستعصي على التشخيص.'
+        ],
+        keyPoints_en: [
+          'A router knows only the next hop rather than the full path, so it adapts to failures by itself.',
+          'The longest matching prefix wins: the more specific defeats the more general.',
+          'A default route is the least specific so it is used last.',
+          'Without a default route an office router would need to know every network on the internet.',
+          'Administrative distance is trust in the source while the metric is path cost within a source.',
+          'A wrong manual route silently defeats a correct dynamic one, a fault that resists diagnosis.'
+        ],
+        analogy_ar: 'تخيّل سائق أجرة لا يحفظ المدينة كلها، ويعرف فقط: للوصول لهذا الحي اتجه شمالاً عند التقاطع. ثم في التقاطع التالي يسأل سائق آخر. ولو أُغلِق شارع أعاد الجميع القرار بلا خطة مركزية. ولو أعطاك أحدهم ورقة مكتوبة بخط اليد تقول اتجه يميناً وأخرى مطبوعة رسمية تقول يساراً، أخذت بخط اليد لأنك تثق بمن كتبها لك شخصياً — حتى لو كان قد كتبها قبل سنة وتغيّر الطريق منذها.',
+        analogy_en: 'Picture a taxi driver who has not memorised the whole city and knows only that reaching this district means heading north at the junction. At the next junction another driver is asked. If a street closes everyone decides afresh with no central plan. And if someone gives you a handwritten note saying turn right and an official printed one saying left, you take the handwritten one because you trust whoever wrote it for you personally, even if they wrote it a year ago and the road has changed since.',
+        terms: [
+          { term: 'Routing Table', def_ar: 'جدول يحدد الخطوة التالية لكل شبكة وجهة.', def_en: 'A table setting the next hop for each destination network.' },
+          { term: 'Next Hop', def_ar: 'المُوجِّه التالي الذي تُسلَّم إليه الحزمة.', def_en: 'The next router the packet is handed to.' },
+          { term: 'Longest Prefix Match', def_ar: 'ترجيح المسار الأكثر تحديداً عند تعدد المطابق.', def_en: 'Preferring the most specific route when several match.' },
+          { term: 'Administrative Distance', def_ar: 'درجة الثقة بمصدر معلومة المسار.', def_en: 'The trust level of a route information source.' },
+          { term: 'Metric', def_ar: 'كلفة الطريق بحسب معيار البروتوكول.', def_en: 'Path cost by the protocol own measure.' }
+        ],
+        cards: [
+          { q_ar: 'أي مسار يفوز عند تطابق أكثر من واحد؟', q_en: 'Which route wins when several match?', a_ar: 'الأكثر تحديداً بقاعدة أطول بادئة مطابقة، والافتراضي أقلّها تحديداً فيأتي آخراً.', a_en: 'The most specific by the longest prefix match rule, and the default is least specific so it comes last.' },
+          { q_ar: 'ما فائدة المسار الافتراضي؟', q_en: 'What is a default route for?', a_ar: 'يغني عن معرفة كل شبكات الإنترنت: ما لا يُعرَف يُرسَل للمزوّد، فيبقى الجدول صغيراً.', a_en: 'It spares knowing every internet network: what is unknown goes to the provider, keeping the table small.' },
+          { q_ar: 'ما الفرق بين المسافة الإدارية والمقياس؟', q_en: 'Difference between administrative distance and metric?', a_ar: 'الأولى ثقة بمصدر المعلومة بين مصادر مختلفة، والثاني كلفة الطريق داخل المصدر الواحد.', a_en: 'The first is trust in the information source between sources; the second is path cost within one source.' },
+          { q_ar: 'لماذا يستعصي عطل مسار ثابت منسي على التشخيص؟', q_en: 'Why does a forgotten static route resist diagnosis?', a_ar: 'لأنه يهزم المسار الآلي الصحيح بصمت لثقة المُوجِّه بالمصدر اليدوي، فلا يشتكي شيء.', a_en: 'It silently defeats the correct dynamic route through the router trust in the manual source, so nothing complains.' }
+        ]
+      },
+      {
+        title_ar: 'التوجيه الثابت والديناميكي',
+        title_en: 'Static and Dynamic Routing',
+        lead_ar: 'الثابت يفعل ما أمرته بالضبط ولا يتكيّف مع عطل، والديناميكي يتكيّف ويكلّفك حركة وحساباً — والاختيار بينهما يحدده حجم الشبكة وتغيّرها.',
+        lead_en: 'Static routing does exactly what you told it and never adapts to a failure, while dynamic routing adapts and costs you traffic and computation, and network size and volatility decide between them.',
+        body_ar: [
+          'المسار الثابت يُكتَب يدوياً ويبقى كما كُتب حتى يغيّره إنسان. وميزته أنه لا يستهلك نطاقاً ولا معالجة ولا يمكن التلاعب به من الشبكة، وسلبيته أنه لا يعرف شيئاً عن عطل: لو سقط الطريق الذي يشير إليه ظلّ يشير إليه ويُسقِط الحزم بصمت.',
+          'والتوجيه الديناميكي يجعل المُوجِّهات تتبادل معلومات المسارات فتتعلّم من بعضها. فإن سقطت وصلة انتشر الخبر وأعاد الجميع حساب مساراتهم واستُخدم البديل بلا تدخل بشري. وثمنه حركة دورية بين المُوجِّهات ومعالجة ومساحة.',
+          'والمعيار العملي بسيط: عدد الشبكات ومعدل تغيّرها. فشبكة صغيرة ثابتة بثلاثة مواقع ومسارات لا تتغيّر تخدمها المسارات الثابتة تماماً. وشبكة بعشرات المواقع أو بمسارات بديلة يجب أن تُستخدم عند العطل تحتاج ديناميكياً — والإصرار على الثابت فيها يعني تعديلاً يدوياً في كل مُوجِّه عند كل تغيير.',
+          'والخلط بينهما شائع وصحيح: يُستخدم الديناميكي للشبكة الداخلية ويُضاف مسار ثابت افتراضي للخروج للإنترنت، لأن الخروج واحد لا يحتاج تعلّماً. ويُستخدم الثابت أيضاً لتثبيت مسار احتياطي بمسافة إدارية أعلى فلا يعمل إلا إن سقط الديناميكي.',
+          'وبروتوكولات التوجيه الديناميكي عائلتان. متجه المسافة: يخبر المُوجِّه جيرانه بما يعرف من شبكات وبعدها عنه، فيبني كل واحد صورته من كلام جيرانه لا من رؤية مباشرة. وهو بسيط وبطيء التقارب، وقد يصدّق معلومة قديمة فينشئ حلقة.',
+          'وحالة الوصلة: يعلن كل مُوجِّه حالة وصلاته للجميع، فيبني كل واحد خريطة كاملة للشبكة ويحسب أقصر طريق بنفسه. فيتقارب أسرع ويقاوم الحلقات لأن القرار مبني على خريطة لا على شائعة، وثمنه ذاكرة ومعالجة أكبر — ولهذا يسود في الشبكات المتوسطة والكبيرة.'
+        ],
+        body_en: [
+          'A static route is written by hand and stays as written until a human changes it. Its advantage is consuming no bandwidth or processing and being immune to manipulation from the network; its drawback is knowing nothing about a failure: if the path it points to collapses it keeps pointing there and silently drops packets.',
+          'Dynamic routing has routers exchange route information so they learn from one another. If a link fails the news spreads, everyone recalculates and the alternative is used with no human intervention. Its price is periodic traffic between routers plus processing and memory.',
+          'The practical criterion is simple: the number of networks and their rate of change. A small stable network of three sites with unchanging paths is served perfectly by static routes. A network of dozens of sites, or one with alternative paths that must be used on failure, needs dynamic routing, and insisting on static there means a manual edit on every router at every change.',
+          'Mixing them is common and correct: dynamic inside the network with a static default route added for internet egress, since there is one exit needing no learning. Static is also used to pin a backup path at a higher administrative distance so it activates only if the dynamic route falls.',
+          'Dynamic routing protocols form two families. Distance vector: a router tells its neighbours which networks it knows and how far they are, so each builds its picture from neighbour talk rather than direct sight. It is simple and slow to converge, and may believe stale information and create a loop.',
+          'Link state: each router advertises the state of its own links to everyone, so each builds a full map of the network and computes the shortest path itself. It converges faster and resists loops because decisions rest on a map rather than hearsay, at the price of more memory and processing, which is why it dominates medium and large networks.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'الثابت', 'الديناميكي'],
+          head_en: ['Aspect', 'Static', 'Dynamic'],
+          rows: [
+            ['التكيّف مع العطل', 'لا يتكيّف', 'يتكيّف تلقائياً'],
+            ['استهلاك الموارد', 'لا شيء', 'حركة ومعالجة'],
+            ['حجم الشبكة', 'صغيرة ثابتة', 'متوسطة وكبيرة'],
+            ['الجهد الإداري', 'يدوي عند كل تغيير', 'إعداد أولي ثم ذاتي'],
+            ['التعرّض', 'محصّن من الشبكة', 'يعتمد على معلومات واردة']
+          ]
+        },
+        keyPoints_ar: [
+          'الثابت لا يعرف العطل: يظل يشير للطريق الساقط ويُسقِط الحزم بصمت.',
+          'الديناميكي يتكيّف تلقائياً وثمنه حركة ومعالجة ومساحة.',
+          'المعيار: عدد الشبكات ومعدل تغيّرها، لا التفضيل الشخصي.',
+          'الخلط صحيح: ديناميكي داخلياً ومسار ثابت افتراضي للخروج.',
+          'متجه المسافة يبني صورته من كلام الجيران فيبطئ تقاربه وقد يُحدِث حلقة.',
+          'حالة الوصلة تبني خريطة كاملة فتتقارب أسرع وتقاوم الحلقات بذاكرة أكبر.'
+        ],
+        keyPoints_en: [
+          'Static knows no failure: it keeps pointing at the fallen path and drops packets silently.',
+          'Dynamic adapts automatically at the price of traffic, processing and memory.',
+          'The criterion is network count and rate of change rather than personal preference.',
+          'Mixing is correct: dynamic internally with a static default route for egress.',
+          'Distance vector builds its picture from neighbour talk so it converges slowly and may loop.',
+          'Link state builds a full map so it converges faster and resists loops at higher memory cost.'
+        ],
+        analogy_ar: 'تخيّل دليلاً مطبوعاً للطرق في درج سيارتك: دقيق يوم طُبع، ولا يعرف أن جسراً أُغلق أمس فيرسلك إليه بثقة تامة. وتخيّل بديله تطبيقاً يستقبل أخبار الطرق لحظياً فيحوّلك عند الإغلاق. والأول يكفي لو كنت تقود بين بيتك وعملك في طريق واحد لا يتغيّر. والثاني ضروري لو كنت تجوب مدينة كبيرة كل يوم — وثمنه أنه يستهلك بطاريتك وإنترنتك باستمرار.',
+        analogy_en: 'Picture a printed road atlas in your glovebox: accurate the day it was printed and unaware a bridge closed yesterday, so it sends you there with complete confidence. Now picture an app receiving live road news and diverting you at the closure. The first suffices if you drive one unchanging route between home and work. The second is necessary if you cross a large city daily, at the price of constantly consuming your battery and data.',
+        terms: [
+          { term: 'Static Route', def_ar: 'مسار يُكتَب يدوياً ولا يتغيّر إلا بتدخل إنسان.', def_en: 'A route written by hand and changed only by a human.' },
+          { term: 'Convergence', def_ar: 'اتفاق كل المُوجِّهات على صورة واحدة بعد تغيّر.', def_en: 'All routers agreeing on one picture after a change.' },
+          { term: 'Distance Vector', def_ar: 'عائلة تبني صورتها من معلومات الجيران.', def_en: 'A family building its picture from neighbour information.' },
+          { term: 'Link State', def_ar: 'عائلة يعلن فيها كل مُوجِّه حالة وصلاته للجميع.', def_en: 'A family where each router advertises its link states to all.' },
+          { term: 'Floating Static', def_ar: 'مسار ثابت احتياطي بمسافة إدارية أعلى.', def_en: 'A backup static route at a higher administrative distance.' }
+        ],
+        cards: [
+          { q_ar: 'ما أخطر عيوب المسار الثابت؟', q_en: 'What is the worst flaw of a static route?', a_ar: 'أنه لا يعرف العطل: يظل يشير للطريق الساقط ويُسقِط الحزم بصمت بلا إنذار.', a_en: 'It knows no failure: it keeps pointing at the fallen path and silently drops packets with no warning.' },
+          { q_ar: 'ما المعيار العملي للاختيار بينهما؟', q_en: 'What is the practical criterion between them?', a_ar: 'عدد الشبكات ومعدل تغيّرها: صغيرة ثابتة تكفيها المسارات اليدوية، وكبيرة متغيّرة تحتاج ديناميكياً.', a_en: 'Network count and rate of change: small and stable suits manual routes while large and changing needs dynamic.' },
+          { q_ar: 'كيف يُخلَط النوعان خلطاً صحيحاً؟', q_en: 'How are the two correctly mixed?', a_ar: 'ديناميكي داخل الشبكة ومسار ثابت افتراضي للخروج، ومسار ثابت احتياطي بمسافة أعلى.', a_en: 'Dynamic inside the network with a static default for egress, plus a backup static at a higher distance.' },
+          { q_ar: 'لماذا تقاوم عائلة حالة الوصلة الحلقات؟', q_en: 'Why does the link state family resist loops?', a_ar: 'لأن كل مُوجِّه يبني خريطة كاملة ويحسب الطريق بنفسه، فالقرار على خريطة لا على كلام جيران.', a_en: 'Each router builds a full map and computes the path itself, so decisions rest on a map rather than neighbour talk.' }
+        ]
+      },
+      {
+        title_ar: 'بروتوكولات التوجيه: OSPF وEIGRP وBGP',
+        title_en: 'Routing Protocols: OSPF, EIGRP and BGP',
+        lead_ar: 'اثنان منها يوجّهان داخل مؤسسة واحدة، والثالث يوجّه بين المؤسسات ويقرر بالسياسة لا بأقصر طريق — وهذا الفرق أهم من كل تفاصيلها.',
+        lead_en: 'Two of them route inside one organisation while the third routes between organisations and decides by policy rather than shortest path, and that difference matters more than all their details.',
+        body_ar: [
+          'القسمة الكبرى في البروتوكولات: داخلية تعمل ضمن نظام مستقل واحد أي شبكة تحت إدارة واحدة، وخارجية تعمل بين الأنظمة المستقلة. وهدف الداخلية إيجاد أفضل طريق تقنياً، وهدف الخارجية تنفيذ سياسة الاتصال بين الجهات — وهو هدف مختلف كلياً.',
+          'وبروتوكول أقصر مسار أولاً من عائلة حالة الوصلة: يبني كل مُوجِّه خريطة كاملة للمنطقة ويحسب أقصر طريق بمقياس كلفة يرتبط بسعة الوصلة، فالوصلة الأسرع كلفتها أقل. وهو مفتوح المعيار فيعمل بين أجهزة مصنّعين مختلفين، وهذا سبب انتشاره الأوسع.',
+          'ويقسّم الشبكة مناطق تلتقي كلها بمنطقة أساسية. وفائدة التقسيم أن تغيّراً داخل منطقة لا يُجبِر كل مُوجِّهات الشبكة على إعادة الحساب، فيبقى الأثر محلياً. ولهذا يظهر التقسيم ضرورياً كلما كبرت الشبكة — وشبكة كبيرة بمنطقة واحدة تعيد الحساب كاملاً عند كل تغيّر صغير.',
+          'وبروتوكول التوجيه المحسّن من الشركة المصنّعة له خصوصية: مقياسه مركّب يجمع عرض النطاق والتأخير لا سعة الوصلة وحدها، ويحتفظ بمسار احتياطي محسوب مسبقاً فينتقل إليه فوراً عند العطل بلا إعادة حساب. فتقاربه سريع جداً، وقيده أنه ارتبط تاريخياً بمصنّع بعينه فلا يصلح لبيئة مختلطة.',
+          'وبروتوكول البوابة الحدودية هو ما يشغّل الإنترنت: يربط الأنظمة المستقلة ببعضها ويحمل مسارات الإنترنت كاملة. وهو من عائلة متجه المسار: يحمل مع كل مسار قائمة الأنظمة التي يمر بها، فيمنع الحلقات بأن يرفض مساراً يرى نفسه في قائمته.',
+          'وقراره ليس أقصر طريق وإنما سياسة: قد تختار جهة مساراً أطول لأن كلفته التجارية أقل أو لأن اتفاقها مع ذلك المزوّد أفضل. ولهذا يبطئ تقاربه عمداً ويوصف بأنه بروتوكول علاقات لا بروتوكول مسافات — وخطأ في إعلانه قد يعطّل خدمات عالمية لأن الإنترنت كلها تصدّق ما تعلنه الجهات عن نفسها.'
+        ],
+        body_en: [
+          'The great division among protocols: interior ones operating within a single autonomous system, meaning a network under one administration, and exterior ones operating between autonomous systems. The interior aim is finding the technically best path while the exterior aim is enacting connection policy between parties, an entirely different goal.',
+          'The open shortest path first protocol belongs to the link state family: each router builds a full map of its area and computes the shortest path by a cost metric tied to link capacity, so a faster link costs less. It is an open standard so it works across different manufacturers equipment, and that is why it spread widest.',
+          'It divides the network into areas that all meet at a backbone area. The value of that division is that a change inside one area does not force every router in the network to recalculate, keeping the effect local. So division becomes necessary as a network grows, and a large network in a single area recalculates fully at every small change.',
+          'The enhanced protocol from a specific manufacturer has a peculiarity: its metric is composite, combining bandwidth and delay rather than link capacity alone, and it keeps a precomputed backup path so it switches instantly on failure with no recalculation. Its convergence is very fast, and its constraint is a historical tie to one vendor, so it does not suit a mixed environment.',
+          'The border gateway protocol is what runs the internet: it links autonomous systems and carries the full internet routing table. It belongs to the path vector family: each route carries the list of systems it traverses, preventing loops by refusing any route in whose list it sees itself.',
+          'Its decision is not the shortest path but policy: a party may choose a longer path because its commercial cost is lower or because its agreement with that provider is better. So its convergence is deliberately slow and it is described as a protocol of relationships rather than distances, and an error in its announcements can take down global services because the whole internet believes what parties announce about themselves.'
+        ],
+        table: {
+          head_ar: ['البروتوكول', 'عائلته', 'نطاقه', 'أساس قراره'],
+          head_en: ['Protocol', 'Its family', 'Its scope', 'Decision basis'],
+          rows: [
+            ['OSPF', 'حالة الوصلة', 'داخل النظام المستقل', 'كلفة مرتبطة بالسعة'],
+            ['EIGRP', 'متقدمة مركّبة', 'داخل النظام المستقل', 'نطاق وتأخير معاً'],
+            ['BGP', 'متجه المسار', 'بين الأنظمة المستقلة', 'سياسة لا أقصر طريق']
+          ]
+        },
+        keyPoints_ar: [
+          'الداخلية تبحث عن أفضل طريق تقنياً، والخارجية تنفّذ سياسة اتصال.',
+          'أقصر مسار أولاً مفتوح المعيار فيعمل بين مصنّعين مختلفين.',
+          'تقسيم المناطق يحصر أثر التغيّر محلياً بدل إعادة حساب الشبكة كلها.',
+          'المقياس المركّب يجمع النطاق والتأخير، والمسار الاحتياطي المحسوب يسرّع التعافي.',
+          'بروتوكول الحدود يمنع الحلقات برفض مسار يرى نفسه في قائمته.',
+          'قراره سياسة لا مسافة، وخطأ في إعلانه قد يعطّل خدمات عالمية.'
+        ],
+        keyPoints_en: [
+          'Interior protocols seek the technically best path while exterior ones enact connection policy.',
+          'Open shortest path first is an open standard so it works across manufacturers.',
+          'Area division confines a change effect locally instead of recalculating the whole network.',
+          'A composite metric combines bandwidth and delay, and a precomputed backup speeds recovery.',
+          'The border protocol prevents loops by refusing a route in whose list it sees itself.',
+          'Its decision is policy rather than distance, and an announcement error can take down global services.'
+        ],
+        analogy_ar: 'تخيّل شركة شحن كبيرة. داخل المدينة يختار سائقوها أقصر طريق زمنياً وهذي البروتوكولات الداخلية. أما بين الدول فالقرار ليس أقصر مسافة: قد تُشحَن البضاعة عبر ميناء أبعد لأن رسومه أقل أو لأن العقد معه أفضل، وقد يُتجنَّب طريق قصير لخلاف تجاري. وهذا بروتوكول الحدود: يقرر بالعلاقات والاتفاقيات لا بالمسطرة على الخريطة — ولهذا خطؤه يوقف تجارة قارة لا شاحنة واحدة.',
+        analogy_en: 'Picture a large shipping company. Inside the city its drivers pick the shortest route by time, and those are the interior protocols. Between countries the decision is not the shortest distance: goods may ship through a farther port because its fees are lower or its contract is better, and a short route may be avoided over a commercial dispute. That is the border protocol: deciding by relationships and agreements rather than a ruler on the map, which is why its error halts a continent trade rather than one lorry.',
+        terms: [
+          { term: 'Autonomous System', def_ar: 'شبكة تحت إدارة واحدة لها سياسة توجيه موحّدة.', def_en: 'A network under one administration with a unified routing policy.' },
+          { term: 'Backbone Area', def_ar: 'المنطقة الأساسية التي تلتقي بها بقية المناطق.', def_en: 'The core area where all other areas meet.' },
+          { term: 'Composite Metric', def_ar: 'مقياس يجمع أكثر من عامل كالنطاق والتأخير.', def_en: 'A metric combining more than one factor such as bandwidth and delay.' },
+          { term: 'Path Vector', def_ar: 'حمل قائمة الأنظمة التي يمر بها المسار.', def_en: 'Carrying the list of systems a route traverses.' },
+          { term: 'Route Policy', def_ar: 'تفضيل مسار لأسباب تجارية أو تعاقدية لا تقنية.', def_en: 'Preferring a route for commercial or contractual rather than technical reasons.' }
+        ],
+        cards: [
+          { q_ar: 'ما القسمة الكبرى بين بروتوكولات التوجيه؟', q_en: 'What is the great division among routing protocols?', a_ar: 'داخلية تعمل ضمن نظام مستقل وتبحث عن أفضل طريق تقنياً، وخارجية بين الأنظمة تنفّذ سياسة.', a_en: 'Interior ones within an autonomous system seeking the best technical path, and exterior ones between systems enacting policy.' },
+          { q_ar: 'ما فائدة تقسيم المناطق؟', q_en: 'What is area division for?', a_ar: 'يحصر أثر أي تغيّر داخل منطقته بدل إجبار كل مُوجِّهات الشبكة على إعادة الحساب.', a_en: 'It confines a change effect to its own area instead of forcing every router to recalculate.' },
+          { q_ar: 'كيف يمنع بروتوكول الحدود الحلقات؟', q_en: 'How does the border protocol prevent loops?', a_ar: 'بحمل قائمة الأنظمة التي مر بها المسار، فيرفض أي مسار يرى نفسه في قائمته.', a_en: 'Each route carries the list of systems it traversed, so it refuses any route in whose list it sees itself.' },
+          { q_ar: 'لماذا لا يختار بروتوكول الحدود أقصر طريق؟', q_en: 'Why does the border protocol not pick the shortest path?', a_ar: 'لأن قراره سياسة: قد يُفضَّل مسار أطول لكلفة تجارية أقل أو اتفاق أفضل مع مزوّد.', a_en: 'Its decision is policy: a longer path may be preferred for lower commercial cost or a better provider agreement.' }
+        ]
+      }
     ]
   }
 };
