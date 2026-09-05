@@ -10823,6 +10823,327 @@ export const sectionGuides = {
           { q_ar: 'ما أثر الفصل بين المهام؟', q_en: 'What does segregation of duties achieve?', a_ar: 'يجعل الاحتيال الداخلي يحتاج تواطؤ شخصين لا قرار واحد، بكلفة إجرائية زهيدة.', a_en: 'It makes internal fraud require two people colluding rather than one deciding, at trivial procedural cost.' }
         ]
       }
+    ],
+
+    // ─────────── التقنية المالية المتقدمة ───────────
+    6: [
+      {
+        title_ar: 'الذكاء الاصطناعي في التمويل',
+        title_en: 'Artificial Intelligence in Finance',
+        lead_ar: 'النموذج في القرار المالي يخضع لشرط زائد عن الدقة: أن يكون قابلاً للشرح — فالعميل المرفوض من حقه أن يعرف لماذا.',
+        lead_en: 'A model in a financial decision faces a requirement beyond accuracy: explainability, because a rejected customer has the right to know why.',
+        body_ar: [
+          'دخل الذكاء الاصطناعي التمويل من أربعة أبواب عملية: تقييم الجدارة الائتمانية، وكشف الاحتيال، وخدمة العملاء، وتحليل المستندات والعقود. وأنضجها الثاني لأن الأنماط فيه كثيرة والبيانات وفيرة والقرار قابل للمراجعة السريعة.',
+          'وميزته في الائتمان أنه يقيّم من لا سجل ائتماني له بمؤشرات أوسع، فيوسّع الشمول المالي فعلياً. لكنه يحمل الخطر الأشد في المجال: التحيّز. فنموذج يتعلّم من قرارات ماضية كانت متحيّزة يعيد إنتاج التحيّز بدقة أعلى وبغطاء حسابي يبدو محايداً.',
+          'والتحيّز لا يُعالَج بحذف المتغيّر الحساس من المدخلات: فالنموذج يستنتجه من متغيّرات بديلة — كالحي السكني أو نوع المدرسة أو نمط الإنفاق. والعلاج فحص المخرجات بحسب الفئات وقياس فروق معدلات القبول، لا تنظيف المدخلات وحده.',
+          'وقابلية الشرح شرط تنظيمي في القرارات الائتمانية لا تحسين اختياري: العميل المرفوض من حقه أن يعرف السبب، والمنظّم من حقه أن يفهم كيف يقرر النموذج. ولهذا يُفضَّل في هذا الموضع نموذج أبسط قابل للتفسير على نموذج أعقد بدقة أعلى قليلاً لا يمكن شرح قراره.',
+          'وانحراف النموذج مسألة تشغيلية دائمة: النموذج يتعلّم من الماضي والسلوك يتغيّر، فتتدهور دقته بصمت بلا أي خطأ برمجي. ولهذا تُراقَب بيانات المدخلات ومعدلات النتائج باستمرار، ويُعاد التدريب دورياً — والنموذج الذي لم يُراجَع منذ سنتين يعمل على عالم لم يعد قائماً.',
+          'وحوكمة النماذج ركن أخير: توثيق ما بُني عليه النموذج، ومن اعتمده، وما حدوده المعلنة، ومن يراقب أداءه، ومتى يُوقَف. والقرار المالي يبقى مسؤولية المؤسسة لا النموذج — فلا يصح أن يكون الجواب عن قرار خاطئ أن النظام قرر ذلك.'
+        ],
+        body_en: [
+          'Artificial intelligence entered finance through four practical doors: creditworthiness assessment, fraud detection, customer service, and document and contract analysis. The second is the most mature because its patterns are many, its data abundant and its decisions quickly reviewable.',
+          'Its advantage in credit is assessing those with no credit record through broader indicators, genuinely widening financial inclusion. Yet it carries the gravest risk in the field: bias. A model learning from past decisions that were biased reproduces that bias with higher precision under a computational cover that looks neutral.',
+          'Bias is not cured by deleting the sensitive variable from the inputs: the model infers it from proxy variables such as neighbourhood, school type or spending pattern. The remedy is examining outputs by group and measuring differences in approval rates, rather than cleaning inputs alone.',
+          'Explainability is a regulatory requirement in credit decisions rather than an optional refinement: a rejected customer has the right to know the reason and a regulator has the right to understand how the model decides. So a simpler interpretable model is preferred here over a more complex one slightly more accurate whose decision cannot be explained.',
+          'Model drift is a permanent operational matter: the model learned from the past while behaviour changes, so its accuracy degrades silently with no programming error at all. Input data and outcome rates are therefore monitored continuously and retraining is periodic, and a model unreviewed for two years operates on a world that no longer exists.',
+          'Model governance is a final pillar: documenting what the model was built on, who approved it, its declared limits, who monitors its performance and when it is withdrawn. The financial decision remains the institution responsibility rather than the model, so the answer to a wrong decision may never be that the system decided it.'
+        ],
+        table: {
+          head_ar: ['المسألة', 'الخطأ الشائع', 'المعالجة الصحيحة'],
+          head_en: ['Issue', 'Common error', 'Correct remedy'],
+          rows: [
+            ['التحيّز', 'حذف المتغيّر الحساس', 'فحص المخرجات بحسب الفئات'],
+            ['قابلية الشرح', 'تفضيل الدقة دائماً', 'نموذج أبسط قابل للتفسير'],
+            ['الانحراف', 'افتراض ثبات الأداء', 'مراقبة مستمرة وإعادة تدريب'],
+            ['المسؤولية', 'إحالتها للنظام', 'تبقى على المؤسسة كاملة']
+          ]
+        },
+        keyPoints_ar: [
+          'أنضج التطبيقات كشف الاحتيال لوفرة الأنماط وسرعة مراجعة القرار.',
+          'التقييم بمؤشرات أوسع يوسّع الشمول ويحمل خطر التحيّز الأشد.',
+          'حذف المتغيّر الحساس لا يزيل التحيّز لأن النموذج يستنتجه من بدائل.',
+          'العلاج فحص المخرجات بحسب الفئات وقياس فروق معدلات القبول.',
+          'قابلية الشرح شرط تنظيمي، فيُفضَّل الأبسط المفسَّر على الأدق الغامض.',
+          'المسؤولية تبقى على المؤسسة، ولا يصح أن يكون الجواب أن النظام قرر.'
+        ],
+        keyPoints_en: [
+          'Fraud detection is the most mature application for its abundant patterns and reviewable decisions.',
+          'Assessment on broader indicators widens inclusion and carries the gravest bias risk.',
+          'Deleting the sensitive variable does not remove bias because the model infers it from proxies.',
+          'The remedy is examining outputs by group and measuring approval rate differences.',
+          'Explainability is a regulatory requirement, so the simpler explainable model is preferred.',
+          'Responsibility stays with the institution; the answer may never be that the system decided.'
+        ],
+        analogy_ar: 'تخيّل موظف قروض تدرّب بمشاهدة قرارات موظف سابق لعشر سنوات. لو كان السابق يرفض سكان حي معيّن بلا مبرر، لتعلّم الجديد ذلك بلا أن يخبره أحد ولا أن يعرف هو أنه يفعله. ولو منعته من السؤال عن الحي، لسأل عن أقرب فرع للعميل — فوصل للنتيجة نفسها بطريق آخر. ولن تكتشف ذلك بمراجعة أسئلته، وإنما بمقارنة معدلات قبوله بين الأحياء.',
+        analogy_en: 'Picture a loan officer trained by watching ten years of a predecessor decisions. If the predecessor rejected residents of one district for no reason, the new one learns that with nobody telling them and without knowing they do it. Forbid them from asking about the district and they ask which branch is nearest, reaching the same result by another road. You will not discover that by reviewing their questions but by comparing their approval rates across districts.',
+        terms: [
+          { term: 'Model Bias', def_ar: 'إعادة إنتاج تحيّز الماضي بغطاء حسابي محايد الشكل.', def_en: 'Reproducing past bias under a neutral-looking computational cover.' },
+          { term: 'Proxy Variable', def_ar: 'متغيّر يستنتج منه النموذج ما حُذِف من مدخلاته.', def_en: 'A variable from which a model infers what was removed from inputs.' },
+          { term: 'Explainability', def_ar: 'قدرة على بيان سبب قرار النموذج للعميل والمنظّم.', def_en: 'The ability to state a model decision reason to customer and regulator.' },
+          { term: 'Model Drift', def_ar: 'تدهور الدقة بصمت لتغيّر السلوك عن بيانات التدريب.', def_en: 'Silent accuracy decay as behaviour departs from training data.' },
+          { term: 'Model Governance', def_ar: 'توثيق بناء النموذج واعتماده وحدوده ومن يراقبه.', def_en: 'Documenting a model build, approval, limits and monitoring.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا يكفي حذف المتغيّر الحساس؟', q_en: 'Why is deleting the sensitive variable insufficient?', a_ar: 'لأن النموذج يستنتجه من متغيّرات بديلة كالحي أو نمط الإنفاق، فيصل للنتيجة نفسها.', a_en: 'The model infers it from proxies such as neighbourhood or spending pattern and reaches the same result.' },
+          { q_ar: 'كيف يُكشَف التحيّز فعلياً؟', q_en: 'How is bias actually detected?', a_ar: 'بفحص المخرجات بحسب الفئات وقياس فروق معدلات القبول، لا بمراجعة المدخلات وحدها.', a_en: 'By examining outputs by group and measuring approval rate differences rather than reviewing inputs alone.' },
+          { q_ar: 'لماذا يُفضَّل نموذج أبسط في قرار ائتماني؟', q_en: 'Why prefer a simpler model in a credit decision?', a_ar: 'لأن قابلية الشرح شرط تنظيمي: العميل المرفوض من حقه معرفة السبب والمنظّم من حقه فهم القرار.', a_en: 'Explainability is a regulatory requirement: a rejected customer may know the reason and a regulator may understand the decision.' },
+          { q_ar: 'ما انحراف النموذج ولماذا يخطر؟', q_en: 'What is model drift and why is it dangerous?', a_ar: 'تدهور دقته بصمت لتغيّر السلوك بلا أي خطأ برمجي، فيعمل على عالم لم يعد قائماً.', a_en: 'Silent accuracy decay as behaviour changes with no programming error, so it operates on a world that no longer exists.' }
+        ]
+      },
+      {
+        title_ar: 'التمويل اللامركزي',
+        title_en: 'Decentralised Finance',
+        lead_ar: 'التمويل اللامركزي يعيد بناء خدمات مالية معروفة بعقود بلا وسيط — فيكسب شفافية كاملة ويخسر كل شبكة أمان بُنيت عبر قرن.',
+        lead_en: 'Decentralised finance rebuilds familiar financial services as contracts with no intermediary, gaining complete transparency and losing every safety net built over a century.',
+        body_ar: [
+          'التمويل اللامركزي إعادة بناء خدمات مالية معروفة — إقراض واقتراض ومبادلة وتأمين — كعقود ذكية تعمل بلا وسيط. وميزته الأوضح شفافية تامة: القواعد مكتوبة في كود منشور، وكل معاملة مرئية للجميع، ولا يستطيع أحد تغيير الشروط بقرار إداري.',
+          'وأشهر تطبيقاته الإقراض بضمان مفرط: يودع المقترض ضماناً أعلى من قيمة القرض. وسببه أنه لا توجد هوية ولا سجل ائتماني ولا محكمة تُلاحق المتعثّر، فالضمان وحده هو ما يحمي المقرض. ونتيجته أن من لا يملك أصلاً لا يستطيع الاقتراض — أي عكس الشمول المالي تماماً.',
+          'والتصفية آلية قاسية بلا تفاوض: لو انخفضت قيمة الضمان تحت حدّ محدد، بِيع تلقائياً بلا إشعار ولا مهلة. ولا يوجد موظف يمدّد ولا لجنة تنظر في الظرف — والعقد ينفّذ الشرط في اللحظة التي يتحقق فيها.',
+          'وصانع السوق الآلي بديل عن دفتر الأوامر: مجمّع سيولة يودع فيه الناس أصولاً وتُحسَب الأسعار بمعادلة رياضية بحسب النسب في المجمّع. وهذا يتيح التبادل بلا طرف مقابل ينتظر، ويولّد ظاهرة الخسارة غير الدائمة: من يودع في مجمّع قد يخرج بقيمة أقل مما لو احتفظ بأصوله بلا إيداع.',
+          'ومخاطره تختلف عن المخاطر المالية التقليدية: ثغرة في عقد ذكي، وتلاعب بوسيط بيانات الأسعار، وتقلّب الضمانات، وتركّز صلاحية الإدارة في مفاتيح قليلة رغم شعار اللامركزية. وهذي الأخيرة أكثر شيوعاً مما يُظَن، ويُكشَف بفحص من يملك صلاحية تعديل العقود.',
+          'وغياب شبكات الأمان هو الفرق الجوهري: لا تأمين ودائع، ولا جهة استرداد، ولا مقرض أخير، ولا محكمة تنظر في خطأ. والتقييم الصادق أن يُنظَر لكل خدمة بسؤال: ما الذي كان يحميك في النظام التقليدي وأين ذهب هنا؟ فالشفافية مكسب حقيقي، وثمنها أن الخطأ نهائي وشخصي بالكامل.'
+        ],
+        body_en: [
+          'Decentralised finance rebuilds familiar financial services, lending, borrowing, exchange and insurance, as smart contracts operating with no intermediary. Its clearest advantage is complete transparency: rules written in published code, every transaction visible to all, and nobody able to change terms by administrative decision.',
+          'Its best-known application is over-collateralised lending: a borrower deposits collateral worth more than the loan. The reason is that there is no identity, no credit record and no court to pursue a defaulter, so collateral alone protects the lender. The consequence is that whoever owns no asset cannot borrow, the exact opposite of financial inclusion.',
+          'Liquidation is a harsh automatic mechanism with no negotiation: if collateral value falls below a set threshold it is sold automatically with no notice and no grace period. No officer grants an extension and no committee weighs the circumstance, and the contract executes the condition the moment it is met.',
+          'An automated market maker replaces the order book: a liquidity pool where people deposit assets and prices are computed by a mathematical formula from the ratios in the pool. This enables exchange with no counterparty waiting, and generates impermanent loss: whoever deposits in a pool may exit with less value than if they had simply held their assets.',
+          'Its risks differ from traditional financial risks: a smart contract bug, manipulation of the price oracle, collateral volatility, and administrative authority concentrated in a few keys despite the decentralisation slogan. That last is more common than assumed and is revealed by checking who holds the power to alter the contracts.',
+          'The absence of safety nets is the fundamental difference: no deposit insurance, no chargeback body, no lender of last resort, and no court to weigh an error. An honest assessment views every service by asking what protected you in the traditional system and where it went here. Transparency is a genuine gain, and its price is that error is final and entirely personal.'
+        ],
+        table: {
+          head_ar: ['الحماية', 'في النظام التقليدي', 'في التمويل اللامركزي'],
+          head_en: ['Protection', 'Traditional system', 'Decentralised finance'],
+          rows: [
+            ['تأمين الودائع', 'موجود بحدود معلنة', 'غير موجود'],
+            ['استرداد المعاملة', 'ممكن بشروط', 'مستحيل'],
+            ['مهلة عند التعثّر', 'تفاوض ولجان', 'تصفية آلية فورية'],
+            ['جهة نزاع', 'محكمة أو منظّم', 'لا توجد'],
+            ['شفافية القواعد', 'محدودة', 'كاملة في كود منشور']
+          ]
+        },
+        keyPoints_ar: [
+          'الشفافية مكسب حقيقي: القواعد في كود منشور والمعاملات مرئية للجميع.',
+          'الإقراض بضمان مفرط لغياب الهوية والملاحقة، فمن لا يملك لا يقترض.',
+          'التصفية آلية بلا إشعار ولا مهلة ولا نظر في الظرف.',
+          'الخسارة غير الدائمة: المودع في مجمّع قد يخرج بأقل مما لو احتفظ.',
+          'تركّز صلاحية التعديل في مفاتيح قليلة أشيع مما يُظَن رغم الشعار.',
+          'اسألي: ما الذي كان يحميك تقليدياً وأين ذهب هنا؟'
+        ],
+        keyPoints_en: [
+          'Transparency is a genuine gain: rules in published code and transactions visible to all.',
+          'Lending is over-collateralised for lack of identity and recourse, so the assetless cannot borrow.',
+          'Liquidation is automatic with no notice, no grace and no weighing of circumstance.',
+          'Impermanent loss: a pool depositor may exit with less than if they had simply held.',
+          'Concentrated alteration authority in few keys is commoner than assumed despite the slogan.',
+          'Ask what protected you traditionally and where it went here.'
+        ],
+        analogy_ar: 'تخيّل سوقاً بلا إدارة ولا شرطة، قواعده مكتوبة على جدار يراه الجميع وتنفّذها آلات. لا أحد يستطيع تغيير القاعدة سراً — وهذي ميزة حقيقية. وفي المقابل: لو أخطأت في العنوان فلا مكتب مفقودات، ولو انخفضت قيمة ما رهنته بيع في الثانية بلا أن يتصل بك أحد، ولو أفلست فلا صندوق يعوّضك. السوق شفاف تماماً وقاسٍ تماماً، وكلاهما نتيجة الغياب نفسه.',
+        analogy_en: 'Picture a market with no management and no police, its rules written on a wall everyone sees and enforced by machines. Nobody can change a rule in secret, which is a genuine advantage. In return: mistake an address and there is no lost property office, let your pledged value fall and it sells within a second with nobody calling you, and go bankrupt and no fund compensates you. The market is entirely transparent and entirely harsh, and both follow from the same absence.',
+        terms: [
+          { term: 'Over-collateralisation', def_ar: 'إيداع ضمان أعلى من قيمة القرض لغياب الملاحقة.', def_en: 'Depositing collateral worth more than the loan for lack of recourse.' },
+          { term: 'Liquidation', def_ar: 'بيع الضمان آلياً عند هبوطه تحت حدّ محدد.', def_en: 'Automatically selling collateral when it falls below a threshold.' },
+          { term: 'Liquidity Pool', def_ar: 'مجمّع أصول تُحسَب أسعاره بمعادلة لا بدفتر أوامر.', def_en: 'An asset pool priced by a formula rather than an order book.' },
+          { term: 'Impermanent Loss', def_ar: 'خروج المودع بقيمة أقل مما لو احتفظ بأصوله.', def_en: 'A depositor exiting with less value than simply holding.' },
+          { term: 'Admin Key', def_ar: 'مفتاح يملك صلاحية تعديل العقود رغم شعار اللامركزية.', def_en: 'A key holding contract-alteration power despite the decentralisation slogan.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يشترط الإقراض ضماناً مفرطاً؟', q_en: 'Why does lending require over-collateralisation?', a_ar: 'لغياب الهوية والسجل الائتماني والمحكمة، فالضمان وحده ما يحمي المقرض من التعثّر.', a_en: 'For lack of identity, credit record and court, so collateral alone protects the lender from default.' },
+          { q_ar: 'ما نتيجة هذا الشرط على الشمول المالي؟', q_en: 'What does that condition mean for inclusion?', a_ar: 'أن من لا يملك أصلاً لا يستطيع الاقتراض، وهو عكس الشمول المالي تماماً.', a_en: 'Whoever owns no asset cannot borrow, the exact opposite of financial inclusion.' },
+          { q_ar: 'ما الخسارة غير الدائمة؟', q_en: 'What is impermanent loss?', a_ar: 'أن يخرج المودع في مجمّع سيولة بقيمة أقل مما لو احتفظ بأصوله بلا إيداع أصلاً.', a_en: 'A liquidity pool depositor exiting with less value than if they had simply held their assets.' },
+          { q_ar: 'ما السؤال الصادق لتقييم أي خدمة لامركزية؟', q_en: 'What is the honest question for judging a decentralised service?', a_ar: 'ما الذي كان يحميك في النظام التقليدي وأين ذهب هنا؟ فالشفافية مكسب وثمنها أن الخطأ نهائي.', a_en: 'What protected you in the traditional system and where did it go here? Transparency is a gain whose price is that error is final.' }
+        ]
+      },
+      {
+        title_ar: 'التمويل المدمج',
+        title_en: 'Embedded Finance',
+        lead_ar: 'التمويل المدمج ينقل الخدمة من مكان تذهب إليه إلى لحظة أنت فيها — والسؤال الذي يحسم سلامته: من يتحمّل المخاطرة حين يتعثّر العميل؟',
+        lead_en: 'Embedded finance moves the service from a place you go to a moment you are already in, and the question that settles its soundness is who bears the risk when a customer defaults.',
+        body_ar: [
+          'التمويل المدمج تقديم خدمة مالية داخل تطبيق غير مالي في لحظة الحاجة: تقسيط عند الشراء، وتمويل للتاجر داخل منصة بيعه، وتأمين عند الحجز، ومحفظة داخل تطبيق توصيل. والمنطق أن قرار الشراء والحاجة للتمويل يقعان في اللحظة نفسها.',
+          'وما مكّنه بنية مصرفية كخدمة: مؤسسات مرخَّصة تبيع القدرة المصرفية عبر واجهات برمجية، فتستطيع منصة غير مالية إطلاق منتج مالي بلا ترخيص ولا نظام أساسي. فصار حاجز الدخول أسابيع من التكامل بدل سنوات من التأسيس.',
+          'والسؤال الحاسم في أي ترتيب: من يتحمّل مخاطرة الائتمان؟ فقد تتحمّلها المؤسسة المرخَّصة، وقد تتحمّلها المنصة نفسها، وقد تُقسَّم. وهذا يحدد من يخسر عند موجة تعثّر — والمنصة التي أطلقت تمويلاً بلا فهم واضح لموقعها من هذا السؤال قد تكتشف موقعها في أول دورة سيئة.',
+          'ونموذج الشراء الآن والدفع لاحقاً أشهر تطبيقاته وأكثرها إثارة للنقاش. وقيمته للتاجر مثبتة: ارتفاع معدل إتمام الشراء ومتوسط قيمة السلة. والقلق التنظيمي أنه ائتمان لا يظهر أحياناً في السجل الائتماني، فيتراكم على عميل من عدة مزوّدين بلا أن يرى أحدهم الصورة كاملة.',
+          'ومسؤولية العرض جزء من التصميم لا من التسويق: عرض التقسيط في لحظة الحماس الشرائي يستغل انحيازاً معرفياً حقيقياً. والتصميم المسؤول يُظهِر الكلفة الكاملة والالتزام الشهري بوضوح مساوٍ لوضوح السعر المجزّأ، لا في صفحة شروط منفصلة.',
+          'ومن يبني تمويلاً مدمجاً يحتاج قدرات لم تكن في نشاطه الأصلي: تقييم ائتماني، وتحصيل، ومعالجة شكاوى، والتزام تنظيمي. وأكثر ما يُستهان به التحصيل: المنصة التي أتقنت البيع قد تجد نفسها فجأة في عمل مطالبة المتعثّرين، وهو عمل مختلف كلياً بمخاطر سمعة مباشرة على علامتها الأصلية.'
+        ],
+        body_en: [
+          'Embedded finance delivers a financial service inside a non-financial application at the moment of need: instalments at purchase, merchant financing inside a sales platform, insurance at booking, a wallet inside a delivery app. The logic is that the purchase decision and the financing need occur at the same instant.',
+          'What enabled it is banking as a service: licensed institutions selling banking capability through APIs, so a non-financial platform can launch a financial product with no licence and no core system. The entry barrier became weeks of integration rather than years of establishment.',
+          'The decisive question in any arrangement: who bears the credit risk? It may sit with the licensed institution, with the platform itself, or be shared. That determines who loses in a wave of defaults, and a platform that launched financing without clearly understanding its position on this question may discover that position in the first bad cycle.',
+          'Buy now pay later is its best-known and most debated application. Its value to merchants is proven: higher checkout completion and higher average basket value. The regulatory concern is that it is credit sometimes invisible in the credit record, so it accumulates on one customer across several providers with none of them seeing the full picture.',
+          'Responsibility in presentation is part of the design rather than of marketing: offering instalments in a moment of purchasing enthusiasm exploits a real cognitive bias. Responsible design shows the total cost and the monthly obligation as clearly as the split price is shown, rather than in a separate terms page.',
+          'Whoever builds embedded finance needs capabilities absent from their original business: credit assessment, collections, complaint handling and regulatory compliance. The most underestimated is collections: a platform that mastered selling may suddenly find itself in the business of pursuing defaulters, an entirely different business with direct reputational risk to its original brand.'
+        ],
+        table: {
+          head_ar: ['الطرف', 'ما يكسبه', 'ما يتحمّله'],
+          head_en: ['Party', 'What it gains', 'What it bears'],
+          rows: [
+            ['المنصة غير المالية', 'إتمام شراء أعلى وعائد إضافي', 'قد تتحمّل مخاطرة الائتمان'],
+            ['المؤسسة المرخَّصة', 'وصول لعملاء بلا كلفة اكتساب', 'المسؤولية التنظيمية'],
+            ['العميل', 'تمويل في لحظة الحاجة', 'التزام قد يتراكم بلا رؤية شاملة'],
+            ['المنظّم', 'شمول أوسع', 'رؤية أقل لتراكم الائتمان']
+          ]
+        },
+        keyPoints_ar: [
+          'المنطق أن قرار الشراء والحاجة للتمويل يقعان في اللحظة نفسها.',
+          'المصرفية كخدمة خفّضت حاجز الدخول من سنوات تأسيس لأسابيع تكامل.',
+          'السؤال الحاسم: من يتحمّل مخاطرة الائتمان عند التعثّر؟',
+          'الائتمان الذي لا يظهر في السجل يتراكم من عدة مزوّدين بلا صورة كاملة.',
+          'عرض التقسيط في لحظة الحماس يستغل انحيازاً، فالإفصاح جزء من التصميم.',
+          'التحصيل أكثر القدرات استهانة، ومخاطر سمعته تقع على العلامة الأصلية.'
+        ],
+        keyPoints_en: [
+          'The logic is that the purchase decision and the financing need occur at the same instant.',
+          'Banking as a service cut the entry barrier from years of establishment to weeks of integration.',
+          'The decisive question: who bears the credit risk on default?',
+          'Credit invisible in the record accumulates across providers with no full picture.',
+          'Offering instalments in a moment of enthusiasm exploits a bias, so disclosure is part of design.',
+          'Collections is the most underestimated capability and its reputational risk falls on the original brand.'
+        ],
+        analogy_ar: 'تخيّل متجر أثاث وضع موظف تمويل بجانب الطاولة التي أعجبتك. لا شك أنه يبيع أكثر — فأنت الآن تريدها ولا تملك ثمنها كاملاً. والسؤال الذي لا يراه الزبون: لو لم تسدد، من يخسر؟ المتجر أم البنك؟ وإن كان المتجر، فقد دخل عملاً جديداً اسمه ملاحقة المدينين وهو لم يوظّف أحداً له ولم يحسب كلفته — وسيتعلّمه في أول سنة يكثر فيها التعثّر.',
+        analogy_en: 'Picture a furniture shop placing a finance officer beside the table you liked. It undoubtedly sells more, since you want it now and lack the full price. The question the customer never sees: if you do not repay, who loses, the shop or the bank? And if the shop, it has entered a new business called pursuing debtors for which it hired nobody and costed nothing, and it will learn it in the first year defaults rise.',
+        terms: [
+          { term: 'Embedded Finance', def_ar: 'خدمة مالية داخل تطبيق غير مالي في لحظة الحاجة.', def_en: 'A financial service inside a non-financial app at the moment of need.' },
+          { term: 'Banking as a Service', def_ar: 'بيع القدرة المصرفية لمنصات عبر واجهات برمجية.', def_en: 'Selling banking capability to platforms through APIs.' },
+          { term: 'Credit Risk Holder', def_ar: 'الطرف الذي يخسر فعلاً عند تعثّر العميل.', def_en: 'The party that actually loses when a customer defaults.' },
+          { term: 'Buy Now Pay Later', def_ar: 'تقسيط قصير عند الشراء قد لا يظهر في السجل الائتماني.', def_en: 'Short instalments at purchase sometimes invisible in the credit record.' },
+          { term: 'Collections', def_ar: 'عمل مطالبة المتعثّرين، وأكثر القدرات استهانة.', def_en: 'The business of pursuing defaulters, the most underestimated capability.' }
+        ],
+        cards: [
+          { q_ar: 'ما السؤال الحاسم في أي ترتيب تمويل مدمج؟', q_en: 'What is the decisive question in any embedded finance arrangement?', a_ar: 'من يتحمّل مخاطرة الائتمان عند التعثّر: المؤسسة المرخَّصة أم المنصة أم يُقسَّم بينهما؟', a_en: 'Who bears the credit risk on default: the licensed institution, the platform, or is it shared?' },
+          { q_ar: 'ما القلق التنظيمي في الشراء الآن والدفع لاحقاً؟', q_en: 'What is the regulatory concern with buy now pay later?', a_ar: 'أنه ائتمان قد لا يظهر في السجل، فيتراكم من عدة مزوّدين بلا أن يرى أحدهم الصورة كاملة.', a_en: 'It is credit sometimes invisible in the record, accumulating across providers with none seeing the full picture.' },
+          { q_ar: 'لماذا يكون الإفصاح جزءاً من التصميم؟', q_en: 'Why is disclosure part of the design?', a_ar: 'لأن العرض في لحظة الحماس الشرائي يستغل انحيازاً، فالكلفة الكاملة تُعرَض بوضوح مساوٍ للسعر المجزّأ.', a_en: 'Offering at a moment of enthusiasm exploits a bias, so total cost is shown as clearly as the split price.' },
+          { q_ar: 'ما أكثر القدرات استهانة عند بناء تمويل مدمج؟', q_en: 'Which capability is most underestimated in embedded finance?', a_ar: 'التحصيل: عمل مختلف كلياً عن البيع، ومخاطر سمعته تقع مباشرة على العلامة الأصلية.', a_en: 'Collections: a business entirely unlike selling whose reputational risk falls directly on the original brand.' }
+        ]
+      },
+      {
+        title_ar: 'تقنية التأمين والتقنية التنظيمية',
+        title_en: 'InsurTech and RegTech',
+        lead_ar: 'المجالان يشتركان في فكرة واحدة: تحويل عمل بشري بطيء يعتمد على الأوراق إلى قرار آلي مبني على بيانات — أحدهما في التأمين والآخر في الامتثال.',
+        lead_en: 'Both fields share one idea: turning slow paper-based human work into an automated data-driven decision, one in insurance and the other in compliance.',
+        body_ar: [
+          'تقنية التأمين تعيد بناء دورة التأمين كلها: التسعير، والاكتتاب، وإدارة الوثيقة، ومعالجة المطالبات. وأكثر ما تغيّر فيها التسعير: من متوسطات فئات عريضة إلى تسعير مبني على سلوك فردي مقاس فعلياً.',
+          'ومثاله الواضح تأمين المركبات بحسب القيادة: يُقاس أسلوب القيادة فعلياً — سرعة وكبح ومسافات وأوقات — فيدفع الحذر أقل. وهذا أعدل نظرياً من متوسط فئة عمرية كاملة، ويثير أسئلة خصوصية حقيقية عن حدود مراقبة سلوك يومي مقابل خصم في القسط.',
+          'ومعالجة المطالبات كانت أبطأ الحلقات وأكثرها احتكاكاً، وصار كثير منها آلياً: صور ترفعها بنفسك وتُقيَّم آلياً وتُصرَف الدفعة في ساعات. والقيد أن الأتمتة الكاملة تفتح باب المطالبات الاحتيالية، فالتوازن أتمتة الحالات البسيطة الواضحة ومراجعة بشرية للمعقّد والكبير.',
+          'والتأمين حسب الطلب اتجاه ثانٍ: تغطية تُشغَّل لساعات أو لرحلة واحدة بدل سنة كاملة. وهو ممكن تقنياً فقط لأن كلفة إصدار الوثيقة وإدارتها صارت قريبة من الصفر — فما كان غير مجدٍ إدارياً صار منتجاً قائماً.',
+          'وأما التقنية التنظيمية فتؤتمت الامتثال: مراقبة المعاملات آلياً، وفحص العقوبات المستمر، وتوليد التقارير التنظيمية، ومتابعة تغيّر الأنظمة. ودافعها اقتصادي واضح: كلفة الامتثال ارتفعت حتى صارت بنداً رئيسياً، والأتمتة تخفّضها وتقلّل الخطأ البشري معاً.',
+          'وحدّهما المشترك أن الأتمتة تنقل الخطأ ولا تلغيه: نظام يرفض مطالبات مشروعة بمعيار خاطئ يفعل ذلك بسرعة أكبر وعلى نطاق أوسع من موظف. ولهذا يبقى شرطان في المجالين: مراجعة بشرية للحالات الاستثنائية، ومسار واضح يستطيع العميل من خلاله الاعتراض على قرار آلي والوصول لإنسان.'
+        ],
+        body_en: [
+          'InsurTech rebuilds the whole insurance cycle: pricing, underwriting, policy administration and claims handling. What changed most is pricing: from broad category averages to pricing on individually measured behaviour.',
+          'Its clearest example is usage-based motor insurance: driving style is actually measured, speed, braking, distances and times, so the careful pay less. That is theoretically fairer than an entire age band average, and it raises genuine privacy questions about the limits of monitoring daily behaviour in exchange for a premium discount.',
+          'Claims handling was the slowest and most friction-heavy link and much of it became automated: photographs you upload yourself, assessed automatically with payment released in hours. The constraint is that full automation opens the door to fraudulent claims, so the balance is automating simple clear cases with human review for the complex and large.',
+          'On-demand insurance is a second direction: cover switched on for hours or for one journey instead of a full year. It is technically possible only because issuing and administering a policy now costs near zero, so what was administratively unviable became a standing product.',
+          'RegTech automates compliance: automated transaction monitoring, continuous sanctions screening, generating regulatory reports and tracking rule changes. Its economic driver is clear: compliance cost rose until it became a major line item, and automation lowers it while reducing human error.',
+          'Their shared limit is that automation moves error rather than abolishing it: a system rejecting legitimate claims on a wrong criterion does so faster and at wider scale than an employee. So two conditions persist in both fields: human review of exceptional cases, and a clear path by which a customer can challenge an automated decision and reach a person.'
+        ],
+        table: {
+          head_ar: ['المجال', 'ما يؤتمته', 'حدّه'],
+          head_en: ['Field', 'What it automates', 'Its limit'],
+          rows: [
+            ['التسعير', 'من متوسط فئة لسلوك مقاس', 'أسئلة خصوصية حقيقية'],
+            ['المطالبات', 'التقييم والصرف السريع', 'يفتح باب الاحتيال بلا مراجعة'],
+            ['التغطية', 'وثيقة لساعات أو رحلة', 'كانت غير مجدية إدارياً'],
+            ['الامتثال', 'مراقبة وفحص وتقارير', 'ينقل الخطأ بسرعة أكبر']
+          ]
+        },
+        keyPoints_ar: [
+          'أكبر تغيير في التأمين انتقال التسعير من متوسط الفئة لسلوك فردي مقاس.',
+          'التسعير بالسلوك أعدل نظرياً ويثير أسئلة خصوصية حقيقية.',
+          'الأتمتة الكاملة للمطالبات تفتح باب الاحتيال، فالتوازن أتمتة البسيط ومراجعة الكبير.',
+          'التأمين حسب الطلب صار ممكناً لأن كلفة إصدار الوثيقة قاربت الصفر.',
+          'دافع التقنية التنظيمية اقتصادي: كلفة الامتثال صارت بنداً رئيسياً.',
+          'الأتمتة تنقل الخطأ ولا تلغيه، فيلزم مسار اعتراض يصل لإنسان.'
+        ],
+        keyPoints_en: [
+          'The biggest insurance change is pricing moving from category averages to measured individual behaviour.',
+          'Behaviour-based pricing is theoretically fairer and raises genuine privacy questions.',
+          'Full claims automation opens the fraud door, so simple cases automate and large ones are reviewed.',
+          'On-demand insurance became possible because issuing a policy costs near zero.',
+          'The RegTech driver is economic: compliance cost became a major line item.',
+          'Automation moves error rather than abolishing it, so a path to a human must exist.'
+        ],
+        analogy_ar: 'تخيّل مدرسة كانت تعطي كل طالب في الصف الدرجة نفسها بحسب متوسط صفّه. ثم صارت تقيس أداء كل واحد فعلاً. النتيجة أعدل بلا شك — والثمن أن كل خطوة صارت مراقَبة ومسجّلة. وأما لو صار التقييم آلياً بالكامل وأخطأ المعيار، فالخطأ لن يصيب طالباً واحداً كما يخطئ معلم، بل الصف كله في اللحظة نفسها. ولهذا يبقى ضرورياً أن يستطيع الطالب أن يعترض ويصل لإنسان يراجع.',
+        analogy_en: 'Picture a school that gave every pupil in a class the same mark based on the class average, then began measuring each one actual performance. The result is undoubtedly fairer, and the price is that every step is now watched and recorded. And if assessment became fully automated with a wrong criterion, the error would not strike one pupil as a teacher errs but the whole class at the same instant. So it stays essential that a pupil can object and reach a person who reviews.',
+        terms: [
+          { term: 'Usage-based Pricing', def_ar: 'تسعير مبني على سلوك فردي مقاس لا متوسط فئة.', def_en: 'Pricing on measured individual behaviour rather than a category average.' },
+          { term: 'Automated Claims', def_ar: 'تقييم وصرف المطالبة آلياً في ساعات.', def_en: 'Assessing and paying a claim automatically within hours.' },
+          { term: 'On-demand Cover', def_ar: 'تغطية تُشغَّل لساعات أو لرحلة واحدة.', def_en: 'Cover switched on for hours or a single journey.' },
+          { term: 'RegTech', def_ar: 'أتمتة المراقبة والفحص والتقارير التنظيمية.', def_en: 'Automating monitoring, screening and regulatory reporting.' },
+          { term: 'Right to Human Review', def_ar: 'مسار يتيح الاعتراض على قرار آلي والوصول لإنسان.', def_en: 'A path to challenge an automated decision and reach a person.' }
+        ],
+        cards: [
+          { q_ar: 'ما أكبر تغيير أحدثته تقنية التأمين؟', q_en: 'What is the biggest change InsurTech made?', a_ar: 'انتقال التسعير من متوسطات فئات عريضة إلى سلوك فردي مقاس فعلياً.', a_en: 'Pricing moving from broad category averages to actually measured individual behaviour.' },
+          { q_ar: 'لماذا لا تُؤتمَت كل المطالبات؟', q_en: 'Why are not all claims automated?', a_ar: 'لأن الأتمتة الكاملة تفتح باب المطالبات الاحتيالية، فتُؤتمَت البسيطة وتُراجَع المعقّدة والكبيرة.', a_en: 'Full automation opens the fraudulent claims door, so simple ones automate while complex and large ones are reviewed.' },
+          { q_ar: 'ما الذي جعل التأمين حسب الطلب ممكناً؟', q_en: 'What made on-demand insurance possible?', a_ar: 'انخفاض كلفة إصدار الوثيقة وإدارتها لما يقارب الصفر، فصار المجدي إدارياً ما لم يكن كذلك.', a_en: 'Policy issuance and administration cost falling to near zero, making viable what was administratively unviable.' },
+          { q_ar: 'ما الحدّ المشترك بين المجالين؟', q_en: 'What limit do both fields share?', a_ar: 'أن الأتمتة تنقل الخطأ ولا تلغيه: المعيار الخاطئ يُطبَّق أسرع وأوسع، فيلزم مسار اعتراض يصل لإنسان.', a_en: 'Automation moves error rather than abolishing it: a wrong criterion applies faster and wider, so a path to a human is required.' }
+        ]
+      },
+      {
+        title_ar: 'مستقبل التقنية المالية واختيار المسار',
+        title_en: 'The Future of FinTech and Choosing a Path',
+        lead_ar: 'ما يبقى في هذا المجال ليس التقنية الأحدث وإنما من فهم المشكلة المالية أولاً — والتقنية أداة تُختار بعد فهم المسألة لا قبله.',
+        lead_en: 'What endures in this field is not the newest technology but whoever understood the financial problem first, and technology is a tool chosen after understanding the problem rather than before.',
+        body_ar: [
+          'الاتجاه الحاكم أن الخدمة المالية تختفي كمنتج مستقل: لا تذهب لتطبيق بنك لتقسّط، وإنما يظهر التقسيط حيث تشتري. وهذا يعني أن المنافسة لم تعد بين البنوك وإنما بين من يملك اللحظة التي تنشأ فيها الحاجة.',
+          'واتجاه ثانٍ عملات البنوك المركزية الرقمية، وأثرها الأكبر ليس على المستخدم وإنما على بنية النظام: لو صار للناس التزام مباشر على البنك المركزي، فما موقع البنك التجاري الذي يقوم نموذجه على الودائع؟ وهذا سؤال بنيوي لم يُحسَم بعد.',
+          'واتجاه ثالث التنظيم المدمج في العملية نفسها: تقارير تُولَّد آلياً وضوابط تُطبَّق لحظياً بدل تدقيق لاحق. واتجاه رابع التمويل المستدام: ربط التمويل بأثر بيئي واجتماعي مقاس بمعايير موحّدة لا بتصريحات.',
+          'وأما المسارات المهنية فخمسة رئيسية. المنتج المالي: يفهم القاعدة التنظيمية والمخاطرة قبل الميزة، ويصمّم ما هو ممكن قانوناً لا ما هو ممتع فقط. والهندسة المالية: تبني أنظمة يجب ألا تخسر ريالاً ولا تنفّذ عملية مرتين، وتحكمها الدقة قبل السرعة.',
+          'ومسار المخاطر والامتثال: يوازن بين تمكين العمل ومنع الضرر، وقيمته في القدرة على قول «هكذا نستطيع» لا «هذا ممنوع». ومسار البيانات المالية: يحوّل الأرقام لقرار في بيئة كل خطأ فيها له كلفة مباشرة. ومسار الشراكات والبنية: يربط بين مؤسسة مرخَّصة ومنصات، وهو عمل يفهم الطرفين معاً.',
+          'وأنفع نصيحة للبدء: أتقن أساساً واحداً بعمق ثم وسّع. فمن يعرف دورة الدفع كاملة معرفة دقيقة أنفع من يعرف عشرة مواضيع سطحياً — لأن العمق في أساس واحد يعطيك القدرة على فهم البقية بسرعة، والسطحية في الكل لا تعطيك القدرة على حلّ مسألة واحدة.'
+        ],
+        body_en: [
+          'The governing direction is the financial service disappearing as a standalone product: you do not go to a bank app to pay in instalments, and instalments appear where you buy. That means competition is no longer between banks but between whoever owns the moment the need arises.',
+          'A second direction is central bank digital currencies, whose largest impact is not on the user but on system structure: if people hold a direct claim on the central bank, where does the commercial bank stand when its model rests on deposits? That is a structural question not yet settled.',
+          'A third direction is regulation embedded in the process itself: automatically generated reports and controls applied in the moment rather than audited afterwards. A fourth is sustainable finance: tying funding to environmental and social impact measured by unified standards rather than declarations.',
+          'As for career paths, there are five main ones. Financial product: understanding the regulatory rule and the risk before the feature, designing what is legally possible rather than merely appealing. Financial engineering: building systems that must never lose a riyal nor execute an operation twice, governed by precision before speed.',
+          'The risk and compliance path: balancing enabling business against preventing harm, its value in being able to say here is how we can rather than this is forbidden. The financial data path: turning numbers into decisions in an environment where every error has a direct cost. The partnerships and infrastructure path: connecting a licensed institution with platforms, work that understands both sides at once.',
+          'The most useful advice for starting: master one foundation deeply then widen. Whoever knows the entire payment cycle precisely is more useful than whoever knows ten topics superficially, because depth in one foundation gives you the ability to understand the rest quickly, while superficiality in everything gives you no ability to solve a single problem.'
+        ],
+        table: {
+          head_ar: ['المسار', 'ما يميّزه', 'ما يجب إتقانه أولاً'],
+          head_en: ['Path', 'What defines it', 'What to master first'],
+          rows: [
+            ['المنتج المالي', 'التنظيم والمخاطرة قبل الميزة', 'دورة المنتج والقاعدة التنظيمية'],
+            ['الهندسة المالية', 'الدقة قبل السرعة', 'التفرّد والمطابقة والسجلات'],
+            ['المخاطر والامتثال', 'تمكين لا منع', 'الإطار التنظيمي وأدواته'],
+            ['البيانات المالية', 'قرار من أرقام مكلفة', 'المؤشرات والمطابقة والتحليل'],
+            ['الشراكات والبنية', 'فهم الطرفين معاً', 'نماذج الترخيص والواجهات']
+          ]
+        },
+        keyPoints_ar: [
+          'المنافسة صارت بين من يملك لحظة الحاجة لا بين البنوك.',
+          'عملة البنك المركزي أثرها البنيوي على موقع البنك التجاري لا على المستخدم.',
+          'التنظيم يتجه للاندماج في العملية: ضوابط لحظية بدل تدقيق لاحق.',
+          'خمسة مسارات مهنية، وكل واحد يبدأ بأساس مختلف يجب إتقانه أولاً.',
+          'قيمة مسار الامتثال في «هكذا نستطيع» لا في «هذا ممنوع».',
+          'أتقني أساساً واحداً بعمق ثم وسّعي؛ فالسطحية في الكل لا تحلّ مسألة واحدة.'
+        ],
+        keyPoints_en: [
+          'Competition is now between whoever owns the moment of need rather than between banks.',
+          'A central bank currency structural impact is on the commercial bank position rather than the user.',
+          'Regulation is moving into the process: controls in the moment rather than later audit.',
+          'Five career paths, each beginning from a different foundation to master first.',
+          'The compliance path value is in here is how we can rather than this is forbidden.',
+          'Master one foundation deeply then widen; superficiality in everything solves no single problem.'
+        ],
+        analogy_ar: 'تخيّل طبيباً يعرف كل الأجهزة الحديثة ولا يعرف كيف يقرأ عرَضاً واحداً قراءة صحيحة. سيشتري له المستشفى أحدث جهاز ولن ينفع مريضاً، لأن الجهاز يجيب سؤالاً لا يعرف هو أن يسأله. والتقنية المالية مثله: من فهم كيف يتحرك المال ولماذا يُنظَّم يستطيع أن يتعلّم أي أداة في شهر. ومن أتقن الأداة وحدها يبقى ينتظر من يخبره ما المشكلة أصلاً.',
+        analogy_en: 'Picture a doctor who knows every modern machine and cannot read one symptom correctly. The hospital will buy them the newest device and no patient will benefit, because the device answers a question they do not know how to ask. FinTech is the same: whoever understood how money moves and why it is regulated can learn any tool in a month. Whoever mastered the tool alone keeps waiting for someone to tell them what the problem is.',
+        terms: [
+          { term: 'Moment of Need', def_ar: 'اللحظة التي تنشأ فيها الحاجة المالية عند العميل.', def_en: 'The moment a customer financial need arises.' },
+          { term: 'Structural Question', def_ar: 'سؤال يمسّ موقع مؤسسة في النظام لا خدمة فيها.', def_en: 'A question touching an institution position in the system rather than a service.' },
+          { term: 'Embedded Regulation', def_ar: 'ضوابط تُطبَّق لحظياً بدل تدقيق لاحق.', def_en: 'Controls applied in the moment rather than audited later.' },
+          { term: 'Sustainable Finance', def_ar: 'ربط التمويل بأثر مقاس بمعايير موحّدة.', def_en: 'Tying funding to impact measured by unified standards.' },
+          { term: 'Depth First', def_ar: 'إتقان أساس واحد بعمق قبل التوسّع في غيره.', def_en: 'Mastering one foundation deeply before widening.' }
+        ],
+        cards: [
+          { q_ar: 'بين من صارت المنافسة في التقنية المالية؟', q_en: 'Between whom is FinTech competition now?', a_ar: 'بين من يملك اللحظة التي تنشأ فيها الحاجة، لا بين البنوك كما كان.', a_en: 'Between whoever owns the moment the need arises, rather than between banks as before.' },
+          { q_ar: 'ما السؤال البنيوي في عملة البنك المركزي؟', q_en: 'What is the structural question in a central bank currency?', a_ar: 'ما موقع البنك التجاري لو صار للناس التزام مباشر على البنك المركزي ونموذجه قائم على الودائع؟', a_en: 'Where does the commercial bank stand if people hold a direct claim on the central bank while its model rests on deposits?' },
+          { q_ar: 'أين قيمة مسار المخاطر والامتثال؟', q_en: 'Where does the risk and compliance path add value?', a_ar: 'في القدرة على قول «هكذا نستطيع» بدل «هذا ممنوع»، أي تمكين العمل مع منع الضرر.', a_en: 'In being able to say here is how we can rather than this is forbidden, enabling business while preventing harm.' },
+          { q_ar: 'ما أنفع نصيحة للبدء في المجال؟', q_en: 'What is the most useful advice for starting?', a_ar: 'إتقان أساس واحد بعمق ثم التوسّع؛ فالعمق يتيح فهم البقية بسرعة والسطحية لا تحلّ مسألة واحدة.', a_en: 'Master one foundation deeply then widen; depth lets you grasp the rest quickly while superficiality solves nothing.' }
+        ]
+      }
     ]
   }
 };
