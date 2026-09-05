@@ -6003,6 +6003,329 @@ export const sectionGuides = {
           { q_ar: 'بم يُقاس نجاح برنامج اختبار الاختراق؟', q_en: 'How is a penetration testing programme measured?', a_ar: 'بنسبة الثغرات المغلقة وزمن إغلاقها لا بعدد ما اكتُشف.', a_en: 'By the share of vulnerabilities closed and the time taken, not the number discovered.' }
         ]
       }
+    ],
+
+    // ─────────── التحقيق الجنائي الرقمي والاستجابة للحوادث ───────────
+    5: [
+      {
+        title_ar: 'مبادئ الأدلة الرقمية',
+        title_en: 'Digital Evidence Principles',
+        lead_ar: 'الدليل الرقمي هش: يتغيّر بمجرد النظر إليه — ولهذا تُنسَخ الأدلة قبل فحصها، ويُحفَظ تسلسل حيازتها، وإلا سقطت أمام أي مراجعة.',
+        lead_en: 'Digital evidence is fragile and changes at the very act of examining it, so evidence is copied before analysis and its chain of custody preserved, or it collapses under any review.',
+        body_ar: [
+          'الدليل الرقمي يختلف عن المادي في خاصية حاسمة: يمكن نسخه نسخة مطابقة تماماً، ويمكن تغييره بلا أن يظهر أثر التغيير بالعين. وحتى فتح ملف لقراءته يغيّر بياناته الوصفية كوقت آخر وصول. ولهذا القاعدة الأولى: لا يُفحَص الأصل أبداً، وإنما تُؤخذ نسخة طبق الأصل ويُفحص منها.',
+          'وتُثبَت مطابقة النسخة بالتجزئة: تُحسب بصمة رقمية للأصل وللنسخة، فتطابقهما يثبت أن النسخة مطابقة تماماً. وتُعاد الحسبة بعد الفحص لإثبات أن النسخة لم تتغيّر أثناءه — وهذي البصمة هي ما يجعل الدليل الرقمي قابلاً للدفاع عنه.',
+          'وتسلسل الحيازة سجل متصل يوثّق من حاز الدليل ومتى وأين حُفِظ وما فعله به. وأي انقطاع في هذي السلسلة يفتح باباً للطعن: لو مرّت ساعتان بلا توثيق، أمكن الادعاء أن الدليل عُدِّل فيهما. والدليل التقني السليم قد يسقط لخلل إجرائي بحت.',
+          'وترتيب جمع الأدلة يتبع تقلّبها: يُجمَع الأسرع زوالاً أولاً. فمحتوى الذاكرة يختفي بإطفاء الجهاز، والاتصالات الشبكية النشطة تنتهي خلال ثوانٍ، والعمليات الجارية كذلك — بينما محتوى القرص يبقى. ومن يبدأ بنسخ القرص قبل الذاكرة يخسر أدلة لا تُعوَّض.',
+          'ومن هنا معضلة عملية شهيرة: هل تُطفَأ الآلة المصابة؟ إطفاؤها يوقف الضرر ويمحو الذاكرة، وإبقاؤها يحفظ الذاكرة ويتيح للمهاجم الاستمرار. والقرار يوازن بين قيمة الأدلة وحجم الضرر الجاري — والفصل عن الشبكة مع إبقاء التشغيل غالباً حل وسط مقبول.',
+          'وأخيراً: التوثيق أثناء العمل لا بعده. كل خطوة بوقتها ومن نفّذها وبأي أداة وما نتيجتها. فالمحقق قد يُسأل بعد سنتين في محكمة عن تفصيل لن يتذكّره، والسجل هو ذاكرته — والذاكرة البشرية بلا سجل لا تصمد أمام استجواب.'
+        ],
+        body_en: [
+          'Digital evidence differs from physical in a decisive property: it can be copied identically and altered with no visible trace. Even opening a file to read it changes its metadata such as last access time. Hence the first rule: the original is never examined; an identical copy is taken and examined instead.',
+          'The copy fidelity is proven by hashing: a digital fingerprint is computed for the original and the copy, and their match proves identity. It is recomputed after analysis to prove the copy did not change during it, and that fingerprint is what makes digital evidence defensible.',
+          'Chain of custody is a continuous record documenting who held the evidence, when, where it was stored and what they did with it. Any gap in that chain opens a challenge: if two hours passed undocumented, it can be claimed the evidence was altered in them. Technically sound evidence may fall on a purely procedural flaw.',
+          'Collection order follows volatility: the fastest to vanish is collected first. Memory contents disappear when a machine powers off, active network connections end within seconds, and running processes likewise, while disk contents persist. Whoever starts by imaging the disk before memory loses evidence that cannot be recovered.',
+          'Hence a famous practical dilemma: is the infected machine powered off? Powering it off stops the damage and erases memory, while leaving it on preserves memory and lets the attacker continue. The decision balances evidence value against ongoing damage, and disconnecting from the network while leaving it running is often an acceptable middle path.',
+          'Finally: documentation during the work rather than after. Every step with its time, who performed it, with which tool and its result. An investigator may be asked in court two years later about a detail they will not recall, and the record is their memory, since human memory without a record does not survive cross-examination.'
+        ],
+        table: {
+          head_ar: ['نوع الدليل', 'سرعة زواله', 'ترتيب الجمع'],
+          head_en: ['Evidence type', 'Volatility', 'Collection order'],
+          rows: [
+            ['الذاكرة والعمليات', 'يزول بالإطفاء', 'أولاً'],
+            ['الاتصالات النشطة', 'يزول خلال ثوانٍ', 'أولاً'],
+            ['الملفات المؤقتة', 'قد تُمحى دورياً', 'ثانياً'],
+            ['محتوى القرص', 'يبقى', 'ثالثاً'],
+            ['النسخ الاحتياطية', 'يبقى طويلاً', 'أخيراً']
+          ]
+        },
+        keyPoints_ar: [
+          'لا يُفحَص الأصل أبداً: تُؤخذ نسخة مطابقة ويُفحص منها.',
+          'البصمة الرقمية تثبت مطابقة النسخة وعدم تغيّرها أثناء الفحص.',
+          'انقطاع تسلسل الحيازة يُسقط دليلاً تقنياً سليماً بخلل إجرائي.',
+          'يُجمَع الأسرع زوالاً أولاً: الذاكرة والاتصالات قبل القرص.',
+          'الفصل عن الشبكة مع إبقاء التشغيل حل وسط بين حفظ الأدلة ووقف الضرر.',
+          'التوثيق أثناء العمل، فالسجل هو ذاكرة المحقق بعد سنتين.'
+        ],
+        keyPoints_en: [
+          'The original is never examined: an identical copy is taken and examined.',
+          'A digital fingerprint proves copy fidelity and that it did not change during analysis.',
+          'A gap in the chain of custody sinks technically sound evidence on a procedural flaw.',
+          'The most volatile is collected first: memory and connections before disk.',
+          'Disconnecting from the network while leaving the machine running balances evidence against damage.',
+          'Document during the work, since the record is the investigator memory two years later.'
+        ],
+        analogy_ar: 'تخيّل مسرح جريمة. لا يمشي المحقق فيه بلا قفازات، ولا يحرّك شيئاً قبل التصوير، ويكتب من دخل ومتى خرج. والفرق أن أثر القدم في التراب يبقى، وأثرك على الملف الرقمي يمحو الأثر السابق نفسه: مجرد فتحه يغيّر وقت آخر وصول. ولهذا يُصوَّر المسرح الرقمي — أي تُنسَخ نسخة مطابقة — ويُعمَل على الصورة لا على المسرح.',
+        analogy_en: 'Picture a crime scene. An investigator does not walk it without gloves, moves nothing before photographing, and records who entered and when they left. The difference is that a footprint in soil remains while your trace on a digital file erases the previous trace itself: merely opening it changes the last access time. So the digital scene is photographed, meaning an identical copy is taken, and work happens on the image rather than the scene.',
+        terms: [
+          { term: 'Forensic Image', def_ar: 'نسخة مطابقة بت ببت من الوسيط الأصلي.', def_en: 'A bit-for-bit identical copy of the original medium.' },
+          { term: 'Hash Verification', def_ar: 'إثبات تطابق النسخة بالأصل ببصمة رقمية.', def_en: 'Proving copy fidelity to the original with a digital fingerprint.' },
+          { term: 'Chain of Custody', def_ar: 'سجل متصل بمن حاز الدليل ومتى وما فعل به.', def_en: 'A continuous record of who held evidence, when, and what they did.' },
+          { term: 'Order of Volatility', def_ar: 'ترتيب جمع الأدلة من الأسرع زوالاً إلى الأبقى.', def_en: 'Collecting evidence from the most volatile to the most persistent.' },
+          { term: 'Write Blocker', def_ar: 'أداة تمنع أي كتابة على الوسيط أثناء نسخه.', def_en: 'A tool preventing any writing to a medium while it is copied.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا يُفحَص الدليل الأصلي؟', q_en: 'Why is the original evidence never examined?', a_ar: 'لأن مجرد فتحه يغيّر بياناته الوصفية، فيُنسَخ نسخة مطابقة ويُفحص منها.', a_en: 'Merely opening it changes its metadata, so an identical copy is taken and examined.' },
+          { q_ar: 'ما وظيفة البصمة الرقمية في التحقيق؟', q_en: 'What role does hashing play in investigation?', a_ar: 'تثبت أن النسخة مطابقة للأصل، وتُعاد بعد الفحص لإثبات أنها لم تتغيّر.', a_en: 'It proves the copy matches the original and is recomputed after analysis to prove it did not change.' },
+          { q_ar: 'ما ترتيب جمع الأدلة ولماذا؟', q_en: 'What is the collection order and why?', a_ar: 'الأسرع زوالاً أولاً: الذاكرة والاتصالات قبل القرص، لأن الأولى تختفي بالإطفاء.', a_en: 'Most volatile first: memory and connections before disk, since the former vanish on power off.' },
+          { q_ar: 'ماذا يحدث لو انقطع تسلسل الحيازة؟', q_en: 'What happens if the chain of custody breaks?', a_ar: 'يُفتح باب الطعن بأن الدليل عُدِّل في الفترة غير الموثّقة، فيسقط دليل تقني سليم.', a_en: 'It opens a claim that evidence was altered in the undocumented period, sinking technically sound evidence.' }
+        ]
+      },
+      {
+        title_ar: 'تحليل الملفات وأنظمتها',
+        title_en: 'File and Filesystem Analysis',
+        lead_ar: 'الحذف لا يمحو: يزيل الإشارة ويترك المحتوى حتى يُكتب فوقه — ولهذا يُستعاد المحذوف، ولهذا أيضاً لا يكفي الحذف لحماية بياناتك.',
+        lead_en: 'Deletion does not erase: it removes the reference and leaves the content until overwritten, which is why deleted data is recovered and why deletion alone does not protect your data.',
+        body_ar: [
+          'حين تحذف ملفاً لا يُمحى محتواه من القرص، وإنما تُزال الإشارة إليه من فهرس نظام الملفات وتُعلَّم مساحته أنها متاحة للكتابة. فيبقى المحتوى موجوداً حتى يُستخدم ذلك الحيز لملف آخر. وهذي الحقيقة أساس استعادة الملفات المحذوفة — وأساس خطر التخلص من قرص بلا مسح آمن.',
+          'ونظام الملفات يحفظ لكل ملف بيانات وصفية غنية: أوقات الإنشاء والتعديل وآخر وصول، والمالك، والصلاحيات، والحجم. وهذي الأوقات هي ما يبني الجدول الزمني للحادث — أي الملفات لُمِسَت ومتى، وأي برنامج نُفِّذ في نافذة الاختراق.',
+          'والمهاجمون يعرفون هذا فيعبثون بالطوابع الزمنية ليخفوا نشاطهم. لكن التزوير يترك تناقضات: طابع تعديل أقدم من طابع إنشاء، أو ملف بطوابع لا تتسق مع سجلات النظام لنفس اللحظة. والمحقق يبحث عن هذا التناقض لا عن الطابع وحده.',
+          'وامتداد الملف لا يعني نوعه: يمكن تسمية ملف تنفيذي بامتداد صورة. ولهذا يُفحَص التوقيع الفعلي — أول بايتات الملف التي تحدد نوعه الحقيقي. والتناقض بين الامتداد والتوقيع مؤشر قوي على إخفاء متعمّد.',
+          'ومساحات مهملة كثيراً وهي غنية بالأدلة: المساحة غير المخصصة التي تحوي بقايا ملفات محذوفة، والمساحة المتبقية في نهاية كل وحدة تخزين والتي قد تحمل بقايا محتوى سابق، وملفات النظام المؤقتة، وقوائم الملفات المفتوحة حديثاً، وسلة المحذوفات.',
+          'والدرس الأمني المقابل: إن أردت إتلاف بيانات فعلاً، لا يكفي الحذف ولا التهيئة السريعة. فالمسح الآمن يكتب فوق المساحة، والتشفير الكامل للقرص يجعل إتلاف المفتاح كافياً لجعل المحتوى بلا معنى — وهي الطريقة العملية في التخلص من الأجهزة.'
+        ],
+        body_en: [
+          'Deleting a file does not erase its content from disk; it removes the reference from the filesystem index and marks its space as available for writing. The content remains until that space is used by another file. This fact underlies deleted file recovery and the danger of disposing of a disk without secure wiping.',
+          'A filesystem keeps rich metadata per file: creation, modification and last access times, owner, permissions and size. Those times build the incident timeline: which files were touched and when, and which program ran during the breach window.',
+          'Attackers know this and tamper with timestamps to hide their activity. But forgery leaves contradictions: a modification stamp older than a creation stamp, or a file whose stamps disagree with system logs for the same moment. An investigator hunts that contradiction rather than the stamp alone.',
+          'A file extension does not determine its type: an executable can be named with an image extension. So the actual signature is examined, the first bytes defining its real type. A mismatch between extension and signature is a strong indicator of deliberate concealment.',
+          'Several neglected areas are rich in evidence: unallocated space holding remnants of deleted files, the leftover space at the end of each storage unit which may carry previous content fragments, temporary system files, recently opened file lists, and the recycle bin.',
+          'The corresponding security lesson: if you truly want to destroy data, deletion and quick formatting are insufficient. Secure wiping overwrites the space, and full disk encryption makes destroying the key enough to render content meaningless, which is the practical method for disposing of devices.'
+        ],
+        table: {
+          head_ar: ['الأثر', 'ماذا يكشف', 'يفوته من لا يعرفه'],
+          head_en: ['Artefact', 'What it reveals', 'Missed by whoever ignores it'],
+          rows: [
+            ['المساحة غير المخصصة', 'بقايا ملفات محذوفة', 'أدلة أُتلفت ظاهرياً'],
+            ['الطوابع الزمنية', 'جدول زمني للحادث', 'تسلسل ما جرى'],
+            ['توقيع الملف', 'نوعه الحقيقي رغم الامتداد', 'ملفات مخفية بامتداد كاذب'],
+            ['الملفات المؤقتة', 'محتوى عمل لم يُحفَظ', 'مسودات ونسخ وسيطة'],
+            ['قوائم الفتح الأخير', 'ما اطّلع عليه المستخدم', 'نشاطاً لم يترك ملفاً']
+          ]
+        },
+        keyPoints_ar: [
+          'الحذف يزيل الإشارة ويترك المحتوى حتى يُكتب فوقه.',
+          'الطوابع الزمنية تبني الجدول الزمني، وتزويرها يترك تناقضات تُكشف.',
+          'الامتداد لا يحدد النوع؛ التوقيع الفعلي في أول بايتات الملف هو الذي يحدده.',
+          'المساحة غير المخصصة والملفات المؤقتة من أغنى مصادر الأدلة.',
+          'الحذف والتهيئة السريعة لا يتلفان البيانات فعلياً.',
+          'التشفير الكامل يجعل إتلاف المفتاح كافياً للتخلص الآمن.'
+        ],
+        keyPoints_en: [
+          'Deletion removes the reference and leaves content until overwritten.',
+          'Timestamps build the timeline, and forging them leaves detectable contradictions.',
+          'The extension does not define the type; the actual signature in the first bytes does.',
+          'Unallocated space and temporary files are among the richest evidence sources.',
+          'Deletion and quick formatting do not genuinely destroy data.',
+          'Full encryption makes destroying the key sufficient for safe disposal.'
+        ],
+        analogy_ar: 'تخيّل كتاباً فيه فهرس. حذف الملف كشطب اسم الفصل من الفهرس مع بقاء صفحاته كاملة في الكتاب — من يقلّب الصفحات يجدها. والتهيئة السريعة كتمزيق الفهرس كله وترك المتن. والمسح الآمن أن تمرّ على كل صفحة وتشطب سطورها. وأما التشفير فأن يكون الكتاب كله مكتوباً بشفرة: إتلاف ورقة المفتاح يكفي، ولو بقي الكتاب كاملاً في يد غيرك.',
+        analogy_en: 'Picture a book with an index. Deleting a file is crossing a chapter name out of the index while its pages remain complete in the book, so whoever leafs through finds them. Quick formatting is tearing out the whole index and leaving the body. Secure wiping is going through every page and striking out its lines. Encryption is the whole book being written in cipher: destroying the key sheet suffices even if the complete book stays in someone else hands.',
+        terms: [
+          { term: 'Unallocated Space', def_ar: 'مساحة معلّمة متاحة قد تحوي بقايا ملفات محذوفة.', def_en: 'Space marked available that may hold deleted file remnants.' },
+          { term: 'File Signature', def_ar: 'أول بايتات الملف التي تحدد نوعه الحقيقي.', def_en: 'The first bytes of a file defining its real type.' },
+          { term: 'Timestamp Tampering', def_ar: 'تزوير أوقات الملف لإخفاء النشاط.', def_en: 'Forging file times to hide activity.' },
+          { term: 'Timeline Analysis', def_ar: 'ترتيب الآثار زمنياً لبناء سردية الحادث.', def_en: 'Ordering artefacts in time to build the incident narrative.' },
+          { term: 'Secure Wipe', def_ar: 'الكتابة فوق المساحة لإتلاف المحتوى فعلياً.', def_en: 'Overwriting space to genuinely destroy content.' }
+        ],
+        cards: [
+          { q_ar: 'ماذا يحدث فعلاً عند حذف ملف؟', q_en: 'What actually happens when a file is deleted?', a_ar: 'تُزال الإشارة إليه من الفهرس وتُعلَّم مساحته متاحة، ويبقى المحتوى حتى يُكتب فوقه.', a_en: 'Its reference is removed from the index and its space marked available, while content remains until overwritten.' },
+          { q_ar: 'كيف يُكشف تزوير الطوابع الزمنية؟', q_en: 'How is timestamp forgery detected?', a_ar: 'بالتناقضات: تعديل أقدم من إنشاء، أو طوابع لا تتسق مع سجلات النظام للحظة نفسها.', a_en: 'Through contradictions: modification older than creation, or stamps disagreeing with system logs for the same moment.' },
+          { q_ar: 'لماذا لا يُعتمد على امتداد الملف؟', q_en: 'Why not rely on a file extension?', a_ar: 'لأن أي ملف يمكن تسميته بأي امتداد؛ والتوقيع في أول بايتاته هو ما يحدد نوعه الحقيقي.', a_en: 'Any file can be named with any extension; the signature in its first bytes defines the real type.' },
+          { q_ar: 'كيف يُتخلَّص من قرص بأمان؟', q_en: 'How is a disk safely disposed of?', a_ar: 'بالمسح الآمن الذي يكتب فوق المساحة، أو بالتشفير الكامل ثم إتلاف المفتاح.', a_en: 'By secure wiping that overwrites the space, or by full encryption then destroying the key.' }
+        ]
+      },
+      {
+        title_ar: 'تحليل الشبكة والذاكرة',
+        title_en: 'Network and Memory Forensics',
+        lead_ar: 'الذاكرة تحوي ما لا يوجد على القرص: مفاتيح تشفير وكلمات مرور وبرمجيات لا تلمس القرص أصلاً — وهي تختفي بالإطفاء.',
+        lead_en: 'Memory holds what the disk never has: encryption keys, passwords and malware that never touches disk at all, and it vanishes on power off.',
+        body_ar: [
+          'تحليل الذاكرة يفحص محتوى الذاكرة الحيّة لحظة أخذ النسخة. وقيمته أنه يكشف ما لا وجود له على القرص: العمليات الجارية وسلاسلها، والاتصالات الشبكية المفتوحة، ومفاتيح التشفير المحمّلة، وكلمات المرور التي أُدخلت، ومحتوى فُكّ تشفيره للاستخدام.',
+          'وأهميته تضاعفت مع البرمجيات التي تعمل في الذاكرة فقط بلا كتابة ملف على القرص. فهذي لا يجدها أي فحص للقرص مهما كان دقيقاً، ولا تترك أثراً بعد إعادة التشغيل — والذاكرة هي المكان الوحيد الذي يمسكها.',
+          'وأخذ نسخة الذاكرة نفسه يغيّرها قليلاً، لأن الأداة التي تنسخ تعمل في الذاكرة. وهذا مقبول ومعروف ويُوثَّق، فالبديل — ألا تُنسَخ — يفقدك كل شيء. وهذي حالة من حالات كثيرة في التحقيق: لا خيار مثالي، والقرار يوثَّق مبرَّراً.',
+          'وتحليل الشبكة يفحص المرور المُلتقَط أو سجلات التدفّق. والفرق بينهما مهم: الالتقاط الكامل يحفظ المحتوى فيعطيك كل شيء ويستهلك تخزيناً هائلاً، وسجلات التدفّق تحفظ من كلّم من ومتى وبكم بيانات بلا المحتوى — فتخزينها رخيص ويكفي لأغلب التحقيقات.',
+          'ولأن أغلب المرور مشفّر اليوم، صار تحليل ما حول المحتوى أهم من المحتوى: أنماط الاتصال. فاتصال دوري منتظم بعنوان خارجي كل خمس دقائق بحجم ثابت نمط قناة تحكم، ونقل كمية ضخمة خارج ساعات العمل لوجهة غير معتادة نمط تسريب بيانات. ولا يحتاج كشف هذين قراءة المحتوى.',
+          'والدرس المتكرر: كثير من المؤسسات تكتشف الاختراق من نمط شبكي شاذ لا من إنذار برمجية خبيثة. ولهذا يُحفَظ من سجلات التدفّق ما يكفي للنظر للخلف شهوراً — فمتوسط زمن اكتشاف الاختراقات يتجاوز مدة الاحتفاظ في كثير من المؤسسات، فتُكتشف الحادثة ولا يبقى ما يُحقَّق فيه.'
+        ],
+        body_en: [
+          'Memory forensics examines live memory content at the moment of capture. Its value is revealing what does not exist on disk: running processes and their chains, open network connections, loaded encryption keys, entered passwords, and content decrypted for use.',
+          'Its importance multiplied with malware operating only in memory without writing a file to disk. No disk examination however thorough finds these, and they leave no trace after a restart, so memory is the only place that catches them.',
+          'Capturing memory itself changes it slightly, because the capturing tool runs in memory. That is accepted, known and documented, since the alternative of not capturing loses everything. This is one of many investigation situations with no perfect option where the decision is documented with its justification.',
+          'Network forensics examines captured traffic or flow records. The difference matters: full capture preserves content giving you everything and consuming enormous storage, while flow records keep who spoke to whom, when and how much without content, making them cheap to store and sufficient for most investigations.',
+          'Because most traffic is encrypted today, analysing what surrounds the content became more important than the content: communication patterns. A regular connection to an external address every five minutes at constant size is a command channel pattern, and a large transfer outside working hours to an unusual destination is a data exfiltration pattern. Detecting neither requires reading content.',
+          'A recurring lesson: many organisations discover a breach from an anomalous network pattern rather than a malware alert. So enough flow records are retained to look back months, since the average breach detection time exceeds the retention period in many organisations, so the incident is discovered with nothing left to investigate.'
+        ],
+        table: {
+          head_ar: ['المصدر', 'ما يكشفه', 'كلفته', 'مدة بقائه'],
+          head_en: ['Source', 'What it reveals', 'Its cost', 'How long it lasts'],
+          rows: [
+            ['الذاكرة', 'مفاتيح وعمليات وبرمجيات بلا ملف', 'أخذ النسخة يغيّرها قليلاً', 'يزول بالإطفاء'],
+            ['الالتقاط الكامل', 'كل شيء بما فيه المحتوى', 'تخزين هائل', 'أيام غالباً'],
+            ['سجلات التدفّق', 'من كلّم من ومتى وبكم', 'رخيص', 'شهور'],
+            ['سجلات الخدمات', 'أحداث التطبيقات', 'متوسط', 'حسب الضبط']
+          ]
+        },
+        keyPoints_ar: [
+          'الذاكرة تكشف مفاتيح وكلمات مرور وبرمجيات لا تلمس القرص إطلاقاً.',
+          'أخذ نسخة الذاكرة يغيّرها قليلاً، وهذا مقبول موثّق لأن البديل خسارة كل شيء.',
+          'الالتقاط الكامل يعطي المحتوى بتخزين هائل، وسجلات التدفّق أرخص وتكفي غالباً.',
+          'مع تشفير أغلب المرور صار النمط أهم من المحتوى في الكشف.',
+          'اتصال دوري ثابت الحجم نمط قناة تحكم، ونقل ضخم خارج الدوام نمط تسريب.',
+          'مدة الاحتفاظ بالسجلات يجب أن تتجاوز متوسط زمن اكتشاف الاختراقات.'
+        ],
+        keyPoints_en: [
+          'Memory reveals keys, passwords and malware that never touches disk.',
+          'Capturing memory changes it slightly, accepted and documented since the alternative loses everything.',
+          'Full capture gives content at enormous storage cost while flow records are cheaper and usually sufficient.',
+          'With most traffic encrypted, patterns became more revealing than content.',
+          'A regular constant-size connection is a command channel pattern and a large out-of-hours transfer an exfiltration one.',
+          'Log retention must exceed the average breach detection time.'
+        ],
+        analogy_ar: 'تخيّل مكتباً. القرص هو الأدراج والأرشيف: ما فيه باقٍ ويمكن تفتيشه لاحقاً. والذاكرة هي سطح المكتب واللوح: ما عليه الآن يختفي إن أطفأت الأنوار وخرج الجميع. وأما تحليل الشبكة فسجل مكالمات الهاتف: قد لا تعرف ماذا قالوا لأن الخط مشفّر، لكن معرفة أن هذا المكتب يتصل برقم مجهول كل خمس دقائق طوال الليل تكفي لتعرف أن شيئاً يجري.',
+        analogy_en: 'Picture an office. The disk is the drawers and archive: what is in them persists and can be searched later. Memory is the desktop and whiteboard: what is on them now disappears when the lights go off and everyone leaves. Network forensics is the phone call log: you may not know what was said because the line is encrypted, but knowing this office calls an unknown number every five minutes all night suffices to know something is happening.',
+        terms: [
+          { term: 'Memory Forensics', def_ar: 'فحص محتوى الذاكرة الحيّة لحظة أخذ النسخة.', def_en: 'Examining live memory content at the moment of capture.' },
+          { term: 'Fileless Malware', def_ar: 'برمجية تعمل في الذاكرة بلا كتابة ملف على القرص.', def_en: 'Malware running in memory without writing a file to disk.' },
+          { term: 'Full Packet Capture', def_ar: 'حفظ المرور بمحتواه كاملاً.', def_en: 'Storing traffic with its full content.' },
+          { term: 'Flow Records', def_ar: 'سجل من كلّم من ومتى وبكم بيانات بلا محتوى.', def_en: 'Records of who spoke to whom, when and how much, without content.' },
+          { term: 'Beaconing', def_ar: 'اتصال دوري منتظم بعنوان خارجي كنمط قناة تحكم.', def_en: 'Regular periodic contact with an external address as a command channel pattern.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا تحليل الذاكرة لا غنى عنه؟', q_en: 'Why is memory forensics indispensable?', a_ar: 'لأنه يكشف مفاتيح التشفير وكلمات المرور والبرمجيات التي لا تكتب ملفاً على القرص أصلاً.', a_en: 'It reveals encryption keys, passwords and malware that never writes a file to disk.' },
+          { q_ar: 'ما الفرق بين الالتقاط الكامل وسجلات التدفّق؟', q_en: 'Difference between full capture and flow records?', a_ar: 'الكامل يحفظ المحتوى بتخزين هائل، والتدفّق يحفظ من كلّم من ومتى وبكم بلا محتوى — وهو رخيص ويكفي غالباً.', a_en: 'Full capture stores content at enormous cost while flow records store who, when and how much without content, cheaply and usually sufficiently.' },
+          { q_ar: 'ما نمط قناة التحكم في المرور؟', q_en: 'What is the command channel traffic pattern?', a_ar: 'اتصال دوري منتظم بعنوان خارجي بفترات ثابتة وحجم ثابت.', a_en: 'A regular periodic connection to an external address at fixed intervals and constant size.' },
+          { q_ar: 'لماذا تُحفَظ سجلات التدفّق شهوراً؟', q_en: 'Why retain flow records for months?', a_ar: 'لأن متوسط زمن اكتشاف الاختراق يتجاوز مدة الاحتفاظ الشائعة، فتُكتشف الحادثة بلا ما يُحقَّق فيه.', a_en: 'Average breach detection time exceeds common retention, so an incident is discovered with nothing left to investigate.' }
+        ]
+      },
+      {
+        title_ar: 'تحليل البرمجيات الخبيثة',
+        title_en: 'Malware Analysis',
+        lead_ar: 'التحليل الساكن يقرأ العيّنة بلا تشغيلها، والديناميكي يشغّلها في بيئة معزولة ليرى سلوكها — وكلاهما يواجه برمجيات صُمِّمت لتخدع المحلل.',
+        lead_en: 'Static analysis reads a sample without running it and dynamic analysis runs it in isolation to observe behaviour, and both face malware designed to deceive the analyst.',
+        body_ar: [
+          'هدف تحليل البرمجية الخبيثة ثلاثة: معرفة ما تفعل، واستخراج مؤشرات تكشف إصابات أخرى، وفهم كيف دخلت لسدّ الطريق. وليس الهدف إشباع الفضول التقني، وإنما إنتاج ما يُستخدم في الدفاع فوراً.',
+          'والتحليل الساكن يفحص العيّنة بلا تشغيل: بصمتها، والنصوص الظاهرة فيها، والدوال التي تستوردها من النظام — فاستيراد دوال التشفير والشبكة والملفات معاً يوحي ببرنامج فدية قبل تشغيله. وميزته الأمان التام، وعيبه أن التغليف والتشويش يخفيان أغلب هذا.',
+          'والتحليل الديناميكي يشغّل العيّنة في بيئة معزولة ويراقب: ما الملفات التي أنشأها، وما مفاتيح النظام التي عدّلها، وبمن اتصل، وما العمليات التي أطلقها. فيرى السلوك الفعلي لا المعلن — وهذا ما يكشف المغلَّف الذي عجز عنه الساكن.',
+          'والعزل شرط لا يُتساهل فيه: بيئة افتراضية بلا اتصال بالشبكة الحقيقية ولا بمشاركات المؤسسة، تُستعاد لحالتها بعد كل عيّنة. فتشغيل عيّنة على جهاز متصل بشبكة العمل يحوّل التحليل إلى حادثة.',
+          'والبرمجيات الحديثة تقاوم التحليل: تفحص إن كانت في بيئة افتراضية فتتوقف عن السلوك الخبيث، وتنتظر تفاعل مستخدم حقيقي كحركة فأرة، وتتأخر ساعات قبل أن تبدأ. فالمحلل يرى عيّنة «نظيفة» وهي خبيثة — ولهذا تُهيَّأ بيئة التحليل لتبدو حقيقية، ويُمدَّد وقت المراقبة.',
+          'ومخرج التحليل النافع هو مؤشرات الاختراق: بصمات ملفات، وعناوين اتصال، وأسماء ملفات ومفاتيح تُنشئها البرمجية، وأنماط سلوك. وتُغذّى بها أنظمة الكشف فوراً للبحث عن إصابات أخرى في المؤسسة — فعيّنة واحدة تُحلَّل جيداً قد تكشف عشرين جهازاً مصاباً لم يُعرف عنها شيء.'
+        ],
+        body_en: [
+          'Malware analysis has three goals: learning what it does, extracting indicators that reveal other infections, and understanding how it entered so the path can be closed. The goal is not satisfying technical curiosity but producing something immediately usable in defence.',
+          'Static analysis examines a sample without running it: its hash, visible strings, and the system functions it imports, since importing encryption, network and file functions together suggests ransomware before execution. Its merit is complete safety and its flaw is that packing and obfuscation hide most of this.',
+          'Dynamic analysis runs the sample in an isolated environment and observes: which files it created, which system keys it modified, whom it contacted, and which processes it launched. It sees actual rather than declared behaviour, which exposes the packed sample static analysis could not read.',
+          'Isolation is a non-negotiable condition: a virtual environment with no connection to the real network or organisational shares, restored to a clean state after every sample. Running a sample on a machine connected to the work network turns analysis into an incident.',
+          'Modern malware resists analysis: checking whether it runs in a virtual environment and suspending malicious behaviour, waiting for genuine user interaction such as mouse movement, and delaying for hours before starting. So the analyst sees a clean-looking sample that is malicious, which is why analysis environments are made to look real and observation windows extended.',
+          'The useful output is indicators of compromise: file hashes, contact addresses, file and key names the malware creates, and behaviour patterns. These feed detection systems immediately to hunt other infections across the organisation, since one well-analysed sample may reveal twenty infected machines nobody knew about.'
+        ],
+        table: {
+          head_ar: ['الأسلوب', 'يشغّل العيّنة؟', 'يكشف', 'يهزمه'],
+          head_en: ['Approach', 'Runs the sample?', 'Reveals', 'Defeated by'],
+          rows: [
+            ['ساكن', 'لا', 'بصمة ونصوصاً ودوالّ مستوردة', 'التغليف والتشويش'],
+            ['ديناميكي', 'نعم في عزل', 'السلوك الفعلي والاتصالات', 'كشف البيئة والتأخير'],
+            ['هجين', 'نعم بمراقبة عميقة', 'ما يخفيه كلاهما منفرداً', 'مقاومة متقدمة'],
+            ['مؤشرات الاختراق', '—', 'إصابات أخرى في المؤسسة', 'تغيّر البصمة بكل نسخة']
+          ]
+        },
+        keyPoints_ar: [
+          'الهدف إنتاج ما يُستخدم في الدفاع لا إشباع الفضول التقني.',
+          'الساكن آمن تماماً ويهزمه التغليف والتشويش.',
+          'الديناميكي يرى السلوك الفعلي، وشرطه عزل تام يُستعاد بعد كل عيّنة.',
+          'البرمجيات الحديثة تكشف البيئة الافتراضية وتتأخر لتبدو نظيفة.',
+          'مؤشرات الاختراق هي المخرج النافع: تُغذّى بها أنظمة الكشف فوراً.',
+          'عيّنة واحدة تُحلَّل جيداً قد تكشف عشرات الأجهزة المصابة.'
+        ],
+        keyPoints_en: [
+          'The goal is producing defensive value rather than satisfying technical curiosity.',
+          'Static analysis is completely safe and is defeated by packing and obfuscation.',
+          'Dynamic analysis sees actual behaviour and requires full isolation restored after each sample.',
+          'Modern malware detects virtual environments and delays to appear clean.',
+          'Indicators of compromise are the useful output, fed immediately into detection systems.',
+          'One well-analysed sample may reveal dozens of infected machines.'
+        ],
+        analogy_ar: 'تخيّل طرداً مشبوهاً. التحليل الساكن أن تصوّره بالأشعة وتقرأ ملصقه وتزنه بلا فتحه — آمن تماماً وقد لا يكشف ما بداخله إن كان مغلّفاً بالرصاص. والديناميكي أن تفتحه في غرفة مصفّحة معزولة وتراقب ماذا يفعل. والبرمجية الذكية أشبه بطرد فيه مستشعر: إن أحسّ أنه في غرفة فحص لا يفعل شيئاً، وينتظر حتى يُفتح في مكتب حقيقي.',
+        analogy_en: 'Picture a suspicious parcel. Static analysis is x-raying it, reading its label and weighing it without opening: completely safe and possibly blind to the contents if it is lead-lined. Dynamic analysis is opening it in an isolated armoured room and watching what it does. Smart malware is like a parcel with a sensor: sensing it sits in an examination room it does nothing, waiting until it is opened in a real office.',
+        terms: [
+          { term: 'Static Analysis', def_ar: 'فحص العيّنة بلا تشغيلها.', def_en: 'Examining a sample without running it.' },
+          { term: 'Dynamic Analysis', def_ar: 'تشغيل العيّنة في بيئة معزولة ومراقبة سلوكها.', def_en: 'Running a sample in isolation and observing its behaviour.' },
+          { term: 'Sandbox', def_ar: 'بيئة معزولة تُستعاد لحالتها بعد كل عيّنة.', def_en: 'An isolated environment restored to a clean state after each sample.' },
+          { term: 'Packing', def_ar: 'تغليف الكود ليصعب قراءته ساكناً.', def_en: 'Wrapping code to resist static reading.' },
+          { term: 'Indicator of Compromise', def_ar: 'أثر يدل على الإصابة كبصمة أو عنوان اتصال.', def_en: 'A trace indicating infection such as a hash or contact address.' }
+        ],
+        cards: [
+          { q_ar: 'ما الهدف العملي من تحليل البرمجية الخبيثة؟', q_en: 'What is the practical goal of malware analysis?', a_ar: 'معرفة ما تفعل، واستخراج مؤشرات تكشف إصابات أخرى، وفهم كيف دخلت لسدّ الطريق.', a_en: 'Learning what it does, extracting indicators revealing other infections, and understanding its entry to close it.' },
+          { q_ar: 'ما الذي يهزم التحليل الساكن؟', q_en: 'What defeats static analysis?', a_ar: 'التغليف والتشويش، فيخفيان النصوص والدوالّ المستوردة عن القراءة.', a_en: 'Packing and obfuscation, hiding strings and imported functions from reading.' },
+          { q_ar: 'كيف تقاوم البرمجيات الحديثة التحليل الديناميكي؟', q_en: 'How does modern malware resist dynamic analysis?', a_ar: 'تفحص إن كانت في بيئة افتراضية فتتوقف، وتنتظر تفاعل مستخدم حقيقي، وتتأخر ساعات قبل البدء.', a_en: 'It checks for a virtual environment and stops, waits for genuine user interaction, and delays for hours before starting.' },
+          { q_ar: 'ما أنفع مخرجات التحليل؟', q_en: 'What is the most useful analysis output?', a_ar: 'مؤشرات الاختراق: بصمات وعناوين وأنماط تُغذّى بها أنظمة الكشف لاصطياد إصابات أخرى.', a_en: 'Indicators of compromise: hashes, addresses and patterns fed into detection systems to hunt other infections.' }
+        ]
+      },
+      {
+        title_ar: 'الاستجابة للحوادث',
+        title_en: 'Incident Response',
+        lead_ar: 'الخطة تُكتب قبل الحادث لا أثناءه، والاستجابة ست مراحل — وأكثرها إهمالاً هي الأخيرة: الدروس المستفادة.',
+        lead_en: 'The plan is written before the incident rather than during it, response has six phases, and the most neglected is the last: lessons learned.',
+        body_ar: [
+          'الاستجابة للحوادث عملية منظمة لا ارتجال. ومراحلها ست: التحضير، ثم الكشف والتحليل، ثم الاحتواء، ثم الاستئصال، ثم التعافي، ثم الدروس المستفادة. وأهمها التحضير لأنه الوحيد الذي يقع قبل الحادث — ووقت الحادث ليس وقت كتابة الخطة ولا وقت اكتشاف أرقام هواتف المسؤولين.',
+          'والتحضير يشمل: خطة مكتوبة مُختبَرة، وفريقاً معروف الأدوار، وقائمة اتصال محدَّثة تشمل خارج ساعات العمل، وأدوات جاهزة، وسلطة قرار واضحة — من يملك أن يقرر فصل نظام إنتاج عن الشبكة الساعة الثالثة فجراً؟ فهذا السؤال لو طُرح أثناء الحادث ضاعت ساعات ثمينة.',
+          'والاحتواء نوعان: قصير المدى لوقف النزيف فوراً كعزل الأجهزة المصابة، وطويل المدى لتمكين العمل من الاستمرار بأمان أثناء التحقيق. والمعضلة الدائمة بين الاحتواء السريع وحفظ الأدلة: عزل الجهاز يوقف الضرر وقد يمحو أدلة الذاكرة.',
+          'والاستئصال إزالة سبب الحادث فعلاً لا أعراضه: حذف البرمجية وسدّ الثغرة المستخدمة وإلغاء الاعتمادات المسروقة وإزالة آليات العودة التي زرعها المهاجم. وهذي الأخيرة أكثر ما يُنسى، فيعود المهاجم بعد أسبوع من باب خلفي لم يُفتَّش عنه.',
+          'والتعافي إعادة الأنظمة للعمل مع مراقبة مكثّفة، لأن العودة السريعة بلا مراقبة تخفي عودة المهاجم. والقاعدة: لا يُعاد نظام للإنتاج حتى يُتأكَّد من نظافته، والاستعادة من نسخة احتياطية قد تعيد الثغرة نفسها أو البرمجية إن كانت النسخة أُخِذت بعد الإصابة.',
+          'والدروس المستفادة أكثر المراحل إهمالاً وأعلاها قيمة: جلسة بعد استقرار الوضع تسأل ماذا حدث بالضبط، وكيف اكتُشف، وكم استغرقت كل مرحلة، وما الذي كان سيمنعه أو يقصّر زمنه. وشرطها الحاسم ألا تكون جلسة لوم — فالفريق الذي يُحاسَب على الأخطاء يخفيها في الحادث القادم، والجلسة التي تبحث عن مذنب لا تنتج تحسيناً.'
+        ],
+        body_en: [
+          'Incident response is an organised process rather than improvisation. It has six phases: preparation, detection and analysis, containment, eradication, recovery, then lessons learned. Preparation matters most because it is the only one occurring before the incident, and incident time is not the time to write the plan or discover managers phone numbers.',
+          'Preparation includes a written tested plan, a team with known roles, an updated contact list covering out of hours, ready tools, and clear decision authority: who may decide to disconnect a production system at three in the morning? Asking that question during an incident wastes precious hours.',
+          'Containment comes in two kinds: short-term to stop the bleeding immediately such as isolating infected machines, and long-term to let the business continue safely during investigation. The permanent dilemma is between fast containment and evidence preservation, since isolating a machine stops damage and may erase memory evidence.',
+          'Eradication removes the actual cause rather than symptoms: deleting the malware, closing the exploited vulnerability, revoking stolen credentials, and removing persistence mechanisms the attacker planted. The last is most often forgotten, so the attacker returns a week later through a backdoor nobody searched for.',
+          'Recovery returns systems to service under intensified monitoring, because a fast return without monitoring hides the attacker return. The rule: no system returns to production until its cleanliness is confirmed, and restoring from backup may reinstate the same vulnerability or malware if the backup was taken after infection.',
+          'Lessons learned is the most neglected and most valuable phase: a session after stabilisation asking exactly what happened, how it was detected, how long each phase took, and what would have prevented it or shortened it. Its decisive condition is not being a blame session, since a team punished for mistakes hides them in the next incident, and a session hunting a culprit produces no improvement.'
+        ],
+        table: {
+          head_ar: ['المرحلة', 'سؤالها', 'خطؤها الشائع'],
+          head_en: ['Phase', 'Its question', 'Its common mistake'],
+          rows: [
+            ['التحضير', 'هل نحن جاهزون؟', 'خطة مكتوبة لم تُختبَر'],
+            ['الكشف والتحليل', 'ما الذي يحدث فعلاً؟', 'التصرّف قبل فهم النطاق'],
+            ['الاحتواء', 'كيف نوقف النزيف؟', 'محو الأدلة بالعزل المتعجّل'],
+            ['الاستئصال', 'ما السبب الجذري؟', 'نسيان آليات العودة المزروعة'],
+            ['التعافي', 'هل النظام نظيف؟', 'الاستعادة من نسخة مصابة'],
+            ['الدروس', 'كيف نمنع تكراره؟', 'تحويلها لجلسة لوم']
+          ]
+        },
+        keyPoints_ar: [
+          'التحضير أهم المراحل لأنه الوحيد الذي يقع قبل الحادث.',
+          'سلطة القرار تُحدَّد مسبقاً: من يفصل نظام إنتاج الساعة الثالثة فجراً؟',
+          'الاحتواء يوازن بين وقف الضرر وحفظ أدلة الذاكرة.',
+          'أكثر ما يُنسى في الاستئصال آليات العودة التي زرعها المهاجم.',
+          'الاستعادة من نسخة أُخِذت بعد الإصابة تعيد المشكلة نفسها.',
+          'جلسة الدروس التي تبحث عن مذنب تُنتج إخفاءً في الحادث القادم لا تحسيناً.'
+        ],
+        keyPoints_en: [
+          'Preparation matters most because it is the only phase before the incident.',
+          'Decision authority is set in advance: who disconnects production at three in the morning?',
+          'Containment balances stopping damage against preserving memory evidence.',
+          'The most forgotten eradication step is the persistence mechanisms the attacker planted.',
+          'Restoring from a backup taken after infection reinstates the same problem.',
+          'A lessons session hunting a culprit produces concealment in the next incident rather than improvement.'
+        ],
+        analogy_ar: 'تخيّل حريقاً في مبنى. لا وقت لكتابة خطة الإخلاء وأنت تشمّ الدخان — تُكتب قبل وتُجرَّب مرتين في السنة. والاحتواء إغلاق باب الغرفة المشتعلة، والاستئصال إطفاء النار لا الدخان، والتعافي إعادة السكان بعد التأكد من سلامة الكهرباء. وأما الدروس فاجتماع بعد أسبوع يسأل: لماذا لم يعمل جهاز الإنذار؟ ولو تحوّل لمحاكمة الحارس، أخفى الحارس القادم عطلاً أول.',
+        analogy_en: 'Picture a fire in a building. There is no time to write an evacuation plan while smelling smoke; it is written beforehand and rehearsed twice a year. Containment is closing the burning room door, eradication is putting out the fire rather than the smoke, and recovery is returning residents after confirming the wiring is safe. Lessons learned is a meeting a week later asking why the alarm did not work, and if it turns into a trial of the guard, the next guard hides the first fault.',
+        terms: [
+          { term: 'Preparation', def_ar: 'كل ما يُنجَز قبل الحادث من خطة وفريق وأدوات وصلاحيات.', def_en: 'Everything done before an incident: plan, team, tools and authority.' },
+          { term: 'Containment', def_ar: 'إيقاف اتساع الضرر أثناء استمرار التحقيق.', def_en: 'Stopping damage spreading while investigation continues.' },
+          { term: 'Eradication', def_ar: 'إزالة السبب الجذري وآليات العودة معاً.', def_en: 'Removing the root cause together with persistence mechanisms.' },
+          { term: 'Recovery', def_ar: 'إعادة الأنظمة للعمل مع مراقبة مكثّفة.', def_en: 'Returning systems to service under intensified monitoring.' },
+          { term: 'Blameless Postmortem', def_ar: 'مراجعة تبحث عن سبب النظام لا عن مذنب.', def_en: 'A review seeking the systemic cause rather than a culprit.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا التحضير أهم مراحل الاستجابة؟', q_en: 'Why is preparation the most important phase?', a_ar: 'لأنه الوحيد الذي يقع قبل الحادث؛ ووقت الحادث ليس وقت كتابة الخطة ولا البحث عن الأرقام.', a_en: 'It is the only phase before the incident, and incident time is not for writing plans or hunting phone numbers.' },
+          { q_ar: 'ما المعضلة الدائمة في الاحتواء؟', q_en: 'What is the permanent containment dilemma?', a_ar: 'بين وقف الضرر بعزل الجهاز وبين حفظ أدلة الذاكرة التي تزول بالإطفاء.', a_en: 'Between stopping damage by isolating the machine and preserving memory evidence that vanishes on power off.' },
+          { q_ar: 'ما أكثر ما يُنسى في الاستئصال؟', q_en: 'What is most forgotten in eradication?', a_ar: 'آليات العودة التي زرعها المهاجم، فيعود بعد أسبوع من باب خلفي لم يُفتَّش عنه.', a_en: 'The persistence mechanisms the attacker planted, so they return a week later through an unsearched backdoor.' },
+          { q_ar: 'ما شرط جلسة الدروس المستفادة؟', q_en: 'What condition must a lessons session meet?', a_ar: 'ألا تكون جلسة لوم، فالفريق الذي يُحاسَب على الأخطاء يخفيها في الحادث القادم.', a_en: 'It must not be a blame session, since a team punished for mistakes hides them in the next incident.' }
+        ]
+      }
     ]
   }
 };
