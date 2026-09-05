@@ -9869,6 +9869,325 @@ export const sectionGuides = {
           { q_ar: 'كيف يُثبَت صحة نقل البيانات؟', q_en: 'How is data migration proven correct?', a_ar: 'بمطابقة رقمية لا بالثقة؛ فخطأ غير مكتشَف قد يبقى سنوات ويظهر في تدقيق أو شكوى.', a_en: 'By numerical reconciliation rather than trust, since an undetected error may persist for years and surface in an audit or complaint.' }
         ]
       }
+    ],
+
+    // ─────────── البلوكشين والأصول الرقمية ───────────
+    3: [
+      {
+        title_ar: 'مفهوم البلوكشين وبنية الكتل',
+        title_en: 'Blockchain and Block Structure',
+        lead_ar: 'قوة البلوكشين ليست في التشفير وحده وإنما في التسلسل: كل كتلة تحمل بصمة سابقتها، فتغيير حرف في كتلة قديمة يُبطِل كل ما بعدها دفعة واحدة.',
+        lead_en: 'The strength of a blockchain is not encryption alone but chaining: each block carries the fingerprint of its predecessor, so changing one character in an old block invalidates everything after it at once.',
+        body_ar: [
+          'البلوكشين سجل مشترك تحتفظ كل جهة مشاركة بنسخة كاملة منه، وتُضاف إليه السجلات في كتل متتابعة. وفكرته المركزية إزالة الحاجة لطرف موثوق واحد يحفظ الدفتر — فبدل أن يكون السجل عند جهة تثق بها، يكون عند الجميع وتتحقق قواعد رياضية من صحته.',
+          'وكل كتلة تحتوي أربعة أشياء: مجموعة معاملات، وبصمة رقمية للكتلة السابقة، وطابعاً زمنياً، وبصمة تلخّص المعاملات كلها. والبصمة الرقمية دالة تعطي ناتجاً ثابت الطول لأي مدخل، وأي تغيير مهما صغر في المدخل يغيّر الناتج كلياً بلا نمط يُتنبَّأ به.',
+          'وحمل كل كتلة لبصمة سابقتها هو مصدر المناعة كله: تغيير معاملة في كتلة قديمة يغيّر بصمتها، فلا تطابق ما سجّلته الكتلة التالية، فتصير كل السلسلة بعدها غير صحيحة. فمن أراد التزوير عليه إعادة بناء كل ما بعد الكتلة المستهدفة وإقناع الشبكة بنسخته.',
+          'والشجرة التلخيصية تحلّ مسألة عملية: كيف يتحقق جهاز خفيف من وجود معاملة بلا تحميل الكتلة كاملة؟ فتُلخَّص المعاملات في بصمة واحدة تُبنى على مراحل، ويمكن إثبات وجود معاملة بمسار قصير من البصمات لا بالسجل كله.',
+          'ونوعا الشبكات مختلفان جوهرياً في الغرض: العامة مفتوحة يشارك فيها من شاء بلا إذن، وحمايتها من كلفة المشاركة في التحقق. والمرخَّصة مغلقة على أطراف معروفة، وحمايتها من التعاقد والهوية. والثانية أسرع وأقل كلفة، والأولى وحدها تقدّم لامركزية حقيقية.',
+          'وحدود التقنية يجب أن تُقال بوضوح: البلوكشين يضمن أن ما كُتِب لم يُغيَّر، ولا يضمن أن ما كُتِب كان صحيحاً. فمن سجّل ملكية سيارة لا يملكها، سجّل كذبة محفوظة بمناعة تامة. ولهذا فالمشكلة التي يحلّها هي الثقة في السجل لا الثقة في من يكتب فيه.'
+        ],
+        body_en: [
+          'A blockchain is a shared ledger of which every participating party keeps a full copy, with records added in successive blocks. Its central idea is removing the need for one trusted party to keep the book: instead of the record sitting with an entity you trust, it sits with everyone and mathematical rules verify its validity.',
+          'Each block contains four things: a set of transactions, a digital fingerprint of the previous block, a timestamp, and a fingerprint summarising all its transactions. A digital fingerprint is a function giving a fixed-length output for any input, where any change however small alters the output entirely with no predictable pattern.',
+          'Each block carrying its predecessor fingerprint is the entire source of immunity: changing a transaction in an old block changes its fingerprint, which no longer matches what the next block recorded, invalidating the whole chain after it. Whoever wants to forge must rebuild everything after the targeted block and convince the network of their version.',
+          'The summarising tree solves a practical matter: how does a lightweight device verify a transaction exists without downloading the whole block? Transactions are summarised into one fingerprint built in stages, and a transaction existence can be proven by a short path of fingerprints rather than the whole record.',
+          'The two network kinds differ fundamentally in purpose: public ones are open for anyone to join without permission, protected by the cost of participating in verification. Permissioned ones are closed to known parties, protected by contract and identity. The second is faster and cheaper, and only the first offers genuine decentralisation.',
+          'The limits of the technology must be stated plainly: a blockchain guarantees that what was written was not changed, and never that what was written was true. Whoever recorded ownership of a car they do not own recorded a lie preserved with perfect immunity. So the problem it solves is trust in the record rather than trust in whoever writes to it.'
+        ],
+        table: {
+          head_ar: ['العنصر', 'ما يفعله', 'ما ينتج عن غيابه'],
+          head_en: ['Element', 'What it does', 'Effect of its absence'],
+          rows: [
+            ['بصمة الكتلة السابقة', 'تربط السلسلة', 'تعديل كتلة بلا أثر ظاهر'],
+            ['الشجرة التلخيصية', 'إثبات وجود معاملة بسرعة', 'تحميل الكتلة كاملة للتحقق'],
+            ['الطابع الزمني', 'ترتيب الكتل', 'التباس في التسلسل'],
+            ['النسخ الموزّعة', 'إزالة الطرف الموثوق الواحد', 'العودة لسجل مركزي']
+          ]
+        },
+        keyPoints_ar: [
+          'الفكرة المركزية إزالة الحاجة لطرف موثوق واحد يحفظ الدفتر.',
+          'التسلسل مصدر المناعة: تغيير كتلة قديمة يُبطِل كل ما بعدها.',
+          'أي تغيير مهما صغر يقلب البصمة كلياً بلا نمط يُتنبَّأ به.',
+          'الشجرة التلخيصية تثبت وجود معاملة بمسار قصير لا بالسجل كله.',
+          'العامة وحدها تقدّم لامركزية حقيقية، والمرخَّصة أسرع وأقل كلفة.',
+          'يضمن أن المكتوب لم يُغيَّر ولا يضمن أنه كان صحيحاً.'
+        ],
+        keyPoints_en: [
+          'The central idea is removing the need for one trusted party to keep the book.',
+          'Chaining is the source of immunity: changing an old block invalidates everything after it.',
+          'Any change however small flips the fingerprint entirely with no predictable pattern.',
+          'The summarising tree proves a transaction exists by a short path rather than the whole record.',
+          'Only public networks offer genuine decentralisation; permissioned ones are faster and cheaper.',
+          'It guarantees what was written was not changed, never that it was true.'
+        ],
+        analogy_ar: 'تخيّل دفتراً كل صفحة فيه تبدأ بجملة تصف الصفحة السابقة وصفاً دقيقاً: عدد كلماتها وأول حرف وآخر حرف. لو مزّقت صفحة قديمة وكتبت غيرها، لما طابق وصفها ما هو مكتوب في الصفحة التالية، ولا التي بعدها، حتى آخر الدفتر. فالتزوير يتطلب إعادة كتابة الدفتر كله من تلك النقطة — ولو كان لدى عشرة أشخاص نسخة من الدفتر، لاحتجت أن تقنعهم جميعاً بنسختك.',
+        analogy_en: 'Picture a notebook where each page begins with a sentence describing the previous page precisely: its word count, first letter and last letter. If you tore out an old page and wrote another, its description would no longer match what the next page says, nor the one after, all the way to the end. Forgery would require rewriting the entire notebook from that point, and if ten people held copies you would need to convince them all of your version.',
+        terms: [
+          { term: 'Hash', def_ar: 'بصمة رقمية ثابتة الطول لأي مدخل مهما كبر.', def_en: 'A fixed-length digital fingerprint of any input however large.' },
+          { term: 'Block Chaining', def_ar: 'حمل كل كتلة بصمة سابقتها فتترابط السلسلة.', def_en: 'Each block carrying its predecessor fingerprint, linking the chain.' },
+          { term: 'Merkle Tree', def_ar: 'تلخيص المعاملات في بصمة تسمح بإثبات سريع.', def_en: 'Summarising transactions into a fingerprint allowing fast proof.' },
+          { term: 'Permissionless', def_ar: 'شبكة يشارك فيها من شاء بلا إذن مسبق.', def_en: 'A network anyone may join with no prior permission.' },
+          { term: 'Garbage In', def_ar: 'بيانة خاطئة تُحفَظ بمناعة تامة كما لو كانت صحيحة.', def_en: 'A false datum preserved with perfect immunity as though true.' }
+        ],
+        cards: [
+          { q_ar: 'ما مصدر مناعة البلوكشين؟', q_en: 'What is the source of blockchain immunity?', a_ar: 'التسلسل: كل كتلة تحمل بصمة سابقتها، فتغيير كتلة قديمة يُبطِل كل ما بعدها دفعة واحدة.', a_en: 'Chaining: each block carries its predecessor fingerprint, so changing an old block invalidates everything after it at once.' },
+          { q_ar: 'ما فائدة الشجرة التلخيصية؟', q_en: 'What is the summarising tree for?', a_ar: 'إثبات وجود معاملة بمسار قصير من البصمات بلا تحميل الكتلة كاملة.', a_en: 'Proving a transaction exists by a short path of fingerprints without downloading the whole block.' },
+          { q_ar: 'ما الفرق بين الشبكة العامة والمرخَّصة؟', q_en: 'Difference between public and permissioned networks?', a_ar: 'العامة مفتوحة وحمايتها من كلفة التحقق وتقدّم لامركزية حقيقية، والمرخَّصة مغلقة أسرع وأقل كلفة.', a_en: 'Public is open, protected by verification cost and genuinely decentralised; permissioned is closed, faster and cheaper.' },
+          { q_ar: 'ما الذي لا يضمنه البلوكشين؟', q_en: 'What does a blockchain not guarantee?', a_ar: 'صحة ما كُتِب: من سجّل ملكية لا يملكها سجّل كذبة محفوظة بمناعة تامة.', a_en: 'The truth of what was written: whoever recorded ownership they lack recorded a lie preserved with perfect immunity.' }
+        ]
+      },
+      {
+        title_ar: 'الإجماع والتعدين',
+        title_en: 'Consensus and Mining',
+        lead_ar: 'الإجماع يحل مسألة واحدة: كيف تتفق شبكة لا يثق أعضاؤها ببعضهم على ترتيب واحد للأحداث بلا حَكَم؟',
+        lead_en: 'Consensus solves one problem: how does a network whose members do not trust each other agree on one ordering of events with no arbiter?',
+        body_ar: [
+          'المسألة التي يحلّها الإجماع ليست التشفير وإنما الترتيب: لو أرسل شخص المبلغ نفسه لجهتين في اللحظة ذاتها، أيهما الصحيح؟ وفي نظام مركزي يحسمها البنك. وفي شبكة بلا مركز يجب أن تتفق الأطراف على ترتيب واحد بلا أن تثق ببعضها، وهذي هي المسألة الحقيقية.',
+          'وإثبات العمل أول حل عملي: يتنافس المشاركون على حلّ مسألة حسابية صعبة الحل سهلة التحقق، ومن يحلّها يحق له إضافة الكتلة التالية وينال مكافأة. وصعوبة المسألة تُضبَط تلقائياً ليبقى معدل إضافة الكتل ثابتاً مهما زادت قدرة الشبكة.',
+          'وحمايته اقتصادية لا رياضية: تزوير السجل يتطلب قدرة حسابية تفوق نصف الشبكة، وكلفتها تتجاوز ما يمكن كسبه بالتزوير غالباً. وثمن هذي الحماية استهلاك طاقة كبير هو أشهر انتقاد يُوجَّه للنموذج.',
+          'وإثبات الحصة بديل انتشر: يُختار من يضيف الكتلة بحسب ما جمّده من قيمة في الشبكة لا بقدرته الحسابية. وضمانته أن من يخالف القواعد يخسر ما جمّده، فالحافز الاقتصادي يعمل في الاتجاه نفسه بلا استهلاك طاقة يُذكر.',
+          'ومفهوم النهائية يجب فهمه جيداً: في إثبات العمل النهائية احتمالية لا قاطعة — فالمعاملة تصير أصعب إبطالاً كلما بُنِيت فوقها كتل أكثر، ولهذا ينتظر المستقبِلون عدداً من التأكيدات. ومن يسلّم بضاعة عند أول ظهور للمعاملة يقبل مخاطرة حقيقية لا نظرية.',
+          'والمعضلة الثلاثية إطار نافع لتقييم أي شبكة: اللامركزية والأمان والقدرة على المعالجة، وتحسين اثنين يكون غالباً على حساب الثالث. فشبكة سريعة جداً وآمنة قد تكون قليلة العقد أي أقل لامركزية — والسؤال الصحيح عن أي شبكة ليس هل هي سريعة، وإنما ماذا ضحّت به لتكون سريعة.'
+        ],
+        body_en: [
+          'The problem consensus solves is not encryption but ordering: if someone sends the same amount to two parties at the same instant, which is valid? In a centralised system the bank decides. In a network with no centre the parties must agree on one ordering without trusting each other, and that is the real problem.',
+          'Proof of work was the first practical solution: participants compete to solve a computational puzzle hard to solve and easy to verify, and whoever solves it may add the next block and earns a reward. The puzzle difficulty adjusts automatically so the block rate stays constant however much network power grows.',
+          'Its protection is economic rather than mathematical: forging the record requires computing power exceeding half the network, whose cost usually exceeds what forgery could earn. The price of that protection is large energy consumption, the best-known criticism of the model.',
+          'Proof of stake is an alternative that spread: whoever adds a block is chosen by the value they locked in the network rather than their computing power. Its guarantee is that violating the rules forfeits what they locked, so the economic incentive works in the same direction with negligible energy use.',
+          'The concept of finality must be well understood: in proof of work finality is probabilistic rather than absolute, since a transaction grows harder to reverse as more blocks are built above it, which is why recipients wait for a number of confirmations. Whoever hands over goods at the transaction first appearance accepts a real rather than theoretical risk.',
+          'The trilemma is a useful frame for judging any network: decentralisation, security and throughput, where improving two usually costs the third. A very fast and secure network may have few nodes, meaning less decentralisation. The right question about any network is not whether it is fast but what it sacrificed to be fast.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'إثبات العمل', 'إثبات الحصة'],
+          head_en: ['Aspect', 'Proof of work', 'Proof of stake'],
+          rows: [
+            ['أساس الاختيار', 'قدرة حسابية', 'قيمة مجمّدة'],
+            ['مصدر الردع', 'كلفة الحوسبة', 'خسارة المجمّد عند المخالفة'],
+            ['استهلاك الطاقة', 'كبير', 'ضئيل'],
+            ['حاجز الدخول', 'عتاد متخصص', 'رأس مال مجمّد']
+          ]
+        },
+        keyPoints_ar: [
+          'المسألة الحقيقية ترتيب الأحداث بلا حَكَم لا التشفير.',
+          'المسألة الحسابية صعبة الحل سهلة التحقق، وصعوبتها تُضبَط ليثبت معدل الكتل.',
+          'حماية إثبات العمل اقتصادية: كلفة التزوير تتجاوز عائده غالباً.',
+          'إثبات الحصة يردع بخسارة المجمّد بلا استهلاك طاقة يُذكر.',
+          'النهائية احتمالية: التسليم عند أول ظهور مخاطرة حقيقية لا نظرية.',
+          'المعضلة الثلاثية: اسألي ماذا ضحّت به الشبكة لتكون سريعة.'
+        ],
+        keyPoints_en: [
+          'The real problem is ordering events with no arbiter rather than encryption.',
+          'The puzzle is hard to solve and easy to verify, and its difficulty adjusts to hold the block rate.',
+          'Proof of work protection is economic: forgery cost usually exceeds its return.',
+          'Proof of stake deters by forfeiting the locked value with negligible energy use.',
+          'Finality is probabilistic: handing over at first appearance is a real rather than theoretical risk.',
+          'The trilemma: ask what a network sacrificed to be fast.'
+        ],
+        analogy_ar: 'تخيّل قاعة فيها ألف شخص بلا رئيس جلسة، وكلهم يريدون تسجيل الأحداث بالترتيب نفسه. الحل المتّبع: من أراد تسجيل الحدث التالي عليه حلّ لغز يستغرق جهداً حقيقياً، فيقلّ المتسابقون ويُعرَف من له الدور. ومن أراد تزوير حدث قديم عليه إعادة حل كل الألغاز التي بعده أسرع من ألف شخص مجتمعين — وهذا ما يجعل التزوير مكلفاً لا مستحيلاً. ولهذا لا يسلّم أحد بضاعته حتى تُسجَّل عدة أحداث فوق حدثه.',
+        analogy_en: 'Picture a hall of a thousand people with no chairperson, all wanting to record events in the same order. The adopted solution: whoever wants to record the next event must solve a puzzle taking real effort, thinning the contenders and settling whose turn it is. Whoever wants to forge an old event must re-solve every puzzle after it faster than a thousand people combined, which makes forgery costly rather than impossible. So nobody hands over goods until several events are recorded above theirs.',
+        terms: [
+          { term: 'Consensus', def_ar: 'اتفاق شبكة لا تثق ببعضها على ترتيب واحد.', def_en: 'A mutually distrusting network agreeing on one ordering.' },
+          { term: 'Difficulty Adjustment', def_ar: 'ضبط صعوبة المسألة ليبقى معدل الكتل ثابتاً.', def_en: 'Adjusting puzzle difficulty to hold the block rate constant.' },
+          { term: 'Majority Attack', def_ar: 'سيطرة على أكثر من نصف قدرة الشبكة لإعادة الكتابة.', def_en: 'Controlling over half the network power to rewrite history.' },
+          { term: 'Slashing', def_ar: 'مصادرة ما جمّده المخالف في إثبات الحصة.', def_en: 'Confiscating a violator locked value in proof of stake.' },
+          { term: 'Probabilistic Finality', def_ar: 'نهائية تشتد كلما بُنِيت كتل فوق المعاملة.', def_en: 'Finality strengthening as blocks are built above a transaction.' }
+        ],
+        cards: [
+          { q_ar: 'ما المسألة التي يحلّها الإجماع فعلاً؟', q_en: 'What problem does consensus actually solve?', a_ar: 'ترتيب الأحداث: أي معاملة صحيحة لو أُرسِل المبلغ نفسه لجهتين معاً، بلا حَكَم مركزي.', a_en: 'Ordering events: which transaction is valid if the same amount went to two parties at once, with no central arbiter.' },
+          { q_ar: 'لماذا حماية إثبات العمل اقتصادية؟', q_en: 'Why is proof of work protection economic?', a_ar: 'لأن التزوير يتطلب قدرة تفوق نصف الشبكة وكلفتها تتجاوز عائد التزوير غالباً.', a_en: 'Forgery requires power exceeding half the network, whose cost usually exceeds the return.' },
+          { q_ar: 'كيف يردع إثبات الحصة المخالفين؟', q_en: 'How does proof of stake deter violators?', a_ar: 'بمصادرة ما جمّدوه من قيمة، فالحافز الاقتصادي يعمل بلا استهلاك طاقة يُذكر.', a_en: 'By confiscating the value they locked, so the economic incentive works with negligible energy use.' },
+          { q_ar: 'لماذا يُنتظَر عدد من التأكيدات؟', q_en: 'Why wait for a number of confirmations?', a_ar: 'لأن النهائية احتمالية: كلما بُنِيت كتل فوق المعاملة صعُب إبطالها، والتسليم فوراً مخاطرة حقيقية.', a_en: 'Finality is probabilistic: more blocks above make reversal harder, and immediate handover is a real risk.' }
+        ]
+      },
+      {
+        title_ar: 'العملات الرقمية وأنواعها',
+        title_en: 'Digital Currencies and Their Kinds',
+        lead_ar: 'ثلاثة أشياء تُخلَط تحت اسم واحد: عملة متقلبة بلا غطاء، وعملة مستقرة مربوطة بأصل، ونقد رقمي تصدره الدولة — ومخاطر كل واحد مختلفة تماماً.',
+        lead_en: 'Three things are conflated under one name: a volatile unbacked currency, a stablecoin pegged to an asset, and state-issued digital cash, and the risks of each differ entirely.',
+        body_ar: [
+          'العملات الرقمية اللامركزية أصول تُتداوَل على شبكة بلا جهة مُصدِرة. وقيمتها تأتي من العرض والطلب فقط، ولا يقف خلفها بنك مركزي ولا التزام بشراء. ولهذا تتقلّب بشدة — وهي خاصية بنيوية لا عارض مؤقت يزول بنضج السوق.',
+          'وهذا التقلّب يجعلها ضعيفة كوسيط تبادل: من يسعّر بضاعته بأصل يتغيّر عشرين بالمئة في أسبوع يخسر إما هو أو زبونه. ولهذا بقي استخدامها الأوسع كأصل استثماري مضاربي لا كوسيلة دفع يومية.',
+          'والعملات المستقرة حاولت حلّ ذلك بربط القيمة بأصل مرجعي كعملة نظامية. وأنواعها ثلاثة بمخاطر متفاوتة جداً: مغطاة باحتياطي نقدي حقيقي، ومغطاة بأصول رقمية مفرطة التغطية، وخوارزمية تحاول الحفاظ على الربط بآليات عرض وطلب بلا غطاء حقيقي.',
+          'والنوع الثالث فشل مراراً وبشكل مدوٍّ: حين يفقد السوق الثقة، تنهار الآلية التي تفترض وجود مشترٍ يدعم السعر فينفصل الربط ويتلاشى في أيام. والدرس أن الربط بلا احتياطي قابل للسحب وعدٌ لا ضمان.',
+          'والسؤال الحاسم عن أي عملة مستقرة: ما الاحتياطي بالضبط، ومن يحفظه، ومن يدقّقه، وهل يستطيع الحامل استرداده فعلاً؟ فالاحتياطي بأدوات قصيرة الأجل عالية السيولة ليس كالاحتياطي بأصول لا تُباع بسرعة عند الضغط.',
+          'وعملات البنوك المركزية الرقمية مختلفة عن الاثنتين: نقد رقمي يصدره البنك المركزي نفسه، فهو التزام على الدولة كالنقد الورقي تماماً. وأسئلتها المفتوحة كبيرة: كيف تُحفَظ الخصوصية في نقد يمكن تتبّعه؟ وماذا يحدث لودائع البنوك التجارية لو نقل الناس أموالهم إليه في أزمة؟'
+        ],
+        body_en: [
+          'Decentralised digital currencies are assets traded on a network with no issuing entity. Their value comes from supply and demand alone, with no central bank behind them and no obligation to buy. So they swing sharply, and that is a structural property rather than a temporary condition that market maturity removes.',
+          'That volatility makes them weak as a medium of exchange: whoever prices goods in an asset moving twenty percent in a week loses, either themselves or their customer. So their widest use remained a speculative investment asset rather than a daily payment means.',
+          'Stablecoins tried to solve that by pegging value to a reference asset such as a fiat currency. They come in three kinds with vastly differing risks: backed by a real cash reserve, backed by over-collateralised digital assets, and algorithmic ones attempting to hold the peg through supply and demand mechanics with no real backing.',
+          'The third kind has failed repeatedly and spectacularly: when the market loses confidence, the mechanism assuming a buyer will support the price collapses, the peg breaks and it evaporates within days. The lesson is that a peg without a redeemable reserve is a promise rather than a guarantee.',
+          'The decisive question about any stablecoin: what exactly is the reserve, who holds it, who audits it, and can a holder genuinely redeem? A reserve in short-term highly liquid instruments is not the same as a reserve in assets that do not sell quickly under pressure.',
+          'Central bank digital currencies differ from both: digital cash issued by the central bank itself, a state liability exactly as paper cash is. Their open questions are large: how is privacy preserved in traceable cash, and what happens to commercial bank deposits if people move their money into it during a crisis?'
+        ],
+        table: {
+          head_ar: ['النوع', 'من يقف خلفه', 'مخاطرته الأولى'],
+          head_en: ['Kind', 'What stands behind it', 'Its first risk'],
+          rows: [
+            ['لامركزية بلا غطاء', 'لا أحد، العرض والطلب', 'تقلّب بنيوي حاد'],
+            ['مستقرة مغطاة نقداً', 'احتياطي قابل للاسترداد', 'جودة الاحتياطي وتدقيقه'],
+            ['مستقرة خوارزمية', 'آلية عرض وطلب فقط', 'انهيار الربط عند فقد الثقة'],
+            ['عملة بنك مركزي', 'الدولة كالنقد الورقي', 'الخصوصية وأثرها على الودائع']
+          ]
+        },
+        keyPoints_ar: [
+          'التقلّب خاصية بنيوية لا عارض يزول بنضج السوق.',
+          'التقلّب يضعفها كوسيط تبادل، ولهذا بقيت أصلاً مضاربياً غالباً.',
+          'المستقرة ثلاثة أنواع بمخاطر متفاوتة جداً لا نوع واحد.',
+          'الخوارزمية فشلت مراراً: الربط بلا احتياطي قابل للسحب وعدٌ لا ضمان.',
+          'اسألي: ما الاحتياطي، ومن يحفظه، ومن يدقّقه، وهل يُستَرد فعلاً؟',
+          'عملة البنك المركزي التزام على الدولة، وأسئلتها الخصوصية وأثرها على الودائع.'
+        ],
+        keyPoints_en: [
+          'Volatility is a structural property rather than a phase market maturity removes.',
+          'Volatility weakens them as a medium of exchange, so they remained mostly speculative assets.',
+          'Stablecoins are three kinds with vastly differing risks rather than one thing.',
+          'Algorithmic ones failed repeatedly: a peg with no redeemable reserve is a promise not a guarantee.',
+          'Ask what the reserve is, who holds it, who audits it, and whether it is genuinely redeemable.',
+          'A central bank currency is a state liability, and its questions are privacy and the effect on deposits.'
+        ],
+        analogy_ar: 'تخيّل ثلاثة أنواع من قسائم الشراء. الأولى قسيمة يتداولها الناس وسعرها يتغيّر كل يوم بحسب رغبتهم فيها، ولا أحد ملزم بقبولها. والثانية قسيمة يقول متجر إن مقابل كل واحدة ريالاً محفوظاً في خزنته يمكنك استرداده — وقيمتها بقدر صدق ذلك وبقدر ما في الخزنة فعلاً. والثالثة قسيمة تقول «قيمتي ريال» بلا خزنة أصلاً، وتعتمد على أن يستمر الناس في تصديقها — وهي تعمل تماماً حتى اليوم الذي يتوقفون فيه.',
+        analogy_en: 'Picture three kinds of vouchers. The first is traded among people at a price changing daily with their appetite, and nobody is obliged to accept it. The second says a shop holds one riyal in its safe for each voucher and you may redeem it, and its worth equals the truth of that and what the safe actually holds. The third says my value is one riyal with no safe at all, relying on people continuing to believe it, and it works perfectly until the day they stop.',
+        terms: [
+          { term: 'Volatility', def_ar: 'تغيّر حاد في السعر خلال مدد قصيرة.', def_en: 'Sharp price movement over short periods.' },
+          { term: 'Peg', def_ar: 'ربط قيمة العملة بأصل مرجعي.', def_en: 'Tying a currency value to a reference asset.' },
+          { term: 'Reserve Backing', def_ar: 'احتياطي حقيقي يمكن استرداده يدعم الربط.', def_en: 'A real redeemable reserve supporting a peg.' },
+          { term: 'Depeg', def_ar: 'انفصال العملة المستقرة عن قيمتها المرجعية.', def_en: 'A stablecoin breaking away from its reference value.' },
+          { term: 'Reserve Quality', def_ar: 'قابلية أصول الاحتياطي للبيع السريع تحت الضغط.', def_en: 'How quickly reserve assets sell under pressure.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا تضعف العملات المتقلبة كوسيلة دفع؟', q_en: 'Why are volatile currencies weak as payment?', a_ar: 'لأن من يسعّر بأصل يتغيّر عشرين بالمئة في أسبوع يخسر هو أو زبونه، فبقيت أصلاً مضاربياً.', a_en: 'Pricing in an asset moving twenty percent a week loses either the seller or the buyer, so they stayed speculative assets.' },
+          { q_ar: 'لماذا تفشل العملات المستقرة الخوارزمية؟', q_en: 'Why do algorithmic stablecoins fail?', a_ar: 'لأن آليتها تفترض مشترياً يدعم السعر؛ فحين تُفقَد الثقة ينفصل الربط ويتلاشى في أيام.', a_en: 'Their mechanism assumes a buyer supporting the price, so when confidence goes the peg breaks and it evaporates in days.' },
+          { q_ar: 'ما الأسئلة الحاسمة عن أي عملة مستقرة؟', q_en: 'What are the decisive questions about a stablecoin?', a_ar: 'ما الاحتياطي بالضبط، ومن يحفظه، ومن يدقّقه، وهل يستطيع الحامل استرداده فعلاً.', a_en: 'What the reserve is, who holds it, who audits it, and whether a holder can genuinely redeem.' },
+          { q_ar: 'بم تختلف عملة البنك المركزي عن غيرها؟', q_en: 'How does a central bank currency differ?', a_ar: 'أنها التزام على الدولة كالنقد الورقي، لا أصل بلا غطاء ولا وعد شركة خاصة.', a_en: 'It is a state liability like paper cash rather than an unbacked asset or a private company promise.' }
+        ]
+      },
+      {
+        title_ar: 'العقود الذكية',
+        title_en: 'Smart Contracts',
+        lead_ar: 'العقد الذكي كود يُنفَّذ حرفياً بلا وسيط ولا اجتهاد — وهذي قوته وعيبه معاً، لأن الثغرة فيه تُنفَّذ بالدقة نفسها التي يُنفَّذ بها المقصود.',
+        lead_en: 'A smart contract is code executed literally with no intermediary and no interpretation, which is both its strength and its flaw, since a bug executes with the same precision as the intent.',
+        body_ar: [
+          'العقد الذكي برنامج يعيش على الشبكة وينفّذ شروطاً متفقاً عليها تلقائياً عند تحقق مدخلاتها. وقيمته إزالة الحاجة لطرف ينفّذ ويتحقق: لا يستطيع أحد رفض التنفيذ ولا تأجيله ولا تفسيره تفسيراً مختلفاً.',
+          'وهذي الحرفية سيف ذو حدين. فالعقد ينفّذ ما كُتِب فيه لا ما قُصِد منه، وليس فيه قاضٍ يقول إن هذا مخالف لروح الاتفاق. فثغرة برمجية تُستغَل هي تنفيذ صحيح للكود من وجهة نظر الشبكة — ولهذا وقعت خسائر ضخمة في عقود عملت تماماً كما كُتِبت.',
+          'وخاصية عدم القابلية للتعديل تشتد هنا: العقد المنشور لا يُعدَّل ولا يُوقَف إلا إن صُمِّم منذ البداية بآلية ترقية أو إيقاف طارئ. فمن نشر عقداً بثغرة لا يستطيع إصلاحه، وكل ما يملكه إقناع المستخدمين بالانتقال لعقد جديد.',
+          'وهذا يفرض انضباطاً هندسياً أشد مما في البرمجة العادية: مراجعة أمنية مستقلة قبل النشر، واختبارات شاملة، وحدود على المبالغ في البداية، وآلية إيقاف مصمَّمة سلفاً. فالنشر هنا ليس إطلاق نسخة قابلة للتحديث غداً.',
+          'ومشكلة الوسيط الخارجي بنيوية: العقد لا يستطيع قراءة أي شيء خارج الشبكة — لا سعر سهم ولا نتيجة مباراة ولا حالة شحنة. فيلزمه وسيط يُدخِل البيانة، وهذا الوسيط يصير نقطة ثقة مركزية في نظام بُني ليزيلها.',
+          'ومن تلاعب بالوسيط تلاعب بنتيجة العقد مهما كان الكود سليماً. ولهذا تُستخدَم وسطاء متعددون بمصادر مستقلة وتُؤخَذ القيمة الوسيطة بينهم — والعقد الذي يعتمد على مصدر بيانات واحد يحمل نقطة فشل واحدة تُبطِل كل ما بُني حوله من لامركزية.'
+        ],
+        body_en: [
+          'A smart contract is a program living on the network that executes agreed terms automatically once its inputs are met. Its value is removing the need for a party to execute and verify: nobody can refuse execution, delay it or interpret it differently.',
+          'That literalness cuts both ways. The contract executes what was written rather than what was intended, and there is no judge to say this violates the spirit of the agreement. An exploited bug is, from the network view, correct execution of the code, which is why enormous losses occurred in contracts that worked exactly as written.',
+          'Immutability bites hard here: a deployed contract cannot be edited or stopped unless an upgrade or emergency-halt mechanism was designed in from the start. Whoever deployed a contract with a bug cannot fix it, and all they hold is persuading users to move to a new contract.',
+          'This demands engineering discipline beyond ordinary programming: independent security review before deployment, thorough testing, value limits at the beginning, and a pre-designed halt mechanism. Deployment here is not releasing a version updatable tomorrow.',
+          'The external oracle problem is structural: a contract can read nothing outside the network, not a share price, a match result or a shipment status. It needs an intermediary to supply the datum, and that intermediary becomes a central trust point in a system built to remove one.',
+          'Whoever manipulates the oracle manipulates the contract outcome however sound the code. So multiple oracles with independent sources are used and the median value taken, and a contract relying on one data source carries a single failure point that voids all the decentralisation built around it.'
+        ],
+        table: {
+          head_ar: ['الخاصية', 'ما تعطيه', 'ما تكلّفه'],
+          head_en: ['Property', 'What it gives', 'What it costs'],
+          rows: [
+            ['تنفيذ تلقائي', 'لا يرفض أحد التنفيذ', 'لا مجال لاعتبار الظرف'],
+            ['حرفية مطلقة', 'لا تفسير مختلفاً', 'الثغرة تُنفَّذ كالمقصود'],
+            ['عدم قابلية التعديل', 'ثقة بأن الشروط ثابتة', 'لا إصلاح لخطأ منشور'],
+            ['اعتماد على وسيط بيانات', 'وصول لمعلومة خارجية', 'نقطة ثقة مركزية']
+          ]
+        },
+        keyPoints_ar: [
+          'العقد ينفّذ ما كُتِب لا ما قُصِد، ولا قاضي يعتبر روح الاتفاق.',
+          'الثغرة المستغَلة تنفيذ صحيح للكود من وجهة نظر الشبكة.',
+          'المنشور لا يُعدَّل إلا إن صُمِّمت آلية ترقية أو إيقاف من البداية.',
+          'يلزم انضباط أشد: مراجعة مستقلة واختبارات وحدود مبالغ وآلية إيقاف.',
+          'العقد لا يقرأ شيئاً خارج الشبكة، فيلزمه وسيط يصير نقطة ثقة مركزية.',
+          'مصدر بيانات واحد نقطة فشل تُبطِل اللامركزية المبنية حوله.'
+        ],
+        keyPoints_en: [
+          'A contract executes what was written rather than intended, with no judge weighing the spirit.',
+          'An exploited bug is correct code execution from the network view.',
+          'A deployed contract cannot be edited unless upgrade or halt was designed in from the start.',
+          'It demands stronger discipline: independent review, testing, value limits and a halt mechanism.',
+          'A contract reads nothing outside the network, so an oracle becomes a central trust point.',
+          'One data source is a failure point voiding the decentralisation built around it.'
+        ],
+        analogy_ar: 'تخيّل آلة بيع نُصِبت في الشارع بقانون: أدخل ريالاً تحصل على علبة. ولا يوجد بائع تشتكي له ولا مدير يستثنيك. فلو كتب صانع الآلة بالخطأ أن إدخال ريال ينزّل علبتين، فستنزّل علبتين لكل من عرف ذلك حتى تفرغ — وهي لا تخطئ، إنما تنفّذ ما كُتِب. ولو صُبَّت الآلة في الإسمنت مغلقة، لما استطاع أحد إصلاحها أصلاً. وأما سعر البضاعة الذي يقرؤه جهاز خارجي، فمن استطاع تغيير ذلك الجهاز باع نفسه كل ما في الآلة بريال.',
+        analogy_en: 'Picture a vending machine installed in the street with one law: insert a riyal, receive a can. There is no shopkeeper to complain to and no manager to make an exception. If its maker mistakenly wrote that one riyal drops two cans, it will drop two for everyone who learns this until it empties, and it is not erring but executing what was written. And if the machine were set in concrete and sealed, nobody could repair it at all. As for the price it reads from an external device, whoever can change that device sells themselves everything inside for one riyal.',
+        terms: [
+          { term: 'Smart Contract', def_ar: 'برنامج على الشبكة ينفّذ شروطاً تلقائياً.', def_en: 'A program on the network executing terms automatically.' },
+          { term: 'Immutability', def_ar: 'تعذّر تعديل العقد بعد نشره.', def_en: 'A contract being uneditable after deployment.' },
+          { term: 'Upgrade Mechanism', def_ar: 'تصميم يسمح باستبدال منطق العقد لاحقاً.', def_en: 'A design allowing contract logic to be replaced later.' },
+          { term: 'Oracle', def_ar: 'وسيط يُدخِل بيانات من خارج الشبكة للعقد.', def_en: 'An intermediary feeding off-chain data into a contract.' },
+          { term: 'Circuit Breaker', def_ar: 'آلية إيقاف طارئ تُصمَّم قبل النشر.', def_en: 'An emergency halt mechanism designed before deployment.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا حرفية العقد الذكي سيف ذو حدين؟', q_en: 'Why is a smart contract literalness double-edged?', a_ar: 'لأنه ينفّذ ما كُتِب لا ما قُصِد، فالثغرة تُنفَّذ بالدقة نفسها ولا قاضي يعتبر روح الاتفاق.', a_en: 'It executes what was written rather than intended, so a bug executes with equal precision and no judge weighs the spirit.' },
+          { q_ar: 'ماذا يملك من نشر عقداً فيه ثغرة؟', q_en: 'What can someone who deployed a buggy contract do?', a_ar: 'لا يستطيع إصلاحه إن لم يُصمَّم بآلية ترقية أو إيقاف، وكل ما يملكه إقناع المستخدمين بالانتقال لعقد جديد.', a_en: 'They cannot fix it without a designed upgrade or halt mechanism, and can only persuade users to move to a new contract.' },
+          { q_ar: 'ما مشكلة الوسيط الخارجي؟', q_en: 'What is the oracle problem?', a_ar: 'أن العقد لا يقرأ شيئاً خارج الشبكة، فيلزمه وسيط يصير نقطة ثقة مركزية في نظام بُني ليزيلها.', a_en: 'A contract reads nothing off-chain so it needs an intermediary that becomes a central trust point in a system built to remove one.' },
+          { q_ar: 'كيف يُخفَّف خطر الوسيط؟', q_en: 'How is oracle risk reduced?', a_ar: 'بوسطاء متعددين من مصادر مستقلة وأخذ القيمة الوسيطة، فمصدر واحد نقطة فشل تُبطِل اللامركزية.', a_en: 'Multiple oracles from independent sources with the median taken, since one source is a failure point voiding decentralisation.' }
+        ]
+      },
+      {
+        title_ar: 'المحافظ وأمن الأصول الرقمية',
+        title_en: 'Wallets and Digital Asset Security',
+        lead_ar: 'المحفظة لا تحفظ الأصول وإنما المفتاح الخاص — ومن يملك المفتاح يملك الأصل، فلا استرداد ولا استئناف ولا جهة تعيد ما ضاع.',
+        lead_en: 'A wallet stores not assets but the private key, and whoever holds the key owns the asset, with no chargeback, no appeal and no party to return what is lost.',
+        body_ar: [
+          'أول ما يجب تصحيحه أن المحفظة لا تحتوي أصولاً: الأصول مسجّلة على الشبكة، والمحفظة تحفظ المفتاح الخاص الذي يثبت حق التصرف فيها. فمن نسخ مفتاحك يستطيع نقل أصولك، ومن أتلف مفتاحك حرمك منها للأبد.',
+          'ونوعان بينهما فرق جوهري. محفظة بحفظ طرف ثالث: منصة تحتفظ بالمفتاح نيابة عنك، فتستطيع استعادة الوصول لو نسيت كلمة السر، وتحمل مخاطرة أن اختراق المنصة أو إفلاسها يمسّ أصولك. ومحفظة ذاتية الحفظ: أنت وحدك تملك المفتاح، فلا أحد يستطيع منعك ولا أحد يستطيع إنقاذك.',
+          'والعبارة الشهيرة في المجال: من لا يملك المفاتيح لا يملك الأصول. وهي تصف واقعاً لا شعاراً: ما تراه في حسابك على منصة حافظة هو التزام عليها تجاهك، وقد سقطت منصات كبرى واكتشف مستخدموها ذلك متأخراً.',
+          'والعبارة الاستردادية سلسلة كلمات تُشتَق منها المفاتيح كلها، فمن حصل عليها حصل على كل شيء بلا حاجة لجهازك. ولهذا لا تُصوَّر ولا تُخزَّن في سحابة ولا تُكتَب في بريد، وتُحفَظ ماديّاً في مكان آمن ونسخة احتياطية في مكان مختلف تحسّباً للحريق أو الفقد.',
+          'ومحفظة العتاد تحلّ المسألة الجوهرية: توقّع المعاملة داخل جهاز منفصل، فلا يغادر المفتاح الجهاز إطلاقاً. فحتى لو كان حاسوبك مصاباً ببرمجية خبيثة، لا تستطيع سحب المفتاح — وأقصى ما تفعله عرض معاملة مزيفة عليك لتوقّعها، ولهذا يجب قراءة ما يعرضه جهاز التوقيع نفسه لا ما تعرضه الشاشة.',
+          'ونهائية المعاملات تغيّر منطق الأمان كله: التحويل الخاطئ لا يُسترَد، والعنوان الخاطئ يبتلع المبلغ للأبد، والاحتيال الناجح لا يُعكَس. ولهذا تكون الحماية كلها استباقية: تحقق من العنوان بأكمله، وإرسال مبلغ صغير تجريبي أولاً في التحويلات الكبيرة، وحذر شديد من كل عرض يستعجلك — فالاستعجال هو أداة المحتال الأولى حيث لا يوجد تراجع.'
+        ],
+        body_en: [
+          'The first thing to correct is that a wallet contains no assets: assets are recorded on the network and the wallet holds the private key proving the right to dispose of them. Whoever copies your key can move your assets, and whoever destroys your key deprives you of them forever.',
+          'Two kinds differ fundamentally. A custodial wallet: a platform holds the key on your behalf, so it can restore access if you forget a password, and it carries the risk that a breach or bankruptcy of the platform touches your assets. A self-custody wallet: you alone hold the key, so nobody can stop you and nobody can rescue you.',
+          'The famous phrase in the field: not your keys, not your assets. It describes a reality rather than a slogan: what you see in your account on a custodial platform is its liability toward you, and major platforms have collapsed with users discovering that too late.',
+          'The recovery phrase is a sequence of words from which all keys are derived, so whoever obtains it obtains everything with no need for your device. So it is never photographed, never stored in a cloud, never written in an email, and is kept physically in a safe place with a backup in a different place against fire or loss.',
+          'A hardware wallet solves the core matter: the transaction is signed inside a separate device so the key never leaves it. Even if your computer is infected with malware it cannot extract the key, and the most it can do is display a fake transaction for you to sign, which is why what the signing device itself displays must be read rather than what the screen shows.',
+          'Transaction finality changes the entire security logic: a wrong transfer is not recovered, a wrong address swallows the amount forever, and a successful fraud is not reversed. So all protection is preventive: verifying the entire address, sending a small test amount first on large transfers, and extreme caution toward any offer that rushes you, since rushing is the fraudster first tool where no reversal exists.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'محفظة بحفظ طرف ثالث', 'محفظة ذاتية الحفظ'],
+          head_en: ['Aspect', 'Custodial wallet', 'Self-custody wallet'],
+          rows: [
+            ['من يملك المفتاح', 'المنصة', 'أنت وحدك'],
+            ['نسيان كلمة السر', 'استعادة ممكنة', 'لا استعادة'],
+            ['إفلاس المنصة', 'يمسّ أصولك', 'لا يمسّها'],
+            ['المسؤولية', 'موزّعة', 'عليك كاملة']
+          ]
+        },
+        keyPoints_ar: [
+          'المحفظة تحفظ المفتاح لا الأصول، والأصول مسجّلة على الشبكة.',
+          'من لا يملك المفاتيح لا يملك الأصول: ما تراه في منصة حافظة التزام عليها.',
+          'العبارة الاستردادية تفتح كل شيء، فلا تُصوَّر ولا تُخزَّن سحابياً ولا تُرسَل بريداً.',
+          'محفظة العتاد توقّع داخلياً فلا يغادر المفتاح الجهاز حتى مع حاسوب مصاب.',
+          'اقرئي ما يعرضه جهاز التوقيع نفسه لا ما تعرضه شاشة الحاسوب.',
+          'النهائية تجعل الحماية استباقية: تحقق كامل ومبلغ تجريبي وحذر من الاستعجال.'
+        ],
+        keyPoints_en: [
+          'A wallet holds the key rather than the assets, which are recorded on the network.',
+          'Not your keys, not your assets: what you see on a custodial platform is its liability.',
+          'The recovery phrase opens everything, so never photograph, cloud-store or email it.',
+          'A hardware wallet signs internally so the key never leaves even with an infected computer.',
+          'Read what the signing device itself displays rather than what the computer screen shows.',
+          'Finality makes protection preventive: full verification, a test amount, and caution against rushing.'
+        ],
+        analogy_ar: 'تخيّل خزنة في بنك عام يراها الجميع ولا يفتحها إلا حاملُ مفتاحها. الخزنة ليست عندك، ومفتاحها هو كل شيء. فلو نسخه أحد أفرغها، ولو أضعته بقيت الأموال ظاهرة للجميع ولا تصل إليها أبداً — لا مدير يفتحها لك ولا إثبات هوية ينفع. وأما محفظة العتاد فكأن تدير المفتاح داخل صندوق مغلق تمدّ يدك فيه: من يراقبك يرى حركة يدك ولا يرى شكل المفتاح.',
+        analogy_en: 'Picture a vault in a public bank everyone can see and only the keyholder can open. The vault is not with you and its key is everything. If someone copies it they empty it, and if you lose it the money stays visible to all and you never reach it, with no manager to open it and no identity document that helps. A hardware wallet is like turning the key inside a closed box you reach into: whoever watches sees your hand move and never sees the key shape.',
+        terms: [
+          { term: 'Private Key', def_ar: 'سر يثبت حق التصرف في أصول مسجّلة على الشبكة.', def_en: 'A secret proving the right to dispose of on-chain assets.' },
+          { term: 'Custodial Wallet', def_ar: 'محفظة تحفظ فيها منصة المفتاح نيابة عنك.', def_en: 'A wallet where a platform holds the key on your behalf.' },
+          { term: 'Self Custody', def_ar: 'حفظ المفتاح بنفسك بلا وسيط يستطيع إنقاذك.', def_en: 'Holding the key yourself with no intermediary able to rescue you.' },
+          { term: 'Recovery Phrase', def_ar: 'كلمات تُشتَق منها كل المفاتيح، ومن ملكها ملك كل شيء.', def_en: 'Words deriving all keys, and whoever holds them holds everything.' },
+          { term: 'Hardware Wallet', def_ar: 'جهاز يوقّع داخلياً فلا يغادره المفتاح.', def_en: 'A device signing internally so the key never leaves it.' }
+        ],
+        cards: [
+          { q_ar: 'ماذا تحفظ المحفظة فعلاً؟', q_en: 'What does a wallet actually store?', a_ar: 'المفتاح الخاص لا الأصول؛ فالأصول مسجّلة على الشبكة والمفتاح يثبت حق التصرف فيها.', a_en: 'The private key rather than the assets, which are recorded on the network while the key proves the right to move them.' },
+          { q_ar: 'ماذا تعني «من لا يملك المفاتيح لا يملك الأصول»؟', q_en: 'What does not your keys, not your assets mean?', a_ar: 'أن ما تراه في منصة حافظة التزام عليها تجاهك، وقد سقطت منصات واكتشف مستخدموها ذلك متأخراً.', a_en: 'What you see on a custodial platform is its liability to you, and platforms have collapsed with users learning that too late.' },
+          { q_ar: 'لماذا تظل محفظة العتاد آمنة مع حاسوب مصاب؟', q_en: 'Why does a hardware wallet stay safe on an infected computer?', a_ar: 'لأن التوقيع يتم داخل الجهاز فلا يغادره المفتاح، وأقصى ما يفعله المصاب عرض معاملة مزيفة للتوقيع.', a_en: 'Signing happens inside the device so the key never leaves, and the most malware can do is display a fake transaction to sign.' },
+          { q_ar: 'كيف تُبنى الحماية مع نهائية المعاملات؟', q_en: 'How is protection built given finality?', a_ar: 'استباقياً: تحقق من العنوان كاملاً، ومبلغ تجريبي صغير أولاً، وحذر من كل عرض يستعجلك.', a_en: 'Preventively: verifying the full address, sending a small test amount first, and caution toward any offer that rushes you.' }
+        ]
+      }
     ]
   }
 };
