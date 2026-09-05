@@ -8908,5 +8908,330 @@ export const sectionGuides = {
         ]
       }
     ]
+  },
+
+  // ══════════════════ مسار التقنية المالية ══════════════════
+  FinTech: {
+    // ─────────── أساسيات التقنية المالية ───────────
+    0: [
+      {
+        title_ar: 'مفهوم التقنية المالية وتطورها',
+        title_en: 'What FinTech Is and How It Evolved',
+        lead_ar: 'التقنية المالية ليست إدخال حاسوب على البنك، وإنما إعادة تفكيك الخدمة المالية لأجزاء تُقدَّم كل واحدة على حدة بكلفة أقل.',
+        lead_en: 'FinTech is not putting a computer inside a bank but unbundling the financial service into parts, each delivered separately at lower cost.',
+        body_ar: [
+          'التقنية المالية استخدام التقنية لتقديم خدمة مالية بطريقة أفضل أو أرخص أو أوسع وصولاً. وحدّها الفارق ليس وجود التقنية — فالبنوك تستخدم الحواسيب منذ عقود — وإنما أن التقنية تغيّر طريقة تقديم الخدمة نفسها لا أن تحوسب إجراءً قائماً كما هو.',
+          'وتاريخها ثلاث موجات. الأولى بنية تحتية بين المؤسسات: شبكات الحوالات وأنظمة المقاصة والصراف الآلي، وكلها غيّرت الخلفية ولم يشعر بها العميل كثيراً. والثانية رقمنة الواجهة: الخدمات المصرفية عبر الإنترنت ثم الهاتف، والخدمة نفسها بقناة جديدة.',
+          'والثالثة هي الموجة الحالية وأهمها: تفكيك الخدمة. فالبنك التقليدي يقدّم حزمة واحدة — حساب وتحويل وقرض وبطاقة واستثمار — وجاءت شركات تأخذ جزءاً واحداً وتتقنه: شركة للتحويلات فقط، وأخرى للإقراض فقط، وثالثة للاستثمار فقط. وكل واحدة أرخص وأسرع في جزئها لأنها لا تحمل كلفة الباقي.',
+          'وما مكّن هذي الموجة ثلاثة عوامل اجتمعت: انتشار الهاتف الذكي فصار لكل شخص طرف مالي في جيبه، والحوسبة السحابية فسقطت كلفة البنية التحتية التي كانت تحمي البنوك من المنافسة، وتنظيم أتاح مشاركة البيانات المصرفية بإذن العميل فزال احتكار البنك لمعلومات عميله.',
+          'وقيمة التقنية المالية الأوضح الشمول المالي: مليارات بلا حساب مصرفي حول العالم، لأن فرعاً تقليدياً في قرية نائية لا يغطي كلفته. وهاتف يصل حيث لا يصل الفرع، فيصير الحساب ممكناً بكلفة قريبة من الصفر.',
+          'وحدود المجال يجب أن تُفهَم أيضاً: التقنية تخفّض الكلفة وتوسّع الوصول ولا تلغي المخاطر المالية نفسها. فقرض سيئ يبقى سيئاً وإن مُنِح في ثلاث ثوانٍ بتطبيق أنيق، بل قد يسوء أكثر لأن السرعة تخفّف التمحيص. ومن يظن التقنية بديلاً عن إدارة المخاطر يبني نموذجاً ينهار عند أول دورة اقتصادية سيئة.'
+        ],
+        body_en: [
+          'FinTech is using technology to deliver a financial service better, cheaper or more widely. Its distinguishing line is not the presence of technology, since banks have used computers for decades, but that technology changes how the service itself is delivered rather than computerising an existing procedure unchanged.',
+          'Its history has three waves. The first was infrastructure between institutions: transfer networks, clearing systems and cash machines, all of which changed the back end while customers barely noticed. The second was digitising the front end: internet then mobile banking, the same service through a new channel.',
+          'The third is the current wave and the most important: unbundling. A traditional bank offers one bundle, an account, transfers, a loan, a card and investment, and companies arrived taking one part and perfecting it: one for transfers only, another for lending only, a third for investing only. Each is cheaper and faster in its part because it does not carry the cost of the rest.',
+          'Three factors combined to enable this wave: smartphone spread giving every person a financial terminal in their pocket, cloud computing collapsing the infrastructure cost that had shielded banks from competition, and regulation permitting bank data sharing with customer consent, ending the bank monopoly over its own customer information.',
+          'The clearest value of FinTech is financial inclusion: billions worldwide have no bank account, because a traditional branch in a remote village does not cover its cost. A phone reaches where a branch cannot, making an account possible at a cost near zero.',
+          'The limits of the field must be understood too: technology lowers cost and widens access without abolishing financial risk itself. A bad loan stays bad even when granted in three seconds through an elegant app, and may worsen because speed reduces scrutiny. Whoever thinks technology substitutes for risk management builds a model that collapses at the first bad economic cycle.'
+        ],
+        table: {
+          head_ar: ['الموجة', 'ما تغيّر', 'من شعر به'],
+          head_en: ['Wave', 'What changed', 'Who noticed'],
+          rows: [
+            ['البنية التحتية', 'شبكات الحوالات والمقاصة', 'المؤسسات لا العملاء'],
+            ['رقمنة الواجهة', 'قناة جديدة للخدمة نفسها', 'العملاء بوضوح'],
+            ['التفكيك', 'شركة لكل جزء من الحزمة', 'السوق كلها'],
+            ['ما بعدها', 'خدمات مالية داخل تطبيقات غير مالية', 'يجري الآن']
+          ]
+        },
+        keyPoints_ar: [
+          'الحدّ الفارق أن التقنية تغيّر طريقة الخدمة لا أن تحوسب إجراءً قائماً.',
+          'الموجة الثالثة تفكيك الحزمة: شركة تتقن جزءاً واحداً بكلفة أقل.',
+          'ثلاثة عوامل مكّنتها: الهاتف الذكي، والسحابة، وتنظيم مشاركة البيانات.',
+          'السحابة أسقطت كلفة البنية التي كانت تحمي البنوك من المنافسة.',
+          'الشمول المالي أوضح قيمها: الهاتف يصل حيث لا يغطي الفرع كلفته.',
+          'التقنية لا تلغي المخاطر: قرض سيئ يبقى سيئاً وقد تسوّئه السرعة.'
+        ],
+        keyPoints_en: [
+          'The distinguishing line is technology changing service delivery rather than computerising a procedure.',
+          'The third wave is unbundling: a company perfecting one part at lower cost.',
+          'Three enablers combined: the smartphone, the cloud and data-sharing regulation.',
+          'The cloud collapsed the infrastructure cost that had shielded banks from competition.',
+          'Financial inclusion is its clearest value: a phone reaches where a branch cannot cover its cost.',
+          'Technology does not abolish risk: a bad loan stays bad and speed may worsen it.'
+        ],
+        analogy_ar: 'تخيّل متجراً كبيراً يبيع كل شيء تحت سقف واحد: خضار ولحوم وملابس وأدوات. ثم فُتِحت محال متخصصة، كل واحد يبيع صنفاً واحداً بجودة أعلى وسعر أقل لأنه لا يدفع إيجار الأقسام الأخرى ولا يوزّع انتباهه. ولم يختفِ المتجر الكبير — لكنه صار يواجه عشرة منافسين، كل واحد يأخذ منه ركناً. وهذا التفكيك حرفياً، وهو ما جرى للبنك.',
+        analogy_en: 'Picture a large store selling everything under one roof: vegetables, meat, clothes and tools. Then specialist shops opened, each selling one category at higher quality and lower price because it pays no rent for the other departments and divides no attention. The large store did not vanish, yet it now faces ten competitors each taking one of its corners. That is unbundling literally, and it is what happened to the bank.',
+        terms: [
+          { term: 'Unbundling', def_ar: 'تفكيك حزمة الخدمات المصرفية لخدمات منفصلة متخصصة.', def_en: 'Splitting the banking bundle into separate specialised services.' },
+          { term: 'Financial Inclusion', def_ar: 'إتاحة الخدمة المالية لمن لا يصله النظام التقليدي.', def_en: 'Reaching those the traditional system does not serve.' },
+          { term: 'Digital Channel', def_ar: 'قناة إلكترونية لتقديم خدمة قائمة.', def_en: 'An electronic channel delivering an existing service.' },
+          { term: 'Infrastructure Cost', def_ar: 'كلفة البنية التي كانت حاجز دخول أمام المنافسين.', def_en: 'The infrastructure cost that acted as a barrier to entry.' },
+          { term: 'Embedded Finance', def_ar: 'خدمة مالية تُقدَّم داخل تطبيق غير مالي.', def_en: 'A financial service delivered inside a non-financial application.' }
+        ],
+        cards: [
+          { q_ar: 'ما الحدّ الفارق بين التقنية المالية وحوسبة البنك؟', q_en: 'What separates FinTech from computerising a bank?', a_ar: 'أن التقنية تغيّر طريقة تقديم الخدمة نفسها، لا أن تحوسب إجراءً قائماً كما هو.', a_en: 'Technology changes how the service itself is delivered rather than computerising an existing procedure unchanged.' },
+          { q_ar: 'ما الموجة الثالثة وأثرها؟', q_en: 'What is the third wave and its effect?', a_ar: 'تفكيك الحزمة المصرفية: كل شركة تتقن جزءاً واحداً بكلفة أقل لأنها لا تحمل كلفة الباقي.', a_en: 'Unbundling the banking package: each company perfects one part at lower cost because it does not carry the rest.' },
+          { q_ar: 'ما العوامل الثلاثة التي مكّنت الموجة الحالية؟', q_en: 'Which three factors enabled the current wave?', a_ar: 'انتشار الهاتف الذكي، وانخفاض كلفة البنية بالسحابة، وتنظيم أتاح مشاركة البيانات بإذن العميل.', a_en: 'Smartphone spread, the cloud collapsing infrastructure cost, and regulation permitting data sharing with consent.' },
+          { q_ar: 'هل تلغي التقنية المخاطر المالية؟', q_en: 'Does technology abolish financial risk?', a_ar: 'لا، تخفّض الكلفة وتوسّع الوصول فقط؛ والقرض السيئ يبقى سيئاً وقد تزيده السرعة سوءاً.', a_en: 'No, it only lowers cost and widens access; a bad loan stays bad and speed may worsen it.' }
+        ]
+      },
+      {
+        title_ar: 'النظام المالي الرقمي ولاعبوه',
+        title_en: 'The Digital Financial System and Its Players',
+        lead_ar: 'كل معاملة تمر بأربعة أدوار على الأقل، ومن لا يعرف الأدوار يظن أن الفشل عند من رأى شاشته — وهو غالباً في طرف لا يراه العميل أصلاً.',
+        lead_en: 'Every transaction passes at least four roles, and whoever does not know the roles blames whichever screen they saw, while the failure usually sits in a party the customer never sees.',
+        body_ar: [
+          'النظام المالي شبكة أدوار لا قائمة شركات، وفهم الأدوار أهم من حفظ الأسماء لأن الشركة الواحدة قد تلعب دورين والدور الواحد قد تتقاسمه ثلاث شركات. والسؤال الصحيح دائماً: من يحمل المال، ومن ينقل الرسالة، ومن يتحمّل المخاطرة، ومن يواجه العميل.',
+          'والبنك التقليدي يحمل الودائع ويمنح الائتمان ويخضع لرقابة مشددة لأنه يحفظ أموال الناس. وهذا الترخيص عبء وميزة معاً: كلفة امتثال عالية، وقدرة على أعمال لا يستطيعها غير المرخَّص.',
+          'ومزوّد الخدمة التقني لا يحمل أموالاً وإنما يبني الواجهة والتجربة ويعتمد على بنك شريك خلفه. وهذا أشهر نموذج في الشركات الناشئة: تظهر للعميل كأنها بنك وهي في الحقيقة واجهة على بنك مرخَّص — والعميل غالباً لا يعرف ذلك.',
+          'ومزوّد البنية التحتية يبيع القدرة لا الخدمة: شبكات وأنظمة معالجة وواجهات برمجية تستخدمها الشركات الأخرى. وهو غير مرئي للعميل تماماً، وسقوطه يوقف عشرات التطبيقات دفعة واحدة — وحين يقع ذلك يظن كل مستخدم أن تطبيقه هو المعطّل.',
+          'والمنظّم لاعب لا يُغفَل: يرخّص ويشرف ويضع الحدود، وقراره قد ينهي نموذج عمل كامل بين ليلة وضحاها. ومن يبني في هذا المجال بلا قراءة للتنظيم يبني على أرض قد تُسحَب من تحته.',
+          'وحركة المعاملة الواحدة توضّح التداخل: يبدأ العميل من تطبيق شركة تقنية، فيمر الطلب لبنكه، ثم لشبكة تحويل، ثم لبنك المستفيد، ثم يعود التأكيد بالعكس. فتأخير في أي حلقة يظهر للعميل كعطل في التطبيق الذي يراه، وهذي بالضبط أصعب حالات الدعم — لأن الشركة التي تتلقى الشكوى قد تكون سليمة تماماً.'
+        ],
+        body_en: [
+          'The financial system is a network of roles rather than a list of companies, and understanding roles matters more than memorising names because one company may play two roles and one role may be shared by three. The right question is always: who holds the money, who carries the message, who bears the risk, and who faces the customer.',
+          'A traditional bank holds deposits, extends credit and faces strict supervision because it safeguards people money. That licence is both a burden and an advantage: high compliance cost, and the ability to do business the unlicensed cannot.',
+          'A technology service provider holds no money and instead builds the interface and experience, relying on a partner bank behind it. That is the most common startup model: appearing to the customer as a bank while actually being a front end on a licensed bank, and the customer usually does not know it.',
+          'An infrastructure provider sells capability rather than service: networks, processing systems and APIs other companies use. It is entirely invisible to the customer, and its outage stops dozens of applications at once, and when that happens every user assumes their own app is broken.',
+          'The regulator is a player never to be overlooked: licensing, supervising and setting limits, and its decision may end an entire business model overnight. Whoever builds in this field without reading regulation builds on ground that may be pulled from under them.',
+          'The flow of one transaction shows the interlocking: the customer starts in a technology company app, the request passes to their bank, then a transfer network, then the beneficiary bank, and confirmation returns in reverse. A delay at any link appears to the customer as a fault in the app they see, and those are the hardest support cases, because the company receiving the complaint may be entirely sound.'
+        ],
+        table: {
+          head_ar: ['الدور', 'هل يحمل المال', 'هل يراه العميل'],
+          head_en: ['Role', 'Holds money', 'Customer sees it'],
+          rows: [
+            ['البنك المرخَّص', 'نعم', 'أحياناً'],
+            ['مزوّد الخدمة التقني', 'لا', 'دائماً'],
+            ['مزوّد البنية', 'لا', 'أبداً'],
+            ['شبكة التحويل', 'لا، تنقل الرسالة', 'أبداً'],
+            ['المنظّم', 'لا، يضع الحدود', 'غير مباشر']
+          ]
+        },
+        keyPoints_ar: [
+          'افهمي الأدوار لا الأسماء: شركة قد تلعب دورين ودور قد تتقاسمه ثلاث.',
+          'أربعة أسئلة تحسم: من يحمل المال، ومن ينقل، ومن يتحمّل المخاطرة، ومن يواجه العميل.',
+          'أشهر نموذج ناشئ واجهة على بنك مرخَّص، والعميل غالباً لا يعرف.',
+          'مزوّد البنية غير مرئي، وسقوطه يوقف عشرات التطبيقات دفعة واحدة.',
+          'قرار المنظّم قد ينهي نموذج عمل كامل بين ليلة وضحاها.',
+          'تأخير في أي حلقة يظهر كعطل في التطبيق المرئي وقد يكون سليماً تماماً.'
+        ],
+        keyPoints_en: [
+          'Understand roles rather than names: one company may play two and one role be shared by three.',
+          'Four questions settle it: who holds the money, who carries it, who bears the risk, who faces the customer.',
+          'The commonest startup model is a front end on a licensed bank, usually unknown to the customer.',
+          'The infrastructure provider is invisible and its outage stops dozens of applications at once.',
+          'A regulator decision may end an entire business model overnight.',
+          'A delay at any link appears as a fault in the visible app, which may be entirely sound.'
+        ],
+        analogy_ar: 'تخيّل أنك طلبت وجبة من تطبيق توصيل. لو تأخّرت، من المخطئ؟ قد يكون المطعم، أو السائق، أو خريطة أعطت طريقاً مزدحماً، أو نظام دفع رفض بطاقتك. وأنت لا ترى إلا شاشة التطبيق، فتشتكي له. والتطبيق قد يكون فعل كل شيء صحيحاً في نصف ثانية — وهو مع ذلك من سيتلقى تقييمك بنجمة واحدة. وهذي حال شركة الواجهة في المعاملة المالية بالضبط.',
+        analogy_en: 'Picture ordering a meal from a delivery app. If it is late, whose fault is it? Possibly the restaurant, the driver, a map that gave a congested route, or a payment system that declined your card. You see only the app screen, so you complain to it. The app may have done everything correctly in half a second and will still receive your one-star rating. That is exactly the position of the front-end company in a financial transaction.',
+        terms: [
+          { term: 'Licensed Bank', def_ar: 'مؤسسة مرخَّصة تحمل الودائع وتخضع لرقابة مشددة.', def_en: 'A licensed institution holding deposits under strict supervision.' },
+          { term: 'Partner Bank', def_ar: 'بنك مرخَّص يقف خلف واجهة شركة تقنية.', def_en: 'A licensed bank standing behind a technology company front end.' },
+          { term: 'Infrastructure Provider', def_ar: 'من يبيع القدرة التقنية لا الخدمة للعميل.', def_en: 'A seller of technical capability rather than customer service.' },
+          { term: 'Transfer Network', def_ar: 'شبكة تنقل رسالة الدفع بين المؤسسات.', def_en: 'A network carrying the payment message between institutions.' },
+          { term: 'Regulator', def_ar: 'جهة ترخّص وتشرف وتضع حدود العمل.', def_en: 'A body licensing, supervising and setting operating limits.' }
+        ],
+        cards: [
+          { q_ar: 'ما الأسئلة الأربعة التي تحدد الدور؟', q_en: 'Which four questions define a role?', a_ar: 'من يحمل المال، ومن ينقل الرسالة، ومن يتحمّل المخاطرة، ومن يواجه العميل.', a_en: 'Who holds the money, who carries the message, who bears the risk, and who faces the customer.' },
+          { q_ar: 'ما نموذج الشركة الناشئة الأشهر؟', q_en: 'What is the commonest startup model?', a_ar: 'واجهة وتجربة فوق بنك شريك مرخَّص يحمل الأموال، والعميل غالباً يظنها بنكاً.', a_en: 'An interface and experience atop a licensed partner bank holding the money, usually mistaken by customers for a bank.' },
+          { q_ar: 'لماذا يوقف عطل مزوّد البنية تطبيقات كثيرة؟', q_en: 'Why does an infrastructure outage stop many applications?', a_ar: 'لأنه يبيع القدرة لعشرات الشركات، فسقوطه يصيبها جميعاً وكل مستخدم يظن تطبيقه هو المعطّل.', a_en: 'It sells capability to dozens of companies, so its outage hits them all while each user assumes their own app is broken.' },
+          { q_ar: 'لماذا يصعب دعم العميل في هذا النظام؟', q_en: 'Why is customer support hard in this system?', a_ar: 'لأن العميل يرى شاشة واحدة، والتأخير قد يكون في حلقة لا يراها، فتتلقى الشكوى شركة سليمة تماماً.', a_en: 'The customer sees one screen while the delay may sit in an unseen link, so an entirely sound company receives the complaint.' }
+        ]
+      },
+      {
+        title_ar: 'نماذج الأعمال في التقنية المالية',
+        title_en: 'FinTech Business Models',
+        lead_ar: 'مصدر الإيراد يحدد سلوك الشركة كله: من يربح من الفارق يريد معاملات أكثر، ومن يربح من الفائدة يريد أرصدة تبقى — والحوافز تفسّر التصميم.',
+        lead_en: 'The revenue source shapes a company entire behaviour: whoever earns on the spread wants more transactions and whoever earns on interest wants balances that stay, and incentives explain the design.',
+        body_ar: [
+          'السؤال الأول عن أي شركة مالية: من أين يأتي المال فعلاً؟ فالجواب يفسّر تصميم المنتج وسياساته وحتى ما يبدو تناقضاً فيه. والشركة التي لا تجيبه بوضوح إما لم تنضج بعد أو تعتمد على مصدر لا تريد إعلانه.',
+          'ونموذج العمولة أوضحها: نسبة أو مبلغ ثابت على كل معاملة. وحوافزه واضحة: كثرة المعاملات مهما صغرت. وضغطه أن المنافسة تدفع النسبة للأسفل باستمرار، فيصير النموذج سباقاً على الحجم لا على السعر.',
+          'ونموذج الفارق يربح من الفرق بين سعرين لا من رسم معلن: كسعر صرف يُعرَض أعلى قليلاً من السعر الحقيقي. وهو أقل وضوحاً للعميل، ولهذا يوجب الإفصاح تنظيمياً في كثير من الدول — فالعميل الذي يقرأ «بلا رسوم» قد يدفع أكثر مما لو دُفِعت رسوم صريحة.',
+          'ونموذج الفائدة يربح من فرق بين ما يدفعه على الودائع وما يتقاضاه على الإقراض. وهو النموذج المصرفي الكلاسيكي، وحوافزه أرصدة تبقى في الحساب لا معاملات تمر — ولهذا تختلف تصاميم التطبيقات: من يربح من الفائدة يشجّعك على الإبقاء، ومن يربح من العمولة يشجّعك على الحركة.',
+          'ونموذج الاشتراك يبيع خدمة بمبلغ دوري ثابت، فيستقر الإيراد ويتنبّأ به. وحافزه الاحتفاظ بالعميل شهراً بعد شهر لا استخراج أكبر مبلغ من معاملة واحدة، وهو أنظف النماذج من حيث توافق المصلحة مع العميل.',
+          'ونموذج البنية كخدمة يبيع القدرة لشركات أخرى بواجهة برمجية. وميزته أن عميلاً واحداً يجلب حجماً كبيراً، وخطره التركّز: خسارة عميل واحد قد تعني ثلث الإيراد. ونموذج البيانات أشدها حساسية: تحليل السلوك المالي وبيع الرؤى، ويقع في منطقة تنظيمية دقيقة — فالخط بين تحسين الخدمة واستغلال بيانات العميل يمرّ من الإذن الصريح المفهوم لا من بند في اتفاقية لا يقرؤها أحد.'
+        ],
+        body_en: [
+          'The first question about any financial company: where does the money actually come from? The answer explains product design, policies and even what looks like a contradiction in it. A company that cannot answer it clearly is either immature or relies on a source it prefers not to announce.',
+          'The commission model is the clearest: a percentage or fixed amount per transaction. Its incentives are obvious: more transactions however small. Its pressure is that competition drives the percentage steadily down, turning the model into a race on volume rather than price.',
+          'The spread model earns from the difference between two prices rather than a declared fee, such as an exchange rate quoted slightly above the real one. It is less visible to customers, which is why many jurisdictions mandate disclosure, since a customer reading no fees may pay more than they would under an explicit charge.',
+          'The interest model earns from the gap between what it pays on deposits and charges on lending. It is the classic banking model, and its incentives favour balances that stay rather than transactions that pass, which is why app designs differ: whoever earns on interest encourages you to keep, and whoever earns on commission encourages you to move.',
+          'The subscription model sells a service for a fixed periodic amount, making revenue stable and predictable. Its incentive is retaining the customer month after month rather than extracting the most from one transaction, and it is the cleanest model in aligning interests with the customer.',
+          'The infrastructure-as-a-service model sells capability to other companies through an API. Its advantage is that one client brings large volume, and its risk is concentration: losing one client may mean a third of revenue. The data model is the most sensitive: analysing financial behaviour and selling insight, sitting in a delicate regulatory area, since the line between improving a service and exploiting customer data runs through explicit understood consent rather than a clause nobody reads.'
+        ],
+        table: {
+          head_ar: ['النموذج', 'مصدر الربح', 'ما يحفّز الشركة عليه'],
+          head_en: ['Model', 'Revenue source', 'What it incentivises'],
+          rows: [
+            ['العمولة', 'رسم على كل معاملة', 'كثرة المعاملات'],
+            ['الفارق', 'فرق بين سعرين', 'حجم التبادل وغموض السعر'],
+            ['الفائدة', 'فرق الإقراض والإيداع', 'أرصدة تبقى لا تتحرك'],
+            ['الاشتراك', 'مبلغ دوري ثابت', 'الاحتفاظ بالعميل'],
+            ['البنية كخدمة', 'بيع القدرة لشركات', 'عملاء كبار قليلون']
+          ]
+        },
+        keyPoints_ar: [
+          'اسألي أولاً: من أين يأتي المال فعلاً؟ فالجواب يفسّر تصميم المنتج كله.',
+          'العمولة سباق على الحجم لأن المنافسة تدفع النسبة للأسفل دائماً.',
+          '«بلا رسوم» قد تعني ربحاً من الفارق أكبر من رسم صريح.',
+          'من يربح من الفائدة يشجّعك على الإبقاء، ومن يربح من العمولة على الحركة.',
+          'الاشتراك أنظف النماذج من حيث توافق المصلحة مع العميل.',
+          'البنية كخدمة تحمل خطر التركّز: عميل واحد قد يساوي ثلث الإيراد.'
+        ],
+        keyPoints_en: [
+          'Ask first where the money actually comes from, since the answer explains the whole product design.',
+          'Commission becomes a race on volume because competition drives the rate steadily down.',
+          'No fees may mean a spread larger than an explicit charge would have been.',
+          'Whoever earns on interest encourages keeping; whoever earns on commission encourages moving.',
+          'Subscription is the cleanest model in aligning interests with the customer.',
+          'Infrastructure as a service carries concentration risk: one client may equal a third of revenue.'
+        ],
+        analogy_ar: 'تخيّل صرافين في شارع واحد. الأول يعلن عمولة عشرة ريالات ويعطيك سعر السوق. والثاني يكتب بخط عريض «بلا عمولة» ويعطيك سعراً أسوأ بخمسة عشر ريالاً. وكلاهما ربح، والثاني ربح أكثر وبدا أرخص. ولهذا صار الإفصاح عن السعر الحقيقي مطلباً تنظيمياً — لا لأن الربح من الفارق حرام، بل لأن العميل لا يستطيع المقارنة وهو لا يرى إلا نصف المعادلة.',
+        analogy_en: 'Picture money changers on one street. The first advertises a ten-riyal commission and gives you the market rate. The second writes no commission in bold and gives you a rate fifteen riyals worse. Both profited, and the second profited more while appearing cheaper. That is why disclosing the true rate became a regulatory requirement, not because earning on a spread is wrong, but because the customer cannot compare while seeing only half the equation.',
+        terms: [
+          { term: 'Commission', def_ar: 'رسم نسبي أو ثابت على كل معاملة.', def_en: 'A percentage or fixed fee per transaction.' },
+          { term: 'Spread', def_ar: 'ربح من الفرق بين سعرين بلا رسم معلن.', def_en: 'Profit from the gap between two prices with no declared fee.' },
+          { term: 'Net Interest Margin', def_ar: 'الفرق بين عائد الإقراض وكلفة الإيداع.', def_en: 'The gap between lending yield and deposit cost.' },
+          { term: 'Recurring Revenue', def_ar: 'إيراد دوري ثابت يمكن التنبؤ به.', def_en: 'Steady periodic revenue that can be forecast.' },
+          { term: 'Concentration Risk', def_ar: 'اعتماد جزء كبير من الإيراد على عميل واحد.', def_en: 'A large share of revenue depending on one client.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يُسأل أولاً عن مصدر الإيراد؟', q_en: 'Why ask first about the revenue source?', a_ar: 'لأنه يفسّر تصميم المنتج وسياساته وحتى ما يبدو تناقضاً فيه، فالحوافز تتبع مصدر المال.', a_en: 'It explains product design, policy and even apparent contradictions, since incentives follow the money source.' },
+          { q_ar: 'لماذا قد تكون «بلا رسوم» أغلى؟', q_en: 'Why might no fees cost more?', a_ar: 'لأن الربح قد يكون من فارق في السعر أكبر من الرسم الصريح، والعميل لا يرى إلا نصف المعادلة.', a_en: 'The profit may sit in a price spread larger than an explicit fee, and the customer sees only half the equation.' },
+          { q_ar: 'كيف يختلف تصميم تطبيق الفائدة عن تطبيق العمولة؟', q_en: 'How does an interest app differ from a commission app?', a_ar: 'الأول يشجّعك على إبقاء الرصيد، والثاني يشجّعك على كثرة الحركة، لأن حافز كل واحد مختلف.', a_en: 'The first encourages keeping a balance and the second encourages frequent movement, because their incentives differ.' },
+          { q_ar: 'ما خطر نموذج البنية كخدمة؟', q_en: 'What is the risk of the infrastructure model?', a_ar: 'التركّز: عميل واحد قد يمثّل ثلث الإيراد، فخسارته وحدها تهزّ الشركة.', a_en: 'Concentration: one client may be a third of revenue, so losing them alone shakes the company.' }
+        ]
+      },
+      {
+        title_ar: 'التنظيم والتشريعات',
+        title_en: 'Regulation and Legislation',
+        lead_ar: 'التنظيم ليس عقبة تُلتَف وإنما شرط وجود: المال ليس سلعة عادية، ومن يحمله يحمل ثقة عامة لا تُترَك بلا رقابة.',
+        lead_en: 'Regulation is not an obstacle to be circumvented but a condition of existence: money is no ordinary commodity, and whoever holds it holds a public trust never left unsupervised.',
+        body_ar: [
+          'سؤال يُطرَح كثيراً: لماذا القطاع المالي أشد القطاعات تنظيماً؟ والجواب ثلاثة أسباب. الأول أن الشركة تحمل أموال الناس لا أموالها. والثاني أن فشلها ينتقل: بنك يسقط يجرّ معه من تعامل معه فيصير خطراً على النظام كله. والثالث أن اختلال المعلومات كبير: العميل لا يستطيع تقييم سلامة مؤسسة مالية بنفسه.',
+          'وأهداف التنظيم أربعة: حماية العميل، وسلامة النظام المالي، ومنع الجريمة المالية، والمنافسة العادلة. ومن يقرأ أي قاعدة تنظيمية بسؤال «أي هدف من الأربعة تخدم؟» يفهمها أسرع من حفظ نصّها.',
+          'والترخيص أساس العمل: أنواع مختلفة بحسب النشاط — ترخيص لتقديم خدمة الدفع، وآخر لحفظ الأموال، وثالث للإقراض، ورابع للاستثمار. وكل نوع يفرض متطلبات رأس مال وضوابط تختلف، لأن المخاطر تختلف.',
+          'ومتطلبات رأس المال ليست تعقيداً بيروقراطياً: هي وسادة تمتصّ الخسائر قبل أن تصل ودائع العملاء. فالمؤسسة التي تعمل بلا وسادة كافية تحوّل أي خسارة تشغيلية إلى خسارة للعميل مباشرة.',
+          'والصندوق التنظيمي التجريبي حلّ عملي انتشر عالمياً: بيئة يُسمَح فيها لشركة ناشئة بتجربة منتج على عدد محدود من العملاء تحت إشراف مباشر قبل الترخيص الكامل. فيتعلّم المنظّم من التجربة قبل أن يشرّع، وتختبر الشركة نموذجها بكلفة معقولة.',
+          'وحماية بيانات العملاء وحقهم في نقلها صارت ركناً تنظيمياً: من حق العميل أن يأخذ بياناته المصرفية لمزوّد آخر، وهذا ما فتح باب المصرفية المفتوحة. والقاعدة العملية الحاكمة: الامتثال يُبنى في المنتج من أول يوم لا يُضاف قبل الإطلاق بأسبوع — فإعادة بناء منتج ليمتثل تكلّف أضعاف بنائه ممتثلاً، وقد تعني إلغاءه كلياً.'
+        ],
+        body_en: [
+          'A frequent question: why is finance the most regulated sector? The answer has three reasons. First, a company holds people money rather than its own. Second, its failure spreads: a falling bank drags down whoever dealt with it, becoming a risk to the whole system. Third, information asymmetry is large: a customer cannot assess a financial institution soundness themselves.',
+          'Regulation has four aims: customer protection, financial system stability, preventing financial crime, and fair competition. Whoever reads any rule asking which of the four it serves understands it faster than memorising its text.',
+          'Licensing is the foundation of operating: different kinds by activity, one for providing payment services, another for holding funds, a third for lending, a fourth for investing. Each imposes different capital requirements and controls because the risks differ.',
+          'Capital requirements are not bureaucratic complexity: they are a cushion absorbing losses before they reach customer deposits. An institution operating without an adequate cushion turns any operating loss directly into a customer loss.',
+          'The regulatory sandbox is a practical solution that spread worldwide: an environment where a startup may test a product on a limited number of customers under direct supervision before full licensing. The regulator learns from the trial before legislating, and the company tests its model at reasonable cost.',
+          'Protecting customer data and their right to move it became a regulatory pillar: a customer may take their banking data to another provider, and that is what opened the door to open banking. The governing practical rule: compliance is built into the product from day one rather than added a week before launch, since rebuilding a product to comply costs many times building it compliant, and may mean cancelling it entirely.'
+        ],
+        table: {
+          head_ar: ['الهدف التنظيمي', 'ما يعالجه', 'مثال أداته'],
+          head_en: ['Regulatory aim', 'What it addresses', 'Example tool'],
+          rows: [
+            ['حماية العميل', 'اختلال المعلومات', 'إلزام الإفصاح عن السعر'],
+            ['سلامة النظام', 'انتقال الفشل', 'متطلبات رأس المال'],
+            ['منع الجريمة', 'استغلال القنوات المالية', 'التحقق من الهوية'],
+            ['المنافسة العادلة', 'احتكار البيانات', 'حق نقل البيانات']
+          ]
+        },
+        keyPoints_ar: [
+          'ثلاثة أسباب للتشديد: أموال الناس، وانتقال الفشل، واختلال المعلومات.',
+          'اقرئي أي قاعدة بسؤال: أي هدف من الأربعة تخدم؟',
+          'الترخيص أنواع بحسب النشاط، ولكل نوع متطلباته لاختلاف مخاطره.',
+          'رأس المال وسادة تمتصّ الخسارة قبل أن تصل وديعة العميل.',
+          'الصندوق التجريبي يتيح اختباراً محدوداً تحت إشراف قبل الترخيص الكامل.',
+          'الامتثال يُبنى من أول يوم؛ وإعادة البناء ليمتثل تكلّف أضعافاً وقد تلغي المنتج.'
+        ],
+        keyPoints_en: [
+          'Three reasons for strictness: people money, contagious failure, and information asymmetry.',
+          'Read any rule by asking which of the four aims it serves.',
+          'Licences differ by activity, each with its own requirements because risks differ.',
+          'Capital is a cushion absorbing loss before it reaches a customer deposit.',
+          'A sandbox allows limited supervised testing before full licensing.',
+          'Compliance is built from day one; rebuilding to comply costs many times more and may cancel the product.'
+        ],
+        analogy_ar: 'تخيّل الفرق بين من يفتح مقهى ومن يفتح صيدلية. المقهى يحتاج رخصة بلدية وشروط نظافة. والصيدلية تحتاج صيدلياً مرخَّصاً وسجلات ورقابة على كل صنف، لأن خطأً واحداً فيها قد يقتل. والمال أقرب للصيدلية: خطأ في نظام دفع لا يفسد كوب قهوة، وإنما يمحو مدخرات أسرة. ومن يبني صيدلية بعقلية مقهى سيُغلَق قبل أن يفتح.',
+        analogy_en: 'Picture the difference between opening a café and opening a pharmacy. A café needs a municipal licence and hygiene conditions. A pharmacy needs a licensed pharmacist, records and oversight of every item, because one error there may kill. Money is nearer the pharmacy: an error in a payment system does not spoil a cup of coffee but erases a family savings. Whoever builds a pharmacy with a café mindset will be closed before opening.',
+        terms: [
+          { term: 'Systemic Risk', def_ar: 'خطر انتقال فشل مؤسسة للنظام المالي كله.', def_en: 'The risk of one institution failure spreading to the whole system.' },
+          { term: 'Capital Requirement', def_ar: 'رأس مال إلزامي يمتصّ الخسائر قبل الودائع.', def_en: 'Mandatory capital absorbing losses before deposits.' },
+          { term: 'Regulatory Sandbox', def_ar: 'بيئة اختبار محدودة تحت إشراف قبل الترخيص الكامل.', def_en: 'A limited supervised testing environment before full licensing.' },
+          { term: 'Information Asymmetry', def_ar: 'عجز العميل عن تقييم سلامة المؤسسة بنفسه.', def_en: 'A customer inability to assess institutional soundness themselves.' },
+          { term: 'Compliance by Design', def_ar: 'بناء متطلبات التنظيم في المنتج من أول يوم.', def_en: 'Building regulatory requirements into the product from day one.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا القطاع المالي أشد تنظيماً؟', q_en: 'Why is finance the most regulated sector?', a_ar: 'لأن الشركة تحمل أموال الناس، ولأن فشلها ينتقل للنظام، ولأن العميل لا يستطيع تقييم سلامتها.', a_en: 'A company holds people money, its failure spreads through the system, and customers cannot assess its soundness.' },
+          { q_ar: 'ما وظيفة متطلبات رأس المال؟', q_en: 'What is the function of capital requirements?', a_ar: 'وسادة تمتصّ الخسائر قبل أن تصل ودائع العملاء، فلا تتحوّل خسارة تشغيلية لخسارة العميل.', a_en: 'A cushion absorbing losses before they reach customer deposits so an operating loss does not become a customer loss.' },
+          { q_ar: 'ما فائدة الصندوق التنظيمي التجريبي؟', q_en: 'What is a regulatory sandbox for?', a_ar: 'يتيح اختباراً محدوداً تحت إشراف مباشر، فيتعلّم المنظّم قبل أن يشرّع وتختبر الشركة بكلفة معقولة.', a_en: 'It allows limited supervised testing so the regulator learns before legislating and the company tests at reasonable cost.' },
+          { q_ar: 'متى يُبنى الامتثال في المنتج؟', q_en: 'When is compliance built into a product?', a_ar: 'من أول يوم؛ فإعادة بنائه ليمتثل قبيل الإطلاق تكلّف أضعافاً وقد تعني إلغاءه كلياً.', a_en: 'From day one; rebuilding it to comply near launch costs many times more and may mean cancelling it entirely.' }
+        ]
+      },
+      {
+        title_ar: 'الاتجاهات الحديثة في التقنية المالية',
+        title_en: 'Current Directions in FinTech',
+        lead_ar: 'الاتجاه الحاكم أن الخدمة المالية تختفي كمنتج مستقل وتذوب داخل اللحظة التي يحتاجها فيها العميل.',
+        lead_en: 'The governing direction is that the financial service disappears as a standalone product and dissolves into the moment the customer needs it.',
+        body_ar: [
+          'أبرز اتجاه اليوم التمويل المدمج: أن تُقدَّم الخدمة المالية داخل تطبيق غير مالي في اللحظة التي تُحتاج فيها. فالتقسيط يظهر عند الشراء، والتأمين عند حجز الرحلة، والتمويل داخل منصة البيع للتاجر. ومنطقه أن أفضل مكان لبيع خدمة مالية ليس تطبيقاً مالياً وإنما اللحظة التي تنشأ فيها الحاجة.',
+          'والذكاء الاصطناعي دخل من ثلاثة أبواب عملية: تقييم الجدارة الائتمانية بمؤشرات أوسع من التاريخ المصرفي التقليدي، وكشف الاحتيال بأنماط لا يراها الإنسان في ملايين المعاملات، وخدمة العملاء الآلية. ولكل باب مخاطره — وأخطرها أن نموذجاً يتعلّم من قرارات ماضية متحيّزة يعيد إنتاج التحيّز بغطاء حسابي يبدو محايداً.',
+          'والدفع الفوري بين الحسابات مباشرة اتجاه غيّر السوق فعلاً: تحويل يصل في ثوانٍ على مدار الساعة بكلفة أقل بكثير من شبكات البطاقات. وهو ينافس البطاقة في جزء من استخداماتها ولا يلغيها، لأن البطاقة تقدّم حماية للمشتري لا يقدّمها التحويل المباشر.',
+          'والهوية الرقمية تحلّ عقدة قديمة: التحقق من العميل عن بُعد بموثوقية تكفي لفتح حساب. ونجاحها شرط لكل ما سبق، لأن الخدمة المالية عن بُعد بلا تحقق موثوق باب مفتوح للاحتيال.',
+          'والعملات الرقمية للبنوك المركزية اتجاه تجريبي في دول كثيرة: نقد رقمي تصدره الدولة نفسها، يجمع فورية الرقمي بضمان البنك المركزي. وأسئلته المفتوحة أكثر من إجاباته حتى الآن، وأهمها الخصوصية وأثره على ودائع البنوك التجارية.',
+          'والتمويل المستدام صار معياراً لا شعاراً: أدوات تقيس الأثر البيئي والاجتماعي للاستثمار وتربط التمويل به. والقاعدة الصالحة لقراءة كل هذي الاتجاهات: اسألي ما المشكلة الحقيقية التي يحلّها؟ فما يحلّ مشكلة حقيقية يبقى ولو بطؤ انتشاره، وما بُني على حماس السوق وحده يزول حين يزول الحماس.'
+        ],
+        body_en: [
+          'The most prominent direction today is embedded finance: delivering the financial service inside a non-financial application at the moment it is needed. Instalments appear at purchase, insurance at booking a trip, and financing inside a merchant sales platform. Its logic is that the best place to sell a financial service is not a financial app but the moment the need arises.',
+          'Artificial intelligence entered through three practical doors: credit assessment using indicators broader than traditional banking history, fraud detection through patterns a human cannot see across millions of transactions, and automated customer service. Each door carries risks, the gravest being that a model learning from biased past decisions reproduces the bias under a computational cover that looks neutral.',
+          'Instant account-to-account payment is a direction that genuinely changed the market: a transfer arriving in seconds around the clock at a cost far below card networks. It competes with cards in part of their uses without abolishing them, because a card offers buyer protection a direct transfer does not.',
+          'Digital identity solves an old knot: verifying a customer remotely with reliability sufficient to open an account. Its success is a condition for everything above, because remote financial service without trusted verification is an open door to fraud.',
+          'Central bank digital currencies are an experimental direction in many countries: digital cash issued by the state itself, combining digital immediacy with central bank backing. Its open questions still outnumber its answers, chiefly privacy and its effect on commercial bank deposits.',
+          'Sustainable finance became a standard rather than a slogan: instruments measuring the environmental and social impact of investment and linking funding to it. A sound rule for reading all these directions: ask what real problem it solves. What solves a real problem endures even if adoption is slow, and what was built on market enthusiasm alone vanishes when the enthusiasm does.'
+        ],
+        table: {
+          head_ar: ['الاتجاه', 'المشكلة التي يحلّها', 'سؤاله المفتوح'],
+          head_en: ['Direction', 'Problem it solves', 'Its open question'],
+          rows: [
+            ['التمويل المدمج', 'الخدمة بعيدة عن لحظة الحاجة', 'من يتحمّل مخاطر الائتمان'],
+            ['الذكاء الاصطناعي', 'تقييم وكشف يعجز عنهما البشر', 'التحيّز وقابلية التفسير'],
+            ['الدفع الفوري', 'بطء التحويل وكلفته', 'حماية المشتري عند النزاع'],
+            ['الهوية الرقمية', 'التحقق عن بُعد', 'الخصوصية ومركزية البيانات'],
+            ['عملة البنك المركزي', 'نقد رقمي مضمون من الدولة', 'أثره على ودائع البنوك']
+          ]
+        },
+        keyPoints_ar: [
+          'الاتجاه الحاكم أن الخدمة تذوب في لحظة الحاجة لا في تطبيق مالي مستقل.',
+          'الذكاء الاصطناعي في التقييم والكشف والخدمة، وخطره إعادة إنتاج تحيّز الماضي.',
+          'الدفع الفوري ينافس البطاقة ولا يلغيها لأنها تقدّم حماية للمشتري.',
+          'الهوية الرقمية شرط لكل خدمة مالية عن بُعد، وبدونها الباب مفتوح للاحتيال.',
+          'عملة البنك المركزي أسئلتها المفتوحة أكثر من إجاباتها حتى الآن.',
+          'اقرئي كل اتجاه بسؤال: ما المشكلة الحقيقية التي يحلّها؟'
+        ],
+        keyPoints_en: [
+          'The governing direction is the service dissolving into the moment of need rather than a standalone app.',
+          'AI serves assessment, detection and service, and its risk is reproducing past bias.',
+          'Instant payment competes with cards without abolishing them, since cards offer buyer protection.',
+          'Digital identity is a condition for every remote financial service, and without it fraud runs open.',
+          'Central bank currencies still have more open questions than answers.',
+          'Read every direction by asking what real problem it solves.'
+        ],
+        analogy_ar: 'تخيّل الفرق بين أن تذهب لمكتب تأمين لتؤمّن رحلتك، وبين أن يظهر لك خيار التأمين وأنت تضغط زر الحجز. المنتج نفسه، والفارق أن الثاني وصلك في اللحظة التي فكّرت فيها بالمخاطرة أصلاً. وهذا هو التمويل المدمج: لم يخترع منتجاً جديداً، وإنما نقله من مكان يجب أن تذهب إليه إلى لحظة أنت فيها بالفعل.',
+        analogy_en: 'Picture the difference between going to an insurance office to insure your trip, and an insurance option appearing as you press the booking button. The same product, and the difference is that the second reached you at the moment you first thought about the risk. That is embedded finance: it invented no new product and merely moved it from a place you must go to a moment you are already in.',
+        terms: [
+          { term: 'Embedded Finance', def_ar: 'تقديم الخدمة المالية داخل تطبيق غير مالي.', def_en: 'Delivering a financial service inside a non-financial application.' },
+          { term: 'Alternative Data', def_ar: 'مؤشرات لتقييم الائتمان خارج التاريخ المصرفي.', def_en: 'Credit assessment indicators beyond banking history.' },
+          { term: 'Instant Payment', def_ar: 'تحويل بين الحسابات يصل في ثوانٍ على مدار الساعة.', def_en: 'An account transfer arriving in seconds around the clock.' },
+          { term: 'Digital Identity', def_ar: 'تحقق موثوق من هوية العميل عن بُعد.', def_en: 'Trusted remote verification of a customer identity.' },
+          { term: 'CBDC', def_ar: 'نقد رقمي يصدره البنك المركزي نفسه.', def_en: 'Digital cash issued by the central bank itself.' }
+        ],
+        cards: [
+          { q_ar: 'ما منطق التمويل المدمج؟', q_en: 'What is the logic of embedded finance?', a_ar: 'أن أفضل مكان لتقديم خدمة مالية هو اللحظة التي تنشأ فيها الحاجة لا تطبيق مالي مستقل.', a_en: 'The best place to offer a financial service is the moment the need arises rather than a standalone financial app.' },
+          { q_ar: 'ما أخطر مخاطر الذكاء الاصطناعي في الائتمان؟', q_en: 'What is the gravest AI risk in credit?', a_ar: 'أن يتعلّم من قرارات ماضية متحيّزة فيعيد إنتاج التحيّز بغطاء حسابي يبدو محايداً.', a_en: 'Learning from biased past decisions and reproducing the bias under a computational cover that looks neutral.' },
+          { q_ar: 'لماذا لا يلغي الدفع الفوري البطاقة؟', q_en: 'Why does instant payment not abolish the card?', a_ar: 'لأن البطاقة تقدّم حماية للمشتري عند النزاع لا يقدّمها التحويل المباشر بين الحسابات.', a_en: 'A card offers buyer protection in disputes that a direct account transfer does not.' },
+          { q_ar: 'ما القاعدة لقراءة أي اتجاه جديد؟', q_en: 'What rule reads any new direction?', a_ar: 'اسألي ما المشكلة الحقيقية التي يحلّها؛ فما بُني على حماس السوق وحده يزول بزواله.', a_en: 'Ask what real problem it solves, since what was built on market enthusiasm alone vanishes with it.' }
+        ]
+      }
+    ]
   }
 };
