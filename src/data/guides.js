@@ -6657,5 +6657,330 @@ export const sectionGuides = {
         ]
       }
     ]
+  },
+
+  // ══════════════════ مسار الشبكات ══════════════════
+  Networking: {
+    // ─────────── أساسيات الشبكات ───────────
+    0: [
+      {
+        title_ar: 'مفهوم الشبكة وأنواعها',
+        title_en: 'What a Network Is and Its Types',
+        lead_ar: 'الشبكة أجهزة تتبادل بيانات وفق قواعد متفق عليها، وتُصنَّف بمداها الجغرافي — والمدى هو ما يحدد التقنية والكلفة ومن يملكها.',
+        lead_en: 'A network is devices exchanging data under agreed rules, classified by geographic reach, and that reach decides the technology, the cost and who owns it.',
+        body_ar: [
+          'الشبكة في جوهرها اتفاق: أجهزة تتبادل بيانات وفق قواعد يفهمها الطرفان. وقيمتها ليست في التوصيل بحد ذاته، وإنما في ما يتيحه: مشاركة الموارد كطابعة واحدة لعشرين موظفاً، ومشاركة البيانات، والتواصل، والوصول لخدمات بعيدة.',
+          'وتُصنَّف بمداها الجغرافي، وهذا التصنيف عملي لا أكاديمي لأنه يحدد كل شيء بعده. فالشبكة الشخصية تربط أجهزة شخص واحد في نطاق أمتار كسمّاعة بهاتف. والمحلية تغطي مبنى أو طابقاً وتملكها المؤسسة نفسها وتتحكم فيها كاملة. وشبكة المدينة تربط مواقع داخل نطاق حضري. والواسعة تربط مواقع متباعدة عبر بنية يملكها مزوّد خدمة لا أنت.',
+          'وهذا الفارق الأخير مهم عملياً: في شبكتك المحلية أنت من يقرر السرعة والتوسعة والصيانة، وفي الواسعة تشتري خدمة بمواصفات متفق عليها ولا تملك البنية. ولهذا تُقاس جودة الوصلة الواسعة باتفاقية مستوى خدمة — نسبة توافر مضمونة وزمن استجابة أقصى وزمن إصلاح متعهَّد به.',
+          'والشبكات تُصنَّف أيضاً بنمط العلاقة بين أجهزتها. ففي نموذج العميل والخادم يوجد جهاز مخصّص يقدّم الخدمة وأجهزة تطلبها — فيسهل التحكم والأمن والنسخ الاحتياطي مركزياً، ويصير الخادم نقطة فشل إن لم يُكرَّر. وفي نموذج الند للند تتساوى الأجهزة فكل واحد يقدّم ويطلب — فتقل الكلفة والإدارة وتضعف السيطرة والأمن.',
+          'وثلاثة مقاييس تُخلط دائماً ويجب تمييزها: عرض النطاق وهو أقصى كمية بيانات في وحدة الزمن، والإنتاجية وهي ما يتحقق فعلاً وهو دائماً أقل من عرض النطاق، وزمن الاستجابة وهو الوقت الذي تستغرقه الحزمة للوصول.',
+          'والخلط بينها يقود لقرارات خاطئة: مكالمة مرئية متقطّعة قد تكون على وصلة عرض نطاقها هائل، لأن مشكلتها في زمن الاستجابة والتذبذب لا في السعة. فزيادة السرعة لن تصلح شيئاً — كطريق واسع جداً لكن إشاراته تحبس السيارات دقيقة عند كل تقاطع.'
+        ],
+        body_en: [
+          'A network is essentially an agreement: devices exchanging data under rules both sides understand. Its value lies not in connectivity itself but in what it enables: sharing resources such as one printer for twenty staff, sharing data, communicating, and reaching distant services.',
+          'It is classified by geographic reach, and this classification is practical rather than academic because it determines everything that follows. A personal network links one person devices within metres, such as headphones to a phone. A local network covers a building or floor, owned and fully controlled by the organisation. A metropolitan network links sites within an urban area. A wide area network links distant sites over infrastructure owned by a service provider rather than you.',
+          'That last difference matters practically: on your local network you decide speed, expansion and maintenance, while on a wide area link you buy a service to agreed specifications and own no infrastructure. So wide area link quality is measured by a service level agreement: a guaranteed availability percentage, a maximum response time and a committed repair time.',
+          'Networks are also classified by the relationship between their devices. In the client-server model a dedicated machine provides the service while others request it, making control, security and backup centrally easier and making the server a point of failure unless duplicated. In the peer-to-peer model devices are equal, each providing and requesting, lowering cost and administration while weakening control and security.',
+          'Three measures are constantly conflated and must be distinguished: bandwidth, the maximum data volume per unit of time; throughput, what is actually achieved and always less than bandwidth; and latency, the time a packet takes to arrive.',
+          'Confusing them leads to wrong decisions: a stuttering video call may run on a link of enormous bandwidth, because its problem is latency and jitter rather than capacity. Increasing speed fixes nothing, like a very wide road whose signals hold cars for a minute at every junction.'
+        ],
+        table: {
+          head_ar: ['النوع', 'مداه', 'من يملكه', 'مثاله'],
+          head_en: ['Type', 'Its reach', 'Who owns it', 'Example'],
+          rows: [
+            ['شخصية', 'أمتار', 'المستخدم', 'سمّاعة وهاتف'],
+            ['محلية', 'مبنى أو طابق', 'المؤسسة', 'شبكة مكتب'],
+            ['مدينية', 'نطاق حضري', 'مشغّل أو تحالف', 'ربط فروع بمدينة'],
+            ['واسعة', 'مدن ودول', 'مزوّد خدمة', 'ربط فروع بين مدن']
+          ]
+        },
+        keyPoints_ar: [
+          'قيمة الشبكة فيما تتيحه من مشاركة موارد وبيانات لا في التوصيل نفسه.',
+          'المدى يحدد التقنية والكلفة ومن يملك البنية.',
+          'في الواسعة تشتري خدمة بمواصفات، وتُقاس باتفاقية مستوى خدمة.',
+          'العميل والخادم يمركز التحكم ويصنع نقطة فشل، والند للند عكسه.',
+          'عرض النطاق سعة قصوى، والإنتاجية ما يتحقق فعلاً، وزمن الاستجابة مدة الوصول.',
+          'المكالمة المتقطّعة مشكلتها زمن استجابة غالباً لا سعة، فزيادة السرعة لا تصلحها.'
+        ],
+        keyPoints_en: [
+          'Network value lies in the sharing it enables rather than connectivity itself.',
+          'Reach determines the technology, the cost and who owns the infrastructure.',
+          'On wide area links you buy a specified service measured by a service level agreement.',
+          'Client-server centralises control and creates a failure point; peer-to-peer is the reverse.',
+          'Bandwidth is maximum capacity, throughput what is actually achieved, latency the arrival time.',
+          'A stuttering call is usually a latency problem rather than capacity, so more speed fixes nothing.'
+        ],
+        analogy_ar: 'تخيّل الفرق بين عرض النطاق وزمن الاستجابة كطريق. عرض النطاق عدد الحارات: كم سيارة تمر في الساعة. وزمن الاستجابة كم دقيقة تستغرق السيارة الواحدة من البداية للنهاية. فطريق بعشرين حارة وإشارة تحبس دقيقة عند كل تقاطع ينقل آلاف السيارات ويوصل كل واحدة متأخرة. ولهذا تنجح فيه شحنة كبيرة لا تستعجل، وتفشل فيه مكالمة تحتاج وصولاً فورياً.',
+        analogy_en: 'Picture the difference between bandwidth and latency as a road. Bandwidth is the number of lanes: how many cars pass per hour. Latency is how many minutes one car takes from start to finish. A twenty-lane road with signals holding cars a minute at every junction moves thousands of cars and delivers each one late. So a large unhurried shipment succeeds on it while a call needing instant arrival fails.',
+        terms: [
+          { term: 'LAN', def_ar: 'شبكة محلية تغطي مبنى وتملكها المؤسسة.', def_en: 'A local network covering a building and owned by the organisation.' },
+          { term: 'WAN', def_ar: 'شبكة واسعة تربط مواقع متباعدة عبر بنية مزوّد.', def_en: 'A wide network linking distant sites over provider infrastructure.' },
+          { term: 'Bandwidth', def_ar: 'أقصى كمية بيانات يمكن نقلها في وحدة زمن.', def_en: 'The maximum data volume transferable per unit of time.' },
+          { term: 'Latency', def_ar: 'الزمن الذي تستغرقه الحزمة للوصول للوجهة.', def_en: 'The time a packet takes to reach its destination.' },
+          { term: 'SLA', def_ar: 'اتفاقية تحدد التوافر وزمن الاستجابة وزمن الإصلاح.', def_en: 'An agreement setting availability, response time and repair time.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين عرض النطاق والإنتاجية؟', q_en: 'Difference between bandwidth and throughput?', a_ar: 'عرض النطاق السعة القصوى نظرياً، والإنتاجية ما يتحقق فعلاً وهو دائماً أقل منها.', a_en: 'Bandwidth is the theoretical maximum capacity; throughput is what is actually achieved and is always lower.' },
+          { q_ar: 'لماذا لا تُصلَح المكالمة المتقطّعة بزيادة السرعة؟', q_en: 'Why does more speed not fix a stuttering call?', a_ar: 'لأن مشكلتها غالباً في زمن الاستجابة والتذبذب لا في السعة، وهما لا يتحسّنان بزيادة عرض النطاق.', a_en: 'Its problem is usually latency and jitter rather than capacity, and neither improves with more bandwidth.' },
+          { q_ar: 'ما الفرق بين نموذج العميل والخادم والند للند؟', q_en: 'Difference between client-server and peer-to-peer?', a_ar: 'الأول جهاز مخصّص يقدّم الخدمة فيمركز التحكم ويصنع نقطة فشل، والثاني أجهزة متساوية بكلفة أقل وسيطرة أضعف.', a_en: 'The first has a dedicated provider centralising control and creating a failure point; the second has equal devices at lower cost and weaker control.' },
+          { q_ar: 'بم تُقاس جودة وصلة واسعة؟', q_en: 'How is a wide area link quality measured?', a_ar: 'باتفاقية مستوى خدمة: نسبة توافر مضمونة وزمن استجابة أقصى وزمن إصلاح متعهَّد به.', a_en: 'By a service level agreement: guaranteed availability, maximum response time and a committed repair time.' }
+        ]
+      },
+      {
+        title_ar: 'أجهزة الشبكة',
+        title_en: 'Network Devices',
+        lead_ar: 'كل جهاز شبكي يعمل في طبقة بعينها، ومعرفة طبقته تخبرك بالضبط ما الذي يراه وما الذي لا يراه.',
+        lead_en: 'Every network device operates at a specific layer, and knowing its layer tells you exactly what it can see and what it cannot.',
+        body_ar: [
+          'أجهزة الشبكة تُفهَم بسؤال واحد: في أي طبقة تعمل؟ فالجهاز يرى ما في طبقته وما تحتها ولا يرى ما فوقها. وهذا السؤال يحسم كل خلط بين الأجهزة، ويفسّر لماذا لا يستطيع جهاز أن يفعل ما يفعله آخر مهما بدا شبيهاً به.',
+          'والمُكرِّر والمُوزِّع يعملان في الطبقة المادية: يستقبلان الإشارة ويعيدان بثّها لكل المنافذ بلا فهم لمحتواها. ولهذا فالمُوزِّع يُرسل كل ما يصله لكل الأجهزة، فيراه الجميع وتتصادم الإشارات ويضيع النطاق — وقد هُجر عملياً لهذا السبب.',
+          'والمُحوِّل يعمل في طبقة ربط البيانات، وهذي قفزة نوعية: يقرأ العنوان المادي في الإطار، ويبني جدولاً يربط كل عنوان بالمنفذ الذي وصل منه، فيرسل الإطار للمنفذ المقصود وحده. فتنتهي التصادمات ويُستغَل النطاق كاملاً — وهذا الفرق هو ما جعله يحل محل المُوزِّع.',
+          'والمُوجِّه يعمل في طبقة الشبكة: يقرأ العنوان المنطقي ويقرر أي طريق تسلكه الحزمة بين شبكة وأخرى. فالمُحوِّل يوصل داخل الشبكة والمُوجِّه يوصل بين الشبكات — وهذي أوضح فروق المجال وأكثرها التباساً على المبتدئ.',
+          'ونقطة الوصول اللاسلكية تحوّل الإشارة السلكية إلى لاسلكية وتتيح للأجهزة الانضمام بلا كابل. وهي في جوهرها مُحوِّل لاسلكي: تعمل في طبقة ربط البيانات وتنقل الإطارات، والفرق في وسيط النقل لا في الوظيفة.',
+          'وأجهزة المنازل تدمج كل ما سبق في صندوق واحد: مُوجِّه للاتصال بالمزوّد، ومُحوِّل بأربعة منافذ، ونقطة وصول لاسلكية، وجدار ناري، وخادم توزيع عناوين. ولهذا يقول الناس «الراوتر» على كل شي — والدمج للتبسيط لا لأن الوظائف واحدة.'
+        ],
+        body_en: [
+          'Network devices are understood through one question: at which layer do they operate? A device sees what is in its layer and below and never what is above. That question settles every confusion between devices and explains why one cannot do what another does however similar they look.',
+          'A repeater and a hub work at the physical layer: receiving a signal and rebroadcasting it to every port with no understanding of its content. So a hub sends everything it receives to every device, so all see it, signals collide and bandwidth is wasted, which is why it was practically abandoned.',
+          'A switch works at the data link layer, and that is a qualitative leap: it reads the physical address in the frame, builds a table linking each address to the port it arrived on, and sends the frame only to the intended port. Collisions end and full bandwidth is used, and that difference is what made it replace the hub.',
+          'A router works at the network layer: reading the logical address and deciding which path a packet takes between one network and another. A switch connects within a network and a router connects between networks, the clearest distinction in the field and the one beginners most confuse.',
+          'A wireless access point converts a wired signal into a wireless one and lets devices join without a cable. It is essentially a wireless switch: operating at the data link layer and forwarding frames, with the difference lying in the medium rather than the function.',
+          'Home devices merge all of the above into one box: a router to connect to the provider, a four-port switch, a wireless access point, a firewall and an address distribution server. That is why people call everything the router, and the merging is for simplicity rather than because the functions are one.'
+        ],
+        table: {
+          head_ar: ['الجهاز', 'طبقته', 'ما يقرؤه', 'ما يفعله'],
+          head_en: ['Device', 'Its layer', 'What it reads', 'What it does'],
+          rows: [
+            ['المُوزِّع', 'المادية', 'لا شيء', 'يبثّ لكل المنافذ'],
+            ['المُحوِّل', 'ربط البيانات', 'العنوان المادي', 'يرسل للمنفذ المقصود'],
+            ['المُوجِّه', 'الشبكة', 'العنوان المنطقي', 'يوجّه بين الشبكات'],
+            ['نقطة الوصول', 'ربط البيانات', 'العنوان المادي', 'ينقل الإطارات لاسلكياً'],
+            ['الجدار الناري', 'الشبكة فما فوق', 'العناوين والمنافذ', 'يسمح أو يمنع']
+          ]
+        },
+        keyPoints_ar: [
+          'الجهاز يرى ما في طبقته وما تحتها ولا يرى ما فوقها.',
+          'المُوزِّع يبثّ للجميع فتتصادم الإشارات ويضيع النطاق — ولهذا هُجِر.',
+          'المُحوِّل يبني جدولاً يربط كل عنوان بمنفذه فيرسل للمقصود وحده.',
+          'المُحوِّل يوصل داخل الشبكة والمُوجِّه يوصل بين الشبكات.',
+          'نقطة الوصول مُحوِّل لاسلكي: الفرق في الوسيط لا في الوظيفة.',
+          'جهاز المنزل يدمج مُوجِّهاً ومُحوِّلاً ونقطة وصول وجداراً في صندوق واحد.'
+        ],
+        keyPoints_en: [
+          'A device sees its own layer and below and never above.',
+          'A hub broadcasts to everyone so signals collide and bandwidth is wasted, which is why it was abandoned.',
+          'A switch builds a table linking each address to its port and sends only to the intended one.',
+          'A switch connects within a network and a router connects between networks.',
+          'An access point is a wireless switch: the difference is the medium rather than the function.',
+          'A home box merges a router, switch, access point and firewall into one device.'
+        ],
+        analogy_ar: 'تخيّل مبنى مكاتب. المُوزِّع موظف يقرأ كل رسالة بمكبّر الصوت على الجميع — الكل يسمع كل شيء والفوضى مضمونة. والمُحوِّل ساعي بريد داخلي يعرف من يجلس في أي مكتب فيسلّم كل رسالة لصاحبها. والمُوجِّه مكتب البريد الذي يقرر أي مدينة تذهب لها الرسالة الخارجة وبأي طريق. ولهذا لا يستطيع الساعي الداخلي إيصال رسالة لمدينة أخرى: ليس عمله ولا يعرف الطرق.',
+        analogy_en: 'Picture an office building. A hub is a clerk reading every letter aloud on a loudspeaker: everyone hears everything and chaos follows. A switch is an internal postman who knows who sits in which office and delivers each letter to its owner. A router is the post office deciding which city an outgoing letter goes to and by which route. So the internal postman cannot deliver to another city: it is not their job and they do not know the roads.',
+        terms: [
+          { term: 'Hub', def_ar: 'جهاز يبثّ ما يصله لكل المنافذ بلا فهم.', def_en: 'A device broadcasting what it receives to every port with no understanding.' },
+          { term: 'Switch', def_ar: 'جهاز يرسل الإطار لمنفذ الوجهة وحده بالعنوان المادي.', def_en: 'A device sending a frame only to the destination port by physical address.' },
+          { term: 'Router', def_ar: 'جهاز يوجّه الحزم بين الشبكات بالعنوان المنطقي.', def_en: 'A device routing packets between networks by logical address.' },
+          { term: 'Access Point', def_ar: 'جهاز يتيح الانضمام للشبكة لاسلكياً.', def_en: 'A device allowing wireless joining of a network.' },
+          { term: 'Collision', def_ar: 'تصادم إشارتين على وسيط مشترك فتتلفان.', def_en: 'Two signals colliding on a shared medium and corrupting each other.' }
+        ],
+        cards: [
+          { q_ar: 'ما السؤال الذي يحسم الفرق بين أجهزة الشبكة؟', q_en: 'Which question settles the difference between network devices?', a_ar: 'في أي طبقة تعمل؟ فالجهاز يرى ما في طبقته وما تحتها ولا يرى ما فوقها.', a_en: 'At which layer does it operate? A device sees its layer and below and never above.' },
+          { q_ar: 'لماذا هُجِر المُوزِّع لصالح المُحوِّل؟', q_en: 'Why was the hub abandoned for the switch?', a_ar: 'لأنه يبثّ لكل المنافذ فتتصادم الإشارات ويضيع النطاق، والمُحوِّل يرسل للمنفذ المقصود وحده.', a_en: 'It broadcasts to every port so signals collide and bandwidth is wasted, while a switch sends only to the intended port.' },
+          { q_ar: 'ما الفرق الجوهري بين المُحوِّل والمُوجِّه؟', q_en: 'Core difference between a switch and a router?', a_ar: 'المُحوِّل يوصل داخل الشبكة بالعنوان المادي، والمُوجِّه يوصل بين الشبكات بالعنوان المنطقي.', a_en: 'A switch connects within a network by physical address; a router connects between networks by logical address.' },
+          { q_ar: 'لماذا يُسمّي الناس كل شيء «راوتر»؟', q_en: 'Why do people call everything a router?', a_ar: 'لأن جهاز المنزل يدمج مُوجِّهاً ومُحوِّلاً ونقطة وصول وجداراً نارياً في صندوق واحد.', a_en: 'The home box merges a router, a switch, an access point and a firewall into one device.' }
+        ]
+      },
+      {
+        title_ar: 'الطوبولوجيا ووسائط النقل',
+        title_en: 'Topology and Transmission Media',
+        lead_ar: 'الطوبولوجيا تحدد ما يحدث حين يتعطّل خط، ووسيط النقل يحدد السرعة والمسافة والمناعة من التشويش — والقرار بينهما اقتصادي قبل أن يكون تقنياً.',
+        lead_en: 'Topology decides what happens when a link fails, and the medium decides speed, distance and interference immunity, and the choice between them is economic before it is technical.',
+        body_ar: [
+          'الطوبولوجيا شكل ترابط الأجهزة، وأهميتها الحقيقية تظهر عند العطل لا عند التشغيل الطبيعي. فالسؤال الذي تجيب عنه: إذا انقطع كابل واحد، كم جهازاً يسقط؟ والجواب يختلف جذرياً بين شكل وآخر.',
+          'ففي الطوبولوجيا الخطية تتشارك الأجهزة كابلاً واحداً، فانقطاعه يعطّل الشبكة كلها ويصعب تحديد موضع العطل. وفي الحلقية يمرّ الإطار من جهاز لجهاز حتى يعود، فسقوط جهاز يقطع الحلقة ما لم تكن مزدوجة.',
+          'وفي النجمية — وهي السائدة اليوم — يتصل كل جهاز بكابل مستقل إلى مُحوِّل مركزي. فانقطاع كابل يعزل جهازاً واحداً فقط ويسهل تشخيصه، وإضافة جهاز لا تمسّ غيره. وثمنها كابلات أكثر ومُحوِّل مركزي يصير نقطة فشل — ولهذا تُكرَّر المُحوِّلات في الشبكات الحرجة.',
+          'والشبكية تربط كل جهاز بعدة أجهزة فتوجد مسارات بديلة، فلا يوقف انقطاع خط شيئاً. وكلفتها عالية جداً في عدد الوصلات، ولهذا تُستخدم في العمود الفقري للشبكة وبين مراكز البيانات لا في مكاتب المستخدمين.',
+          'وأما وسائط النقل فثلاثة. الزوج المجدول أرخصها وأشيعها في المكاتب، ويحدّه طول أقصى نحو مئة متر تضعف بعده الإشارة، وهو عرضة للتشويش الكهرومغناطيسي فلا يُمدّ بمحاذاة كابلات الكهرباء.',
+          'والألياف البصرية تنقل ضوءاً لا كهرباء، فلا تتأثر بالتشويش إطلاقاً، وتقطع مسافات بالكيلومترات بسرعات هائلة، وهي الخيار الوحيد لربط المباني والعمود الفقري. وكلفتها ومعدّاتها أعلى، ولهذا لا تُمدّ لكل مكتب. واللاسلكي يعطي حرية الحركة ويشارك الوسيط بين الجميع، فالسرعة الفعلية تنقسم على المستخدمين وتتأثر بالجدران والمسافة والتشويش — ولهذا لا يُعتمد عليه في وصلات حرجة.'
+        ],
+        body_en: [
+          'Topology is the shape of device interconnection, and its real importance appears at failure rather than in normal operation. The question it answers is: if one cable breaks, how many devices fall? And the answer differs radically between shapes.',
+          'In a bus topology devices share one cable, so cutting it disables the entire network and locating the fault is hard. In a ring a frame passes from device to device until it returns, so one device failing breaks the ring unless it is dual.',
+          'In a star, dominant today, each device connects by its own cable to a central switch. Cutting one cable isolates one device only and is easy to diagnose, and adding a device touches nothing else. Its price is more cabling and a central switch that becomes a failure point, which is why switches are duplicated in critical networks.',
+          'A mesh links each device to several others so alternative paths exist and no single break stops anything. Its cost in link count is very high, so it is used in the network backbone and between data centres rather than in user offices.',
+          'Transmission media come in three kinds. Twisted pair is the cheapest and most common in offices, limited to about a hundred metres beyond which the signal weakens, and it is vulnerable to electromagnetic interference so it is never run alongside power cabling.',
+          'Fibre carries light rather than electricity, so interference does not affect it at all, and it covers kilometres at enormous speeds, making it the only choice for linking buildings and for the backbone. Its cost and equipment are higher, so it is not run to every desk. Wireless gives freedom of movement and shares one medium among everyone, so actual speed divides among users and suffers from walls, distance and interference, which is why it is not relied on for critical links.'
+        ],
+        table: {
+          head_ar: ['الطوبولوجيا', 'أثر انقطاع خط', 'الكلفة', 'أين تُستخدم'],
+          head_en: ['Topology', 'Effect of one break', 'Cost', 'Where used'],
+          rows: [
+            ['خطية', 'تعطّل الشبكة كلها', 'الأدنى', 'مهجورة عملياً'],
+            ['حلقية', 'قطع الحلقة ما لم تُزدَوج', 'متوسطة', 'شبكات قديمة وصناعية'],
+            ['نجمية', 'عزل جهاز واحد فقط', 'متوسطة', 'السائدة في المكاتب'],
+            ['شبكية', 'لا أثر لوجود بدائل', 'الأعلى', 'العمود الفقري ومراكز البيانات']
+          ]
+        },
+        keyPoints_ar: [
+          'أهمية الطوبولوجيا تظهر عند العطل: كم جهازاً يسقط بانقطاع خط واحد؟',
+          'النجمية سائدة لأن العطل يعزل جهازاً واحداً ويسهل تشخيصه.',
+          'المُحوِّل المركزي في النجمية نقطة فشل، فيُكرَّر في الشبكات الحرجة.',
+          'الشبكية بلا نقطة فشل وكلفتها عالية، فتُحصر في العمود الفقري.',
+          'الزوج المجدول يحدّه مئة متر ويتأثر بالتشويش الكهرومغناطيسي.',
+          'الألياف تنقل ضوءاً فلا تتأثر بالتشويش وتقطع كيلومترات، واللاسلكي يشارك الوسيط فتنقسم سرعته.'
+        ],
+        keyPoints_en: [
+          'Topology matters at failure: how many devices fall when one link breaks?',
+          'The star dominates because a fault isolates one device and is easy to diagnose.',
+          'The central switch in a star is a failure point, so it is duplicated in critical networks.',
+          'A mesh has no single failure point at high cost, so it is confined to the backbone.',
+          'Twisted pair is limited to a hundred metres and suffers electromagnetic interference.',
+          'Fibre carries light so interference does not affect it and it spans kilometres, while wireless shares one medium so its speed divides.'
+        ],
+        analogy_ar: 'تخيّل ثلاثة أحياء. الأول شارع واحد تطلّ عليه كل البيوت: لو انهار جزء منه انقطع الحي كله. والثاني كل بيت له طريق خاص يصل لدوّار مركزي: لو انهار طريق عُزِل بيت واحد، ولو تعطّل الدوّار توقف الجميع. والثالث شبكة طرق متقاطعة: أي انهيار يُلتَف حوله. والأول أرخص والثالث أغلى — وأغلب المدن تختار الثاني وتبني دوّارين احتياطاً.',
+        analogy_en: 'Picture three neighbourhoods. The first has one street every house faces: if part collapses the whole neighbourhood is cut off. The second gives every house its own road to a central roundabout: a collapsed road isolates one house, while a failed roundabout stops everyone. The third is a grid of intersecting roads where any collapse is bypassed. The first is cheapest and the third dearest, and most cities choose the second and build a second roundabout as backup.',
+        terms: [
+          { term: 'Star Topology', def_ar: 'اتصال كل جهاز بكابل مستقل إلى مُحوِّل مركزي.', def_en: 'Each device connecting by its own cable to a central switch.' },
+          { term: 'Mesh Topology', def_ar: 'ربط كل جهاز بعدة أجهزة فتوجد مسارات بديلة.', def_en: 'Linking each device to several others so alternative paths exist.' },
+          { term: 'Twisted Pair', def_ar: 'كابل نحاسي بحد أقصى نحو مئة متر ويتأثر بالتشويش.', def_en: 'A copper cable limited to about a hundred metres and affected by interference.' },
+          { term: 'Fibre Optic', def_ar: 'وسيط ينقل ضوءاً فلا يتأثر بالتشويش ويقطع كيلومترات.', def_en: 'A medium carrying light, immune to interference and spanning kilometres.' },
+          { term: 'Attenuation', def_ar: 'ضعف الإشارة كلما زادت المسافة.', def_en: 'Signal weakening as distance grows.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا سادت الطوبولوجيا النجمية؟', q_en: 'Why did the star topology dominate?', a_ar: 'لأن انقطاع كابل يعزل جهازاً واحداً فقط ويسهل تشخيصه، وإضافة جهاز لا تمسّ غيره.', a_en: 'A cable break isolates one device only and is easy to diagnose, and adding a device affects nothing else.' },
+          { q_ar: 'ما نقطة ضعف النجمية وكيف تُعالَج؟', q_en: 'What is the star weakness and its remedy?', a_ar: 'المُحوِّل المركزي نقطة فشل، ويُعالَج بتكرار المُحوِّلات في الشبكات الحرجة.', a_en: 'The central switch is a failure point, remedied by duplicating switches in critical networks.' },
+          { q_ar: 'لماذا لا تتأثر الألياف بالتشويش؟', q_en: 'Why is fibre immune to interference?', a_ar: 'لأنها تنقل ضوءاً لا تياراً كهربائياً، فلا يؤثر فيها المجال الكهرومغناطيسي.', a_en: 'It carries light rather than electric current, so electromagnetic fields do not affect it.' },
+          { q_ar: 'لماذا تنقسم سرعة اللاسلكي بين المستخدمين؟', q_en: 'Why does wireless speed divide among users?', a_ar: 'لأن الوسيط مشترك بين الجميع، فيتقاسمون النطاق نفسه ويتأثرون بالجدران والمسافة.', a_en: 'The medium is shared by everyone so they split the same bandwidth and suffer walls and distance.' }
+        ]
+      },
+      {
+        title_ar: 'عناوين IP',
+        title_en: 'IP Addressing',
+        lead_ar: 'العنوان جزآن: شبكة ومضيف — وقناع الشبكة هو ما يفصل بينهما، وبلا فهمه لا يُفهَم شيء في الشبكات.',
+        lead_en: 'An address has two parts, network and host, and the subnet mask separates them, and without understanding it nothing in networking makes sense.',
+        body_ar: [
+          'عنوان الإصدار الرابع أربعة أرقام كل واحد بين صفر و٢٥٥، وهو في حقيقته اثنان وثلاثون بتاً. وينقسم قسمين: جزء يحدد الشبكة وجزء يحدد الجهاز داخلها. والذي يحدد أين ينتهي الأول ويبدأ الثاني هو قناع الشبكة.',
+          'وقناع الشبكة يُكتب كعنوان أو كعدد بتات، فقناع ٢٥٥.٢٥٥.٢٥٥.٠ يعني أربعاً وعشرين بتاً للشبكة وثمانية للمضيف. ومعنى ذلك عملياً: كل الأجهزة التي تشترك في أول ثلاثة أرقام في شبكة واحدة يتحدثون مباشرة، ومن يختلف عنهم يحتاج مُوجِّهاً للوصول إليه.',
+          'وفي كل شبكة عنوانان محجوزان لا يُعطيان لجهاز: أولها عنوان الشبكة نفسها وآخرها عنوان البث الذي يصل كل أجهزتها. ولهذا شبكة بثمانية بتات للمضيف تسع ٢٥٦ عنواناً لكن الصالح للأجهزة ٢٥٤ فقط — وهذي الاثنان سبب شائع لخطأ حسابي عند المبتدئ.',
+          'والعناوين نوعان: عامة فريدة عالمياً وتُوزَّع من جهة مسؤولة وتصلح للإنترنت، وخاصة محجوزة للشبكات الداخلية ولا تُوجَّه على الإنترنت إطلاقاً. ونطاقات الخاصة ثلاثة معروفة تبدأ بـ10 و172.16 و192.168 — وحين ترى عنواناً منها تعرف فوراً أنه داخلي.',
+          'وطريقتان لإعطاء العنوان: ثابت يُضبَط يدوياً ويصلح للخوادم والطابعات والأجهزة التي يجب أن يبقى عنوانها معروفاً، وديناميكي يُوزَّع آلياً ويصلح لأجهزة المستخدمين التي تأتي وتذهب. وخلط الاثنين بلا حجز يسبب تعارضاً: جهازان بالعنوان نفسه فينقطع كلاهما.',
+          'وثلاثة أنماط للإرسال يجب تمييزها: الأحادي إلى جهاز واحد وهو الغالب، والبثّي إلى كل أجهزة الشبكة ويُستخدم في اكتشاف الخدمات ويجب أن يبقى محدوداً لأنه يشغل الجميع، والمتعدد إلى مجموعة مشتركة فقط ويُستخدم في البث المرئي — فيوفّر النطاق مقارنة بإرسال نسخة لكل مشترك.'
+        ],
+        body_en: [
+          'An IPv4 address is four numbers each between zero and 255, and in reality thirty-two bits. It splits in two: a part identifying the network and a part identifying the device within it. What decides where the first ends and the second begins is the subnet mask.',
+          'A subnet mask is written as an address or as a bit count, so a mask of 255.255.255.0 means twenty-four bits for the network and eight for the host. Practically that means all devices sharing the first three numbers are on one network and speak directly, while anyone differing needs a router to be reached.',
+          'Every network reserves two addresses never assigned to a device: the first is the network address itself and the last is the broadcast address reaching all its devices. So a network with eight host bits holds 256 addresses while only 254 are usable, and those two are a common source of beginner arithmetic errors.',
+          'Addresses come in two kinds: public, globally unique, allocated by a responsible authority and routable on the internet; and private, reserved for internal networks and never routed on the internet. Three well-known private ranges begin with 10, 172.16 and 192.168, and seeing one immediately tells you the address is internal.',
+          'There are two ways to assign an address: static, set manually and suited to servers, printers and devices whose address must stay known; and dynamic, distributed automatically and suited to user devices that come and go. Mixing both without reservation causes a conflict: two devices on one address and both lose connectivity.',
+          'Three transmission modes must be distinguished: unicast to one device, which is the norm; broadcast to every device on the network, used in service discovery and kept limited because it occupies everyone; and multicast to a subscribed group only, used in video distribution, saving bandwidth compared with sending a copy per subscriber.'
+        ],
+        table: {
+          head_ar: ['المفهوم', 'ما يعنيه', 'خطؤه الشائع'],
+          head_en: ['Concept', 'Its meaning', 'Common mistake'],
+          rows: [
+            ['قناع الشبكة', 'أين ينتهي جزء الشبكة', 'تجاهله فيُظن الجميع في شبكة واحدة'],
+            ['عنوان الشبكة', 'أول عنوان محجوز', 'إعطاؤه لجهاز'],
+            ['عنوان البث', 'آخر عنوان محجوز', 'حسابه ضمن الصالح'],
+            ['العنوان الخاص', 'داخلي لا يُوجَّه للإنترنت', 'توقّع وصوله من الخارج'],
+            ['العنوان الثابت', 'يُضبَط يدوياً', 'تعارضه مع نطاق التوزيع الآلي']
+          ]
+        },
+        keyPoints_ar: [
+          'العنوان جزآن: شبكة ومضيف، والقناع هو ما يفصل بينهما.',
+          'من يشترك معك في جزء الشبكة تكلّمه مباشرة، ومن يخالفه يحتاج مُوجِّهاً.',
+          'عنوانان محجوزان في كل شبكة: الشبكة نفسها والبث — فالصالح ٢٥٤ لا ٢٥٦.',
+          'ثلاثة نطاقات خاصة تبدأ بـ10 و172.16 و192.168 لا تُوجَّه على الإنترنت.',
+          'الثابت للخوادم والديناميكي للمستخدمين، وخلطهما بلا حجز يسبب تعارضاً.',
+          'الأحادي لجهاز، والبثّي للجميع فيشغلهم، والمتعدد لمجموعة مشتركة فيوفّر النطاق.'
+        ],
+        keyPoints_en: [
+          'An address has two parts, network and host, and the mask separates them.',
+          'Whoever shares your network part you speak to directly; anyone differing needs a router.',
+          'Two addresses are reserved per network, the network itself and broadcast, so 254 are usable rather than 256.',
+          'Three private ranges beginning 10, 172.16 and 192.168 are never routed on the internet.',
+          'Static suits servers and dynamic suits users, and mixing without reservation causes conflicts.',
+          'Unicast reaches one device, broadcast reaches all and occupies them, multicast reaches a subscribed group and saves bandwidth.'
+        ],
+        analogy_ar: 'تخيّل العنوان البريدي: «حي النرجس، مبنى ١٤». الحي هو جزء الشبكة والمبنى هو المضيف. ومن يسكن حيّك تصله ماشياً، ومن في حي آخر تحتاج طريقاً ومُوجِّهاً. والقناع هو ما يخبرك أين ينتهي اسم الحي ويبدأ رقم المبنى — ولو أخطأت في تحديده لظننت جارك في مدينة أخرى، أو ظننت مدينة بأكملها حيّك. وهذا بالضبط ما يحدث بقناع خاطئ.',
+        analogy_en: 'Picture a postal address: Narjis district, building 14. The district is the network part and the building the host. Whoever lives in your district you reach on foot, while someone in another district needs a road and a router. The mask tells you where the district name ends and the building number begins, and getting it wrong makes you think your neighbour is in another city, or that an entire city is your district. That is exactly what a wrong mask does.',
+        terms: [
+          { term: 'Subnet Mask', def_ar: 'قيمة تفصل جزء الشبكة عن جزء المضيف في العنوان.', def_en: 'A value separating the network part from the host part.' },
+          { term: 'Broadcast Address', def_ar: 'آخر عنوان في الشبكة يصل كل أجهزتها.', def_en: 'The last address in a network reaching all its devices.' },
+          { term: 'Private Address', def_ar: 'عنوان داخلي محجوز لا يُوجَّه على الإنترنت.', def_en: 'A reserved internal address never routed on the internet.' },
+          { term: 'Static Assignment', def_ar: 'ضبط العنوان يدوياً ليبقى ثابتاً.', def_en: 'Setting an address manually so it stays fixed.' },
+          { term: 'Multicast', def_ar: 'إرسال لمجموعة مشتركة فقط بدل نسخة لكل عضو.', def_en: 'Sending to a subscribed group only rather than a copy per member.' }
+        ],
+        cards: [
+          { q_ar: 'ما وظيفة قناع الشبكة؟', q_en: 'What does a subnet mask do?', a_ar: 'يحدد أين ينتهي جزء الشبكة ويبدأ جزء المضيف، فيُعرَف من تكلّمه مباشرة ومن يحتاج مُوجِّهاً.', a_en: 'It marks where the network part ends and the host part begins, defining who you reach directly and who needs a router.' },
+          { q_ar: 'كم عنواناً صالحاً في شبكة بثمانية بتات للمضيف؟', q_en: 'How many usable addresses in a network with eight host bits?', a_ar: '٢٥٤، لأن عنوانين محجوزان: عنوان الشبكة وعنوان البث.', a_en: '254, because two are reserved: the network address and the broadcast address.' },
+          { q_ar: 'كيف تعرف أن عنواناً داخلي؟', q_en: 'How do you recognise an internal address?', a_ar: 'إن كان في أحد النطاقات الخاصة التي تبدأ بـ10 أو 172.16 أو 192.168.', a_en: 'If it falls in a private range beginning 10, 172.16 or 192.168.' },
+          { q_ar: 'ما الفرق بين البثّي والمتعدد؟', q_en: 'Difference between broadcast and multicast?', a_ar: 'البثّي يصل كل أجهزة الشبكة فيشغلهم جميعاً، والمتعدد يصل المشتركين فقط فيوفّر النطاق.', a_en: 'Broadcast reaches every device and occupies them all; multicast reaches only subscribers and saves bandwidth.' }
+        ]
+      },
+      {
+        title_ar: 'العميل والخادم ونماذج الاتصال',
+        title_en: 'Client, Server and Communication Models',
+        lead_ar: 'الخادم ينتظر والعميل يبدأ — وهذي الجملة وحدها تفسّر لماذا تُحمى الخوادم وتُكشَف منافذها بحذر، ولماذا لا يحتاج جهازك عنواناً عاماً.',
+        lead_en: 'A server waits and a client initiates, and that sentence alone explains why servers are protected, why their ports are exposed carefully, and why your device needs no public address.',
+        body_ar: [
+          'في نموذج العميل والخادم يوجد طرفان بأدوار غير متماثلة: الخادم يعمل دائماً وينتظر الطلبات على منفذ معروف، والعميل يبدأ الاتصال متى شاء ثم ينهيه. وهذا التفاوت هو أصل كثير من قواعد الشبكات والأمن.',
+          'فالخادم لأنه ينتظر يجب أن يكون عنوانه ثابتاً معروفاً ومنفذه مفتوحاً — ولهذا هو المعرَّض دائماً. والعميل لأنه يبدأ لا ينتظر، فلا يحتاج عنواناً ثابتاً ولا منفذاً مفتوحاً، ولهذا يستطيع ملايين المستخدمين تصفّح الإنترنت بعناوين خاصة خلف مترجم عناوين.',
+          'والاتصال يمر بثلاث مراحل: بدء يتفق فيه الطرفان على المعاملات، ثم تبادل البيانات، ثم إنهاء منظّم يحرّر الموارد. والإنهاء غير المنظّم — كانقطاع مفاجئ — يترك موارد محجوزة على الخادم حتى تنتهي مهلتها، وتراكم هذي الحالات يستنفد قدرة الخادم.',
+          'والمنفذ هو ما يميّز الخدمة داخل الجهاز الواحد، فالخادم قد يقدّم موقعاً وبريداً وقاعدة بيانات على العنوان نفسه. والمنافذ المعروفة محجوزة للخدمات الشائعة اصطلاحاً، فيعرف العميل أين يطرق بلا سؤال.',
+          'وثمة نموذج ثالث بين النقيضين انتشر كثيراً: النموذج الهجين، حيث يتوسّط خادم مركزي للتعارف والفهرسة ثم يتبادل الطرفان البيانات مباشرة. فتُجمَع سهولة الإدارة المركزية مع تخفيف الحمل عن الخادم — وعليه تقوم كثير من تطبيقات المكالمات ومشاركة الملفات.',
+          'والوسائط تكثر بين الطرفين في الشبكات الحديثة: موازن حمل يوزّع الطلبات على عدة خوادم، ووسيط تخزين مؤقت يردّ بما لديه بلا إزعاج الخادم، وبوابة تطبيقات تفحص الطلب قبل تمريره. وكل وسيط يضيف قدرة ويضيف نقطة عطل محتملة — ومن يشخّص مشكلة في شبكة حديثة يجب أن يعرف عدد الوسطاء بين العميل والخادم قبل أن يتّهم أحدهما.'
+        ],
+        body_en: [
+          'In the client-server model two parties hold asymmetric roles: the server runs continuously and waits for requests on a known port, while the client initiates a connection whenever it wishes then ends it. That asymmetry is the root of many networking and security rules.',
+          'Because the server waits, its address must be fixed and known and its port open, which is why it is permanently exposed. Because the client initiates rather than waits, it needs neither a fixed address nor an open port, which is why millions of users browse the internet with private addresses behind an address translator.',
+          'A connection passes three stages: an opening where both sides agree parameters, then data exchange, then an orderly close releasing resources. An unorderly close, such as a sudden disconnection, leaves resources reserved on the server until they time out, and accumulating such cases exhausts server capacity.',
+          'The port distinguishes a service within one machine, since a server may offer a website, mail and a database on the same address. Well-known ports are reserved for common services by convention, so a client knows where to knock without asking.',
+          'A third model between the two extremes spread widely: the hybrid model, where a central server mediates discovery and indexing then the two parties exchange data directly. Central administrative ease combines with relieving the server load, and many calling and file sharing applications are built on it.',
+          'Intermediaries multiply between the two parties in modern networks: a load balancer distributing requests across servers, a cache replying with what it holds without troubling the server, and an application gateway inspecting a request before forwarding it. Every intermediary adds capability and a potential failure point, and whoever diagnoses a modern network problem must know how many intermediaries sit between client and server before blaming either.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'العميل', 'الخادم'],
+          head_en: ['Aspect', 'Client', 'Server'],
+          rows: [
+            ['من يبدأ', 'يبدأ الاتصال', 'ينتظر الطلب'],
+            ['العنوان', 'قد يكون خاصاً متغيّراً', 'ثابت ومعروف'],
+            ['المنفذ', 'مؤقت يُختار تلقائياً', 'معروف ومفتوح'],
+            ['التعرّض', 'محدود', 'دائم ولهذا يُحمى'],
+            ['التشغيل', 'عند الحاجة', 'مستمر']
+          ]
+        },
+        keyPoints_ar: [
+          'الخادم ينتظر فيلزمه عنوان ثابت ومنفذ مفتوح، ولهذا هو المعرَّض دائماً.',
+          'العميل يبدأ فلا يحتاج عنواناً عاماً ولا منفذاً مفتوحاً.',
+          'الإنهاء غير المنظّم يترك موارد محجوزة، وتراكمه يستنفد الخادم.',
+          'المنفذ يميّز الخدمة، والمنافذ المعروفة اصطلاح يغني العميل عن السؤال.',
+          'النموذج الهجين يجمع مركزية التعارف مع تبادل مباشر يخفف الحمل.',
+          'كل وسيط بين الطرفين يضيف قدرة ونقطة عطل، فاعرف عددهم قبل التشخيص.'
+        ],
+        keyPoints_en: [
+          'A server waits so it needs a fixed address and an open port, which is why it is permanently exposed.',
+          'A client initiates so it needs neither a public address nor an open port.',
+          'An unorderly close leaves resources reserved, and accumulation exhausts the server.',
+          'The port distinguishes the service, and well-known ports spare the client from asking.',
+          'The hybrid model combines central discovery with direct exchange that relieves load.',
+          'Every intermediary adds capability and a failure point, so know how many before diagnosing.'
+        ],
+        analogy_ar: 'تخيّل مطعماً ومتصلاً. المطعم يجب أن يكون له رقم ثابت معلن ويجيب طوال الدوام — ولهذا يصله المزعجون أيضاً. والمتصل لا يحتاج رقماً معلناً ولا أن يجلس بجانب الهاتف، لأنه هو من يتصل. ولو أغلق المتصل الخط فجأة دون إنهاء الطلب، بقي الموظف ينتظر ويحجز طاولة لدقائق — ولو تكرر هذا مئة مرة امتلأ المطعم بطاولات محجوزة لأحد لن يأتي.',
+        analogy_en: 'Picture a restaurant and a caller. The restaurant must have a fixed advertised number and answer throughout opening hours, which is why nuisance calls reach it too. The caller needs no advertised number and need not sit by the phone, because they place the call. And if the caller hangs up suddenly without completing the order, the staff member waits and holds a table for minutes, and if that repeats a hundred times the restaurant fills with tables reserved for nobody.',
+        terms: [
+          { term: 'Client', def_ar: 'الطرف الذي يبدأ الاتصال ويطلب الخدمة.', def_en: 'The party initiating the connection and requesting service.' },
+          { term: 'Server', def_ar: 'الطرف الذي ينتظر الطلبات ويقدّم الخدمة.', def_en: 'The party waiting for requests and providing service.' },
+          { term: 'Well-known Port', def_ar: 'رقم منفذ محجوز اصطلاحاً لخدمة شائعة.', def_en: 'A port number reserved by convention for a common service.' },
+          { term: 'Load Balancer', def_ar: 'وسيط يوزّع الطلبات على عدة خوادم.', def_en: 'An intermediary distributing requests across servers.' },
+          { term: 'Hybrid Model', def_ar: 'خادم للتعارف ثم تبادل مباشر بين الطرفين.', def_en: 'A server for discovery then direct exchange between the parties.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا الخادم معرَّض دائماً بخلاف العميل؟', q_en: 'Why is a server permanently exposed unlike a client?', a_ar: 'لأنه ينتظر الطلبات فيلزمه عنوان ثابت ومنفذ مفتوح، والعميل يبدأ الاتصال فلا يحتاجهما.', a_en: 'It waits for requests so it needs a fixed address and open port, while a client initiates and needs neither.' },
+          { q_ar: 'ما أثر الإنهاء غير المنظّم للاتصال؟', q_en: 'What is the effect of an unorderly close?', a_ar: 'يترك موارد محجوزة على الخادم حتى تنتهي مهلتها، وتراكمها يستنفد قدرته.', a_en: 'It leaves resources reserved on the server until they time out, and accumulation exhausts its capacity.' },
+          { q_ar: 'ما فائدة النموذج الهجين؟', q_en: 'What is the hybrid model good for?', a_ar: 'يجمع سهولة الإدارة المركزية للتعارف مع تبادل مباشر بين الطرفين يخفف الحمل عن الخادم.', a_en: 'It combines central administrative ease for discovery with direct exchange relieving server load.' },
+          { q_ar: 'ما الذي يجب معرفته قبل تشخيص مشكلة شبكة حديثة؟', q_en: 'What must be known before diagnosing a modern network problem?', a_ar: 'عدد الوسطاء بين العميل والخادم، فكل وسيط نقطة عطل محتملة.', a_en: 'How many intermediaries sit between client and server, since each is a potential failure point.' }
+        ]
+      }
+    ]
   }
 };
