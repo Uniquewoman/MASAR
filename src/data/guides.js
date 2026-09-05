@@ -9551,6 +9551,324 @@ export const sectionGuides = {
           { q_ar: 'لماذا يُمنَع الاختبار ببيانات حقيقية؟', q_en: 'Why is testing with real data forbidden?', a_ar: 'لأن بيئات الاختبار أضعف حماية وتُنسَخ وتُشارَك، ونسخة إنتاج فيها من أشهر مصادر التسريب.', a_en: 'Test environments are less protected and get copied and shared, and a production copy there is a top leak source.' }
         ]
       }
+    ],
+
+    // ─────────── المصرفية الرقمية ───────────
+    2: [
+      {
+        title_ar: 'البنوك الرقمية',
+        title_en: 'Digital Banks',
+        lead_ar: 'البنك الرقمي ليس بنكاً بلا فروع فحسب، وإنما بنك بنى نظامه الأساسي من جديد — والفرق يظهر في ما يستطيع تغييره بسرعة لا في شكل تطبيقه.',
+        lead_en: 'A digital bank is not merely a branchless bank but one that rebuilt its core system, and the difference shows in what it can change quickly rather than in how its app looks.',
+        body_ar: [
+          'ثلاثة نماذج تُخلَط تحت اسم واحد. الأول بنك رقمي مرخَّص بالكامل: يحمل ترخيصاً مصرفياً ويحفظ الودائع ويعمل بلا فروع. والثاني ذراع رقمية لبنك تقليدي: علامة جديدة وتجربة حديثة فوق النظام الأساسي القديم نفسه. والثالث شركة تقنية بلا ترخيص تعمل فوق بنك شريك.',
+          'والفرق بينها ليس تسويقياً: يحدد من يحمل الوديعة، ومن تُوجَّه إليه الشكوى، ومن يخضع للرقابة، وما الذي يستطيع كل واحد تغييره فعلاً. فذراع رقمية على نظام أساسي قديم قد تعطي تجربة جميلة وتعجز عن إطلاق منتج جديد في أقل من سنة.',
+          'والنظام الأساسي هو دفتر الأستاذ الذي يحفظ الأرصدة ويسجّل الحركات، وهو قلب البنك لا واجهته. والأنظمة القديمة تعمل غالباً بدفعات ليلية: تُسجَّل الحركات نهاراً وتُحدَّث الأرصدة ليلاً. ولهذا يرى العميل حركة معلّقة لا تُحتسَب حتى الصباح.',
+          'والأنظمة الحديثة لحظية: كل حركة تُحدِّث الرصيد فوراً. وهذا يبدو تفصيلاً تقنياً وأثره في المنتج ضخم: تنبيه فوري بكل عملية، وحدود إنفاق تُطبَّق لحظياً، وتقسيم مصاريف يعمل الآن لا غداً. فما يستطيع البنك تقديمه محكوم بما يستطيع نظامه الأساسي فعله.',
+          'واقتصاد البنك الرقمي مختلف: كلفة اكتساب عميل أقل بكثير بلا فروع، وكلفة خدمته أقل بالأتمتة. وتحدّيه أن العميل الرقمي أسهل انتقالاً: فتح حساب في دقائق يعني أيضاً هجره في دقائق، فالولاء يُبنى بالخدمة لا بصعوبة المغادرة كما كان في البنك التقليدي.',
+          'والربحية عقدة معروفة في هذا القطاع: كثير من البنوك الرقمية نمت في العملاء سريعاً وتأخّرت في الربح، لأن الحسابات الجارية وحدها لا تدرّ كثيراً. والمسار الذي نجح غالباً إضافة الإقراض والاستثمار والخدمات المدفوعة تدريجياً — أي إعادة تجميع ما فُكِّك، لكن بكلفة تشغيل أقل بكثير.'
+        ],
+        body_en: [
+          'Three models are conflated under one name. The first is a fully licensed digital bank: holding a banking licence, safeguarding deposits and operating without branches. The second is a digital arm of a traditional bank: a new brand and modern experience over the same old core system. The third is an unlicensed technology company operating over a partner bank.',
+          'The difference between them is not marketing: it determines who holds the deposit, whom a complaint goes to, who is supervised, and what each can actually change. A digital arm on an old core may deliver a beautiful experience and be unable to launch a new product in under a year.',
+          'The core system is the ledger holding balances and recording movements, the heart of the bank rather than its face. Older cores usually run on nightly batches: movements are recorded by day and balances updated at night. That is why a customer sees a pending transaction not counted until morning.',
+          'Modern cores are real time: every movement updates the balance instantly. That looks like a technical detail and its product impact is enormous: an instant alert on every transaction, spending limits applied in the moment, and expense categorisation working now rather than tomorrow. What a bank can offer is governed by what its core can do.',
+          'Digital bank economics differ: customer acquisition costs far less without branches, and service costs less through automation. Its challenge is that a digital customer switches more easily: opening an account in minutes also means leaving in minutes, so loyalty is built by service rather than by the difficulty of leaving as in a traditional bank.',
+          'Profitability is a known knot in this sector: many digital banks grew customers fast and lagged in profit, because current accounts alone yield little. The path that usually worked was gradually adding lending, investment and paid services, that is rebundling what was unbundled, yet at far lower operating cost.'
+        ],
+        table: {
+          head_ar: ['النموذج', 'من يحمل الوديعة', 'سرعة إطلاق منتج'],
+          head_en: ['Model', 'Who holds the deposit', 'Product launch speed'],
+          rows: [
+            ['بنك رقمي مرخَّص', 'هو نفسه', 'عالية'],
+            ['ذراع رقمية لبنك', 'البنك الأم', 'محدودة بنظامه الأساسي'],
+            ['شركة تقنية بشريك', 'البنك الشريك', 'عالية في الواجهة فقط']
+          ]
+        },
+        keyPoints_ar: [
+          'ثلاثة نماذج تحت اسم واحد، والفرق في من يحمل الوديعة ومن يخضع للرقابة.',
+          'النظام الأساسي دفتر الأرصدة، وهو قلب البنك لا واجهته.',
+          'الأنظمة القديمة بدفعات ليلية، ولهذا تظهر الحركة معلّقة حتى الصباح.',
+          'النظام اللحظي يتيح تنبيهاً فورياً وحدوداً تُطبَّق الآن، وهذا فرق منتج لا تقنية.',
+          'فتح حساب في دقائق يعني هجره في دقائق، فالولاء بالخدمة لا بصعوبة المغادرة.',
+          'الحسابات الجارية وحدها لا تربح، والمسار الناجح إعادة تجميع الخدمات تدريجياً.'
+        ],
+        keyPoints_en: [
+          'Three models share one name, and the difference is who holds the deposit and who is supervised.',
+          'The core is the balance ledger, the heart of the bank rather than its face.',
+          'Old cores run nightly batches, which is why a transaction shows pending until morning.',
+          'A real-time core enables instant alerts and limits applied now, a product difference rather than a technical one.',
+          'Opening an account in minutes means leaving in minutes, so loyalty comes from service not lock-in.',
+          'Current accounts alone do not profit, and the successful path is gradually rebundling services.'
+        ],
+        analogy_ar: 'تخيّل مطعمين بواجهة أنيقة متطابقة. الأول مطبخه حديث يستطيع تغيير القائمة كل أسبوع. والثاني مطبخه قديم يعمل بوصفات مطبوعة تُحدَّث مرة في السنة، فمهما جمّل واجهته لا يستطيع تقديم طبق جديد قبل موسم كامل. والزبون يرى الواجهتين متشابهتين ويحكم على القائمة — والفرق كله في المطبخ الذي لا يراه.',
+        analogy_en: 'Picture two restaurants with identically elegant fronts. The first has a modern kitchen able to change its menu weekly. The second has an old kitchen working from printed recipes updated once a year, so however it beautifies its front it cannot serve a new dish before a whole season. The customer sees two similar fronts and judges by the menu, and the entire difference sits in the kitchen they never see.',
+        terms: [
+          { term: 'Core Banking System', def_ar: 'دفتر الأستاذ الذي يحفظ الأرصدة ويسجّل الحركات.', def_en: 'The ledger holding balances and recording movements.' },
+          { term: 'Batch Processing', def_ar: 'تحديث الأرصدة على دفعات في وقت محدد.', def_en: 'Updating balances in batches at a set time.' },
+          { term: 'Real-time Ledger', def_ar: 'تحديث الرصيد لحظة كل حركة.', def_en: 'Updating the balance at the moment of each movement.' },
+          { term: 'Digital Arm', def_ar: 'علامة رقمية لبنك تقليدي فوق نظامه القديم.', def_en: 'A digital brand of a traditional bank over its old core.' },
+          { term: 'Rebundling', def_ar: 'إعادة تجميع خدمات فُكِّكت بكلفة تشغيل أقل.', def_en: 'Regrouping unbundled services at lower operating cost.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا تكفي الواجهة الجميلة للحكم على بنك رقمي؟', q_en: 'Why is a beautiful interface not enough to judge a digital bank?', a_ar: 'لأن ما يستطيع تقديمه محكوم بنظامه الأساسي، وذراع رقمية على نظام قديم تعجز عن منتج جديد سريعاً.', a_en: 'What it can offer is governed by its core, and a digital arm on an old core cannot launch a product quickly.' },
+          { q_ar: 'ما أثر معالجة الدفعات الليلية على العميل؟', q_en: 'How does nightly batch processing affect a customer?', a_ar: 'يرى حركة معلّقة لا تُحتسَب حتى الصباح، ولا تعمل الحدود والتنبيهات لحظياً.', a_en: 'They see a pending transaction not counted until morning, and limits and alerts do not work in the moment.' },
+          { q_ar: 'لماذا يصعب بناء الولاء في البنك الرقمي؟', q_en: 'Why is loyalty harder in a digital bank?', a_ar: 'لأن سهولة فتح الحساب في دقائق تعني سهولة هجره، فلا يوجد حاجز مغادرة يعوّض ضعف الخدمة.', a_en: 'Opening in minutes means leaving in minutes, so no exit barrier compensates for weak service.' },
+          { q_ar: 'ما المسار الذي حلّ عقدة الربحية غالباً؟', q_en: 'Which path usually solved the profitability knot?', a_ar: 'إضافة الإقراض والاستثمار والخدمات المدفوعة تدريجياً، أي إعادة تجميع ما فُكِّك بكلفة أقل.', a_en: 'Gradually adding lending, investment and paid services, rebundling what was unbundled at lower cost.' }
+        ]
+      },
+      {
+        title_ar: 'المصرفية المفتوحة',
+        title_en: 'Open Banking',
+        lead_ar: 'المصرفية المفتوحة قرار ملكية قبل أن تكون تقنية: بيانات حسابك ملكك أنت لا ملك بنكك، وله أن ينقلها بإذنك لمن تختار.',
+        lead_en: 'Open banking is a decision about ownership before it is technology: your account data belongs to you rather than your bank, and it must move on your instruction to whoever you choose.',
+        body_ar: [
+          'الفكرة المؤسسة أن بيانات العميل المصرفية ملكه هو، فمن حقه أن يأمر بنكه بمشاركتها مع مزوّد آخر يختاره. وهذا يكسر ميزة تنافسية عمرها عقود: احتكار البنك لمعرفة عميله، وهو ما كان يمنع أي منافس من تقديم عرض أفضل لأنه لا يعرف شيئاً.',
+          'وخدمتان تقومان عليها. الأولى معلومات الحسابات: يقرأ المزوّد أرصدتك وحركاتك بإذنك، فيبني تطبيق ميزانية يجمع كل بنوكك في شاشة واحدة، أو يقيّم جدارتك الائتمانية من دخلك الفعلي لا من سجل ائتماني قد لا يوجد أصلاً.',
+          'والثانية بدء المدفوعات: يأمر المزوّد بنكك بتنفيذ تحويل بإذنك، فيدفع العميل من حسابه مباشرة بلا بطاقة. وهذي أخطر على نموذج البطاقات من الأولى بكثير، لأنها تحذف وسيطاً كاملاً من دورة الدفع.',
+          'والإذن ركن لا يُتساهل فيه: يجب أن يكون صريحاً محدد النطاق ومحدد المدة وقابلاً للسحب في أي لحظة. وإذن غامض واسع دائم يخالف روح النموذج ولو وُقِّع فعلاً — فالمشاركة قامت على اختيار العميل لا على توقيعه في مربع.',
+          'والفرق التقني الجوهري بين كشط الشاشة وواجهة برمجية معتمدة: الكشط يطلب من العميل بيانات دخوله ليتصفّح حسابه نيابة عنه، وهو هشّ يتعطّل بأي تغيير في الموقع وخطر لأنه يمنح صلاحية كاملة. والواجهة تعطي وصولاً محدداً بلا مشاركة كلمة السر إطلاقاً.',
+          'وأثرها على البنك سلاح ذو حدّين: يخسر احتكار العلاقة ويكسب فرصاً جديدة إن أحسن استغلالها — كأن يصير هو من يجمع حسابات عملائه في بنوك أخرى داخل تطبيقه. والبنك الذي يرى المصرفية المفتوحة عبئاً امتثالياً فقط ينفّذ الحد الأدنى ويخسر، والذي يراها منصة يبني عليها منتجات جديدة.'
+        ],
+        body_en: [
+          'The founding idea is that a customer banking data belongs to them, so they may instruct their bank to share it with another provider of their choice. That breaks a competitive advantage decades old: the bank monopoly on knowing its customer, which prevented any competitor from making a better offer because they knew nothing.',
+          'Two services rest on it. The first is account information: a provider reads your balances and movements with your consent, building a budgeting app gathering all your banks on one screen, or assessing your creditworthiness from actual income rather than a credit record that may not exist at all.',
+          'The second is payment initiation: a provider instructs your bank to execute a transfer with your consent, so a customer pays from their account directly with no card. That threatens the card model far more than the first, because it removes an entire intermediary from the payment cycle.',
+          'Consent is a pillar admitting no laxity: it must be explicit, scoped, time-limited and revocable at any moment. A vague, broad, permanent consent contradicts the spirit of the model even if genuinely signed, since sharing rests on the customer choosing rather than ticking a box.',
+          'The fundamental technical difference between screen scraping and a proper API: scraping asks the customer for login credentials to browse their account on their behalf, which is fragile, breaking with any site change, and dangerous because it grants full authority. An API grants scoped access with no password sharing at all.',
+          'Its effect on banks is double-edged: they lose the relationship monopoly and gain new opportunities if they use them well, such as becoming the place that aggregates their customers other-bank accounts inside their own app. A bank seeing open banking as a compliance burden implements the minimum and loses, while one seeing it as a platform builds new products on it.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'كشط الشاشة', 'واجهة برمجية معتمدة'],
+          head_en: ['Aspect', 'Screen scraping', 'Proper API'],
+          rows: [
+            ['ما يُشارَك', 'كلمة السر كاملة', 'إذن محدد النطاق'],
+            ['الصلاحية', 'كل ما يستطيعه العميل', 'ما أذن به فقط'],
+            ['الثبات', 'يتعطّل بأي تغيير في الموقع', 'عقد مستقر بإصدارات'],
+            ['السحب', 'بتغيير كلمة السر فقط', 'بإلغاء الإذن مباشرة']
+          ]
+        },
+        keyPoints_ar: [
+          'الفكرة المؤسسة أن بيانات العميل ملكه لا ملك بنكه.',
+          'معلومات الحسابات تقرأ، وبدء المدفوعات يأمر بالتنفيذ — والثانية أخطر على البطاقات.',
+          'الإذن صريح محدد النطاق والمدة وقابل للسحب في أي لحظة.',
+          'كشط الشاشة يطلب كلمة السر فيمنح صلاحية كاملة ويتعطّل بأي تغيير.',
+          'الواجهة المعتمدة تعطي وصولاً محدداً بلا مشاركة كلمة سر إطلاقاً.',
+          'من يراها عبئاً امتثالياً ينفّذ الحد الأدنى ويخسر، ومن يراها منصة يبني عليها.'
+        ],
+        keyPoints_en: [
+          'The founding idea is that customer data belongs to the customer rather than the bank.',
+          'Account information reads while payment initiation instructs, and the second threatens cards more.',
+          'Consent is explicit, scoped, time-limited and revocable at any moment.',
+          'Screen scraping demands the password so it grants full authority and breaks with any change.',
+          'A proper API grants scoped access with no password sharing at all.',
+          'Whoever sees it as compliance implements the minimum and loses; whoever sees a platform builds on it.'
+        ],
+        analogy_ar: 'تخيّل أنك تريد من محاسب أن يراجع مصروفاتك. الطريقة القديمة أن تعطيه اسم المستخدم وكلمة السر ليدخل حسابك كأنه أنت — يرى كل شيء ويستطيع كل شيء، ولو أردت منعه غيّرت كلمة السر وتعطّل كل شيء آخر معه. والطريقة الصحيحة أن تعطي البنك أمراً: أرسل لهذا المحاسب كشف الحساب لثلاثة أشهر فقط، ولمدة شهر، وأستطيع إلغاء ذلك متى شئت. الأولى مشاركة هوية، والثانية مشاركة إذن.',
+        analogy_en: 'Picture wanting an accountant to review your spending. The old way is giving them your username and password to enter your account as though they were you: they see everything and can do everything, and to stop them you change the password and break everything else along with it. The right way is instructing your bank: send this accountant three months of statements only, for one month, and I can cancel it whenever I wish. The first shares an identity and the second shares a permission.',
+        terms: [
+          { term: 'Account Information Service', def_ar: 'خدمة تقرأ أرصدة العميل وحركاته بإذنه.', def_en: 'A service reading customer balances and movements with consent.' },
+          { term: 'Payment Initiation', def_ar: 'خدمة تأمر البنك بتنفيذ تحويل بإذن العميل.', def_en: 'A service instructing the bank to execute a transfer with consent.' },
+          { term: 'Scoped Consent', def_ar: 'إذن محدد بما يُشارَك ولمن ولمدة كم.', def_en: 'Consent specifying what is shared, with whom and for how long.' },
+          { term: 'Screen Scraping', def_ar: 'تصفّح حساب العميل ببيانات دخوله نيابة عنه.', def_en: 'Browsing a customer account with their credentials on their behalf.' },
+          { term: 'Data Portability', def_ar: 'حق العميل في نقل بياناته لمزوّد آخر.', def_en: 'A customer right to move their data to another provider.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفكرة المؤسسة للمصرفية المفتوحة؟', q_en: 'What is the founding idea of open banking?', a_ar: 'أن بيانات العميل ملكه لا ملك بنكه، فله أن يأمر بمشاركتها مع مزوّد يختاره.', a_en: 'Customer data belongs to the customer rather than the bank, so they may instruct it be shared with a chosen provider.' },
+          { q_ar: 'أي الخدمتين أخطر على نموذج البطاقات؟', q_en: 'Which service threatens the card model more?', a_ar: 'بدء المدفوعات، لأنها تتيح الدفع من الحساب مباشرة فتحذف وسيطاً كاملاً من دورة الدفع.', a_en: 'Payment initiation, because it allows paying from the account directly and removes an entire intermediary.' },
+          { q_ar: 'ما شروط الإذن الصحيح؟', q_en: 'What makes consent valid?', a_ar: 'أن يكون صريحاً محدد النطاق والمدة وقابلاً للسحب في أي لحظة، لا واسعاً دائماً غامضاً.', a_en: 'Explicit, scoped, time-limited and revocable at any moment, rather than broad, permanent and vague.' },
+          { q_ar: 'لماذا يخطر كشط الشاشة؟', q_en: 'Why is screen scraping dangerous?', a_ar: 'لأنه يطلب كلمة السر فيمنح صلاحية كاملة لا محددة، ويتعطّل بأي تغيير في الموقع.', a_en: 'It demands the password so it grants full rather than scoped authority, and it breaks with any site change.' }
+        ]
+      },
+      {
+        title_ar: 'الواجهات البرمجية المصرفية',
+        title_en: 'Banking APIs',
+        lead_ar: 'واجهة الدفع تختلف عن أي واجهة أخرى في شرط واحد: إعادة الطلب يجب ألا تعني دفعاً مرتين — ومفتاح التفرّد هو ما يضمنه.',
+        lead_en: 'A payment API differs from any other in one requirement: retrying a request must never mean paying twice, and an idempotency key is what guarantees that.',
+        body_ar: [
+          'الواجهة البرمجية عقد بين نظامين: طلب محدد الشكل، ورد محدد المعنى، وأخطاء معرّفة سلفاً. وفي المصرفية يشتد الشرط لأن الطرف الآخر يحرّك أموالاً: الغموض في العقد لا يعني عرضاً خاطئاً وإنما تحويلاً خاطئاً.',
+          'وأهم مفهوم فيها التفرّد: أن يكون تكرار الطلب نفسه بلا أثر إضافي. فلو أرسلت أمر دفع وانقطع الاتصال قبل وصول الرد، أنت لا تعرف هل نُفِّذ أم لا. والحل مفتاح تفرّد يرسله العميل مع الطلب: فإن وصل الطلب مرتين بالمفتاح نفسه نفّذ الخادم واحداً وأعاد النتيجة نفسها للثاني.',
+          'وبلا هذا المفتاح تكون كل إعادة محاولة مخاطرة دفع مزدوج. وهذي ليست حالة نادرة: انقطاع الشبكة وانتهاء المهلة أمور يومية في الأنظمة الموزّعة — والفرق بين نظام دفع محترف وآخر هاوٍ يظهر هنا قبل أن يظهر في أي شيء آخر.',
+          'والإصدارات ضرورة لا رفاهية: البنك لا يستطيع تغيير عقد تعتمد عليه مئة شركة، فيُصدِر نسخة جديدة ويبقي القديمة عاملة مدة معلنة. وتغيير سلوك واجهة بلا إصدار جديد يكسر أنظمة عملاء لم يغيّروا سطراً واحداً في كودهم.',
+          'وحدود المعدل تحمي الخدمة من الإغراق العرضي أو المقصود، ويجب أن يكون رد التجاوز واضحاً يخبر متى يُعاد. ورد غامض يجعل العميل يعيد المحاولة فوراً فيزيد الحمل ويصير التجاوز حلقة مفرغة.',
+          'والبيئة التجريبية ركن في جودة الواجهة: بيئة كاملة بحالات نجاح وفشل يمكن استدعاؤها عمداً — كبطاقة تُرفَض دائماً وأخرى تنجح بعد تأخير. فمن لا يستطيع اختبار حالات الفشل يبني نظاماً اختُبِر في المسار السعيد وحده، وينكشف عند أول عطل حقيقي في الإنتاج.'
+        ],
+        body_en: [
+          'An API is a contract between two systems: a request of defined shape, a response of defined meaning, and predefined errors. In banking the requirement tightens because the other side moves money: ambiguity in the contract means not a wrong display but a wrong transfer.',
+          'Its most important concept is idempotency: repeating the same request has no additional effect. If you send a payment instruction and the connection drops before the response arrives, you do not know whether it executed. The solution is an idempotency key the client sends with the request: if the request arrives twice with the same key the server executes once and returns the same result to the second.',
+          'Without that key every retry is a double-payment risk. And this is no rare case: network drops and timeouts are daily occurrences in distributed systems, and the difference between a professional and an amateur payment system shows here before it shows anywhere else.',
+          'Versioning is a necessity rather than a luxury: a bank cannot change a contract a hundred companies depend on, so it publishes a new version and keeps the old running for an announced period. Changing an API behaviour without a new version breaks client systems that changed not one line of their own code.',
+          'Rate limits protect the service from accidental or deliberate flooding, and the over-limit response must be clear about when to retry. A vague response makes the client retry immediately, raising the load and turning the limit into a vicious circle.',
+          'A sandbox is a pillar of API quality: a complete environment with success and failure cases that can be triggered deliberately, such as a card that always declines and another that succeeds after a delay. Whoever cannot test failure cases builds a system tested only on the happy path, and it is exposed at the first real production fault.'
+        ],
+        table: {
+          head_ar: ['المفهوم', 'ما يمنعه', 'أثر غيابه'],
+          head_en: ['Concept', 'What it prevents', 'Effect of its absence'],
+          rows: [
+            ['مفتاح التفرّد', 'تنفيذ الطلب مرتين', 'دفع مزدوج عند أي انقطاع'],
+            ['الإصدارات', 'كسر أنظمة العملاء', 'تعطّل بلا تغيير من العميل'],
+            ['حدود المعدل', 'إغراق الخدمة', 'سقوط يصيب كل العملاء'],
+            ['البيئة التجريبية', 'اختباراً للمسار السعيد وحده', 'انكشاف عند أول عطل حقيقي']
+          ]
+        },
+        keyPoints_ar: [
+          'الغموض في عقد الواجهة المصرفية لا ينتج عرضاً خاطئاً بل تحويلاً خاطئاً.',
+          'مفتاح التفرّد يجعل الطلب المكرر ينفّذ مرة ويعيد النتيجة نفسها.',
+          'بلا مفتاح التفرّد تصير كل إعادة محاولة مخاطرة دفع مزدوج.',
+          'الإصدارات تمنع كسر أنظمة عملاء لم يغيّروا سطراً في كودهم.',
+          'رد تجاوز الحد يجب أن يخبر متى يُعاد وإلا صار التجاوز حلقة مفرغة.',
+          'البيئة التجريبية تسمح باختبار الفشل عمداً، وبدونها يُختبَر المسار السعيد وحده.'
+        ],
+        keyPoints_en: [
+          'Ambiguity in a banking API contract produces a wrong transfer rather than a wrong display.',
+          'An idempotency key makes a repeated request execute once and return the same result.',
+          'Without it every retry becomes a double-payment risk.',
+          'Versioning prevents breaking clients that changed not one line of their code.',
+          'An over-limit response must say when to retry or the limit becomes a vicious circle.',
+          'A sandbox allows deliberate failure testing, and without it only the happy path is tested.'
+        ],
+        analogy_ar: 'تخيّل أنك أرسلت طلباً لصيدلية وانقطع الخط قبل أن تسمع التأكيد. لو اتصلت مرة أخرى وقلت «أريد نفس الطلب» فقد يجهّزون طلبين. أما لو قلت «طلبي رقم ٤٧٢٣» لعرفوا أنه الطلب نفسه وأكّدوا لك ما جهّزوه بلا تكرار. والرقم هنا هو مفتاح التفرّد — سطر واحد يفصل بين نظام يعيد المحاولة بأمان وآخر يخصم من العميل مرتين ثم يعتذر.',
+        analogy_en: 'Picture placing an order with a pharmacy and the line dropping before you hear the confirmation. Calling again and saying I want the same order may get you two orders prepared. Saying my order is number 4723 tells them it is the same order and they confirm what they prepared with no duplication. That number is the idempotency key: one line separating a system that retries safely from one that charges the customer twice then apologises.',
+        terms: [
+          { term: 'Idempotency Key', def_ar: 'معرّف يجعل تكرار الطلب بلا أثر إضافي.', def_en: 'An identifier making a repeated request have no additional effect.' },
+          { term: 'API Contract', def_ar: 'اتفاق على شكل الطلب ومعنى الرد والأخطاء.', def_en: 'An agreement on request shape, response meaning and errors.' },
+          { term: 'Versioning', def_ar: 'إصدار نسخة جديدة مع إبقاء القديمة عاملة مدة.', def_en: 'Publishing a new version while keeping the old running for a period.' },
+          { term: 'Rate Limit', def_ar: 'حد لعدد الطلبات يحمي الخدمة من الإغراق.', def_en: 'A request cap protecting the service from flooding.' },
+          { term: 'Sandbox', def_ar: 'بيئة تجريبية تحاكي النجاح والفشل عمداً.', def_en: 'A test environment simulating success and failure deliberately.' }
+        ],
+        cards: [
+          { q_ar: 'ما مفتاح التفرّد ولماذا يلزم؟', q_en: 'What is an idempotency key and why is it needed?', a_ar: 'معرّف يُرسَل مع الطلب فينفّذ الخادم واحداً ولو وصل مرتين، وبدونه كل إعادة محاولة مخاطرة دفع مزدوج.', a_en: 'An identifier sent with a request so the server executes once even if it arrives twice; without it every retry risks paying twice.' },
+          { q_ar: 'لماذا يخطر تغيير سلوك واجهة بلا إصدار جديد؟', q_en: 'Why is changing API behaviour without a version dangerous?', a_ar: 'لأنه يكسر أنظمة عملاء لم يغيّروا سطراً واحداً في كودهم، والعقد كان أساس اعتمادهم.', a_en: 'It breaks client systems that changed not one line of their code, since the contract was the basis of their reliance.' },
+          { q_ar: 'ما شرط رد تجاوز حدّ المعدل؟', q_en: 'What must an over-limit response include?', a_ar: 'أن يخبر متى تُعاد المحاولة؛ فالرد الغامض يدفع لإعادة فورية تزيد الحمل وتصنع حلقة مفرغة.', a_en: 'When to retry; a vague response drives immediate retries that raise the load and create a vicious circle.' },
+          { q_ar: 'لماذا تُقاس جودة الواجهة ببيئتها التجريبية؟', q_en: 'Why is API quality judged by its sandbox?', a_ar: 'لأنها تتيح استدعاء حالات الفشل عمداً؛ ومن لا يختبرها يبني نظاماً ينكشف عند أول عطل إنتاجي.', a_en: 'It allows triggering failure cases deliberately, and whoever cannot test them builds a system exposed at the first production fault.' }
+        ]
+      },
+      {
+        title_ar: 'تجربة العميل في المصرفية الرقمية',
+        title_en: 'Customer Experience in Digital Banking',
+        lead_ar: 'كل خطوة في التسجيل تخسر جزءاً من المتقدمين، والسؤال ليس كيف نجمّل الشاشة وإنما أي خطوة تستحق ثمنها.',
+        lead_en: 'Every onboarding step loses a share of applicants, and the question is not how to beautify the screen but which step is worth its price.',
+        body_ar: [
+          'التجربة في الخدمات المالية ليست جمالاً وإنما إزالة احتكاك بلا إسقاط ضمانة. والفرق عن التطبيقات الأخرى أن الاحتكاك هنا كثير منه إلزامي: التحقق من الهوية ومنع غسل الأموال متطلبات قانونية لا خيارات تصميمية يمكن حذفها.',
+          'ورحلة التسجيل هي المعركة الأهم: كل خطوة إضافية تخسر نسبة من المتقدمين. والقياس الأساسي معدل الإكمال، والتحليل الصحيح لا ينظر للرقم الكلي وإنما لأي خطوة يقع فيها الانسحاب — فخطوة واحدة سيئة قد تفسّر نصف الفاقد.',
+          'وأشهر أخطاء التصميم طلب كل شيء مقدماً: يُطلَب من العميل ملء عشرة حقول قبل أن يرى قيمة واحدة. والصحيح التدرّج: افتحي حساباً بحدود دنيا بأقل بيانات، ثم اطلبي المزيد حين يريد العميل قدرة أكبر تستحق الطلب.',
+          'ورسائل الخطأ جزء من التجربة يُهمَل: «حدث خطأ» تترك العميل عاجزاً، و«رقم الهوية يجب أن يكون عشر خانات» تخبره ما يفعل. وفي المالية تحديداً يكون العميل قلقاً على ماله، فالغموض يتحوّل لخوف يدفعه للاتصال بالدعم أو المغادرة.',
+          'والشفافية في الرسوم والتوقيت أعلى ما يبني الثقة: إخبار العميل بالكلفة النهائية ووقت الوصول قبل التأكيد لا بعده. فمن يكتشف رسماً بعد التنفيذ لا يعود، ولو كان الرسم عادلاً ومعلناً في صفحة أخرى.',
+          'وسهولة الوصول ليست تحسيناً إضافياً في المالية وإنما شرط عدالة: تباين ألوان كافٍ، ونصوص بديلة للصور، وعمل كامل بلوحة المفاتيح، ودعم قارئات الشاشة. فمن لا يستطيع استخدام تطبيق بنكه محروم من خدمة أساسية لا من ترفيه — وفي كثير من الأنظمة هذا التزام قانوني لا اختيار.'
+        ],
+        body_en: [
+          'Experience in financial services is not beauty but removing friction without dropping a safeguard. The difference from other applications is that much friction here is mandatory: identity verification and anti-money-laundering are legal requirements rather than design choices that can be deleted.',
+          'The onboarding journey is the most important battle: every extra step loses a share of applicants. The core measure is completion rate, and correct analysis looks not at the total figure but at which step people abandon, since one bad step may explain half the loss.',
+          'The commonest design error is asking everything upfront: a customer fills ten fields before seeing a single benefit. The right approach is progressive: open an account with minimum limits on minimum data, then ask for more when the customer wants greater capability worth the request.',
+          'Error messages are a neglected part of experience: something went wrong leaves a customer helpless, while the identity number must be ten digits tells them what to do. In finance specifically the customer is anxious about their money, so ambiguity turns into fear that drives them to support or away.',
+          'Transparency in fees and timing builds the most trust: telling the customer the final cost and arrival time before confirmation rather than after. Whoever discovers a fee after execution does not return, even if the fee was fair and published on another page.',
+          'Accessibility is not an extra refinement in finance but a condition of fairness: sufficient colour contrast, alternative text for images, full keyboard operation and screen reader support. Someone who cannot use their bank app is denied an essential service rather than entertainment, and in many jurisdictions this is a legal obligation rather than a choice.'
+        ],
+        table: {
+          head_ar: ['المشكلة', 'أثرها', 'المعالجة'],
+          head_en: ['Problem', 'Its effect', 'The remedy'],
+          rows: [
+            ['طلب كل شيء مقدماً', 'انسحاب قبل رؤية القيمة', 'تسجيل متدرّج بحدود دنيا'],
+            ['رسالة خطأ غامضة', 'عجز العميل ثم مغادرته', 'رسالة تخبره ما يفعل'],
+            ['رسم يظهر بعد التنفيذ', 'فقدان الثقة نهائياً', 'إفصاح قبل التأكيد'],
+            ['تجاهل سهولة الوصول', 'حرمان من خدمة أساسية', 'تباين ونصوص بديلة ولوحة مفاتيح']
+          ]
+        },
+        keyPoints_ar: [
+          'التجربة إزالة احتكاك بلا إسقاط ضمانة، وبعض الاحتكاك إلزامي قانوناً.',
+          'انظري لأي خطوة يقع فيها الانسحاب لا للمعدل الكلي وحده.',
+          'التسجيل المتدرّج: حدود دنيا بأقل بيانات ثم المزيد عند الحاجة لقدرة أكبر.',
+          '«حدث خطأ» تترك العميل عاجزاً، والرسالة الجيدة تخبره ما يفعل.',
+          'الرسم الذي يظهر بعد التنفيذ يفقد الثقة ولو كان عادلاً ومعلناً.',
+          'سهولة الوصول شرط عدالة في المالية والتزام قانوني في كثير من الأنظمة.'
+        ],
+        keyPoints_en: [
+          'Experience is removing friction without dropping a safeguard, and some friction is legally mandatory.',
+          'Look at which step people abandon rather than the total rate alone.',
+          'Progressive onboarding: minimum limits on minimum data, then more when greater capability is wanted.',
+          'Something went wrong leaves a customer helpless; a good message tells them what to do.',
+          'A fee appearing after execution destroys trust even if fair and published.',
+          'Accessibility is a fairness condition in finance and a legal obligation in many jurisdictions.'
+        ],
+        analogy_ar: 'تخيّل ناديين رياضيين. الأول يطلب منك عند الباب ملء عشر استمارات وفحصاً طبياً قبل أن ترى الصالة. والثاني يدخلك اليوم بجولة تجريبية ببطاقة زائر، ويطلب الأوراق حين تقرر الاشتراك السنوي. الاثنان يجمعان الأوراق نفسها في النهاية — والفرق أن الثاني طلبها بعد أن رأيت القيمة، والأول طلبها من شخص لا يعرف بعد إن كان يريد الاشتراك أصلاً.',
+        analogy_en: 'Picture two gyms. The first asks you at the door to fill ten forms and take a medical check before you see the hall. The second lets you in today for a trial round on a visitor pass and asks for papers when you decide on an annual membership. Both collect the same papers in the end, and the difference is that the second asked after you saw the value while the first asked someone who does not yet know whether they want to join at all.',
+        terms: [
+          { term: 'Onboarding', def_ar: 'رحلة تسجيل العميل حتى أول استخدام فعلي.', def_en: 'The customer journey from registration to first real use.' },
+          { term: 'Completion Rate', def_ar: 'نسبة من أكمل التسجيل ممّن بدأه.', def_en: 'The share of those starting registration who complete it.' },
+          { term: 'Progressive Onboarding', def_ar: 'بدء بحدود دنيا وطلب المزيد عند الحاجة.', def_en: 'Starting at minimum limits and asking for more when needed.' },
+          { term: 'Actionable Error', def_ar: 'رسالة خطأ تخبر العميل بما يفعله تحديداً.', def_en: 'An error message telling the customer exactly what to do.' },
+          { term: 'Accessibility', def_ar: 'قابلية استخدام الخدمة لكل الناس بلا استثناء.', def_en: 'The service being usable by everyone without exception.' }
+        ],
+        cards: [
+          { q_ar: 'كيف يُحلَّل معدل إكمال التسجيل؟', q_en: 'How is the onboarding completion rate analysed?', a_ar: 'بالنظر لأي خطوة يقع فيها الانسحاب لا للرقم الكلي، فخطوة واحدة سيئة قد تفسّر نصف الفاقد.', a_en: 'By looking at which step people abandon rather than the total figure, since one bad step may explain half the loss.' },
+          { q_ar: 'ما التسجيل المتدرّج؟', q_en: 'What is progressive onboarding?', a_ar: 'فتح حساب بحدود دنيا بأقل بيانات، ثم طلب المزيد حين يريد العميل قدرة أكبر تستحق الطلب.', a_en: 'Opening an account at minimum limits on minimum data, then asking for more when the customer wants greater capability.' },
+          { q_ar: 'لماذا تخطر رسالة الخطأ الغامضة في المالية تحديداً؟', q_en: 'Why is a vague error especially dangerous in finance?', a_ar: 'لأن العميل قلق على ماله، فالغموض يتحوّل لخوف يدفعه للاتصال بالدعم أو المغادرة.', a_en: 'The customer is anxious about their money, so ambiguity turns into fear driving them to support or away.' },
+          { q_ar: 'لماذا سهولة الوصول شرط لا تحسين؟', q_en: 'Why is accessibility a condition rather than a refinement?', a_ar: 'لأن من لا يستطيع استخدام تطبيق بنكه محروم من خدمة أساسية، وهو التزام قانوني في كثير من الأنظمة.', a_en: 'Someone unable to use their bank app is denied an essential service, and it is a legal obligation in many jurisdictions.' }
+        ]
+      },
+      {
+        title_ar: 'التحول الرقمي في المؤسسات المالية',
+        title_en: 'Digital Transformation in Financial Institutions',
+        lead_ar: 'التحول ليس مشروع تقنية وإنما تغيير في كيفية اتخاذ القرار — ومن يبدّل الأنظمة ويبقي الإجراءات كما هي ينفق كثيراً ولا يتحوّل.',
+        lead_en: 'Transformation is not a technology project but a change in how decisions are made, and whoever swaps systems while keeping procedures unchanged spends much and transforms nothing.',
+        body_ar: [
+          'أشهر سوء فهم أن التحول شراء أنظمة جديدة. والحقيقة أنه تغيير في كيفية اتخاذ القرار ودورة إصدار المنتج وتوزيع المسؤولية. فمؤسسة استبدلت نظامها وأبقت لجنة تجتمع شهرياً لاعتماد كل تغيير لم تتحوّل، وإنما جدّدت العتاد الذي تنتظر عنده.',
+          'وأصعب ما فيه الأنظمة الموروثة: أنظمة أساسية تعمل منذ عقود، مكتوبة بلغات قليل من يتقنها، بلا توثيق كافٍ ولا اختبارات آلية، وتحمل منطق أعمال تراكم بقرارات لم تُوثَّق. وهي تعمل بثبات عالٍ، وهذا نفسه ما يجعل استبدالها مخيفاً.',
+          'واستبدالها دفعة واحدة أخطر خيار: مشروع يستمر سنوات وينتهي بيوم تحوّل واحد قد يوقف البنك كله. وقد فشلت مشاريع كبرى بهذي الطريقة وأوقفت خدمات لأيام وكلّفت غرامات تنظيمية.',
+          'والبديل المجرَّب الاستبدال التدريجي: تُبنى واجهة أمام النظام القديم، ثم تُنقَل وظيفة واحدة كل مرة للنظام الجديد، حتى يفرغ القديم فيُطفَأ. فيقلّ خطر كل خطوة، ويظل التراجع ممكناً — والثمن أن الفترة الانتقالية أطول ويُشغَّل نظامان معاً مدة.',
+          'والبيانات أشد ما يُستهان به: نقل أرصدة وتاريخ حركات لملايين العملاء يجب أن يتم بلا فقد ولا تغيير قيمة، ويُثبَت ذلك بمطابقة رقمية لا بالثقة. وخطأ في نقل بيانات مالية لا يُكتشَف قد يبقى سنوات ويظهر في تدقيق أو شكوى عميل.',
+          'والثقافة هي العامل الحاسم غالباً: فريق يعمل بدورة إصدار سنوية لا يصير سريعاً بشراء أدوات. والتغيير يبدأ بتقليل حجم التغيير الواحد وزيادة تكراره، وبنقل القرار لمن يملك المعرفة، وبقبول أن بعض التجارب ستفشل — وهذا الأخير أصعبها في قطاع تُبنى ثقافته كلها على تجنّب الخطأ.'
+        ],
+        body_en: [
+          'The commonest misunderstanding is that transformation means buying new systems. In truth it is a change in how decisions are made, in the product release cycle and in the distribution of responsibility. An institution that replaced its system and kept a committee meeting monthly to approve every change has not transformed and merely renewed the hardware it waits at.',
+          'The hardest part is legacy systems: cores running for decades, written in languages few master, with insufficient documentation and no automated tests, carrying business logic accumulated through undocumented decisions. They run with high stability, and that very fact is what makes replacing them frightening.',
+          'Replacing them in one move is the riskiest option: a project lasting years ending in a single cutover day that may stop the entire bank. Major projects have failed this way, halting services for days and drawing regulatory penalties.',
+          'The proven alternative is gradual replacement: an interface is built in front of the old system, then one function at a time moves to the new one until the old empties and is switched off. Each step carries less risk and retreat stays possible, at the price of a longer transition running two systems together for a period.',
+          'Data is the most underestimated part: moving balances and transaction history for millions of customers must occur with no loss and no changed value, and that is proven by numerical reconciliation rather than trust. An undetected error in migrating financial data may persist for years and surface in an audit or a customer complaint.',
+          'Culture is usually the decisive factor: a team working on an annual release cycle does not become fast by buying tools. Change begins by making each change smaller and more frequent, moving decisions to whoever holds the knowledge, and accepting that some experiments will fail, the last being the hardest in a sector whose entire culture is built on avoiding error.'
+        ],
+        table: {
+          head_ar: ['المسار', 'مخاطرته', 'متى يُختار'],
+          head_en: ['Path', 'Its risk', 'When chosen'],
+          rows: [
+            ['استبدال دفعة واحدة', 'يوم تحوّل قد يوقف كل شيء', 'نادراً وبنظام صغير'],
+            ['استبدال تدريجي', 'فترة انتقال أطول ونظامان معاً', 'الخيار المجرَّب'],
+            ['بناء منصة موازية', 'انقسام العملاء بين نظامين', 'إطلاق علامة جديدة'],
+            ['الإبقاء والتغليف', 'تأجيل المشكلة لا حلّها', 'حين يتعذّر الاستبدال الآن']
+          ]
+        },
+        keyPoints_ar: [
+          'التحول تغيير في كيفية القرار لا شراء أنظمة، ومن يبدّل العتاد ويبقي اللجان لم يتحوّل.',
+          'الأنظمة الموروثة تعمل بثبات، وهذا نفسه ما يجعل استبدالها مخيفاً.',
+          'الاستبدال دفعة واحدة أخطر خيار وقد أوقف خدمات وكلّف غرامات فعلاً.',
+          'التدريجي: واجهة أمام القديم ونقل وظيفة كل مرة حتى يفرغ فيُطفَأ.',
+          'نقل البيانات يُثبَت بمطابقة رقمية لا بالثقة، والخطأ فيه قد يظهر بعد سنوات.',
+          'الثقافة حاسمة: تصغير التغيير وتكراره ونقل القرار لمن يملك المعرفة.'
+        ],
+        keyPoints_en: [
+          'Transformation changes how decisions are made rather than buying systems.',
+          'Legacy systems run stably, and that very fact makes replacing them frightening.',
+          'One-move replacement is the riskiest option and has genuinely halted services and drawn penalties.',
+          'Gradual: an interface in front of the old, moving one function at a time until it empties.',
+          'Data migration is proven by numerical reconciliation rather than trust, and errors may surface years later.',
+          'Culture decides: smaller more frequent changes and decisions moved to whoever holds the knowledge.'
+        ],
+        analogy_ar: 'تخيّل جسراً قديماً تعبره المدينة كلها كل يوم. لا يمكن هدمه ليلاً وبناء جديد صباحاً. والطريقة المجرّبة أن تُبنى حارة جديدة بجانبه، ثم تُحوَّل إليها السيارات نوعاً بعد نوع — الخفيفة أولاً ثم الحافلات ثم الشاحنات — حتى تفرغ الحارة القديمة فتُغلَق بلا أن يشعر أحد. وأما من ينتظر يوماً واحداً ينقل فيه كل السير دفعة واحدة، فهو يراهن بمدينة كاملة على أن لا شيء سيسوء.',
+        analogy_en: 'Picture an old bridge the whole city crosses daily. You cannot demolish it at night and build a new one by morning. The proven way is building a new lane beside it then moving vehicles across type by type, light cars first then buses then lorries, until the old lane empties and closes with nobody noticing. Whoever waits for one day to move all traffic at once is betting an entire city on nothing going wrong.',
+        terms: [
+          { term: 'Legacy System', def_ar: 'نظام قديم يعمل بثبات ويصعب تغييره.', def_en: 'An old system running stably and hard to change.' },
+          { term: 'Big Bang Cutover', def_ar: 'انتقال كامل في يوم واحد، أخطر المسارات.', def_en: 'A complete move in one day, the riskiest path.' },
+          { term: 'Gradual Replacement', def_ar: 'نقل وظيفة كل مرة خلف واجهة حتى يفرغ القديم.', def_en: 'Moving one function at a time behind an interface until the old empties.' },
+          { term: 'Data Reconciliation', def_ar: 'إثبات صحة النقل بمطابقة أرقام لا بالثقة.', def_en: 'Proving migration correctness by matching numbers rather than trust.' },
+          { term: 'Release Cadence', def_ar: 'وتيرة إصدار التغييرات وحجم كل واحد.', def_en: 'The frequency of releases and the size of each.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا يكون التحول شراء أنظمة؟', q_en: 'Why is transformation not buying systems?', a_ar: 'لأنه تغيير في كيفية القرار ودورة الإصدار؛ ومن أبقى لجنة شهرية لاعتماد كل تغيير لم يتحوّل.', a_en: 'It changes how decisions and releases are made; whoever kept a monthly approval committee has not transformed.' },
+          { q_ar: 'ما مخاطرة الاستبدال دفعة واحدة؟', q_en: 'What is the risk of a one-move replacement?', a_ar: 'يوم تحوّل واحد قد يوقف البنك كله، وقد أوقفت مشاريع كبرى خدمات لأيام وكلّفت غرامات.', a_en: 'A single cutover day may stop the whole bank, and major projects have halted services for days and drawn penalties.' },
+          { q_ar: 'كيف يجري الاستبدال التدريجي؟', q_en: 'How does gradual replacement work?', a_ar: 'بناء واجهة أمام النظام القديم ونقل وظيفة واحدة كل مرة حتى يفرغ فيُطفَأ، والتراجع يبقى ممكناً.', a_en: 'Building an interface in front of the old system and moving one function at a time until it empties, with retreat still possible.' },
+          { q_ar: 'كيف يُثبَت صحة نقل البيانات؟', q_en: 'How is data migration proven correct?', a_ar: 'بمطابقة رقمية لا بالثقة؛ فخطأ غير مكتشَف قد يبقى سنوات ويظهر في تدقيق أو شكوى.', a_en: 'By numerical reconciliation rather than trust, since an undetected error may persist for years and surface in an audit or complaint.' }
+        ]
+      }
     ]
   }
 };
