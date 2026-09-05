@@ -6981,6 +6981,330 @@ export const sectionGuides = {
           { q_ar: 'ما الذي يجب معرفته قبل تشخيص مشكلة شبكة حديثة؟', q_en: 'What must be known before diagnosing a modern network problem?', a_ar: 'عدد الوسطاء بين العميل والخادم، فكل وسيط نقطة عطل محتملة.', a_en: 'How many intermediaries sit between client and server, since each is a potential failure point.' }
         ]
       }
+    ],
+
+    // ─────────── بروتوكولات الشبكات ───────────
+    1: [
+      {
+        title_ar: 'طبقات OSI والتغليف',
+        title_en: 'The OSI Layers and Encapsulation',
+        lead_ar: 'الطبقات ليست حفظاً لسبعة أسماء، وإنما أداة تشخيص: كل عطل يقع في طبقة بعينها، ومن يعرف طبقته يعرف أين يبحث.',
+        lead_en: 'The layers are not seven names to memorise but a diagnostic tool: every fault sits in a specific layer, and knowing the layer tells you where to look.',
+        body_ar: [
+          'نموذج الطبقات السبع مرجع يقسّم عمل الشبكة لمستويات، كل مستوى يخدم ما فوقه ويعتمد على ما تحته. وفائدته العملية أنه يفصل المسؤوليات: مصمم التطبيق لا يفكر في نوع الكابل، ومهندس الكابلات لا يفكر في صيغة الرسالة.',
+          'وترتيبها من الأسفل: المادية تنقل البتات كإشارة، وربط البيانات تنقل الإطارات بين جهازين متجاورين بالعنوان المادي، والشبكة توجّه الحزم بين الشبكات بالعنوان المنطقي، والنقل تدير الجلسة بين طرفين وتضمن الوصول أو لا تضمنه، ثم الجلسة والعرض والتطبيق تخدم البرنامج نفسه.',
+          'ونموذج TCP/IP المستخدم فعلياً يدمجها في أربع: الوصول للشبكة يجمع الماديتين، ثم الإنترنت، ثم النقل، ثم التطبيق يجمع الثلاث العليا. فالسبع مرجع تعليمي وتشخيصي، والأربع هي ما تعمل به الشبكات حقاً.',
+          'والتغليف هو ما يجعل هذا كله يعمل: كل طبقة تضيف ترويسة خاصة بها قبل أن تسلّم للطبقة الأدنى. فبيانات التطبيق تُغلَّف بترويسة نقل فتصير مقطعاً، ثم بترويسة شبكة فتصير حزمة، ثم بترويسة ربط فتصير إطاراً. وعند الاستقبال تُنزَع الترويسات بالترتيب العكسي.',
+          'وقاعدة التخاطب الند للند تلخّص المنطق: الطبقة تخاطب نظيرتها في الطرف الآخر لا الطبقة التي تحتها. فترويسة النقل التي كتبها المرسل يقرؤها النقل في المستقبِل، ولا يفتحها أي مُوجِّه في الطريق — والمُوجِّه يقرأ ترويسة الشبكة فقط لأنها طبقته.',
+          'وأثر ذلك في التشخيص هائل: جهاز لا يصل جاره في الشبكة نفسها مشكلته في الطبقتين الأولى والثانية، وجهاز يصل جاره ولا يصل الإنترنت مشكلته في الثالثة، وجهاز يفتح كل المواقع إلا موقعاً واحداً مشكلته في السابعة. فالفحص من الأسفل للأعلى يوفّر ساعات — ومن يبدأ بإعادة تثبيت المتصفح قبل فحص الكابل يبحث في الطبقة الخطأ.'
+        ],
+        body_en: [
+          'The seven-layer model is a reference dividing network work into levels, each serving the one above and depending on the one below. Its practical value is separating responsibilities: an application designer never thinks about cable type, and a cabling engineer never thinks about message format.',
+          'From the bottom: physical carries bits as a signal; data link carries frames between two adjacent devices by physical address; network routes packets between networks by logical address; transport manages the session between two endpoints and either guarantees delivery or does not; then session, presentation and application serve the program itself.',
+          'The TCP/IP model actually in use merges them into four: network access combining the lowest two, then internet, then transport, then application combining the highest three. So the seven are a teaching and diagnostic reference while the four are how networks truly operate.',
+          'Encapsulation is what makes all of this work: each layer adds its own header before handing down to the layer below. Application data is wrapped in a transport header becoming a segment, then a network header becoming a packet, then a link header becoming a frame. On receipt the headers are stripped in reverse order.',
+          'The peer-to-peer communication rule summarises the logic: a layer talks to its counterpart at the other end rather than to the layer beneath it. The transport header the sender wrote is read by transport at the receiver, and no router along the way opens it, since a router reads only the network header because that is its layer.',
+          'The diagnostic impact is enormous: a device that cannot reach its neighbour on the same network has a problem in the first two layers; one that reaches its neighbour but not the internet has a problem in the third; one that opens every site but one has a problem in the seventh. Testing from the bottom up saves hours, and whoever reinstalls the browser before checking the cable is searching the wrong layer.'
+        ],
+        table: {
+          head_ar: ['الطبقة', 'وحدتها', 'عنوانها', 'جهازها'],
+          head_en: ['Layer', 'Its unit', 'Its address', 'Its device'],
+          rows: [
+            ['المادية', 'بتات', 'لا يوجد', 'كابل ومُكرِّر'],
+            ['ربط البيانات', 'إطار', 'العنوان المادي', 'مُحوِّل'],
+            ['الشبكة', 'حزمة', 'العنوان المنطقي', 'مُوجِّه'],
+            ['النقل', 'مقطع', 'رقم المنفذ', 'جدار ناري متقدم'],
+            ['التطبيق', 'رسالة', 'اسم النطاق', 'خادم وبوابة']
+          ]
+        },
+        keyPoints_ar: [
+          'الطبقات أداة تشخيص لا قائمة تُحفَظ: كل عطل يقع في طبقة بعينها.',
+          'كل طبقة تخدم ما فوقها وتعتمد على ما تحتها فتنفصل المسؤوليات.',
+          'السبع مرجع تعليمي، والأربع في TCP/IP هي ما تعمل به الشبكات فعلاً.',
+          'التغليف: كل طبقة تضيف ترويستها، وتُنزَع عند الاستقبال بالترتيب العكسي.',
+          'الطبقة تخاطب نظيرتها في الطرف الآخر، فالمُوجِّه لا يفتح ترويسة النقل.',
+          'الفحص من الأسفل للأعلى يوفّر ساعات، والبدء بالمتصفح قبل الكابل بحث في الطبقة الخطأ.'
+        ],
+        keyPoints_en: [
+          'Layers are a diagnostic tool rather than a list to memorise: every fault sits in one layer.',
+          'Each layer serves the one above and depends on the one below, separating responsibilities.',
+          'The seven are a teaching reference while the four of TCP/IP are how networks truly operate.',
+          'Encapsulation: each layer adds its header, stripped in reverse order on receipt.',
+          'A layer talks to its counterpart at the far end, so a router never opens the transport header.',
+          'Testing bottom up saves hours, and starting with the browser before the cable searches the wrong layer.'
+        ],
+        analogy_ar: 'تخيّل رسالة تُرسَل بين شركتين. الموظف يكتب المحتوى، والسكرتير يضعها في مغلّف مكتوب عليه اسم القسم، والبريد الداخلي يضعها في صندوق مكتوب عليه عنوان الفرع، وشركة الشحن تضعه في حاوية مكتوب عليها المدينة. وكل من في الطريق يقرأ الطبقة التي تخصّه فقط: سائق الشاحنة يقرأ المدينة ولا يفتح المغلّف. وفي الوصول تُفتَح الطبقات بالعكس حتى يصل النص لمن كُتب له — وهذا التغليف حرفياً.',
+        analogy_en: 'Picture a letter sent between two companies. An employee writes the content, a secretary puts it in an envelope marked with the department, internal post puts that in a box marked with the branch address, and the shipping company puts it in a container marked with the city. Everyone along the way reads only the layer that concerns them: the truck driver reads the city and never opens the envelope. On arrival the layers are opened in reverse until the text reaches its addressee, and that is encapsulation literally.',
+        terms: [
+          { term: 'Encapsulation', def_ar: 'إضافة كل طبقة ترويستها قبل التسليم للأدنى.', def_en: 'Each layer adding its header before handing down.' },
+          { term: 'Frame', def_ar: 'وحدة طبقة ربط البيانات تحمل العنوان المادي.', def_en: 'The data link unit carrying the physical address.' },
+          { term: 'Packet', def_ar: 'وحدة طبقة الشبكة تحمل العنوان المنطقي.', def_en: 'The network layer unit carrying the logical address.' },
+          { term: 'Segment', def_ar: 'وحدة طبقة النقل تحمل رقم المنفذ.', def_en: 'The transport layer unit carrying the port number.' },
+          { term: 'Peer Communication', def_ar: 'مخاطبة الطبقة نظيرتها في الطرف المقابل.', def_en: 'A layer addressing its counterpart at the far end.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفائدة العملية لنموذج الطبقات؟', q_en: 'What is the practical value of the layer model?', a_ar: 'التشخيص: كل عطل يقع في طبقة بعينها، فمعرفة الطبقة تحدد أين تبحث وتوفّر ساعات.', a_en: 'Diagnosis: every fault sits in one layer, so knowing the layer tells you where to look and saves hours.' },
+          { q_ar: 'ما التغليف؟', q_en: 'What is encapsulation?', a_ar: 'إضافة كل طبقة ترويستها قبل التسليم للأدنى، وتُنزَع عند الاستقبال بالترتيب العكسي.', a_en: 'Each layer adding its header before handing down, stripped in reverse order on receipt.' },
+          { q_ar: 'لماذا لا يفتح المُوجِّه ترويسة النقل؟', q_en: 'Why does a router never open the transport header?', a_ar: 'لأن الطبقة تخاطب نظيرتها في الطرف الآخر، والمُوجِّه يعمل في طبقة الشبكة فيقرأ ترويستها فقط.', a_en: 'A layer addresses its counterpart at the far end, and a router works at the network layer so reads only its header.' },
+          { q_ar: 'جهاز يفتح كل المواقع إلا واحداً — أي طبقة؟', q_en: 'A device opens every site but one: which layer?', a_ar: 'السابعة، طبقة التطبيق، لأن الطبقات الدنيا تعمل بدليل نجاح بقية المواقع.', a_en: 'The seventh, the application layer, since the lower layers work as proven by the other sites succeeding.' }
+        ]
+      },
+      {
+        title_ar: 'بروتوكولا النقل TCP وUDP',
+        title_en: 'The Transport Protocols TCP and UDP',
+        lead_ar: 'الأول يضمن الوصول ويدفع الثمن تأخيراً، والثاني يسرع ولا يضمن — والاختيار بينهما يحدده سؤال واحد: أيهما أسوأ، فقدان جزء أم تأخّر الكل؟',
+        lead_en: 'The first guarantees delivery and pays for it in delay, the second is fast and guarantees nothing, and one question decides between them: which is worse, losing a part or delaying everything?',
+        body_ar: [
+          'طبقة النقل بروتوكولان متقابلان في الفلسفة. الأول موجَّه بالاتصال: يفتح جلسة قبل الإرسال، ويرقّم كل مقطع، وينتظر إشعاراً بالاستلام، ويعيد إرسال ما ضاع، ويرتّب ما وصل مبعثراً. والثاني بلا اتصال: يرسل ويمضي، بلا جلسة ولا ترقيم ولا إعادة إرسال.',
+          'وفتح الجلسة في الأول مصافحة ثلاثية: يرسل الأول طلب فتح، ويرد الثاني بقبول وطلب مقابل، ويؤكد الأول. وبعدها فقط تبدأ البيانات. وهذي الجولة تكلّف رحلة ذهاب وإياب كاملة قبل بايت واحد من المحتوى — وهذا ثمن الضمان.',
+          'ولكل منهما ما يناسبه: تحميل ملف أو فتح صفحة أو إرسال بريد لا يحتمل نقص بايت، فيُستخدم الأول. والمكالمة الصوتية والبث المباشر والألعاب تحتمل ضياع جزء ولا تحتمل انتظاره، فيُستخدم الثاني. فإعادة إرسال مقطع صوتي ضاع قبل ثانيتين لا فائدة منها: وصل متأخراً فلا محل له.',
+          'والتحكم في التدفق يمنع المرسل من إغراق المستقبِل: يعلن المستقبِل حجم النافذة أي كم يستطيع استقباله، فيلتزم به المرسل. والتحكم في الازدحام يختلف عنه: يستشعر المرسل ضغط الشبكة نفسها لا المستقبِل، فيبطئ عند فقد الحزم ويتسارع تدريجياً عند سلامتها.',
+          'والخلط بين الاثنين شائع، والفرق أن الأول يحمي طرفاً والثاني يحمي الطريق. ولهذا قد تبطؤ وصلتك رغم أن الخادم قوي وجهازك قوي: الازدحام في منتصف الطريق هو ما يحدّها.',
+          'ورقم المنفذ في ترويسة النقل هو ما يوصل البيانات لتطبيقها الصحيح داخل الجهاز. وهو بروتوكولان منفصلان: المنفذ ٥٣ في الأول غير المنفذ ٥٣ في الثاني، وقد يستمع خادم على أحدهما دون الآخر — وهذا سبب متكرر لخطأ في إعداد الجدار الناري: يُفتَح المنفذ بالبروتوكول الخطأ فيبدو مفتوحاً ولا يعمل.'
+        ],
+        body_en: [
+          'The transport layer has two protocols opposite in philosophy. The first is connection oriented: it opens a session before sending, numbers every segment, waits for acknowledgement, retransmits what was lost and reorders what arrived out of sequence. The second is connectionless: it sends and moves on, with no session, no numbering and no retransmission.',
+          'Opening a session in the first is a three-way handshake: the first sends an open request, the second replies accepting and requesting in turn, and the first confirms. Only then does data begin. That round costs a full return trip before a single byte of content, and that is the price of the guarantee.',
+          'Each suits its own work: downloading a file, loading a page or sending mail tolerates no missing byte, so the first is used. A voice call, a live stream and games tolerate losing a part but not waiting for it, so the second is used. Retransmitting an audio fragment lost two seconds ago is useless: it arrives late and has no place.',
+          'Flow control stops the sender from flooding the receiver: the receiver announces a window size, meaning how much it can accept, and the sender respects it. Congestion control is different: the sender senses pressure in the network itself rather than at the receiver, slowing when packets are lost and accelerating gradually when they arrive intact.',
+          'The two are commonly confused, and the difference is that the first protects an endpoint while the second protects the path. That is why your link may slow although the server is powerful and your machine is powerful: congestion in the middle of the road is what limits it.',
+          'The port number in the transport header is what delivers data to the right application inside the machine. These are two separate protocols: port 53 on the first is not port 53 on the second, and a server may listen on one and not the other. That is a recurring firewall configuration error: the port is opened on the wrong protocol so it appears open and does not work.'
+        ],
+        table: {
+          head_ar: ['الخاصية', 'TCP', 'UDP'],
+          head_en: ['Property', 'TCP', 'UDP'],
+          rows: [
+            ['الجلسة', 'مصافحة ثلاثية قبل البيانات', 'بلا جلسة'],
+            ['الضمان', 'إعادة إرسال ما ضاع', 'لا ضمان'],
+            ['الترتيب', 'يُعاد ترتيب الوارد', 'يصل كما اتفق'],
+            ['الترويسة', 'أكبر وأثقل', 'صغيرة وسريعة'],
+            ['يناسب', 'ملفات وصفحات وبريد', 'صوت وبث وألعاب']
+          ]
+        },
+        keyPoints_ar: [
+          'السؤال الحاسم: أيهما أسوأ، فقدان جزء أم تأخّر الكل؟',
+          'المصافحة الثلاثية تكلّف رحلة كاملة قبل أول بايت، وهذا ثمن الضمان.',
+          'إعادة إرسال صوت ضاع قبل ثانيتين بلا فائدة، فالبث يختار الأسرع.',
+          'التحكم في التدفق يحمي المستقبِل، والتحكم في الازدحام يحمي الطريق.',
+          'قد تبطؤ الوصلة رغم قوة الطرفين لأن الازدحام في منتصف الطريق.',
+          'المنفذ في البروتوكولين مختلف، وفتحه بالبروتوكول الخطأ عطل شائع.'
+        ],
+        keyPoints_en: [
+          'The decisive question: which is worse, losing a part or delaying everything?',
+          'The three-way handshake costs a full trip before the first byte, the price of the guarantee.',
+          'Retransmitting audio lost two seconds ago is useless, so streaming picks the faster protocol.',
+          'Flow control protects the receiver while congestion control protects the path.',
+          'A link may slow despite both endpoints being powerful because congestion sits in the middle.',
+          'The port differs between the two protocols, and opening it on the wrong one is a common fault.'
+        ],
+        analogy_ar: 'تخيّل طريقتين لإرسال طرد. الأولى بريد مسجّل: توقيع عند الاستلام وإعادة إرسال لو ضاع، وتصلك شهادة أن كل شيء وصل — لكنها أبطأ وأثقل إجراءً. والثانية إلقاء صحيفة على العتبة: سريعة ورخيصة، ولو طارت واحدة بالهواء لا يعيدها أحد. وصحيفة أمس التي وصلت اليوم لا قيمة لها أصلاً — ولهذا يختار البث الثانية عن قصد لا عن إهمال.',
+        analogy_en: 'Picture two ways to send a parcel. The first is registered post: a signature on receipt, resending if lost, and a certificate that everything arrived, yet slower and heavier in procedure. The second is tossing a newspaper on the doorstep: fast and cheap, and if one blows away nobody resends it. Yesterday newspaper arriving today is worthless anyway, which is why streaming chooses the second deliberately rather than carelessly.',
+        terms: [
+          { term: 'Three-way Handshake', def_ar: 'ثلاث رسائل تفتح الجلسة قبل بدء البيانات.', def_en: 'Three messages opening the session before data begins.' },
+          { term: 'Acknowledgement', def_ar: 'إشعار من المستقبِل بأن المقطع وصل.', def_en: 'A receiver notice that a segment arrived.' },
+          { term: 'Flow Control', def_ar: 'ضبط سرعة المرسل بحسب طاقة المستقبِل.', def_en: 'Limiting sender speed to receiver capacity.' },
+          { term: 'Congestion Control', def_ar: 'إبطاء المرسل استشعاراً لضغط الشبكة نفسها.', def_en: 'Slowing the sender in response to network pressure.' },
+          { term: 'Window Size', def_ar: 'كمية البيانات التي يقبلها المستقبِل قبل إشعار.', def_en: 'The data volume a receiver accepts before acknowledging.' }
+        ],
+        cards: [
+          { q_ar: 'ما السؤال الذي يحسم الاختيار بين البروتوكولين؟', q_en: 'Which question decides between the two protocols?', a_ar: 'أيهما أسوأ في هذا التطبيق: فقدان جزء أم تأخّر الكل؟', a_en: 'Which is worse for this application: losing a part or delaying everything?' },
+          { q_ar: 'لماذا لا يُستخدم البروتوكول المضمون في المكالمات؟', q_en: 'Why is the guaranteed protocol not used for calls?', a_ar: 'لأن إعادة إرسال صوت ضاع قبل ثانيتين تصل متأخرة بلا محل، والانتظار أسوأ من الفقد.', a_en: 'Retransmitted audio lost two seconds ago arrives too late to place, and waiting is worse than losing.' },
+          { q_ar: 'ما الفرق بين التحكم في التدفق والازدحام؟', q_en: 'Difference between flow and congestion control?', a_ar: 'التدفق يحمي المستقبِل من الإغراق، والازدحام يحمي الطريق بين الطرفين.', a_en: 'Flow control protects the receiver from flooding; congestion control protects the path between the endpoints.' },
+          { q_ar: 'ما الخطأ الشائع في فتح المنافذ بالجدار الناري؟', q_en: 'What is the common firewall port mistake?', a_ar: 'فتح الرقم بالبروتوكول الخطأ، فالمنفذ في أحدهما غير المنفذ نفسه في الآخر فيبدو مفتوحاً ولا يعمل.', a_en: 'Opening the number on the wrong protocol, since a port on one is not the same port on the other, so it looks open and fails.' }
+        ]
+      },
+      {
+        title_ar: 'IPv4 وتقسيم الشبكات الفرعية',
+        title_en: 'IPv4 and Subnetting',
+        lead_ar: 'التقسيم استعارة بتات من جزء المضيف لجزء الشبكة — وكل بت تستعيره يضاعف عدد الشبكات ويُنصِّف حجم كل واحدة.',
+        lead_en: 'Subnetting borrows bits from the host part for the network part, and every borrowed bit doubles the number of subnets and halves the size of each.',
+        body_ar: [
+          'تقسيم الشبكة لفرعية يخدم ثلاثة أغراض: تقليل نطاق البث فلا يشغل بثّ قسمٍ كل المؤسسة، وعزل أمني يمنع الحركة الحرة بين الأقسام، وتنظيم إداري يجعل كل قسم في نطاق معروف. وبلا تقسيم تصير الشبكة الكبيرة بطيئة وغير آمنة معاً.',
+          'وآليته استعارة بتات: تأخذ بتات من الجزء المخصص للمضيف وتضمّها لجزء الشبكة. وكل بت مستعار يضاعف عدد الشبكات الفرعية ويُنصِّف عدد العناوين في كل واحدة. فبتٌ واحد يعطي شبكتين، وبتّان أربعاً، وثلاثة ثماني.',
+          'ولنأخذ مثالاً محسوباً بالكامل: شبكة قناعها ٢٤ بتاً فيها ٨ بتات للمضيف أي ٢٥٦ عنواناً. فلو استعرنا بتين صار القناع ٢٦ بتاً، فبقي ٦ بتات للمضيف. وستة بتات تعطي ٢ مرفوعة للأس ٦ أي ٦٤ عنواناً في كل فرعية، والصالح منها ٦٢ بعد حسم عنوان الشبكة وعنوان البث.',
+          'والشبكات الأربع الناتجة تبدأ عند صفر و٦٤ و١٢٨ و١٩٢ في الرقم الأخير. فأول فرعية عناوينها من صفر إلى ٦٣: أولها عنوان الشبكة وآخرها عنوان البث والصالح بينهما من ١ إلى ٦٢. والثانية من ٦٤ إلى ١٢٧ وهكذا. وهذا الحساب هو صلب مهارة التقسيم كله.',
+          'والقاعدة العملية في التخطيط أن تبدأ من الحاجة لا من القناع: كم جهازاً في أكبر قسم؟ فلو كانت الحاجة ٥٠ جهازاً، فأصغر حجم يكفيها ٦٤ عنواناً أي ٦٢ صالحاً. ولو اخترت ٣٢ عنواناً لما كفت، ولو اخترت ١٢٨ لأهدرت النصف.',
+          'وأشهر خطأين: نسيان العنوانين المحجوزين فيُخطَّط لعدد أكبر مما يتّسع فعلاً، وتخطيط بلا هامش نمو فتُستهلَك الشبكة خلال عام وتحتاج إعادة ترقيم كاملة. والهامش المعقول ثلاثون بالمئة زيادة على العدد الحالي — وإعادة الترقيم لاحقاً تكلّف أضعاف ما توفّره الدقة الآن.'
+        ],
+        body_en: [
+          'Dividing a network into subnets serves three purposes: shrinking the broadcast domain so one department broadcast does not occupy the whole organisation, security isolation preventing free movement between departments, and administrative order placing each department in a known range. Without division a large network becomes both slow and insecure.',
+          'The mechanism is borrowing bits: taking bits from the host part and adding them to the network part. Every borrowed bit doubles the subnet count and halves the addresses in each. One bit gives two subnets, two bits give four, three give eight.',
+          'Take a fully worked example: a network with a 24-bit mask has 8 host bits, that is 256 addresses. Borrowing two bits makes the mask 26 bits, leaving 6 host bits. Six bits give 2 to the power of 6, that is 64 addresses per subnet, of which 62 are usable after deducting the network and broadcast addresses.',
+          'The four resulting subnets begin at 0, 64, 128 and 192 in the last number. The first ranges from 0 to 63: the first is the network address, the last is the broadcast, and the usable ones between are 1 to 62. The second runs 64 to 127, and so on. This calculation is the core of the whole subnetting skill.',
+          'The practical planning rule is to start from need rather than from a mask: how many devices in the largest department? If the need is 50 devices, the smallest sufficient size is 64 addresses, that is 62 usable. Choosing 32 would not suffice and choosing 128 would waste half.',
+          'The two most common mistakes: forgetting the two reserved addresses so planning for more than actually fits, and planning with no growth margin so the subnet is exhausted within a year and needs full renumbering. A reasonable margin is thirty percent above the current count, and renumbering later costs many times what precision now saves.'
+        ],
+        table: {
+          head_ar: ['القناع', 'بتات المضيف', 'العناوين', 'الصالح'],
+          head_en: ['Mask', 'Host bits', 'Addresses', 'Usable'],
+          rows: [
+            ['/24', '8', '256', '254'],
+            ['/25', '7', '128', '126'],
+            ['/26', '6', '64', '62'],
+            ['/27', '5', '32', '30'],
+            ['/28', '4', '16', '14']
+          ]
+        },
+        keyPoints_ar: [
+          'التقسيم يقلّل نطاق البث ويعزل أمنياً وينظّم إدارياً.',
+          'كل بت مستعار يضاعف عدد الشبكات ويُنصِّف حجم كل واحدة.',
+          'قناع ٢٦ يترك ٦ بتات للمضيف: ٦٤ عنواناً و٦٢ صالحاً.',
+          'الفرعيات الأربع تبدأ عند صفر و٦٤ و١٢٨ و١٩٢.',
+          'خطّط من الحاجة لا من القناع: ٥٠ جهازاً تحتاج ٦٤ عنواناً.',
+          'احسب العنوانين المحجوزين واترك هامش نمو، فإعادة الترقيم أغلى بكثير.'
+        ],
+        keyPoints_en: [
+          'Subnetting shrinks the broadcast domain, isolates for security and organises administratively.',
+          'Every borrowed bit doubles the subnet count and halves each one size.',
+          'A 26-bit mask leaves 6 host bits: 64 addresses and 62 usable.',
+          'The four subnets begin at 0, 64, 128 and 192.',
+          'Plan from need rather than mask: 50 devices need 64 addresses.',
+          'Count the two reserved addresses and leave a growth margin, since renumbering costs far more.'
+        ],
+        analogy_ar: 'تخيّل عمارة بمئة شقة ومدخل واحد: كل إعلان يُقرأ على الجميع، وكل ساكن يمرّ بكل الطوابق. ولو قسّمتها أربعة أجنحة بمداخل مستقلة لصار إعلان الجناح لأهله وحدهم، ولا يدخل ساكن جناحاً ليس جناحه. وثمن ذلك أن كل جناح صار خمساً وعشرين شقة لا مئة — فلو احتجت لاحقاً ثلاثين شقة في جناح لم يعد ممكناً بلا إعادة بناء. ولهذا يُخطَّط من عدد السكان المتوقع لا من عدد الأجنحة المرغوب.',
+        analogy_en: 'Picture a building of a hundred flats with one entrance: every notice is read to everyone and every resident walks through every floor. Divide it into four wings with separate entrances and a wing notice reaches its own people only, and no resident enters a wing that is not theirs. The price is that each wing now holds twenty-five flats rather than a hundred, so if you later need thirty in one wing it is no longer possible without rebuilding. So plan from the expected population rather than from the desired number of wings.',
+        terms: [
+          { term: 'Subnetting', def_ar: 'استعارة بتات من المضيف لتقسيم الشبكة لفرعيات.', def_en: 'Borrowing host bits to divide a network into subnets.' },
+          { term: 'Broadcast Domain', def_ar: 'نطاق الأجهزة التي يصلها البثّ الواحد.', def_en: 'The set of devices one broadcast reaches.' },
+          { term: 'CIDR Notation', def_ar: 'كتابة القناع كعدد بتات بعد شرطة مائلة.', def_en: 'Writing the mask as a bit count after a slash.' },
+          { term: 'Usable Addresses', def_ar: 'العناوين بعد حسم عنواني الشبكة والبث.', def_en: 'Addresses after deducting the network and broadcast ones.' },
+          { term: 'Growth Margin', def_ar: 'زيادة مخطَّطة تحسّباً لنمو عدد الأجهزة.', def_en: 'A planned surplus anticipating device growth.' }
+        ],
+        cards: [
+          { q_ar: 'كم عنواناً صالحاً في قناع ٢٦ بتاً؟', q_en: 'How many usable addresses in a 26-bit mask?', a_ar: '٦٢، لأن ٦ بتات للمضيف تعطي ٦٤ عنواناً ويُحسَم منها عنوان الشبكة وعنوان البث.', a_en: '62, because 6 host bits give 64 addresses minus the network and broadcast addresses.' },
+          { q_ar: 'ما أثر استعارة بت واحد؟', q_en: 'What does borrowing one bit do?', a_ar: 'يضاعف عدد الشبكات الفرعية ويُنصِّف عدد العناوين في كل واحدة.', a_en: 'It doubles the number of subnets and halves the addresses in each.' },
+          { q_ar: 'قسم فيه ٥٠ جهازاً — أي حجم تختار؟', q_en: 'A department of 50 devices: which size?', a_ar: '٦٤ عنواناً أي قناع ٢٦، لأن ٣٢ لا تكفي و١٢٨ تهدر النصف.', a_en: '64 addresses, a 26-bit mask, since 32 is insufficient and 128 wastes half.' },
+          { q_ar: 'لماذا يُترَك هامش نمو؟', q_en: 'Why leave a growth margin?', a_ar: 'لأن استهلاك الفرعية يفرض إعادة ترقيم كاملة تكلّف أضعاف ما توفّره الدقة عند التخطيط.', a_en: 'Exhausting a subnet forces full renumbering costing many times what precision at planning saves.' }
+        ]
+      },
+      {
+        title_ar: 'الإصدار السادس IPv6',
+        title_en: 'IPv6',
+        lead_ar: 'الإصدار السادس ليس عنواناً أطول فحسب: ألغى البث، وأغنى عن ترجمة العناوين، وجعل الجهاز يعنون نفسه بلا خادم.',
+        lead_en: 'IPv6 is not merely a longer address: it abolished broadcast, removed the need for address translation, and let a device address itself with no server.',
+        body_ar: [
+          'سبب وجوده نفاد عناوين الإصدار الرابع: اثنان وثلاثون بتاً تعطي نحو أربعة مليارات عنوان، وقد استُهلكت. فجاء السادس بمئة وثمانية وعشرين بتاً، وهو رقم من الضخامة بحيث لن ينفد عملياً — وهذا أول فروقه وأشهرها لكنه ليس أهمها.',
+          'وكتابته ثمانية مقاطع ست عشرية تفصلها نقطتان رأسيتان، مع اختصارين مسموحين: حذف الأصفار البادئة في كل مقطع، واستبدال أطول سلسلة مقاطع أصفار بنقطتين مزدوجتين مرة واحدة فقط في العنوان. ومرتان تجعلانه غامضاً غير قابل للتفسير.',
+          'وأهم فروقه الوظيفية إلغاء البث كلياً: لا يوجد عنوان بث في السادس، وحلّ محله الإرسال المتعدد لمجموعات محددة. وأثر ذلك كبير في الأداء لأن البث كان يقاطع كل أجهزة الشبكة ولو لم يعنِها الأمر.',
+          'والإعداد التلقائي عديم الحالة فرق جوهري ثانٍ: يستطيع الجهاز توليد عنوانه بنفسه من بادئة يعلنها المُوجِّه ومعرّف يشتقّه، فيعمل بلا خادم توزيع عناوين أصلاً. ولا يزال خادم التوزيع مستخدماً حين يُراد تحكم مركزي، لكنه لم يعد شرطاً.',
+          'وثالث الفروق أن ترجمة العناوين لم تعد ضرورة: فقد نشأت في الرابع من شحّ العناوين، وحين توفّرت لكل جهاز في السادس أمكن العنونة الشاملة. وهذي عودة لمبدأ الاتصال المباشر بين الأطراف الذي قامت عليه الشبكة أصلاً — مع ما يعنيه من ضرورة جدار ناري صريح، لأن ترجمة العناوين كانت تخفي الأجهزة عرضاً لا قصداً.',
+          'والانتقال يجري منذ سنوات بالتشغيل المزدوج: يحمل الجهاز عنواني الإصدارين معاً ويستخدم ما يناسب الوجهة. وهذا يفسّر بطء الانتقال: ما دام الرابع يعمل فلا ضغط عاجل، والتحول يكلّف ولا يعطي المستخدم فرقاً مرئياً.'
+        ],
+        body_en: [
+          'It exists because IPv4 addresses ran out: thirty-two bits give about four billion addresses and they were consumed. IPv6 came with a hundred and twenty-eight bits, a number so vast it will not practically run out, and that is its first and best-known difference though not its most important.',
+          'It is written as eight hexadecimal groups separated by colons, with two permitted abbreviations: dropping leading zeros in each group, and replacing the longest run of zero groups with a double colon once only in an address. Using it twice makes the address ambiguous and uninterpretable.',
+          'Its most important functional difference is abolishing broadcast entirely: there is no broadcast address in IPv6, replaced by multicast to defined groups. The performance impact is large because broadcast used to interrupt every device on the network even when the matter did not concern it.',
+          'Stateless address autoconfiguration is a second fundamental difference: a device can generate its own address from a prefix the router advertises and an identifier it derives, working with no address distribution server at all. Such a server is still used where central control is wanted, but it is no longer a requirement.',
+          'A third difference is that address translation is no longer a necessity: it arose in IPv4 from address scarcity, and once every device could have one, universal addressing became possible. This returns to the direct end-to-end principle the network was built on, with the consequence that an explicit firewall becomes necessary, since address translation used to hide devices incidentally rather than by design.',
+          'The transition has run for years through dual stack: a device carries addresses of both versions and uses whichever suits the destination. That explains the slowness: while IPv4 works there is no urgent pressure, and converting costs money while giving the user no visible difference.'
+        ],
+        table: {
+          head_ar: ['الخاصية', 'IPv4', 'IPv6'],
+          head_en: ['Property', 'IPv4', 'IPv6'],
+          rows: [
+            ['طول العنوان', '٣٢ بتاً', '١٢٨ بتاً'],
+            ['الكتابة', 'أرقام عشرية بنقاط', 'ست عشري بنقطتين'],
+            ['البثّ', 'موجود', 'ملغى ومحلّه المتعدد'],
+            ['العنونة الذاتية', 'تحتاج خادماً', 'تلقائية عديمة الحالة'],
+            ['ترجمة العناوين', 'ضرورة لشحّ العناوين', 'غير ضرورية']
+          ]
+        },
+        keyPoints_ar: [
+          'سببه نفاد عناوين الرابع، وطوله ١٢٨ بتاً لن ينفد عملياً.',
+          'النقطتان المزدوجتان تُستخدمان مرة واحدة فقط وإلا صار العنوان غامضاً.',
+          'ألغى البث كلياً وحلّ محله الإرسال المتعدد، فتحسّن الأداء.',
+          'الجهاز يولّد عنوانه من بادئة المُوجِّه بلا خادم توزيع.',
+          'ترجمة العناوين لم تعد ضرورة، فيلزم جدار ناري صريح بدل الإخفاء العرضي.',
+          'الانتقال بالتشغيل المزدوج، وبطؤه لأن الرابع يعمل والتحول بلا فرق مرئي.'
+        ],
+        keyPoints_en: [
+          'It exists because IPv4 ran out, and its 128 bits will not practically be exhausted.',
+          'The double colon is used once only or the address becomes ambiguous.',
+          'It abolished broadcast entirely in favour of multicast, improving performance.',
+          'A device generates its address from the router prefix with no distribution server.',
+          'Address translation is no longer needed, so an explicit firewall replaces incidental hiding.',
+          'Transition runs on dual stack, slowed because IPv4 works and converting shows no visible difference.'
+        ],
+        analogy_ar: 'تخيّل مدينة رقّمت بيوتها بأربعة خانات فامتلأت، فقررت الانتقال لترقيم بست عشرة خانة. ثلاثة أشياء تغيّرت مع الرقم: صار لكل بيت رقم حقيقي فلم تعد هناك حاجة لمكتب يوزّع أرقاماً مؤقتة، وألغيت مكبّرات الحي التي كانت تزعج الجميع لتبليغ بيت واحد، وصار البيت يعرف رقمه من لوحة الحي بلا مراجعة البلدية. ولهذا الانتقال أعمق من طول الرقم.',
+        analogy_en: 'Picture a city whose houses were numbered with four digits until they filled up, so it moved to sixteen-digit numbering. Three things changed with the number: every house got a real number so no office was needed to hand out temporary ones, the neighbourhood loudspeakers that disturbed everyone to reach one house were abolished, and a house learns its number from the district sign without visiting the council. So the change runs deeper than number length.',
+        terms: [
+          { term: 'Hexadecimal Notation', def_ar: 'كتابة العنوان بثمانية مقاطع ست عشرية.', def_en: 'Writing the address as eight hexadecimal groups.' },
+          { term: 'Double Colon', def_ar: 'اختصار أطول سلسلة أصفار مرة واحدة فقط.', def_en: 'Abbreviating the longest zero run once only.' },
+          { term: 'SLAAC', def_ar: 'توليد الجهاز عنوانه من بادئة المُوجِّه بلا خادم.', def_en: 'A device generating its address from the router prefix with no server.' },
+          { term: 'Dual Stack', def_ar: 'حمل عنواني الإصدارين معاً أثناء الانتقال.', def_en: 'Carrying addresses of both versions during transition.' },
+          { term: 'End-to-End', def_ar: 'اتصال مباشر بين الطرفين بلا وسيط ترجمة.', def_en: 'Direct connection between endpoints with no translating intermediary.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا تُستخدم النقطتان المزدوجتان مرتين؟', q_en: 'Why is the double colon not used twice?', a_ar: 'لأن العنوان يصير غامضاً: لا يُعرَف كم صفراً تمثّل كل واحدة منهما.', a_en: 'The address becomes ambiguous: it is unknown how many zeros each one represents.' },
+          { q_ar: 'ما الذي حلّ محل البثّ في السادس؟', q_en: 'What replaced broadcast in IPv6?', a_ar: 'الإرسال المتعدد لمجموعات محددة، فلم يعد كل جهاز يُقاطَع بما لا يعنيه.', a_en: 'Multicast to defined groups, so devices are no longer interrupted by what does not concern them.' },
+          { q_ar: 'كيف يعنون الجهاز نفسه بلا خادم؟', q_en: 'How does a device address itself with no server?', a_ar: 'يولّد عنوانه من بادئة يعلنها المُوجِّه ومعرّف يشتقّه، وهو الإعداد التلقائي عديم الحالة.', a_en: 'It generates its address from a router-advertised prefix and a derived identifier, that is stateless autoconfiguration.' },
+          { q_ar: 'لماذا يلزم جدار ناري صريح في السادس؟', q_en: 'Why is an explicit firewall needed in IPv6?', a_ar: 'لأن ترجمة العناوين كانت تخفي الأجهزة عرضاً، وبزوال الحاجة لها صارت العنونة شاملة.', a_en: 'Address translation used to hide devices incidentally, and once it is unnecessary addressing becomes universal.' }
+        ]
+      },
+      {
+        title_ar: 'بروتوكولات التطبيقات',
+        title_en: 'Application Protocols',
+        lead_ar: 'كل خدمة تعرفها بروتوكول له منفذ وقواعد — ومعرفة المنفذ ليست حفظاً، وإنما هي ما يجعلك تشخّص عطلاً بسؤال واحد.',
+        lead_en: 'Every service you know is a protocol with a port and rules, and knowing the port is not memorisation but what lets you diagnose a fault with one question.',
+        body_ar: [
+          'بروتوكولات التطبيقات هي ما يتعامل معه المستخدم فعلاً وإن لم يشعر. وكل واحد منها يحدد ثلاثة أشياء: صيغة الرسائل المتبادلة، وترتيب تبادلها، وما يعنيه كل رد. وبلا هذا الاتفاق لا يفهم البرنامجان بعضهما ولو وصلت البتات كاملة.',
+          'وبروتوكول الويب يقوم على دورة طلب ورد: يطلب العميل مورداً بأمر محدد ويرد الخادم برمز حالة ومحتوى. ورموز الحالة تُقرأ بأول رقم: مئتان نجاح، وثلاثمئة إعادة توجيه، وأربعمئة خطأ من العميل، وخمسمئة خطأ من الخادم. وهذي القسمة وحدها تحدد من تلوم قبل قراءة أي سجل.',
+          'ونسخته المؤمَّنة ليست بروتوكولاً مختلفاً وإنما البروتوكول نفسه فوق طبقة تشفير. ولهذا يبقى المنطق واحداً وتتغيّر الحماية فقط — وهذا الفهم يمنع خطأً شائعاً: أن يُظن أن التشفير يغيّر سلوك التطبيق.',
+          'ونظام أسماء النطاقات يترجم الاسم لعنوان، وبدونه يحتاج المستخدم حفظ أرقام. وبروتوكول توزيع العناوين يعطي الجهاز عنواناً وقناعاً وبوابة وخادم أسماء تلقائياً عند انضمامه. وبروتوكولات البريد ثلاثة تتقاسم العمل: واحد للإرسال بين الخوادم، واثنان للقراءة يختلفان في أن أحدهما يُنزِّل الرسائل والآخر يبقيها على الخادم ويزامنها.',
+          'والوصول الإداري عن بُعد له بروتوكولان تاريخياً: قديم ينقل كل شيء نصاً صريحاً بما فيه كلمة المرور، ومؤمَّن يشفّر الجلسة كاملة. والأول لم يعد يُستخدم إلا في بيئات معزولة، ووجوده مفتوحاً في شبكة إنتاج مؤشر إهمال بحد ذاته.',
+          'وقيمة معرفة المنافذ تظهر في التشخيص: خدمة لا تعمل تُختبَر بسؤال هل المنفذ مفتوح ومستمَع عليه؟ فإن كان مغلقاً فالمشكلة في الجدار أو الخدمة متوقفة، وإن كان مفتوحاً ولا يستجيب فالمشكلة في التطبيق نفسه. وهذي القسمة تختصر نصف وقت التشخيص.'
+        ],
+        body_en: [
+          'Application protocols are what the user actually deals with even without noticing. Each defines three things: the format of exchanged messages, the order of exchange, and what each reply means. Without that agreement two programs do not understand each other even if every bit arrives.',
+          'The web protocol runs on a request and response cycle: the client requests a resource with a specific verb and the server replies with a status code and content. Status codes are read by their first digit: two hundred success, three hundred redirection, four hundred a client error, five hundred a server error. That division alone decides whom to blame before reading any log.',
+          'Its secured version is not a different protocol but the same one over an encryption layer. So the logic stays identical and only protection changes, and that understanding prevents a common error: assuming encryption changes application behaviour.',
+          'The domain name system translates a name into an address, and without it users would memorise numbers. The address distribution protocol gives a device an address, mask, gateway and name server automatically on joining. Mail has three protocols sharing the work: one for sending between servers and two for reading, differing in that one downloads messages while the other keeps them on the server and synchronises.',
+          'Remote administrative access has two protocols historically: an old one carrying everything in clear text including the password, and a secured one encrypting the whole session. The first is no longer used except in isolated environments, and finding it open on a production network is itself a sign of neglect.',
+          'The value of knowing ports shows in diagnosis: a failing service is tested by asking whether the port is open and listened on. If closed, the problem is the firewall or a stopped service; if open and unresponsive, the problem is in the application itself. That split cuts diagnosis time in half.'
+        ],
+        table: {
+          head_ar: ['الخدمة', 'المنفذ', 'وظيفتها'],
+          head_en: ['Service', 'Port', 'Its function'],
+          rows: [
+            ['الويب', '80', 'نقل صفحات بلا تشفير'],
+            ['الويب المؤمَّن', '443', 'الويب فوق طبقة تشفير'],
+            ['أسماء النطاقات', '53', 'ترجمة الاسم لعنوان'],
+            ['الإدارة المؤمَّنة', '22', 'جلسة إدارية مشفّرة'],
+            ['إرسال البريد', '25', 'نقل الرسائل بين الخوادم']
+          ]
+        },
+        keyPoints_ar: [
+          'البروتوكول يحدد صيغة الرسائل وترتيبها ومعنى كل رد.',
+          'رمز الحالة يُقرأ بأول رقم: أربعمئة تلوم العميل وخمسمئة تلوم الخادم.',
+          'النسخة المؤمَّنة البروتوكول نفسه فوق تشفير، والمنطق لا يتغيّر.',
+          'بروتوكولا القراءة يختلفان: أحدهما يُنزِّل الرسائل والآخر يبقيها ويزامنها.',
+          'البروتوكول الإداري القديم ينقل كلمة المرور نصاً، ووجوده مفتوحاً مؤشر إهمال.',
+          'منفذ مغلق يعني جداراً أو خدمة متوقفة، ومفتوح بلا استجابة يعني عطلاً في التطبيق.'
+        ],
+        keyPoints_en: [
+          'A protocol defines message format, exchange order and the meaning of each reply.',
+          'A status code is read by its first digit: four hundred blames the client and five hundred the server.',
+          'The secured version is the same protocol over encryption and the logic does not change.',
+          'The two reading protocols differ: one downloads messages while the other keeps and synchronises them.',
+          'The old administrative protocol carries the password in clear text, and finding it open signals neglect.',
+          'A closed port means a firewall or stopped service; an open unresponsive one means an application fault.'
+        ],
+        analogy_ar: 'تخيّل مبنى حكومياً بنوافذ مرقّمة: نافذة الجوازات، ونافذة الرخص، ونافذة الاستعلام. ورقم النافذة هو المنفذ، وإجراءات كل نافذة هي البروتوكول. فلو ذهبت لنافذة مغلقة عرفت أن الخدمة متوقفة اليوم. ولو وجدتها مفتوحة والموظف جالس لكنه لا يرد على طلبك، فالمشكلة في الإجراء لا في النافذة. وهذا هو الفرق بين عطل الجدار وعطل التطبيق حرفياً.',
+        analogy_en: 'Picture a government building with numbered windows: passports, licences, enquiries. The window number is the port and each window procedures are the protocol. Arriving at a closed window tells you the service is down today. Finding it open with the clerk seated yet unresponsive to your request means the problem is the procedure rather than the window. That is literally the difference between a firewall fault and an application fault.',
+        terms: [
+          { term: 'Status Code', def_ar: 'رقم يصف نتيجة الطلب ويُقرأ بأول خانة.', def_en: 'A number describing a request outcome read by its first digit.' },
+          { term: 'Request-Response', def_ar: 'دورة يطلب فيها العميل ويرد الخادم.', def_en: 'A cycle where the client requests and the server replies.' },
+          { term: 'Clear Text', def_ar: 'نقل بلا تشفير يمكن قراءته باعتراض بسيط.', def_en: 'Unencrypted transfer readable by simple interception.' },
+          { term: 'Listening Port', def_ar: 'منفذ تنتظر عليه خدمة اتصالات واردة.', def_en: 'A port on which a service awaits incoming connections.' },
+          { term: 'Default Gateway', def_ar: 'المُوجِّه الذي تُرسَل إليه الحزم خارج الشبكة.', def_en: 'The router to which packets leaving the network are sent.' }
+        ],
+        cards: [
+          { q_ar: 'كيف تقرأ رمز الحالة بسرعة؟', q_en: 'How do you read a status code quickly?', a_ar: 'بأول رقم: مئتان نجاح، وثلاثمئة إعادة توجيه، وأربعمئة خطأ العميل، وخمسمئة خطأ الخادم.', a_en: 'By its first digit: two hundred success, three hundred redirect, four hundred client error, five hundred server error.' },
+          { q_ar: 'هل النسخة المؤمَّنة بروتوكول مختلف؟', q_en: 'Is the secured version a different protocol?', a_ar: 'لا، هو البروتوكول نفسه فوق طبقة تشفير، فالمنطق واحد وتتغيّر الحماية فقط.', a_en: 'No, it is the same protocol over an encryption layer, so the logic is identical and only protection changes.' },
+          { q_ar: 'ما الفرق بين بروتوكولي قراءة البريد؟', q_en: 'Difference between the two mail reading protocols?', a_ar: 'أحدهما يُنزِّل الرسائل للجهاز والآخر يبقيها على الخادم ويزامن الحالة بين الأجهزة.', a_en: 'One downloads messages to the device while the other keeps them on the server and synchronises state across devices.' },
+          { q_ar: 'منفذ مفتوح والخدمة لا تستجيب — أين العطل؟', q_en: 'Port open but the service unresponsive: where is the fault?', a_ar: 'في التطبيق نفسه، لأن انفتاح المنفذ يثبت أن الجدار والخدمة قائمان.', a_en: 'In the application itself, since an open port proves the firewall and service are up.' }
+        ]
+      }
     ]
   }
 };
