@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Shield, Cpu, Code, Landmark, Menu, Zap, Lock, Heart, X,
-  Globe, User, BookOpen, Database, Trophy, Settings, LogOut, ArrowLeft, LayoutGrid, Rocket, Sparkles, Activity, Users, MessageSquare
+  Globe, User, BookOpen, Database, Trophy, Crown, Settings, LogOut, ArrowLeft, LayoutGrid, Rocket, Sparkles, Activity, Users, MessageSquare
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from './context/AppContext';
@@ -13,6 +13,7 @@ import { Dashboard } from './pages/Dashboard';
 import { QuestionBank } from './pages/Features';
 import { Lessons } from './pages/Lessons';
 import { Challenges } from './pages/Challenges';
+import { Leaderboard } from './pages/Leaderboard';
 
 import { ProfileSettings } from './pages/ProfileSettings';
 
@@ -178,6 +179,7 @@ const startLoading = async (pathId) => {
               <SidebarCard icon={<Database />} title={t('بنك الأسئلة', 'QUESTION BANK')} color={activePath?.color} onClick={() => { setView('banks'); setIsSidebarOpen(false); }} />
               <div className="my-4 h-px bg-white/5 w-full" />
               <SidebarCard icon={<Trophy />} title={t('التحديات ', '   CHALLENGES')} color={activePath?.color} onClick={() => { setView('challenges'); setIsSidebarOpen(false); }} />
+              <SidebarCard icon={<Crown />} title={t('المتصدّرون', 'LEADERBOARD')} color={activePath?.color} onClick={() => { setView('leaderboard'); setIsSidebarOpen(false); }} />
 
               <SidebarCard icon={<Trophy />} title={t(' رحلتي ', '   My Journey')} color={activePath?.color} onClick={() => { setView('journey'); setIsSidebarOpen(false); }} />
               <SidebarCard icon={<ArrowLeft className={language === 'en' ? 'rotate-180' : ''} />} title={t('العودة للمسارات', 'BACK TO TRACKS')} color={activePath?.color} onClick={() => { setView('landing'); setActivePathId(null); setActiveSection(null); setIsSidebarOpen(false); }} />
@@ -239,6 +241,7 @@ const startLoading = async (pathId) => {
           {view === 'lessons' && <Lessons key="lessons" section={activeSection} />}
           {view === 'banks' && <QuestionBank key="banks" section={activeSection} />}
           {view === 'challenges' && <Challenges key="challenges" />}
+          {view === 'leaderboard' && <Leaderboard key="leaderboard" />}
           {view === "journey" && <JourneyPage key="journey" />}
           {view === 'settings' && <SettingsPage key="settings" />}
         </AnimatePresence>
