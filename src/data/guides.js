@@ -7625,6 +7625,326 @@ export const sectionGuides = {
           { q_ar: 'لماذا لا يختار بروتوكول الحدود أقصر طريق؟', q_en: 'Why does the border protocol not pick the shortest path?', a_ar: 'لأن قراره سياسة: قد يُفضَّل مسار أطول لكلفة تجارية أقل أو اتفاق أفضل مع مزوّد.', a_en: 'Its decision is policy: a longer path may be preferred for lower commercial cost or a better provider agreement.' }
         ]
       }
+    ],
+
+    // ─────────── خدمات الشبكات ───────────
+    3: [
+      {
+        title_ar: 'نظام أسماء النطاقات DNS',
+        title_en: 'The Domain Name System',
+        lead_ar: 'النظام موزّع وهرمي لا خادم واحد، ويعمل بالتخزين المؤقت — ولهذا تصل التغييرات متأخرة، وهذا التأخير سبب نصف حوادث «الموقع لا يعمل عندي».',
+        lead_en: 'The system is distributed and hierarchical rather than one server, and it works by caching, so changes arrive late, and that lag causes half the incidents of a site working for some and not others.',
+        body_ar: [
+          'يترجم النظام الاسم المقروء لعنوان رقمي. ولا يوجد خادم واحد يعرف كل الأسماء، وإنما هرم موزّع: خوادم الجذر تعرف من يدير كل نطاق أعلى، وخوادم النطاق الأعلى تعرف من يدير كل نطاق تحته، والخادم الموثوق للنطاق هو من يملك الجواب النهائي.',
+          'والاستعلام يمر عبر خادم محلّل: يسأله جهازك سؤالاً واحداً، ثم يتولى هو السؤال المتسلسل نيابة عنك حتى يجد الموثوق ويعود بالجواب. فجهازك يسأل مرة والمحلّل قد يسأل ثلاث مرات — وهذي التبعية تجعل عطل المحلّل يبدو كأن الإنترنت كلها سقطت.',
+          'والتخزين المؤقت هو ما يجعل النظام محتملاً: لولاه لسُئلت خوادم الجذر بمليارات الاستعلامات يومياً. فكل جواب يُخزَّن مدة يحددها صاحب النطاق نفسه، ويُخدَم منه كل من سأل خلالها بلا رحلة جديدة.',
+          'وهذي المدة هي مصدر أشهر لبس في المجال: تغيّر عنوان موقع ويعمل عند قوم ولا يعمل عند آخرين. والسبب أن كلاً منهم يُخدَم من مخزن مختلف انتهت مدته أو لم تنته. ولهذا تُخفَّض المدة قبل أي نقل مخطَّط بيوم، ثم تُعاد بعد استقرار النقل.',
+          'وأنواع السجلات تحدد نوع الجواب: سجل يربط الاسم بعنوان الإصدار الرابع، وآخر بعنوان السادس، وسجل الاسم البديل يشير لاسم آخر لا لعنوان، وسجل البريد يحدد خادم استقبال رسائل النطاق، وسجل نصي يُستخدم للتحقق من الملكية وسياسات البريد.',
+          'وأشهر خطأ في السجلات جعل سجل الاسم البديل يشير لاسم يشير بدوره للأول، فتنشأ حلقة لا تُحَل أبداً. والتخزين السلبي مفهوم مهم أيضاً: تُخزَّن إجابة «هذا الاسم غير موجود» أيضاً — فالاسم الذي أُنشئ للتو بعد محاولة فاشلة قد يظل مجهولاً دقائق رغم صحة إعداده.'
+        ],
+        body_en: [
+          'The system translates a readable name into a numeric address. No single server knows every name; instead there is a distributed hierarchy: root servers know who runs each top-level domain, top-level servers know who runs each domain beneath, and the authoritative server for a domain holds the final answer.',
+          'A query goes through a resolver: your device asks it one question and it performs the sequential asking on your behalf until it finds the authoritative server and returns the answer. Your device asks once while the resolver may ask three times, and that dependency makes a resolver failure look as though the whole internet has fallen.',
+          'Caching is what makes the system bearable: without it root servers would face billions of queries daily. Every answer is stored for a period the domain owner sets, and everyone asking within it is served from the store with no new journey.',
+          'That period is the source of the most famous confusion in the field: a site address changes and it works for some people and not others. The reason is that each is served from a different cache whose period has or has not expired. So the period is lowered a day before any planned migration and restored once the move settles.',
+          'Record types determine the kind of answer: one links a name to an IPv4 address, another to an IPv6 address, an alias record points to another name rather than an address, a mail record names the server receiving the domain messages, and a text record is used for ownership verification and mail policies.',
+          'The most common record error is making an alias point to a name that points back to the first, creating a loop that never resolves. Negative caching matters too: the answer that a name does not exist is cached as well, so a name created just after a failed attempt may stay unknown for minutes despite being configured correctly.'
+        ],
+        table: {
+          head_ar: ['السجل', 'ما يربطه', 'استخدامه'],
+          head_en: ['Record', 'What it links', 'Its use'],
+          rows: [
+            ['A', 'اسم بعنوان الإصدار الرابع', 'الأشيع'],
+            ['AAAA', 'اسم بعنوان الإصدار السادس', 'الشبكات الحديثة'],
+            ['CNAME', 'اسم باسم آخر', 'أسماء بديلة'],
+            ['MX', 'نطاق بخادم بريده', 'استقبال الرسائل'],
+            ['TXT', 'نطاق بنص حر', 'إثبات ملكية وسياسات بريد']
+          ]
+        },
+        keyPoints_ar: [
+          'النظام هرم موزّع لا خادم واحد: جذر ثم نطاق أعلى ثم خادم موثوق.',
+          'المحلّل يسأل نيابة عنك، فعطله يبدو كأن الإنترنت كلها سقطت.',
+          'التخزين المؤقت يحمي النظام، ومدته يحددها صاحب النطاق.',
+          'اختلاف حالة المخازن سبب أن الموقع يعمل عند قوم دون آخرين.',
+          'خفّضي المدة قبل أي نقل مخطَّط بيوم ثم أعيديها بعد الاستقرار.',
+          'إجابة «غير موجود» تُخزَّن أيضاً، فاسم أُنشئ للتو قد يظل مجهولاً دقائق.'
+        ],
+        keyPoints_en: [
+          'The system is a distributed hierarchy rather than one server: root, top level, then authoritative.',
+          'The resolver asks on your behalf, so its failure looks like the whole internet falling.',
+          'Caching protects the system and its period is set by the domain owner.',
+          'Differing cache states are why a site works for some people and not others.',
+          'Lower the period a day before any planned migration and restore it once settled.',
+          'The does-not-exist answer is cached too, so a just-created name may stay unknown for minutes.'
+        ],
+        analogy_ar: 'تخيّل دليل هاتف ضخماً لا يملكه أحد كاملاً. تسأل موظف الاستعلامات في حيّك، فيتصل بمكتب المدينة، الذي يحيله لمكتب الحي المطلوب، ثم يعود لك بالرقم ويكتبه في دفتره ليردّ به على أي سائل آخر اليوم. وحين ينتقل صاحب الرقم، يبقى دفتر موظفك يعطي القديم حتى ينتهي يومه — ولهذا يجد جارك الرقم الجديد وأنت لا تجده، وكلاكما سأل موظفاً مختلفاً.',
+        analogy_en: 'Picture a vast phone directory nobody holds in full. You ask the enquiries clerk in your district, who calls the city office, which refers them to the target district office, then returns with the number and writes it in their notebook to answer anyone else asking today. When the number holder moves, your clerk notebook keeps giving the old one until their day ends, which is why your neighbour finds the new number and you do not, since you each asked a different clerk.',
+        terms: [
+          { term: 'Resolver', def_ar: 'خادم يتولى الاستعلام المتسلسل نيابة عن الجهاز.', def_en: 'A server performing the sequential query on the device behalf.' },
+          { term: 'Authoritative Server', def_ar: 'الخادم المالك للجواب النهائي عن النطاق.', def_en: 'The server holding the final answer for a domain.' },
+          { term: 'TTL', def_ar: 'مدة يبقى فيها الجواب مخزّناً قبل السؤال مجدداً.', def_en: 'How long an answer stays cached before asking again.' },
+          { term: 'CNAME', def_ar: 'سجل يشير لاسم آخر لا لعنوان.', def_en: 'A record pointing to another name rather than an address.' },
+          { term: 'Negative Caching', def_ar: 'تخزين إجابة عدم وجود الاسم كما يُخزَّن وجوده.', def_en: 'Caching the answer that a name does not exist as its existence is cached.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يعمل الموقع عند قوم ولا يعمل عند آخرين بعد تغيير عنوانه؟', q_en: 'Why does a site work for some and not others after an address change?', a_ar: 'لأن كلاً منهم يُخدَم من مخزن مؤقت مختلف: انتهت مدته عند بعضهم ولم تنته عند غيرهم.', a_en: 'Each is served from a different cache: the period expired for some and not for others.' },
+          { q_ar: 'ما الإجراء الصحيح قبل نقل مخطَّط؟', q_en: 'What is the correct step before a planned migration?', a_ar: 'خفض مدة التخزين قبل النقل بيوم، ثم إعادتها بعد استقرار النقل.', a_en: 'Lowering the cache period a day before, then restoring it once the move settles.' },
+          { q_ar: 'ما التخزين السلبي وأثره؟', q_en: 'What is negative caching and its effect?', a_ar: 'تخزين إجابة أن الاسم غير موجود، فاسم أُنشئ بعد محاولة فاشلة قد يظل مجهولاً دقائق.', a_en: 'Caching that a name does not exist, so a name created after a failed attempt may stay unknown for minutes.' },
+          { q_ar: 'لماذا يبدو عطل المحلّل كسقوط الإنترنت؟', q_en: 'Why does a resolver failure look like the internet falling?', a_ar: 'لأن كل اسم يُسأل عنه يمر به، فبسقوطه لا يُترجَم أي اسم رغم سلامة الشبكة نفسها.', a_en: 'Every name query passes through it, so when it falls no name resolves although the network itself is sound.' }
+        ]
+      },
+      {
+        title_ar: 'توزيع العناوين التلقائي DHCP',
+        title_en: 'Automatic Address Assignment',
+        lead_ar: 'البروتوكول يعطي الجهاز كل ما يحتاجه للعمل في أربع رسائل — وأول رسالة بثّ، وهذا التفصيل يفسّر لماذا لا يعمل عبر المُوجِّه بلا وسيط.',
+        lead_en: 'The protocol gives a device everything it needs in four messages, and the first is a broadcast, a detail explaining why it does not cross a router without a relay.',
+        body_ar: [
+          'الجهاز الذي ينضم للشبكة لا يملك عنواناً ولا يعرف من يسأل. والبروتوكول يحلّ ذلك في أربع رسائل: يبثّ الجهاز طلب اكتشاف، فيعرض عليه خادم عنواناً، فيطلب الجهاز ذلك العرض صراحة، فيؤكد الخادم ويسجّل الحجز.',
+          'ولماذا الرسالة الأخيرة إن كان العرض قد وصل؟ لأن الشبكة قد تحوي أكثر من خادم فيصل الجهاز أكثر من عرض، فطلبه الصريح يعلن أيها اختار ليحرّر الآخرون ما حجزوه له. ولولاها لبقيت عناوين محجوزة لأجهزة لم تأخذها.',
+          'ولا يعطي البروتوكول عنواناً فقط، وإنما حزمة إعدادات كاملة: العنوان والقناع والبوابة الافتراضية وخادم الأسماء وأحياناً خادم الوقت. ولهذا يعمل الجهاز فور انضمامه بلا أن يضبط المستخدم شيئاً.',
+          'والعنوان يُعطى بعقد لمدة محددة لا ملكية دائمة: يجدده الجهاز عند بلوغ نصف المدة، فإن لم يُجدَّد عاد العنوان للمخزن ليُعطى غيره. وهذا يمنع استهلاك المخزن بأجهزة زائرة غادرت — ومدة طويلة في شبكة ضيوف تستنفد المخزن بأجهزة لم تعد موجودة.',
+          'وأول رسالة بثّ لأن الجهاز لا يعرف عنوان الخادم، والبثّ لا يعبر المُوجِّه. ولهذا لا يعمل البروتوكول عبر الشبكات إلا بوسيط ترحيل يُضبَط على المُوجِّه: يلتقط البثّ ويحوّله للخادم بعنوان موجَّه. وهذا سبب متكرر لعطل «قسم واحد لا يأخذ عناوين» مع سلامة الخادم تماماً.',
+          'والحجز حل وسط بين الثابت والتلقائي: يُعطى الجهاز العنوان نفسه دائماً بحسب عنوانه المادي، فيبقى مستقراً كالثابت ويُدار مركزياً كالتلقائي. وخادم غير مصرّح به في الشبكة خطر جدي: يوزّع عناوين وبوابة خاطئة فيمرّ عبره كل شيء — وهو يبدو عطلاً عشوائياً لا هجوماً، لأن بعض الأجهزة تصل الخادم الصحيح أولاً وبعضها تصل الخبيث.'
+        ],
+        body_en: [
+          'A device joining a network has no address and does not know whom to ask. The protocol solves that in four messages: the device broadcasts a discovery request, a server offers it an address, the device explicitly requests that offer, and the server acknowledges and records the reservation.',
+          'Why the last message if the offer already arrived? Because a network may hold more than one server so the device receives more than one offer, and its explicit request announces which it chose so the others release what they reserved for it. Without it addresses would stay reserved for devices that never took them.',
+          'The protocol gives more than an address: a full configuration package of address, mask, default gateway, name server and sometimes a time server. That is why a device works the moment it joins without the user setting anything.',
+          'The address is given on a lease for a set period rather than as permanent ownership: the device renews at half the period, and if not renewed the address returns to the pool for someone else. This prevents the pool being consumed by visiting devices that have left, and a long period on a guest network exhausts the pool with devices no longer present.',
+          'The first message is a broadcast because the device does not know the server address, and broadcast does not cross a router. So the protocol works across networks only with a relay agent configured on the router: it catches the broadcast and forwards it to the server as a directed message. That is a recurring cause of one department not receiving addresses while the server is perfectly healthy.',
+          'A reservation is a middle path between static and automatic: a device always receives the same address by its physical address, staying stable like a static one and managed centrally like an automatic one. An unauthorised server on the network is a serious danger: it hands out addresses and a wrong gateway so everything passes through it, and it looks like a random fault rather than an attack, because some devices reach the correct server first and others reach the malicious one.'
+        ],
+        table: {
+          head_ar: ['الرسالة', 'من', 'وظيفتها'],
+          head_en: ['Message', 'From', 'Its function'],
+          rows: [
+            ['اكتشاف', 'الجهاز بثّاً', 'هل من خادم؟'],
+            ['عرض', 'الخادم', 'خذ هذا العنوان'],
+            ['طلب', 'الجهاز', 'اخترت عرضك أنت'],
+            ['تأكيد', 'الخادم', 'سُجِّل الحجز بمدة العقد']
+          ]
+        },
+        keyPoints_ar: [
+          'أربع رسائل: اكتشاف فعرض فطلب فتأكيد.',
+          'الطلب الصريح يعلن أي عرض اختير فيحرّر الخوادم الأخرى ما حجزته.',
+          'يعطي حزمة كاملة: عنوان وقناع وبوابة وخادم أسماء.',
+          'العقد مؤقت يُجدَّد عند نصف المدة، ومدة طويلة تستنفد مخزن الضيوف.',
+          'أول رسالة بثّ لا يعبر المُوجِّه، فيلزم وسيط ترحيل عبر الشبكات.',
+          'خادم غير مصرّح به يوزّع بوابة خاطئة ويبدو عطلاً عشوائياً لا هجوماً.'
+        ],
+        keyPoints_en: [
+          'Four messages: discover, offer, request, acknowledge.',
+          'The explicit request announces which offer was chosen so other servers release their reservations.',
+          'It gives a full package: address, mask, gateway and name server.',
+          'The lease is temporary and renewed at half its period, and a long one exhausts a guest pool.',
+          'The first message is a broadcast that does not cross a router, so a relay agent is needed.',
+          'An unauthorised server hands out a wrong gateway and looks like a random fault rather than an attack.'
+        ],
+        analogy_ar: 'تخيّل موظف استقبال في فندق ينادي: هل من غرفة شاغرة؟ فيرد ثلاثة موظفين بعروض. فيقول بصوت مسموع: سآخذ غرفة الموظف الثاني — فيرفع الآخران الحجز عن غرفتيهما. ولأن النداء الأول صراخ في البهو، لا يسمعه موظف في مبنى آخر إلا إن وُضِع من ينقل النداء بينهما. ولو تسلّل شخص وادّعى أنه موظف استقبال ووزّع مفاتيح غرف يملكها هو، لمرّ كل نزيل خدعه من بابه — ويبدو الأمر سوء تنظيم لا احتيالاً.',
+        analogy_en: 'Picture a hotel receptionist calling out: any vacant room? Three staff reply with offers. They then say aloud: I will take the second one room, and the other two release theirs. Because the first call is a shout across the lobby, a staff member in another building hears it only if someone is placed to carry the call between them. And if an impostor slipped in claiming to be reception and handed out keys to rooms they own, every deceived guest would pass through their door, and it would look like poor organisation rather than fraud.',
+        terms: [
+          { term: 'Lease', def_ar: 'مدة يملك فيها الجهاز العنوان قبل التجديد.', def_en: 'The period a device holds an address before renewal.' },
+          { term: 'Relay Agent', def_ar: 'إعداد على المُوجِّه ينقل الطلب البثّي للخادم.', def_en: 'A router setting forwarding the broadcast request to the server.' },
+          { term: 'Reservation', def_ar: 'إعطاء جهاز العنوان نفسه دائماً بحسب عنوانه المادي.', def_en: 'Always giving a device the same address by its physical address.' },
+          { term: 'Address Pool', def_ar: 'نطاق العناوين المتاحة للتوزيع.', def_en: 'The range of addresses available for assignment.' },
+          { term: 'Rogue Server', def_ar: 'خادم غير مصرّح به يوزّع إعدادات خاطئة.', def_en: 'An unauthorised server distributing wrong settings.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يلزم الطلب الصريح بعد وصول العرض؟', q_en: 'Why is an explicit request needed after an offer arrives?', a_ar: 'لأن الشبكة قد تحوي عدة خوادم، فالطلب يعلن أي عرض اختير ليحرّر الآخرون ما حجزوه.', a_en: 'A network may hold several servers, so the request announces which offer was chosen so the others release their reservations.' },
+          { q_ar: 'لماذا لا يعمل البروتوكول عبر المُوجِّه؟', q_en: 'Why does the protocol not cross a router?', a_ar: 'لأن رسالته الأولى بثّ والبثّ لا يعبر المُوجِّه، فيلزم وسيط ترحيل يحوّله لعنوان موجَّه.', a_en: 'Its first message is a broadcast and broadcast does not cross a router, so a relay agent must convert it to a directed message.' },
+          { q_ar: 'ما أثر مدة عقد طويلة في شبكة ضيوف؟', q_en: 'Effect of a long lease on a guest network?', a_ar: 'يستنفد المخزن بأجهزة غادرت ولم تعد موجودة، فلا تجد الأجهزة الجديدة عناوين.', a_en: 'It exhausts the pool with devices that left and no longer exist, so new devices find no addresses.' },
+          { q_ar: 'لماذا يبدو الخادم غير المصرّح به عطلاً عشوائياً؟', q_en: 'Why does a rogue server look like a random fault?', a_ar: 'لأن بعض الأجهزة يصلها عرض الخادم الصحيح أولاً وبعضها عرض الخبيث، فتتفاوت الأعراض بلا نمط ظاهر.', a_en: 'Some devices receive the correct server offer first and others the malicious one, so symptoms vary with no visible pattern.' }
+        ]
+      },
+      {
+        title_ar: 'ترجمة العناوين NAT وPAT',
+        title_en: 'Address Translation, NAT and PAT',
+        lead_ar: 'الترجمة تُخرِج شبكة كاملة بعنوان عام واحد بتمييز الجلسات بأرقام المنافذ — وثمنها أن الاتصال الوارد لم يعد ممكناً بلا إعداد صريح.',
+        lead_en: 'Translation takes a whole network out on one public address by distinguishing sessions with port numbers, at the price that inbound connections are no longer possible without explicit configuration.',
+        body_ar: [
+          'الترجمة نشأت من شحّ العناوين العامة: مؤسسة بمئة جهاز لا تملك مئة عنواناً عاماً، فتستخدم عناوين خاصة داخلياً ويترجمها المُوجِّه عند الخروج لعنوان عام واحد أو لمجموعة صغيرة.',
+          'وأنواعها ثلاثة. ثابتة تربط عنواناً داخلياً بعنوان عام واحد دائماً، وتُستخدم لخادم يجب الوصول إليه من الخارج. وديناميكية تختار عنواناً من مخزن عام عند كل خروج، وتنفد إن خرج عدد أكبر من مخزنها.',
+          'والثالثة ترجمة المنافذ وهي السائدة: كل الأجهزة تخرج بعنوان عام واحد، ويميّز المُوجِّه بينها برقم منفذ مصدر فريد يخصّصه لكل جلسة. فيحتفظ بجدول: هذي الجلسة من الجهاز الداخلي الفلاني بالمنفذ كذا. وحين يعود الرد، يقرأ المنفذ ويعرف لمن يعيده.',
+          'وأثرها الجوهري أن الاتصال الوارد المبتدأ من الخارج لا مكان له: فالمُوجِّه لا يعرف لمن يوجّهه ما دام لا يقابل جلسة صادرة في جدوله. ولهذا يبدو أن الترجمة تحمي — وهي حماية عرضية لا مقصودة، ولا تغني عن جدار ناري لأنها لا تفحص شيئاً مما يمر عبر جلسة صادرة.',
+          'وحين يُراد نشر خدمة داخلية يُضبَط تمرير منفذ: قاعدة تقول إن ما يصل المنفذ الفلاني من الخارج يُحوَّل لهذا الجهاز الداخلي. وهذي ثغرة محتملة إن نُشِرت خدمة غير محصّنة — فالحماية العرضية تزول عن ذلك المنفذ وحده.',
+          'وللترجمة كلفة حقيقية: تكسر مبدأ الاتصال المباشر بين الأطراف، فتتعثّر بروتوكولات تحمل عنواناً داخل محتواها لا في ترويستها فقط، ويصعب تتبّع جهاز بعينه في سجلات الطرف الآخر لأن الجميع يظهرون بعنوان واحد. ولهذا يجب أن تُسجَّل جداول الترجمة إن كان التتبّع مطلوباً — وبدون ذلك يصير التحقيق في حادثة مستحيلاً عملياً.'
+        ],
+        body_en: [
+          'Translation arose from public address scarcity: an organisation with a hundred devices does not own a hundred public addresses, so it uses private addresses internally and the router translates them on exit to one public address or a small group.',
+          'It comes in three kinds. Static binds one internal address to one public address permanently, used for a server that must be reachable from outside. Dynamic picks an address from a public pool at each exit and runs out if more devices go out than the pool holds.',
+          'The third is port translation and it dominates: every device exits on one public address, and the router distinguishes them by a unique source port it assigns to each session. It keeps a table saying this session belongs to that internal device on that port, and when the reply returns it reads the port and knows whom to return it to.',
+          'Its fundamental effect is that an inbound connection initiated from outside has no place: the router does not know whom to send it to while it matches no outbound session in its table. So translation appears to protect, yet that protection is incidental rather than intended and does not replace a firewall, because it inspects nothing that travels inside an outbound session.',
+          'When an internal service must be published, port forwarding is configured: a rule saying that whatever arrives on that port from outside goes to this internal device. That is a potential hole if an unhardened service is published, since the incidental protection disappears for that one port.',
+          'Translation carries a real cost: it breaks the direct end-to-end principle, so protocols carrying an address inside their content rather than only in the header stumble, and tracing one device in the far side logs is hard because everyone appears on one address. So translation tables must be logged if tracing is required, and without that investigating an incident becomes practically impossible.'
+        ],
+        table: {
+          head_ar: ['النوع', 'كيف يترجم', 'متى يُستخدم'],
+          head_en: ['Kind', 'How it translates', 'When used'],
+          rows: [
+            ['ثابتة', 'داخلي واحد لعام واحد دائماً', 'خادم يُوصَل من الخارج'],
+            ['ديناميكية', 'اختيار من مخزن عام', 'خروج محدود العدد'],
+            ['ترجمة المنافذ', 'الجميع بعنوان واحد بمنافذ مختلفة', 'السائدة اليوم'],
+            ['تمرير منفذ', 'قاعدة وارد لجهاز داخلي', 'نشر خدمة داخلية']
+          ]
+        },
+        keyPoints_ar: [
+          'الترجمة نشأت من شحّ العناوين العامة لا من دافع أمني.',
+          'ترجمة المنافذ تميّز الجلسات برقم منفذ مصدر فريد لكل واحدة.',
+          'الوارد المبتدأ من الخارج لا مكان له ما لم يقابل جلسة صادرة.',
+          'حمايتها عرضية لا مقصودة، ولا تفحص ما يمر داخل جلسة صادرة.',
+          'تمرير المنفذ يزيل الحماية العرضية عن ذلك المنفذ وحده.',
+          'تكسر الاتصال المباشر وتُعمي التتبّع ما لم تُسجَّل جداولها.'
+        ],
+        keyPoints_en: [
+          'Translation arose from public address scarcity rather than from a security motive.',
+          'Port translation distinguishes sessions by a unique source port for each.',
+          'An inbound connection from outside has no place unless it matches an outbound session.',
+          'Its protection is incidental rather than intended and inspects nothing inside an outbound session.',
+          'Port forwarding removes that incidental protection for that one port.',
+          'It breaks end-to-end connectivity and blinds tracing unless its tables are logged.'
+        ],
+        analogy_ar: 'تخيّل مبنى بهاتف واحد للخارج وموظف بدّالة. حين يتصل موظف بالخارج يسجّل الموظف: المكالمة رقم أربعة من الغرفة سبعة. وحين يرد الطرف الآخر يعرف من رقم المكالمة لأي غرفة يحوّلها. ومن اتصل بالمبنى ابتداءً لا يستطيع طلب غرفة بعينها لأنه لا يعرف الأرقام الداخلية أصلاً — إلا إن وضعت البدّالة قاعدة أن أي متصل يطلب التحويلة ثلاثة يذهب للمحاسبة. ولو سُئِل المبنى لاحقاً من اتصل بهذا الرقم؟ لما عرف أحد إلا إن كان دفتر البدّالة محفوظاً.',
+        analogy_en: 'Picture a building with one outside line and a switchboard operator. When an employee calls out, the operator records: call four from room seven. When the far side replies, the call number tells which room to connect. Anyone calling the building cannot ask for a specific room because they do not know the internal numbers at all, unless the operator set a rule that whoever asks for extension three goes to accounting. And if the building were later asked who called that number, nobody would know unless the operator ledger was kept.',
+        terms: [
+          { term: 'Port Translation', def_ar: 'إخراج الجميع بعنوان واحد بتمييزهم بأرقام منافذ.', def_en: 'Taking everyone out on one address distinguished by port numbers.' },
+          { term: 'Translation Table', def_ar: 'جدول يربط كل جلسة خارجة بجهازها الداخلي.', def_en: 'A table linking each outbound session to its internal device.' },
+          { term: 'Port Forwarding', def_ar: 'قاعدة تحوّل الوارد على منفذ لجهاز داخلي.', def_en: 'A rule sending inbound traffic on a port to an internal device.' },
+          { term: 'Incidental Protection', def_ar: 'حماية ناتجة عرضاً عن آلية غرضها آخر.', def_en: 'Protection arising incidentally from a mechanism with another purpose.' },
+          { term: 'Address Exhaustion', def_ar: 'نفاد مخزن العناوين العامة عند كثرة الخارجين.', def_en: 'The public address pool running out when too many exit.' }
+        ],
+        cards: [
+          { q_ar: 'كيف تميّز ترجمة المنافذ بين الأجهزة؟', q_en: 'How does port translation distinguish devices?', a_ar: 'برقم منفذ مصدر فريد لكل جلسة، يُسجَّل في جدول ويُقرأ عند عودة الرد.', a_en: 'By a unique source port per session, recorded in a table and read when the reply returns.' },
+          { q_ar: 'هل الترجمة بديل عن الجدار الناري؟', q_en: 'Is translation a firewall substitute?', a_ar: 'لا، حمايتها عرضية لا مقصودة ولا تفحص شيئاً مما يمر داخل جلسة صادرة.', a_en: 'No, its protection is incidental rather than intended and it inspects nothing inside an outbound session.' },
+          { q_ar: 'ما أثر تمرير المنفذ أمنياً؟', q_en: 'What is the security effect of port forwarding?', a_ar: 'يزيل الحماية العرضية عن ذلك المنفذ، فتنكشف الخدمة المنشورة إن لم تكن محصّنة.', a_en: 'It removes the incidental protection for that port, exposing the published service if it is not hardened.' },
+          { q_ar: 'لماذا يصعب التحقيق مع وجود الترجمة؟', q_en: 'Why is investigation hard with translation?', a_ar: 'لأن كل الأجهزة تظهر بعنوان واحد في سجلات الطرف الآخر، فلا يُميَّز الجهاز إلا بجداول ترجمة محفوظة.', a_en: 'All devices appear on one address in the far side logs, so a device is identified only by retained translation tables.' }
+        ]
+      },
+      {
+        title_ar: 'الشبكات الخاصة الافتراضية VPN',
+        title_en: 'Virtual Private Networks',
+        lead_ar: 'الشبكة الخاصة الافتراضية نفق مشفّر فوق شبكة عامة — يحمي ما بداخله فقط، ولا يجعل الجهاز آمناً ولا الخدمة موثوقة.',
+        lead_en: 'A virtual private network is an encrypted tunnel over a public network: it protects only what is inside it, and it makes neither the device safe nor the service trustworthy.',
+        body_ar: [
+          'الفكرة نقل حركة خاصة عبر شبكة عامة كأنها وصلة مباشرة. ويتحقق ذلك بالتغليف: تُوضَع الحزمة الأصلية كاملة داخل حزمة جديدة مشفّرة عنوانها بوابتا النفق. فمن يراقب الطريق يرى حركة بين بوابتين ولا يرى ما بداخلها.',
+          'ونوعاه بحسب الغرض. نفق بين موقعين يربط فرعاً بالمقر بلا تدخل مستخدم، وتعمل الأجهزة في الفرعين كأنها في شبكة واحدة. ونفق وصول عن بُعد يربط جهاز موظف بشبكة المؤسسة من أي مكان، ويحتاج مصادقة لكل مستخدم.',
+          'ويقوم النفق المؤمَّن على ثلاث ضمانات مجتمعة: سرية بالتشفير فلا يُقرأ المحتوى، وسلامة ببصمة تكشف أي تعديل، وتوثيق للطرفين فلا ينتحل أحد بوابة. وضمانان بلا الثالث لا يكفيان: تشفير بلا توثيق يعني أنك تتحدث بسرية تامة مع مجهول قد يكون المهاجم نفسه.',
+          'والنفق الجزئي قرار تصميمي مهم: إما أن تمر كل حركة الجهاز عبر النفق فتُفحَص وتُسجَّل مركزياً وتزيد الحمل على البوابة، أو تمر حركة المؤسسة فقط ويخرج الباقي مباشرة فيخفّ الحمل وتضيع الرؤية. والاختيار بينهما مقايضة صريحة بين التحكم والأداء.',
+          'وأشهر لبس أن النفق يجعل الاتصال آمناً مطلقاً. وهو لا يفعل: يحمي الحركة أثناء العبور فقط. فجهاز مصاب ببرمجية خبيثة يبقى مصاباً داخل النفق وينقل إصابته للشبكة، وموقع احتيالي يبقى احتيالياً وإن وصلته عبر نفق مشفّر.',
+          'ومشكلة تشغيلية متكررة تعارض نطاقات العناوين: لو استخدم موقعان النطاق الخاص نفسه فلن يعرف المُوجِّه أي جهة يقصد العنوان. ولهذا يُخطَّط توزيع النطاقات بين المواقع مسبقاً — وهذي مشكلة تظهر عند الدمج بين شركتين أكثر من أي حالة أخرى، لأن كلاً منهما اختارت النطاق الافتراضي نفسه.'
+        ],
+        body_en: [
+          'The idea is carrying private traffic across a public network as though it were a direct link. It is achieved by encapsulation: the whole original packet is placed inside a new encrypted packet addressed to the two tunnel gateways. Whoever watches the path sees traffic between two gateways and not what is inside.',
+          'It has two kinds by purpose. A site-to-site tunnel links a branch to headquarters with no user involvement, and devices at both ends work as though on one network. A remote access tunnel links an employee device to the organisation network from anywhere and requires authentication per user.',
+          'A secured tunnel rests on three guarantees together: confidentiality through encryption so the content is unreadable, integrity through a fingerprint revealing any modification, and authentication of both parties so no one impersonates a gateway. Two without the third are insufficient: encryption without authentication means talking in perfect secrecy to a stranger who may be the attacker.',
+          'Split tunnelling is an important design decision: either all device traffic passes the tunnel so it is inspected and logged centrally while loading the gateway, or only organisation traffic passes and the rest exits directly, easing the load and losing visibility. The choice is an explicit trade between control and performance.',
+          'The commonest confusion is that a tunnel makes a connection absolutely safe. It does not: it protects traffic in transit only. An infected device stays infected inside the tunnel and carries its infection to the network, and a fraudulent site stays fraudulent even when reached through an encrypted tunnel.',
+          'A recurring operational problem is overlapping address ranges: if two sites use the same private range, the router cannot tell which side an address means. So range allocation across sites is planned in advance, and this problem appears in company mergers more than any other case, because each chose the same default range.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'نفق بين موقعين', 'نفق وصول عن بُعد'],
+          head_en: ['Aspect', 'Site-to-site', 'Remote access'],
+          rows: [
+            ['طرفاه', 'بوابتان', 'جهاز وبوابة'],
+            ['المصادقة', 'بين البوابتين', 'لكل مستخدم'],
+            ['تدخل المستخدم', 'لا يشعر به', 'يشغّله بنفسه'],
+            ['استخدامه', 'ربط الفروع', 'العمل عن بُعد']
+          ]
+        },
+        keyPoints_ar: [
+          'التغليف يضع الحزمة الأصلية داخل حزمة مشفّرة بين بوابتين.',
+          'ثلاث ضمانات مجتمعة: سرية وسلامة وتوثيق — واثنتان لا تكفيان.',
+          'تشفير بلا توثيق سرية تامة مع مجهول قد يكون المهاجم.',
+          'النفق الجزئي مقايضة صريحة بين الرؤية المركزية والأداء.',
+          'النفق يحمي العبور فقط: الجهاز المصاب يبقى مصاباً والموقع الاحتيالي احتيالياً.',
+          'تعارض نطاقات العناوين يظهر عند دمج شركتين اختارتا النطاق الافتراضي نفسه.'
+        ],
+        keyPoints_en: [
+          'Encapsulation places the original packet inside an encrypted one between two gateways.',
+          'Three guarantees together: confidentiality, integrity and authentication, and two are not enough.',
+          'Encryption without authentication is perfect secrecy with a stranger who may be the attacker.',
+          'Split tunnelling is an explicit trade between central visibility and performance.',
+          'A tunnel protects transit only: an infected device stays infected and a fraudulent site stays fraudulent.',
+          'Overlapping ranges surface in mergers where both companies chose the same default range.'
+        ],
+        analogy_ar: 'تخيّل سيارة مصفّحة معتمة تنقل مستندات بين مبنيين عبر شارع عام. من يراقب الشارع يرى سيارة تتحرك ولا يعرف ما بداخلها ولا لمن. لكن السيارة لا تجعل المستند صحيحاً: لو كان مزوّراً وصل مزوّراً بأمان تام. ولو أخذت المستند من شخص لم تتحقق من هويته عند الباب، فقد نقلت وثيقة مجهول بسرية عالية — وهذا الفرق بين التشفير والتوثيق حرفياً.',
+        analogy_en: 'Picture an armoured tinted car carrying documents between two buildings along a public street. Whoever watches the street sees a car moving and knows neither its contents nor its recipient. Yet the car does not make the document valid: if it was forged it arrives forged in perfect safety. And if you took the document from someone whose identity you never checked at the door, you have carried a stranger paper in high secrecy, and that is literally the difference between encryption and authentication.',
+        terms: [
+          { term: 'Tunnelling', def_ar: 'وضع الحزمة الأصلية داخل حزمة جديدة مشفّرة.', def_en: 'Placing the original packet inside a new encrypted one.' },
+          { term: 'Site-to-Site', def_ar: 'نفق دائم بين بوابتي موقعين بلا تدخل مستخدم.', def_en: 'A permanent tunnel between two site gateways with no user involvement.' },
+          { term: 'Split Tunnelling', def_ar: 'تمرير حركة المؤسسة بالنفق وخروج الباقي مباشرة.', def_en: 'Passing organisation traffic through the tunnel while the rest exits directly.' },
+          { term: 'Mutual Authentication', def_ar: 'تحقق كل طرف من هوية الآخر قبل التبادل.', def_en: 'Each party verifying the other identity before exchange.' },
+          { term: 'Overlapping Subnets', def_ar: 'استخدام موقعين النطاق الخاص نفسه فيلتبس التوجيه.', def_en: 'Two sites using the same private range so routing becomes ambiguous.' }
+        ],
+        cards: [
+          { q_ar: 'ما الضمانات الثلاث للنفق المؤمَّن؟', q_en: 'What are the three guarantees of a secured tunnel?', a_ar: 'سرية بالتشفير، وسلامة ببصمة تكشف التعديل، وتوثيق للطرفين — واثنتان بلا الثالثة لا تكفيان.', a_en: 'Confidentiality by encryption, integrity by a fingerprint revealing modification, and mutual authentication, and two without the third are insufficient.' },
+          { q_ar: 'ماذا يعني تشفير بلا توثيق؟', q_en: 'What does encryption without authentication mean?', a_ar: 'سرية تامة في حديث مع مجهول قد يكون المهاجم نفسه.', a_en: 'Perfect secrecy in a conversation with a stranger who may be the attacker.' },
+          { q_ar: 'ما مقايضة النفق الجزئي؟', q_en: 'What is the split tunnelling trade?', a_ar: 'تمرير الكل يعطي فحصاً ورؤية مركزية بحمل أعلى، وتمرير البعض يخفّف الحمل ويضيّع الرؤية.', a_en: 'Passing everything gives inspection and central visibility at higher load; passing some eases load and loses visibility.' },
+          { q_ar: 'متى يظهر تعارض نطاقات العناوين غالباً؟', q_en: 'When do overlapping ranges usually surface?', a_ar: 'عند دمج شركتين اختارت كل منهما النطاق الخاص الافتراضي نفسه، فيلتبس على المُوجِّه أي جهة يقصد العنوان.', a_en: 'In mergers where both companies chose the same default private range, so the router cannot tell which side an address means.' }
+        ]
+      },
+      {
+        title_ar: 'مراقبة الشبكة وتكامل الخدمات',
+        title_en: 'Network Monitoring and Service Integration',
+        lead_ar: 'المراقبة تجيب سؤالاً واحداً: هل تغيّر شيء عما هو معتاد؟ — وبلا خط أساس مسجَّل لا معنى لأي قراءة مهما بدت مقلقة.',
+        lead_en: 'Monitoring answers one question: has anything changed from the usual? And without a recorded baseline no reading means anything however alarming it looks.',
+        body_ar: [
+          'المراقبة ليست جمع أرقام وإنما إجابة سؤال: هل تغيّر شيء عما هو معتاد؟ ولهذا فأول خطوة تسجيل خط أساس في الأحوال الطبيعية: كم استهلاك الوصلة في ذروة الدوام، وكم زمن استجابة الخادم عادة، وكم عدد الجلسات المتزامنة. فبلا هذا الخط تصير كل قراءة بلا معنى.',
+          'ومصادر البيانات ثلاثة متكاملة. الأول بروتوكول إدارة الشبكة: يستعلم دورياً عن حالة الأجهزة والمنافذ والاستهلاك، ويرسل الجهاز إنذاراً فورياً عند حدث حرج بلا انتظار الاستعلام.',
+          'والثاني تدفقات الحركة: يسجّل المُوجِّه من كلّم من وبأي حجم وأي بروتوكول، بلا تسجيل المحتوى نفسه. فيجيب أسئلة يعجز عنها قياس الاستهلاك المجرّد: من استهلك الوصلة الليلة الماضية، وإلى أين ذهبت حركة غير معتادة.',
+          'والثالث السجلات المركزية: تُجمَع سجلات الأجهزة كلها في خادم واحد. وفائدتها مضاعفة: ربط الأحداث عبر الأجهزة، وبقاء الدليل إن سقط الجهاز نفسه أو عبث به أحد.',
+          'والمقاييس الأربعة التي تُراقَب دائماً: استهلاك الوصلة، وزمن الاستجابة، ونسبة فقد الحزم، والتذبذب أي تفاوت زمن الوصول. والأخيران يهمّان الصوت والمرئي خاصة: مكالمة بفقد واحد بالمئة تتقطّع بوضوح رغم أن الوصلة تبدو سليمة تماماً في قياس الاستهلاك.',
+          'وتُضبَط عتبات الإنذار بحذر: عتبة منخفضة تنتج ضجيجاً يعتاد الفريق تجاهله، وعالية تكتشف العطل بعد أن يشتكي المستخدمون فتفقد المراقبة غرضها. والقاعدة العملية أن تُشتَق العتبة من خط الأساس لا من رقم مطلق منقول عن مرجع — فوصلة تعمل عادة على سبعين بالمئة لا يعني بلوغها ثمانين شيئاً، ووصلة تعمل على عشرين بالمئة يعني بلوغها خمسين حدثاً يستحق النظر.'
+        ],
+        body_en: [
+          'Monitoring is not collecting numbers but answering a question: has anything changed from the usual? So the first step is recording a baseline under normal conditions: link utilisation at peak hours, the usual server response time, the number of concurrent sessions. Without that baseline every reading is meaningless.',
+          'There are three complementary data sources. The first is the network management protocol: polling device, port and utilisation state periodically, with the device sending an immediate alert on a critical event without waiting to be polled.',
+          'The second is traffic flows: the router records who talked to whom, at what volume and over which protocol, without recording the content itself. It answers questions raw utilisation cannot: who consumed the link last night, and where unusual traffic went.',
+          'The third is central logging: gathering all device logs on one server. Its value is twofold: correlating events across devices, and preserving evidence if the device itself falls or someone tampers with it.',
+          'Four measures are always watched: link utilisation, response time, packet loss rate, and jitter, the variation in arrival time. The last two matter especially for voice and video: a call with one percent loss stutters noticeably although the link looks perfectly healthy by utilisation.',
+          'Alert thresholds are set carefully: a low one produces noise the team learns to ignore, and a high one detects the fault after users complain, defeating the purpose of monitoring. The practical rule is deriving the threshold from the baseline rather than an absolute number copied from a reference: a link normally at seventy percent means nothing at eighty, while a link normally at twenty percent reaching fifty is an event worth examining.'
+        ],
+        table: {
+          head_ar: ['المصدر', 'ما يعطيه', 'ما لا يعطيه'],
+          head_en: ['Source', 'What it gives', 'What it does not'],
+          rows: [
+            ['بروتوكول الإدارة', 'حالة الأجهزة والاستهلاك', 'من كلّم من'],
+            ['تدفقات الحركة', 'من كلّم من وبأي حجم', 'محتوى الاتصال'],
+            ['السجلات المركزية', 'أحداث مربوطة عبر الأجهزة', 'قياسات لحظية دقيقة'],
+            ['خط الأساس', 'معنى لكل قراءة', 'قيمة بلا تحديث دوري']
+          ]
+        },
+        keyPoints_ar: [
+          'المراقبة تجيب: هل تغيّر شيء عن المعتاد؟ فيلزم خط أساس مسجَّل أولاً.',
+          'بروتوكول الإدارة يستعلم دورياً ويستقبل إنذاراً فورياً عند الحدث الحرج.',
+          'تدفقات الحركة تجيب من كلّم من، وهو ما يعجز عنه قياس الاستهلاك.',
+          'السجلات المركزية تربط الأحداث وتبقي الدليل إن عُبِث بالجهاز.',
+          'الفقد والتذبذب يقطّعان المكالمة رغم سلامة الاستهلاك ظاهرياً.',
+          'العتبة تُشتَق من خط الأساس لا من رقم مطلق منقول عن مرجع.'
+        ],
+        keyPoints_en: [
+          'Monitoring answers whether anything changed from the usual, so a recorded baseline comes first.',
+          'The management protocol polls periodically and receives an immediate alert on a critical event.',
+          'Traffic flows answer who talked to whom, which raw utilisation cannot.',
+          'Central logging correlates events and preserves evidence if a device is tampered with.',
+          'Loss and jitter break up a call although utilisation looks healthy.',
+          'A threshold is derived from the baseline rather than an absolute number copied from a reference.'
+        ],
+        analogy_ar: 'تخيّل طبيباً يقرأ ضغطاً مرتفعاً قليلاً. هل هذا خطر؟ لا جواب بلا معرفة ضغط هذا المريض المعتاد. فقراءة واحدة بلا تاريخ لا تعني شيئاً، وقراءة أقل من المعدل العام قد تكون إنذاراً لمريض معدله أقل أصلاً. ولهذا يبدأ الطبيب بملف يسجّل الطبيعي لهذا الشخص تحديداً — والمراقبة بلا خط أساس طبيب يقرأ أرقاماً بلا ملف مريض.',
+        analogy_en: 'Picture a doctor reading a slightly raised blood pressure. Is that dangerous? There is no answer without knowing this patient usual pressure. One reading with no history means nothing, and a reading below the general average may be an alarm for a patient whose own average is lower. So the doctor starts with a file recording what is normal for this person specifically, and monitoring without a baseline is a doctor reading numbers with no patient file.',
+        terms: [
+          { term: 'Baseline', def_ar: 'تسجيل للقيم الطبيعية يُقاس عليه كل تغيّر.', def_en: 'A record of normal values against which change is measured.' },
+          { term: 'Polling', def_ar: 'استعلام دوري عن حالة الأجهزة.', def_en: 'Periodically querying device state.' },
+          { term: 'Traffic Flow', def_ar: 'سجل من كلّم من وبأي حجم بلا المحتوى.', def_en: 'A record of who talked to whom and how much, without content.' },
+          { term: 'Jitter', def_ar: 'تفاوت زمن وصول الحزم يقطّع الصوت والمرئي.', def_en: 'Variation in packet arrival time that breaks up voice and video.' },
+          { term: 'Alert Threshold', def_ar: 'حد يتحوّل عنده القياس لإنذار، يُشتَق من خط الأساس.', def_en: 'The level at which a measure becomes an alert, derived from the baseline.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يسبق خط الأساس أي مراقبة؟', q_en: 'Why does a baseline precede any monitoring?', a_ar: 'لأن المراقبة تجيب هل تغيّر شيء عن المعتاد، وبلا معرفة المعتاد لا معنى لأي قراءة.', a_en: 'Monitoring answers whether anything changed from the usual, and without knowing the usual no reading means anything.' },
+          { q_ar: 'ما الذي تجيبه تدفقات الحركة ولا يجيبه الاستهلاك؟', q_en: 'What do traffic flows answer that utilisation cannot?', a_ar: 'من كلّم من وبأي حجم وأي بروتوكول، فتُعرَف مصادر الاستهلاك ووجهات الحركة غير المعتادة.', a_en: 'Who talked to whom, at what volume and protocol, revealing consumption sources and unusual destinations.' },
+          { q_ar: 'لماذا تتقطّع مكالمة ووصلتها تبدو سليمة؟', q_en: 'Why does a call stutter on a seemingly healthy link?', a_ar: 'لأن الفقد والتذبذب يؤثران فيها ولا يظهران في قياس الاستهلاك أصلاً.', a_en: 'Loss and jitter affect it and never appear in a utilisation measurement.' },
+          { q_ar: 'كيف تُضبَط عتبة الإنذار؟', q_en: 'How is an alert threshold set?', a_ar: 'تُشتَق من خط أساس الوصلة نفسها لا من رقم مطلق: عشرون بالمئة صارت خمسين حدث يستحق النظر.', a_en: 'Derived from that link own baseline rather than an absolute number: twenty percent rising to fifty is worth examining.' }
+        ]
+      }
     ]
   }
 };
