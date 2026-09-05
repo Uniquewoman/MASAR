@@ -2184,5 +2184,635 @@ export const sectionGuides = {
         ]
       }
     ]
+  },
+
+  // ══════════════════ مسار الذكاء الاصطناعي ══════════════════
+  ArtificialIntelligence: {
+    // ─────────── أساسيات الذكاء الاصطناعي ───────────
+    0: [
+      {
+        title_ar: 'ما هو الذكاء الاصطناعي وتاريخه',
+        title_en: 'What AI Is and Its History',
+        lead_ar: 'الذكاء الاصطناعي أنظمة تؤدي مهامّ كانت تتطلب ذكاءً بشرياً، وتاريخه دورات من الحماس المفرط تليها خيبات — وفهم هذي الدورات يحميك من تكرارها.',
+        lead_en: 'AI is systems performing tasks that once required human intelligence, and its history is cycles of excessive hype followed by disappointment, and understanding them protects you from repeating them.',
+        body_ar: [
+          'الذكاء الاصطناعي ليس تعريفاً واحداً متفقاً عليه، وإنما وصف لأنظمة تؤدي مهامّ كنا نظن أنها تحتاج ذكاءً بشرياً: التعرّف على وجه، وفهم جملة، واقتراح قرار. ولاحظ عبارة «كنا نظن»: فما إن يُحل مسألة حتى تُنزع عنها صفة الذكاء ويقال إنها مجرد حساب — وهذي ظاهرة قديمة تُسمّى أثر الذكاء الاصطناعي.',
+          'والفرق الجوهري بينه وبين البرمجة التقليدية في مصدر القاعدة. ففي التقليدية أنت تكتب القاعدة صراحةً: إذا كان المبلغ أكبر من كذا فافعل كذا. وفي التعلّم الآلي تعطي النظام أمثلة كثيرة بمدخلاتها ومخرجاتها، فيستخرج هو القاعدة من الأمثلة. ولهذا يصلح للمسائل التي تعرف جوابها ولا تستطيع كتابة قاعدتها: أنت تميّز صورة قطة فوراً ولا تستطيع كتابة شروط تعرّفها.',
+          'وتاريخه بدأ منتصف القرن الماضي بتفاؤل كبير: توقّع الرواد أن تُحلّ المسألة خلال عقد. ثم جاءت فترات ركود سُميت «شتاء الذكاء الاصطناعي»، توقّف فيها التمويل بعد أن تبيّن أن الوعود أكبر من الممكن. وتكررت الدورة مرتين على الأقل.',
+          'والسبب في التقدّم الأخير ليس اختراع فكرة جديدة تماماً، بل اجتماع ثلاثة عوامل: بيانات ضخمة أتاحها الإنترنت، وقدرة حسابية رخيصة أتاحتها معالجات الرسوميات، وتحسينات خوارزمية متراكمة. فأفكار الشبكات العصبية عمرها عقود، لكنها لم تكن قابلة للتنفيذ عملياً حتى توفّرت هذي الثلاثة.',
+          'ويُقسَّم المجال إلى ضيّق وعام. فالضيّق يتقن مهمة واحدة ولا يعرف غيرها: نظام يميّز الأورام في الأشعة لا يستطيع لعب الشطرنج ولا فهم نكتة. وكل ما هو موجود اليوم — بلا استثناء — ضيّق. أما العام الذي يضاهي الإنسان في أي مهمة فلا يزال فرضاً بحثياً لم يتحقق، ومن يقول غير ذلك يبيع لا يصف.',
+          'والدرس العملي من هذا التاريخ: افصل ما يفعله النظام فعلاً عمّا يُقال إنه يفعله. فالنظام الذي يكتب نصاً مقنعاً لا يفهم ما يكتب بالضرورة، والذي يشخّص مرضاً بدقة عالية قد يفشل تماماً على بيانات مستشفى آخر. والسؤال الصحيح دائماً: على أي بيانات دُرِّب، وعلى أي بيانات قيس، وأين يفشل؟'
+        ],
+        body_en: [
+          'AI has no single agreed definition; it describes systems performing tasks we thought required human intelligence: recognising a face, understanding a sentence, suggesting a decision. Note the phrase "we thought": once a problem is solved, intelligence is stripped from it and it is called mere computation, an old phenomenon known as the AI effect.',
+          'The fundamental difference from traditional programming is where the rule comes from. Traditionally you write the rule explicitly: if the amount exceeds this, do that. In machine learning you give the system many examples with inputs and outputs, and it extracts the rule itself. So it suits problems whose answer you know while being unable to write the rule: you recognise a cat photo instantly yet cannot write conditions defining one.',
+          'Its history began mid last century with great optimism: pioneers expected the problem solved within a decade. Then came stagnation periods called AI winters, when funding stopped after promises proved larger than the possible. The cycle repeated at least twice.',
+          'Recent progress came not from inventing an entirely new idea but from three factors converging: massive data enabled by the internet, cheap computation enabled by graphics processors, and accumulated algorithmic improvements. Neural network ideas are decades old but were not practically executable until those three arrived.',
+          'The field divides into narrow and general. Narrow masters one task and knows nothing else: a system detecting tumours in scans cannot play chess or understand a joke. Everything existing today, without exception, is narrow. General AI matching a human at any task remains an unrealised research hypothesis, and whoever says otherwise is selling rather than describing.',
+          'The practical lesson from this history: separate what a system actually does from what it is said to do. A system writing persuasive text does not necessarily understand it, and one diagnosing a disease accurately may fail entirely on another hospital data. The right question is always: what data was it trained on, what data was it measured on, and where does it fail?'
+        ],
+        table: {
+          head_ar: ['البُعد', 'البرمجة التقليدية', 'التعلّم الآلي'],
+          head_en: ['Aspect', 'Traditional programming', 'Machine learning'],
+          rows: [
+            ['مصدر القاعدة', 'يكتبها المبرمج صراحةً', 'يستخرجها النظام من الأمثلة'],
+            ['المدخل', 'بيانات وقاعدة', 'بيانات ومخرجات مطلوبة'],
+            ['المخرج', 'نتيجة محددة', 'نموذج يعمّم على حالات جديدة'],
+            ['يصلح لـ', 'قواعد واضحة يمكن كتابتها', 'أنماط تعرفها ولا تستطيع وصفها']
+          ]
+        },
+        keyPoints_ar: [
+          'الفرق الجوهري: في التقليدية تكتب القاعدة، وفي التعلّم يستخرجها النظام من الأمثلة.',
+          'التعلّم يصلح لما تعرف جوابه ولا تستطيع كتابة قاعدته.',
+          'التقدّم الأخير ثمرة اجتماع البيانات والقدرة الحسابية والتحسينات، لا فكرة جديدة.',
+          'كل ما هو موجود اليوم ذكاء ضيّق يتقن مهمة واحدة، والعام فرض بحثي.',
+          'اسأل دائماً: على أي بيانات دُرِّب، وبأي بيانات قيس، وأين يفشل؟'
+        ],
+        keyPoints_en: [
+          'The core difference: traditionally you write the rule, in learning the system extracts it from examples.',
+          'Learning suits problems whose answer you know but whose rule you cannot write.',
+          'Recent progress came from data, compute and improvements converging, not a new idea.',
+          'Everything today is narrow AI mastering one task; general AI is a research hypothesis.',
+          'Always ask: trained on what data, measured on what data, and where does it fail?'
+        ],
+        analogy_ar: 'تخيّل أنك تعلّم طفلاً تمييز التفاح. البرمجة التقليدية أن تكتب له قائمة شروط: أحمر، مستدير، بحجم كذا — وستفشل مع تفاحة خضراء أو مقضومة. والتعلّم الآلي أن تريه ألف تفاحة وتقول «هذا تفاح»، وألف شيء آخر وتقول «هذا ليس تفاحاً»، فيستخرج هو ما يجمعها. ولهذا يميّز تفاحة لم يرها قط، ويفشل لو كانت كل أمثلتك حمراء وجاءته خضراء.',
+        analogy_en: 'Picture teaching a child to recognise apples. Traditional programming writes a list of conditions: red, round, this size, and fails on a green or bitten one. Machine learning shows a thousand apples saying "this is an apple" and a thousand other things saying "this is not", so the child extracts what unites them. That is why it recognises an apple it never saw, and fails if all your examples were red and a green one arrives.',
+        terms: [
+          { term: 'Narrow AI', def_ar: 'نظام يتقن مهمة واحدة ولا يعمل خارجها.', def_en: 'A system mastering one task and useless outside it.' },
+          { term: 'General AI', def_ar: 'ذكاء يضاهي الإنسان في أي مهمة، ولم يتحقق بعد.', def_en: 'Intelligence matching a human at any task, not yet achieved.' },
+          { term: 'AI Winter', def_ar: 'فترة ركود وتوقف تمويل بعد وعود لم تتحقق.', def_en: 'A stagnation period with halted funding after unmet promises.' },
+          { term: 'AI Effect', def_ar: 'نزع صفة الذكاء عن المسألة بمجرد حلّها.', def_en: 'Stripping intelligence from a problem once it is solved.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق الجوهري بين البرمجة التقليدية والتعلّم الآلي؟', q_en: 'Core difference between traditional programming and ML?', a_ar: 'في التقليدية تكتب القاعدة بنفسك، وفي التعلّم يستخرجها النظام من الأمثلة.', a_en: 'Traditionally you write the rule yourself; in learning the system extracts it from examples.' },
+          { q_ar: 'لماذا تقدّم المجال أخيراً رغم قِدم أفكاره؟', q_en: 'Why did the field advance recently despite old ideas?', a_ar: 'لاجتماع ثلاثة: بيانات ضخمة، وقدرة حسابية رخيصة، وتحسينات خوارزمية متراكمة.', a_en: 'Three converged: massive data, cheap computation, and accumulated algorithmic improvements.' },
+          { q_ar: 'هل يوجد اليوم ذكاء اصطناعي عام؟', q_en: 'Does general AI exist today?', a_ar: 'لا، كل الموجود ضيّق يتقن مهمة واحدة؛ والعام فرض بحثي لم يتحقق.', a_en: 'No, everything existing is narrow, mastering one task; general AI is an unrealised hypothesis.' },
+          { q_ar: 'ما الأسئلة الثلاثة التي تُسأل عن أي نظام؟', q_en: 'Which three questions should be asked of any system?', a_ar: 'على أي بيانات دُرِّب، وبأي بيانات قيس أداؤه، وأين يفشل.', a_en: 'What data it was trained on, what data it was measured on, and where it fails.' }
+        ]
+      },
+      {
+        title_ar: 'كيف يعمل النظام: بيانات ثم تدريب ثم نموذج ثم استدلال',
+        title_en: 'How a System Works: Data, Training, Model, Inference',
+        lead_ar: 'كل نظام تعلّم آلي يمر بالمسار نفسه: بيانات تُجهَّز، وتدريب يضبط الأوزان، ونموذج يُحفَظ، واستدلال يُستخدم — والخلط بين التدريب والاستدلال أصل كثير من سوء الفهم.',
+        lead_en: 'Every machine-learning system follows one path: data prepared, training adjusting weights, a saved model, and inference in use, and confusing training with inference underlies much misunderstanding.',
+        body_ar: [
+          'المرحلة الأولى هي البيانات، وهي أكثر ما يُستهان به وأكثر ما يستهلك الوقت. فالبيانات تُجمَع، ثم تُنظَّف من التكرار والقيم الشاذة والحقول الناقصة، ثم تُحوَّل إلى صيغة رقمية يفهمها النموذج. والقاعدة التي لا استثناء لها: بيانات رديئة تعطي نموذجاً رديئاً مهما كانت الخوارزمية متقدمة.',
+          'ثم يأتي التدريب، وهو حلقة تتكرر: يمرّر النموذج المدخل ويتنبأ، وتُقارن نتيجته بالجواب الصحيح فتُحسب الخسارة، ثم تُعدَّل أوزانه الداخلية قليلاً في الاتجاه الذي يقلل الخسارة. ويتكرر هذا آلاف المرات حتى تستقر الخسارة عند حدّ مقبول.',
+          'والوزن هنا رقم يحدد أهمية كل مدخل في القرار. فالنموذج في بدايته أوزانه عشوائية فيتنبأ عشوائياً، والتدريب ليس إلا ضبطاً تدريجياً لهذي الأرقام. ولهذا يقال إن النموذج «تعلّم»: لم يُخزَّن فيه شيء من الأمثلة، وإنما تغيّرت أرقامه لتلتقط النمط.',
+          'وحين ينتهي التدريب يُحفَظ الناتج: بنية النموذج مع أوزانه النهائية. وهذا الملف هو المنتج القابل للنشر، وحجمه قد يكون ميجابايتات أو جيجابايتات، ويمكن نقله وتشغيله على جهاز آخر بلا إعادة تدريب.',
+          'ثم الاستدلال: استخدام النموذج المدرَّب على بيانات جديدة لم يرها. وهنا فرق جوهري في الكلفة والزمن: التدريب عملية ثقيلة تُجرى مرة أو مرات معدودة وقد تستغرق ساعات أو أياماً على عتاد قوي، والاستدلال خفيف نسبياً يتكرر ملايين المرات. ولهذا تُقاس تكلفة النظام في الإنتاج بالاستدلال لا بالتدريب.',
+          'والخلط بين المرحلتين مصدر أخطاء شائعة: من يظن أن النموذج «يتعلّم من المستخدمين أثناء الاستخدام» يخلط بينهما — فالنموذج المنشور لا يتغيّر إلا إن أُعيد تدريبه صراحةً على بيانات جديدة ثم نُشر من جديد.'
+        ],
+        body_en: [
+          'The first stage is data, the most underestimated and most time-consuming. Data is collected, cleaned of duplicates, outliers and missing fields, then converted into a numeric form the model understands. The rule with no exception: poor data yields a poor model however advanced the algorithm.',
+          'Then comes training, a repeating loop: the model takes an input and predicts, its result is compared with the correct answer to compute a loss, then its internal weights are nudged slightly in the direction reducing that loss. This repeats thousands of times until the loss settles at an acceptable level.',
+          'A weight here is a number setting how much each input matters to the decision. A fresh model has random weights so it predicts randomly, and training is nothing but the gradual tuning of those numbers. That is why we say the model learned: none of the examples are stored in it; its numbers changed to capture the pattern.',
+          'When training ends the result is saved: the model structure with its final weights. That file is the deployable product, sized in megabytes or gigabytes, and it can be moved and run on another machine with no retraining.',
+          'Then inference: using the trained model on new data it never saw. Here lies a fundamental cost and time difference: training is heavy, done once or a few times, possibly taking hours or days on powerful hardware, while inference is relatively light and repeats millions of times. So production system cost is measured by inference rather than training.',
+          'Confusing the two stages causes common errors: whoever thinks a model "learns from users while being used" is conflating them, since a deployed model does not change unless explicitly retrained on new data and redeployed.'
+        ],
+        table: {
+          head_ar: ['المرحلة', 'ماذا يحدث', 'تكرارها', 'كلفتها'],
+          head_en: ['Stage', 'What happens', 'Frequency', 'Cost'],
+          rows: [
+            ['البيانات', 'جمع وتنظيف وتحويل رقمي', 'مستمرة', 'أكثر الوقت'],
+            ['التدريب', 'ضبط الأوزان بتقليل الخسارة', 'مرات معدودة', 'ثقيلة جداً'],
+            ['النموذج', 'حفظ البنية والأوزان', 'مرة لكل تدريب', 'تخزين'],
+            ['الاستدلال', 'استخدامه على بيانات جديدة', 'ملايين المرات', 'خفيفة لكنها تتراكم']
+          ]
+        },
+        keyPoints_ar: [
+          'بيانات رديئة تعطي نموذجاً رديئاً مهما تقدّمت الخوارزمية.',
+          'التدريب حلقة: تنبّؤ ثم حساب خسارة ثم تعديل أوزان.',
+          'الوزن رقم يحدد أهمية المدخل، والتعلّم ضبط تدريجي لهذي الأرقام.',
+          'النموذج المحفوظ بنية وأوزان، وهو المنتج القابل للنشر.',
+          'التدريب ثقيل نادر، والاستدلال خفيف متكرر — وكلفة الإنتاج بالاستدلال.',
+          'النموذج المنشور لا يتعلّم من الاستخدام إلا بإعادة تدريب ونشر.'
+        ],
+        keyPoints_en: [
+          'Poor data yields a poor model however advanced the algorithm.',
+          'Training is a loop: predict, compute loss, adjust weights.',
+          'A weight is a number setting input importance, and learning is tuning those numbers.',
+          'A saved model is structure plus weights, and it is the deployable product.',
+          'Training is heavy and rare while inference is light and frequent, so production cost is inference.',
+          'A deployed model does not learn from use without explicit retraining and redeployment.'
+        ],
+        analogy_ar: 'تخيّل التدريب طالباً يحل ألف مسألة ويصحّح كل واحدة ويعدّل فهمه قليلاً بعد كل خطأ. والنموذج هو حالة فهمه بعد أن انتهى. والاستدلال أن تعطيه مسألة جديدة في الامتحان فيجيب بما فهمه — ولاحظ أنه في الامتحان لا يتعلّم شيئاً جديداً مهما أجاب، تماماً كالنموذج المنشور.',
+        analogy_en: 'Picture training as a student solving a thousand problems, correcting each and adjusting their understanding slightly after every mistake. The model is their state of understanding once finished. Inference is handing them a new exam problem to answer from that understanding, and note that during the exam they learn nothing new however they answer, exactly like a deployed model.',
+        terms: [
+          { term: 'Weight', def_ar: 'رقم داخل النموذج يحدد أهمية مدخل في القرار.', def_en: 'A number inside the model setting how much an input matters.' },
+          { term: 'Loss', def_ar: 'مقياس بُعد تنبؤ النموذج عن الجواب الصحيح.', def_en: 'A measure of how far a prediction is from the correct answer.' },
+          { term: 'Training', def_ar: 'حلقة تعديل الأوزان لتقليل الخسارة على أمثلة معلومة.', def_en: 'The loop adjusting weights to reduce loss on known examples.' },
+          { term: 'Inference', def_ar: 'استخدام النموذج المدرَّب على بيانات جديدة.', def_en: 'Using a trained model on new data.' }
+        ],
+        cards: [
+          { q_ar: 'ما مراحل أي نظام تعلّم آلي؟', q_en: 'What are the stages of any ML system?', a_ar: 'بيانات تُجهَّز، ثم تدريب يضبط الأوزان، ثم نموذج يُحفَظ، ثم استدلال على بيانات جديدة.', a_en: 'Data prepared, training adjusting weights, a saved model, then inference on new data.' },
+          { q_ar: 'ماذا يتغيّر داخل النموذج أثناء التدريب؟', q_en: 'What changes inside a model during training?', a_ar: 'أوزانه: أرقام تحدد أهمية كل مدخل، تُعدَّل تدريجياً لتقليل الخسارة.', a_en: 'Its weights: numbers setting input importance, nudged gradually to reduce loss.' },
+          { q_ar: 'أي المرحلتين تحدد كلفة النظام في الإنتاج؟', q_en: 'Which stage sets production cost?', a_ar: 'الاستدلال، لأنه يتكرر ملايين المرات وإن كان خفيفاً في المرة الواحدة.', a_en: 'Inference, because it repeats millions of times even though each call is light.' },
+          { q_ar: 'هل يتعلّم النموذج المنشور من المستخدمين؟', q_en: 'Does a deployed model learn from users?', a_ar: 'لا، إلا إن أُعيد تدريبه صراحةً على بيانات جديدة ثم أُعيد نشره.', a_en: 'No, unless it is explicitly retrained on new data and redeployed.' }
+        ]
+      },
+      {
+        title_ar: 'أنواع التعلّم الثلاثة',
+        title_en: 'The Three Types of Learning',
+        lead_ar: 'المُشرَف يتعلّم من أمثلة مصحّحة، وغير المُشرَف يكتشف بنية بلا إجابات، والمعزّز يتعلّم بالتجربة والمكافأة — واختيار النوع يحدده ما تملكه من بيانات لا ما تريده.',
+        lead_en: 'Supervised learning uses labelled examples, unsupervised discovers structure with no answers, and reinforcement learns by trial and reward, and the choice is set by the data you have rather than the outcome you want.',
+        body_ar: [
+          'التعلّم المُشرَف أكثر الأنواع استخداماً: تعطي النموذج أمثلة كل واحد منها مدخل ومعه الجواب الصحيح، فيتعلّم الربط بينهما. فتعطيه آلاف الرسائل مصنّفة «مزعجة» و«سليمة»، فيتعلّم تصنيف رسالة جديدة. وشرطه الأساسي وجود بيانات موسومة، وهذا الشرط هو أكبر عائق عملي لأن الوسم يحتاج جهداً بشرياً مكلفاً.',
+          'وينقسم المُشرَف بحسب نوع المخرج: تصنيف إن كان المخرج فئة من فئات محددة — مزعج أم سليم، ورم حميد أم خبيث. وانحدار إن كان المخرج رقماً متصلاً — سعر بيت، وعدد مبيعات الشهر القادم. والخلط بينهما شائع، وهو يغيّر كل شيء: الخوارزمية، ودالة الخسارة، ومقاييس التقييم.',
+          'والتعلّم غير المُشرَف يعمل بلا إجابات: تعطيه بيانات فقط ويكتشف هو بنيتها. وأشهر تطبيقاته التجميع: يقسّم العملاء إلى مجموعات متشابهة السلوك بلا أن تخبره ما المجموعات ولا كم عددها. ولاحظ أنه لا يسمّي المجموعات — يعطيك أنها ثلاث ويترك لك تفسير كل واحدة، وهذا التفسير عمل بشري لا آلي.',
+          'ومن تطبيقاته أيضاً تقليل الأبعاد: ضغط بيانات كثيرة الحقول إلى حقول أقل تحفظ أهم ما فيها، فيسهل عرضها وتسريع تدريبها. وكشف الشذوذ: تعلّم ما هو معتاد ثم الإشارة لما يخالفه، ويُستخدم في كشف الاحتيال وأعطال المعدات.',
+          'والتعلّم المعزّز مختلف كلياً في بنيته: وكيل يتفاعل مع بيئة، يتخذ إجراءً فتتغيّر حالة البيئة ويأتيه مكافأة أو عقوبة، فيتعلّم عبر التجربة المتكررة السياسة التي تعظّم المكافأة على المدى الطويل. وهو ما تُدرَّب به أنظمة الألعاب والروبوتات.',
+          'وأصعب ما فيه مسألتان: المكافأة المؤجّلة، إذ قد لا تظهر نتيجة قرار إلا بعد مئة خطوة فيصعب معرفة أي خطوة كانت سبب الفوز؛ والموازنة بين الاستكشاف والاستغلال، أي متى يجرّب الوكيل شيئاً جديداً قد يكون أفضل ومتى يكتفي بما يعرف أنه ينجح. وتصميم دالة المكافأة نفسها فخ شهير: وكيل كوفئ على السرعة قد يتعلّم أن يقفز من الحافة لأنه أسرع طريق للنهاية.'
+        ],
+        body_en: [
+          'Supervised learning is the most used: you give the model examples each pairing an input with its correct answer, so it learns the link. Thousands of messages labelled spam and legitimate teach it to classify a new one. Its requirement is labelled data, and that requirement is the biggest practical obstacle since labelling needs costly human effort.',
+          'Supervised learning splits by output type: classification when the output is one of defined categories, spam or legitimate, benign or malignant; and regression when the output is a continuous number, a house price or next month sales. Confusing them is common and changes everything: the algorithm, the loss function and the evaluation metrics.',
+          'Unsupervised learning works with no answers: you give it data only and it discovers structure. Its best-known application is clustering: splitting customers into behaviourally similar groups without telling it what the groups are or how many. Note that it does not name the groups; it tells you there are three and leaves interpreting each to you, and that interpretation is human work.',
+          'It also covers dimensionality reduction: compressing many-featured data into fewer features preserving what matters, easing display and speeding training. And anomaly detection: learning what is normal then flagging what deviates, used in fraud detection and equipment failure.',
+          'Reinforcement learning is structurally different: an agent interacts with an environment, takes an action changing the environment state, and receives a reward or penalty, learning through repeated trial the policy maximising long-term reward. It trains game systems and robots.',
+          'Its two hardest problems are delayed reward, since a decision consequence may appear a hundred steps later making it hard to know which step caused the win; and the explore-exploit balance, deciding when to try something new that might be better and when to stick with what works. Designing the reward function itself is a famous trap: an agent rewarded for speed may learn to jump off the edge as the fastest route to the end.'
+        ],
+        table: {
+          head_ar: ['النوع', 'ما يحتاجه', 'ما ينتجه', 'مثال'],
+          head_en: ['Type', 'What it needs', 'What it yields', 'Example'],
+          rows: [
+            ['مُشرَف · تصنيف', 'أمثلة موسومة بفئات', 'فئة لكل مدخل جديد', 'رسالة مزعجة أم لا'],
+            ['مُشرَف · انحدار', 'أمثلة موسومة بأرقام', 'رقماً متصلاً', 'سعر بيت'],
+            ['غير مُشرَف', 'بيانات بلا إجابات', 'بنية ومجموعات', 'شرائح عملاء'],
+            ['معزّز', 'بيئة ومكافأة', 'سياسة قرارات', 'روبوت يتعلّم المشي']
+          ]
+        },
+        keyPoints_ar: [
+          'اختيار النوع يحدده ما تملك من بيانات لا ما تريد من نتيجة.',
+          'المُشرَف يشترط بيانات موسومة، والوسم أكبر عائق عملي لكلفته.',
+          'التصنيف مخرجه فئة والانحدار مخرجه رقم متصل، والخلط يغيّر كل شيء.',
+          'غير المُشرَف يكتشف المجموعات ولا يسمّيها، والتفسير عمل بشري.',
+          'المعزّز يتعلّم بالتجربة والمكافأة، ويصارع المكافأة المؤجّلة وموازنة الاستكشاف.',
+          'دالة مكافأة سيئة تعلّم الوكيل حيلة تحقق الرقم وتخالف المقصود.'
+        ],
+        keyPoints_en: [
+          'The type is chosen by the data you have, not the outcome you want.',
+          'Supervised learning requires labelled data, and labelling is the biggest practical obstacle.',
+          'Classification outputs a category and regression a continuous number, and confusing them changes everything.',
+          'Unsupervised learning finds groups without naming them; interpretation is human work.',
+          'Reinforcement learns by trial and reward, wrestling with delayed reward and the explore-exploit balance.',
+          'A poor reward function teaches the agent a trick that hits the number and defeats the intent.'
+        ],
+        analogy_ar: 'تخيّل ثلاثة طلاب. الأول يذاكر بأسئلة وحلولها فيتعلّم بالمقارنة — هذا المُشرَف. والثاني يُعطى كتاباً بلا أسئلة ويُطلب منه أن يجد الأنماط والتشابهات بنفسه — هذا غير المُشرَف. والثالث يُلقى في لعبة لا يعرف قواعدها فيجرّب ويخسر ويربح حتى يفهم ما ينفع — هذا المعزّز. ولاحظ أن الثالث لو كوفئ على جمع النقاط فقط، فقد يتعلّم أن يدور حول نقطة واحدة يجمعها إلى الأبد بدل أن يكمل اللعبة.',
+        analogy_en: 'Picture three students. The first studies with questions and their answers, learning by comparison: supervised. The second is handed a book with no questions and asked to find patterns and similarities alone: unsupervised. The third is dropped into a game whose rules they do not know, trying, losing and winning until they grasp what works: reinforcement. Note that if the third is rewarded only for collecting points, they may learn to circle one point forever instead of finishing the game.',
+        terms: [
+          { term: 'Supervised Learning', def_ar: 'تعلّم من أمثلة مدخلاتها معلومة الجواب.', def_en: 'Learning from examples whose answers are known.' },
+          { term: 'Classification', def_ar: 'تعلّم مُشرَف مخرجه فئة من فئات محددة.', def_en: 'Supervised learning whose output is one of defined categories.' },
+          { term: 'Regression', def_ar: 'تعلّم مُشرَف مخرجه رقم متصل.', def_en: 'Supervised learning whose output is a continuous number.' },
+          { term: 'Clustering', def_ar: 'تجميع المتشابهات بلا إجابات مسبقة ولا تسمية.', def_en: 'Grouping similar items with no prior answers and no naming.' },
+          { term: 'Reward Function', def_ar: 'الدالة التي تحدد ما يُكافأ عليه الوكيل، وسوء تصميمها يفسد سلوكه.', def_en: 'The function defining what the agent is rewarded for; poor design corrupts its behaviour.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي يحدد نوع التعلّم المناسب؟', q_en: 'What determines the right learning type?', a_ar: 'ما تملكه من بيانات: موسومة أم لا، وهل ثمة بيئة ومكافأة — لا ما تريده من نتيجة.', a_en: 'The data you have: labelled or not, and whether an environment and reward exist, not the outcome you want.' },
+          { q_ar: 'ما الفرق بين التصنيف والانحدار؟', q_en: 'Difference between classification and regression?', a_ar: 'التصنيف مخرجه فئة محددة، والانحدار مخرجه رقم متصل — ويختلف بهما كل شيء.', a_en: 'Classification outputs a defined category and regression a continuous number, and everything differs between them.' },
+          { q_ar: 'هل يسمّي التجميع المجموعات التي يجدها؟', q_en: 'Does clustering name the groups it finds?', a_ar: 'لا، يعطيك المجموعات ويترك تفسيرها وتسميتها لك.', a_en: 'No, it gives you the groups and leaves interpreting and naming them to you.' },
+          { q_ar: 'ما فخ دالة المكافأة في التعلّم المعزّز؟', q_en: 'What is the reward function trap?', a_ar: 'أن يتعلّم الوكيل حيلة تحقق الرقم المكافَأ عليه وتخالف المقصود منه.', a_en: 'The agent learns a trick hitting the rewarded number while defeating the intent behind it.' }
+        ]
+      },
+      {
+        title_ar: 'خريطة المجال ومجالات التطبيق',
+        title_en: 'The Field Map and Application Areas',
+        lead_ar: 'الذكاء الاصطناعي دوائر متداخلة لا مترادفات: التعلّم الآلي جزء منه، والتعلّم العميق جزء من التعلّم الآلي — والخلط بينها يفسد فهم أي خبر تقرؤه.',
+        lead_en: 'AI is nested circles rather than synonyms: machine learning is part of it and deep learning is part of machine learning, and blurring them corrupts your reading of any news item.',
+        body_ar: [
+          'تُستخدم المصطلحات الثلاثة كأنها مترادفة وهي ليست كذلك. فالذكاء الاصطناعي هو الدائرة الأوسع: كل ما يجعل الآلة تؤدي مهامّ ذكية، بما فيها أنظمة قواعد قديمة لا تتعلّم شيئاً. والتعلّم الآلي دائرة داخله: الأنظمة التي تستخرج القاعدة من البيانات. والتعلّم العميق دائرة داخل التعلّم الآلي: ما يستخدم شبكات عصبية بطبقات كثيرة.',
+          'والفرق العملي بين التعلّم الآلي التقليدي والعميق في مصدر السمات. ففي التقليدي يحدد الخبير البشري السمات المهمة: لتقدير سعر بيت يقول إن المساحة وعدد الغرف والموقع هي ما يهم. وفي العميق تُستخرج السمات آلياً من البيانات الخام عبر الطبقات: تتعلّم الطبقة الأولى الحواف، والتالية الأشكال، والتالية أجزاء الوجه.',
+          'ولهذا يتفوق العميق على البيانات غير المهيكلة — صور وصوت ونص — حيث يصعب على الإنسان تحديد السمات. أما على البيانات الجدولية المهيكلة فالنماذج التقليدية غالباً أفضل: أسرع تدريباً، وأقل حاجة للبيانات، وأسهل تفسيراً. والقفز إلى العميق في مسألة جدولية بسيطة خطأ شائع يكلّف بلا فائدة.',
+          'ومجالات التطبيق الكبرى أربعة. الرؤية الحاسوبية: تصنيف الصور وكشف الأجسام وتحليل الأشعة الطبية. ومعالجة اللغة الطبيعية: الترجمة والتلخيص والإجابة والمساعدين المحاورين. وأنظمة التوصية: اقتراح منتج أو محتوى بناءً على السلوك. والتنبؤ بالسلاسل الزمنية: الطلب والأسعار وأعطال المعدات.',
+          'ولكل مجال قيوده التي لا تُفهم إلا بالعمل فيه: الرؤية حسّاسة لظروف التصوير فنموذج دُرِّب على صور نهارية واضحة يفشل ليلاً؛ واللغة حسّاسة للهجة والسياق؛ والتوصية تعاني «البداية الباردة» إذ لا تملك سلوكاً لمستخدم جديد؛ والتنبؤ ينهار عند تغيّر جذري في الظروف لأنه تعلّم ماضياً لم يعد يمثّل الحاضر.',
+          'والقاعدة التي تحمي من الوهم: الذكاء الاصطناعي أداة لمسائل بعينها لا حلّ لكل مسألة. فإن كانت القاعدة معروفة وواضحة، فاكتبها برمجياً ولا تدرّب نموذجاً. وإن كانت البيانات قليلة أو رديئة، فالنموذج سيتعلّم الرداءة. وإن كان الخطأ غير محتمل في مجالك، فتذكّر أن النموذج احتمالي بطبعه ولا يعطي يقيناً.'
+        ],
+        body_en: [
+          'The three terms are used as synonyms and are not. AI is the widest circle: everything making a machine perform intelligent tasks, including old rule systems that learn nothing. Machine learning is a circle inside it: systems extracting rules from data. Deep learning is a circle inside machine learning: those using neural networks with many layers.',
+          'The practical difference between traditional and deep learning is where features come from. Traditionally a human expert names the important features: to estimate a house price they say area, room count and location matter. In deep learning features are extracted automatically from raw data through layers: the first learns edges, the next shapes, the next face parts.',
+          'So deep learning excels on unstructured data, images, audio and text, where humans struggle to name features. On structured tabular data traditional models are often better: faster to train, needing less data, and easier to interpret. Jumping to deep learning for a simple tabular problem is a common and costly mistake.',
+          'There are four major application areas. Computer vision: image classification, object detection, medical scan analysis. Natural language processing: translation, summarisation, answering and conversational assistants. Recommender systems: suggesting a product or content from behaviour. And time-series forecasting: demand, prices and equipment failure.',
+          'Each area has constraints understood only by working in it: vision is sensitive to capture conditions so a model trained on clear daylight images fails at night; language is sensitive to dialect and context; recommenders suffer cold start with no behaviour for a new user; and forecasting collapses under a fundamental change in conditions because it learned a past no longer representing the present.',
+          'The rule guarding against illusion: AI is a tool for particular problems rather than a solution to every problem. If the rule is known and clear, write it in code and do not train a model. If the data is scarce or poor, the model will learn the poverty. And if error is intolerable in your domain, remember that a model is probabilistic by nature and offers no certainty.'
+        ],
+        table: {
+          head_ar: ['البُعد', 'تعلّم آلي تقليدي', 'تعلّم عميق'],
+          head_en: ['Aspect', 'Traditional ML', 'Deep learning'],
+          rows: [
+            ['السمات', 'يحددها خبير بشري', 'تُستخرج آلياً من الخام'],
+            ['نوع البيانات', 'جدولية مهيكلة', 'صور وصوت ونص'],
+            ['حجم البيانات', 'يكفيه قليل نسبياً', 'يحتاج كثيراً'],
+            ['التفسير', 'أسهل غالباً', 'أصعب بكثير'],
+            ['الكلفة', 'أقل', 'أعلى تدريباً وتشغيلاً']
+          ]
+        },
+        keyPoints_ar: [
+          'الذكاء الاصطناعي أوسع من التعلّم الآلي، والعميق جزء من التعلّم الآلي.',
+          'التقليدي يحدد الخبير سماته، والعميق يستخرجها من البيانات الخام.',
+          'العميق يتفوق على الصور والصوت والنص، والتقليدي غالباً أفضل للجدولي.',
+          'لكل مجال تطبيق قيد يكسره: ظروف التصوير، واللهجة، والبداية الباردة، وتغيّر الظروف.',
+          'إن كانت القاعدة واضحة فاكتبها ولا تدرّب نموذجاً.'
+        ],
+        keyPoints_en: [
+          'AI is wider than machine learning, and deep learning is part of machine learning.',
+          'Traditional models take expert-chosen features; deep models extract them from raw data.',
+          'Deep learning excels on images, audio and text; traditional often wins on tabular data.',
+          'Each application area has a breaking constraint: capture conditions, dialect, cold start, changed conditions.',
+          'If the rule is clear, write it in code rather than training a model.'
+        ],
+        analogy_ar: 'تخيّل الثلاثة دوائر متداخلة كطبقات بصلة. الذكاء الاصطناعي القشرة الخارجية تضم كل ما يبدو ذكياً حتى لو كان جدول قواعد ثابتاً. والتعلّم الآلي طبقة أعمق: ما يستنتج قاعدته بنفسه. والعميق قلب البصلة: ما يستنتج حتى السمات التي يبني عليها. ولهذا حين تقرأ خبراً عن «ذكاء اصطناعي جديد»، اسأل أي طبقة يقصد — فالفرق بينها هائل.',
+        analogy_en: 'Picture the three as nested onion layers. AI is the outer skin covering everything that looks intelligent, even a fixed rule table. Machine learning is a deeper layer: what infers its own rule. Deep learning is the core: what infers even the features it builds on. So when you read about "a new AI", ask which layer is meant, because the difference between them is enormous.',
+        terms: [
+          { term: 'Feature', def_ar: 'سمة تُبنى عليها القرارات، يحددها خبير أو تُستخرج آلياً.', def_en: 'An attribute decisions build on, chosen by an expert or extracted automatically.' },
+          { term: 'Structured Data', def_ar: 'بيانات جدولية بأعمدة محددة النوع.', def_en: 'Tabular data with typed columns.' },
+          { term: 'Cold Start', def_ar: 'عجز نظام التوصية عن اقتراح شيء لمستخدم بلا سلوك سابق.', def_en: 'A recommender inability to suggest for a user with no prior behaviour.' },
+          { term: 'Computer Vision', def_ar: 'مجال تحليل الصور والفيديو آلياً.', def_en: 'The field of analysing images and video automatically.' }
+        ],
+        cards: [
+          { q_ar: 'ما علاقة الذكاء الاصطناعي بالتعلّم الآلي بالعميق؟', q_en: 'How do AI, ML and deep learning relate?', a_ar: 'دوائر متداخلة: الذكاء الاصطناعي الأوسع، والتعلّم الآلي داخله، والعميق داخل التعلّم الآلي.', a_en: 'Nested circles: AI is widest, machine learning inside it, and deep learning inside machine learning.' },
+          { q_ar: 'ما الفرق في مصدر السمات بين التقليدي والعميق؟', q_en: 'Where do features come from in each?', a_ar: 'في التقليدي يحددها خبير بشري، وفي العميق تُستخرج آلياً من البيانات الخام عبر الطبقات.', a_en: 'Traditionally a human expert names them; deep models extract them automatically from raw data through layers.' },
+          { q_ar: 'متى يكون التعلّم التقليدي أفضل من العميق؟', q_en: 'When is traditional ML better than deep learning?', a_ar: 'على البيانات الجدولية المهيكلة: أسرع وأقل حاجة للبيانات وأسهل تفسيراً.', a_en: 'On structured tabular data: faster, needing less data and easier to interpret.' },
+          { q_ar: 'ما مشكلة البداية الباردة؟', q_en: 'What is the cold start problem?', a_ar: 'عجز نظام التوصية عن اقتراح شيء لمستخدم جديد لا سلوك سابق له.', a_en: 'A recommender cannot suggest anything for a new user with no prior behaviour.' }
+        ]
+      },
+      {
+        title_ar: 'حدود الأنظمة والأخلاقيات والتحيّز',
+        title_en: 'System Limits, Ethics and Bias',
+        lead_ar: 'النموذج لا يفهم ولا يقصد، وإنما يلتقط أنماطاً في بياناته — فإن كانت البيانات تحمل ظلماً تاريخياً، تعلّمه النموذج وأعاد إنتاجه بمظهر موضوعي.',
+        lead_en: 'A model neither understands nor intends; it captures patterns in its data, so if that data carries historical injustice the model learns and reproduces it under an appearance of objectivity.',
+        body_ar: [
+          'أول حدّ يجب استيعابه: النموذج لا يفهم المعنى، وإنما يلتقط ارتباطات إحصائية. فنظام يصنّف صور الذئاب والكلاب بدقة عالية قد يكون تعلّم أن الثلج في الخلفية يعني ذئباً، لأن أغلب صور الذئاب في بياناته كانت في الثلج. وهذي حالة حقيقية موثّقة: النموذج نجح في الاختبار وفشل في الواقع لأنه تعلّم الشيء الخطأ.',
+          'ومن هنا الفرق بين الارتباط والسببية. فالنموذج يجد أن هذا يرتبط بذاك، ولا يعرف أيهما سبب الآخر ولا إن كان بينهما عامل ثالث. ولهذا لا يصح أن يُبنى على مخرجه قرار سببي: نموذج يجد أن مرضى قسم بعينه أعلى وفاةً لا يعني أن القسم يقتلهم، بل قد يكون قسم الحالات الحرجة.',
+          'والتحيّز مسألة أعمق من كونها خللاً تقنياً. فالنموذج يتعلّم من بيانات تاريخية، والتاريخ فيه تمييز. فنظام توظيف دُرِّب على قرارات سابقة فُضِّل فيها فئة، سيتعلّم أن يفضّلها — لا لأنه «متحيّز» بقصد، بل لأنه التقط النمط بأمانة. وهذا يجعل المشكلة أخطر: نتيجة متحيّزة تخرج بمظهر رقمي موضوعي فتُصدَّق أكثر من قرار بشري متحيّز.',
+          'ومصادر التحيّز ثلاثة على الأقل: بيانات غير ممثِّلة، كنظام تعرّف على الوجوه دُرِّب أغلبه على بشرة فاتحة فتنخفض دقته على غيرها؛ ووسم بشري متحيّز، إذ يحمل الواسمون أحكامهم؛ وأهداف قياس ناقصة، كأن تقيس الدقة الكلية فتخفي فشلاً ذريعاً على فئة صغيرة.',
+          'والخصوصية حدّ آخر: النماذج تُدرَّب على بيانات قد تكون شخصية، وقد يمكن استخراج شيء منها من النموذج نفسه. ولهذا تُطبَّق ممارسات كإخفاء الهوية وتقليل ما يُجمَع أصلاً — والقاعدة الأسلم ألا تجمع ما لا تحتاجه، فما لا تملكه لا يُسرَّب منك.',
+          'والمسؤولية أخيراً لا تُفوَّض للنموذج. فإن رفض نظام طلب تمويل، فالمسؤول هو المؤسسة لا الخوارزمية، ومن حق المتضرر أن يعرف السبب وأن يعترض. ولهذا تُشترط قابلية التفسير والمراجعة البشرية في القرارات ذات الأثر على الناس — والنموذج مساعد قرار لا صاحبه.'
+        ],
+        body_en: [
+          'The first limit to internalise: a model does not understand meaning, it captures statistical associations. A system classifying wolves and dogs with high accuracy may have learned that snow in the background means wolf, because most wolf photos in its data had snow. That is a real documented case: the model passed the test and failed in reality because it learned the wrong thing.',
+          'Hence the difference between correlation and causation. A model finds that this associates with that, knowing neither which causes which nor whether a third factor drives both. So a causal decision must not rest on its output: a model finding one ward has higher mortality does not mean the ward kills patients; it may be the critical care ward.',
+          'Bias is deeper than a technical defect. A model learns from historical data, and history contains discrimination. A hiring system trained on past decisions that favoured a group will learn to favour it, not from intent but from faithfully capturing the pattern. That makes the problem worse: a biased result emerges with a numerical, objective appearance and is trusted more than a biased human decision.',
+          'Bias has at least three sources: unrepresentative data, such as a face recognition system trained mostly on light skin whose accuracy drops on others; biased human labelling, since labellers carry their judgements; and incomplete measurement targets, such as measuring overall accuracy while hiding catastrophic failure on a small group.',
+          'Privacy is another limit: models train on possibly personal data, and something of it may be extractable from the model itself. Hence practices such as anonymisation and minimising what is collected at all, and the safest rule is not collecting what you do not need, since what you do not hold cannot leak from you.',
+          'Finally, responsibility is not delegated to the model. If a system denies a financing application, the institution is responsible rather than the algorithm, and the affected person has a right to know why and to appeal. So explainability and human review are required for decisions affecting people, and the model is a decision aid rather than the decision maker.'
+        ],
+        table: {
+          head_ar: ['الحد', 'ما يعنيه', 'الخطأ الناتج عن تجاهله'],
+          head_en: ['Limit', 'What it means', 'Error from ignoring it'],
+          rows: [
+            ['لا فهم بل ارتباط', 'يلتقط أنماطاً لا معاني', 'نجاح في الاختبار وفشل في الواقع'],
+            ['ارتباط لا سببية', 'لا يعرف أيهما سبب', 'قرارات سببية خاطئة'],
+            ['تحيّز البيانات', 'يتعلّم ظلم التاريخ', 'ظلم بمظهر موضوعي'],
+            ['الخصوصية', 'بيانات شخصية في التدريب', 'تسريب أو استخراج'],
+            ['المسؤولية', 'لا تُفوَّض للخوارزمية', 'قرار بلا تفسير ولا اعتراض']
+          ]
+        },
+        keyPoints_ar: [
+          'النموذج لا يفهم، وقد ينجح لسبب خاطئ كالثلج في خلفية صور الذئاب.',
+          'الارتباط ليس سببية، فلا يُبنى على المخرج قرار سببي.',
+          'التحيّز ليس خللاً تقنياً بل انعكاس أمين لبيانات تاريخية فيها تمييز.',
+          'الدقة الكلية تخفي فشلاً ذريعاً على فئة صغيرة، فقِس لكل فئة.',
+          'ما لا تجمعه لا يُسرَّب منك، فقلّل ما تجمع أصلاً.',
+          'المسؤولية على المؤسسة لا الخوارزمية، والنموذج مساعد قرار لا صاحبه.'
+        ],
+        keyPoints_en: [
+          'A model does not understand and may succeed for a wrong reason, like snow behind wolves.',
+          'Correlation is not causation, so causal decisions must not rest on model output.',
+          'Bias is not a technical defect but a faithful reflection of discriminatory historical data.',
+          'Overall accuracy hides catastrophic failure on a small group, so measure per group.',
+          'What you never collect cannot leak, so minimise collection itself.',
+          'Responsibility rests with the institution, not the algorithm; the model aids decisions.'
+        ],
+        analogy_ar: 'تخيّل طالباً حفظ أن كل أسئلة الامتحان التي فيها كلمة «دائماً» إجابتها خطأ، فنجح بامتياز بلا أن يفهم المادة. ثم جاء امتحان مختلف الصياغة فسقط. النموذج يفعل هذا بالضبط حين يلتقط قرينة سطحية بدل الظاهرة. والتحيّز أن تدرّب موظف توظيف على قرارات مدير كان يفضّل فئة: الموظف الجديد سيقلّده بأمانة ثم يقول لك «أنا محايد، أنا أتبع البيانات».',
+        analogy_en: 'Picture a student who memorised that every exam question containing "always" is false, passing brilliantly without understanding the subject, then failing an exam phrased differently. A model does exactly this when it latches onto a superficial cue instead of the phenomenon. Bias is training a new recruiter on the decisions of a manager who favoured one group: the recruit imitates faithfully then tells you "I am neutral, I follow the data".',
+        terms: [
+          { term: 'Spurious Correlation', def_ar: 'ارتباط سطحي يلتقطه النموذج بدل الظاهرة الحقيقية.', def_en: 'A superficial association a model latches onto instead of the real phenomenon.' },
+          { term: 'Algorithmic Bias', def_ar: 'ميل منتظم في المخرجات يضرّ فئة، مصدره البيانات غالباً.', def_en: 'A systematic output tilt harming a group, usually originating in the data.' },
+          { term: 'Representativeness', def_ar: 'تمثيل بيانات التدريب لكل الفئات التي سيُستخدم عليها النظام.', def_en: 'Training data representing every group the system will serve.' },
+          { term: 'Explainability', def_ar: 'إمكان بيان أسباب قرار النموذج لمن تأثر به.', def_en: 'The ability to state the reasons for a model decision to those affected.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا قد ينجح نموذج في الاختبار ويفشل في الواقع؟', q_en: 'Why might a model pass testing and fail in reality?', a_ar: 'لأنه التقط قرينة سطحية في بيانات التدريب، كالثلف في خلفية صور الذئاب، لا الظاهرة نفسها.', a_en: 'Because it latched onto a superficial cue in the training data, like snow behind wolves, rather than the phenomenon.' },
+          { q_ar: 'لماذا يُعد التحيّز الخوارزمي أخطر من البشري؟', q_en: 'Why is algorithmic bias more dangerous than human bias?', a_ar: 'لأنه يخرج بمظهر رقمي موضوعي فيُصدَّق أكثر، ويُطبَّق على آلاف الحالات بسرعة.', a_en: 'It emerges with an objective numerical appearance so it is trusted more, and applies to thousands of cases fast.' },
+          { q_ar: 'ما عيب قياس الدقة الكلية وحدها؟', q_en: 'What is wrong with measuring overall accuracy alone?', a_ar: 'تخفي فشلاً ذريعاً على فئة صغيرة، فالمطلوب قياس الأداء لكل فئة على حدة.', a_en: 'It hides catastrophic failure on a small group, so performance must be measured per group.' },
+          { q_ar: 'من يتحمّل مسؤولية قرار رفض آلي؟', q_en: 'Who bears responsibility for an automated rejection?', a_ar: 'المؤسسة لا الخوارزمية، ومن حق المتضرر معرفة السبب والاعتراض.', a_en: 'The institution, not the algorithm, and the affected person may know the reason and appeal.' }
+        ]
+      }
+    ],
+
+    // ─────────── الرياضيات والبيانات للذكاء الاصطناعي ───────────
+    1: [
+      {
+        title_ar: 'بايثون ومكتبات المجال',
+        title_en: 'Python and the Field Libraries',
+        lead_ar: 'بايثون ليست أسرع اللغات، لكنها لغة المجال لأن مكتباتها تنقل الحساب الثقيل إلى كود مترجم سريع وتترك لك التفكير.',
+        lead_en: 'Python is not the fastest language, but it is the field language because its libraries push heavy computation into fast compiled code and leave you the thinking.',
+        body_ar: [
+          'يسأل المبتدئ: لماذا بايثون وهي معروفة بالبطء؟ والجواب أن الحساب الثقيل لا يجري فيها أصلاً. فمكتباتها أغلفة على كود مكتوب بلغات مترجمة سريعة، وأنت تكتب سطراً واحداً بلغة مقروءة فينفَّذ داخلياً بسرعة قريبة من لغة النظام. فتجتمع لك سهولة الكتابة وسرعة التنفيذ.',
+          'والمكتبة الأولى في المجال هي مكتبة الحساب العددي، وقلبها المصفوفة متعددة الأبعاد. وتختلف عن قائمة بايثون في ثلاثة: كل عناصرها من نوع واحد، وتُخزَّن في كتلة ذاكرة متّصلة، وتُطبَّق العمليات على المصفوفة كاملة دفعة واحدة بدل المرور بحلقة. وهذي العملية الأخيرة تُسمّى التوجيه، وهي سرّ السرعة.',
+          'ولفهم أثر التوجيه: ضرب مليون رقم في اثنين بحلقة بايثون يستغرق أضعاف ما يستغرقه بكتابة عملية واحدة على المصفوفة. والقاعدة العملية في هذا المجال: إن وجدت نفسك تكتب حلقة على بيانات رقمية كثيرة، فغالباً هناك عملية مصفوفية تغنيك عنها وتكون أسرع بمرات.',
+          'والشكل مفهوم أساسي: حجم كل بُعد في المصفوفة يُكتب كصف من الأرقام. فالشكل (مئة، خمسة) يعني مئة صفاً وخمسة أعمدة — أي مئة عيّنة كل واحدة بخمس سمات. وأخطاء الشكل أكثر ما يواجهه المبتدئ: عملية ترفض لأن الأبعاد لا تتطابق، وقراءة رسالة الخطأ نفسها تحل أغلبها.',
+          'والبثّ آلية تجعل العمليات ممكنة بين مصفوفات مختلفة الأشكال: تُمدّ الأصغر تلقائياً لتطابق الأكبر إن كانت أبعادها متوافقة. فجمع صف واحد على جدول بمئة صف يطبّقه على كل الصفوف بلا حلقة. والقاعدة أن الأبعاد يجب أن تتطابق أو تكون إحداها واحداً.',
+          'ومعها مكتبتان: مكتبة الجداول التي تتعامل مع البيانات المسمّاة بأعمدة وصفوف كجدول قاعدة بيانات، وهي أداة التنظيف والاستكشاف الأولى؛ ومكتبة الرسم التي تحوّل الأرقام إلى شكل يُرى. والرسم ليس تزييناً: تُكتشف به القيم الشاذة وعدم التوازن والعلاقات في دقائق، وهي أمور لا تظهر في جدول أرقام.'
+        ],
+        body_en: [
+          'A beginner asks why Python when it is known to be slow. The answer is that heavy computation does not run in it at all. Its libraries wrap code written in fast compiled languages, so you write one readable line executed internally at near system-language speed, combining ease of writing with execution speed.',
+          'The first library in the field is the numerical computing one, whose heart is the multi-dimensional array. It differs from a Python list in three ways: all elements share one type, they are stored in a contiguous memory block, and operations apply to the whole array at once instead of looping. That last property is vectorisation, and it is the secret of the speed.',
+          'To grasp its effect: multiplying a million numbers by two with a Python loop takes many times longer than one array operation. The practical rule here: if you find yourself writing a loop over lots of numeric data, an array operation probably replaces it and runs many times faster.',
+          'Shape is a core concept: the size of each dimension written as a row of numbers. A shape of one hundred by five means a hundred rows and five columns, a hundred samples each with five features. Shape errors are what beginners hit most: an operation refuses because dimensions do not match, and reading the error message solves most of them.',
+          'Broadcasting is the mechanism making operations possible between differently shaped arrays: the smaller is stretched automatically to match the larger when dimensions are compatible. Adding one row to a hundred-row table applies it to every row with no loop. The rule is that dimensions must match or one of them must be one.',
+          'Two more libraries accompany it: the dataframe library handling named data in columns and rows like a database table, the first tool for cleaning and exploration; and the plotting library turning numbers into something visible. Plotting is not decoration: outliers, imbalance and relationships surface in minutes through it, things a table of numbers never reveals.'
+        ],
+        table: {
+          head_ar: ['المفهوم', 'ما يعنيه', 'خطؤه الشائع'],
+          head_en: ['Concept', 'Meaning', 'Common error'],
+          rows: [
+            ['المصفوفة', 'عناصر موحّدة النوع في ذاكرة متّصلة', 'استخدام قائمة بايثون مكانها'],
+            ['التوجيه', 'عملية على المصفوفة كاملة بلا حلقة', 'كتابة حلقة على مليون عنصر'],
+            ['الشكل', 'حجم كل بُعد كصف أرقام', 'عملية ترفض لعدم تطابق الأبعاد'],
+            ['البثّ', 'مدّ الأصغر ليطابق الأكبر', 'توقّع نتيجة بلا تحقق من التوافق']
+          ]
+        },
+        keyPoints_ar: [
+          'بايثون بطيئة، لكن مكتباتها تنفّذ الحساب في كود مترجم سريع.',
+          'المصفوفة موحّدة النوع ومتّصلة الذاكرة، ولهذا تسرع.',
+          'التوجيه: عملية واحدة على المصفوفة كاملة تغني عن حلقة وتسرّع بمرات.',
+          'الشكل هو حجم كل بُعد، وأخطاء الشكل أكثر ما يواجه المبتدئ.',
+          'البثّ يمدّ الأصغر ليطابق الأكبر، بشرط تطابق الأبعاد أو أن تكون إحداها واحداً.',
+          'الرسم أداة اكتشاف لا تزيين: يكشف الشذوذ وعدم التوازن في دقائق.'
+        ],
+        keyPoints_en: [
+          'Python is slow, but its libraries run computation in fast compiled code.',
+          'Arrays are uniformly typed and contiguous in memory, which is why they are fast.',
+          'Vectorisation: one whole-array operation replaces a loop and runs many times faster.',
+          'Shape is the size of each dimension, and shape errors are what beginners hit most.',
+          'Broadcasting stretches the smaller to match the larger when dimensions match or one is one.',
+          'Plotting is a discovery tool, not decoration: it reveals outliers and imbalance in minutes.'
+        ],
+        analogy_ar: 'تخيّل الفرق بين محاسب يجمع ألف رقم بالآلة الحاسبة رقماً رقماً، وآخر يضع الورقة في ماسح يقرأ العمود كله دفعة واحدة. الاثنان يصلان للناتج نفسه، لكن الثاني بآلة مصمَّمة للكميات. التوجيه هو الماسح: تعطيه العمود كاملاً لا رقماً رقماً. وأخطاء الشكل أشبه بمحاولة جمع عمود فيه مئة رقم على عمود فيه خمسون — لا بد أن يعترض أحد.',
+        analogy_en: 'Picture an accountant adding a thousand numbers one at a time on a calculator, and another feeding the sheet into a scanner reading the whole column at once. Both reach the same total, but the second uses a machine built for volume. Vectorisation is that scanner: you hand it the whole column rather than number by number. Shape errors are like adding a hundred-number column to a fifty-number one: something must object.',
+        terms: [
+          { term: 'Array', def_ar: 'مصفوفة موحّدة النوع في كتلة ذاكرة متّصلة.', def_en: 'A uniformly typed array in a contiguous memory block.' },
+          { term: 'Vectorisation', def_ar: 'تطبيق العملية على المصفوفة كاملة بدل المرور بحلقة.', def_en: 'Applying an operation to a whole array instead of looping.' },
+          { term: 'Shape', def_ar: 'حجم كل بُعد في المصفوفة.', def_en: 'The size of each dimension of an array.' },
+          { term: 'Broadcasting', def_ar: 'مدّ المصفوفة الأصغر تلقائياً لتطابق الأكبر عند توافق الأبعاد.', def_en: 'Automatically stretching a smaller array to match a larger one when dimensions are compatible.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا تُستخدم بايثون رغم بطئها؟', q_en: 'Why use Python despite its slowness?', a_ar: 'لأن الحساب الثقيل يجري داخل مكتبات مكتوبة بلغات مترجمة سريعة، فتجتمع سهولة الكتابة وسرعة التنفيذ.', a_en: 'Heavy computation runs inside libraries written in fast compiled languages, combining easy writing with fast execution.' },
+          { q_ar: 'ما التوجيه ولماذا يهم؟', q_en: 'What is vectorisation and why does it matter?', a_ar: 'تطبيق العملية على المصفوفة كاملة بلا حلقة، وهو أسرع بمرات على البيانات الكثيرة.', a_en: 'Applying an operation to a whole array with no loop, many times faster on large data.' },
+          { q_ar: 'ماذا يعني الشكل (100, 5) ؟', q_en: 'What does a shape of (100, 5) mean?', a_ar: 'مئة صف وخمسة أعمدة: مئة عيّنة لكل واحدة خمس سمات.', a_en: 'A hundred rows and five columns: a hundred samples each with five features.' },
+          { q_ar: 'ما شرط نجاح البثّ بين مصفوفتين؟', q_en: 'What condition makes broadcasting work?', a_ar: 'أن تتطابق الأبعاد أو تكون إحداها واحداً.', a_en: 'Dimensions must match or one of them must be one.' }
+        ]
+      },
+      {
+        title_ar: 'المتجهات والمصفوفات',
+        title_en: 'Vectors and Matrices',
+        lead_ar: 'كل بيانات النماذج متجهات ومصفوفات: العيّنة صف أرقام، والدفعة جدول، وضرب المصفوفات هو العملية التي يقضي فيها النموذج أغلب وقته.',
+        lead_en: 'All model data is vectors and matrices: a sample is a row of numbers, a batch is a table, and matrix multiplication is where a model spends most of its time.',
+        body_ar: [
+          'المتجه صف أرقام يمثّل شيئاً واحداً. فالبيت يُمثَّل بمتجه: [المساحة، عدد الغرف، عمر البناء، بُعده عن المركز]. وكل رقم فيه سمة، وطول المتجه عدد السمات. وهكذا يتحوّل أي كائن — بيت أو عميل أو صورة — إلى صف أرقام يفهمه النموذج.',
+          'والمصفوفة جدول من المتجهات: كل صف عيّنة وكل عمود سمة. فمئة بيت بأربع سمات مصفوفة بشكل (١٠٠، ٤). وهذا التمثيل هو ما يجعل معالجة مئة عيّنة دفعة واحدة ممكنة بعملية واحدة بدل مئة عملية.',
+          'وعمليات المتجهات الأساسية ثلاث. الجمع: يُجمع كل عنصر مع نظيره في الموضع نفسه، فيشترط تساوي الطول. والضرب في عدد: يُضرب كل عنصر في العدد فيتغيّر المقياس بلا تغيّر الاتجاه. وضرب النقطة: تُضرب العناصر المتناظرة ثم تُجمع فينتج رقم واحد لا متجه — وهذي العملية هي جوهر كل شبكة عصبية.',
+          'وضرب النقطة يقيس التشابه في الاتجاه: كلما كان المتجهان متجهين لجهة واحدة كبر الناتج. ولهذا يُستخدم في قياس تشابه النصوص والصور بعد تمثيلها متجهات: تشابه المعنى يصير قرباً في الاتجاه.',
+          'وضرب المصفوفات هو العملية الأثقل في التعلّم العميق، وشرطه دقيق: عدد أعمدة الأولى يجب أن يساوي عدد صفوف الثانية، والناتج شكله صفوف الأولى في أعمدة الثانية. فمصفوفة (١٠٠، ٤) مضروبة في (٤، ٣) تعطي (١٠٠، ٣) — وأغلب أخطاء بناء الشبكات خطأ في هذا الشرط.',
+          'والمعنى العملي لهذا الضرب أنه تحويل: تأخذ مئة عيّنة بأربع سمات وتحوّلها إلى مئة عيّنة بثلاث سمات جديدة، كل واحدة مزيج موزون من الأربع. وهذا بالضبط ما تفعله طبقة في شبكة عصبية — فأوزان الطبقة مصفوفة، وتمرير البيانات عبرها ضرب مصفوفات.'
+        ],
+        body_en: [
+          'A vector is a row of numbers representing one thing. A house becomes a vector: area, room count, building age, distance from centre. Each number is a feature and the vector length is the feature count. So any object, a house, a customer, an image, becomes a row of numbers the model understands.',
+          'A matrix is a table of vectors: each row a sample and each column a feature. A hundred houses with four features is a matrix of shape one hundred by four. This representation is what lets a hundred samples be processed in one operation instead of a hundred.',
+          'Vectors have three basic operations. Addition: each element adds to its counterpart at the same position, requiring equal lengths. Scalar multiplication: each element multiplies by the number, changing scale without direction. And the dot product: corresponding elements multiply then sum, yielding a single number rather than a vector, and this operation is the essence of every neural network.',
+          'The dot product measures directional similarity: the more two vectors point the same way, the larger the result. So it measures similarity between texts and images once represented as vectors: similarity of meaning becomes closeness of direction.',
+          'Matrix multiplication is the heaviest operation in deep learning, with a precise condition: the first matrix column count must equal the second matrix row count, and the result shape is first rows by second columns. A hundred by four times four by three gives a hundred by three, and most network-building errors are violations of this condition.',
+          'The practical meaning of that multiplication is transformation: take a hundred samples with four features and turn them into a hundred samples with three new features, each a weighted mix of the four. That is exactly what a neural network layer does, since layer weights are a matrix and passing data through it is matrix multiplication.'
+        ],
+        table: {
+          head_ar: ['العملية', 'المدخل', 'المخرج', 'الشرط'],
+          head_en: ['Operation', 'Input', 'Output', 'Condition'],
+          rows: [
+            ['جمع متجهين', 'متجهان', 'متجه', 'تساوي الطول'],
+            ['ضرب في عدد', 'متجه وعدد', 'متجه', 'لا شرط'],
+            ['ضرب النقطة', 'متجهان', 'رقم واحد', 'تساوي الطول'],
+            ['ضرب مصفوفتين', '(a×b) و(b×c)', '(a×c)', 'أعمدة الأولى = صفوف الثانية']
+          ]
+        },
+        keyPoints_ar: [
+          'المتجه صف أرقام يمثّل عيّنة واحدة، وطوله عدد سماتها.',
+          'المصفوفة جدول عيّنات: صف لكل عيّنة وعمود لكل سمة.',
+          'ضرب النقطة يعطي رقماً واحداً ويقيس التشابه في الاتجاه.',
+          'شرط ضرب المصفوفات: أعمدة الأولى = صفوف الثانية، والناتج (صفوف الأولى × أعمدة الثانية).',
+          'طبقة الشبكة العصبية ليست إلا ضرب مصفوفات: تحويل سمات إلى سمات جديدة.'
+        ],
+        keyPoints_en: [
+          'A vector is a row of numbers representing one sample, its length the feature count.',
+          'A matrix is a table of samples: a row per sample and a column per feature.',
+          'The dot product returns a single number and measures directional similarity.',
+          'Matrix multiplication requires first columns to equal second rows, giving first rows by second columns.',
+          'A neural network layer is nothing but matrix multiplication transforming features into new ones.'
+        ],
+        analogy_ar: 'تخيّل المتجه بطاقة تعريف لشيء: أربعة أرقام تصف بيتاً. والمصفوفة دفتر فيه مئة بطاقة مرتبة. وضرب النقطة أن تقيس كم يشبه بيتان بعضهما بضرب كل سمة بنظيرتها وجمع النواتج — فكلما تشابهت السمات كبر الرقم. وضرب المصفوفات آلة تأخذ الدفتر كله وتخرج دفتراً جديداً بوصف مختلف لكل بيت، مبني على مزج سماته بأوزان.',
+        analogy_en: 'Picture a vector as an ID card for a thing: four numbers describing a house. A matrix is a notebook of a hundred such cards. The dot product measures how alike two houses are by multiplying each feature with its counterpart and summing, so more similarity gives a larger number. Matrix multiplication is a machine taking the whole notebook and producing a new one describing each house differently, built by mixing its features with weights.',
+        terms: [
+          { term: 'Vector', def_ar: 'صف أرقام يمثّل عيّنة واحدة بسماتها.', def_en: 'A row of numbers representing one sample and its features.' },
+          { term: 'Matrix', def_ar: 'جدول أرقام صفوفه عيّنات وأعمدته سمات.', def_en: 'A table of numbers with samples as rows and features as columns.' },
+          { term: 'Dot Product', def_ar: 'ضرب العناصر المتناظرة وجمعها فينتج رقم واحد.', def_en: 'Multiplying corresponding elements and summing to one number.' },
+          { term: 'Matrix Multiplication', def_ar: 'تحويل مصفوفة إلى أخرى بأوزان، وشرطه تطابق البُعد الداخلي.', def_en: 'Transforming one matrix into another with weights, requiring matching inner dimensions.' }
+        ],
+        cards: [
+          { q_ar: 'ما ناتج ضرب النقطة بين متجهين؟', q_en: 'What does a dot product of two vectors give?', a_ar: 'رقم واحد لا متجه، ويقيس مقدار تشابه اتجاهيهما.', a_en: 'A single number rather than a vector, measuring how similarly they point.' },
+          { q_ar: 'ما شرط ضرب مصفوفتين وما شكل الناتج؟', q_en: 'What condition and result shape for matrix multiplication?', a_ar: 'أعمدة الأولى تساوي صفوف الثانية، والناتج شكله صفوف الأولى في أعمدة الثانية.', a_en: 'First columns equal second rows, and the result is first rows by second columns.' },
+          { q_ar: 'ما ناتج ضرب مصفوفة (100,4) في (4,3) ؟', q_en: 'What is the result of (100,4) times (4,3)?', a_ar: 'مصفوفة شكلها (100,3).', a_en: 'A matrix of shape (100,3).' },
+          { q_ar: 'ما علاقة ضرب المصفوفات بطبقة الشبكة العصبية؟', q_en: 'How does matrix multiplication relate to a network layer?', a_ar: 'الطبقة ضرب مصفوفات: أوزانها مصفوفة تحوّل سمات المدخل إلى سمات جديدة.', a_en: 'A layer is matrix multiplication: its weights form a matrix transforming input features into new ones.' }
+        ]
+      },
+      {
+        title_ar: 'الإحصاء والاحتمالات',
+        title_en: 'Statistics and Probability',
+        lead_ar: 'الإحصاء يصف بياناتك قبل أن تدرّب عليها، والاحتمال يفسّر مخرج النموذج بعد أن يتنبأ — وتجاهلهما يجعل النتائج تُقرأ خطأً.',
+        lead_en: 'Statistics describes your data before training and probability interprets model output after prediction, and ignoring them makes results misread.',
+        body_ar: [
+          'قبل تدريب أي نموذج يجب أن تعرف بياناتك، وأول أدوات المعرفة مقاييس المركز: المتوسط والوسيط والمنوال. والفرق بين المتوسط والوسيط ليس أكاديمياً: المتوسط يتأثر بالقيم المتطرفة والوسيط لا. ففي بيانات الدخل، عشرة أشخاص دخلهم متواضع وواحد ثري يجعلون المتوسط مضللاً تماماً، والوسيط يبقى ممثّلاً للحال.',
+          'ومقاييس التشتّت لا تقل أهمية: الانحراف المعياري يخبرك كم تتباعد القيم عن متوسطها. ومجموعتان بالمتوسط نفسه قد تكونان مختلفتين تماماً: واحدة متقاربة القيم وأخرى متفرقة. ومن ينظر للمتوسط وحده يظنهما سواء.',
+          'والتوزيع الطبيعي شائع في الطبيعة: القيم تتجمّع حول المتوسط وتقلّ كلما ابتعدت، فيتكوّن شكل الجرس. وفيه قاعدة عملية نافعة: نحو ٦٨٪ من القيم تقع ضمن انحراف معياري واحد من المتوسط، ونحو ٩٥٪ ضمن انحرافين. ولهذا تُعدّ القيمة البعيدة بأكثر من ثلاثة انحرافات مرشّحة قوية لأن تكون شاذة.',
+          'والاحتمال يقيس فرصة وقوع حدث بين صفر وواحد. وأهم مفهوم فيه للمجال: الاحتمال الشرطي، أي احتمال وقوع شيء بشرط أن آخر وقع. وهو ما تفعله كل نماذج التصنيف: تعطي احتمال أن تكون هذي الرسالة مزعجة بشرط الكلمات التي فيها.',
+          'ومغالطة شهيرة تقع كثيراً: الخلط بين احتمال أ بشرط ب، واحتمال ب بشرط أ. فاحتمال أن يكون الفحص إيجابياً بشرط أن المريض مصاب قد يكون ٩٩٪، لكن احتمال أن يكون المصاب فعلاً بشرط أن فحصه إيجابي قد يكون ٩٪ فقط إن كان المرض نادراً. والسبب أن الحالات السليمة كثيرة جداً فحتى نسبة خطأ صغيرة عليها تنتج إنذارات كاذبة أكثر من الإصابات الحقيقية.',
+          'وهذي المغالطة ليست تمريناً نظرياً: هي سبب أن نظام كشف احتيال بدقة ٩٩٪ قد يكون عديم الفائدة عملياً. فلو كان الاحتيال واحداً في الألف، فإن نسبة الخطأ ١٪ على التسعمئة وتسعة وتسعين السليمة تعطي عشرة إنذارات كاذبة مقابل احتيال واحد حقيقي — وهذا ما يجعل قياس الدقة وحدها مضللاً في البيانات غير المتوازنة.'
+        ],
+        body_en: [
+          'Before training any model you must know your data, and the first tools are central measures: mean, median and mode. The difference between mean and median is not academic: the mean is pulled by extreme values and the median is not. In income data, ten modest earners and one wealthy person make the mean entirely misleading while the median still represents the situation.',
+          'Dispersion measures matter no less: the standard deviation tells how far values spread from their mean. Two groups with identical means may differ completely, one tightly clustered and one widely spread, and whoever looks at the mean alone thinks them identical.',
+          'The normal distribution is common in nature: values cluster around the mean and thin out with distance, forming a bell. It carries a useful practical rule: about 68 percent of values fall within one standard deviation of the mean and about 95 percent within two. So a value beyond three deviations is a strong outlier candidate.',
+          'Probability measures the chance of an event between zero and one. Its most important concept here is conditional probability: the chance of something given that something else occurred. That is exactly what classification models do: giving the probability this message is spam given the words it contains.',
+          'A famous fallacy recurs: confusing the probability of A given B with that of B given A. The probability a test is positive given the patient is ill may be 99 percent, while the probability of actually being ill given a positive test may be only 9 percent when the disease is rare. The reason is that healthy cases are so numerous that even a small error rate on them produces more false alarms than true cases.',
+          'This fallacy is not a theoretical exercise: it is why a fraud detection system with 99 percent accuracy may be practically useless. If fraud is one in a thousand, a 1 percent error rate on the 999 legitimate cases yields ten false alarms for every real fraud, which is what makes accuracy alone misleading on imbalanced data.'
+        ],
+        table: {
+          head_ar: ['المقياس', 'ما يقيسه', 'متى يضلّل'],
+          head_en: ['Measure', 'What it measures', 'When it misleads'],
+          rows: [
+            ['المتوسط', 'مركز القيم حسابياً', 'عند وجود قيم متطرفة'],
+            ['الوسيط', 'القيمة الوسطى ترتيباً', 'لا يعبّر عن مجموع القيم'],
+            ['الانحراف المعياري', 'تباعد القيم عن المتوسط', 'مع توزيع غير طبيعي'],
+            ['الدقة', 'نسبة التنبؤات الصحيحة', 'مع بيانات غير متوازنة']
+          ]
+        },
+        keyPoints_ar: [
+          'المتوسط يتأثر بالمتطرفات والوسيط لا، والفرق حاسم في بيانات كالدخل.',
+          'مجموعتان بالمتوسط نفسه قد تختلفان تماماً في التشتّت.',
+          'في التوزيع الطبيعي: ٦٨٪ ضمن انحراف، و٩٥٪ ضمن انحرافين.',
+          'التصنيف احتمال شرطي: فرصة الفئة بشرط السمات المرصودة.',
+          'لا تخلط بين احتمال أ بشرط ب واحتمال ب بشرط أ — الفرق قد يكون عشرة أضعاف.',
+          'الدقة وحدها مضللة في البيانات غير المتوازنة.'
+        ],
+        keyPoints_en: [
+          'The mean is pulled by extremes and the median is not, decisively so in data like income.',
+          'Two groups with the same mean may differ entirely in spread.',
+          'In a normal distribution 68 percent fall within one deviation and 95 percent within two.',
+          'Classification is conditional probability: the chance of a class given the observed features.',
+          'Never confuse P(A given B) with P(B given A); the gap may be tenfold.',
+          'Accuracy alone is misleading on imbalanced data.'
+        ],
+        analogy_ar: 'تخيّل مقهى فيه عشرة زبائن دخل كل واحد ألف، ودخل رجل واحد مليونيراً. المتوسط يقول إن رواد المقهى أثرياء، والوسيط يقول إنهم متوسطو الدخل — والوسيط أصدق. وأما مغالطة الاحتمال الشرطي فتخيّل جهاز إنذار حريق دقته ٩٩٪ في مبنى لا يحترق إلا مرة في السنة: سيرنّ كثيراً وأغلب رنيناته كاذبة، لا لأنه رديء بل لأن الأيام السليمة أكثر بكثير.',
+        analogy_en: 'Picture a café with ten customers each earning a thousand, then one millionaire walks in. The mean says the clientele is wealthy while the median says they are middle income, and the median is truer. As for the conditional probability fallacy, picture a fire alarm 99 percent accurate in a building that burns once a year: it will ring often and most rings will be false, not because it is poor but because safe days vastly outnumber fires.',
+        terms: [
+          { term: 'Median', def_ar: 'القيمة الوسطى بعد الترتيب، لا تتأثر بالمتطرفات.', def_en: 'The middle value after sorting, unaffected by extremes.' },
+          { term: 'Standard Deviation', def_ar: 'مقياس تباعد القيم عن متوسطها.', def_en: 'A measure of how far values spread from their mean.' },
+          { term: 'Normal Distribution', def_ar: 'توزيع تتجمّع فيه القيم حول المتوسط بشكل جرس.', def_en: 'A distribution where values cluster around the mean in a bell shape.' },
+          { term: 'Conditional Probability', def_ar: 'احتمال وقوع حدث بشرط وقوع آخر.', def_en: 'The probability of an event given another occurred.' },
+          { term: 'Class Imbalance', def_ar: 'ندرة إحدى الفئات بشدة، فتصير الدقة الكلية مضللة.', def_en: 'One class being very rare, making overall accuracy misleading.' }
+        ],
+        cards: [
+          { q_ar: 'متى يضلّل المتوسط ويصدق الوسيط؟', q_en: 'When does the mean mislead and the median hold?', a_ar: 'عند وجود قيم متطرفة كدخل ثري بين متواضعي الدخل: المتوسط ينجذب إليه والوسيط لا.', a_en: 'With extreme values, such as one wealthy earner among modest ones: the mean is pulled and the median is not.' },
+          { q_ar: 'كم نسبة القيم ضمن انحرافين معياريين؟', q_en: 'What share of values falls within two standard deviations?', a_ar: 'نحو ٩٥٪ في التوزيع الطبيعي.', a_en: 'About 95 percent in a normal distribution.' },
+          { q_ar: 'ما المغالطة الشرطية الشهيرة؟', q_en: 'What is the famous conditional fallacy?', a_ar: 'الخلط بين احتمال أ بشرط ب واحتمال ب بشرط أ، وقد يفترقان عشرة أضعاف مع الحالات النادرة.', a_en: 'Confusing P(A given B) with P(B given A), which may differ tenfold for rare cases.' },
+          { q_ar: 'لماذا تضلّل الدقة في بيانات غير متوازنة؟', q_en: 'Why does accuracy mislead on imbalanced data?', a_ar: 'لأن الفئة الغالبة تسيطر على الرقم، فنظام يصنّف الكل سليماً قد يبدو دقيقاً ٩٩٪ بلا فائدة.', a_en: 'The majority class dominates the number, so a system labelling everything safe may look 99 percent accurate and be useless.' }
+        ]
+      },
+      {
+        title_ar: 'الاشتقاق ومفهوم التدرّج',
+        title_en: 'Derivatives and Gradient Descent',
+        lead_ar: 'المشتقة تخبرك اتجاه التغيّر، ونزول التدرّج يستخدمها ليمشي بالنموذج خطوة خطوة نحو أقل خسارة — وهذي هي آلية التعلّم كلها.',
+        lead_en: 'A derivative tells you the direction of change, and gradient descent uses it to walk the model step by step toward lower loss, and that is the whole learning mechanism.',
+        body_ar: [
+          'المشتقة تجيب سؤالاً واحداً: إن غيّرت هذا المدخل قليلاً، كم يتغيّر المخرج وفي أي اتجاه؟ وهذا بالضبط ما يحتاجه التدريب: عندنا خسارة نريد تقليلها، وأوزان نستطيع تغييرها، والسؤال هو أي اتجاه تغيير كل وزن يقلل الخسارة.',
+          'ولتصوّر الأمر: تخيّل الخسارة سطحاً كالتضاريس، وموضعك عليه تحدده قيم الأوزان الحالية. وهدفك أخفض نقطة. والمشتقة تخبرك ميل الأرض تحت قدمك في كل اتجاه، فتخطو في الاتجاه الهابط. وتكرار هذي الخطوة هو نزول التدرّج.',
+          'والتدرّج هو مجموعة المشتقات لكل الأوزان معاً: متجه يشير لاتجاه أشدّ صعود، فنمشي عكسه. ومقدار الخطوة يُسمّى معدل التعلّم، وضبطه من أهم القرارات: فالكبير جداً يجعل النموذج يقفز فوق أخفض نقطة ويتذبذب بلا استقرار، والصغير جداً يجعل التدريب بطيئاً جداً وقد يعلق في منخفض محلي.',
+          'والمنخفض المحلي حفرة ليست أعمق نقطة في التضاريس، لكنك إن دخلتها بدا لك كل اتجاه صاعداً فتوقفت. وهي مشكلة نظرية أكثر منها عملية في الشبكات الكبيرة، لأن كثرة الأبعاد تجعل الخروج ممكناً في اتجاه ما غالباً.',
+          'وثلاث صور لتطبيق النزول: الدفعي يحسب التدرّج على كل البيانات قبل كل خطوة فهو دقيق وبطيء ومكلف ذاكرةً؛ والعشوائي يحسبه على عيّنة واحدة فهو سريع ومتذبذب؛ والدفعات الصغيرة وسط بينهما يحسبه على مجموعة صغيرة، وهو المستخدم عملياً لأنه يجمع استقراراً معقولاً مع سرعة مقبولة.',
+          'ولاحظ أن هذا كله لا يتطلب منك حساب المشتقات يدوياً: أطر العمل تحسبها آلياً بتتبّع العمليات التي مرّت بها القيمة. لكن فهم الفكرة ضروري لتشخيص المشاكل: خسارة لا تنخفض غالباً معدل تعلّم رديء، وخسارة تقفز فجأة إلى قيمة هائلة غالباً معدل كبير جداً.'
+        ],
+        body_en: [
+          'A derivative answers one question: if I change this input slightly, how much and in which direction does the output change? That is exactly what training needs: we have a loss to reduce and weights we can change, and the question is which direction of change reduces the loss.',
+          'To picture it: imagine the loss as a terrain surface, your position on it set by the current weights. Your goal is the lowest point. The derivative tells you the slope under your feet in each direction, so you step downhill. Repeating that step is gradient descent.',
+          'The gradient is the collection of derivatives for all weights: a vector pointing in the steepest ascent direction, so we walk opposite it. The step size is the learning rate, and setting it is among the most important decisions: too large makes the model leap over the lowest point and oscillate without settling, while too small makes training painfully slow and prone to sticking in a local minimum.',
+          'A local minimum is a dip that is not the deepest point in the terrain, but once inside it every direction looks uphill so you stop. It is more a theoretical than practical problem in large networks, since many dimensions usually leave an escape direction.',
+          'Descent comes in three forms: batch computes the gradient over all data before each step, accurate but slow and memory-hungry; stochastic computes it on a single sample, fast and jittery; and mini-batch sits between them on a small group, and it is what is used in practice because it combines reasonable stability with acceptable speed.',
+          'Note that none of this requires computing derivatives by hand: frameworks compute them automatically by tracing the operations a value passed through. But understanding the idea is essential for diagnosis: a loss that will not fall usually means a poor learning rate, and a loss suddenly jumping to a huge value usually means the rate is far too large.'
+        ],
+        table: {
+          head_ar: ['الصورة', 'حجم العيّنة لكل خطوة', 'الاستقرار', 'السرعة'],
+          head_en: ['Variant', 'Samples per step', 'Stability', 'Speed'],
+          rows: [
+            ['النزول الدفعي', 'كل البيانات', 'الأعلى', 'الأبطأ'],
+            ['النزول العشوائي', 'عيّنة واحدة', 'الأدنى', 'الأسرع'],
+            ['الدفعات الصغيرة', 'مجموعة صغيرة', 'متوازن', 'مقبولة']
+          ]
+        },
+        keyPoints_ar: [
+          'المشتقة تجيب: كم يتغيّر المخرج وفي أي اتجاه إن غيّرت المدخل قليلاً.',
+          'التدرّج متجه يشير لأشدّ صعود، والتدريب يمشي عكسه.',
+          'معدل التعلّم كبير جداً يتذبذب، وصغير جداً يبطئ ويعلق.',
+          'المنخفض المحلي مشكلة نظرية أكثر منها عملية في الشبكات الكبيرة.',
+          'الدفعات الصغيرة هي المستخدم عملياً لجمعها الاستقرار والسرعة.',
+          'خسارة لا تنخفض أو تقفز فجأة: راجع معدل التعلّم أولاً.'
+        ],
+        keyPoints_en: [
+          'A derivative answers how much and which way the output changes for a small input change.',
+          'The gradient points at steepest ascent, and training walks against it.',
+          'Too large a learning rate oscillates; too small slows training and sticks.',
+          'Local minima are more a theoretical than practical problem in large networks.',
+          'Mini-batch is what is used in practice, combining stability and speed.',
+          'A loss that will not fall or suddenly jumps: check the learning rate first.'
+        ],
+        analogy_ar: 'تخيّل نفسك في جبل ضبابي تريد أسفل الوادي ولا ترى إلا موضع قدمك. تحسّس ميل الأرض حولك واخطُ في الاتجاه الهابط، ثم كرّر. هذا نزول التدرّج. وطول خطوتك هو معدل التعلّم: خطوة عملاقة قد تقفز بك فوق الوادي إلى السفح المقابل فتظل تتأرجح، وخطوة نملة توصلك بعد أسبوع. وحفرة صغيرة في منتصف الجبل تبدو لك وادياً — وهذا المنخفض المحلي.',
+        analogy_en: 'Picture yourself on a foggy mountain seeking the valley floor, seeing only where you stand. Feel the slope around you, step downhill, repeat. That is gradient descent. Your stride is the learning rate: a giant leap may carry you over the valley to the opposite slope leaving you swinging back and forth, while an ant step arrives next week. A small pit midway looks like the valley, and that is a local minimum.',
+        terms: [
+          { term: 'Derivative', def_ar: 'مقدار واتجاه تغيّر المخرج عند تغيّر طفيف في المدخل.', def_en: 'How much and which way the output changes for a slight input change.' },
+          { term: 'Gradient', def_ar: 'متجه المشتقات لكل الأوزان، يشير لأشدّ صعود.', def_en: 'The vector of derivatives for all weights, pointing at steepest ascent.' },
+          { term: 'Learning Rate', def_ar: 'مقدار الخطوة في كل تعديل للأوزان.', def_en: 'The step size in each weight update.' },
+          { term: 'Local Minimum', def_ar: 'منخفض ليس أعمق نقطة لكنه يبدو كذلك من داخله.', def_en: 'A dip that is not the deepest point yet looks like it from inside.' },
+          { term: 'Mini-batch', def_ar: 'حساب التدرّج على مجموعة صغيرة، وهو المستخدم عملياً.', def_en: 'Computing the gradient on a small group, the practical choice.' }
+        ],
+        cards: [
+          { q_ar: 'ما السؤال الذي تجيب عنه المشتقة في التدريب؟', q_en: 'What question does the derivative answer in training?', a_ar: 'أي اتجاه لتغيير الوزن يقلل الخسارة، وبأي مقدار يتغيّر المخرج.', a_en: 'Which direction of weight change reduces the loss, and by how much the output changes.' },
+          { q_ar: 'ماذا يحدث عند معدل تعلّم كبير جداً؟', q_en: 'What happens with too large a learning rate?', a_ar: 'يقفز النموذج فوق أخفض نقطة ويتذبذب، وقد تقفز الخسارة لقيمة هائلة.', a_en: 'The model leaps over the lowest point and oscillates, and the loss may jump to a huge value.' },
+          { q_ar: 'أي صور نزول التدرّج تُستخدم عملياً ولماذا؟', q_en: 'Which descent variant is used in practice and why?', a_ar: 'الدفعات الصغيرة، لأنها تجمع استقراراً معقولاً مع سرعة مقبولة.', a_en: 'Mini-batch, because it combines reasonable stability with acceptable speed.' },
+          { q_ar: 'خسارة لا تنخفض إطلاقاً — ما أول ما تفحصه؟', q_en: 'A loss that never falls: what do you check first?', a_ar: 'معدل التعلّم، فهو أشهر أسباب توقف الانخفاض أو تذبذبه.', a_en: 'The learning rate, the most common cause of a stalled or oscillating loss.' }
+        ]
+      },
+      {
+        title_ar: 'البيانات عملياً: التنظيف والتطبيع',
+        title_en: 'Data in Practice: Cleaning and Scaling',
+        lead_ar: 'أغلب وقت أي مشروع يذهب هنا لا في اختيار النموذج، وخطأ واحد في هذي المرحلة — كالتطبيع قبل التقسيم — يفسد كل نتيجة بعده.',
+        lead_en: 'Most project time goes here rather than model choice, and one mistake at this stage, such as scaling before splitting, corrupts every result after it.',
+        body_ar: [
+          'القيم المفقودة أول ما تواجهه، ولها ثلاث معالجات لكل واحدة ثمن. حذف الصفوف الناقصة أبسطها لكنه يخسر بيانات وقد يحدث تحيّزاً إن كان النقص ليس عشوائياً. وحذف العمود يصلح إن كان أغلبه ناقصاً. وتعويض القيمة بالمتوسط أو الوسيط يحفظ الصف لكنه يقلل التباين الحقيقي.',
+          'والسؤال الذي يُنسى: لماذا نقصت القيمة؟ فإن كان النقص نفسه يحمل معلومة — كعميل لم يذكر دخله لأنه مرتفع — فالتعويض بالمتوسط يمحو إشارة مفيدة، والأصح إضافة عمود يسجّل أن القيمة كانت مفقودة.',
+          'والقيم الشاذة قيم بعيدة جداً عن بقية البيانات. وأول قرار فيها ليس تقنياً: هل هي خطأ إدخال أم حالة حقيقية نادرة؟ فعمر ٢٠٠ سنة خطأ يُحذف، ومعاملة بمليون في بيانات معاملات صغيرة قد تكون احتيالاً حقيقياً وهو بالضبط ما تريد أن يتعلّمه النموذج. وحذف الشواذ بلا فحص قد يحذف الظاهرة التي تدرسها.',
+          'والتطبيع ضرورة حين تختلف مقاييس السمات: عمود عمر من ٢٠ إلى ٧٠ وعمود دخل من ٣٠٠٠ إلى ٥٠٠٠٠. فالنماذج التي تعتمد المسافات ستعتبر الدخل أهم آلاف المرات لمجرد أن أرقامه أكبر. والتطبيع يجعل الأعمدة على مقياس واحد فيتساوى تأثيرها الأولي.',
+          'وطريقتان شائعتان: التطبيع إلى مدى من صفر لواحد، والتقييس بطرح المتوسط والقسمة على الانحراف المعياري. والثاني أنسب حين توجد قيم شاذة لأن الأول يضغط كل البيانات في زاوية إن وُجدت قيمة متطرفة واحدة.',
+          'والخطأ الأخطر في هذي المرحلة هو تسرّب البيانات: أن تحسب المتوسط والانحراف على البيانات كاملة ثم تقسمها لتدريب واختبار. فتكون معلومات الاختبار قد تسرّبت لعملية التطبيع، فيبدو أداء النموذج ممتازاً في القياس ثم ينهار في الإنتاج. والصواب: قسّم أولاً، ثم احسب مقاييس التطبيع من التدريب وحده، ثم طبّقها على الاختبار — وهذي القاعدة تنطبق على كل معالجة تتعلّم شيئاً من البيانات.'
+        ],
+        body_en: [
+          'Missing values are the first thing you meet, with three treatments each carrying a price. Dropping incomplete rows is simplest but loses data and may introduce bias when missingness is not random. Dropping a column suits one that is mostly missing. Imputing with mean or median keeps the row but reduces genuine variance.',
+          'The forgotten question is why the value is missing. If the absence itself carries information, such as a customer withholding a high income, imputing the mean erases a useful signal, and the better move is adding a column recording that the value was missing.',
+          'Outliers are values far from the rest. The first decision about them is not technical: is this an entry error or a genuine rare case? An age of 200 is an error to delete, while a million-value transaction among small ones may be real fraud, exactly what you want the model to learn. Deleting outliers without inspection may delete the very phenomenon you study.',
+          'Scaling becomes necessary when feature ranges differ: an age column from 20 to 70 and an income column from 3,000 to 50,000. Distance-based models will treat income as thousands of times more important merely because its numbers are larger. Scaling puts columns on one scale so their initial influence is comparable.',
+          'Two common methods: normalising into a zero-to-one range, and standardising by subtracting the mean and dividing by the standard deviation. The second suits data with outliers, because the first squeezes everything into a corner when a single extreme value exists.',
+          'The gravest error at this stage is data leakage: computing the mean and deviation over the entire dataset then splitting into training and test. Test information has leaked into the scaling, so the model looks excellent in measurement then collapses in production. The correct order is: split first, compute scaling statistics from training only, then apply them to the test set, and this rule covers every transformation that learns something from data.'
+        ],
+        table: {
+          head_ar: ['المعالجة', 'متى تصلح', 'ثمنها'],
+          head_en: ['Treatment', 'When it fits', 'Its price'],
+          rows: [
+            ['حذف الصفوف الناقصة', 'النقص قليل وعشوائي', 'خسارة بيانات وتحيّز محتمل'],
+            ['حذف العمود', 'أغلب العمود ناقص', 'خسارة سمة قد تكون مهمة'],
+            ['تعويض بالمتوسط', 'النقص قليل والعمود مهم', 'تقليل التباين الحقيقي'],
+            ['عمود يسجّل النقص', 'النقص نفسه معلومة', 'زيادة عدد الأعمدة']
+          ]
+        },
+        keyPoints_ar: [
+          'اسأل لماذا نقصت القيمة قبل أن تقرر كيف تعوّضها.',
+          'إن كان النقص نفسه معلومة، فسجّله في عمود ولا تمحه بالمتوسط.',
+          'القيمة الشاذة قد تكون الظاهرة نفسها، فلا تحذفها قبل فحصها.',
+          'التطبيع يمنع سيطرة عمود لمجرد كِبَر أرقامه.',
+          'التقييس أنسب من التطبيع للمدى عند وجود قيم شاذة.',
+          'قسّم أولاً ثم احسب مقاييس التطبيع من التدريب وحده — وإلا تسرّبت البيانات.'
+        ],
+        keyPoints_en: [
+          'Ask why a value is missing before deciding how to impute it.',
+          'If the absence itself is information, record it in a column rather than erasing it with a mean.',
+          'An outlier may be the phenomenon itself, so inspect before deleting.',
+          'Scaling stops one column dominating merely because its numbers are larger.',
+          'Standardising suits data with outliers better than range normalising.',
+          'Split first then compute scaling statistics from training only, or data leaks.'
+        ],
+        analogy_ar: 'تخيّل أنك تقارن بين مرشّحين بمعيارين: سنوات الخبرة والراتب المطلوب. لو جمعت الرقمين كما هما، لطغى الراتب بآلافه على الخبرة بسنواتها العشر — لا لأنه أهم بل لأن مقياسه أكبر. والتطبيع أن تحوّل الاثنين لمقياس من عشرة فيتحاكما بعدل. وأما تسرّب البيانات فأشبه بمن يراجع أسئلة الامتحان قبل وضع الدرجة النهائية: النتيجة ممتازة وبلا معنى.',
+        analogy_en: 'Picture comparing candidates on two criteria: years of experience and requested salary. Adding the raw numbers lets salary in thousands overwhelm experience in single-digit years, not because it matters more but because its scale is larger. Scaling converts both to a ten-point scale so they compete fairly. Data leakage is like reviewing the exam questions before setting the final grade: an excellent and meaningless result.',
+        terms: [
+          { term: 'Missing Value', def_ar: 'حقل خالٍ في السجل، وسبب خلوّه قد يحمل معلومة.', def_en: 'An empty field in a record whose cause may carry information.' },
+          { term: 'Outlier', def_ar: 'قيمة بعيدة جداً عن بقية البيانات، خطأً أو حالة نادرة حقيقية.', def_en: 'A value far from the rest, an error or a genuine rare case.' },
+          { term: 'Normalisation', def_ar: 'تحويل القيم إلى مدى محدد كصفر إلى واحد.', def_en: 'Converting values into a set range such as zero to one.' },
+          { term: 'Standardisation', def_ar: 'طرح المتوسط والقسمة على الانحراف المعياري.', def_en: 'Subtracting the mean and dividing by the standard deviation.' },
+          { term: 'Data Leakage', def_ar: 'تسرّب معلومات الاختبار إلى التدريب فتبدو النتائج أفضل من الواقع.', def_en: 'Test information seeping into training so results look better than reality.' }
+        ],
+        cards: [
+          { q_ar: 'متى يكون تعويض القيمة المفقودة بالمتوسط خطأً؟', q_en: 'When is mean imputation a mistake?', a_ar: 'حين يكون النقص نفسه معلومة، فالتعويض يمحو إشارة مفيدة؛ والأصح تسجيل النقص في عمود.', a_en: 'When the absence itself is information, since imputing erases a useful signal; record it in a column instead.' },
+          { q_ar: 'هل تُحذف القيم الشاذة دائماً؟', q_en: 'Should outliers always be deleted?', a_ar: 'لا، قد تكون الظاهرة المدروسة نفسها كالاحتيال؛ فافحص أولاً هل هي خطأ إدخال أم حالة حقيقية.', a_en: 'No, they may be the studied phenomenon itself such as fraud; first check whether it is an entry error or a real case.' },
+          { q_ar: 'لماذا يلزم التطبيع؟', q_en: 'Why is scaling necessary?', a_ar: 'لئلا يسيطر عمود كبير الأرقام على القرار لمجرد مقياسه لا لأهميته.', a_en: 'So a large-numbered column does not dominate the decision by scale rather than importance.' },
+          { q_ar: 'ما الترتيب الصحيح للتقسيم والتطبيع؟', q_en: 'What is the correct order for splitting and scaling?', a_ar: 'قسّم أولاً، ثم احسب مقاييس التطبيع من التدريب وحده، ثم طبّقها على الاختبار.', a_en: 'Split first, compute scaling statistics from training only, then apply them to the test set.' }
+        ]
+      }
+    ]
   }
 };
