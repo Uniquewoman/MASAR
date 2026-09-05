@@ -2813,6 +2813,637 @@ export const sectionGuides = {
           { q_ar: 'ما الترتيب الصحيح للتقسيم والتطبيع؟', q_en: 'What is the correct order for splitting and scaling?', a_ar: 'قسّم أولاً، ثم احسب مقاييس التطبيع من التدريب وحده، ثم طبّقها على الاختبار.', a_en: 'Split first, compute scaling statistics from training only, then apply them to the test set.' }
         ]
       }
+    ],
+
+    // ─────────── تعلّم الآلة ───────────
+    2: [
+      {
+        title_ar: 'سير العمل وتقسيم البيانات',
+        title_en: 'The Workflow and Data Splitting',
+        lead_ar: 'مشروع التعلّم الآلي دورة لا خط مستقيم، وأول قرار فيه تقسيم البيانات — فمن يقيس نموذجه على ما تدرّب عليه يقيس حفظه لا فهمه.',
+        lead_en: 'A machine-learning project is a cycle rather than a straight line, and its first decision is splitting the data, since measuring a model on what it trained on measures memorisation rather than understanding.',
+        body_ar: [
+          'سير العمل يبدأ بتحديد المشكلة ومقياس النجاح قبل أي كود: ما الذي نتنبأ به بالضبط، وما الرقم الذي يعني أن المشروع نجح، وما الكلفة التي يقبلها العمل مقابل الخطأ. ومشروع يبدأ بلا مقياس نجاح متفق عليه ينتهي بجدال لا ينقطع حول هل النتيجة جيدة أم لا.',
+          'ثم تُجمع البيانات وتُستكشف وتُنظَّف، ثم تُختار السمات وتُهندَس، ثم يُدرَّب نموذج ويُقيَّم، ثم يُنشَر ويُراقَب. والمهم أن هذي دورة لا خط: نتيجة التقييم تعيدك لهندسة السمات أو لجمع بيانات أكثر، والمراقبة بعد النشر تعيدك للتدريب. ومن يظنها خطاً واحداً يُفاجأ.',
+          'وتقسيم البيانات أهم قرار منهجي. فلو قِست أداء النموذج على البيانات نفسها التي تدرّب عليها، لكان كمن يمتحن طالباً بالأسئلة التي حفظ حلولها: النتيجة عالية وبلا دلالة. ولهذا تُحجز بيانات لم يرها النموذج تُقاس عليها قدرته على التعميم.',
+          'والتقسيم ثلاثة أجزاء لا اثنان: تدريب يتعلّم منه النموذج، وتحقق تُضبط به الخيارات كعدد الطبقات ومعدل التعلّم، واختبار لا يُلمس إلا مرة واحدة في النهاية. وسبب فصل التحقق عن الاختبار دقيق: إن ضبطت خياراتك مراراً على مجموعة الاختبار، فأنت تسرّبها تدريجياً وتصير نتيجتها متفائلة كذباً.',
+          'ونسبة شائعة: ٧٠٪ تدريب و١٥٪ تحقق و١٥٪ اختبار. لكن مع البيانات الصغيرة يصير التقسيم مبدّداً، فيُستخدم التحقق المتقاطع: تُقسَّم البيانات إلى أجزاء، ويُدرَّب النموذج مرات كل مرة على كل الأجزاء إلا واحداً يُقاس عليه، ثم يُؤخذ متوسط النتائج. فيُستفاد من كل البيانات في التدريب والقياس معاً.',
+          'وشرط لا يُغفَل: التقسيم العشوائي لا يصلح دائماً. ففي البيانات الزمنية يجب أن يكون الاختبار متأخراً زمنياً عن التدريب، وإلا تدرّب النموذج على المستقبل وقيس على الماضي فبدا نبيّاً. وفي البيانات غير المتوازنة يجب أن يحفظ التقسيم نسبة الفئات في كل جزء، وإلا خلا الاختبار من الفئة النادرة أصلاً.'
+        ],
+        body_en: [
+          'The workflow begins by defining the problem and success metric before any code: what exactly is predicted, what number means the project succeeded, and what error cost the business accepts. A project starting with no agreed metric ends in endless argument over whether the result is good.',
+          'Then data is gathered, explored and cleaned, features are selected and engineered, a model is trained and evaluated, then deployed and monitored. Crucially this is a cycle rather than a line: evaluation sends you back to feature engineering or more data, and post-deployment monitoring sends you back to training. Whoever treats it as one straight line is surprised.',
+          'Data splitting is the most important methodological decision. Measuring a model on the same data it trained on is like examining a student with the questions whose answers they memorised: a high and meaningless score. So data the model never saw is held back to measure generalisation.',
+          'The split has three parts rather than two: training the model learns from, validation for tuning choices such as layer count and learning rate, and a test set touched only once at the end. The precise reason for separating validation from test: tuning repeatedly against the test set leaks it gradually, making its result falsely optimistic.',
+          'A common ratio is 70 percent training, 15 validation and 15 test. But with small data such splitting wastes too much, so cross-validation is used: the data is divided into folds and the model trained several times, each time on all folds but one held for measurement, then results are averaged. Every sample serves in both training and measurement.',
+          'One condition is never overlooked: random splitting is not always valid. In time-series data the test set must come later in time than training, or the model trains on the future and is measured on the past and looks prophetic. In imbalanced data the split must preserve class proportions in every part, or the test set contains none of the rare class at all.'
+        ],
+        table: {
+          head_ar: ['الجزء', 'غرضه', 'كم مرة يُستخدم'],
+          head_en: ['Split', 'Purpose', 'How often used'],
+          rows: [
+            ['التدريب', 'يتعلّم منه النموذج', 'كل دورة تدريب'],
+            ['التحقق', 'ضبط الخيارات والمقارنة', 'مرات كثيرة'],
+            ['الاختبار', 'تقدير الأداء الحقيقي', 'مرة واحدة في النهاية'],
+            ['التحقق المتقاطع', 'بديل عند قلة البيانات', 'عدة دورات بالتناوب']
+          ]
+        },
+        keyPoints_ar: [
+          'حدّد مقياس النجاح قبل الكود، وإلا انتهى المشروع بجدال بلا فيصل.',
+          'سير العمل دورة لا خط: التقييم والمراقبة يعيدانك للخلف.',
+          'القياس على بيانات التدريب يقيس الحفظ لا التعميم.',
+          'ثلاثة أجزاء: تدريب وتحقق واختبار يُلمس مرة واحدة فقط.',
+          'التحقق المتقاطع يعوّض قلة البيانات باستخدام كل عيّنة تدريباً وقياساً.',
+          'البيانات الزمنية تُقسَّم زمنياً، وغير المتوازنة تُقسَّم بحفظ نسب الفئات.'
+        ],
+        keyPoints_en: [
+          'Define the success metric before writing code, or the project ends in unresolvable argument.',
+          'The workflow is a cycle: evaluation and monitoring send you back.',
+          'Measuring on training data measures memorisation rather than generalisation.',
+          'Three parts: training, validation, and a test set touched only once.',
+          'Cross-validation compensates for small data by using every sample for both training and measurement.',
+          'Time-series data splits by time and imbalanced data splits preserving class proportions.'
+        ],
+        analogy_ar: 'تخيّل معلّماً يمتحن طلابه بالأسئلة نفسها التي حلّها معهم في الحصة. الدرجات ممتازة ولا تخبره شيئاً عن فهمهم. ولهذا يحتفظ بأسئلة لم يروها. ومجموعة التحقق أشبه بامتحان تجريبي يعدّل عليه أسلوبه، ومجموعة الاختبار هي الامتحان النهائي المختوم الذي لا يُفتح إلا مرة — ومن يفتحه كل أسبوع ليعدّل به لم يعد امتحاناً.',
+        analogy_en: 'Picture a teacher examining students with the same questions solved together in class. The marks are excellent and tell nothing about understanding, so unseen questions are held back. The validation set is like a mock exam used to adjust the teaching, and the test set is the sealed final opened only once, since whoever opens it weekly to tune has stopped having an exam.',
+        terms: [
+          { term: 'Training Set', def_ar: 'البيانات التي يتعلّم منها النموذج.', def_en: 'The data a model learns from.' },
+          { term: 'Validation Set', def_ar: 'بيانات تُضبط عليها الخيارات وتُقارن النماذج.', def_en: 'Data used to tune choices and compare models.' },
+          { term: 'Test Set', def_ar: 'بيانات محجوزة تُقاس مرة واحدة لتقدير الأداء الحقيقي.', def_en: 'Held-out data measured once to estimate true performance.' },
+          { term: 'Cross-validation', def_ar: 'تدريب وقياس متناوب على أجزاء البيانات ثم أخذ المتوسط.', def_en: 'Rotating training and measurement over folds then averaging.' },
+          { term: 'Stratified Split', def_ar: 'تقسيم يحفظ نسبة الفئات في كل جزء.', def_en: 'A split preserving class proportions in every part.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يُفصل التحقق عن الاختبار؟', q_en: 'Why separate validation from test?', a_ar: 'لأن الضبط المتكرر على الاختبار يسرّبه تدريجياً فتصير نتيجته متفائلة كذباً.', a_en: 'Repeated tuning against the test set leaks it gradually, making its result falsely optimistic.' },
+          { q_ar: 'متى يُستخدم التحقق المتقاطع؟', q_en: 'When is cross-validation used?', a_ar: 'عند قلة البيانات، فيستفيد من كل عيّنة في التدريب والقياس معاً.', a_en: 'With small data, so every sample serves in both training and measurement.' },
+          { q_ar: 'كيف تُقسَّم البيانات الزمنية؟', q_en: 'How is time-series data split?', a_ar: 'زمنياً: الاختبار متأخر عن التدريب، وإلا تدرّب النموذج على المستقبل.', a_en: 'By time: the test set comes after training, or the model trains on the future.' },
+          { q_ar: 'ما أول ما يُحدَّد في المشروع؟', q_en: 'What is defined first in a project?', a_ar: 'المشكلة ومقياس النجاح، قبل جمع البيانات وقبل أي كود.', a_en: 'The problem and the success metric, before gathering data and before any code.' }
+        ]
+      },
+      {
+        title_ar: 'الانحدار ودالة الخسارة',
+        title_en: 'Regression and the Loss Function',
+        lead_ar: 'الانحدار يتنبأ برقم متصل، ودالة الخسارة هي ما يخبر النموذج كم أخطأ — واختيارها يغيّر ما يتعلّمه النموذج فعلاً.',
+        lead_en: 'Regression predicts a continuous number, and the loss function tells the model how wrong it was, and choosing it changes what the model actually learns.',
+        body_ar: [
+          'الانحدار الخطي أبسط نماذج التنبؤ بالأرقام: يفترض أن المخرج مجموع موزون للمدخلات مع ثابت. فسعر البيت = وزن١×المساحة + وزن٢×عدد الغرف + ثابت. ومهمة التدريب إيجاد الأوزان التي تجعل الخط أقرب ما يكون لكل النقاط.',
+          'والوزن هنا له تفسير مباشر مفيد: يمثّل مقدار تغيّر المخرج عند زيادة السمة وحدة واحدة مع ثبات البقية. فوزن المساحة ٣٠٠٠ يعني أن كل متر إضافي يرفع السعر المتوقَّع ٣٠٠٠. وهذي القابلية للتفسير سبب بقاء الانحدار الخطي مستخدماً رغم بساطته.',
+          'ودالة الخسارة تقيس بُعد التنبؤ عن الحقيقة. وأشهرها متوسط مربع الخطأ: يُطرح المتنبَّأ من الحقيقي ويُربَّع الفرق ثم يُؤخذ المتوسط. والتربيع له غرضان: يجعل الأخطاء موجبة فلا يلغي الخطأ الموجب السالب، ويعاقب الأخطاء الكبيرة أشد من الصغيرة.',
+          'ولهذي العقوبة أثر عملي مهم: مربع الخطأ يجعل النموذج حسّاساً جداً للقيم الشاذة، لأن خطأ بمقدار عشرة يصير مئة في الحساب. فإن كانت بياناتك فيها شواذ حقيقية لا تريد أن ينجذب إليها النموذج، فمتوسط الخطأ المطلق أنسب لأنه لا يربّع.',
+          'وهذا مثال على قاعدة أعم: اختيار دالة الخسارة قرار تصميمي لا تفصيل تقني، لأنها تحدد ما يعتبره النموذج خطأً فادحاً. فنموذج يتنبأ بالطلب على دواء، تكلفة نقص التقدير فيه (نفاد الدواء) ليست كتكلفة زيادته (تخزين زائد) — ودالة الخسارة المتماثلة تعاملهما سواء وهو غير مقصود.',
+          'ومقياسان يُقرآن مع بعض عند تقييم الانحدار: جذر متوسط مربع الخطأ يعطيك حجم الخطأ بوحدة المخرج نفسها فيسهل فهمه، ومعامل التحديد يخبرك كم من تباين البيانات فسّره النموذج — وقيمة قريبة من صفر تعني أن النموذج لا يفسّر شيئاً وأنك لو تنبأت بالمتوسط دائماً لكنت مثله.'
+        ],
+        body_en: [
+          'Linear regression is the simplest number-predicting model: it assumes the output is a weighted sum of inputs plus a constant. A house price equals weight one times area plus weight two times room count plus a constant. Training finds the weights placing the line as close as possible to all points.',
+          'A weight here has a directly useful interpretation: how much the output changes when the feature rises by one unit with the rest fixed. An area weight of 3,000 means each extra square metre raises the expected price by 3,000. That interpretability is why linear regression endures despite its simplicity.',
+          'The loss function measures how far a prediction is from truth. The best known is mean squared error: subtract the prediction from the truth, square the difference, then average. Squaring serves two purposes: it makes errors positive so a positive one does not cancel a negative, and it punishes large errors far more than small ones.',
+          'That punishment has an important practical effect: squared error makes the model very sensitive to outliers, since an error of ten becomes a hundred in the calculation. If your data holds genuine outliers you do not want the model pulled toward, mean absolute error suits better because it does not square.',
+          'This illustrates a broader rule: choosing a loss function is a design decision rather than a technical detail, because it defines what the model considers a grave error. A model predicting medicine demand faces asymmetric costs, since under-predicting means running out while over-predicting means excess storage, and a symmetric loss treats them alike, which is not what was intended.',
+          'Two metrics are read together when evaluating regression: root mean squared error gives the error size in the output own unit so it is easy to grasp, and the coefficient of determination tells how much of the data variance the model explained, where a value near zero means the model explains nothing and predicting the mean every time would have matched it.'
+        ],
+        table: {
+          head_ar: ['الدالة أو المقياس', 'ما يفعله', 'متى تختاره'],
+          head_en: ['Function or metric', 'What it does', 'When to choose it'],
+          rows: [
+            ['متوسط مربع الخطأ', 'يربّع الفروق فيعاقب الكبير', 'حين تريد تجنّب الأخطاء الكبيرة'],
+            ['متوسط الخطأ المطلق', 'لا يربّع فيقاوم الشواذ', 'حين توجد قيم شاذة حقيقية'],
+            ['جذر متوسط المربع', 'حجم الخطأ بوحدة المخرج', 'لعرض النتيجة بلغة مفهومة'],
+            ['معامل التحديد', 'نسبة التباين المفسَّر', 'لمعرفة هل النموذج أفضل من المتوسط']
+          ]
+        },
+        keyPoints_ar: [
+          'الانحدار الخطي مجموع موزون للمدخلات، ووزنه قابل للتفسير المباشر.',
+          'التربيع يمنع تلاشي الأخطاء المتعاكسة ويعاقب الكبيرة أشد.',
+          'مربع الخطأ حسّاس للشواذ، والخطأ المطلق أقاوم لها.',
+          'اختيار الخسارة قرار تصميمي: يحدد ما يعدّه النموذج خطأً فادحاً.',
+          'الكلفة غير المتماثلة تحتاج خسارة غير متماثلة، لا خسارة قياسية.',
+          'معامل تحديد قريب من الصفر يعني أن التنبؤ بالمتوسط يعادل نموذجك.'
+        ],
+        keyPoints_en: [
+          'Linear regression is a weighted sum of inputs, and its weights are directly interpretable.',
+          'Squaring stops opposite errors cancelling and punishes large ones harder.',
+          'Squared error is outlier-sensitive while absolute error resists them.',
+          'Choosing the loss is a design decision: it defines what counts as a grave error.',
+          'Asymmetric costs need an asymmetric loss rather than a standard one.',
+          'A determination coefficient near zero means predicting the mean matches your model.'
+        ],
+        analogy_ar: 'تخيّل مدرّب رماية يقيس أداء متدرّبيه. لو حسب متوسط بُعد الطلقات عن المركز بلا تربيع، لتساوى من أخطأ عشر طلقات قليلاً مع من أصاب تسعاً وأخطأ واحدة بعيداً جداً. والتربيع يجعل الطلقة الشاردة تُحسب بثقل، فيتعلّم الرامي تجنّب الكوارث لا مجرد تحسين المعدل. وهذا نافع في الرماية، ومضرّ إن كانت الطلقة الشاردة خطأ في القياس لا في الرامي.',
+        analogy_en: 'Picture a shooting coach measuring trainees. Averaging shot distance from centre without squaring makes someone who missed ten shots slightly equal to someone who hit nine and missed one wildly. Squaring weights the stray shot heavily, so the shooter learns to avoid disasters rather than merely improve the average. That helps in shooting and hurts when the stray shot is a measurement error rather than the shooter.',
+        terms: [
+          { term: 'Linear Regression', def_ar: 'نموذج يتنبأ برقم كمجموع موزون للمدخلات.', def_en: 'A model predicting a number as a weighted sum of inputs.' },
+          { term: 'Loss Function', def_ar: 'دالة تقيس بُعد التنبؤ عن الحقيقة ويُقلَّل ناتجها بالتدريب.', def_en: 'A function measuring prediction distance from truth, minimised by training.' },
+          { term: 'MSE', def_ar: 'متوسط مربع الخطأ، يعاقب الأخطاء الكبيرة أشد.', def_en: 'Mean squared error, punishing large errors harder.' },
+          { term: 'MAE', def_ar: 'متوسط الخطأ المطلق، أقاوم للقيم الشاذة.', def_en: 'Mean absolute error, more resistant to outliers.' },
+          { term: 'R²', def_ar: 'نسبة تباين البيانات التي فسّرها النموذج.', def_en: 'The share of data variance the model explained.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا تُربَّع الفروق في دالة الخسارة؟', q_en: 'Why square the differences in the loss?', a_ar: 'لمنع تلاشي الخطأ الموجب مع السالب، ولمعاقبة الأخطاء الكبيرة أشد من الصغيرة.', a_en: 'To stop positive and negative errors cancelling, and to punish large errors harder than small ones.' },
+          { q_ar: 'متى تفضّل الخطأ المطلق على مربع الخطأ؟', q_en: 'When prefer absolute error over squared error?', a_ar: 'حين توجد قيم شاذة حقيقية لا تريد أن ينجذب إليها النموذج.', a_en: 'When genuine outliers exist that you do not want the model pulled toward.' },
+          { q_ar: 'كيف يُفسَّر وزن السمة في الانحدار الخطي؟', q_en: 'How is a feature weight interpreted in linear regression?', a_ar: 'مقدار تغيّر المخرج عند زيادة السمة وحدة واحدة مع ثبات بقية السمات.', a_en: 'How much the output changes when the feature rises by one unit with the rest fixed.' },
+          { q_ar: 'ماذا يعني معامل تحديد قريب من الصفر؟', q_en: 'What does a determination coefficient near zero mean?', a_ar: 'أن النموذج لا يفسّر تباين البيانات، فالتنبؤ بالمتوسط دائماً يعادله.', a_en: 'The model explains no variance, so always predicting the mean would match it.' }
+        ]
+      },
+      {
+        title_ar: 'التصنيف وأشجار القرار',
+        title_en: 'Classification and Decision Trees',
+        lead_ar: 'التصنيف يعطي فئة لا رقماً، ومخرجه احتمال يتحوّل لقرار بعتبة تختارها أنت — واختيار العتبة قرار عمل لا قرار تقني.',
+        lead_en: 'Classification yields a category rather than a number, and its output is a probability turned into a decision by a threshold you choose, and that choice is a business decision rather than a technical one.',
+        body_ar: [
+          'نماذج التصنيف لا تعطي فئة مباشرة في الغالب، وإنما احتمالاً بين صفر وواحد: احتمال أن تكون هذي المعاملة احتيالاً ٠٫٧٣. ثم تُقارَن بعتبة لتصير قراراً. والعتبة الافتراضية ٠٫٥ ليست مقدسة، وتغييرها يغيّر سلوك النظام كله بلا إعادة تدريب.',
+          'وضبط العتبة قرار عمل: خفضها يجعل النظام أكثر حساسية فيمسك احتيالاً أكثر ويزعج عملاء سليمين أكثر، ورفعها يقلل الإزعاج ويترك احتيالاً يمرّ. ولا يوجد جواب تقني صحيح — الجواب يأتي من كلفة كل نوع خطأ في مجالك.',
+          'ولهذا لا تكفي الدقة مقياساً. فمصفوفة الالتباس تفصّل أربع حالات: إيجابي صحيح وسلبي صحيح وإيجابي كاذب وسلبي كاذب. ومنها يُشتق مقياسان متعاكسان: الضبط وهو نسبة الصحيح مما أنذر به النظام، والاستدعاء وهو نسبة ما أمسكه من الحالات الحقيقية.',
+          'والعلاقة بينهما مقايضة حتمية: ارفع الاستدعاء ينخفض الضبط والعكس. ففي كشف السرطان نريد استدعاءً عالياً — فوات حالة كارثة، وإنذار كاذب يعني فحصاً إضافياً. وفي تصفية البريد نريد ضبطاً عالياً — رسالة مزعجة تمر مزعجة، لكن رسالة مهمة تذهب للمهملات كارثة.',
+          'وشجرة القرار نموذج مختلف كلياً في طريقته: تطرح سلسلة أسئلة نعم أو لا، وكل سؤال يقسّم البيانات، حتى تصل لورقة فيها الفئة. وميزتها الكبرى الشفافية: تستطيع أن تقرأ مسار القرار وتشرحه لغير متخصص — وهذي ميزة نادرة تجعلها مفضّلة في المجالات التي تلزم فيها التبريرات.',
+          'وعيبها الأشهر ميلها الشديد للحفظ: شجرة عميقة بلا قيد ستصنع فرعاً لكل عيّنة تقريباً فتحفظ التدريب وتفشل على الجديد. ويُعالَج بتحديد العمق أو بأقل عدد عيّنات للورقة، أو بجمع أشجار كثيرة مختلفة وأخذ تصويتها — وهذي فكرة الغابة العشوائية التي تجمع دقة عالية مع مقاومة للحفظ.'
+        ],
+        body_en: [
+          'Classification models usually do not output a category directly but a probability between zero and one: a 0.73 chance this transaction is fraud. It is then compared against a threshold to become a decision. The default 0.5 is not sacred, and changing it alters the whole system behaviour with no retraining.',
+          'Setting the threshold is a business decision: lowering it makes the system more sensitive, catching more fraud and disturbing more legitimate customers, while raising it reduces disturbance and lets fraud through. There is no technically correct answer; it comes from the cost of each error type in your domain.',
+          'So accuracy alone is insufficient. The confusion matrix details four cases: true positive, true negative, false positive and false negative. From it come two opposing metrics: precision, the share of correct alarms among all alarms raised, and recall, the share of real cases the system caught.',
+          'Their relationship is an inevitable trade-off: raising recall lowers precision and the reverse. In cancer detection we want high recall, since a missed case is a catastrophe while a false alarm means an extra scan. In spam filtering we want high precision, since a spam message getting through is annoying while an important message in the junk folder is a disaster.',
+          'A decision tree is entirely different in method: it asks a series of yes-or-no questions, each splitting the data, until reaching a leaf holding the class. Its great merit is transparency: you can read the decision path and explain it to a non-specialist, a rare quality making it preferred in domains requiring justification.',
+          'Its best-known flaw is a strong tendency to memorise: an unconstrained deep tree will create nearly a branch per sample, memorising the training set and failing on new data. It is treated by limiting depth or setting a minimum leaf sample count, or by growing many varied trees and taking their vote, which is the random forest idea combining high accuracy with memorisation resistance.'
+        ],
+        table: {
+          head_ar: ['المقياس', 'ما يجيب عنه', 'يُفضَّل حين'],
+          head_en: ['Metric', 'What it answers', 'Preferred when'],
+          rows: [
+            ['الدقة', 'نسبة التنبؤات الصحيحة كلها', 'الفئات متوازنة'],
+            ['الضبط', 'كم من إنذاراتي كانت صحيحة', 'الإنذار الكاذب مكلف'],
+            ['الاستدعاء', 'كم من الحالات الحقيقية أمسكت', 'فوات الحالة كارثي'],
+            ['F1', 'توازن بين الضبط والاستدعاء', 'الخطآن متقاربا الكلفة']
+          ]
+        },
+        keyPoints_ar: [
+          'مخرج التصنيف احتمال، والعتبة هي ما يحوّله لقرار.',
+          'ضبط العتبة قرار عمل يحدده كلفة كل نوع خطأ لا حساب تقني.',
+          'الضبط والاستدعاء متعاكسان، ورفع أحدهما يخفض الآخر.',
+          'كشف المرض يطلب استدعاءً عالياً، وتصفية البريد تطلب ضبطاً عالياً.',
+          'شجرة القرار شفافة قابلة للشرح، وهذي ميزتها الكبرى.',
+          'الشجرة العميقة بلا قيد تحفظ، والغابة العشوائية تعالج ذلك بالتصويت.'
+        ],
+        keyPoints_en: [
+          'Classification output is a probability, and the threshold turns it into a decision.',
+          'Setting the threshold is a business decision driven by error costs, not a technical computation.',
+          'Precision and recall oppose each other: raising one lowers the other.',
+          'Disease detection needs high recall; spam filtering needs high precision.',
+          'A decision tree is transparent and explainable, which is its greatest merit.',
+          'An unconstrained deep tree memorises, and a random forest fixes it by voting.'
+        ],
+        analogy_ar: 'تخيّل حارس أمن عند بوابة. لو شدّد كثيراً منع كل مشبوه ومعه عشرات الأبرياء — استدعاء عالٍ وضبط منخفض. ولو تساهل مرّ الأبرياء ومعهم بعض المخالفين — ضبط عالٍ واستدعاء منخفض. ولا يوجد ضبط «صحيح» للحارس؛ يعتمد على أي الخطأين أكلف: منع بريء أم دخول مخالف. وشجرة القرار حارس يشرح لك سبب منعه بجملة: «لأنك بلا بطاقة وفي وقت متأخر».',
+        analogy_en: 'Picture a gate guard. Tightening stops every suspect along with dozens of innocents: high recall, low precision. Relaxing lets innocents through along with some violators: high precision, low recall. There is no correct setting for the guard; it depends on which error costs more, blocking an innocent or admitting a violator. A decision tree is a guard who explains the refusal in one sentence: because you have no badge and it is after hours.',
+        terms: [
+          { term: 'Threshold', def_ar: 'الحد الذي يتحوّل عنده الاحتمال إلى قرار فئة.', def_en: 'The cut-off turning a probability into a class decision.' },
+          { term: 'Precision', def_ar: 'نسبة الصحيح مما أنذر به النظام.', def_en: 'The share of raised alarms that were correct.' },
+          { term: 'Recall', def_ar: 'نسبة ما أمسكه النظام من الحالات الحقيقية.', def_en: 'The share of real cases the system caught.' },
+          { term: 'Confusion Matrix', def_ar: 'جدول يفصّل الحالات الأربع للتنبؤ مقابل الحقيقة.', def_en: 'A table detailing four cases of prediction against truth.' },
+          { term: 'Random Forest', def_ar: 'جمع أشجار كثيرة مختلفة وأخذ تصويتها لتقليل الحفظ.', def_en: 'Combining many varied trees and voting to reduce memorisation.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي يحوّل احتمال النموذج إلى قرار؟', q_en: 'What turns a model probability into a decision?', a_ar: 'العتبة، وقيمتها الافتراضية ٠٫٥ ليست مقدسة وتغييرها يغيّر سلوك النظام بلا إعادة تدريب.', a_en: 'The threshold, whose default 0.5 is not sacred and changing it alters behaviour with no retraining.' },
+          { q_ar: 'أي المقياسين يهم في كشف مرض خطير؟', q_en: 'Which metric matters in detecting a serious disease?', a_ar: 'الاستدعاء، لأن فوات حالة كارثة والإنذار الكاذب يعني فحصاً إضافياً فقط.', a_en: 'Recall, because a missed case is catastrophic while a false alarm only means an extra check.' },
+          { q_ar: 'ما ميزة شجرة القرار الكبرى؟', q_en: 'What is a decision tree greatest merit?', a_ar: 'الشفافية: يمكن قراءة مسار القرار وشرحه لغير المتخصص.', a_en: 'Transparency: the decision path can be read and explained to a non-specialist.' },
+          { q_ar: 'كيف تُعالَج ميل الشجرة للحفظ؟', q_en: 'How is a tree tendency to memorise treated?', a_ar: 'بتحديد العمق أو أقل عدد عيّنات للورقة، أو بجمع أشجار كثيرة والتصويت بينها.', a_en: 'By limiting depth or minimum leaf samples, or by growing many trees and voting.' }
+        ]
+      },
+      {
+        title_ar: 'التجميع وتقليل الأبعاد',
+        title_en: 'Clustering and Dimensionality Reduction',
+        lead_ar: 'التجميع يكتشف مجموعات بلا إجابات مسبقة، وتقليل الأبعاد يضغط السمات الكثيرة — وكلاهما استكشاف يحتاج تفسيراً بشرياً بعده.',
+        lead_en: 'Clustering discovers groups with no prior answers and dimensionality reduction compresses many features, and both are exploration needing human interpretation afterwards.',
+        body_ar: [
+          'التجميع يقسّم البيانات إلى مجموعات متشابهة داخلياً متباينة فيما بينها، بلا أن تخبره ما المجموعات. وأشهر خوارزمياته تعمل هكذا: تختار عدداً من المراكز عشوائياً، ثم تنسب كل نقطة لأقرب مركز، ثم تحرّك كل مركز إلى متوسط نقاطه، وتكرر حتى تستقر المراكز.',
+          'ومشكلتها الأولى أن عليك أن تحدد عدد المجموعات مسبقاً وهو ما لا تعرفه غالباً. وتُستخدم طرق مساعدة كرسم مقياس التماسك مقابل عدد المجموعات والبحث عن نقطة الانكسار حيث يتوقف التحسن الكبير. لكن هذي دلالة لا حكم، والقرار النهائي يظل بشرياً يوازن بين الرياضيات وقابلية الاستخدام: عشرون شريحة عملاء رياضياً أفضل وعملياً غير قابلة للإدارة.',
+          'وحسّاسيتها للمقياس مسألة حاسمة: هي تعتمد المسافات، فعمود بأرقام كبيرة يسيطر على حساب المسافة. ولهذا التطبيع قبل التجميع ليس اختيارياً — وإهماله من أشهر أسباب نتائج تجميع بلا معنى.',
+          'والنتيجة تحتاج تفسيراً: الخوارزمية تعطيك أن المجموعة الأولى فيها كذا نقطة، ولا تقول لك إن هذي «شريحة العملاء المتحفظين». والتفسير يتم بفحص خصائص كل مجموعة ومقارنتها، وهذا عمل بشري لا آلي، وهو ما يحوّل نتيجة تقنية إلى قرار عمل.',
+          'وتقليل الأبعاد مسألة أخرى: حين تكون سماتك مئة، تظهر مشاكل تُعرف بلعنة الأبعاد — تتباعد النقاط كلها فتفقد المسافة معناها، ويزداد خطر الحفظ، ويثقل الحساب. فيُضغط الفضاء إلى أبعاد أقل تحفظ أكبر قدر من التباين.',
+          'والاستخدام الأنفع لتقليل الأبعاد ليس دائماً تسريع التدريب، بل التصوير: ضغط بيانات بمئة سمة إلى بُعدين يجعل رسمها ممكناً على شاشة، فترى بعينك تجمّعات وقيماً شاذة وأنماطاً ما كنت لتلحظها في جدول. وحدّه أن الأبعاد الجديدة مركّبة لا معنى مباشر لها، فتخسر التفسير مقابل الوضوح البصري.'
+        ],
+        body_en: [
+          'Clustering splits data into internally similar and mutually distinct groups without being told what the groups are. Its best-known algorithm works thus: pick several centres at random, assign each point to the nearest, move each centre to the average of its points, and repeat until the centres settle.',
+          'Its first problem is that you must specify the number of groups in advance, which you usually do not know. Helper methods exist, such as plotting a cohesion measure against group count and finding the elbow where large improvement stops. But that is an indication rather than a verdict, and the final decision stays human, balancing mathematics against usability: twenty customer segments may be mathematically better and operationally unmanageable.',
+          'Its scale sensitivity is decisive: it relies on distances, so a column with large numbers dominates the distance calculation. Scaling before clustering is therefore not optional, and neglecting it is among the most common causes of meaningless clustering results.',
+          'The result needs interpretation: the algorithm tells you group one holds so many points, not that this is the conservative customer segment. Interpretation comes from inspecting and comparing each group characteristics, and that is human rather than machine work, and it is what turns a technical result into a business decision.',
+          'Dimensionality reduction is a different matter: with a hundred features, problems known as the curse of dimensionality appear, as all points grow distant so distance loses meaning, memorisation risk rises, and computation gets heavy. So the space is compressed into fewer dimensions preserving as much variance as possible.',
+          'Its most useful application is not always faster training but visualisation: compressing hundred-feature data into two dimensions makes plotting on a screen possible, so you see clusters, outliers and patterns you would never notice in a table. Its limit is that the new dimensions are composites with no direct meaning, so you trade interpretability for visual clarity.'
+        ],
+        table: {
+          head_ar: ['الأسلوب', 'مدخله', 'مخرجه', 'قيده'],
+          head_en: ['Method', 'Input', 'Output', 'Limitation'],
+          rows: [
+            ['التجميع', 'بيانات بلا إجابات', 'مجموعات بلا أسماء', 'تحديد العدد مسبقاً'],
+            ['تقليل الأبعاد', 'سمات كثيرة', 'أبعاد أقل تحفظ التباين', 'أبعاد بلا معنى مباشر'],
+            ['كشف الشذوذ', 'ما هو معتاد', 'إشارة لما يخالفه', 'يحتاج تعريف المعتاد'],
+            ['التصوير ببعدين', 'بيانات عالية الأبعاد', 'رسم يُرى بالعين', 'تشويه بعض العلاقات']
+          ]
+        },
+        keyPoints_ar: [
+          'التجميع يشترط تحديد عدد المجموعات مسبقاً وهو ما لا تعرفه غالباً.',
+          'نقطة الانكسار دلالة لا حكم، والقرار النهائي يوازن الرياضيات بقابلية الإدارة.',
+          'التطبيع قبل التجميع ليس اختيارياً لأن الخوارزمية تعتمد المسافات.',
+          'الخوارزمية تعطي المجموعات ولا تسمّيها، والتفسير عمل بشري.',
+          'لعنة الأبعاد: كثرة السمات تُفقد المسافة معناها وترفع خطر الحفظ.',
+          'أنفع استخدامات تقليل الأبعاد التصوير، وثمنه فقدان معنى الأبعاد الجديدة.'
+        ],
+        keyPoints_en: [
+          'Clustering requires specifying the group count in advance, which you usually do not know.',
+          'The elbow is an indication rather than a verdict; the final call balances maths with manageability.',
+          'Scaling before clustering is not optional because the algorithm relies on distances.',
+          'The algorithm produces groups without naming them; interpretation is human work.',
+          'The curse of dimensionality: many features make distance meaningless and raise memorisation risk.',
+          'The most useful reduction application is visualisation, at the price of meaningless new dimensions.'
+        ],
+        analogy_ar: 'تخيّل أنك دخلت قاعة فيها مئتا شخص وطُلب منك تقسيمهم لمجموعات متشابهة بلا أن يخبرك أحد على أي أساس. ستلاحظ من يقف مع من ومن يشبه من، ثم تعطي كل مجموعة حدوداً. لكن تسمية المجموعة — «هؤلاء المهندسون» — قرارك أنت بعد أن تنظر فيهم، لا نتيجة القسمة. وتقليل الأبعاد أن تصوّر القاعة من الأعلى بصورة واحدة: تخسر التفاصيل وترى التجمّعات فوراً.',
+        analogy_en: 'Picture entering a hall of two hundred people asked to split them into similar groups with nobody telling you on what basis. You notice who stands with whom and who resembles whom, then draw boundaries. But naming a group, "these are the engineers", is your decision after looking at them, not the output of the split. Dimensionality reduction is photographing the hall from above in one image: you lose detail and see the clusters instantly.',
+        terms: [
+          { term: 'Clustering', def_ar: 'تقسيم البيانات لمجموعات متشابهة بلا إجابات مسبقة.', def_en: 'Splitting data into similar groups with no prior answers.' },
+          { term: 'Centroid', def_ar: 'مركز المجموعة، وهو متوسط نقاطها.', def_en: 'A group centre, the average of its points.' },
+          { term: 'Elbow Method', def_ar: 'طريقة تقترح عدد المجموعات بالبحث عن نقطة توقف التحسن الكبير.', def_en: 'A method suggesting group count by finding where large improvement stops.' },
+          { term: 'Curse of Dimensionality', def_ar: 'تدهور المسافة والأداء مع كثرة السمات.', def_en: 'Distance and performance degrading as features multiply.' },
+          { term: 'PCA', def_ar: 'ضغط السمات لأبعاد أقل تحفظ أكبر تباين ممكن.', def_en: 'Compressing features into fewer dimensions preserving maximum variance.' }
+        ],
+        cards: [
+          { q_ar: 'ما أول ما يجب فعله قبل التجميع؟', q_en: 'What must be done before clustering?', a_ar: 'تطبيع السمات، لأن الخوارزمية تعتمد المسافات فيسيطر العمود كبير الأرقام.', a_en: 'Scale the features, because the algorithm relies on distances and a large-numbered column dominates.' },
+          { q_ar: 'هل تحدد نقطة الانكسار عدد المجموعات نهائياً؟', q_en: 'Does the elbow settle the group count?', a_ar: 'لا، هي دلالة؛ والقرار النهائي يوازن بين الرياضيات وقابلية إدارة المجموعات عملياً.', a_en: 'No, it is an indication; the final call balances mathematics with practical manageability.' },
+          { q_ar: 'ما لعنة الأبعاد؟', q_en: 'What is the curse of dimensionality?', a_ar: 'مع كثرة السمات تتباعد النقاط فتفقد المسافة معناها ويزداد خطر الحفظ ويثقل الحساب.', a_en: 'With many features points grow distant, distance loses meaning, memorisation risk rises and computation gets heavy.' },
+          { q_ar: 'ما ثمن تقليل الأبعاد؟', q_en: 'What is the price of dimensionality reduction?', a_ar: 'الأبعاد الجديدة مركّبة بلا معنى مباشر، فتخسر التفسير مقابل الوضوح.', a_en: 'The new dimensions are composites with no direct meaning, trading interpretability for clarity.' }
+        ]
+      },
+      {
+        title_ar: 'التقييم وفرط التخصيص',
+        title_en: 'Evaluation and Overfitting',
+        lead_ar: 'فرط التخصيص أن يحفظ النموذج بدل أن يفهم، وعلامته الفارقة فجوة بين أداء التدريب والاختبار — وهو أشهر أسباب فشل النماذج في الإنتاج.',
+        lead_en: 'Overfitting is memorising instead of understanding, marked by a gap between training and test performance, and it is the most common cause of model failure in production.',
+        body_ar: [
+          'فرط التخصيص أن يلتقط النموذج تفاصيل بيانات التدريب وضجيجها بدل النمط العام. فيبدو ممتازاً عليها وينهار على أي بيانات جديدة. وعلامته الفارقة واضحة ولا تخطئها: خطأ منخفض جداً على التدريب مع خطأ مرتفع على الاختبار.',
+          'ونقيضه نقص التخصيص: نموذج أبسط من أن يلتقط النمط أصلاً، فأداؤه ضعيف على التدريب والاختبار معاً. والفرق بينهما مهم في التشخيص: النموذج السيء على الاثنين يحتاج قوة أكثر أو سمات أفضل، والنموذج الممتاز على التدريب فقط يحتاج تقييداً.',
+          'وأسبابه ثلاثة: نموذج معقّد أكثر مما تحتمل البيانات، وبيانات قليلة لا تكفي لاستخلاص نمط عام، وتدريب طويل جداً يبدأ بعده النموذج بحفظ الأمثلة بعد أن استنفد النمط.',
+          'وعلاجه بأربعة على الأقل: زيادة البيانات وهي الأنجع دائماً، وتبسيط النموذج، والتنظيم وهو عقوبة تُضاف للخسارة على الأوزان الكبيرة فتدفع النموذج لحلول أبسط، والإيقاف المبكر بمراقبة خطأ التحقق والتوقف حين يبدأ بالارتفاع ولو كان خطأ التدريب ما زال ينخفض.',
+          'ومنحنى التعلّم أداة تشخيص ممتازة: ارسم خطأ التدريب وخطأ التحقق مقابل حجم البيانات. فإن كان الخطآن مرتفعين ومتقاربين فالمشكلة نقص تخصيص ولن تحلها بيانات إضافية. وإن كانت الفجوة بينهما واسعة فالمشكلة فرط تخصيص وزيادة البيانات ستنفع.',
+          'وأخيراً تذكّر أن كل هذي المقاييس تقيس أداءً على بيانات جمعتها في الماضي. والعالم يتغيّر، فيقع ما يُسمّى انحراف البيانات: يتغيّر توزيع المدخلات فيتقادم النموذج بلا أن يتعطّل — يظل يعمل ويعطي أرقاماً وتنخفض دقته بصمت. ولهذا المراقبة بعد النشر جزء من التقييم لا خطوة تالية له.'
+        ],
+        body_en: [
+          'Overfitting is a model capturing training data details and noise instead of the general pattern. It looks excellent on that data and collapses on anything new. Its signature is unmistakable: very low training error alongside high test error.',
+          'Its opposite is underfitting: a model too simple to capture the pattern at all, performing poorly on both training and test. The distinction matters for diagnosis: poor on both needs more power or better features, while excellent on training only needs constraint.',
+          'It has three causes: a model more complex than the data supports, data too scarce to yield a general pattern, and training run so long that the model begins memorising examples after exhausting the pattern.',
+          'It has at least four treatments: more data, always the most effective; a simpler model; regularisation, a penalty added to the loss for large weights pushing the model toward simpler solutions; and early stopping, watching validation error and halting when it starts rising even while training error still falls.',
+          'The learning curve is an excellent diagnostic: plot training and validation error against data size. If both are high and close, the problem is underfitting and extra data will not solve it. If the gap between them is wide, the problem is overfitting and more data will help.',
+          'Finally, remember that all these metrics measure performance on data gathered in the past. The world changes, producing what is called data drift: the input distribution shifts so the model ages without breaking, continuing to run and produce numbers while its accuracy quietly declines. So post-deployment monitoring is part of evaluation rather than a step after it.'
+        ],
+        table: {
+          head_ar: ['الحالة', 'خطأ التدريب', 'خطأ الاختبار', 'العلاج'],
+          head_en: ['Case', 'Training error', 'Test error', 'Treatment'],
+          rows: [
+            ['فرط تخصيص', 'منخفض جداً', 'مرتفع', 'بيانات أكثر · تنظيم · تبسيط'],
+            ['نقص تخصيص', 'مرتفع', 'مرتفع', 'نموذج أقوى · سمات أفضل'],
+            ['ملائم', 'منخفض', 'منخفض قريب منه', 'أبقِ المراقبة'],
+            ['انحراف بيانات', 'كان منخفضاً', 'يرتفع مع الزمن', 'إعادة تدريب على بيانات حديثة']
+          ]
+        },
+        keyPoints_ar: [
+          'فرط التخصيص: خطأ تدريب منخفض جداً مع خطأ اختبار مرتفع.',
+          'نقص التخصيص: خطأ مرتفع على الاثنين، ويحتاج قوة أكثر لا تقييداً.',
+          'التنظيم عقوبة على الأوزان الكبيرة تدفع النموذج لحلول أبسط.',
+          'الإيقاف المبكر يتوقف حين يرتفع خطأ التحقق ولو استمر خطأ التدريب بالانخفاض.',
+          'منحنى التعلّم يميّز الحالتين: تقارب مرتفع نقصٌ، وفجوة واسعة فرطٌ.',
+          'انحراف البيانات يقادم النموذج بصمت، فالمراقبة جزء من التقييم لا تاليةٌ له.'
+        ],
+        keyPoints_en: [
+          'Overfitting: very low training error with high test error.',
+          'Underfitting: high error on both, needing more power rather than constraint.',
+          'Regularisation penalises large weights, pushing the model toward simpler solutions.',
+          'Early stopping halts when validation error rises even while training error still falls.',
+          'The learning curve separates the two: high and close means underfitting, a wide gap means overfitting.',
+          'Data drift ages a model silently, so monitoring is part of evaluation rather than after it.'
+        ],
+        analogy_ar: 'تخيّل طالبين. الأول حفظ أسئلة السنوات الماضية بحلولها حرفياً، فأخذ العلامة الكاملة في مراجعتها وسقط في امتحان بصياغة جديدة — هذا فرط التخصيص. والثاني لم يذاكر أصلاً فسقط في الاثنين — هذا نقص التخصيص. وانحراف البيانات أن يبقى الطالب متفوقاً سنوات ثم يتغيّر المنهج ولا أحد يخبره: يجيب بثقة بما تعلّمه وقد صار خطأً.',
+        analogy_en: 'Picture two students. The first memorised past exam questions with their answers verbatim, scoring full marks reviewing them and failing an exam phrased anew: that is overfitting. The second never studied and failed both: that is underfitting. Data drift is a student excelling for years until the curriculum changes and nobody tells them: they answer confidently with what they learned, which is now wrong.',
+        terms: [
+          { term: 'Overfitting', def_ar: 'حفظ تفاصيل التدريب وضجيجه بدل النمط العام.', def_en: 'Memorising training details and noise instead of the general pattern.' },
+          { term: 'Underfitting', def_ar: 'نموذج أبسط من أن يلتقط النمط فيفشل على الاثنين.', def_en: 'A model too simple to capture the pattern, failing on both sets.' },
+          { term: 'Regularisation', def_ar: 'عقوبة على الأوزان الكبيرة تدفع لحلول أبسط.', def_en: 'A penalty on large weights pushing toward simpler solutions.' },
+          { term: 'Early Stopping', def_ar: 'إيقاف التدريب حين يبدأ خطأ التحقق بالارتفاع.', def_en: 'Halting training when validation error starts rising.' },
+          { term: 'Data Drift', def_ar: 'تغيّر توزيع البيانات مع الزمن فيتقادم النموذج بصمت.', def_en: 'The data distribution shifting over time so the model silently ages.' }
+        ],
+        cards: [
+          { q_ar: 'ما العلامة الفارقة لفرط التخصيص؟', q_en: 'What is the signature of overfitting?', a_ar: 'خطأ منخفض جداً على التدريب مع خطأ مرتفع على الاختبار.', a_en: 'Very low training error alongside high test error.' },
+          { q_ar: 'كيف يميّز منحنى التعلّم بين فرط التخصيص ونقصه؟', q_en: 'How does the learning curve tell the two apart?', a_ar: 'خطآن مرتفعان متقاربان يعني نقصاً، وفجوة واسعة بينهما تعني فرطاً.', a_en: 'Both high and close means underfitting; a wide gap means overfitting.' },
+          { q_ar: 'ماذا يفعل التنظيم؟', q_en: 'What does regularisation do?', a_ar: 'يضيف عقوبة على الأوزان الكبيرة فيدفع النموذج نحو حلول أبسط أقل حفظاً.', a_en: 'It adds a penalty on large weights, pushing the model toward simpler, less memorising solutions.' },
+          { q_ar: 'لماذا لا يكفي التقييم مرة واحدة قبل النشر؟', q_en: 'Why is one pre-deployment evaluation not enough?', a_ar: 'لأن انحراف البيانات يقادم النموذج بصمت، فيظل يعمل وتنخفض دقته دون إنذار.', a_en: 'Because data drift ages the model silently, so it keeps running while accuracy declines with no warning.' }
+        ]
+      }
+    ],
+
+    // ─────────── التعلّم العميق ───────────
+    3: [
+      {
+        title_ar: 'العصبون والشبكة الأمامية',
+        title_en: 'The Neuron and Feedforward Networks',
+        lead_ar: 'العصبون الواحد ليس إلا مجموعاً موزوناً يمرّ بدالة، وقوة الشبكة تأتي من تكديس هذي الوحدات البسيطة في طبقات.',
+        lead_en: 'A single neuron is no more than a weighted sum passed through a function, and network power comes from stacking these simple units in layers.',
+        body_ar: [
+          'العصبون الاصطناعي أبسط مما يوحي اسمه: يستقبل مدخلات، ويضرب كل مدخل في وزنه، ويجمع النواتج، ويضيف إزاحة، ثم يمرّر المجموع بدالة تفعيل. وهذي العملية كلها هي ما يجري ملايين المرات في أي شبكة عميقة.',
+          'والوزن يحدد أهمية المدخل، والإزاحة تحرّك عتبة التفعيل فتسمح للعصبون بالاستجابة حتى لو كانت المدخلات صغيرة. وبدون الإزاحة تُقيَّد الشبكة بمرور دالتها من نقطة الأصل، وهو قيد يضعفها بلا سبب.',
+          'وتُرتَّب العصبونات في طبقات: طبقة إدخال تستقبل السمات، وطبقات خفية تعالج، وطبقة إخراج تعطي النتيجة. وتُسمّى «خفية» لأنك لا ترى مخرجاتها مباشرة، لا لغموض فيها. والشبكة الأمامية تعني أن البيانات تسير في اتجاه واحد من الإدخال للإخراج بلا حلقات راجعة.',
+          'وكلمة «عميق» تعني ببساطة وجود طبقات خفية كثيرة. وفائدة العمق أن كل طبقة تبني تمثيلاً أعقد مما قبلها: في الصور تتعلّم الأولى الحواف، والتالية أشكالاً بسيطة، والتالية أجزاء كوجه أو عجلة، والأخيرة الكائن كاملاً. وهذا التدرّج التلقائي هو ما يميّز التعلّم العميق.',
+          'وعدد الطبقات وعدد العصبونات في كل طبقة قرارات تصميمية لا يوجد لها قانون: يُبدأ ببنية معروفة لمسائل مشابهة ثم تُعدَّل بالتجريب على مجموعة التحقق. والقاعدة الأولى: ابدأ بأصغر شبكة معقولة، فزيادة الحجم قبل الحاجة تجلب حفظاً وبطئاً بلا مكسب.',
+          'وحدّ مهم يُغفَل: الشبكة الأمامية لا ذاكرة لها. فكل مدخل يُعالَج مستقلاً عمّا سبقه، فلا تصلح وحدها للبيانات المتسلسلة التي يعتمد معناها على الترتيب — كجملة أو سلسلة زمنية. وهذا القيد بالضبط هو ما وُجدت الشبكات المتكررة لعلاجه.'
+        ],
+        body_en: [
+          'An artificial neuron is simpler than its name suggests: it takes inputs, multiplies each by its weight, sums the results, adds a bias, then passes the sum through an activation function. This entire operation is what runs millions of times in any deep network.',
+          'The weight sets input importance while the bias shifts the activation threshold, letting a neuron respond even when inputs are small. Without a bias the network is forced through the origin, an unnecessary handicap.',
+          'Neurons are arranged in layers: an input layer receiving features, hidden layers processing, and an output layer giving the result. They are called hidden because you do not see their outputs directly, not because anything is obscure. Feedforward means data flows one way from input to output with no return loops.',
+          'The word deep simply means having many hidden layers. Depth helps because each layer builds a more complex representation than the one before: in images the first learns edges, the next simple shapes, the next parts such as a face or a wheel, and the last the whole object. That automatic progression is what distinguishes deep learning.',
+          'Layer count and neurons per layer are design decisions with no governing law: start from a known architecture for similar problems then adjust by experiment on the validation set. The first rule: begin with the smallest reasonable network, since growing before need brings memorisation and slowness with no gain.',
+          'An important overlooked limit: a feedforward network has no memory. Each input is processed independently of what came before, so alone it does not suit sequential data whose meaning depends on order, such as a sentence or a time series. That limitation is precisely what recurrent networks were created to address.'
+        ],
+        table: {
+          head_ar: ['المكوّن', 'دوره', 'أثر إهماله'],
+          head_en: ['Component', 'Its role', 'Effect of omitting it'],
+          rows: [
+            ['الوزن', 'يحدد أهمية المدخل', 'لا تعلّم أصلاً'],
+            ['الإزاحة', 'تحرّك عتبة التفعيل', 'تقييد الشبكة بمرورها من الأصل'],
+            ['دالة التفعيل', 'تدخل اللاخطية', 'الشبكة كلها تعادل طبقة واحدة'],
+            ['الطبقة الخفية', 'تبني تمثيلاً أعقد', 'عجز عن الأنماط المركّبة']
+          ]
+        },
+        keyPoints_ar: [
+          'العصبون: ضرب المدخلات بأوزانها ثم جمعها مع إزاحة ثم تمريرها بدالة تفعيل.',
+          'الإزاحة تحرّر الشبكة من قيد المرور بنقطة الأصل.',
+          '«عميق» تعني كثرة الطبقات الخفية، وكل طبقة تبني تمثيلاً أعقد.',
+          'لا قانون لعدد الطبقات: ابدأ بأصغر شبكة معقولة وجرّب على التحقق.',
+          'الشبكة الأمامية بلا ذاكرة، فلا تصلح وحدها للبيانات المتسلسلة.'
+        ],
+        keyPoints_en: [
+          'A neuron multiplies inputs by weights, sums with a bias, and passes through an activation.',
+          'The bias frees the network from being forced through the origin.',
+          'Deep simply means many hidden layers, each building a more complex representation.',
+          'There is no law for layer count: start with the smallest reasonable network and tune on validation.',
+          'A feedforward network has no memory, so alone it does not suit sequential data.'
+        ],
+        analogy_ar: 'تخيّل لجنة قبول متعددة المستويات. كل عضو في المستوى الأول ينظر لجزئية واحدة ويعطيها وزناً ثم يمرر رأيه. والمستوى الثاني لا يرى الملف الأصلي، وإنما يجمع آراء المستوى الأول ويبني عليها رأياً أعقد. وهكذا حتى القرار النهائي. والعمق هو عدد المستويات — ولاحظ أن كل عضو بسيط جداً، والذكاء كله في التركيب لا في الفرد.',
+        analogy_en: 'Picture a multi-level admissions committee. Each member at the first level looks at one aspect, weights it, and passes an opinion on. The second level never sees the original file; it combines first-level opinions into a more complex judgement, and so on to the final decision. Depth is the number of levels, and note that each member is very simple: all the intelligence lies in the composition rather than the individual.',
+        terms: [
+          { term: 'Neuron', def_ar: 'وحدة تحسب مجموعاً موزوناً وتمرّره بدالة تفعيل.', def_en: 'A unit computing a weighted sum and passing it through an activation.' },
+          { term: 'Bias', def_ar: 'قيمة تُضاف للمجموع فتحرّك عتبة التفعيل.', def_en: 'A value added to the sum shifting the activation threshold.' },
+          { term: 'Hidden Layer', def_ar: 'طبقة بين الإدخال والإخراج لا تُرى مخرجاتها مباشرة.', def_en: 'A layer between input and output whose outputs are not directly seen.' },
+          { term: 'Feedforward', def_ar: 'سير البيانات في اتجاه واحد بلا حلقات راجعة.', def_en: 'Data flowing one way with no return loops.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي يفعله العصبون بالضبط؟', q_en: 'What exactly does a neuron do?', a_ar: 'يضرب كل مدخل بوزنه، ويجمع النواتج مع إزاحة، ثم يمرّر المجموع بدالة تفعيل.', a_en: 'It multiplies each input by its weight, sums with a bias, then passes the sum through an activation.' },
+          { q_ar: 'لماذا تلزم الإزاحة؟', q_en: 'Why is a bias needed?', a_ar: 'لتحريك عتبة التفعيل، وبدونها تُقيَّد الشبكة بمرور دالتها من نقطة الأصل.', a_en: 'To shift the activation threshold; without it the network is forced through the origin.' },
+          { q_ar: 'ماذا تعني كلمة «عميق»؟', q_en: 'What does deep mean?', a_ar: 'وجود طبقات خفية كثيرة، كل واحدة تبني تمثيلاً أعقد مما قبلها.', a_en: 'Having many hidden layers, each building a more complex representation than the previous.' },
+          { q_ar: 'لماذا لا تصلح الشبكة الأمامية للجُمل؟', q_en: 'Why is a feedforward network unfit for sentences?', a_ar: 'لأنها بلا ذاكرة: تعالج كل مدخل مستقلاً، والجملة يعتمد معناها على ترتيب كلماتها.', a_en: 'It has no memory: each input is processed independently, while a sentence meaning depends on word order.' }
+        ]
+      },
+      {
+        title_ar: 'دوال التفعيل والانتشار العكسي',
+        title_en: 'Activation Functions and Backpropagation',
+        lead_ar: 'دالة التفعيل هي ما يمنح الشبكة قدرتها، فبدونها تنهار كل الطبقات إلى طبقة واحدة — والانتشار العكسي هو ما يجعل التدريب ممكناً أصلاً.',
+        lead_en: 'The activation function is what gives a network its power, since without it every layer collapses into one, and backpropagation is what makes training possible at all.',
+        body_ar: [
+          'لو أزلت دوال التفعيل من شبكة بعشر طبقات، لصارت رياضياً معادلة عن طبقة واحدة مهما بلغ عمقها. والسبب أن تركيب عمليات خطية متتابعة ينتج عملية خطية واحدة. فدالة التفعيل هي التي تدخل اللاخطية وتجعل للعمق معنى — وهذي ليست تفصيلاً بل شرط وجود المجال.',
+          'وأشهر دالة اليوم هي الوحدة الخطية المقوّمة: تُرجع القيمة كما هي إن كانت موجبة وصفراً إن كانت سالبة. وبساطتها سرّ انتشارها: سريعة الحساب، ولا تعاني تلاشي التدرّج في الجانب الموجب. وعيبها أن العصبون الذي يقع في الجانب السالب دائماً يتوقف عن التعلّم نهائياً، ويُسمّى العصبون الميت.',
+          'ولطبقة الإخراج دوال خاصة تختلف بحسب المهمة: السيني يعطي رقماً بين صفر وواحد فيصلح لتصنيف ثنائي، والسوفت ماكس يوزّع الاحتمال على عدة فئات بحيث يكون مجموعها واحداً فيصلح للتصنيف متعدد الفئات، والانحدار لا يحتاج دالة تفعيل في الإخراج أصلاً لأن المخرج رقم حر.',
+          'واختيار دالة إخراج خاطئة خطأ شائع مكلف: استخدام السيني لتصنيف عشر فئات يعطيك عشرة احتمالات مستقلة لا تجمع واحداً، فتفقد معنى «هذي الصورة واحدة من عشرة». والصحيح سوفت ماكس الذي يجعلها تتنافس.',
+          'والانتشار العكسي هو الآلية التي تجعل تدريب الشبكات ممكناً: بعد حساب الخسارة عند المخرج، يُوزَّع اللوم على كل وزن في الشبكة رجوعاً من الطبقة الأخيرة للأولى. ويُحسب لكل وزن كم ساهم في الخطأ، فيُعدَّل بمقدار مساهمته.',
+          'ومشكلته الشهيرة تلاشي التدرّج: كلما رجعت للطبقات الأولى، ضُربت المشتقات ببعضها فصغرت حتى تكاد تنعدم، فتتوقف الطبقات الأولى عن التعلّم. وقد عطّل هذا الشبكات العميقة سنوات، وحُلّ بمزيج من دوال تفعيل أنسب وتطبيع بين الطبقات ووصلات تخطّي تمرّر الإشارة مباشرة — وهذي الحلول هي ما جعل الشبكات العميقة جداً ممكنة.'
+        ],
+        body_en: [
+          'Remove the activation functions from a ten-layer network and it becomes mathematically equivalent to one layer however deep it is. The reason is that composing consecutive linear operations yields one linear operation. The activation introduces non-linearity and gives depth meaning, and this is not a detail but the condition for the field to exist.',
+          'The most common function today is the rectified linear unit: it returns the value unchanged when positive and zero when negative. Its simplicity explains its spread: fast to compute and free of vanishing gradients on the positive side. Its flaw is that a neuron permanently stuck on the negative side stops learning entirely, called a dead neuron.',
+          'The output layer has special functions varying by task: sigmoid yields a number between zero and one suiting binary classification, softmax distributes probability across several classes so they sum to one suiting multi-class classification, and regression needs no output activation at all since the output is a free number.',
+          'Choosing the wrong output function is a common and costly mistake: using sigmoid for ten classes gives ten independent probabilities that do not sum to one, losing the meaning of this image being one of ten. The correct choice is softmax, which makes them compete.',
+          'Backpropagation is the mechanism making network training possible: after computing the loss at the output, blame is distributed to every weight in the network travelling back from the last layer to the first. Each weight contribution to the error is computed, and it is adjusted in proportion.',
+          'Its famous problem is the vanishing gradient: travelling back toward the early layers, derivatives multiply together and shrink until they nearly vanish, so the early layers stop learning. This blocked deep networks for years and was solved by a mix of better activations, normalisation between layers, and skip connections passing the signal directly, and those solutions are what made very deep networks possible.'
+        ],
+        table: {
+          head_ar: ['الدالة', 'مخرجها', 'أين تُستخدم'],
+          head_en: ['Function', 'Its output', 'Where used'],
+          rows: [
+            ['ReLU', 'القيمة أو صفر', 'الطبقات الخفية'],
+            ['Sigmoid', 'بين صفر وواحد', 'إخراج تصنيف ثنائي'],
+            ['Softmax', 'احتمالات مجموعها واحد', 'إخراج تصنيف متعدد'],
+            ['بلا دالة', 'رقم حر', 'إخراج الانحدار']
+          ]
+        },
+        keyPoints_ar: [
+          'بلا دالة تفعيل تنهار الشبكة كلها إلى ما يعادل طبقة واحدة.',
+          'ReLU سريعة وشائعة، وعيبها العصبون الميت في الجانب السالب.',
+          'سيني للتصنيف الثنائي، وسوفت ماكس للمتعدد، والانحدار بلا دالة إخراج.',
+          'استخدام السيني لعشر فئات يعطي احتمالات مستقلة لا تتنافس — وهو خطأ.',
+          'الانتشار العكسي يوزّع اللوم على الأوزان رجوعاً من المخرج للمدخل.',
+          'تلاشي التدرّج يوقف تعلّم الطبقات الأولى، وحُلّ بالتفعيلات والتطبيع ووصلات التخطّي.'
+        ],
+        keyPoints_en: [
+          'Without activations the whole network collapses to the equivalent of one layer.',
+          'ReLU is fast and common, with the dead neuron flaw on the negative side.',
+          'Sigmoid for binary, softmax for multi-class, and regression needs no output activation.',
+          'Using sigmoid for ten classes gives independent non-competing probabilities, which is wrong.',
+          'Backpropagation distributes blame to weights travelling back from output to input.',
+          'Vanishing gradients stop early layers learning, solved by activations, normalisation and skip connections.'
+        ],
+        analogy_ar: 'تخيّل مصنعاً فيه عشر محطات، وكل محطة لا تفعل إلا ضرب الكمية في رقم. مهما زدت المحطات، الناتج النهائي ضرب واحد في رقم واحد — فلا فائدة من العشر. لكن لو أضافت كل محطة قراراً: «إن كانت الكمية أقل من كذا فاجعلها صفراً»، صار لكل محطة أثر لا يُختصر. هذي هي دالة التفعيل. وأما الانتشار العكسي فأشبه بتحقيق بعد خطأ في المنتج النهائي: يُرجع خطوة خطوة ليعرف كم ساهمت كل محطة في الخلل.',
+        analogy_en: 'Picture a factory with ten stations where each only multiplies the quantity by a number. However many stations you add, the final result is one multiplication by one number, so the ten are pointless. But if each station adds a decision, "if the quantity is below this, set it to zero", each station has an effect that cannot be collapsed. That is the activation function. Backpropagation is like an investigation after a defect in the final product, walking back step by step to learn how much each station contributed.',
+        terms: [
+          { term: 'Activation Function', def_ar: 'دالة تُدخل اللاخطية فتجعل للعمق معنى.', def_en: 'A function introducing non-linearity, giving depth meaning.' },
+          { term: 'ReLU', def_ar: 'ترجع القيمة إن كانت موجبة وصفراً إن كانت سالبة.', def_en: 'Returns the value when positive and zero when negative.' },
+          { term: 'Softmax', def_ar: 'توزّع الاحتمال على فئات مجموعها واحد.', def_en: 'Distributes probability across classes summing to one.' },
+          { term: 'Backpropagation', def_ar: 'توزيع اللوم على الأوزان رجوعاً من المخرج للمدخل.', def_en: 'Distributing blame to weights from output back to input.' },
+          { term: 'Vanishing Gradient', def_ar: 'تضاؤل المشتقات حتى تتوقف الطبقات الأولى عن التعلّم.', def_en: 'Derivatives shrinking until early layers stop learning.' }
+        ],
+        cards: [
+          { q_ar: 'ماذا يحدث لو أزلنا دوال التفعيل؟', q_en: 'What happens if activations are removed?', a_ar: 'تصير الشبكة مهما عمقت مكافئة رياضياً لطبقة واحدة، لأن تركيب الخطي خطي.', a_en: 'However deep, the network becomes mathematically equivalent to one layer, since composing linear operations stays linear.' },
+          { q_ar: 'أي دالة إخراج لتصنيف عشر فئات؟', q_en: 'Which output function for ten classes?', a_ar: 'سوفت ماكس، لأنها تجعل الاحتمالات تتنافس ومجموعها واحداً، بخلاف السيني.', a_en: 'Softmax, because it makes probabilities compete and sum to one, unlike sigmoid.' },
+          { q_ar: 'ما العصبون الميت؟', q_en: 'What is a dead neuron?', a_ar: 'عصبون وقع في الجانب السالب دائماً مع ReLU فتوقف عن التعلّم نهائياً.', a_en: 'A neuron permanently on the negative side with ReLU that stops learning entirely.' },
+          { q_ar: 'ما تلاشي التدرّج وكيف عولج؟', q_en: 'What is the vanishing gradient and how was it solved?', a_ar: 'تضاؤل المشتقات رجوعاً فتتوقف الطبقات الأولى؛ وعولج بتفعيلات أنسب وتطبيع ووصلات تخطّي.', a_en: 'Derivatives shrink on the way back so early layers stall; solved by better activations, normalisation and skip connections.' }
+        ]
+      },
+      {
+        title_ar: 'الشبكات الالتفافية والصور',
+        title_en: 'Convolutional Networks and Images',
+        lead_ar: 'الالتفاف يمرّر مرشّحاً صغيراً على الصورة كلها، فيتعلّم النمط مرة واحدة ويكشفه أينما وقع — وهذي هي الفكرة التي فتحت الرؤية الحاسوبية.',
+        lead_en: 'Convolution slides a small filter across the whole image, learning a pattern once and detecting it wherever it appears, and that idea opened computer vision.',
+        body_ar: [
+          'لو عاملت الصورة كصف أرقام ومررتها لشبكة أمامية، لواجهت مشكلتين قاتلتين. الأولى الحجم: صورة متواضعة بألف في ألف بكسل وثلاث قنوات لونية تعطي ثلاثة ملايين مدخل، وربطها بطبقة من ألف عصبون يعني ثلاثة مليارات وزن. والثانية أخطر: الشبكة الأمامية تعتبر البكسل في الزاوية اليسرى شيئاً مختلفاً كلياً عن نظيره في اليمنى، فلو تعلّمت شكل قطة في موضع لم تعرفها في موضع آخر.',
+          'والالتفاف يحل الاثنين بفكرة واحدة: مرشّح صغير — مصفوفة أوزان ثلاثة في ثلاثة مثلاً — يمرّ على الصورة كلها موضعاً بعد موضع، ويحسب في كل موضع مجموعاً موزوناً. فتُستخدم الأوزان نفسها في كل المواضع، فينخفض العدد من مليارات إلى عشرات، ويصير النمط الذي تعلّمه قابلاً للكشف أينما وقع.',
+          'وهذا يُسمّى مشاركة الأوزان، وهو جوهر الفكرة: المرشّح الذي تعلّم كشف حافة رأسية يكشفها في أي مكان من الصورة، لأنه هو نفسه يمرّ على الجميع. ولهذا تُوصف الشبكات الالتفافية بأنها ثابتة إزاء الانتقال.',
+          'وطبقة التجميع تلي الالتفاف غالباً: تأخذ كل منطقة صغيرة وتستبقي أقوى استجابة فيها. فتصغّر الأبعاد وتقلل الحساب، وتزيد تحمّل النموذج للإزاحات الصغيرة — فتحرّك الكائن بضعة بكسلات لا يغيّر النتيجة.',
+          'وتُكدَّس هذي الطبقات فيتكوّن التدرّج الشهير: الطبقات الأولى تتعلّم حوافّ وألواناً، والوسطى أشكالاً وأنماطاً، والعميقة أجزاء ذات معنى كعين أو عجلة. وهذا التدرّج لا يُبرمَج، وإنما ينشأ من التدريب نفسه — وهو من أجمل ما في المجال.',
+          'والتعلّم بالنقل ثمرة عملية مهمة: بدل تدريب شبكة من الصفر — وهو يحتاج ملايين الصور وعتاداً باهظاً — تأخذ شبكة مدرَّبة على بيانات ضخمة وتعيد تدريب طبقاتها الأخيرة فقط على بياناتك القليلة. فتحصل على أداء ممتاز بمئات الصور بدل ملايين، وهذي الطريقة هي ما يستخدمه أغلب من يعمل في الرؤية اليوم.'
+        ],
+        body_en: [
+          'Treating an image as a row of numbers fed to a feedforward network hits two fatal problems. First, size: a modest thousand-by-thousand image with three colour channels gives three million inputs, and connecting it to a thousand-neuron layer means three billion weights. Second and worse: a feedforward network treats a pixel in the left corner as something entirely different from its counterpart on the right, so a cat shape learned in one position is unrecognised in another.',
+          'Convolution solves both with one idea: a small filter, a three-by-three weight matrix for instance, slides across the whole image position by position computing a weighted sum at each. The same weights serve every position, dropping the count from billions to dozens and making a learned pattern detectable wherever it appears.',
+          'This is called weight sharing and is the heart of the idea: a filter that learned to detect a vertical edge detects it anywhere in the image, because the very same filter passes over all of it. Hence convolutional networks are described as translation invariant.',
+          'A pooling layer usually follows convolution: it takes each small region and keeps the strongest response in it. This shrinks dimensions and reduces computation, and increases tolerance to small shifts, so moving an object a few pixels does not change the result.',
+          'Stacking these layers produces the famous progression: early layers learn edges and colours, middle ones shapes and patterns, and deep ones meaningful parts such as an eye or a wheel. This progression is not programmed; it emerges from training itself, and it is among the most elegant things in the field.',
+          'Transfer learning is an important practical fruit: instead of training a network from scratch, needing millions of images and expensive hardware, you take a network trained on massive data and retrain only its final layers on your small dataset. You gain excellent performance from hundreds of images rather than millions, and this is what most people working in vision use today.'
+        ],
+        table: {
+          head_ar: ['الطبقة', 'ما تفعله', 'أثرها'],
+          head_en: ['Layer', 'What it does', 'Its effect'],
+          rows: [
+            ['الالتفاف', 'تمرير مرشّح صغير على الصورة', 'كشف النمط أينما وقع بأوزان قليلة'],
+            ['التجميع', 'استبقاء أقوى استجابة بمنطقة', 'تصغير الأبعاد وتحمّل الإزاحة'],
+            ['التسطيح', 'تحويل الخرائط لصف أرقام', 'التهيئة لطبقة التصنيف'],
+            ['الكثيفة', 'ربط كامل للتصنيف النهائي', 'إنتاج احتمالات الفئات']
+          ]
+        },
+        keyPoints_ar: [
+          'الشبكة الأمامية على الصور تنفجر عدداً وتعجز عن التعرّف عند تغيّر الموضع.',
+          'المرشّح الصغير يمرّ على الصورة كلها بالأوزان نفسها — مشاركة الأوزان.',
+          'مشاركة الأوزان تجعل النمط قابلاً للكشف أينما وقع.',
+          'التجميع يصغّر الأبعاد ويمنح تحمّلاً للإزاحات الصغيرة.',
+          'التدرّج من حواف لأشكال لأجزاء ينشأ من التدريب ولا يُبرمَج.',
+          'التعلّم بالنقل يعطي أداءً ممتازاً بمئات الصور بدل ملايين.'
+        ],
+        keyPoints_en: [
+          'A feedforward network on images explodes in parameters and fails when position shifts.',
+          'A small filter slides across the whole image with the same weights: weight sharing.',
+          'Weight sharing makes a pattern detectable wherever it appears.',
+          'Pooling shrinks dimensions and grants tolerance to small shifts.',
+          'The progression from edges to shapes to parts emerges from training and is not programmed.',
+          'Transfer learning gives excellent performance from hundreds of images rather than millions.'
+        ],
+        analogy_ar: 'تخيّل مفتشاً يبحث عن ختم مزوّر في ألف مستند. الطريقة الساذجة أن تدرّب ألف مفتش، كل واحد يحفظ شكل الختم في موضع واحد من الورقة. والطريقة الالتفافية أن تدرّب مفتشاً واحداً يعرف شكل الختم، ثم تمرّره على كل مواضع كل ورقة. مفتش واحد بدل ألف، ويكشف الختم في أي موضع — حتى في موضع لم يره في التدريب.',
+        analogy_en: 'Picture an inspector hunting a forged stamp across a thousand documents. The naive approach trains a thousand inspectors, each memorising the stamp shape at one position on the page. The convolutional approach trains one inspector who knows the stamp shape, then slides them across every position of every page. One inspector instead of a thousand, detecting the stamp anywhere, even at a position never seen in training.',
+        terms: [
+          { term: 'Convolution', def_ar: 'تمرير مرشّح صغير على المدخل لحساب استجابات موضعية.', def_en: 'Sliding a small filter over the input to compute local responses.' },
+          { term: 'Filter', def_ar: 'مصفوفة أوزان صغيرة تتعلّم كشف نمط بعينه.', def_en: 'A small weight matrix learning to detect a specific pattern.' },
+          { term: 'Weight Sharing', def_ar: 'استخدام الأوزان نفسها في كل مواضع المدخل.', def_en: 'Using the same weights at every input position.' },
+          { term: 'Pooling', def_ar: 'تصغير الأبعاد باستبقاء أقوى استجابة في كل منطقة.', def_en: 'Shrinking dimensions by keeping the strongest response per region.' },
+          { term: 'Transfer Learning', def_ar: 'إعادة تدريب الطبقات الأخيرة من نموذج جاهز على بياناتك.', def_en: 'Retraining the last layers of a ready model on your data.' }
+        ],
+        cards: [
+          { q_ar: 'ما المشكلتان اللتان يحلهما الالتفاف؟', q_en: 'Which two problems does convolution solve?', a_ar: 'انفجار عدد الأوزان، وعجز الشبكة عن التعرّف على النمط حين يتغيّر موضعه.', a_en: 'The explosion of weight count, and failure to recognise a pattern when its position changes.' },
+          { q_ar: 'ما مشاركة الأوزان ولماذا تهم؟', q_en: 'What is weight sharing and why does it matter?', a_ar: 'استخدام المرشّح نفسه في كل المواضع، فيقلّ عدد الأوزان ويصير النمط قابلاً للكشف أينما وقع.', a_en: 'Using the same filter at every position, cutting weight count and making a pattern detectable anywhere.' },
+          { q_ar: 'ماذا تفعل طبقة التجميع؟', q_en: 'What does a pooling layer do?', a_ar: 'تستبقي أقوى استجابة في كل منطقة فتصغّر الأبعاد وتمنح تحمّلاً للإزاحات الصغيرة.', a_en: 'It keeps the strongest response per region, shrinking dimensions and tolerating small shifts.' },
+          { q_ar: 'متى يُستخدم التعلّم بالنقل؟', q_en: 'When is transfer learning used?', a_ar: 'حين تكون بياناتك قليلة: تأخذ نموذجاً مدرَّباً وتعيد تدريب طبقاته الأخيرة فقط.', a_en: 'When your data is small: take a trained model and retrain only its final layers.' }
+        ]
+      },
+      {
+        title_ar: 'الشبكات المتكررة والبيانات المتسلسلة',
+        title_en: 'Recurrent Networks and Sequential Data',
+        lead_ar: 'البيانات المتسلسلة يعتمد معناها على الترتيب، والشبكة المتكررة تحمل حالة من خطوة لأخرى فتصير لها ذاكرة — لكنها ذاكرة قصيرة تحتاج علاجاً.',
+        lead_en: 'Sequential data draws meaning from order, and a recurrent network carries state from step to step giving it memory, but a short memory needing treatment.',
+        body_ar: [
+          'بعض البيانات لا معنى لها بلا ترتيب: «الطالب ضرب المعلم» و«المعلم ضرب الطالب» فيهما الكلمات نفسها والمعنى معكوس. وكذلك السلاسل الزمنية: قراءة حرارة اليوم تُفهم في سياق الأيام السابقة. والشبكة الأمامية تعجز عن هذا لأنها تعالج كل مدخل مستقلاً.',
+          'والشبكة المتكررة تعالج المتسلسلة عنصراً عنصراً، وتحتفظ بحالة داخلية تُمرَّر من خطوة للتالية. فحين تصل للكلمة الخامسة، تكون حاملة أثراً من الأربع قبلها. وهذي الحالة هي الذاكرة، وهي ما يجعل الترتيب مؤثراً في المخرج.',
+          'ومشكلتها الأساسية أن ذاكرتها تضعف بسرعة مع طول التسلسل. والسبب تلاشي التدرّج نفسه: الإشارة الراجعة تُضرب في كل خطوة فتضمحل، فتفقد الشبكة أثر ما بعد عشرين أو ثلاثين خطوة. ولهذا تعجز عن ربط بداية فقرة طويلة بنهايتها.',
+          'وشبكات الذاكرة طويلة المدى عولجت بها هذي المشكلة ببنية أذكى: تضيف بوابات تتعلّم ما الذي يُحتفظ به وما الذي يُنسى وما الذي يُخرَج. فتصير الشبكة قادرة على حمل معلومة مهمة عشرات الخطوات وإسقاط ما لا يفيد.',
+          'والفكرة العميقة في البوابات أن النسيان قدرة مطلوبة لا عيب: شبكة تحتفظ بكل شيء تغرق في تفاصيل لا تفيد، والقدرة على تحديد ما يُنسى هي ما يجعل الذاكرة نافعة. وهذا مبدأ ينطبق على الأنظمة كما ينطبق على البشر.',
+          'وحدّ بنيوي في المتكررة كلها: المعالجة متسلسلة بطبيعتها، فلا يمكن حساب الخطوة العاشرة قبل التاسعة. وهذا يمنع الاستفادة الكاملة من المعالجات المتوازية، ويجعل تدريبها بطيئاً على النصوص الطويلة — وهذا القيد بالذات هو ما دفع لظهور بنية الانتباه التي تعالج التسلسل كله دفعة واحدة.'
+        ],
+        body_en: [
+          'Some data has no meaning without order: "the student hit the teacher" and "the teacher hit the student" share every word with reversed meaning. Time series are the same: today temperature reading is understood in the context of previous days. A feedforward network cannot do this because it processes each input independently.',
+          'A recurrent network processes a sequence element by element while keeping an internal state passed from one step to the next. Reaching the fifth word it carries a trace of the four before. That state is the memory, and it is what makes order affect the output.',
+          'Its core problem is that memory weakens quickly with sequence length, for the same vanishing gradient reason: the returning signal multiplies at every step and decays, so the network loses the trace of anything beyond twenty or thirty steps. Hence it cannot link the beginning of a long paragraph to its end.',
+          'Long short-term memory networks addressed this with a smarter structure: adding gates that learn what to keep, what to forget and what to emit. The network becomes able to carry an important piece of information for dozens of steps while dropping what does not help.',
+          'The deep idea in gating is that forgetting is a required capability rather than a flaw: a network keeping everything drowns in useless detail, and the ability to decide what to forget is what makes memory useful. This principle applies to systems as it does to people.',
+          'One structural limit applies to all recurrent networks: processing is inherently sequential, so step ten cannot be computed before step nine. This prevents full use of parallel processors and makes training slow on long texts, and that very constraint drove the emergence of attention architectures processing the whole sequence at once.'
+        ],
+        table: {
+          head_ar: ['البنية', 'ذاكرتها', 'قيدها'],
+          head_en: ['Architecture', 'Its memory', 'Its limitation'],
+          rows: [
+            ['أمامية', 'لا ذاكرة', 'الترتيب بلا أثر'],
+            ['متكررة بسيطة', 'قصيرة تضمحل', 'تفقد ما بعد عشرات الخطوات'],
+            ['ذاكرة طويلة المدى', 'مضبوطة ببوابات', 'أبطأ وأعقد حساباً'],
+            ['انتباه', 'وصول مباشر لكل التسلسل', 'كلفة ترتفع بمربع الطول']
+          ]
+        },
+        keyPoints_ar: [
+          'البيانات المتسلسلة معناها في الترتيب، والشبكة الأمامية تعجز عنها.',
+          'المتكررة تحمل حالة من خطوة لأخرى، وهذي الحالة هي ذاكرتها.',
+          'ذاكرتها تضمحل مع الطول بسبب تلاشي التدرّج نفسه.',
+          'البوابات تتعلّم ما يُحتفظ به وما يُنسى، والنسيان قدرة مطلوبة لا عيب.',
+          'المعالجة المتسلسلة تمنع التوازي وتُبطئ التدريب — ومنها جاء دافع الانتباه.'
+        ],
+        keyPoints_en: [
+          'Sequential data draws meaning from order, and feedforward networks cannot handle it.',
+          'A recurrent network carries state between steps, and that state is its memory.',
+          'Its memory decays with length for the same vanishing gradient reason.',
+          'Gates learn what to keep and what to forget, and forgetting is a needed capability.',
+          'Sequential processing prevents parallelism and slows training, which motivated attention.'
+        ],
+        analogy_ar: 'تخيّل مترجماً فورياً يستمع لخطاب طويل. لو نسي كل جملة بمجرد ترجمتها، لعجز عن ترجمة ضمير يعود لاسم ذُكر قبل خمس دقائق. والشبكة المتكررة مترجم يحمل مذكرة صغيرة يحدّثها مع كل جملة. لكن مذكرته محدودة، فما كُتب في أولها يُمحى بآخرها. والبوابات مترجم يقرر بوعي: هذا الاسم مهم أبقيه، وهذي التفصيلة أهملها.',
+        analogy_en: 'Picture a simultaneous interpreter listening to a long speech. If they forgot each sentence once translated, they could not render a pronoun referring to a name mentioned five minutes earlier. A recurrent network is an interpreter carrying a small notepad updated with each sentence. But the notepad is limited, so what was written at the start is erased by the end. Gating is an interpreter deciding consciously: this name matters so keep it, this detail can go.',
+        terms: [
+          { term: 'Sequence', def_ar: 'بيانات مرتبة يعتمد معناها على ترتيب عناصرها.', def_en: 'Ordered data whose meaning depends on element order.' },
+          { term: 'Hidden State', def_ar: 'حالة داخلية تُمرَّر بين خطوات التسلسل فتكوّن الذاكرة.', def_en: 'An internal state passed between steps forming the memory.' },
+          { term: 'LSTM', def_ar: 'شبكة ببوابات تتعلّم ما يُحتفظ به وما يُنسى.', def_en: 'A network with gates learning what to keep and what to forget.' },
+          { term: 'Gate', def_ar: 'وحدة تتحكم في مرور المعلومة داخل الشبكة المتكررة.', def_en: 'A unit controlling information flow inside a recurrent network.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا تعجز الشبكة الأمامية عن الجُمل؟', q_en: 'Why do feedforward networks fail on sentences?', a_ar: 'لأنها تعالج كل مدخل مستقلاً بلا ذاكرة، ومعنى الجملة في ترتيب كلماتها.', a_en: 'They process each input independently with no memory, while sentence meaning lies in word order.' },
+          { q_ar: 'ما سبب ضعف ذاكرة الشبكة المتكررة البسيطة؟', q_en: 'Why is simple RNN memory weak?', a_ar: 'تلاشي التدرّج: الإشارة تُضرب في كل خطوة فتضمحل بعد عشرات الخطوات.', a_en: 'Vanishing gradients: the signal multiplies each step and decays after dozens of steps.' },
+          { q_ar: 'ما وظيفة البوابات؟', q_en: 'What do gates do?', a_ar: 'تتعلّم ما الذي يُحتفظ به وما الذي يُنسى وما الذي يُخرَج، فتصير الذاكرة نافعة.', a_en: 'They learn what to keep, forget and emit, making the memory useful.' },
+          { q_ar: 'ما القيد البنيوي في الشبكات المتكررة؟', q_en: 'What is the structural limit of recurrent networks?', a_ar: 'المعالجة متسلسلة فلا يمكن التوازي، فيبطؤ التدريب على النصوص الطويلة.', a_en: 'Processing is sequential so it cannot parallelise, slowing training on long texts.' }
+        ]
+      },
+      {
+        title_ar: 'الانتباه والمحوّلات والتضمين',
+        title_en: 'Attention, Transformers and Embeddings',
+        lead_ar: 'الانتباه يتيح لكل كلمة أن تنظر لكل الكلمات دفعة واحدة، والتضمين يحوّل المعنى إلى موضع في فضاء — وعليهما تقوم كل النماذج اللغوية الحديثة.',
+        lead_en: 'Attention lets every word look at every other word at once, and embeddings turn meaning into a position in space, and all modern language models rest on both.',
+        body_ar: [
+          'التضمين هو تمثيل الكلمة بمتجه أرقام يحمل معناها. وقبله كانت الكلمات تُرمَّز بأرقام اعتباطية أو متجهات طويلة بصفر وواحد، فيكون «ملك» و«ملكة» بعيدين تماماً كبُعد «ملك» و«طاولة» — لا علاقة بين التمثيل والمعنى.',
+          'والتضمين يُتعلَّم من السياق: الكلمات التي ترد في سياقات متشابهة تحصل على متجهات متقاربة. فيصير القرب في الفضاء قرباً في المعنى. والنتيجة المدهشة أن العلاقات الدلالية تصير عمليات حسابية: متجه «ملك» ناقص «رجل» زائد «امرأة» يقع قرب «ملكة».',
+          'وهذا التمثيل هو ما يجعل النموذج «يفهم» بمعنى محدود: لا فهم واعياً، وإنما موضع في فضاء يعكس علاقات الاستخدام. ومنه تأتي قدرات كالبحث الدلالي: تبحث عن «سيارة» فيجد نصوصاً عن «مركبة» لأن متجهيهما متقاربان.',
+          'والانتباه آلية تجيب سؤالاً: عند معالجة هذي الكلمة، أي الكلمات الأخرى في الجملة يجب أن أنظر إليها وبأي قدر؟ ففي «الكتاب الذي اشتريته أمس كان ممتعاً»، يحتاج فهم «كان ممتعاً» النظر إلى «الكتاب» البعيد لا إلى «أمس» القريب. والانتباه يتعلّم هذي الأوزان بنفسه.',
+          'وميزته الحاسمة على المتكررة أنه لا يمرّ بالتسلسل خطوة خطوة: كل كلمة تصل لكل كلمة مباشرة بخطوة واحدة مهما بعدت. فينحلّ مشكل الذاكرة الطويلة، ويصير الحساب قابلاً للتوازي فيتسارع التدريب هائلاً — وهذان السببان هما ما جعلا النماذج الضخمة ممكنة.',
+          'والمحوّل بنية تقوم على الانتباه بالكامل، وثمنها أن كلفة الانتباه ترتفع بمربع طول النص: مضاعفة الطول تضاعف الكلفة أربع مرات. ومن هنا جاء مفهوم نافذة السياق: الحد الأقصى لما يستطيع النموذج النظر إليه دفعة واحدة، وهو قيد اقتصادي وحسابي لا مجرد رقم في المواصفات.'
+        ],
+        body_en: [
+          'An embedding represents a word as a vector of numbers carrying its meaning. Before it, words were coded with arbitrary numbers or long zero-one vectors, so king and queen were as distant as king and table, with no relation between representation and meaning.',
+          'Embeddings are learned from context: words appearing in similar contexts receive nearby vectors, so closeness in space becomes closeness in meaning. The striking result is that semantic relations become arithmetic: the vector for king minus man plus woman lands near queen.',
+          'This representation is what lets a model understand in a limited sense: not conscious understanding but a position in space reflecting usage relations. From it come abilities such as semantic search: you search for car and it finds texts about vehicles because their vectors are close.',
+          'Attention is a mechanism answering one question: while processing this word, which other words in the sentence should I look at and how much? In "the book I bought yesterday was enjoyable", understanding "was enjoyable" requires looking at the distant "book" rather than the nearby "yesterday". Attention learns those weights itself.',
+          'Its decisive advantage over recurrence is not walking the sequence step by step: every word reaches every other directly in one step however far. The long memory problem dissolves and computation becomes parallelisable so training accelerates enormously, and those two reasons are what made huge models possible.',
+          'A transformer is an architecture built entirely on attention, at the price of attention cost rising with the square of text length: doubling the length quadruples the cost. Hence the context window concept: the maximum a model can look at in one pass, an economic and computational constraint rather than merely a specification number.'
+        ],
+        table: {
+          head_ar: ['المفهوم', 'ما يحله', 'ثمنه'],
+          head_en: ['Concept', 'What it solves', 'Its price'],
+          rows: [
+            ['التضمين', 'تمثيل المعنى بموضع في فضاء', 'يحتاج تدريباً على نصوص ضخمة'],
+            ['الانتباه', 'ربط بعيد مباشر بخطوة واحدة', 'كلفة بمربع طول النص'],
+            ['التوازي', 'تسريع التدريب هائلاً', 'حاجة لعتاد متوازٍ قوي'],
+            ['نافذة السياق', 'حد ما يُنظر إليه دفعة واحدة', 'قيد على طول المدخل']
+          ]
+        },
+        keyPoints_ar: [
+          'التضمين يجعل القرب في الفضاء قرباً في المعنى، فتصير العلاقات حسابية.',
+          'الفهم هنا محدود: موضع يعكس علاقات الاستخدام لا وعياً بالمعنى.',
+          'الانتباه يتعلّم أي الكلمات ينظر إليها وبأي وزن عند معالجة كل كلمة.',
+          'كل كلمة تصل لكل كلمة بخطوة واحدة، فينحلّ مشكل الذاكرة الطويلة.',
+          'قابلية التوازي هي ما سرّعت التدريب وجعلت النماذج الضخمة ممكنة.',
+          'كلفة الانتباه بمربع الطول، ومنها جاء قيد نافذة السياق.'
+        ],
+        keyPoints_en: [
+          'Embeddings make closeness in space closeness in meaning, turning relations into arithmetic.',
+          'Understanding here is limited: a position reflecting usage relations rather than awareness of meaning.',
+          'Attention learns which words to look at and how much while processing each word.',
+          'Every word reaches every other in one step, dissolving the long memory problem.',
+          'Parallelisability is what accelerated training and made huge models possible.',
+          'Attention cost rises with the square of length, which is where the context window limit comes from.'
+        ],
+        analogy_ar: 'تخيّل قاعة اجتماع فيها عشرون شخصاً. الشبكة المتكررة أشبه بهمس متسلسل: يهمس الأول للثاني والثاني للثالث، فما يصل للعشرين مشوّه وناقص. والانتباه أن يرى كل شخص وجوه الجميع دفعة واحدة ويقرر لمن يصغي. أما التضمين فأشبه بترتيب الحضور في القاعة بحسب اهتماماتهم: من يشبهك في الاهتمام يجلس قربك، فيصير موضع الجلوس نفسه معلومة.',
+        analogy_en: 'Picture a meeting room of twenty people. A recurrent network is like a whispered chain: the first whispers to the second, the second to the third, so what reaches the twentieth is distorted and incomplete. Attention is everyone seeing every face at once and deciding whom to listen to. An embedding is seating attendees by their interests: whoever shares your interests sits near you, so the seat itself becomes information.',
+        terms: [
+          { term: 'Embedding', def_ar: 'تمثيل الكلمة بمتجه يعكس معناها من سياقات استخدامها.', def_en: 'Representing a word as a vector reflecting its meaning from usage contexts.' },
+          { term: 'Attention', def_ar: 'آلية تحدد أي أجزاء المدخل يُنظر إليها وبأي وزن.', def_en: 'A mechanism deciding which input parts to look at and how much.' },
+          { term: 'Transformer', def_ar: 'بنية تقوم على الانتباه وتعالج التسلسل متوازياً.', def_en: 'An architecture built on attention processing sequences in parallel.' },
+          { term: 'Context Window', def_ar: 'أقصى نص يستطيع النموذج النظر إليه دفعة واحدة.', def_en: 'The maximum text a model can consider in one pass.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي يجعل التضمين أفضل من ترقيم الكلمات؟', q_en: 'Why is an embedding better than numbering words?', a_ar: 'لأن القرب في الفضاء يعكس قرب المعنى، فتصير العلاقات الدلالية عمليات حسابية.', a_en: 'Closeness in space reflects closeness in meaning, turning semantic relations into arithmetic.' },
+          { q_ar: 'ما السؤال الذي يجيب عنه الانتباه؟', q_en: 'What question does attention answer?', a_ar: 'عند معالجة هذي الكلمة، أي الكلمات الأخرى أنظر إليها وبأي قدر.', a_en: 'While processing this word, which other words to look at and how much.' },
+          { q_ar: 'لماذا سرّع المحوّل التدريب مقارنة بالمتكررة؟', q_en: 'Why did transformers speed training over recurrence?', a_ar: 'لأنه يعالج التسلسل دفعة واحدة قابلة للتوازي بدل خطوة بعد خطوة.', a_en: 'It processes the sequence at once in a parallelisable way instead of step after step.' },
+          { q_ar: 'لماذا لنافذة السياق حد؟', q_en: 'Why does the context window have a limit?', a_ar: 'لأن كلفة الانتباه ترتفع بمربع طول النص، فمضاعفة الطول تضاعف الكلفة أربع مرات.', a_en: 'Attention cost rises with the square of length, so doubling the text quadruples the cost.' }
+        ]
+      }
     ]
   }
 };
