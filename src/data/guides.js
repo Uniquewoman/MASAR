@@ -5366,6 +5366,325 @@ export const sectionGuides = {
           { q_ar: 'ما مقياسا نضج المراقبة؟', q_en: 'What are the two measures of monitoring maturity?', a_ar: 'زمن الاكتشاف من الاختراق للملاحظة، وزمن الاحتواء من الملاحظة للإيقاف.', a_en: 'Time to detect from breach to noticing, and time to contain from noticing to stopping.' }
         ]
       }
+    ],
+
+    // ─────────── أمن التطبيقات والويب ───────────
+    3: [
+      {
+        title_ar: 'بنية الويب وأمنها',
+        title_en: 'Web Architecture and Its Security',
+        lead_ar: 'كل طلب ويب يبدأ من متصفح لا تملكه على جهاز لا تسيطر عليه — ولهذا القاعدة الأولى: لا تثق بشيء يأتي من العميل.',
+        lead_en: 'Every web request starts from a browser you do not own on a device you do not control, which is why the first rule is: trust nothing coming from the client.',
+        body_ar: [
+          'تطبيق الويب ثلاثة أطراف: متصفح المستخدم، وخادم يستقبل الطلبات ويطبّق المنطق، وقاعدة بيانات تحفظ الحالة. والطلب يسير من المتصفح للخادم عبر شبكة عامة، ثم يعود الرد. وكل جزء من هذي الرحلة له تهديداته.',
+          'والحقيقة التي تُبنى عليها كل حماية الويب: المتصفح جهاز لا تسيطر عليه، والمستخدم يستطيع تعديل أي شيء يصله — قيمة حقل مخفي، ورمز جافاسكربت، وشروط التحقق التي كتبتها. بل يستطيع تجاوز المتصفح كلياً وإرسال الطلب مباشرة بأداة سطر أوامر.',
+          'ولهذا فالتحقق في المتصفح تجربة مستخدم لا حماية: يمنع الخطأ العرضي ولا يمنع المتعمّد. وكل تحقق أمني يجب أن يُعاد في الخادم بلا استثناء — والاعتماد على تحقق العميل من أشهر أخطاء المبتدئين وأكثرها كلفة.',
+          'وبروتوكول الويب عديم الحالة: كل طلب مستقل ولا يعرف الخادم أنك أنت من أرسل الطلب السابق. ولهذا تُستخدم الجلسات: يُعطى المستخدم بعد الدخول معرّف جلسة يرسله مع كل طلب فيعرف الخادم هويته. وهذا المعرّف هو مفتاح حسابك عملياً — من سرقه صار أنت.',
+          'وملفات الارتباط الوسيلة الشائعة لحمل معرّف الجلسة، وضبطها الآمن ثلاثة أعلام: علم يمنع قراءتها من جافاسكربت فتُحمى من سرقة برمجية، وعلم يمنع إرسالها إلا عبر اتصال مشفّر، وعلم يقيّد إرسالها مع الطلبات القادمة من مواقع أخرى فيقطع فئة كاملة من الهجمات.',
+          'ومبدأ المصدر الواحد أساس أمن المتصفح: صفحة من موقع لا تستطيع قراءة بيانات صفحة من موقع آخر. وبدونه لكان أي موقع تفتحه يقرأ بريدك المفتوح في تبويب مجاور. ومشاركة الموارد بين المصادر آلية لتخفيف هذا القيد عند الحاجة — وتوسيعها بلا تدقيق يفتح ما أغلقه المبدأ.'
+        ],
+        body_en: [
+          'A web application has three parties: the user browser, a server receiving requests and applying logic, and a database holding state. A request travels from browser to server across a public network then a response returns, and every part of that journey has its threats.',
+          'The truth all web protection rests on: the browser is a device you do not control, and the user can modify anything that reaches them, a hidden field value, JavaScript code, and the validation conditions you wrote. They can even bypass the browser entirely and send the request directly with a command-line tool.',
+          'So client-side validation is user experience rather than protection: it prevents accidental error and never deliberate action. Every security check must be repeated on the server without exception, and relying on client validation is among the most common and costly beginner mistakes.',
+          'The web protocol is stateless: every request is independent and the server does not know you sent the previous one. Hence sessions: after login a user receives a session identifier sent with every request so the server knows their identity. That identifier is practically the key to your account, and whoever steals it becomes you.',
+          'Cookies are the common vehicle for a session identifier, and securing them means three flags: one blocking JavaScript from reading them so they resist script theft, one preventing transmission except over an encrypted connection, and one restricting them from being sent with requests originating on other sites, which cuts off an entire attack class.',
+          'The same-origin policy is the foundation of browser security: a page from one site cannot read data from another site page. Without it any site you open would read your mail sitting in an adjacent tab. Cross-origin resource sharing is a mechanism to relax that restriction when needed, and widening it without scrutiny reopens what the policy closed.'
+        ],
+        table: {
+          head_ar: ['المكوّن', 'من يسيطر عليه', 'الدلالة الأمنية'],
+          head_en: ['Component', 'Who controls it', 'Security implication'],
+          rows: [
+            ['المتصفح', 'المستخدم', 'كل ما يصله قابل للتعديل'],
+            ['الطلب', 'المرسل', 'كل حقل فيه غير موثوق'],
+            ['الخادم', 'أنت', 'مكان التحقق الحقيقي الوحيد'],
+            ['معرّف الجلسة', 'من يحمله', 'من سرقه صار المستخدم']
+          ]
+        },
+        keyPoints_ar: [
+          'المتصفح جهاز لا تسيطر عليه، وكل ما يصله قابل للتعديل.',
+          'التحقق في العميل تجربة لا حماية، ويجب إعادته في الخادم بلا استثناء.',
+          'المستخدم يستطيع تجاوز المتصفح وإرسال الطلب مباشرة بأداة.',
+          'البروتوكول عديم الحالة، فمعرّف الجلسة هو مفتاح الحساب عملياً.',
+          'ثلاثة أعلام لملف الارتباط: منع قراءته برمجياً، وحصره بالمشفّر، وتقييد إرساله عبر المواقع.',
+          'مبدأ المصدر الواحد يمنع موقعاً من قراءة بيانات موقع آخر في متصفحك.'
+        ],
+        keyPoints_en: [
+          'The browser is a device you do not control, and everything reaching it can be modified.',
+          'Client validation is experience rather than protection and must be repeated on the server.',
+          'A user can bypass the browser and send requests directly with a tool.',
+          'The protocol is stateless, so the session identifier is practically the account key.',
+          'Three cookie flags: blocking script access, restricting to encrypted transport, and limiting cross-site sending.',
+          'The same-origin policy stops one site reading another site data in your browser.'
+        ],
+        analogy_ar: 'تخيّل مطعماً يطبع على ورقة الطلب «الحد الأقصى ثلاثة أطباق». هذي الورقة عند الزبون، فيستطيع أن يشطب الرقم ويكتب ثلاثين، أو يكتب طلبه على ورقة من عنده أصلاً. ولهذا لا يعتمد المطبخ على الورقة، بل يفحص الطلب عنده قبل التنفيذ. والتحقق في المتصفح هو تلك الورقة بالضبط: تنظيم مفيد للزبون الصادق، وبلا أثر على غيره.',
+        analogy_en: 'Picture a restaurant printing "maximum three dishes" on the order slip. That slip sits with the customer, so they can cross out the number and write thirty, or write their order on their own paper entirely. So the kitchen does not rely on the slip but checks the order at its end before cooking. Client-side validation is exactly that slip: helpful order for an honest customer and no obstacle to anyone else.',
+        terms: [
+          { term: 'Stateless', def_ar: 'بروتوكول لا يربط الطلب بما قبله من نفسه.', def_en: 'A protocol that does not by itself link a request to previous ones.' },
+          { term: 'Session ID', def_ar: 'معرّف يُرسَل مع كل طلب ليعرف الخادم هوية المستخدم.', def_en: 'An identifier sent with each request so the server knows the user.' },
+          { term: 'Same-origin Policy', def_ar: 'منع صفحة من قراءة بيانات صفحة من موقع آخر.', def_en: 'Preventing a page from reading another site page data.' },
+          { term: 'Server-side Validation', def_ar: 'التحقق في الخادم، وهو الحماية الحقيقية الوحيدة.', def_en: 'Validation on the server, the only real protection.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا يُعتمد على التحقق في المتصفح؟', q_en: 'Why not rely on browser validation?', a_ar: 'لأن المستخدم يسيطر على المتصفح ويستطيع تعديل شروطه أو تجاوزه وإرسال الطلب بأداة.', a_en: 'The user controls the browser and can alter its conditions or bypass it and send the request with a tool.' },
+          { q_ar: 'لماذا معرّف الجلسة حسّاس إلى هذا الحد؟', q_en: 'Why is a session identifier so sensitive?', a_ar: 'لأن البروتوكول عديم الحالة، فالمعرّف وحده يثبت هويتك — ومن سرقه صار أنت بلا كلمة مرور.', a_en: 'The protocol is stateless so the identifier alone proves your identity, and whoever steals it becomes you with no password.' },
+          { q_ar: 'ما الأعلام الثلاثة لتأمين ملف الارتباط؟', q_en: 'What are the three cookie security flags?', a_ar: 'منع قراءته من جافاسكربت، وحصر إرساله بالاتصال المشفّر، وتقييد إرساله مع طلبات المواقع الأخرى.', a_en: 'Blocking JavaScript access, restricting it to encrypted transport, and limiting cross-site sending.' },
+          { q_ar: 'ماذا يمنع مبدأ المصدر الواحد؟', q_en: 'What does the same-origin policy prevent?', a_ar: 'أن تقرأ صفحة من موقع بيانات صفحة من موقع آخر مفتوحة في متصفحك.', a_en: 'A page from one site reading data from another site page open in your browser.' }
+        ]
+      },
+      {
+        title_ar: 'الحقن والبرمجة عبر المواقع',
+        title_en: 'Injection and Cross-Site Scripting',
+        lead_ar: 'كل ثغرات الحقن جذرها واحد: خلط البيانات بالأوامر — والعلاج واحد أيضاً: فصلهما بنيوياً لا تنظيف النص.',
+        lead_en: 'Every injection vulnerability shares one root: mixing data with commands, and the cure is one too: separating them structurally rather than sanitising text.',
+        body_ar: [
+          'الحقن يقع حين يُبنى أمر بلصق مدخل المستخدم فيه نصياً. فلو كان الاستعلام يُبنى بجمع نصوص، واستطاع المستخدم أن يكتب ما يُغلق النص ويضيف أمراً، نُفِّذ أمره ضمن استعلامك بصلاحيات تطبيقك. والمشكلة أن قاعدة البيانات لا تفرّق بين ما كتبته أنت وما كتبه المستخدم — كلاهما وصلها نصاً واحداً.',
+          'والعلاج الصحيح ليس تنظيف المدخل من الرموز الخطرة، لأن قوائم المنع تُتجاوَز دائماً بترميز أو صيغة لم تخطر ببالك. العلاج الاستعلام المعلَّم: تُرسَل بنية الأمر منفصلة عن القيم، فتصل القيمة إلى قاعدة البيانات موسومة أنها قيمة لا أمر مهما احتوت — فيستحيل تنفيذها.',
+          'والحقن ليس محصوراً بقواعد البيانات: أي مكان يُبنى فيه أمر من نص فيه مدخل مستخدم معرّض — أوامر نظام التشغيل، واستعلامات الأدلة، وحتى قوالب العرض. والمبدأ واحد في كل الحالات: افصل البيانات عن الأمر بنيوياً.',
+          'والبرمجة عبر المواقع نوع آخر من الخلط: بدل حقن أمر في قاعدة البيانات، يُحقَن كود في صفحة يراها مستخدم آخر. فيُنفَّذ الكود في متصفح الضحية بصلاحيات الموقع، فيقرأ ملفات الارتباط ويسرق الجلسة أو يعدّل ما يراه المستخدم.',
+          'وأنواعها ثلاثة بحسب مسار الوصول: المخزَّنة تُحفظ في قاعدة البيانات فتصيب كل من يعرض الصفحة وهي الأخطر، والمنعكسة تأتي في رابط يُرسَل للضحية فتصيب من ضغطه، والقائمة على نموذج المستند تقع كلياً في المتصفح بلا مرور بالخادم.',
+          'والدفاع طبقتان لا واحدة: ترميز المخرجات بحسب سياقها — فما يُعرض داخل نص يُرمَّز غير ما يُوضع داخل سمة أو داخل رمز — وسياسة أمن المحتوى التي تخبر المتصفح بمصادر الكود المسموح تنفيذها، فلو نجح الحقن رفض المتصفح تنفيذه. والدرس الأعم في هذا الباب كله: عامل كل مدخل كأنه معادٍ، وافصل البيانات عن التنفيذ دائماً.'
+        ],
+        body_en: [
+          'Injection occurs when a command is built by pasting user input into it as text. If a query is assembled by concatenating strings and the user can write something closing the string and appending a command, their command executes within your query with your application permissions. The problem is that the database cannot distinguish what you wrote from what the user wrote, since both arrived as one string.',
+          'The correct cure is not scrubbing dangerous characters from input, because blocklists are always bypassed by an encoding or form you never considered. The cure is a parameterised query: the command structure is sent separately from the values, so a value reaches the database marked as a value rather than a command whatever it contains, making execution impossible.',
+          'Injection is not confined to databases: anywhere a command is built from text containing user input is exposed, operating system commands, directory queries, even rendering templates. The principle is one in every case: separate data from command structurally.',
+          'Cross-site scripting is another kind of mixing: instead of injecting a command into a database, code is injected into a page another user views. The code runs in the victim browser with the site permissions, reading cookies to steal the session or altering what the user sees.',
+          'It has three kinds by delivery path: stored, saved in the database so it hits everyone viewing the page and is the most dangerous; reflected, arriving in a link sent to a victim so it hits whoever clicks; and the document-model kind occurring entirely in the browser with no server involvement.',
+          'Defence is two layers rather than one: encoding output according to its context, since what appears inside text is encoded differently from what sits inside an attribute or inside script, and a content security policy telling the browser which code sources may execute, so even a successful injection is refused execution. The wider lesson of this whole topic: treat every input as hostile and always separate data from execution.'
+        ],
+        table: {
+          head_ar: ['الثغرة', 'أين يُحقَن', 'من يتضرر', 'العلاج البنيوي'],
+          head_en: ['Vulnerability', 'Where injected', 'Who is harmed', 'Structural cure'],
+          rows: [
+            ['حقن الاستعلام', 'أمر قاعدة البيانات', 'البيانات كلها', 'استعلام معلَّم'],
+            ['حقن أوامر النظام', 'أمر نظام التشغيل', 'الخادم', 'تمرير الوسائط منفصلة'],
+            ['برمجة مخزَّنة', 'محتوى محفوظ', 'كل من يعرض الصفحة', 'ترميز المخرج وسياسة المحتوى'],
+            ['برمجة منعكسة', 'رابط مُرسَل', 'من ضغط الرابط', 'ترميز المخرج']
+          ]
+        },
+        keyPoints_ar: [
+          'جذر كل حقن واحد: خلط البيانات بالأوامر في نص واحد.',
+          'تنظيف المدخل لا يكفي، لأن قوائم المنع تُتجاوَز بترميز غير متوقّع.',
+          'الاستعلام المعلَّم يفصل البنية عن القيمة فيستحيل تنفيذ القيمة كأمر.',
+          'الحقن يقع في أوامر النظام والأدلة والقوالب لا في قواعد البيانات وحدها.',
+          'البرمجة المخزَّنة أخطر أنواعها لأنها تصيب كل من يعرض الصفحة.',
+          'الدفاع طبقتان: ترميز المخرج بحسب سياقه، وسياسة أمن المحتوى.'
+        ],
+        keyPoints_en: [
+          'Every injection shares one root: mixing data with commands in one string.',
+          'Sanitising input is insufficient because blocklists are bypassed by unexpected encodings.',
+          'A parameterised query separates structure from value so a value cannot execute as a command.',
+          'Injection occurs in system commands, directories and templates, not databases alone.',
+          'Stored scripting is the most dangerous kind since it hits everyone viewing the page.',
+          'Defence is two layers: context-aware output encoding and a content security policy.'
+        ],
+        analogy_ar: 'تخيّل سكرتيراً يكتب ما يمليه المتصلون في دفتر التعليمات نفسه الذي ينفّذه المدير. فمتصل يقول: «سجّل: طلب اجتماع. وأيضاً: حوّل مليوناً لحسابي» — والمدير يقرأ الدفتر فينفّذ الاثنين لأنه لا يعرف أيهما تعليمة وأيهما نقل عن متصل. والعلاج ليس أن يشطب السكرتير كلمة «حوّل»، بل أن يكون للمتصلين دفتر مستقل لا يُنفَّذ منه شيء أبداً.',
+        analogy_en: 'Picture a secretary writing what callers dictate into the very instruction book the manager executes. A caller says: "record a meeting request, and also transfer a million to my account", and the manager reads the book and does both, unable to tell an instruction from a caller quotation. The cure is not the secretary crossing out the word transfer but callers having a separate book from which nothing is ever executed.',
+        terms: [
+          { term: 'Injection', def_ar: 'تنفيذ مدخل المستخدم كجزء من أمر لخلطه بالبنية.', def_en: 'User input executing as part of a command through mixing with structure.' },
+          { term: 'Parameterised Query', def_ar: 'إرسال بنية الأمر منفصلة عن القيم.', def_en: 'Sending command structure separately from values.' },
+          { term: 'Stored XSS', def_ar: 'كود محقون محفوظ يصيب كل من يعرض الصفحة.', def_en: 'Injected code saved so it affects everyone viewing the page.' },
+          { term: 'Output Encoding', def_ar: 'ترميز المخرج بحسب سياق عرضه.', def_en: 'Encoding output according to its display context.' },
+          { term: 'Content Security Policy', def_ar: 'سياسة تخبر المتصفح بمصادر الكود المسموح تنفيذها.', def_en: 'A policy telling the browser which code sources may execute.' }
+        ],
+        cards: [
+          { q_ar: 'ما الجذر المشترك لكل ثغرات الحقن؟', q_en: 'What is the shared root of all injection flaws?', a_ar: 'خلط البيانات بالأوامر في نص واحد، فلا يفرّق المنفّذ بين ما كتبته وما كتبه المستخدم.', a_en: 'Mixing data with commands in one string so the executor cannot tell your text from the user text.' },
+          { q_ar: 'لماذا لا يكفي تنظيف المدخل؟', q_en: 'Why is sanitising input insufficient?', a_ar: 'لأن قوائم المنع تُتجاوَز دائماً بترميز أو صيغة لم تخطر ببالك؛ والفصل البنيوي وحده مضمون.', a_en: 'Blocklists are always bypassed by an encoding or form you never considered; only structural separation is reliable.' },
+          { q_ar: 'لماذا البرمجة المخزَّنة أخطر من المنعكسة؟', q_en: 'Why is stored XSS more dangerous than reflected?', a_ar: 'لأنها محفوظة في الموقع فتصيب كل من يعرض الصفحة، والمنعكسة تصيب من ضغط الرابط فقط.', a_en: 'It is saved on the site so it hits everyone viewing the page, while reflected hits only whoever clicked the link.' },
+          { q_ar: 'ما دور سياسة أمن المحتوى؟', q_en: 'What role does a content security policy play?', a_ar: 'تخبر المتصفح بمصادر الكود المسموح تنفيذها، فترفض تنفيذ ما حُقِن ولو نجح الحقن.', a_en: 'It tells the browser which code sources may execute, refusing injected code even when injection succeeded.' }
+        ]
+      },
+      {
+        title_ar: 'المصادقة والصلاحيات في التطبيقات',
+        title_en: 'Authentication and Authorisation in Applications',
+        lead_ar: 'المصادقة تسأل «من أنت» والصلاحية تسأل «وماذا يحق لك» — وأشهر ثغرات التطبيقات أنها تسأل الأولى وتنسى الثانية.',
+        lead_en: 'Authentication asks who you are and authorisation asks what you may do, and the commonest application flaw is asking the first and forgetting the second.',
+        body_ar: [
+          'أخطر ثغرة في تطبيقات الويب اليوم ليست الحقن، وإنما خلل الصلاحيات: أن يتحقق التطبيق من أنك مسجّل دخول ثم يعطيك المورد الذي طلبته بلا فحص أنه يخصّك. فتغيّر رقماً في العنوان فترى فاتورة غيرك أو تعدّل طلب مستخدم آخر.',
+          'وسببها أن الفحص الأول سهل ومركزي — هل الجلسة صالحة؟ — والثاني يجب أن يتكرر في كل نقطة وصول لكل مورد. ومن يكتب مئة واجهة قد ينسى الفحص في واحدة، وواحدة تكفي. ولهذا يُبنى الفحص في طبقة مشتركة لا يُترك لاجتهاد كل واجهة.',
+          'وكلمات المرور: تُخزَّن مجزّأة بدالة مصمَّمة لهذا الغرض تحديداً — دالة بطيئة عمداً ليصعب تخمينها بالقوة الغاشمة — مع ملح عشوائي لكل مستخدم. ولا تُخزَّن أبداً بلا تجزئة ولا بتشفير قابل للفك، لأن من يسرق قاعدة البيانات حينها يسرق كل الحسابات.',
+          'وسياسة كلمات المرور تغيّرت عمّا كان يُدرَّس: الطول أهم من التعقيد، والتبديل الدوري الإجباري ثبت أنه يضرّ لأنه يدفع الناس لأنماط متوقّعة كإضافة رقم متسلسل. والأنفع: حد أدنى طويل، ومنع الكلمات المسرَّبة المعروفة، وتفعيل التحقق متعدد العوامل.',
+          'وإدارة الجلسة تحتاج ثلاثة: تجديد معرّف الجلسة بعد تسجيل الدخول مباشرة لمنع تثبيت الجلسة، وإنهاءها فعلياً في الخادم عند الخروج لا في المتصفح فقط، ومهلة انتهاء للجلسات الخاملة.',
+          'وهجوم التزوير عبر المواقع يستغل أن المتصفح يرسل ملف الارتباط تلقائياً: فيُخدَع المستخدم المسجّل دخوله ليضغط رابطاً يرسل طلباً لموقعك فيُنفَّذ بصلاحياته. وعلاجه رمز مضاد يُولَّد لكل نموذج ويُتحقَّق منه في الخادم، لأن الموقع المهاجم لا يستطيع قراءته بسبب مبدأ المصدر الواحد.'
+        ],
+        body_en: [
+          'The most dangerous web application flaw today is not injection but broken authorisation: the application verifies you are logged in then hands you the resource you requested with no check that it belongs to you. Changing a number in the address shows you somebody else invoice or lets you modify another user order.',
+          'Its cause is that the first check is easy and central, is the session valid, while the second must repeat at every access point for every resource. Whoever writes a hundred endpoints may forget the check in one, and one suffices. So the check is built into a shared layer rather than left to each endpoint judgement.',
+          'Passwords are stored hashed with a function designed specifically for it, deliberately slow to resist brute-force guessing, with a random salt per user. They are never stored unhashed nor with reversible encryption, because whoever steals the database then steals every account.',
+          'Password policy has changed from what used to be taught: length matters more than complexity, and forced periodic rotation proved harmful because it pushes people into predictable patterns such as appending a sequential digit. What helps: a long minimum, blocking known leaked passwords, and enabling multi-factor verification.',
+          'Session management needs three things: regenerating the session identifier immediately after login to prevent session fixation, ending it genuinely on the server at logout rather than in the browser alone, and an expiry timeout for idle sessions.',
+          'Cross-site request forgery exploits the browser sending cookies automatically: a logged-in user is tricked into clicking a link that sends a request to your site executed with their permissions. Its cure is an anti-forgery token generated per form and verified on the server, which the attacking site cannot read thanks to the same-origin policy.'
+        ],
+        table: {
+          head_ar: ['الخلل', 'ما نُسي', 'أثره'],
+          head_en: ['Flaw', 'What was forgotten', 'Its effect'],
+          rows: [
+            ['وصول لمورد غيرك', 'فحص الملكية', 'رؤية بيانات مستخدم آخر'],
+            ['تخزين كلمة مرور قابلة للفك', 'التجزئة البطيئة والملح', 'سرقة القاعدة = سرقة الحسابات'],
+            ['عدم تجديد معرّف الجلسة', 'التجديد بعد الدخول', 'تثبيت جلسة يعرفها المهاجم'],
+            ['غياب الرمز المضاد', 'التحقق من مصدر الطلب', 'تنفيذ فعل بصلاحيات الضحية']
+          ]
+        },
+        keyPoints_ar: [
+          'أخطر ثغرة اليوم خلل الصلاحيات: التحقق من الدخول بلا فحص ملكية المورد.',
+          'فحص الملكية يُبنى في طبقة مشتركة، فنسيانه في واجهة واحدة يكفي.',
+          'كلمات المرور تُجزَّأ بدالة بطيئة عمداً مع ملح عشوائي لكل مستخدم.',
+          'الطول أهم من التعقيد، والتبديل الدوري الإجباري يضرّ لا ينفع.',
+          'جدّد معرّف الجلسة بعد الدخول، وأنهها في الخادم عند الخروج.',
+          'الرمز المضاد يمنع التزوير عبر المواقع لأن المهاجم لا يستطيع قراءته.'
+        ],
+        keyPoints_en: [
+          'The most dangerous flaw today is broken authorisation: checking login without checking resource ownership.',
+          'The ownership check belongs in a shared layer, since forgetting it in one endpoint suffices.',
+          'Passwords are hashed with a deliberately slow function and a random per-user salt.',
+          'Length matters more than complexity, and forced rotation harms rather than helps.',
+          'Regenerate the session identifier after login and end it on the server at logout.',
+          'An anti-forgery token stops cross-site request forgery since the attacker cannot read it.'
+        ],
+        analogy_ar: 'تخيّل فندقاً يفحص بطاقة النزيل عند المدخل فيتأكد أنه نزيل حقاً، ثم يسلّمه أي مفتاح غرفة يطلبه بلا أن يتأكد أنها غرفته. التحقق تمّ والصلاحية نُسيت. وهذا بالضبط أشهر ثغرة في تطبيقات الويب — لا تُكتشف بفحص آلي غالباً، لأن كل شيء يبدو سليماً: المستخدم مسجّل، والطلب صحيح الصيغة، والجواب ناجح.',
+        analogy_en: 'Picture a hotel checking a guest card at the entrance and confirming they really are a guest, then handing them any room key they ask for without checking it is their room. Authentication happened and authorisation was forgotten. That is exactly the commonest web application flaw, and automated scans often miss it because everything looks fine: the user is logged in, the request is well formed, and the response succeeds.',
+        terms: [
+          { term: 'Broken Access Control', def_ar: 'إعطاء مورد بلا فحص أن الطالب يملكه.', def_en: 'Serving a resource without checking the requester owns it.' },
+          { term: 'Password Hashing', def_ar: 'تخزين بصمة بطيئة الحساب مع ملح بدل الكلمة نفسها.', def_en: 'Storing a deliberately slow salted fingerprint instead of the password.' },
+          { term: 'Session Fixation', def_ar: 'استخدام معرّف جلسة يعرفه المهاجم قبل الدخول.', def_en: 'Using a session identifier the attacker knew before login.' },
+          { term: 'CSRF', def_ar: 'خداع مستخدم مسجّل لإرسال طلب يُنفَّذ بصلاحياته.', def_en: 'Tricking a logged-in user into sending a request executed with their permissions.' },
+          { term: 'Anti-forgery Token', def_ar: 'رمز لكل نموذج يتحقق منه الخادم لمنع التزوير.', def_en: 'A per-form token the server verifies to prevent forgery.' }
+        ],
+        cards: [
+          { q_ar: 'ما أخطر ثغرة في تطبيقات الويب اليوم؟', q_en: 'What is the most dangerous web application flaw today?', a_ar: 'خلل الصلاحيات: التحقق من تسجيل الدخول بلا فحص أن المورد المطلوب يخصّ الطالب.', a_en: 'Broken authorisation: verifying login without checking the requested resource belongs to the requester.' },
+          { q_ar: 'لماذا تُستخدم دالة تجزئة بطيئة لكلمات المرور؟', q_en: 'Why use a slow hash for passwords?', a_ar: 'ليصعب تخمينها بالقوة الغاشمة، إذ يجعل كل محاولة مكلفة زمنياً على المهاجم.', a_en: 'To resist brute force, since it makes every guess costly in time for an attacker.' },
+          { q_ar: 'لماذا يضرّ التبديل الدوري الإجباري لكلمات المرور؟', q_en: 'Why does forced password rotation harm?', a_ar: 'لأنه يدفع الناس لأنماط متوقّعة كإضافة رقم متسلسل، فتضعف الكلمة بدل أن تقوى.', a_en: 'It pushes people into predictable patterns such as appending a sequential digit, weakening rather than strengthening.' },
+          { q_ar: 'لماذا يمنع الرمز المضاد هجوم التزوير؟', q_en: 'Why does an anti-forgery token stop CSRF?', a_ar: 'لأن الموقع المهاجم لا يستطيع قراءة الرمز بسبب مبدأ المصدر الواحد، فيفشل طلبه في التحقق.', a_en: 'The attacking site cannot read the token due to the same-origin policy, so its request fails verification.' }
+        ]
+      },
+      {
+        title_ar: 'البرمجة الآمنة',
+        title_en: 'Secure Coding',
+        lead_ar: 'الأمن لا يُضاف بعد الكتابة، والكود الآمن ينشأ من عادات يومية: عدم الثقة بالمدخل، والفشل إلى الوضع الآمن، وعدم اختراع ما هو مُختبَر.',
+        lead_en: 'Security is not added after writing, and secure code comes from daily habits: distrusting input, failing safe, and never inventing what is already tested.',
+        body_ar: [
+          'أول عادة: عامل كل مدخل كأنه معادٍ. والمدخل ليس ما يكتبه المستخدم فقط، بل كل ما يأتي من خارج حدود ثقتك: معاملات الطلب، ورؤوسه، والملفات المرفوعة، وردود الخدمات الخارجية، وحتى بيانات قاعدتك إن كان أدخلها مستخدم يوماً.',
+          'وثاني عادة: التحقق بقائمة سماح لا قائمة منع. فقائمة المنع تحصي ما تعرفه من صور الخطر وتترك ما لا تعرفه يمر، وقائمة السماح تحدد الصيغة المقبولة وترفض كل ما عداها. فبدل «امنع هذي الرموز»، قل «اقبل الأرقام فقط بطول محدد».',
+          'وثالثة: افشل إلى الوضع الآمن. فإن وقع خطأ غير متوقّع في فحص الصلاحية، يجب أن تكون النتيجة الافتراضية المنع لا السماح. وكثير من الثغرات سببها كود يُرجع «مسموح» عند حدوث استثناء لأن المطوّر لم يفكّر في هذا المسار أصلاً.',
+          'ورابعة: لا تخترع ما هو مُختبَر. فمن يكتب خوارزمية تشفير خاصة أو آلية جلسات من عنده يبني ثغرات ما كانت لتوجد لو استخدم مكتبة معتمدة راجعها آلاف الباحثين. والتواضع هنا سلوك أمني لا خُلقي فقط.',
+          'وخامسة: رسائل الخطأ لا تكشف الداخل. فرسالة تقول «كلمة المرور خاطئة» تخبر المهاجم أن اسم المستخدم صحيح، ورسالة تعرض مسار الملف أو استعلام قاعدة البيانات تعطيه خريطة نظامك. والصواب: رسالة عامة للمستخدم وتفصيل كامل في السجل.',
+          'وسادسة تخص السلسلة كلها: المكتبات الخارجية جزء من كودك أمنياً. فثغرة في مكتبة تستخدمها ثغرة في تطبيقك، وأنت مسؤول عنها. ولهذا تُحصَر الاعتماديات وتُراقَب تحديثاتها الأمنية، وتُقلَّل أصلاً — فكل مكتبة تضيفها سطح هجوم لم تكتبه ولا تراجعه.'
+        ],
+        body_en: [
+          'The first habit: treat every input as hostile. Input is not only what a user types but everything crossing your trust boundary: request parameters, headers, uploaded files, external service responses, and even your own database data if a user entered it once.',
+          'The second habit: validate with an allowlist rather than a blocklist. A blocklist enumerates the dangerous forms you know and lets everything you do not know pass, while an allowlist defines the acceptable form and rejects all else. Instead of blocking these characters, say accept only digits of this length.',
+          'The third: fail safe. If an unexpected error occurs during a permission check, the default outcome must be denial rather than permission. Many vulnerabilities exist because code returns allowed when an exception occurs, since the developer never considered that path.',
+          'The fourth: never invent what is already tested. Whoever writes their own encryption algorithm or session mechanism builds vulnerabilities that would not exist had they used an approved library reviewed by thousands of researchers. Humility here is a security behaviour rather than merely an ethical one.',
+          'The fifth: error messages reveal nothing internal. A message saying the password is wrong tells an attacker the username is right, and one displaying a file path or database query hands them a map of your system. The correct approach: a generic message to the user and full detail in the log.',
+          'The sixth concerns the whole chain: external libraries are part of your code security-wise. A vulnerability in a library you use is a vulnerability in your application and you are responsible for it. So dependencies are inventoried, their security updates watched, and their number minimised, since every library added is attack surface you neither wrote nor review.'
+        ],
+        table: {
+          head_ar: ['العادة', 'الخطأ المقابل لها', 'أثره'],
+          head_en: ['Habit', 'Its opposite mistake', 'Effect'],
+          rows: [
+            ['قائمة السماح', 'قائمة المنع', 'يمر ما لم تتوقّعه'],
+            ['الفشل إلى المنع', 'الفشل إلى السماح', 'ثغرة عند كل استثناء'],
+            ['استخدام مكتبة معتمدة', 'اختراع خوارزمية', 'ثغرات لم تكن لتوجد'],
+            ['رسالة عامة للمستخدم', 'كشف التفاصيل', 'خريطة للمهاجم'],
+            ['تقليل الاعتماديات', 'إضافة بلا مراجعة', 'سطح هجوم لا تراقبه']
+          ]
+        },
+        keyPoints_ar: [
+          'المدخل كل ما يعبر حدود ثقتك، لا ما يكتبه المستخدم فقط.',
+          'قائمة السماح تحدد المقبول، وقائمة المنع تترك المجهول يمر.',
+          'افشل إلى المنع: الاستثناء غير المتوقّع يجب ألا ينتج سماحاً.',
+          'لا تخترع تشفيراً ولا آلية جلسات — استخدم المعتمد المراجَع.',
+          'رسالة عامة للمستخدم وتفصيل في السجل، فالرسائل تكشف الداخل.',
+          'ثغرة مكتبتك ثغرتك، فقلّل الاعتماديات وراقب تحديثاتها.'
+        ],
+        keyPoints_en: [
+          'Input is everything crossing your trust boundary, not only what a user types.',
+          'An allowlist defines the acceptable while a blocklist lets the unknown pass.',
+          'Fail safe: an unexpected exception must never produce permission.',
+          'Never invent encryption or session mechanisms; use reviewed approved ones.',
+          'A generic message to the user and detail in the log, since messages expose internals.',
+          'A library vulnerability is yours, so minimise dependencies and watch their updates.'
+        ],
+        analogy_ar: 'تخيّل حارساً عنده قائمتان. الأولى: «امنع من يحمل سكيناً أو عصا» — فيأتي شخص بشيء ثالث لم يُذكر فيدخل. والثانية: «لا تُدخل إلا من يحمل بطاقة موظف صالحة» — فكل ما عداها ممنوع بلا حاجة لتعداده. والقائمة الثانية أقصر وأأمن. وأما الفشل إلى المنع فأن ينقطع التيار عن جهاز البطاقات: هل يُفتح الباب أم يُغلق؟ الأمن أن يُغلق.',
+        analogy_en: 'Picture a guard with two lists. The first: block anyone carrying a knife or a stick, so someone arrives with a third thing never listed and walks in. The second: admit only those holding a valid staff badge, so everything else is refused with no need to enumerate it. The second list is shorter and safer. Failing safe is the badge reader losing power: does the door open or lock? Security says it locks.',
+        terms: [
+          { term: 'Trust Boundary', def_ar: 'الحد الذي يعبره ما لا تسيطر عليه إلى داخل نظامك.', def_en: 'The line uncontrolled data crosses into your system.' },
+          { term: 'Allowlist', def_ar: 'تحديد المقبول ورفض كل ما عداه.', def_en: 'Defining the acceptable and rejecting everything else.' },
+          { term: 'Fail Safe', def_ar: 'أن تكون النتيجة الافتراضية عند الخطأ هي المنع.', def_en: 'The default outcome on error being denial.' },
+          { term: 'Information Disclosure', def_ar: 'كشف رسائل الخطأ تفاصيل داخلية تفيد المهاجم.', def_en: 'Error messages revealing internal details useful to an attacker.' },
+          { term: 'Supply Chain Risk', def_ar: 'خطر يأتي من مكتبة أو مكوّن خارجي تعتمد عليه.', def_en: 'Risk arriving through an external library or component you rely on.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا قائمة السماح أأمن من قائمة المنع؟', q_en: 'Why is an allowlist safer than a blocklist?', a_ar: 'لأن المنع يحصي ما تعرفه ويترك المجهول يمر، والسماح يرفض كل ما لم يُذكر.', a_en: 'A blocklist enumerates what you know and lets the unknown pass, while an allowlist rejects everything unlisted.' },
+          { q_ar: 'ماذا يعني الفشل إلى الوضع الآمن؟', q_en: 'What does failing safe mean?', a_ar: 'أن يكون المنع هو النتيجة الافتراضية عند وقوع خطأ غير متوقّع، لا السماح.', a_en: 'Denial is the default outcome when an unexpected error occurs, rather than permission.' },
+          { q_ar: 'ما ضرر رسالة «كلمة المرور خاطئة»؟', q_en: 'What harm is in a "wrong password" message?', a_ar: 'تخبر المهاجم أن اسم المستخدم صحيح، فتختصر عليه نصف عمله.', a_en: 'It tells an attacker the username is correct, halving their work.' },
+          { q_ar: 'لماذا تُقلَّل الاعتماديات الخارجية؟', q_en: 'Why minimise external dependencies?', a_ar: 'لأن كل مكتبة سطح هجوم لم تكتبه ولا تراجعه، وثغرتها ثغرة في تطبيقك أنت المسؤول عنها.', a_en: 'Each library is attack surface you neither wrote nor review, and its vulnerability is yours to answer for.' }
+        ]
+      },
+      {
+        title_ar: 'اختبار أمن التطبيقات',
+        title_en: 'Application Security Testing',
+        lead_ar: 'لا أداة تكشف كل شيء: الفحص الآلي يجد الأنماط المعروفة، والمراجعة البشرية تجد خلل المنطق — والاعتماد على أحدهما وحده عمى نصفي.',
+        lead_en: 'No tool finds everything: automated scanning catches known patterns while human review catches logic flaws, and relying on either alone is half-blindness.',
+        body_ar: [
+          'اختبار الأمن ثلاثة أنواع تتكامل. التحليل الساكن يفحص الكود بلا تشغيله فيجد أنماطاً خطرة كاستعلام مبني بلصق نصوص، وميزته أنه يعمل مبكراً جداً قبل النشر، وعيبه كثرة الإنذارات الكاذبة لأنه لا يعرف السياق.',
+          'والتحليل الديناميكي يفحص التطبيق وهو يعمل بإرسال طلبات ومراقبة الردود، فيجد ما لا يظهر في الكود كخطأ في الإعداد أو سلوك غير متوقّع. وعيبه أنه يفحص ما يصل إليه فقط، فما خلف تسجيل دخول أو في مسار نادر قد لا يُختبَر.',
+          'واختبار الاختراق مراجعة بشرية بأدوات: يحاكي مهاجماً حقيقياً يفكّر ويربط ويستغل. وقيمته في كشف ما لا تكشفه الأدوات — وأهمه خلل منطق العمل: أن تستطيع طلب كمية سالبة فيُضاف رصيد، أو تخطي خطوة دفع بالانتقال المباشر لصفحة التأكيد. فهذي ثغرات لا يوجد لها «نمط» تبحث عنه أداة، لأنها تخالف نية النظام لا قواعد اللغة.',
+          'وترتيب الأولويات ضرورة: قائمة الثغرات الأكثر شيوعاً المنشورة تعطيك خريطة لما يقع فعلاً في الواقع لا ما هو ممكن نظرياً. وأول ما يُعالَج ما هو مرتفع الخطر وقابل للاستغلال فعلياً في تطبيقك، لا ما هو مثير في التقرير.',
+          'والدمج في دورة التطوير هو ما يحوّل الاختبار من حدث سنوي إلى ممارسة: فحص آلي مع كل تغيير يُرفع، وفحص الاعتماديات مع كل بناء، ومراجعة بشرية للتغييرات الحسّاسة. فالثغرة التي تُكتشف يوم كتابتها تُصلَح بدقائق، والتي تُكتشف بعد سنة قد تحتاج إعادة تصميم.',
+          'وأخيراً: الاختبار يُثبِت وجود الثغرات ولا يُثبِت غيابها. فتقرير نظيف يعني أن ما فُحِص لم تظهر فيه ثغرة بالأدوات المستخدمة في ذلك الوقت، لا أن التطبيق آمن. ومن يقرأ التقرير النظيف على أنه شهادة أمان يبني ثقة على سوء فهم.'
+        ],
+        body_en: [
+          'Security testing has three complementary kinds. Static analysis inspects code without running it and finds dangerous patterns such as a query built by string concatenation. Its merit is working very early before deployment; its flaw is many false positives because it lacks context.',
+          'Dynamic analysis inspects the running application by sending requests and observing responses, finding what code inspection misses such as a configuration error or unexpected behaviour. Its flaw is testing only what it can reach, so anything behind a login or on a rare path may go untested.',
+          'Penetration testing is human review with tools: simulating a real attacker who thinks, connects and exploits. Its value lies in finding what tools cannot, above all business logic flaws: being able to order a negative quantity so credit is added, or skipping a payment step by navigating straight to the confirmation page. These have no pattern for a tool to seek because they violate the system intent rather than language rules.',
+          'Prioritisation is essential: the published list of most common vulnerabilities gives you a map of what actually happens rather than what is theoretically possible. What gets fixed first is what is high risk and genuinely exploitable in your application rather than what looks dramatic in a report.',
+          'Integration into the development cycle is what turns testing from an annual event into a practice: automated scanning on every pushed change, dependency scanning on every build, and human review for sensitive changes. A vulnerability caught the day it was written is fixed in minutes, while one found a year later may need redesign.',
+          'Finally: testing proves vulnerabilities exist and never proves they are absent. A clean report means what was examined showed no vulnerability with the tools used at that time, not that the application is secure. Whoever reads a clean report as a certificate of safety builds trust on a misunderstanding.'
+        ],
+        table: {
+          head_ar: ['النوع', 'متى يعمل', 'يكشف', 'لا يكشف'],
+          head_en: ['Type', 'When it runs', 'Finds', 'Misses'],
+          rows: [
+            ['تحليل ساكن', 'على الكود قبل التشغيل', 'أنماطاً خطرة في الكود', 'خلل الإعداد والمنطق'],
+            ['تحليل ديناميكي', 'على التطبيق العامل', 'أخطاء الإعداد والسلوك', 'ما لا يصل إليه'],
+            ['اختبار اختراق', 'دورياً بيد إنسان', 'خلل منطق العمل والسلاسل', 'ما لم يُفحَص في المدة'],
+            ['فحص الاعتماديات', 'مع كل بناء', 'ثغرات المكتبات المعروفة', 'ثغرات كودك نفسه']
+          ]
+        },
+        keyPoints_ar: [
+          'الساكن مبكر وكثير الإنذارات الكاذبة، والديناميكي واقعي ومحدود الوصول.',
+          'خلل منطق العمل لا تكشفه الأدوات لأنه يخالف نية النظام لا قواعد اللغة.',
+          'رتّب بحسب الخطر الفعلي القابل للاستغلال لا بحسب إثارة التقرير.',
+          'ثغرة تُكتشف يوم كتابتها تُصلَح بدقائق، وبعد سنة قد تحتاج إعادة تصميم.',
+          'الاختبار يُثبِت وجود الثغرات ولا يُثبِت غيابها.',
+          'تقرير نظيف ليس شهادة أمان بل نتيجة أدوات في وقت محدد.'
+        ],
+        keyPoints_en: [
+          'Static analysis is early with many false positives; dynamic is realistic with limited reach.',
+          'Business logic flaws evade tools because they violate intent rather than language rules.',
+          'Prioritise by actual exploitable risk rather than by how dramatic a report looks.',
+          'A vulnerability caught the day it was written takes minutes; a year later it may need redesign.',
+          'Testing proves vulnerabilities exist and never proves their absence.',
+          'A clean report is not a safety certificate but a tool result at a moment in time.'
+        ],
+        analogy_ar: 'تخيّل فحص مبنى. التحليل الساكن مهندس يقرأ المخططات فيلاحظ عموداً ناقصاً — يجد أشياء مبكراً وقد يشير لما ليس مشكلة على الأرض. والديناميكي مفتش يمشي في المبنى ويجرّب الأبواب — يجد ما ليس في المخطط ولا يدخل غرفاً مقفلة. واختبار الاختراق لصّ محترف استأجرته: لن يقرأ المخطط ولن يجرّب الأبواب فحسب، بل سيلاحظ أن سلّم الحريق يوصل للسطح ومنه لشقة الجيران — وهذي فكرة لا يجدها فاحص يتبع قائمة.',
+        analogy_en: 'Picture inspecting a building. Static analysis is an engineer reading the plans and noticing a missing column: finding things early and sometimes flagging what is not a problem on the ground. Dynamic analysis is an inspector walking the building trying doors: finding what the plans omitted and never entering locked rooms. Penetration testing is a professional burglar you hired: they will not merely read plans or try doors but notice the fire stair reaches the roof and from there the neighbour flat, an idea no checklist inspector finds.',
+        terms: [
+          { term: 'Static Analysis', def_ar: 'فحص الكود بلا تشغيله بحثاً عن أنماط خطرة.', def_en: 'Inspecting code without running it for dangerous patterns.' },
+          { term: 'Dynamic Analysis', def_ar: 'فحص التطبيق وهو يعمل بإرسال طلبات ومراقبة الردود.', def_en: 'Inspecting a running application by sending requests and observing responses.' },
+          { term: 'Penetration Test', def_ar: 'محاكاة مهاجم حقيقي بيد إنسان وأدوات.', def_en: 'Simulating a real attacker with human judgement and tools.' },
+          { term: 'Business Logic Flaw', def_ar: 'خلل يخالف نية النظام لا قواعد اللغة، فلا تكشفه الأدوات.', def_en: 'A flaw violating system intent rather than language rules, invisible to tools.' },
+          { term: 'False Positive', def_ar: 'إنذار عن ثغرة غير موجودة فعلياً.', def_en: 'An alert about a vulnerability that does not actually exist.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا تكشف الأدوات خلل منطق العمل؟', q_en: 'Why do tools miss business logic flaws?', a_ar: 'لأنه يخالف نية النظام لا قواعد اللغة، فلا يوجد له نمط تبحث عنه أداة.', a_en: 'It violates the system intent rather than language rules, so there is no pattern for a tool to seek.' },
+          { q_ar: 'ما ميزة التحليل الساكن وعيبه؟', q_en: 'What are static analysis merit and flaw?', a_ar: 'يعمل مبكراً جداً قبل النشر، وعيبه كثرة الإنذارات الكاذبة لجهله بالسياق.', a_en: 'It runs very early before deployment, with many false positives since it lacks context.' },
+          { q_ar: 'ماذا يعني تقرير فحص نظيف؟', q_en: 'What does a clean scan report mean?', a_ar: 'أن ما فُحِص لم تظهر فيه ثغرة بالأدوات المستخدمة وقتها، لا أن التطبيق آمن.', a_en: 'What was examined showed no vulnerability with the tools used then, not that the application is secure.' },
+          { q_ar: 'لماذا يُدمَج الفحص في دورة التطوير؟', q_en: 'Why integrate scanning into the development cycle?', a_ar: 'لأن ثغرة تُكتشف يوم كتابتها تُصلَح بدقائق، وبعد سنة قد تحتاج إعادة تصميم.', a_en: 'A vulnerability caught the day it was written takes minutes, while a year later it may need redesign.' }
+        ]
+      }
     ]
   }
 };
