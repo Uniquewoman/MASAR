@@ -4725,6 +4725,328 @@ export const sectionGuides = {
           { q_ar: 'لماذا لا تكفي الضوابط الوقائية وحدها؟', q_en: 'Why are preventive controls alone insufficient?', a_ar: 'لأن ما لا تراه لا توقفه، فبلا ضوابط كاشفة يُكتشف الاختراق بعد شهور.', a_en: 'You cannot stop what you cannot see, so without detective controls a breach surfaces months later.' }
         ]
       }
+    ],
+
+    // ─────────── الشبكات للأمن السيبراني ───────────
+    1: [
+      {
+        title_ar: 'مفاهيم الشبكات',
+        title_en: 'Networking Concepts',
+        lead_ar: 'لا يُحمى ما لا يُفهم: كل هجوم شبكي يستغل خاصية في تصميم الشبكة، وفهم كيف تصل الحزمة هو أول خطوة في حمايتها.',
+        lead_en: 'You cannot protect what you do not understand: every network attack exploits a property of network design, and understanding how a packet travels is the first step to protecting it.',
+        body_ar: [
+          'الشبكة أجهزة تتبادل بيانات وفق قواعد متفق عليها. والبيانات لا تُرسل ككتلة واحدة، وإنما تُقطَّع إلى حزم صغيرة تسير كل واحدة على حدة وقد تسلك مسارات مختلفة ثم تُجمَّع عند الوجهة. وهذي التجزئة هي ما يجعل الشبكة قوية أمام الأعطال، وهي في الوقت نفسه ما يجعل اعتراض الحزم أو تزويرها ممكناً.',
+          'ولكل جهاز عنوانان لا عنوان واحد، والخلط بينهما يمنع فهم أي هجوم شبكي: عنوان مادي محفور في بطاقة الشبكة يُستخدم داخل الشبكة المحلية فقط، وعنوان منطقي يُعطى للجهاز ويُستخدم للتوجيه بين الشبكات. الأول كرقم الشقة داخل العمارة، والثاني كعنوان العمارة في المدينة.',
+          'والمنفذ رقم يميّز الخدمة داخل الجهاز الواحد. فالخادم قد يشغّل موقعاً وبريداً وقاعدة بيانات على العنوان نفسه، ويفرّق بينها بالمنفذ. ومن هنا خطورة المنافذ المفتوحة بلا حاجة: كل منفذ مفتوح خدمة تنصت، وكل خدمة تنصت سطح هجوم محتمل.',
+          'والأجهزة الوسيطة ثلاثة تُخلط عادة: المُحوِّل يعمل داخل الشبكة المحلية ويوجّه الإطارات بالعنوان المادي، والمُوجِّه يربط الشبكات ببعضها ويوجّه بالعنوان المنطقي، والجدار الناري يفحص المرور ويقرر السماح أو المنع. والثلاثة قد تجتمع في صندوق واحد في الشبكات الصغيرة، وهذا مصدر الخلط.',
+          'ونموذج التخاطب طرفان: العميل يطلب والخادم يستجيب. وهذا يعني أن الخادم بطبعه ينتظر اتصالات واردة فهو معرّض دائماً، بخلاف العميل الذي يبدأ الاتصال. ولهذا تتركّز الحماية على الخوادم والخدمات المكشوفة، وتُبنى قاعدة أساسية: لا تكشف خدمة للإنترنت إلا إن كان لا بد.',
+          'والحد الفاصل بين شبكتك والعالم هو ما يُسمّى المحيط، وقد كان قديماً كافياً للحماية: احمِ الأطراف واعتبر الداخل آمناً. لكن العمل عن بُعد والسحابة والأجهزة الشخصية أذابت هذا الحد، فلم يعد «الداخل» مكاناً واحداً. وهذا التحوّل بالضبط هو ما أنتج فكرة انعدام الثقة التي يقوم عليها الأمن الحديث.'
+        ],
+        body_en: [
+          'A network is devices exchanging data under agreed rules. Data is not sent as one block but cut into small packets each travelling separately, possibly by different routes, then reassembled at the destination. That fragmentation is what makes a network resilient to faults, and it is equally what makes intercepting or forging packets possible.',
+          'Every device has two addresses rather than one, and confusing them blocks understanding of any network attack: a physical address burned into the network card used only within the local network, and a logical address assigned to the device and used for routing between networks. The first is like a flat number inside a building, the second the building address in the city.',
+          'A port is a number distinguishing a service within one device. A server may run a website, mail and a database on the same address, separating them by port. Hence the danger of needlessly open ports: every open port is a listening service, and every listening service is a potential attack surface.',
+          'Three intermediate devices are commonly confused: a switch works inside the local network forwarding frames by physical address, a router connects networks and forwards by logical address, and a firewall inspects traffic and decides to permit or deny. All three may live in one box in small networks, which is the source of the confusion.',
+          'The communication model has two sides: a client requests and a server responds. This means a server by nature waits for incoming connections so it is permanently exposed, unlike a client which initiates. So protection concentrates on servers and exposed services, and a basic rule forms: never expose a service to the internet unless you must.',
+          'The boundary between your network and the world is called the perimeter, and it once sufficed for protection: guard the edges and treat the inside as safe. But remote work, the cloud and personal devices dissolved that boundary, so inside is no longer one place. That very shift produced the zero-trust idea underpinning modern security.'
+        ],
+        table: {
+          head_ar: ['المكوّن', 'ما يفعله', 'دلالته الأمنية'],
+          head_en: ['Component', 'What it does', 'Security implication'],
+          rows: [
+            ['العنوان المادي', 'تعريف داخل الشبكة المحلية', 'قابل للتزوير محلياً'],
+            ['العنوان المنطقي', 'التوجيه بين الشبكات', 'قابل للانتحال في الحزم'],
+            ['المنفذ', 'تمييز الخدمة داخل الجهاز', 'كل منفذ مفتوح سطح هجوم'],
+            ['المُحوِّل', 'توجيه داخل الشبكة المحلية', 'يمكن إغراق جدوله'],
+            ['المُوجِّه', 'ربط الشبكات', 'نقطة تحكم في المسار'],
+            ['الجدار الناري', 'فحص المرور والسماح أو المنع', 'أول ضابط وقائي']
+          ]
+        },
+        keyPoints_ar: [
+          'البيانات تُقطَّع حزماً تسير منفردة، وهذا مصدر مرونتها ومصدر خطر اعتراضها.',
+          'لكل جهاز عنوان مادي محلي وعنوان منطقي للتوجيه بين الشبكات.',
+          'المنفذ يميّز الخدمة، وكل منفذ مفتوح خدمة تنصت وسطح هجوم.',
+          'المُحوِّل داخل الشبكة، والمُوجِّه بين الشبكات، والجدار الناري يقرر السماح.',
+          'الخادم ينتظر اتصالات فهو معرّض دائماً، ولهذا لا تُكشف خدمة إلا لضرورة.',
+          'ذوبان حدود الشبكة بالعمل عن بُعد والسحابة هو ما أنتج فكرة انعدام الثقة.'
+        ],
+        keyPoints_en: [
+          'Data is cut into packets travelling separately, the source of both resilience and interception risk.',
+          'Every device has a local physical address and a logical address for inter-network routing.',
+          'A port distinguishes a service, and every open port is a listening service and an attack surface.',
+          'A switch works inside the network, a router between networks, and a firewall decides permission.',
+          'A server waits for connections so it is permanently exposed, hence exposing services only when necessary.',
+          'The dissolution of the network boundary by remote work and cloud produced the zero-trust idea.'
+        ],
+        analogy_ar: 'تخيّل رسالة طويلة تُقصّ إلى مئة بطاقة بريدية مرقّمة، تُرسل كل واحدة على حدة وقد تسلك طرقاً مختلفة ثم تُرتَّب عند الوصول. مرونتها أن ضياع طريق لا يوقف الرسالة. وخطرها أن كل بطاقة تمر بأيدٍ كثيرة، فمن أراد قراءتها أو تبديل واحدة قادر. والمنفذ رقم الغرفة داخل العمارة: العنوان يوصلك للعمارة، والمنفذ يحدد أي مكتب فيها يستقبلك.',
+        analogy_en: 'Picture a long letter cut into a hundred numbered postcards, each sent separately possibly by different routes then ordered on arrival. Its resilience is that losing one route does not stop the letter. Its danger is that every card passes many hands, so whoever wants to read one or swap it can. A port is the room number inside a building: the address takes you to the building and the port decides which office receives you.',
+        terms: [
+          { term: 'Packet', def_ar: 'وحدة بيانات صغيرة تسير في الشبكة على حدة.', def_en: 'A small data unit travelling the network independently.' },
+          { term: 'MAC Address', def_ar: 'عنوان مادي في بطاقة الشبكة يُستخدم محلياً.', def_en: 'A physical address on the network card used locally.' },
+          { term: 'IP Address', def_ar: 'عنوان منطقي يُستخدم للتوجيه بين الشبكات.', def_en: 'A logical address used for routing between networks.' },
+          { term: 'Port', def_ar: 'رقم يميّز الخدمة داخل الجهاز الواحد.', def_en: 'A number distinguishing a service within one device.' },
+          { term: 'Perimeter', def_ar: 'الحد الفاصل بين الشبكة الداخلية والعالم الخارجي.', def_en: 'The boundary between the internal network and the outside world.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين العنوان المادي والمنطقي؟', q_en: 'Difference between physical and logical addresses?', a_ar: 'المادي محفور في البطاقة ويُستخدم داخل الشبكة المحلية، والمنطقي يُعطى للجهاز ويُستخدم للتوجيه بين الشبكات.', a_en: 'The physical one is burned into the card and used locally; the logical one is assigned and used for routing between networks.' },
+          { q_ar: 'لماذا يخطر المنفذ المفتوح بلا حاجة؟', q_en: 'Why is a needlessly open port dangerous?', a_ar: 'لأنه يعني خدمة تنصت، وكل خدمة تنصت سطح هجوم محتمل.', a_en: 'It means a listening service, and every listening service is a potential attack surface.' },
+          { q_ar: 'لماذا يتركّز الاهتمام الأمني على الخوادم؟', q_en: 'Why does security focus on servers?', a_ar: 'لأنها بطبعها تنتظر اتصالات واردة فهي معرّضة دائماً، بخلاف العميل الذي يبدأ الاتصال.', a_en: 'They wait for incoming connections by nature so they are permanently exposed, unlike clients which initiate.' },
+          { q_ar: 'لماذا لم يعد المحيط كافياً للحماية؟', q_en: 'Why is the perimeter no longer sufficient?', a_ar: 'لأن العمل عن بُعد والسحابة والأجهزة الشخصية أذابت الحد، فلم يعد «الداخل» مكاناً واحداً.', a_en: 'Remote work, cloud and personal devices dissolved the boundary, so inside is no longer one place.' }
+        ]
+      },
+      {
+        title_ar: 'نموذج OSI وحزمة TCP/IP',
+        title_en: 'The OSI Model and the TCP/IP Stack',
+        lead_ar: 'الطبقات ليست ترفاً أكاديمياً: كل هجوم يقع في طبقة بعينها، وكل دفاع يعمل في طبقة — ومن لا يعرف الطبقة يضع الدفاع في المكان الخطأ.',
+        lead_en: 'Layers are not academic luxury: every attack lives in a specific layer and every defence operates in one, and whoever does not know the layer places the defence in the wrong place.',
+        body_ar: [
+          'نموذج الطبقات يقسّم عمل الشبكة إلى مستويات، كل مستوى يخدم الذي فوقه ويستعين بالذي تحته. وفائدته العملية في الأمن أنه يعطيك خريطة: حين تعرف أن الهجوم يقع في الطبقة الثانية، تعرف أن الجدار الناري العامل في الطبقة الثالثة لن يراه أصلاً.',
+          'والطبقات السبع من الأسفل: المادية وهي الأسلاك والإشارات، وربط البيانات وفيها العنوان المادي والمُحوِّل، والشبكة وفيها العنوان المنطقي والمُوجِّه، والنقل وفيها المنافذ وضمان الوصول، والجلسة والعرض والتطبيق وفيها البروتوكولات التي يتعامل معها المستخدم.',
+          'وحزمة TCP/IP العملية تدمج هذي في أربع طبقات، وهي المستخدمة فعلياً في الإنترنت. والمهم ليس حفظ الأسماء بل استيعاب المبدأ: كل طبقة تغلّف بيانات الطبقة التي فوقها وتضيف ترويستها الخاصة، وعند الاستقبال تُنزَع الأغلفة بالترتيب العكسي.',
+          'وهذا التغليف هو ما يفسّر أموراً كثيرة: لماذا يستطيع الجدار الناري البسيط أن يرى المنافذ ولا يرى محتوى الرسالة، ولماذا يستطيع التشفير في طبقة عليا أن يحمي المحتوى ويترك معلومات التوجيه مكشوفة — فمن يراقب شبكتك قد لا يعرف ماذا تقول لكنه يعرف مع من تتكلم وكم مرة.',
+          'ولكل طبقة هجماتها المميّزة: في الطبقة الثانية تسميم جداول العناوين المحلية، وفي الثالثة انتحال العنوان المنطقي، وفي الرابعة إغراق طلبات الاتصال، وفي طبقة التطبيق الحقن والبرمجة عبر المواقع. ولكل واحدة دفاعها في طبقتها — ووضع الدفاع في الطبقة الخطأ إنفاق بلا حماية.',
+          'والدرس الأمني الأهم من النموذج كله: التغليف يعني أن البيانات تمر عبر طبقات كثيرة وأجهزة أكثر، وكل نقطة عبور فرصة للاعتراض. ولهذا لا تُبنى الحماية على افتراض أن الشبكة آمنة بين طرفيها، وإنما على تشفير المحتوى من طرف إلى طرف بحيث لا يهم من مرّ عليه في الطريق.'
+        ],
+        body_en: [
+          'The layered model splits network work into levels, each serving the one above and relying on the one below. Its practical security value is giving you a map: knowing an attack lives in layer two tells you a firewall operating at layer three will never see it.',
+          'The seven layers from the bottom: physical, the cables and signals; data link, holding the physical address and the switch; network, holding the logical address and the router; transport, holding ports and delivery guarantees; then session, presentation and application, holding the protocols users interact with.',
+          'The practical TCP/IP stack merges these into four layers and is what the internet actually uses. What matters is not memorising names but grasping the principle: each layer wraps the data of the layer above and adds its own header, and on receipt the wrappers are stripped in reverse order.',
+          'That encapsulation explains much: why a simple firewall sees ports and not message content, and why encryption at an upper layer protects content while leaving routing information exposed, so whoever watches your network may not know what you say yet knows whom you speak to and how often.',
+          'Each layer has its characteristic attacks: layer two suffers local address table poisoning, layer three logical address spoofing, layer four connection request flooding, and the application layer injection and cross-site scripting. Each has its defence in its own layer, and placing a defence in the wrong layer is spending without protection.',
+          'The most important security lesson from the whole model: encapsulation means data passes through many layers and more devices, and every transit point is an interception opportunity. So protection is not built on assuming the network between two ends is safe but on encrypting content end to end so it does not matter who it passed on the way.'
+        ],
+        table: {
+          head_ar: ['الطبقة', 'ما فيها', 'هجوم مميّز', 'دفاع في طبقتها'],
+          head_en: ['Layer', 'What it holds', 'Typical attack', 'Layer defence'],
+          rows: [
+            ['ربط البيانات', 'العنوان المادي والمُحوِّل', 'تسميم جدول العناوين', 'ضبط منافذ المُحوِّل'],
+            ['الشبكة', 'العنوان المنطقي والتوجيه', 'انتحال العنوان', 'ترشيح المسارات'],
+            ['النقل', 'المنافذ وضمان الوصول', 'إغراق طلبات الاتصال', 'حدود الاتصالات'],
+            ['التطبيق', 'بروتوكولات المستخدم', 'الحقن والبرمجة عبر المواقع', 'التحقق من المدخلات']
+          ]
+        },
+        keyPoints_ar: [
+          'النموذج خريطة أمنية: يخبرك أين يقع الهجوم وأين يجب أن يقف الدفاع.',
+          'كل طبقة تغلّف ما فوقها وتضيف ترويستها، وتُنزَع الأغلفة عكسياً عند الاستقبال.',
+          'التشفير في طبقة عليا يحمي المحتوى ويترك معلومات التوجيه مكشوفة.',
+          'من يراقب الشبكة قد لا يعرف ماذا تقول ويعرف مع من تتكلم وكم مرة.',
+          'دفاع في الطبقة الخطأ إنفاق بلا حماية: جدار الطبقة الثالثة لا يرى هجوم الثانية.',
+          'لا تفترض أن الشبكة آمنة بين طرفيها؛ شفّر من طرف إلى طرف.'
+        ],
+        keyPoints_en: [
+          'The model is a security map telling you where an attack lives and where a defence must stand.',
+          'Each layer wraps the one above and adds its header, stripped in reverse on receipt.',
+          'Upper-layer encryption protects content while leaving routing information exposed.',
+          'A network observer may not know what you say yet knows whom you speak to and how often.',
+          'A defence in the wrong layer is spending without protection: a layer-three firewall misses a layer-two attack.',
+          'Never assume the network between two ends is safe; encrypt end to end.'
+        ],
+        analogy_ar: 'تخيّل رسالة تُوضع في مظروف، والمظروف في طرد، والطرد في حاوية شحن. كل غلاف يكتب عليه ما يخصه: الحاوية عليها الميناء، والطرد عليه المدينة، والمظروف عليه اسم الشخص. وموظف الميناء يقرأ بيانات الحاوية فقط ولا يفتح المظروف. ولهذا يعرف أن شحنة ذهبت لمدينتك ولا يعرف ما فيها — إلا إن كانت الرسالة نفسها بلا تشفير، فحينها يكفي أن يفتح كل الأغلفة.',
+        analogy_en: 'Picture a letter placed in an envelope, the envelope in a parcel, and the parcel in a shipping container. Each wrapper carries its own labelling: the container the port, the parcel the city, the envelope the person name. The port clerk reads only container data and never opens the envelope, so they know a shipment went to your city without knowing its contents, unless the letter itself is unencrypted, in which case opening every wrapper suffices.',
+        terms: [
+          { term: 'Encapsulation', def_ar: 'تغليف بيانات الطبقة الأعلى بترويسة الطبقة الأدنى.', def_en: 'Wrapping upper-layer data with the lower layer header.' },
+          { term: 'Header', def_ar: 'معلومات تضيفها الطبقة لتوجيه البيانات ومعالجتها.', def_en: 'Information a layer adds to route and process the data.' },
+          { term: 'Data Link Layer', def_ar: 'طبقة العنوان المادي والمُحوِّل داخل الشبكة المحلية.', def_en: 'The layer of physical addressing and switching inside a local network.' },
+          { term: 'Transport Layer', def_ar: 'طبقة المنافذ وضمان وصول البيانات.', def_en: 'The layer of ports and delivery guarantees.' },
+          { term: 'Metadata Exposure', def_ar: 'انكشاف معلومات التوجيه رغم تشفير المحتوى.', def_en: 'Routing information being exposed despite content encryption.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفائدة الأمنية لنموذج الطبقات؟', q_en: 'What is the security value of the layered model?', a_ar: 'يعطيك خريطة تحدد أين يقع الهجوم وأي دفاع يستطيع رؤيته أصلاً.', a_en: 'It gives a map showing where an attack lives and which defence can even see it.' },
+          { q_ar: 'ماذا يرى مراقب الشبكة رغم التشفير؟', q_en: 'What does a network observer see despite encryption?', a_ar: 'معلومات التوجيه: مع من تتكلم وكم مرة ومتى، وإن لم يعرف المحتوى.', a_en: 'Routing information: whom you speak to, how often and when, even without the content.' },
+          { q_ar: 'لماذا لا يرى جدار الطبقة الثالثة هجوم الطبقة الثانية؟', q_en: 'Why does a layer-three firewall miss a layer-two attack?', a_ar: 'لأنه يعمل على العناوين المنطقية والمسارات، والهجوم يقع في العناوين المادية تحته.', a_en: 'It operates on logical addresses and routing while the attack lives in physical addressing below it.' },
+          { q_ar: 'ما القاعدة المستفادة من كثرة نقاط العبور؟', q_en: 'What rule follows from many transit points?', a_ar: 'لا تفترض أمان الشبكة بين الطرفين، بل شفّر المحتوى من طرف إلى طرف.', a_en: 'Do not assume the network between ends is safe; encrypt content end to end.' }
+        ]
+      },
+      {
+        title_ar: 'البروتوكولات والمنافذ',
+        title_en: 'Protocols and Ports',
+        lead_ar: 'كل منفذ مفتوح خدمة تنصت، وكل بروتوكول قديم بلا تشفير يمرّر بياناتك واضحة لمن يمرّ عليها — والبديل المشفّر موجود لكل منها.',
+        lead_en: 'Every open port is a listening service, and every legacy unencrypted protocol passes your data in the clear to whoever it passes, and an encrypted alternative exists for each.',
+        body_ar: [
+          'البروتوكول لغة متفق عليها بين طرفين: كيف يبدأ الحديث، وبأي صيغة تُرسل الرسائل، وكيف ينتهي. والمنفذ رقم يعرف به النظام أي خدمة يقصد المتصل. وقد اصطُلح على منافذ قياسية للخدمات الشائعة حتى لا يحتاج العميل أن يسأل: خدمة الويب على منفذ معلوم، والبريد على آخر.',
+          'والفرق بين بروتوكولي النقل الأساسيين يحدد سلوك الخدمة كلها. الأول يبني اتصالاً قبل الإرسال ويضمن وصول كل حزمة بترتيبها ويعيد إرسال ما ضاع، فهو مناسب لما لا يحتمل النقص كصفحة ويب أو ملف. والثاني يرسل بلا اتصال ولا ضمان، فهو أسرع وأخف ويناسب ما يحتمل فقد حزمة كالبث المباشر والمكالمات.',
+          'وهذا الفرق له أثر أمني مباشر: البروتوكول عديم الاتصال أسهل في انتحال المصدر لأنه لا يوجد تأكيد متبادل قبل الإرسال، ولهذا تُبنى عليه أغلب هجمات التضخيم التي تنتحل عنوان الضحية فتوجّه إليها ردوداً ضخمة.',
+          'والقاعدة الأهم عملياً: لكل بروتوكول قديم بلا تشفير بديل مشفّر يجب أن يحلّ محلّه. فنقل الملفات بلا تشفير يمرّر اسم المستخدم وكلمة المرور نصاً واضحاً يقرؤه أي جهاز في الطريق، والاتصال بالخوادم بلا تشفير كذلك، وتصفّح المواقع بلا تشفير يكشف كل ما تُرسله وتستقبله.',
+          'وقد أوقفت المتصفحات تدريجياً قبول الاتصال غير المشفّر، وصار التشفير هو الأصل لا الاستثناء. لكن أنظمة داخلية كثيرة ما زالت تستخدم البروتوكولات القديمة بحجة أنها «داخل الشبكة» — وهذي الحجة سقطت مع سقوط فكرة أن الداخل آمن.',
+          'وفحص المنافذ أول ما يفعله المهاجم وأول ما يجب أن تفعله أنت: أن تعرف ما المنافذ المفتوحة على أنظمتك ولماذا. والمبدأ الحاكم أن يكون كل منفذ مفتوح قراراً واعياً له مبرر مكتوب، وأن يُغلَق كل ما لا مبرر له — فأغلب المنافذ المفتوحة في المؤسسات فُتحت لسبب انتهى ونُسي إغلاقها.'
+        ],
+        body_en: [
+          'A protocol is an agreed language between two parties: how the conversation starts, in what format messages are sent, and how it ends. A port is a number by which the system knows which service a caller means. Standard ports were agreed for common services so a client need not ask: web on one known port, mail on another.',
+          'The difference between the two main transport protocols shapes an entire service behaviour. The first builds a connection before sending, guarantees every packet arrives in order and retransmits what was lost, suiting anything intolerant of loss such as a web page or a file. The second sends with no connection and no guarantee, so it is faster and lighter and suits what tolerates a dropped packet such as live streaming and calls.',
+          'That difference has a direct security consequence: the connectionless protocol is easier to spoof because no mutual confirmation precedes sending, which is why most amplification attacks build on it, spoofing the victim address so huge replies are aimed at them.',
+          'The most practically important rule: every legacy unencrypted protocol has an encrypted replacement that must supersede it. Unencrypted file transfer passes the username and password in clear text readable by any device on the path, unencrypted server access likewise, and unencrypted web browsing exposes everything you send and receive.',
+          'Browsers gradually stopped accepting unencrypted connections, and encryption became the default rather than the exception. Yet many internal systems still use legacy protocols on the argument that they are inside the network, an argument that fell with the idea that inside is safe.',
+          'Port scanning is the first thing an attacker does and the first thing you should do: knowing which ports are open on your systems and why. The governing principle is that every open port is a conscious decision with a written justification, and everything unjustified is closed, since most open ports in organisations were opened for a reason that ended while closing them was forgotten.'
+        ],
+        table: {
+          head_ar: ['البروتوكول', 'يضمن الوصول؟', 'يناسب', 'دلالته الأمنية'],
+          head_en: ['Protocol', 'Guarantees delivery?', 'Suits', 'Security implication'],
+          rows: [
+            ['اتصالي', 'نعم بترتيب وإعادة إرسال', 'صفحات وملفات', 'انتحال المصدر أصعب'],
+            ['عديم الاتصال', 'لا ضمان', 'بث ومكالمات', 'أساس هجمات التضخيم'],
+            ['نقل ملفات بلا تشفير', '—', 'لا شيء اليوم', 'كلمة المرور نصاً واضحاً'],
+            ['بديل مشفّر', '—', 'كل الحالات', 'المحتوى وبيانات الدخول محمية']
+          ]
+        },
+        keyPoints_ar: [
+          'المنفذ يعرّف الخدمة، والمنافذ القياسية اصطلاح يغني العميل عن السؤال.',
+          'البروتوكول الاتصالي يضمن الوصول والترتيب، وعديم الاتصال أسرع بلا ضمان.',
+          'عديم الاتصال أسهل في انتحال المصدر، وعليه تُبنى هجمات التضخيم.',
+          'لكل بروتوكول قديم بديل مشفّر، وحجة «داخل الشبكة» سقطت.',
+          'كل منفذ مفتوح يجب أن يكون قراراً واعياً بمبرر مكتوب.',
+          'أغلب المنافذ المفتوحة فُتحت لسبب انتهى ونُسي إغلاقها.'
+        ],
+        keyPoints_en: [
+          'A port identifies a service, and standard ports spare the client from asking.',
+          'The connection-oriented protocol guarantees ordered delivery; the connectionless one is faster with no guarantee.',
+          'Connectionless traffic is easier to spoof, and amplification attacks build on it.',
+          'Every legacy protocol has an encrypted replacement, and the "inside the network" argument has fallen.',
+          'Every open port must be a conscious decision with written justification.',
+          'Most open ports were opened for a reason that ended while closing them was forgotten.'
+        ],
+        analogy_ar: 'تخيّل الفرق بين رسالة مسجّلة بتوقيع الاستلام، وبطاقة تُلقى في صندوق البريد. الأولى تعرف أنها وصلت وبأي ترتيب، والثانية أسرع وأرخص وقد تضيع بلا أن تدري. ولهذا لا تُرسل عقداً ببطاقة، ولا تُرسل تحية بمسجّلة. وأما المنافذ المفتوحة بلا حاجة فأشبه بأبواب في مبنى فُتحت يوماً لعمّال ثم نُسيت مفتوحة — لا أحد يستخدمها، والجميع يستطيع الدخول منها.',
+        analogy_en: 'Picture the difference between registered mail with a signed receipt and a card dropped in a post box. The first tells you it arrived and in what order; the second is faster and cheaper and may vanish unnoticed. So you do not send a contract by card nor a greeting by registered mail. Needlessly open ports are like doors in a building opened one day for workmen then forgotten open: nobody uses them and everybody can enter through them.',
+        terms: [
+          { term: 'Protocol', def_ar: 'قواعد متفق عليها لتبادل البيانات بين طرفين.', def_en: 'Agreed rules for exchanging data between two parties.' },
+          { term: 'Standard Port', def_ar: 'رقم منفذ متفق عليه لخدمة شائعة.', def_en: 'An agreed port number for a common service.' },
+          { term: 'Connection-oriented', def_ar: 'بروتوكول يبني اتصالاً ويضمن الوصول والترتيب.', def_en: 'A protocol building a connection and guaranteeing ordered delivery.' },
+          { term: 'Amplification Attack', def_ar: 'انتحال عنوان الضحية لتوجيه ردود ضخمة إليها.', def_en: 'Spoofing a victim address to aim huge replies at them.' },
+          { term: 'Port Scanning', def_ar: 'فحص المنافذ المفتوحة على نظام لمعرفة خدماته.', def_en: 'Probing a system open ports to learn its services.' }
+        ],
+        cards: [
+          { q_ar: 'متى يُفضَّل البروتوكول عديم الاتصال؟', q_en: 'When is the connectionless protocol preferred?', a_ar: 'حين يحتمل التطبيق فقد حزمة ويحتاج سرعة، كالبث المباشر والمكالمات.', a_en: 'When the application tolerates a dropped packet and needs speed, such as live streaming and calls.' },
+          { q_ar: 'لماذا تُبنى هجمات التضخيم على البروتوكول عديم الاتصال؟', q_en: 'Why do amplification attacks use the connectionless protocol?', a_ar: 'لأنه بلا تأكيد متبادل قبل الإرسال، فيسهل انتحال عنوان الضحية وتوجيه ردود ضخمة إليها.', a_en: 'It has no mutual confirmation before sending, so spoofing the victim address to aim huge replies is easy.' },
+          { q_ar: 'ما حكم البروتوكولات القديمة داخل الشبكة؟', q_en: 'What about legacy protocols inside the network?', a_ar: 'حجة «داخل الشبكة» سقطت مع سقوط فكرة أن الداخل آمن، فالبديل المشفّر واجب.', a_en: 'The "inside the network" argument fell with the idea that inside is safe, so the encrypted alternative is required.' },
+          { q_ar: 'ما المبدأ الحاكم للمنافذ المفتوحة؟', q_en: 'What principle governs open ports?', a_ar: 'كل منفذ مفتوح قرار واعٍ بمبرر مكتوب، وما لا مبرر له يُغلَق.', a_en: 'Every open port is a conscious decision with written justification, and anything unjustified is closed.' }
+        ]
+      },
+      {
+        title_ar: 'هجمات الشبكات',
+        title_en: 'Network Attacks',
+        lead_ar: 'هجمات الشبكة تستغل ثقة مبنية في التصميم لا خطأً في الكود، ولهذا لا تُصلَح بترقيع وإنما بتغيير الافتراض نفسه.',
+        lead_en: 'Network attacks exploit trust built into the design rather than a coding bug, so they are not fixed by patching but by changing the assumption itself.',
+        body_ar: [
+          'هجوم الوسيط أن يضع المهاجم نفسه بين طرفين يظنان أنهما يتحدثان مباشرة، فيقرأ ما يمر وقد يبدّله. ويقع كثيراً في الشبكات اللاسلكية العامة: نقطة وصول تحمل اسماً مألوفاً ينضم إليها الناس ثقةً، فيمر مرورهم كله عبر جهاز المهاجم.',
+          'ودفاعه ليس تجنّب الشبكات العامة فحسب، وإنما التشفير من طرف إلى طرف والتحقق من الشهادة. فحين يكون المحتوى مشفّراً بمفتاح لا يملكه الوسيط، لا يستفيد من موضعه شيئاً. وتحذير المتصفح من شهادة غير موثوقة هو بالضبط ما يكشف هذي المحاولة — وتجاوزه بضغطة يبطل الحماية كلها.',
+          'وتسميم جدول العناوين المحلي هجوم في الطبقة الثانية: يرسل المهاجم ردوداً مزوّرة تربط عنوان بوابة الشبكة بعنوانه المادي هو، فيصير مرور الشبكة كله يمر عليه. وهو ممكن لأن البروتوكول صُمِّم بلا تحقق أصلاً — يثق بأي رد يصله، وهذي ثقة في التصميم لا ثغرة في التنفيذ.',
+          'وهجوم الحرمان من الخدمة يستهدف التوافر: إغراق الهدف بطلبات حتى يعجز عن خدمة الشرعيين. وتطوّر لصورته الموزّعة التي تأتي من آلاف الأجهزة المخترقة في وقت واحد، فيستحيل التمييز بين طلب شرعي وآخر بمجرد النظر لمصدره — ولهذا يُعالَج بخدمات تنقية المرور وحدود المعدل لا بحظر عناوين.',
+          'وانتحال العنوان أساس كثير من الهجمات: تزوير عنوان المصدر في الحزمة، فيبدو الطلب قادماً من جهة موثوقة. ويُبنى عليه التضخيم: يرسل المهاجم طلباً صغيراً بعنوان الضحية لخدمة ترد رداً ضخماً، فتنهال الردود على الضحية بحجم يفوق ما أرسله المهاجم مرات.',
+          'ومنهج الدفاع واحد رغم تعدد الهجمات: لا تثق بالمصدر لمجرد ادعائه، وشفّر المحتوى فلا يضرّك من مرّ عليه، وقسّم الشبكة فلا يصل مخترق قسم إلى غيره، وراقب الشاذ في المرور لأن أغلب هذي الهجمات تترك أثراً في الأنماط قبل أن تُحدِث ضرراً ظاهراً.'
+        ],
+        body_en: [
+          'A man-in-the-middle attack places the attacker between two parties who believe they speak directly, reading what passes and possibly altering it. It happens often on public wireless networks: an access point carrying a familiar name people join on trust, so all their traffic flows through the attacker device.',
+          'Its defence is not merely avoiding public networks but end-to-end encryption and certificate verification. When content is encrypted with a key the middle party lacks, their position gains them nothing. A browser warning about an untrusted certificate is exactly what exposes this attempt, and clicking past it defeats the whole protection.',
+          'Local address table poisoning is a layer-two attack: the attacker sends forged replies binding the gateway address to their own physical address, so all network traffic passes through them. It is possible because the protocol was designed with no verification at all, trusting any reply it receives, and that is trust in the design rather than a flaw in the implementation.',
+          'A denial of service attack targets availability: flooding a target with requests until it cannot serve legitimate users. It evolved into a distributed form arriving from thousands of compromised machines at once, making it impossible to tell a legitimate request from another by source alone, which is why it is handled with traffic scrubbing services and rate limits rather than address blocking.',
+          'Address spoofing underlies many attacks: forging the source address in a packet so a request appears to come from a trusted party. Amplification builds on it: the attacker sends a small request bearing the victim address to a service that replies enormously, so replies pour onto the victim at many times the volume the attacker sent.',
+          'The defence approach is one despite the variety of attacks: never trust a source for merely claiming, encrypt content so whoever it passed cannot harm you, segment the network so a breach in one segment does not reach another, and watch for anomalies in traffic because most of these attacks leave a pattern trace before causing visible damage.'
+        ],
+        table: {
+          head_ar: ['الهجوم', 'ما يستهدفه', 'ما يستغله', 'الدفاع الأساسي'],
+          head_en: ['Attack', 'Target', 'What it exploits', 'Core defence'],
+          rows: [
+            ['الوسيط', 'السرّية والسلامة', 'ثقة بلا تحقق هوية', 'تشفير طرفي وشهادات'],
+            ['تسميم الجدول المحلي', 'مسار المرور', 'بروتوكول بلا تحقق', 'ضبط المُحوِّل والمراقبة'],
+            ['حرمان الخدمة الموزّع', 'التوافر', 'محدودية الموارد', 'تنقية المرور وحدود المعدل'],
+            ['انتحال العنوان', 'الثقة بالمصدر', 'غياب التحقق من المصدر', 'ترشيح عند حدود الشبكة'],
+            ['التضخيم', 'التوافر', 'رد ضخم لطلب صغير', 'إغلاق الخدمات المستغَلّة']
+          ]
+        },
+        keyPoints_ar: [
+          'هجوم الوسيط يبطل بالتشفير الطرفي، وتجاوز تحذير الشهادة يبطل الحماية.',
+          'تسميم الجدول المحلي ممكن لأن البروتوكول صُمِّم بلا تحقق أصلاً.',
+          'الحرمان الموزّع لا يُعالَج بحظر العناوين بل بتنقية المرور وحدود المعدل.',
+          'انتحال العنوان أساس التضخيم: طلب صغير بعنوان الضحية يجرّ رداً ضخماً.',
+          'المنهج واحد: لا تثق بالادعاء، وشفّر، وقسّم الشبكة، وراقب الشاذ.',
+          'أغلب الهجمات تترك أثراً في أنماط المرور قبل الضرر الظاهر.'
+        ],
+        keyPoints_en: [
+          'Man-in-the-middle fails against end-to-end encryption, and clicking past a certificate warning defeats it.',
+          'Local table poisoning works because the protocol was designed with no verification.',
+          'Distributed denial of service is handled by scrubbing and rate limits rather than address blocking.',
+          'Address spoofing underlies amplification: a small request bearing the victim address draws a huge reply.',
+          'The approach is one: distrust claims, encrypt, segment, and watch for anomalies.',
+          'Most attacks leave a traffic pattern trace before visible damage.'
+        ],
+        analogy_ar: 'تخيّل ساعي بريد يعترض رسائلك ويقرؤها ثم يعيد إغلاقها. لن يفيدك أن تكتب بخط أوضح — الحل أن تكتب بشفرة لا يملك مفتاحها. وتسميم الجدول المحلي أشبه بمن يعلّق لافتة مزوّرة تدلّ على مكتب البريد فتذهب رسائل الحي كلها لبيته. والتضخيم أن يرسل طلبات باسمك لعشرة مكاتب استعلامات، فتصلك عشرة طرود ضخمة لم تطلبها — بخطاب واحد صغير منه.',
+        analogy_en: 'Picture a postman intercepting your letters, reading them and resealing them. Writing more clearly will not help; the answer is writing in a cipher whose key they lack. Local table poisoning is like hanging a forged sign pointing to the post office so the whole neighbourhood mail goes to their house. Amplification is sending requests in your name to ten enquiry desks so ten huge parcels you never asked for arrive at your door, from one small letter of theirs.',
+        terms: [
+          { term: 'Man-in-the-Middle', def_ar: 'وضع المهاجم نفسه بين طرفين يظنان أنهما يتصلان مباشرة.', def_en: 'An attacker placing themselves between two parties who believe they connect directly.' },
+          { term: 'ARP Poisoning', def_ar: 'ردود مزوّرة تربط عنوان البوابة بعنوان المهاجم المادي.', def_en: 'Forged replies binding the gateway address to the attacker physical address.' },
+          { term: 'DDoS', def_ar: 'إغراق موزّع من آلاف الأجهزة يستهدف التوافر.', def_en: 'A distributed flood from thousands of machines targeting availability.' },
+          { term: 'Spoofing', def_ar: 'تزوير عنوان المصدر ليبدو الطلب من جهة موثوقة.', def_en: 'Forging a source address so a request appears trusted.' },
+          { term: 'Rate Limiting', def_ar: 'تحديد عدد الطلبات المسموح بها في وحدة زمن.', def_en: 'Capping the requests allowed per unit of time.' }
+        ],
+        cards: [
+          { q_ar: 'ما الذي يبطل هجوم الوسيط فعلياً؟', q_en: 'What actually defeats a man-in-the-middle attack?', a_ar: 'التشفير من طرف إلى طرف والتحقق من الشهادة؛ وتجاوز تحذير الشهادة يبطل الحماية كلها.', a_en: 'End-to-end encryption and certificate verification; clicking past the warning defeats it entirely.' },
+          { q_ar: 'لماذا يعمل تسميم الجدول المحلي؟', q_en: 'Why does local table poisoning work?', a_ar: 'لأن البروتوكول صُمِّم بلا تحقق فيثق بأي رد يصله؛ فهي ثقة في التصميم لا ثغرة تنفيذ.', a_en: 'The protocol was designed with no verification and trusts any reply, so it is design trust rather than an implementation flaw.' },
+          { q_ar: 'لماذا لا يُعالَج الحرمان الموزّع بحظر العناوين؟', q_en: 'Why not handle DDoS by blocking addresses?', a_ar: 'لأنه يأتي من آلاف الأجهزة المخترقة، فيُعالَج بتنقية المرور وحدود المعدل.', a_en: 'It comes from thousands of compromised machines, so it is handled by scrubbing and rate limits.' },
+          { q_ar: 'كيف يعمل هجوم التضخيم؟', q_en: 'How does an amplification attack work?', a_ar: 'يرسل المهاجم طلباً صغيراً بعنوان الضحية لخدمة ترد رداً ضخماً، فتنهال الردود عليها.', a_en: 'The attacker sends a small request bearing the victim address to a service replying enormously, flooding the victim.' }
+        ]
+      },
+      {
+        title_ar: 'الشبكات الخاصة الافتراضية وTLS',
+        title_en: 'VPNs and TLS',
+        lead_ar: 'التشفير في الطريق يحمي المحتوى من كل من يمرّ عليه، وTLS ما يحمي اتصالك بالمواقع، والشبكة الخاصة نفق يحمي المرور كله — ولكل منهما حدّ يجب معرفته.',
+        lead_en: 'Encryption in transit protects content from everyone it passes, TLS protects your connection to sites and a VPN is a tunnel protecting all traffic, and each has a limit worth knowing.',
+        body_ar: [
+          'البيانات في ثلاث حالات، ولكل حالة حمايتها: بيانات ساكنة مخزّنة على قرص وتُحمى بتشفير التخزين، وبيانات في الطريق تنتقل عبر الشبكة وتُحمى بتشفير النقل، وبيانات قيد المعالجة في الذاكرة وهي الأصعب حمايةً. وهذا الباب عن الحالة الثانية.',
+          'وTLS هو ما يحوّل الاتصال العادي بالمواقع إلى اتصال آمن. وعمله ثلاثة: تشفير المحتوى فلا يقرؤه من يمرّ عليه، وضمان السلامة فلا يُعدَّل في الطريق بلا كشف، والأهم والأكثر إغفالاً: التحقق من هوية الخادم بشهادة رقمية تصدرها جهة موثوقة.',
+          'والتحقق من الهوية هو ما يمنع هجوم الوسيط: فلو اعترض مهاجم اتصالك وقدّم نفسه على أنه الموقع، لما استطاع تقديم شهادة صالحة موقّعة من جهة موثوقة للنطاق. ولهذا يظهر تحذير المتصفح — والتحذير ليس إزعاجاً بل هو الحماية نفسها تعمل، وتجاوزه بضغطة يسلّمك للمهاجم.',
+          'ومصافحة TLS تبدأ باتفاق على الخوارزميات، ثم تحقق العميل من شهادة الخادم، ثم تبادل مفتاح جلسة متماثل باستخدام التشفير غير المتماثل، ثم يُستخدم المفتاح المتماثل السريع لبقية الجلسة. وهذا تطبيق مباشر للتشفير الهجين.',
+          'والشبكة الخاصة الافتراضية نفق مشفّر بين جهازك وخادم، يمر عبره كل مرورك لا اتصال موقع واحد. واستخدامها الأصلي والأهم مؤسسي: أن يصل الموظف عن بُعد لشبكة المؤسسة كأنه داخلها. أما الاستخدام الشخصي فيحمي مرورك من مزوّد الخدمة أو من شبكة عامة.',
+          'وحدّها الذي يُساء فهمه: هي تنقل ثقتك لا تلغيها — كنت تثق بمزوّد الإنترنت فصرت تثق بمزوّد الشبكة الخاصة الذي يرى مرورك كله. وهي لا تجعلك مجهول الهوية، ولا تحميك من برمجية خبيثة على جهازك، ولا تحمي بيانات تسلّمها بيدك لموقع. وTLS يحمي المحتوى بين طرفيه، والشبكة الخاصة تحمي المسار — وليست إحداهما بديلاً عن الأخرى.'
+        ],
+        body_en: [
+          'Data exists in three states, each with its protection: data at rest stored on disk protected by storage encryption, data in transit crossing the network protected by transport encryption, and data in use in memory which is hardest to protect. This topic concerns the second.',
+          'TLS is what turns an ordinary connection to a website into a secure one. It does three things: encrypting content so whoever it passes cannot read it, guaranteeing integrity so it cannot be altered in transit undetected, and most importantly and most overlooked, verifying server identity through a digital certificate issued by a trusted authority.',
+          'Identity verification is what prevents a man-in-the-middle attack: an attacker intercepting your connection and presenting themselves as the site could not present a valid certificate signed by a trusted authority for that domain. That is why the browser warning appears, and the warning is not an annoyance but the protection itself working, and clicking past it hands you to the attacker.',
+          'The TLS handshake begins with agreeing on algorithms, then the client verifying the server certificate, then exchanging a symmetric session key using asymmetric encryption, then the fast symmetric key carries the rest of the session. This is a direct application of hybrid encryption.',
+          'A virtual private network is an encrypted tunnel between your device and a server carrying all your traffic rather than one site connection. Its original and most important use is corporate: letting a remote employee reach the organisation network as if inside it. Personal use protects your traffic from your internet provider or a public network.',
+          'Its widely misunderstood limit: it moves your trust rather than removing it, since you trusted your internet provider and now trust the VPN provider who sees all your traffic. It does not make you anonymous, does not protect you from malware on your device, and does not protect data you hand to a site yourself. TLS protects content between its two ends and a VPN protects the path, and neither replaces the other.'
+        ],
+        table: {
+          head_ar: ['الأداة', 'ما تحميه', 'ما لا تحميه'],
+          head_en: ['Tool', 'What it protects', 'What it does not'],
+          rows: [
+            ['TLS', 'المحتوى بين المتصفح والموقع', 'ما تفعله بعد وصولك للموقع'],
+            ['الشبكة الخاصة', 'كل المرور بينك وخادمها', 'ما بعد الخادم، ولا جهازك'],
+            ['تشفير التخزين', 'البيانات الساكنة على القرص', 'البيانات وقت استخدامها'],
+            ['الشهادة الرقمية', 'إثبات هوية الخادم', 'صدق نوايا الموقع نفسه']
+          ]
+        },
+        keyPoints_ar: [
+          'البيانات ثلاث حالات: ساكنة وفي الطريق وقيد المعالجة، ولكل حماية.',
+          'TLS يشفّر ويضمن السلامة ويتحقق من هوية الخادم — والثالثة أهم ما يُغفَل.',
+          'تحذير الشهادة هو الحماية تعمل، وتجاوزه يسلّمك للوسيط.',
+          'مصافحة TLS تطبيق مباشر للتشفير الهجين: غير متماثل لتبادل المفتاح ثم متماثل.',
+          'الشبكة الخاصة تنقل ثقتك لمزوّدها ولا تلغيها، ولا تجعلك مجهولاً.',
+          'TLS يحمي المحتوى والشبكة الخاصة تحمي المسار، وليست بديلاً عنه.'
+        ],
+        keyPoints_en: [
+          'Data has three states: at rest, in transit and in use, each with its protection.',
+          'TLS encrypts, guarantees integrity and verifies server identity, the third being most overlooked.',
+          'A certificate warning is the protection working, and bypassing it hands you to the middle party.',
+          'The TLS handshake directly applies hybrid encryption: asymmetric key exchange then symmetric.',
+          'A VPN moves your trust to its provider rather than removing it, and does not make you anonymous.',
+          'TLS protects content while a VPN protects the path, and neither replaces the other.'
+        ],
+        analogy_ar: 'تخيّل TLS مظروفاً مختوماً لا يُفتح بلا كسر ختمه، مع بطاقة هوية موثّقة للمستلم تتأكد منها قبل أن تسلّمه. والشبكة الخاصة أنبوب مغلق بينك وبين مكتب بريد بعيد: كل رسائلك تمر فيه فلا يراها جيرانك — لكن موظف ذلك المكتب يراها كلها. ولهذا سؤالك ليس «هل أستخدم شبكة خاصة؟» بل «بمن أثق أكثر: مزوّد الإنترنت أم مزوّد الشبكة؟».',
+        analogy_en: 'Picture TLS as a sealed envelope that cannot be opened without breaking its seal, plus a verified identity card for the recipient you check before handing it over. A VPN is a closed pipe between you and a distant post office: all your letters pass through it so your neighbours never see them, yet the clerk at that office sees them all. So your question is not whether to use a VPN but whom you trust more: your internet provider or the VPN provider.',
+        terms: [
+          { term: 'Data in Transit', def_ar: 'بيانات تنتقل عبر الشبكة بين طرفين.', def_en: 'Data moving across a network between two parties.' },
+          { term: 'TLS', def_ar: 'بروتوكول يشفّر الاتصال ويتحقق من هوية الخادم.', def_en: 'A protocol encrypting a connection and verifying server identity.' },
+          { term: 'Certificate', def_ar: 'وثيقة رقمية تثبت هوية الخادم موقّعة من جهة موثوقة.', def_en: 'A digital document proving server identity, signed by a trusted authority.' },
+          { term: 'Handshake', def_ar: 'مرحلة الاتفاق على الخوارزميات وتبادل مفتاح الجلسة.', def_en: 'The stage of agreeing algorithms and exchanging a session key.' },
+          { term: 'VPN', def_ar: 'نفق مشفّر يمر عبره كل مرورك إلى خادم وسيط.', def_en: 'An encrypted tunnel carrying all your traffic to an intermediate server.' }
+        ],
+        cards: [
+          { q_ar: 'ما الوظائف الثلاث لـTLS ؟', q_en: 'What are the three functions of TLS?', a_ar: 'تشفير المحتوى، وضمان سلامته، والتحقق من هوية الخادم بشهادة موثوقة.', a_en: 'Encrypting content, guaranteeing its integrity, and verifying server identity with a trusted certificate.' },
+          { q_ar: 'ماذا يعني تجاوز تحذير الشهادة؟', q_en: 'What does bypassing a certificate warning mean?', a_ar: 'تعطيل الحماية التي كشفت أن الطرف الآخر ليس من يدّعي، فتسلّم نفسك للوسيط.', a_en: 'Disabling the protection that detected the other party is not who they claim, handing yourself to the middle party.' },
+          { q_ar: 'ما الحدّ الأهم للشبكة الخاصة الافتراضية؟', q_en: 'What is a VPN most important limit?', a_ar: 'أنها تنقل ثقتك من مزوّد الإنترنت إلى مزوّدها الذي يرى مرورك كله، ولا تجعلك مجهولاً.', a_en: 'It moves your trust from the internet provider to its own provider who sees all your traffic, and does not make you anonymous.' },
+          { q_ar: 'هل تغني الشبكة الخاصة عن TLS ؟', q_en: 'Does a VPN replace TLS?', a_ar: 'لا: TLS يحمي المحتوى بين طرفيه، والشبكة الخاصة تحمي المسار — ولكل دوره.', a_en: 'No: TLS protects content between its ends while a VPN protects the path, and each has its role.' }
+        ]
+      }
     ]
   }
 };
