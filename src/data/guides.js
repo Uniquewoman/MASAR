@@ -10507,6 +10507,322 @@ export const sectionGuides = {
           { q_ar: 'ما السؤال الذي يكشف نجاح النظام؟', q_en: 'Which question reveals whether the system succeeded?', a_ar: 'ما آخر قرار اتُّخِذ خلافاً للحدس بسبب رقم؟ فإن لم يوجد جواب فهو يوثّق ما يحدث ولا يغيّره.', a_en: 'What was the last decision taken against intuition because of a number? With no answer it documents rather than changes.' }
         ]
       }
+    ],
+
+    // ─────────── الأمن والامتثال المالي ───────────
+    5: [
+      {
+        title_ar: 'الاحتيال المالي ومؤشراته',
+        title_en: 'Financial Fraud and Its Indicators',
+        lead_ar: 'أخطر أنواع الاحتيال اليوم لا يخترق حساباً وإنما يقنع صاحبه بأن يحوّل بنفسه — فتمرّ العملية بكل الفحوصات لأنها من العميل فعلاً.',
+        lead_en: 'The most dangerous fraud today does not breach an account but convinces its owner to transfer themselves, so the transaction passes every check because it genuinely came from the customer.',
+        body_ar: [
+          'الاحتيال المالي أنواع بطرق مختلفة تماماً، وخلطها يجعل الدفاع عاماً بلا فاعلية. فالاستيلاء على الحساب يبدأ بسرقة اعتماد ثم تصرّف باسم الضحية. والهوية الاصطناعية تبني شخصاً لا وجود له من بيانات حقيقية ممزوجة، فتُمنَح ائتماناً وتبني تاريخاً سليماً شهوراً ثم تختفي بأقصى حد.',
+          'واحتيال الطرف الأول أن يستخدم العميل الحقيقي حسابه ثم ينكر المعاملة ليستردها. وهو صعب الكشف لأن كل شيء فيه صحيح: الجهاز والموقع والاعتماد كلها للعميل فعلاً، والخلاف في النية لا في الهوية.',
+          'وأخطر ما انتشر حديثاً الاحتيال بالإقناع: لا يخترق المحتال شيئاً وإنما يقنع الضحية بالتحويل طوعاً — بانتحال صفة موظف بنك أو جهة حكومية أو بائع أو حتى قريب. والعملية تمر بكل الضوابط لأنها صادرة من العميل بجهازه بعد تحقق سليم.',
+          'وهذا النوع نقل تركيز الدفاع كلياً: لم يعد السؤال هل هذا العميل؟ بل هل هذا العميل يتصرّف بإرادة حرة أم تحت تأثير؟ والمؤشرات تتغيّر تبعاً: مستفيد جديد، ومبلغ غير معتاد، وتحويل يتلو مكالمة طويلة، وتردد ظاهر في سلوك التطبيق.',
+          'والمؤشرات عموماً تُقرأ مجتمعة لا منفردة: جهاز جديد وحده طبيعي، ودولة جديدة وحدها طبيعية، ومبلغ كبير وحده طبيعي. واجتماع الثلاثة في عملية واحدة بعد تغيير رقم الهاتف قبل ساعة نمط لا يُتجاهَل.',
+          'والتوازن الحاكم أن كل تشديد يوقف احتيالاً ويزعج عملاء صادقين. والمعالجة الرشيدة نظام درجات: عملية منخفضة المخاطرة تمر بلا احتكاك، ومتوسطة تُطلَب لها خطوة تحقق، وعالية تُوقَف للمراجعة البشرية. فالحاجز الواحد لكل العمليات إما ضعيف جداً أو مزعج جداً — ولا يكون معتدلاً أبداً.'
+        ],
+        body_en: [
+          'Financial fraud comes in kinds with entirely different methods, and conflating them makes defence general and ineffective. Account takeover begins with stolen credentials then acting as the victim. Synthetic identity builds a person who does not exist from blended real data, gains credit, builds a clean history for months then vanishes at maximum limit.',
+          'First-party fraud is a genuine customer using their own account then denying the transaction to recover it. It is hard to detect because everything about it is genuine: device, location and credentials all truly belong to the customer, and the dispute is over intent rather than identity.',
+          'The gravest recent spread is authorised push fraud: the fraudster breaches nothing and instead convinces the victim to transfer voluntarily, impersonating a bank employee, a government body, a seller or even a relative. The transaction passes every control because it came from the customer on their device after sound verification.',
+          'This kind shifted defence focus entirely: the question is no longer whether this is the customer but whether this customer is acting freely or under influence. The indicators change accordingly: a new beneficiary, an unusual amount, a transfer following a long call, and visible hesitation in app behaviour.',
+          'Indicators generally are read together rather than singly: a new device alone is normal, a new country alone is normal, a large amount alone is normal. All three combining in one transaction after a phone number change an hour earlier is a pattern not to be ignored.',
+          'The governing balance is that every tightening stops fraud and annoys honest customers. The sensible remedy is a tiered system: a low-risk transaction passes frictionlessly, a medium one gets a verification step, and a high one is held for human review. A single barrier for all transactions is either far too weak or far too annoying, and never moderate.'
+        ],
+        table: {
+          head_ar: ['النوع', 'من ينفّذ الحركة', 'ما يكشفه'],
+          head_en: ['Kind', 'Who performs it', 'What reveals it'],
+          rows: [
+            ['الاستيلاء على الحساب', 'المحتال باعتماد مسروق', 'جهاز وموقع وسلوك جديد'],
+            ['الهوية الاصطناعية', 'شخص لا وجود له', 'بيانات ممزوجة وتاريخ قصير'],
+            ['احتيال الطرف الأول', 'العميل نفسه ثم ينكر', 'نمط اعتراضات متكرر'],
+            ['الاحتيال بالإقناع', 'العميل تحت تأثير', 'مستفيد جديد ومبلغ شاذ وتردد']
+          ]
+        },
+        keyPoints_ar: [
+          'الأنواع تختلف جذرياً، والدفاع العام بلا تمييز بينها ضعيف.',
+          'الهوية الاصطناعية تبني تاريخاً سليماً شهوراً ثم تختفي بأقصى حد.',
+          'احتيال الطرف الأول خلاف في النية لا في الهوية، فكل مؤشراته سليمة.',
+          'الاحتيال بالإقناع يمرّ بكل الضوابط لأنه من العميل فعلاً.',
+          'السؤال تحوّل من «هل هذا العميل؟» إلى «هل يتصرّف بإرادة حرة؟».',
+          'الحاجز الواحد للجميع ضعيف جداً أو مزعج جداً، والصحيح نظام درجات.'
+        ],
+        keyPoints_en: [
+          'The kinds differ radically, and undifferentiated general defence is weak.',
+          'Synthetic identity builds a clean history for months then vanishes at maximum limit.',
+          'First-party fraud is a dispute over intent rather than identity, so every indicator looks sound.',
+          'Authorised push fraud passes every control because it genuinely came from the customer.',
+          'The question shifted from whether this is the customer to whether they act freely.',
+          'One barrier for everyone is far too weak or too annoying; the answer is tiering.'
+        ],
+        analogy_ar: 'تخيّل حارساً ممتازاً يتحقق من هوية كل داخل بدقة تامة. ثم يتصل محتال بصاحب البيت ويقنعه أن يخرج بنفسه ويسلّم المفتاح في الشارع. الحارس لم يخطئ في شيء، ونظامه عمل بلا خلل، والخسارة وقعت كاملة. ولهذا لم يعد يكفي أن يسأل الحارس «من أنت؟» — صار عليه أن يلاحظ أن صاحب البيت خرج مسرعاً وهو يتكلم في الهاتف وبيده مفتاح لم يخرج به قط.',
+        analogy_en: 'Picture an excellent guard verifying every entrant identity precisely. Then a fraudster calls the homeowner and convinces them to walk out and hand over the key in the street. The guard erred in nothing, their system worked flawlessly, and the loss was total. So it no longer suffices for the guard to ask who are you: they must notice the owner hurried out talking on the phone holding a key they never carried out before.',
+        terms: [
+          { term: 'Account Takeover', def_ar: 'تصرّف المحتال باسم الضحية باعتماد مسروق.', def_en: 'A fraudster acting as the victim with stolen credentials.' },
+          { term: 'Synthetic Identity', def_ar: 'شخص لا وجود له مبني من بيانات حقيقية ممزوجة.', def_en: 'A non-existent person built from blended real data.' },
+          { term: 'First-party Fraud', def_ar: 'إنكار العميل معاملة نفّذها فعلاً.', def_en: 'A customer denying a transaction they actually made.' },
+          { term: 'Authorised Push Fraud', def_ar: 'إقناع الضحية بالتحويل طوعاً بلا اختراق.', def_en: 'Convincing a victim to transfer voluntarily with no breach.' },
+          { term: 'Risk Tiering', def_ar: 'تدرّج التحقق بحسب مخاطرة كل عملية.', def_en: 'Grading verification by each transaction risk.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يمرّ الاحتيال بالإقناع من كل الضوابط؟', q_en: 'Why does authorised push fraud pass every control?', a_ar: 'لأن العملية صادرة من العميل نفسه بجهازه بعد تحقق سليم، فلا شيء فيها يبدو شاذاً هوياتياً.', a_en: 'The transaction genuinely comes from the customer on their device after sound verification, so nothing looks anomalous in identity.' },
+          { q_ar: 'كيف تعمل الهوية الاصطناعية؟', q_en: 'How does synthetic identity work?', a_ar: 'تبني شخصاً لا وجود له من بيانات ممزوجة، وتُظهِر سلوكاً سليماً شهوراً لترفع حدودها ثم تختفي.', a_en: 'It builds a non-existent person from blended data, behaves cleanly for months to raise limits, then vanishes.' },
+          { q_ar: 'لماذا يصعب كشف احتيال الطرف الأول؟', q_en: 'Why is first-party fraud hard to detect?', a_ar: 'لأن الجهاز والموقع والاعتماد كلها للعميل فعلاً، والخلاف في النية لا في الهوية.', a_en: 'Device, location and credentials all genuinely belong to the customer, and the dispute is intent rather than identity.' },
+          { q_ar: 'لماذا يفشل الحاجز الواحد لكل العمليات؟', q_en: 'Why does one barrier for all transactions fail?', a_ar: 'لأنه إما ضعيف فيمرّ الاحتيال أو مزعج فيخسّر العملاء، والصحيح تدرّج بحسب المخاطرة.', a_en: 'It is either weak so fraud passes or annoying so customers are lost; the answer is tiering by risk.' }
+        ]
+      },
+      {
+        title_ar: 'مكافحة غسل الأموال',
+        title_en: 'Anti-Money Laundering',
+        lead_ar: 'الغسل ثلاث مراحل لكل واحدة نقطة كشف مختلفة، وأسهلها كشفاً الأولى — ولهذا تتركز الضوابط عند دخول المال للنظام لا بعد تحرّكه.',
+        lead_en: 'Laundering has three stages each with a different detection point, and the first is the easiest to catch, which is why controls concentrate at the money entering the system rather than after it moves.',
+        body_ar: [
+          'غسل الأموال إخفاء مصدر مال غير مشروع ليبدو مشروعاً. ومراحله ثلاث: الإيداع بإدخال المال للنظام المالي، والتمويه بتحريكه في معاملات متعددة معقّدة تقطع أثره، والدمج بإعادته لصاحبه في صورة مشروعة كثمن بيع أو أرباح استثمار.',
+          'ولكل مرحلة نقطة كشف مختلفة. والإيداع أسهلها وأخطرها على المُهرِّب، لأن إدخال مبلغ نقدي كبير يلفت النظر ويستدعي سؤالاً عن المصدر. ولهذا تتركز أثقل الضوابط عند نقطة الدخول: من أين جاء هذا المال؟',
+          'وأشهر أنماط التمويه التجزئة: تقسيم مبلغ كبير لمبالغ صغيرة تحت حدّ الإبلاغ. وهي بحد ذاتها جريمة في كثير من الأنظمة حتى لو كان المال مشروعاً، لأن القصد تجنّب الرقابة. وكشفها بمراقبة النمط لا المبلغ الواحد: عشر إيداعات متقاربة تحت الحد في يومين.',
+          'والنهج القائم على المخاطر جوهر التنظيم الحديث: لا تُعامَل كل العلاقات بالمستوى نفسه من التدقيق، وإنما تُصنَّف بحسب المخاطرة — نوع النشاط، والدولة، وطبيعة المعاملات — ويُركَّز الجهد حيث المخاطرة أعلى. فالتدقيق المتساوي على الجميع يهدر الجهد ويفوّت الحالات الخطرة.',
+          'وحين يُشتَبه في نشاط يُرفَع تقرير اشتباه للجهة المختصة. وقاعدة قاطعة ترافقه: يُمنَع إخبار العميل بأنه محل اشتباه أو أن تقريراً رُفِع بشأنه، وهذا منع قانوني صريح لأن إخباره يُفسِد التحقيق ويمكّنه من إخفاء الأثر.',
+          'والاشتباه لا يعني الإدانة ولا يقتضي إغلاق الحساب تلقائياً: التقرير إبلاغ لجهة تحقّق، والقرار يعود لها. والمؤسسة التي تُغلِق كل حساب مشتبه به تدفع أصحاب الأنشطة المشروعة خارج النظام المالي بلا سبب — وهذا ضرر حقيقي يقع على أبرياء ويُسمّى تقليص المخاطر بالجملة.'
+        ],
+        body_en: [
+          'Money laundering is concealing the source of illicit funds to make them appear legitimate. It has three stages: placement, putting the money into the financial system; layering, moving it through multiple complex transactions that cut its trail; and integration, returning it to its owner in a legitimate guise such as a sale price or investment profit.',
+          'Each stage has a different detection point. Placement is the easiest and riskiest for the launderer, because introducing a large cash amount attracts attention and prompts a question about its source. So the heaviest controls concentrate at the entry point: where did this money come from?',
+          'The best-known layering pattern is structuring: splitting a large amount into small ones below the reporting threshold. It is itself a crime in many jurisdictions even when the money is legitimate, because the intent is evading oversight. It is caught by watching the pattern rather than a single amount: ten close deposits below the threshold within two days.',
+          'The risk-based approach is the core of modern regulation: relationships are not all treated with the same scrutiny and are instead classified by risk, the kind of activity, the country and the nature of transactions, concentrating effort where risk is highest. Equal scrutiny for everyone wastes effort and misses the dangerous cases.',
+          'When activity is suspected, a suspicious activity report is filed with the competent authority. An absolute rule accompanies it: telling the customer they are under suspicion or that a report was filed is forbidden, an explicit legal prohibition because telling them ruins the investigation and lets them hide the trail.',
+          'Suspicion means neither guilt nor an automatic account closure: the report notifies a body that investigates, and the decision rests with it. An institution closing every suspected account pushes legitimate business owners out of the financial system for no reason, real harm falling on innocent people known as wholesale de-risking.'
+        ],
+        table: {
+          head_ar: ['المرحلة', 'ما يحدث فيها', 'نقطة الكشف'],
+          head_en: ['Stage', 'What happens', 'Detection point'],
+          rows: [
+            ['الإيداع', 'إدخال المال للنظام المالي', 'سؤال المصدر عند الدخول'],
+            ['التمويه', 'معاملات متعددة تقطع الأثر', 'نمط الحركة لا المعاملة الواحدة'],
+            ['الدمج', 'عودته في صورة مشروعة', 'عدم تناسب الثروة مع النشاط']
+          ]
+        },
+        keyPoints_ar: [
+          'ثلاث مراحل لكل واحدة نقطة كشف مختلفة.',
+          'الإيداع أسهل الكشف وأخطر على المُهرِّب، فتتركز الضوابط عند الدخول.',
+          'التجزئة تحت حدّ الإبلاغ جريمة بذاتها لأن القصد تجنّب الرقابة.',
+          'كشف التجزئة بمراقبة النمط لا المبلغ الواحد.',
+          'النهج القائم على المخاطر يركّز الجهد حيث المخاطرة، والتساوي يهدر ويفوّت.',
+          'يُمنَع قانوناً إخبار العميل بالاشتباه أو بالتقرير المرفوع.'
+        ],
+        keyPoints_en: [
+          'Three stages each with a different detection point.',
+          'Placement is easiest to catch and riskiest for the launderer, so controls concentrate at entry.',
+          'Structuring below the threshold is itself a crime because the intent is evading oversight.',
+          'Structuring is caught by watching the pattern rather than a single amount.',
+          'The risk-based approach concentrates effort where risk is; equal treatment wastes and misses.',
+          'Telling the customer about the suspicion or the filed report is legally forbidden.'
+        ],
+        analogy_ar: 'تخيّل من وجد صندوقاً من المال المسروق. أصعب لحظة عليه إدخاله البنك، لأن الموظف سيسأل من أين. فلو نجح، بدأ بتحريكه بين حسابات وشركات ودول حتى يعجز أحد عن تتبّعه. ثم يشتري به عقاراً ويبيعه فيصير «ثمن بيع عقار» ظاهره سليم تماماً. ولهذا يقف أثقل سؤال عند الباب الأول — بعده يصير التتبّع مطاردة في متاهة صنعها هو بنفسه.',
+        analogy_en: 'Picture someone who found a box of stolen money. Their hardest moment is putting it into a bank, because a clerk will ask where it came from. If they succeed, they begin moving it between accounts, companies and countries until nobody can trace it. Then they buy a property and sell it so it becomes a property sale price looking entirely sound. That is why the heaviest question stands at the first door: after it, tracing becomes a chase through a maze they built themselves.',
+        terms: [
+          { term: 'Placement', def_ar: 'إدخال المال غير المشروع للنظام المالي.', def_en: 'Introducing illicit money into the financial system.' },
+          { term: 'Layering', def_ar: 'معاملات متعددة معقّدة تقطع أثر المال.', def_en: 'Multiple complex transactions cutting the money trail.' },
+          { term: 'Structuring', def_ar: 'تجزئة مبلغ لتجنّب حدّ الإبلاغ، وهي جريمة بذاتها.', def_en: 'Splitting an amount to evade a reporting threshold, itself a crime.' },
+          { term: 'Risk-based Approach', def_ar: 'تركيز التدقيق حيث المخاطرة أعلى لا التساوي.', def_en: 'Concentrating scrutiny where risk is highest rather than treating all equally.' },
+          { term: 'Tipping Off', def_ar: 'إخبار العميل بالاشتباه، وهو محظور قانوناً.', def_en: 'Telling a customer of suspicion, legally prohibited.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا تتركز الضوابط عند مرحلة الإيداع؟', q_en: 'Why do controls concentrate at placement?', a_ar: 'لأنها أسهل الكشف وأخطر على المُهرِّب، فبعدها يصير التتبّع مطاردة في متاهة من المعاملات.', a_en: 'It is the easiest to catch and riskiest for the launderer, since after it tracing becomes a chase through a maze.' },
+          { q_ar: 'لماذا تُجرَّم التجزئة ولو كان المال مشروعاً؟', q_en: 'Why is structuring criminal even with legitimate money?', a_ar: 'لأن القصد منها تجنّب الرقابة والإبلاغ، والقصد نفسه هو ما يُجرَّم لا مصدر المال.', a_en: 'Its intent is evading oversight and reporting, and that intent is what is criminalised rather than the source.' },
+          { q_ar: 'ما النهج القائم على المخاطر؟', q_en: 'What is the risk-based approach?', a_ar: 'تصنيف العلاقات بحسب مخاطرتها وتركيز التدقيق حيث هي أعلى، لأن التساوي يهدر ويفوّت الخطر.', a_en: 'Classifying relationships by risk and concentrating scrutiny where it is highest, since equality wastes and misses.' },
+          { q_ar: 'ماذا يعني منع إخبار العميل؟', q_en: 'What does the tipping-off prohibition mean?', a_ar: 'حظر قانوني صريح على إخباره بالاشتباه أو بالتقرير، لأن ذلك يُفسِد التحقيق ويمكّنه من إخفاء الأثر.', a_en: 'An explicit legal ban on telling them of the suspicion or report, since it ruins the investigation and lets them hide the trail.' }
+        ]
+      },
+      {
+        title_ar: 'اعرف عميلك والتحقق من الهوية',
+        title_en: 'Know Your Customer and Identity Verification',
+        lead_ar: 'التحقق ليس إجراءً يتم مرة عند الفتح وينتهي، وإنما معرفة تُحدَّث كلما تغيّر سلوك العميل أو مضت مدة على آخر مراجعة.',
+        lead_en: 'Verification is not a one-off step at opening but knowledge refreshed whenever customer behaviour changes or time passes since the last review.',
+        body_ar: [
+          'مبدأ اعرف عميلك يقوم على ثلاثة أركان: التحقق من هويته، وفهم طبيعة نشاطه ومصدر أمواله، ومراقبة معاملاته لاحقاً لتطابق ما أُعلِن. والركن الثالث هو الذي يُهمَل غالباً، مع أنه ما يجعل الأولين ذوَي معنى.',
+          'ودرجات التدقيق ثلاث بحسب المخاطرة: مبسّطة لعلاقات منخفضة المخاطرة كحساب بحدود صغيرة، وقياسية للأغلبية، ومعزّزة للحالات عالية المخاطرة. والمعزّزة تشمل التحقق من مصدر الثروة لا مصدر الأموال فقط، وموافقة إدارية أعلى، ومراجعة أقرب تكراراً.',
+          'وفئات محددة تستوجب التدقيق المعزّز: أصحاب المناصب العامة البارزون وأقاربهم، لأن مواقعهم تعرّضهم لمخاطر الفساد. والانتباه المهم أن التصنيف ليس اتهاماً ولا يمنع التعامل، وإنما يرفع مستوى العناية المطلوبة.',
+          'والمالك المستفيد الحقيقي هو صلب التحقق في الشركات: من يملك أو يسيطر فعلاً خلف الهياكل؟ فالشركات المتداخلة قد تخفي المالك الحقيقي عبر طبقات من كيانات في دول مختلفة، وكشفه هو الغرض من كل هذا الجهد.',
+          'وفحص قوائم العقوبات إلزامي عند الفتح وبشكل مستمر بعده، لأن القوائم تتغيّر ويصير عميل قائم مدرجاً بعد سنوات. ومشكلته العملية الإنذارات الكاذبة: تشابه الأسماء يعطي مطابقات كثيرة خاطئة، وفريق يعالج آلاف المطابقات أسبوعياً يعتاد الإغلاق السريع فتمرّ الحقيقية بينها.',
+          'والتحقق الرقمي عن بُعد صار المعتاد: مطابقة صورة الوثيقة بصورة حية مع فحص حيوية يمنع استخدام صورة أو تسجيل. وتقنيات التزييف العميق رفعت الرهان كثيراً، فصار فحص الحيوية النشط ضرورة لا تحسيناً — والتوازن الدائم أن كل خطوة تحقق إضافية تحمي وتخسّر جزءاً من المتقدمين الصادقين.'
+        ],
+        body_en: [
+          'The know-your-customer principle rests on three pillars: verifying identity, understanding the nature of the activity and source of funds, and monitoring subsequent transactions against what was declared. The third is the most neglected, although it is what gives the first two meaning.',
+          'Scrutiny has three grades by risk: simplified for low-risk relationships such as a small-limit account, standard for the majority, and enhanced for high-risk cases. Enhanced includes verifying the source of wealth rather than just the source of funds, higher management approval, and more frequent review.',
+          'Specific categories require enhanced scrutiny: politically exposed persons and their relatives, because their positions expose them to corruption risk. The important note is that the classification is neither an accusation nor a bar to dealing, and merely raises the level of care required.',
+          'The ultimate beneficial owner is the core of corporate verification: who actually owns or controls behind the structures? Interlocking companies may hide the real owner through layers of entities in different countries, and revealing them is the purpose of all this effort.',
+          'Sanctions list screening is mandatory at opening and continuously after, because lists change and an existing customer may become listed years later. Its practical problem is false positives: name similarity yields many wrong matches, and a team handling thousands weekly grows accustomed to fast closure so the real ones pass among them.',
+          'Remote digital verification became standard: matching a document image against a live image with a liveness check preventing a photo or recording. Deepfake techniques raised the stakes considerably, making active liveness checking a necessity rather than a refinement, and the constant balance is that every extra verification step protects and loses a share of honest applicants.'
+        ],
+        table: {
+          head_ar: ['الدرجة', 'متى تُطبَّق', 'ما تضيفه'],
+          head_en: ['Grade', 'When applied', 'What it adds'],
+          rows: [
+            ['مبسّطة', 'مخاطرة منخفضة وحدود صغيرة', 'تحقق أساسي فقط'],
+            ['قياسية', 'أغلب العملاء', 'هوية ونشاط ومصدر أموال'],
+            ['معزّزة', 'مخاطرة عالية أو فئة محددة', 'مصدر الثروة وموافقة أعلى ومراجعة أقرب']
+          ]
+        },
+        keyPoints_ar: [
+          'ثلاثة أركان: تحقق الهوية، وفهم النشاط والمصدر، ومراقبة لاحقة تطابقه.',
+          'الركن الثالث أكثرها إهمالاً وهو ما يجعل الأولين ذوَي معنى.',
+          'تصنيف صاحب المنصب العام ليس اتهاماً ولا يمنع التعامل بل يرفع العناية.',
+          'المالك المستفيد الحقيقي هو صلب التحقق في الشركات المتداخلة.',
+          'فحص العقوبات مستمر لا مرة واحدة، لأن القوائم تتغيّر بعد سنوات.',
+          'التزييف العميق جعل فحص الحيوية النشط ضرورة لا تحسيناً.'
+        ],
+        keyPoints_en: [
+          'Three pillars: verifying identity, understanding activity and source, and later monitoring against it.',
+          'The third is most neglected and is what gives the first two meaning.',
+          'Classifying a politically exposed person is neither an accusation nor a bar; it raises the care required.',
+          'The ultimate beneficial owner is the core of verification in interlocking companies.',
+          'Sanctions screening is continuous rather than one-off, because lists change years later.',
+          'Deepfakes made active liveness checking a necessity rather than a refinement.'
+        ],
+        analogy_ar: 'تخيّل مدرسة تتحقق من ولي أمر الطالب مرة عند التسجيل ثم لا تعود تسأل. وبعد سنتين يأتي شخص آخر يستلم الطفل ومعه ورقة قديمة موقّعة. والتحقق الذي تم قبل سنتين صحيح تماماً ولا ينفع اليوم. والمعرفة التي لا تُحدَّث تصير وثيقة تاريخية لا ضمانة — ولهذا يُطلَب التحديث لا عند الشك فقط بل بمرور الوقت أيضاً.',
+        analogy_en: 'Picture a school verifying a pupil guardian once at enrolment then never asking again. Two years later another person arrives to collect the child holding an old signed paper. The verification done two years ago is entirely valid and useless today. Knowledge that is not refreshed becomes a historical document rather than a guarantee, which is why updating is required not only on doubt but also with the passage of time.',
+        terms: [
+          { term: 'Customer Due Diligence', def_ar: 'تحقق من الهوية وفهم النشاط ومصدر الأموال.', def_en: 'Verifying identity and understanding activity and source of funds.' },
+          { term: 'Enhanced Due Diligence', def_ar: 'تدقيق أعمق يشمل مصدر الثروة وموافقة أعلى.', def_en: 'Deeper scrutiny covering source of wealth and higher approval.' },
+          { term: 'Politically Exposed Person', def_ar: 'صاحب منصب عام بارز تستوجب علاقته عناية أعلى.', def_en: 'A prominent public officeholder whose relationship needs higher care.' },
+          { term: 'Beneficial Owner', def_ar: 'من يملك أو يسيطر فعلاً خلف هياكل الشركات.', def_en: 'Whoever actually owns or controls behind corporate structures.' },
+          { term: 'Liveness Check', def_ar: 'فحص يمنع استخدام صورة أو تسجيل بدل شخص حي.', def_en: 'A check preventing a photo or recording standing in for a live person.' }
+        ],
+        cards: [
+          { q_ar: 'ما الركن الأكثر إهمالاً في «اعرف عميلك»؟', q_en: 'Which know-your-customer pillar is most neglected?', a_ar: 'مراقبة المعاملات لاحقاً لتطابق ما أُعلِن، وهو ما يجعل التحقق وفهم النشاط ذوَي معنى.', a_en: 'Monitoring later transactions against what was declared, which is what gives verification and understanding meaning.' },
+          { q_ar: 'هل تصنيف صاحب منصب عام اتهام؟', q_en: 'Is classifying a politically exposed person an accusation?', a_ar: 'لا، ولا يمنع التعامل؛ وإنما يرفع مستوى العناية المطلوبة بسبب تعرّض الموقع لمخاطر الفساد.', a_en: 'No, and it bars no dealing; it raises the required care because the position carries corruption risk.' },
+          { q_ar: 'لماذا يكون فحص العقوبات مستمراً؟', q_en: 'Why is sanctions screening continuous?', a_ar: 'لأن القوائم تتغيّر، فقد يصير عميل قائم منذ سنوات مدرجاً بعد فتح حسابه بوقت طويل.', a_en: 'Lists change, so a customer of years standing may become listed long after their account opened.' },
+          { q_ar: 'ما مشكلة الإنذارات الكاذبة في فحص القوائم؟', q_en: 'What is the false positive problem in list screening?', a_ar: 'تشابه الأسماء ينتج مطابقات كثيرة خاطئة، فيعتاد الفريق الإغلاق السريع وتمرّ الحقيقية بينها.', a_en: 'Name similarity yields many wrong matches so the team grows used to fast closure and the real ones pass among them.' }
+        ]
+      },
+      {
+        title_ar: 'الأمن السيبراني في القطاع المالي',
+        title_en: 'Cybersecurity in the Financial Sector',
+        lead_ar: 'ما يميّز الأمن المالي أن الأثر فوري ونهائي: تحويل نُفِّذ لا يُسترَد، ودقيقة تعطّل في الدفع تُقاس بخسائر لا بإزعاج.',
+        lead_en: 'What distinguishes financial security is that impact is immediate and final: an executed transfer is not recovered, and a minute of payment downtime is measured in losses rather than annoyance.',
+        body_ar: [
+          'القطاع المالي هدف دائم لأن العائد مباشر: لا يحتاج المهاجم بيع ما سرقه، فالمسروق مال بذاته. وثلاث خصائص تشدّد المتطلبات: أثر فوري لا يُتراجَع عنه، والتزام تنظيمي بالإبلاغ خلال مدد قصيرة، وثقة العملاء التي تُبنى في سنوات وتُفقَد في حادثة.',
+          'وأبرز التهديدات ثلاثة. برامج الفدية التي تشفّر الأنظمة وتوقف الخدمة، وأثرها في المالية توقف عن العمل لا فقد بيانات فقط. واختراق البريد التجاري: انتحال صفة مدير أو مورّد لطلب تحويل عاجل، وهو من أعلى أنواع الاحتيال كلفة رغم بساطته التقنية التامة.',
+          'والثالث هجمات سلسلة التوريد: اختراق مزوّد تقني تعتمد عليه عشرات المؤسسات، فيصل المهاجم للجميع عبر باب موثوق. وهذا ما جعل تقييم أمن المزوّدين جزءاً إلزامياً من إدارة المخاطر لا إجراءً شكلياً في العقد.',
+          'واستمرارية الأعمال ليست ملحقاً بالأمن وإنما ركن فيه: خطة تحدد ما يُستعاد أولاً وفي كم من الوقت وبأي حد أقصى من فقد البيانات. وفي المالية تكون هذي الحدود صارمة ومحددة تنظيمياً، ولا تُترَك لتقدير الفريق.',
+          'والنسخ الاحتياطي المعزول عن الشبكة صار ضرورة بعد أن صارت برامج الفدية تستهدف النسخ نفسها أولاً. ونسخة لا تُختبَر استعادتها ليست نسخة وإنما افتراض — والاكتشاف المتأخر أن النسخ تالفة يحدث في أسوأ لحظة ممكنة.',
+          'والاختبار الدوري للاستجابة يفرّق بين خطة مكتوبة وقدرة حقيقية: تمرين يجلس فيه المسؤولون ويقررون فعلاً ماذا يفعلون لو توقف نظام الدفع الآن. وأغلب ما تكشفه هذي التمارين ليس ثغرات تقنية وإنما أسئلة بلا جواب: من يقرر إيقاف الخدمة؟ ومن يخاطب المنظّم؟ ومن يتحدث للإعلام؟'
+        ],
+        body_en: [
+          'The financial sector is a permanent target because the return is direct: the attacker need not sell what they stole, since the loot is money itself. Three properties tighten requirements: immediate irreversible impact, a regulatory obligation to report within short deadlines, and customer trust built over years and lost in one incident.',
+          'Three threats stand out. Ransomware encrypting systems and halting service, whose financial impact is a work stoppage rather than data loss alone. Business email compromise: impersonating an executive or supplier to request an urgent transfer, among the costliest fraud types despite being technically trivial.',
+          'The third is supply chain attacks: breaching a technology provider dozens of institutions rely on, so the attacker reaches everyone through a trusted door. That made assessing supplier security a mandatory part of risk management rather than a formality in a contract.',
+          'Business continuity is not an annex to security but a pillar of it: a plan defining what is restored first, within what time, and with what maximum data loss. In finance these limits are strict and set by regulation rather than left to team judgement.',
+          'Network-isolated backups became a necessity once ransomware began targeting the backups first. A backup whose restoration is never tested is not a backup but an assumption, and discovering late that copies are corrupt happens at the worst possible moment.',
+          'Periodic response exercises separate a written plan from a real capability: a drill where the responsible people sit and actually decide what they would do if the payment system stopped now. Most of what such exercises reveal is not technical gaps but unanswered questions: who decides to halt the service, who addresses the regulator, and who speaks to the press?'
+        ],
+        table: {
+          head_ar: ['التهديد', 'ما يستهدفه', 'ما يوقفه أولاً'],
+          head_en: ['Threat', 'What it targets', 'First control against it'],
+          rows: [
+            ['برامج الفدية', 'استمرار الخدمة', 'نسخ معزولة مختبَرة'],
+            ['اختراق البريد التجاري', 'إجراء التحويل', 'تحقق خارج القناة لكل طلب'],
+            ['سلسلة التوريد', 'باب موثوق للجميع', 'تقييم أمن المزوّدين'],
+            ['تسريب البيانات', 'ثقة العملاء', 'تقليل ما يُخزَّن أصلاً']
+          ]
+        },
+        keyPoints_ar: [
+          'العائد مباشر: المسروق مال بذاته لا يحتاج بيعاً.',
+          'الأثر فوري ونهائي، والإبلاغ التنظيمي بمدد قصيرة محددة.',
+          'اختراق البريد التجاري بسيط تقنياً ومن أعلى الأنواع كلفة.',
+          'تقييم أمن المزوّدين إلزامي بعد هجمات سلسلة التوريد.',
+          'نسخة لا تُختبَر استعادتها افتراض لا نسخة، وتُكتشَف في أسوأ لحظة.',
+          'تمارين الاستجابة تكشف أسئلة بلا جواب أكثر مما تكشف ثغرات تقنية.'
+        ],
+        keyPoints_en: [
+          'The return is direct: the loot is money itself needing no sale.',
+          'Impact is immediate and final, with regulatory reporting on short fixed deadlines.',
+          'Business email compromise is technically trivial and among the costliest kinds.',
+          'Supplier security assessment became mandatory after supply chain attacks.',
+          'An untested backup is an assumption rather than a backup, discovered at the worst moment.',
+          'Response drills reveal unanswered questions more than technical gaps.'
+        ],
+        analogy_ar: 'تخيّل متجراً ومصرفاً في شارع واحد. لو سُرِق المتجر، احتاج اللص أن يبيع البضاعة ليحصل على مال، وفي البيع فرصة لضبطه. ولو سُرِق المصرف، فما أخذه مال بذاته لا يحتاج وسيطاً ولا يترك أثر بيع. ولهذا يُحرَس المصرف أشد، ولهذا أيضاً لا يكفيه إنذار وكاميرا — بل خطة مكتوبة لمن يقرر ماذا في الدقيقة الأولى، لأن الدقائق هنا ليست وقت تفكير.',
+        analogy_en: 'Picture a shop and a bank on one street. If the shop is robbed, the thief must sell the goods to obtain money, and that sale is a chance to catch them. If the bank is robbed, what they took is money itself needing no intermediary and leaving no sale trail. So a bank is guarded more heavily, and so an alarm and a camera do not suffice: it needs a written plan for who decides what in the first minute, because minutes here are not thinking time.',
+        terms: [
+          { term: 'Ransomware', def_ar: 'برمجية تشفّر الأنظمة وتوقف الخدمة لطلب فدية.', def_en: 'Malware encrypting systems and halting service to demand a ransom.' },
+          { term: 'Business Email Compromise', def_ar: 'انتحال صفة مدير أو مورّد لطلب تحويل عاجل.', def_en: 'Impersonating an executive or supplier to request an urgent transfer.' },
+          { term: 'Supplier Risk', def_ar: 'خطر يصل عبر مزوّد موثوق تعتمد عليه مؤسسات كثيرة.', def_en: 'Risk arriving through a trusted provider many institutions rely on.' },
+          { term: 'Recovery Objective', def_ar: 'الحد الأقصى المقبول لزمن التعطل وفقد البيانات.', def_en: 'The maximum acceptable downtime and data loss.' },
+          { term: 'Isolated Backup', def_ar: 'نسخة معزولة عن الشبكة لا تصلها الفدية.', def_en: 'A network-isolated copy ransomware cannot reach.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا القطاع المالي هدف دائم؟', q_en: 'Why is finance a permanent target?', a_ar: 'لأن العائد مباشر: المسروق مال بذاته لا يحتاج بيعاً ولا وسيطاً ولا يترك أثر بيع.', a_en: 'The return is direct: the loot is money itself needing no sale, no intermediary and leaving no sale trail.' },
+          { q_ar: 'لماذا يكلّف اختراق البريد التجاري كثيراً رغم بساطته؟', q_en: 'Why is business email compromise so costly despite simplicity?', a_ar: 'لأنه لا يهاجم نظاماً وإنما يقنع موظفاً بإجراء تحويل مشروع الشكل، فتمرّ العملية بكل الضوابط.', a_en: 'It attacks no system and instead convinces an employee to make a legitimate-looking transfer that passes every control.' },
+          { q_ar: 'متى تكون النسخة الاحتياطية نسخة فعلاً؟', q_en: 'When is a backup actually a backup?', a_ar: 'حين تُختبَر استعادتها؛ وغير المختبَرة افتراض يُكتشَف بطلانه في أسوأ لحظة ممكنة.', a_en: 'When its restoration is tested; an untested one is an assumption disproven at the worst possible moment.' },
+          { q_ar: 'ما الذي تكشفه تمارين الاستجابة غالباً؟', q_en: 'What do response drills usually reveal?', a_ar: 'أسئلة بلا جواب أكثر من ثغرات تقنية: من يقرر الإيقاف، ومن يخاطب المنظّم، ومن يتحدث للإعلام.', a_en: 'Unanswered questions more than technical gaps: who halts the service, who addresses the regulator, who speaks to the press.' }
+        ]
+      },
+      {
+        title_ar: 'الامتثال والتدقيق',
+        title_en: 'Compliance and Audit',
+        lead_ar: 'الامتثال ليس ملفاً يُعَدّ للمفتّش وإنما ضوابط تعمل يومياً وتترك أثراً يمكن إثباته — وما لا يترك أثراً لم يحدث.',
+        lead_en: 'Compliance is not a file prepared for the inspector but controls operating daily and leaving provable evidence, and what leaves no trace did not happen.',
+        body_ar: [
+          'الامتثال إثبات أن المؤسسة تعمل وفق القواعد لا الادعاء بذلك. والفارق أن الإثبات يحتاج أثراً: سجلات تبيّن أن الضابط عمل فعلاً في كل حالة، لا سياسة مكتوبة تقول إنه يجب أن يعمل.',
+          'ونموذج خطوط الدفاع الثلاثة ينظّم المسؤولية: الخط الأول فرق العمل نفسها التي تملك المخاطر وتطبّق الضوابط يومياً. والثاني وظيفة الامتثال وإدارة المخاطر التي تضع الإطار وتراقب التطبيق. والثالث التدقيق الداخلي الذي يفحص الاثنين معاً باستقلالية.',
+          'واستقلال الخط الثالث شرط لا شكل: يرفع تقاريره للجنة مستقلة لا للإدارة التنفيذية التي يدقّق عليها. فمدقق يرفع تقريره لمن يدقّق عليه لا يستطيع كتابة ما يزعجه — ولهذا يُقاس استقلال التدقيق بخط رفع التقارير لا بديباجة في اللائحة.',
+          'ومسار التدقيق سجل غير قابل للتعديل يبيّن من فعل ماذا ومتى وعلى أي بيانة. وشرطه أن يكون خارج سيطرة من يُدقَّق عليه: سجل يستطيع المدير حذف سطر منه ليس مسار تدقيق. وهو أول ما يُطلَب في أي تحقيق أو فحص تنظيمي.',
+          'والفصل بين المهام ضابط بسيط وشديد الأثر: من يُنشئ أمر الدفع لا يعتمده، ومن يعتمده لا ينفّذه. فالاحتيال الداخلي يحتاج عندها تواطؤ شخصين لا قرار شخص واحد، وهذي قفزة كبيرة في الصعوبة بكلفة إجرائية زهيدة.',
+          'وثقافة الامتثال هي الحاسم أخيراً: مؤسسة يُعاقَب فيها من أبلغ عن مشكلة تضمن ألا يبلّغ أحد بعده، فتظهر المشكلة حين تصير حادثة لا حين كانت قابلة للإصلاح. والقناة الآمنة للإبلاغ الداخلي ليست إجراءً شكلياً وإنما أرخص نظام إنذار مبكر يمكن أن تملكه مؤسسة.'
+        ],
+        body_en: [
+          'Compliance is proving the institution operates by the rules rather than claiming it. The difference is that proof needs evidence: records showing the control genuinely operated in every case, rather than a written policy saying it should.',
+          'The three lines of defence model organises responsibility: the first line is the business teams themselves who own the risks and apply controls daily. The second is compliance and risk management, setting the framework and monitoring application. The third is internal audit, examining both independently.',
+          'The third line independence is a condition rather than a formality: it reports to an independent committee rather than the executive management it audits. An auditor reporting to whoever they audit cannot write what displeases them, so audit independence is measured by the reporting line rather than a preamble in a charter.',
+          'An audit trail is an unalterable record showing who did what, when and to which datum. Its condition is being outside the control of whoever is audited: a log from which a manager can delete a line is not an audit trail. It is the first thing requested in any investigation or regulatory examination.',
+          'Segregation of duties is a simple control with heavy impact: whoever creates a payment instruction does not approve it, and whoever approves does not execute. Internal fraud then requires two people colluding rather than one person deciding, an enormous jump in difficulty at trivial procedural cost.',
+          'Compliance culture is finally decisive: an institution where whoever reported a problem is punished guarantees nobody reports after them, so problems surface as incidents rather than while they were fixable. A safe internal reporting channel is not a formality but the cheapest early warning system an institution can own.'
+        ],
+        table: {
+          head_ar: ['الخط', 'من هو', 'مسؤوليته'],
+          head_en: ['Line', 'Who it is', 'Its responsibility'],
+          rows: [
+            ['الأول', 'فرق العمل نفسها', 'تملك المخاطر وتطبّق الضوابط'],
+            ['الثاني', 'الامتثال وإدارة المخاطر', 'تضع الإطار وتراقب التطبيق'],
+            ['الثالث', 'التدقيق الداخلي', 'يفحص الاثنين باستقلالية']
+          ]
+        },
+        keyPoints_ar: [
+          'الامتثال إثبات لا ادعاء، وما لا يترك أثراً لم يحدث.',
+          'ثلاثة خطوط: من يملك المخاطر، ومن يضع الإطار، ومن يفحصهما باستقلال.',
+          'استقلال التدقيق يُقاس بخط رفع التقارير لا بنص في اللائحة.',
+          'سجل يستطيع المدقَّق عليه حذف سطر منه ليس مسار تدقيق.',
+          'الفصل بين المهام يجعل الاحتيال الداخلي يحتاج تواطؤ شخصين.',
+          'معاقبة من يبلّغ تضمن ألا يبلّغ أحد، فتظهر المشكلة حادثةً لا مسألةً قابلة للإصلاح.'
+        ],
+        keyPoints_en: [
+          'Compliance is proof rather than claim, and what leaves no trace did not happen.',
+          'Three lines: who owns the risk, who sets the framework, and who examines both independently.',
+          'Audit independence is measured by the reporting line rather than charter text.',
+          'A log from which the audited party can delete a line is not an audit trail.',
+          'Segregation of duties makes internal fraud require two people colluding.',
+          'Punishing whoever reports guarantees nobody reports, so problems surface as incidents.'
+        ],
+        analogy_ar: 'تخيّل مطعماً يقول إنه ينظّف مطبخه يومياً. لو جاء المفتّش فلن ينفعه القول، وإنما سجل موقّع بتوقيت كل تنظيف ومن نفّذه. ولو كان السجل دفتراً يستطيع المدير أن يمزّق منه صفحة، فقيمته صفر أمام أي تحقيق. وأما لو كان يُعاقِب كل طبّاخ يبلّغ عن ثلاجة معطّلة، فسيكتشف العطل يوم يتسمّم زبون — لا يوم كان إصلاحه يكلّف مئة ريال.',
+        analogy_en: 'Picture a restaurant saying it cleans its kitchen daily. If an inspector arrives the saying helps nothing, and only a signed log with the time of each cleaning and who performed it does. And if that log is a notebook from which the manager can tear a page, its value before any investigation is zero. And if it punishes every cook who reports a broken fridge, it will discover the fault the day a customer is poisoned rather than the day fixing it cost a hundred riyals.',
+        terms: [
+          { term: 'Three Lines of Defence', def_ar: 'توزيع المسؤولية بين المالك والمراقب والمدقّق.', def_en: 'Distributing responsibility between owner, monitor and auditor.' },
+          { term: 'Audit Trail', def_ar: 'سجل غير قابل للتعديل لمن فعل ماذا ومتى.', def_en: 'An unalterable record of who did what and when.' },
+          { term: 'Segregation of Duties', def_ar: 'فصل الإنشاء عن الاعتماد عن التنفيذ.', def_en: 'Separating creation from approval from execution.' },
+          { term: 'Audit Independence', def_ar: 'رفع التدقيق تقاريره لجهة لا يدقّق عليها.', def_en: 'Audit reporting to a body it does not audit.' },
+          { term: 'Whistleblowing Channel', def_ar: 'قناة آمنة للإبلاغ الداخلي عن المشكلات.', def_en: 'A safe internal channel for reporting problems.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين ادعاء الامتثال وإثباته؟', q_en: 'Difference between claiming and proving compliance?', a_ar: 'الإثبات يحتاج أثراً يبيّن أن الضابط عمل في كل حالة، لا سياسة مكتوبة تقول إنه يجب أن يعمل.', a_en: 'Proof needs evidence the control operated in every case rather than a policy saying it should.' },
+          { q_ar: 'كيف يُقاس استقلال التدقيق الداخلي؟', q_en: 'How is internal audit independence measured?', a_ar: 'بخط رفع التقارير: يرفعها للجنة مستقلة لا للإدارة التي يدقّق عليها.', a_en: 'By its reporting line: to an independent committee rather than the management it audits.' },
+          { q_ar: 'متى لا يكون السجل مسار تدقيق؟', q_en: 'When is a log not an audit trail?', a_ar: 'حين يستطيع من يُدقَّق عليه تعديله أو حذف سطر منه، فيسقط الإثبات كلياً.', a_en: 'When the audited party can edit it or delete a line, which voids the proof entirely.' },
+          { q_ar: 'ما أثر الفصل بين المهام؟', q_en: 'What does segregation of duties achieve?', a_ar: 'يجعل الاحتيال الداخلي يحتاج تواطؤ شخصين لا قرار واحد، بكلفة إجرائية زهيدة.', a_en: 'It makes internal fraud require two people colluding rather than one deciding, at trivial procedural cost.' }
+        ]
+      }
     ]
   }
 };
