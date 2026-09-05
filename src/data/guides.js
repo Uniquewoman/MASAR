@@ -4397,5 +4397,334 @@ export const sectionGuides = {
         ]
       }
     ]
+  },
+
+  // ══════════════════ مسار الأمن السيبراني ══════════════════
+  CyberSecurity: {
+    // ─────────── أساسيات الأمن السيبراني ───────────
+    0: [
+      {
+        title_ar: 'المفاهيم ومثلث CIA',
+        title_en: 'Core Concepts and the CIA Triad',
+        lead_ar: 'الأمن ليس منتجاً يُشترى بل توازن بين ثلاثة: السرّية والسلامة والتوافر — ورفع أحدها غالباً يخفض الآخر.',
+        lead_en: 'Security is not a product you buy but a balance between three things: confidentiality, integrity and availability, and raising one usually lowers another.',
+        body_ar: [
+          'يُختزل الأمن غالباً في «منع الاختراق»، وهذا اختزال مضلّل. فالأمن حماية ثلاثة خصائص لأي أصل معلوماتي: السرّية بألا يطّلع عليه إلا من يحق له، والسلامة بألا يُعدَّل إلا بطريقة مشروعة، والتوافر بأن يكون متاحاً لمن يحتاجه وقت حاجته.',
+          'وأهمية التوافر تُنسى كثيراً رغم أنها جزء أصيل من الأمن: نظام مستشفى مشفّر تماماً وسليم البيانات لكنه متوقّف عن العمل ساعة عملية جراحية نظام فاشل أمنياً. ولهذا يُعدّ هجوم الحرمان من الخدمة هجوماً أمنياً وإن لم يسرق بياناً واحداً.',
+          'والثلاثة تتنازع لا تتوافق دائماً: كل إجراء يرفع السرّية — تشفير إضافي، وتحقق متعدد، وصلاحيات أضيق — يخفض شيئاً من التوافر أو سهولة الاستخدام. ولهذا لا يوجد «الأمن الكامل»، وإنما مستوى مناسب لقيمة الأصل وطبيعة التهديد.',
+          'ومعها ثلاثة مفاهيم تكمل الصورة: التوثيق وهو إثبات هوية من يطلب الوصول، والتفويض وهو تحديد ما يحق له بعد إثبات هويته، وعدم الإنكار وهو ألا يستطيع من فعل شيئاً أن ينفي فعله — ويتحقق بالسجلات والتوقيع الرقمي.',
+          'ومصطلحات المخاطر يجب أن تُميَّز لأنها تُخلَط باستمرار: الثغرة ضعف في النظام، والتهديد طرف أو حدث قد يستغل الضعف، والخطر هو احتمال وقوع ذلك مضروباً في أثره. فوجود ثغرة لا يعني خطراً مرتفعاً إن لم يوجد تهديد قادر عليها أو كان الأثر تافهاً — وهذا التمييز هو ما يجعل الأولويات ممكنة.',
+          'ومبدآن يحكمان التصميم كله: الدفاع في العمق بألا تعتمد على طبقة واحدة فسقوطها يسقط كل شيء، وأقل صلاحية بأن يُعطى كل مستخدم ونظام أقل ما يكفيه لأداء عمله. والمبدآن يفترضان أن الاختراق واقع لا محتمل، فيصمّمان لتقليل أثره لا لمنعه فقط.'
+        ],
+        body_en: [
+          'Security is often reduced to preventing breaches, and that reduction misleads. Security protects three properties of any information asset: confidentiality so only the entitled see it, integrity so it is modified only legitimately, and availability so it is there for whoever needs it when they need it.',
+          'Availability is frequently forgotten despite being integral: a hospital system perfectly encrypted with intact data yet down during surgery has failed at security. Hence a denial of service attack is a security attack even when it steals not a single record.',
+          'The three compete rather than always agreeing: every measure raising confidentiality, extra encryption, multi-factor checks, narrower permissions, lowers some availability or usability. So complete security does not exist, only a level appropriate to the asset value and the nature of the threat.',
+          'Three further concepts complete the picture: authentication, proving the identity of whoever requests access; authorisation, deciding what they may do once identified; and non-repudiation, so whoever did something cannot deny it, achieved through logs and digital signatures.',
+          'Risk vocabulary must be distinguished because it is constantly conflated: a vulnerability is a weakness in the system, a threat is a party or event that might exploit it, and risk is the likelihood of that multiplied by its impact. A vulnerability does not mean high risk when no capable threat exists or the impact is trivial, and this distinction is what makes prioritisation possible.',
+          'Two principles govern all design: defence in depth, never relying on one layer whose fall brings everything down, and least privilege, granting every user and system the minimum needed for their work. Both assume a breach is a matter of when rather than if, designing to reduce its impact rather than only to prevent it.'
+        ],
+        table: {
+          head_ar: ['المصطلح', 'معناه', 'مثال'],
+          head_en: ['Term', 'Meaning', 'Example'],
+          rows: [
+            ['السرّية', 'لا يطّلع إلا من يحق له', 'تشفير ملفات المرضى'],
+            ['السلامة', 'لا يُعدَّل إلا مشروعاً', 'كشف تغيير رصيد حساب'],
+            ['التوافر', 'متاح وقت الحاجة', 'مقاومة هجوم حرمان الخدمة'],
+            ['الثغرة', 'ضعف في النظام', 'إصدار قديم غير محدَّث'],
+            ['التهديد', 'طرف قد يستغل الضعف', 'مهاجم يبحث عن هذا الإصدار'],
+            ['الخطر', 'احتمال × أثر', 'ما يحدد ما تعالجه أولاً']
+          ]
+        },
+        keyPoints_ar: [
+          'الأمن ثلاثة لا واحد: سرّية وسلامة وتوافر.',
+          'نظام متوقّف عن العمل نظام فاشل أمنياً وإن لم تُسرق بياناته.',
+          'الثلاثة تتنازع: كل رفع للسرّية يخفض شيئاً من التوافر أو السهولة.',
+          'التوثيق «من أنت» والتفويض «ماذا يحق لك» وعدم الإنكار «لا تستطيع النفي».',
+          'الخطر = احتمال × أثر، فوجود ثغرة وحده لا يعني خطراً مرتفعاً.',
+          'الدفاع في العمق وأقل صلاحية يفترضان وقوع الاختراق ويقللان أثره.'
+        ],
+        keyPoints_en: [
+          'Security is three things rather than one: confidentiality, integrity and availability.',
+          'A system that is down has failed at security even if nothing was stolen.',
+          'The three compete: every gain in confidentiality costs some availability or usability.',
+          'Authentication is who you are, authorisation what you may do, non-repudiation that you cannot deny it.',
+          'Risk equals likelihood times impact, so a vulnerability alone does not mean high risk.',
+          'Defence in depth and least privilege assume a breach will happen and reduce its impact.'
+        ],
+        analogy_ar: 'تخيّل خزنة بنك. السرّية أن لا يفتحها إلا من يملك المفتاح. والسلامة أن ما بداخلها لا يُبدَّل خفيةً. والتوافر أن يستطيع صاحبها الوصول إليها في ساعات العمل. ولو صمّمتها بعشرة أقفال وحارسين وإجراءات ساعة كاملة، رفعت السرّية وخنقت التوافر — والزبون سيترك البنك. الأمن هو إيجاد النقطة التي تناسب قيمة ما بالداخل، لا أقصى تشديد ممكن.',
+        analogy_en: 'Picture a bank vault. Confidentiality is that only the key holder opens it. Integrity is that its contents are not swapped in secret. Availability is that the owner can reach it during business hours. Designing it with ten locks, two guards and an hour of procedure raises confidentiality and strangles availability, and the customer leaves the bank. Security is finding the point matching the value inside rather than maximum possible tightening.',
+        terms: [
+          { term: 'Confidentiality', def_ar: 'ألا يطّلع على المعلومة إلا من يحق له.', def_en: 'Only entitled parties seeing the information.' },
+          { term: 'Integrity', def_ar: 'ألا تُعدَّل المعلومة إلا بطريقة مشروعة.', def_en: 'Information modified only legitimately.' },
+          { term: 'Availability', def_ar: 'إتاحة النظام لمن يحتاجه وقت حاجته.', def_en: 'The system being there for whoever needs it when needed.' },
+          { term: 'Vulnerability', def_ar: 'ضعف في النظام قد يُستغل.', def_en: 'A weakness in a system that may be exploited.' },
+          { term: 'Defence in Depth', def_ar: 'طبقات حماية متعددة لا تعتمد على واحدة.', def_en: 'Multiple protective layers rather than relying on one.' },
+          { term: 'Least Privilege', def_ar: 'منح أقل صلاحية تكفي لأداء العمل.', def_en: 'Granting the minimum permission needed for the work.' }
+        ],
+        cards: [
+          { q_ar: 'ما مكوّنات مثلث الأمن؟', q_en: 'What are the three security properties?', a_ar: 'السرّية والسلامة والتوافر، والثلاثة تتنازع فلا يُرفع أحدها بلا كلفة على غيره.', a_en: 'Confidentiality, integrity and availability, and they compete so raising one costs the others.' },
+          { q_ar: 'لماذا يُعدّ هجوم الحرمان من الخدمة هجوماً أمنياً؟', q_en: 'Why is denial of service a security attack?', a_ar: 'لأنه يمسّ التوافر، وهو ركن أصيل في الأمن وإن لم تُسرق بيانات.', a_en: 'It attacks availability, an integral security property, even when nothing is stolen.' },
+          { q_ar: 'ما الفرق بين الثغرة والتهديد والخطر؟', q_en: 'Difference between vulnerability, threat and risk?', a_ar: 'الثغرة ضعف، والتهديد طرف قد يستغله، والخطر احتمال الوقوع مضروباً في الأثر.', a_en: 'A vulnerability is a weakness, a threat is a party that might exploit it, and risk is likelihood times impact.' },
+          { q_ar: 'ما الافتراض الذي يقوم عليه الدفاع في العمق؟', q_en: 'What assumption underlies defence in depth?', a_ar: 'أن الاختراق سيقع لا محالة، فيُصمَّم النظام لتقليل أثره لا لمنعه فقط.', a_en: 'That a breach will happen, so the system is designed to reduce its impact rather than only prevent it.' }
+        ]
+      },
+      {
+        title_ar: 'التهديدات والهندسة الاجتماعية',
+        title_en: 'Threats and Social Engineering',
+        lead_ar: 'أضعف حلقة في أي نظام هي الإنسان، والهندسة الاجتماعية تستهدفه مباشرة — فتتجاوز كل جدار ناري بمكالمة واحدة.',
+        lead_en: 'The weakest link in any system is the human, and social engineering targets them directly, bypassing every firewall with a single phone call.',
+        body_ar: [
+          'أغلب الاختراقات الكبرى لم تبدأ بثغرة تقنية معقّدة، وإنما برسالة مقنعة فتحها موظف. والسبب أن اختراق الإنسان أرخص وأسرع من اختراق النظام: لا يحتاج المهاجم أن يكسر تشفيراً إن استطاع أن يقنعك بإعطائه كلمة المرور.',
+          'والتصيّد أشهر أساليبها: رسالة تنتحل جهة موثوقة وتدفعك لفعل عاجل — اضغط الرابط، حدّث بياناتك، الحساب سيُغلق. وعلاماته: إلحاح غير مبرر، وتهديد بعاقبة وشيكة، وطلب بيانات لا تُطلب عادة برسالة، وعنوان مرسل يشبه الأصلي بحرف.',
+          'وتطوّرت أنواعه: التصيّد الموجَّه يستهدف شخصاً بعينه بمعلومات حقيقية عنه جُمِعت من حساباته العامة فيبدو مقنعاً جداً، وصيد الحيتان يستهدف كبار المسؤولين لأن صلاحياتهم أوسع، والتصيّد الصوتي يستخدم مكالمة هاتفية تنتحل الدعم التقني.',
+          'وأساليب أخرى لا تقل خطراً: انتحال الهوية بأن يتصل المهاجم منتحلاً موظف صيانة أو مسؤولاً كبيراً مستعجلاً، والذريعة ببناء قصة كاملة تبرر طلبه، والإغراء بترك وسيط تخزين في موقف السيارات يحمل برمجية خبيثة يعتمد على فضول من يجده، والتتبّع بالدخول خلف موظف من باب يحتاج بطاقة.',
+          'والقاسم المشترك بين كل هذي الأساليب أربع رافعات نفسية: السلطة بانتحال صفة رئيس أو جهة رسمية، والاستعجال بخلق ضيق وقت يمنع التفكير، والخوف بالتهديد بعاقبة، والفضول أو الطمع بوعد مكسب. ومن عرف الرافعة عرف كيف يقاوم.',
+          'والدفاع ليس تقنياً بالدرجة الأولى: تدريب مستمر لا محاضرة سنوية، ومحاكاة تصيّد تُقاس نتائجها، وإجراء واضح للتحقق من أي طلب حسّاس بقناة مستقلة — أن تتصل بالرقم المعروف لا بالرقم الذي أعطاك إياه المتصل. وثقافة لا تعاقب من أبلغ عن خطئه، لأن الموظف الذي يخشى العقوبة يخفي الاختراق ساعات ثمينة.'
+        ],
+        body_en: [
+          'Most major breaches did not begin with a complex technical vulnerability but with a convincing message an employee opened. Breaching a human is cheaper and faster than breaching a system: an attacker need not break encryption if they can persuade you to hand over the password.',
+          'Phishing is its best-known form: a message impersonating a trusted party pushing you to act urgently, click the link, update your details, the account will be closed. Its signs are unjustified urgency, a threatened imminent consequence, a request for data never normally asked by message, and a sender address resembling the real one by a letter.',
+          'Its variants evolved: spear phishing targets a specific person with real details gathered from their public accounts so it appears highly convincing, whaling targets senior executives because their permissions are wider, and voice phishing uses a phone call impersonating technical support.',
+          'Other methods are no less dangerous: impersonation, where the attacker calls posing as a maintenance worker or a hurried senior manager; pretexting, building a full story justifying the request; baiting, leaving a storage device in a car park carrying malware and relying on the finder curiosity; and tailgating, following an employee through a badge-controlled door.',
+          'All these methods share four psychological levers: authority by posing as a boss or official body, urgency by creating time pressure that blocks thinking, fear by threatening a consequence, and curiosity or greed by promising a gain. Whoever recognises the lever knows how to resist.',
+          'Defence is not primarily technical: continuous training rather than an annual lecture, phishing simulations with measured results, and a clear procedure for verifying any sensitive request through an independent channel, calling the known number rather than the one the caller gave you. And a culture that does not punish whoever reports their own mistake, because an employee fearing punishment hides a breach for precious hours.'
+        ],
+        table: {
+          head_ar: ['الأسلوب', 'كيف يعمل', 'الرافعة النفسية'],
+          head_en: ['Method', 'How it works', 'Psychological lever'],
+          rows: [
+            ['التصيّد', 'رسالة تنتحل جهة موثوقة', 'الخوف والاستعجال'],
+            ['التصيّد الموجَّه', 'رسالة بمعلومات حقيقية عنك', 'الثقة والألفة'],
+            ['انتحال الصفة', 'مكالمة من «مسؤول مستعجل»', 'السلطة'],
+            ['الإغراء', 'وسيط تخزين متروك عمداً', 'الفضول'],
+            ['التتبّع', 'دخول خلف موظف من باب مؤمَّن', 'الحرج الاجتماعي']
+          ]
+        },
+        keyPoints_ar: [
+          'أغلب الاختراقات تبدأ برسالة مقنعة لا بثغرة تقنية معقّدة.',
+          'علامات التصيّد: إلحاح غير مبرر، وتهديد وشيك، وطلب بيانات غير معتاد، وعنوان يشبه الأصل.',
+          'التصيّد الموجَّه يستخدم معلومات حقيقية عنك تُجمَع من حساباتك العامة.',
+          'الرافعات أربع: السلطة والاستعجال والخوف والفضول.',
+          'التحقق يكون بقناة مستقلة: اتصل بالرقم المعروف لا بالذي أُعطي لك.',
+          'ثقافة لا تعاقب المبلّغ عن خطئه تكسب ساعات حاسمة في الاستجابة.'
+        ],
+        keyPoints_en: [
+          'Most breaches start with a convincing message rather than a complex technical flaw.',
+          'Phishing signs: unjustified urgency, an imminent threat, an unusual data request, and a lookalike address.',
+          'Spear phishing uses real details about you gathered from your public accounts.',
+          'The four levers are authority, urgency, fear and curiosity.',
+          'Verify through an independent channel: call the known number rather than the one you were given.',
+          'A culture that does not punish self-reporting gains crucial response hours.'
+        ],
+        analogy_ar: 'تخيّل بيتاً بباب فولاذي وأقفال ثلاثة ونوافذ مصفّحة. ثم يطرق شخص بزيّ شركة الكهرباء ويقول إن هناك تسرّباً خطراً ويجب أن يدخل حالاً. لن يكسر الباب — أنت من سيفتحه له. وكل ما أنفقته على الأقفال لم يُختبر أصلاً. الهندسة الاجتماعية هي هذا الطارق بالضبط، والدفاع الوحيد أن تغلق الباب وتتصل بشركة الكهرباء على رقمها المعروف.',
+        analogy_en: 'Picture a house with a steel door, three locks and reinforced windows. Then someone knocks in a utility company uniform saying there is a dangerous leak and they must come in immediately. They will not break the door; you will open it. Everything spent on locks was never tested. Social engineering is exactly that knock, and the only defence is closing the door and calling the utility on its known number.',
+        terms: [
+          { term: 'Phishing', def_ar: 'رسالة تنتحل جهة موثوقة لانتزاع بيانات أو فعل.', def_en: 'A message impersonating a trusted party to extract data or an action.' },
+          { term: 'Spear Phishing', def_ar: 'تصيّد موجَّه لشخص بعينه بمعلومات حقيقية عنه.', def_en: 'Phishing aimed at a specific person using real details about them.' },
+          { term: 'Pretexting', def_ar: 'بناء قصة كاملة تبرر طلب المهاجم.', def_en: 'Building a full story justifying the attacker request.' },
+          { term: 'Tailgating', def_ar: 'الدخول خلف موظف من باب يحتاج تصريحاً.', def_en: 'Following an employee through a door requiring credentials.' },
+          { term: 'Out-of-band Verification', def_ar: 'التحقق بقناة مستقلة عن قناة الطلب.', def_en: 'Verifying through a channel independent of the request channel.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يستهدف المهاجمون الإنسان قبل النظام؟', q_en: 'Why do attackers target humans before systems?', a_ar: 'لأنه أرخص وأسرع: لا حاجة لكسر تشفير إن أمكن إقناعك بإعطاء كلمة المرور.', a_en: 'It is cheaper and faster: no need to break encryption if you can be persuaded to hand over the password.' },
+          { q_ar: 'ما الرافعات النفسية الأربع؟', q_en: 'What are the four psychological levers?', a_ar: 'السلطة والاستعجال والخوف والفضول أو الطمع.', a_en: 'Authority, urgency, fear, and curiosity or greed.' },
+          { q_ar: 'كيف يُتحقق من طلب حسّاس؟', q_en: 'How is a sensitive request verified?', a_ar: 'بقناة مستقلة: الاتصال بالرقم المعروف للجهة لا بالرقم الذي أعطاه المتصل.', a_en: 'Through an independent channel: calling the organisation known number rather than the one the caller gave.' },
+          { q_ar: 'لماذا لا يُعاقَب من أبلغ عن خطئه؟', q_en: 'Why not punish someone reporting their own mistake?', a_ar: 'لأن الخوف من العقوبة يجعله يخفي الاختراق ساعات ثمينة تحسم حجم الضرر.', a_en: 'Fear of punishment makes them hide the breach for precious hours that decide the damage scale.' }
+        ]
+      },
+      {
+        title_ar: 'البرمجيات الخبيثة',
+        title_en: 'Malware',
+        lead_ar: 'البرمجيات الخبيثة تُصنَّف بطريقة انتشارها وهدفها، ومعرفة النوع تحدد الاستجابة — فبرنامج الفدية يعالَج غير برنامج التجسّس.',
+        lead_en: 'Malware is classified by how it spreads and what it seeks, and knowing the type dictates the response, since ransomware is handled unlike spyware.',
+        body_ar: [
+          'البرمجية الخبيثة أي كود يُنفَّذ على نظام لتحقيق غرض ضار. وتُصنَّف بمعيارين: كيف تنتشر، وماذا تفعل بعد أن تستقر. والخلط بينهما سبب كثير من سوء الفهم، فبعض التصنيفات تصف الانتشار وبعضها يصف الغرض.',
+          'فبحسب الانتشار: الفيروس يحتاج ملفاً مضيفاً وتشغيلاً بشرياً لينتقل، والدودة تنتشر بنفسها عبر الشبكة بلا تدخل أحد وهذا ما يجعلها أسرع انتشاراً وأصعب احتواءً، وحصان طروادة لا ينتشر بنفسه بل يتنكّر ببرنامج نافع فيثبّته المستخدم بيده.',
+          'وبحسب الغرض: برنامج الفدية يشفّر الملفات ويطلب فدية لفكّها، وبرنامج التجسّس يراقب ويسرّب بصمت، وراصد لوحة المفاتيح يسجّل ما تكتبه فيلتقط كلمات المرور، والباب الخلفي يترك مدخلاً للعودة لاحقاً، وشبكة الروبوتات تضم جهازك لجيش أجهزة يُستخدم في هجمات أخرى بلا علمك.',
+          'وبرنامج الفدية أشد ما يواجه المؤسسات اليوم، وقد تطوّر لابتزاز مزدوج: لا يكتفي بتشفير بياناتك، بل ينسخها أولاً ويهدد بنشرها إن لم تدفع. فحتى النسخة الاحتياطية السليمة لا تحلّ المشكلة كاملة — تسترجع بياناتك ويبقى تهديد النشر قائماً.',
+          'والدفاع طبقات: تحديث الأنظمة يغلق الثغرات المستخدمة للدخول، وتقييد الصلاحيات يمنع البرمجية من الانتشار الجانبي، وتقسيم الشبكة يحصر إصابة قسم عن بقية الأقسام، وأنظمة كشف على الأجهزة الطرفية تراقب السلوك لا التوقيع فقط.',
+          'والنسخ الاحتياطي آخر خط دفاع وأهمه، وقاعدته المعروفة: ثلاث نسخ على وسيطين مختلفين ونسخة خارج الموقع. وشرط لا يُغفَل: نسخة معزولة لا يصلها النظام المصاب، لأن برنامج الفدية الحديث يبحث عن النسخ الاحتياطية ويشفّرها أولاً. ونسخة لم تُختبر استعادتها ليست نسخة احتياطية بل أمنية.'
+        ],
+        body_en: [
+          'Malware is any code executed on a system to achieve a harmful purpose. It is classified on two axes: how it spreads and what it does once established. Conflating them causes much confusion, since some categories describe spread and others describe purpose.',
+          'By spread: a virus needs a host file and human execution to travel; a worm spreads by itself across the network with no intervention, which makes it faster and harder to contain; and a trojan does not spread itself but disguises itself as useful software the user installs by hand.',
+          'By purpose: ransomware encrypts files and demands payment to unlock them, spyware watches and exfiltrates silently, a keylogger records what you type and captures passwords, a backdoor leaves an entrance for later return, and a botnet enlists your machine into an army used in other attacks without your knowledge.',
+          'Ransomware is the sharpest threat facing organisations today, and it evolved into double extortion: rather than merely encrypting your data it copies it first and threatens publication unless you pay. So even an intact backup does not fully solve the problem: you recover your data and the publication threat remains.',
+          'Defence is layered: patching closes the vulnerabilities used for entry, restricting permissions stops lateral spread, network segmentation confines an infection to one segment, and endpoint detection systems watch behaviour rather than signatures alone.',
+          'Backup is the last and most important line, with its known rule: three copies on two different media with one off site. One condition is never overlooked: an isolated copy the infected system cannot reach, because modern ransomware hunts backups and encrypts them first. And a backup whose restoration was never tested is not a backup but a wish.'
+        ],
+        table: {
+          head_ar: ['النوع', 'المعيار', 'ما يميّزه'],
+          head_en: ['Type', 'Axis', 'What distinguishes it'],
+          rows: [
+            ['فيروس', 'انتشار', 'يحتاج ملفاً مضيفاً وتشغيلاً بشرياً'],
+            ['دودة', 'انتشار', 'تنتشر بنفسها عبر الشبكة'],
+            ['حصان طروادة', 'انتشار', 'يتنكّر ببرنامج نافع'],
+            ['فدية', 'غرض', 'تشفير وابتزاز مزدوج'],
+            ['تجسّس', 'غرض', 'مراقبة وتسريب صامت'],
+            ['باب خلفي', 'غرض', 'مدخل للعودة لاحقاً']
+          ]
+        },
+        keyPoints_ar: [
+          'التصنيف بمعيارين: كيف تنتشر وماذا تفعل بعد الاستقرار.',
+          'الدودة تنتشر بلا تدخل بشري، ولهذا أسرع وأصعب احتواءً.',
+          'حصان طروادة لا ينتشر بنفسه، بل يثبّته المستخدم بيده.',
+          'الفدية صارت ابتزازاً مزدوجاً: تشفير ونسخ وتهديد بالنشر.',
+          'النسخة الاحتياطية يجب أن تكون معزولة لا يصلها النظام المصاب.',
+          'نسخة لم تُختبر استعادتها ليست نسخة احتياطية.'
+        ],
+        keyPoints_en: [
+          'Classification uses two axes: how it spreads and what it does once established.',
+          'A worm spreads with no human involvement, making it faster and harder to contain.',
+          'A trojan does not spread itself; the user installs it by hand.',
+          'Ransomware became double extortion: encryption plus copying and a publication threat.',
+          'A backup must be isolated where the infected system cannot reach it.',
+          'A backup whose restoration was never tested is not a backup.'
+        ],
+        analogy_ar: 'تخيّل ثلاثة أنواع من الدخلاء. الفيروس ضيف يحتاج أن تفتح له الباب وتُدخله. والدودة لصّ يجد نافذة مفتوحة في بيت ثم ينتقل منه لكل بيوت الحي بلا أن يفتح له أحد. وحصان طروادة صندوق هدية تحمله أنت إلى داخل بيتك بيدك. والفدية أن يبدّل الدخيل أقفال بيتك ويبيعك المفتاح — وفي نسختها الحديثة يصوّر ما بداخله أولاً ويهدد بنشر الصور.',
+        analogy_en: 'Picture three kinds of intruder. A virus is a guest who needs you to open the door and let them in. A worm is a thief who finds one open window then moves through every house on the street with nobody opening anything. A trojan is a gift box you carry into your own house yourself. Ransomware is an intruder changing your locks and selling you the key, and in its modern form photographing the contents first and threatening to publish the pictures.',
+        terms: [
+          { term: 'Virus', def_ar: 'كود ضار يحتاج ملفاً مضيفاً وتشغيلاً بشرياً.', def_en: 'Harmful code needing a host file and human execution.' },
+          { term: 'Worm', def_ar: 'برمجية تنتشر بنفسها عبر الشبكة بلا تدخل.', def_en: 'Malware spreading itself across a network with no intervention.' },
+          { term: 'Trojan', def_ar: 'برمجية تتنكّر ببرنامج نافع ليثبّتها المستخدم.', def_en: 'Malware disguised as useful software so the user installs it.' },
+          { term: 'Ransomware', def_ar: 'تشفير الملفات وطلب فدية، وقد تنسخها وتهدد بنشرها.', def_en: 'Encrypting files and demanding payment, possibly copying and threatening publication.' },
+          { term: 'Backdoor', def_ar: 'مدخل مزروع للعودة للنظام لاحقاً.', def_en: 'A planted entrance for returning to the system later.' },
+          { term: 'Botnet', def_ar: 'شبكة أجهزة مصابة تُستخدم في هجمات أخرى.', def_en: 'A network of infected machines used in other attacks.' }
+        ],
+        cards: [
+          { q_ar: 'ما الفرق بين الفيروس والدودة؟', q_en: 'Difference between a virus and a worm?', a_ar: 'الفيروس يحتاج ملفاً مضيفاً وتشغيلاً بشرياً، والدودة تنتشر بنفسها عبر الشبكة.', a_en: 'A virus needs a host file and human execution; a worm spreads itself across the network.' },
+          { q_ar: 'ما الابتزاز المزدوج في برامج الفدية؟', q_en: 'What is ransomware double extortion?', a_ar: 'نسخ البيانات قبل تشفيرها والتهديد بنشرها، فلا تكفي النسخة الاحتياطية وحدها.', a_en: 'Copying the data before encrypting it and threatening publication, so a backup alone is not enough.' },
+          { q_ar: 'ما شرط النسخة الاحتياطية الفعّالة ضد الفدية؟', q_en: 'What makes a backup effective against ransomware?', a_ar: 'أن تكون معزولة لا يصلها النظام المصاب، وأن تكون استعادتها مُختبَرة.', a_en: 'Being isolated beyond the infected system reach, with its restoration tested.' },
+          { q_ar: 'لماذا يُقيَّد الصلاحيات كدفاع ضد البرمجيات الخبيثة؟', q_en: 'Why restrict permissions as malware defence?', a_ar: 'لأنها تمنع البرمجية من الانتشار الجانبي بعد إصابة جهاز واحد.', a_en: 'They stop malware spreading laterally after one machine is infected.' }
+        ]
+      },
+      {
+        title_ar: 'التشفير',
+        title_en: 'Cryptography',
+        lead_ar: 'التشفير يحوّل المقروء إلى غير مقروء إلا بمفتاح، وأمانه في المفتاح لا في سرّية الخوارزمية — والتجزئة ليست تشفيراً وإن خُلط بينهما.',
+        lead_en: 'Encryption turns readable into unreadable without a key, and its security lies in the key rather than algorithm secrecy, and hashing is not encryption despite the constant confusion.',
+        body_ar: [
+          'التشفير تحويل نص مقروء إلى صيغة لا تُفهم إلا بمفتاح. ومبدأ أساسي يحكمه: أمان النظام يجب أن يعتمد على سرّية المفتاح وحده لا على سرّية الخوارزمية. فالخوارزميات المعتمدة منشورة ومدروسة من آلاف الباحثين، وهذي العلنية هي مصدر الثقة فيها لا نقيضه — أما من يخترع خوارزمية سرّية خاصة فيبني على وهم.',
+          'والتشفير نوعان. المتماثل يستخدم المفتاح نفسه للتشفير وفكّه، وهو سريع جداً فيصلح لكميات البيانات الكبيرة، ومشكلته مسألة توزيع المفتاح: كيف توصله للطرف الآخر بأمان أصلاً؟',
+          'وغير المتماثل يحل هذي المشكلة بمفتاحين مرتبطين رياضياً: عام يُنشر للجميع، وخاص يُحفظ سرّاً. فما شُفِّر بالعام لا يفكّه إلا الخاص. فيستطيع أي أحد أن يرسل لك رسالة مشفّرة بمفتاحك العام ولا يقرؤها إلا أنت. وثمنه أنه أبطأ بكثير من المتماثل.',
+          'ولهذا تُستخدم الأنظمة الحقيقية مزيجاً: يُستعمل غير المتماثل في بداية الاتصال لتبادل مفتاح متماثل بأمان، ثم يُشفَّر باقي الجلسة بالمتماثل السريع. وهذا بالضبط ما يجري في كل اتصال آمن على الويب.',
+          'والتوقيع الرقمي يعكس الاستخدام: تشفّر ببصمة رسالتك بمفتاحك الخاص، فيستطيع أي أحد التحقق بمفتاحك العام أن الرسالة منك ولم تُعدَّل. فيحقق ثلاثة: إثبات المصدر، وسلامة المحتوى، وعدم الإنكار.',
+          'والتجزئة مختلفة كلياً وإن خُلط بينها وبين التشفير: دالة تحوّل أي مدخل إلى بصمة ثابتة الطول، ولا يمكن عكسها للأصل أبداً. وتُستخدم لحفظ كلمات المرور: يُخزَّن البصمة لا الكلمة، فتُقارَن البصمات عند الدخول. ولهذا لا يستطيع النظام أن يخبرك بكلمة مرورك المنسية — والنظام الذي يستطيع ذلك يخزّنها بلا تجزئة وهذا خلل جسيم. ويُضاف للتجزئة ملح عشوائي لكل مستخدم حتى لا يُكشف المتماثلون بجدول محسوب سلفاً.'
+        ],
+        body_en: [
+          'Encryption converts readable text into a form understandable only with a key. One principle governs it: system security must rest on key secrecy alone rather than algorithm secrecy. Approved algorithms are published and studied by thousands of researchers, and that openness is the source of trust in them rather than its opposite, while whoever invents a private secret algorithm builds on illusion.',
+          'Encryption comes in two kinds. Symmetric uses the same key to encrypt and decrypt, and it is very fast so it suits large data volumes, with its problem being key distribution: how do you deliver the key to the other party securely in the first place?',
+          'Asymmetric solves that with two mathematically linked keys: a public one published to everyone and a private one kept secret. What is encrypted with the public key is opened only by the private one, so anyone can send you an encrypted message with your public key and only you read it. Its price is being far slower than symmetric.',
+          'So real systems use a blend: asymmetric at the start of a connection to exchange a symmetric key securely, then the rest of the session is encrypted with the fast symmetric one. That is exactly what happens in every secure web connection.',
+          'A digital signature reverses the usage: you encrypt a fingerprint of your message with your private key, so anyone can verify with your public key that the message is from you and unmodified. It achieves three things: source proof, content integrity and non-repudiation.',
+          'Hashing is entirely different despite the constant confusion with encryption: a function turning any input into a fixed-length fingerprint that can never be reversed to the original. It is used to store passwords: the fingerprint is stored rather than the word, and fingerprints are compared at login. That is why a system cannot tell you your forgotten password, and a system that can is storing it unhashed, a serious defect. A random salt is added per user so identical passwords are not exposed by a precomputed table.'
+        ],
+        table: {
+          head_ar: ['الأسلوب', 'المفاتيح', 'السرعة', 'استخدامه'],
+          head_en: ['Method', 'Keys', 'Speed', 'Its use'],
+          rows: [
+            ['متماثل', 'مفتاح واحد', 'سريع جداً', 'تشفير كميات كبيرة'],
+            ['غير متماثل', 'عام وخاص', 'أبطأ بكثير', 'تبادل المفاتيح والتوقيع'],
+            ['هجين', 'الاثنان معاً', 'عملي', 'كل اتصال آمن حقيقي'],
+            ['تجزئة', 'بلا مفاتيح', 'سريع', 'حفظ كلمات المرور والتحقق']
+          ]
+        },
+        keyPoints_ar: [
+          'الأمان في سرّية المفتاح لا سرّية الخوارزمية، وعلنية الخوارزمية مصدر ثقة.',
+          'المتماثل سريع ومشكلته توزيع المفتاح، وغير المتماثل يحلها ببطء أكبر.',
+          'الأنظمة الحقيقية هجينة: غير متماثل لتبادل المفتاح ثم متماثل للجلسة.',
+          'التوقيع الرقمي يثبت المصدر والسلامة وعدم الإنكار.',
+          'التجزئة ليست تشفيراً: لا تُعكَس، ولهذا لا يعرف النظام كلمة مرورك.',
+          'الملح العشوائي يمنع كشف المتماثلين بجدول محسوب سلفاً.'
+        ],
+        keyPoints_en: [
+          'Security lies in key secrecy rather than algorithm secrecy, and openness is a source of trust.',
+          'Symmetric is fast with a key distribution problem; asymmetric solves it more slowly.',
+          'Real systems are hybrid: asymmetric to exchange a key then symmetric for the session.',
+          'A digital signature proves source, integrity and non-repudiation.',
+          'Hashing is not encryption: it is irreversible, which is why a system cannot know your password.',
+          'A random salt prevents identical passwords being exposed by a precomputed table.'
+        ],
+        analogy_ar: 'تخيّل صندوق بريد له فتحة يضع فيها أي أحد رسالة، ومفتاح لا يملكه إلا أنت لتفتحه. الفتحة مفتاحك العام يعرفه الجميع، والمفتاح مفتاحك الخاص. وأما التجزئة فأشبه ببصمة الإصبع: تستطيع أن تقارن بصمة بأخرى وتعرف أنهما لشخص واحد، ولا تستطيع أبداً أن تعيد بناء الإصبع من البصمة. ولهذا يستطيع النظام التحقق من كلمة مرورك ولا يستطيع إخبارك بها.',
+        analogy_en: 'Picture a post box with a slot anyone can drop a letter into and a key only you hold to open it. The slot is your public key known to all, the key your private one. Hashing is like a fingerprint: you can compare one print with another and know they belong to one person, yet never rebuild the finger from the print. That is why a system can verify your password and cannot tell it to you.',
+        terms: [
+          { term: 'Symmetric Encryption', def_ar: 'تشفير بمفتاح واحد للتشفير وفكّه.', def_en: 'Encryption using one key to both encrypt and decrypt.' },
+          { term: 'Asymmetric Encryption', def_ar: 'مفتاحان مرتبطان: عام يُنشر وخاص يُحفَظ.', def_en: 'Two linked keys: a published public one and a kept private one.' },
+          { term: 'Digital Signature', def_ar: 'إثبات المصدر والسلامة بتشفير بصمة الرسالة بالمفتاح الخاص.', def_en: 'Proving source and integrity by encrypting a message fingerprint with the private key.' },
+          { term: 'Hashing', def_ar: 'تحويل أي مدخل لبصمة ثابتة الطول لا تُعكَس.', def_en: 'Turning any input into a fixed-length irreversible fingerprint.' },
+          { term: 'Salt', def_ar: 'قيمة عشوائية تُضاف قبل التجزئة لكل مستخدم.', def_en: 'A random value added before hashing for each user.' }
+        ],
+        cards: [
+          { q_ar: 'أين يكمن أمان نظام التشفير؟', q_en: 'Where does an encryption system security lie?', a_ar: 'في سرّية المفتاح وحده؛ والخوارزمية منشورة ومدروسة وهذي العلنية مصدر ثقة.', a_en: 'In key secrecy alone; the algorithm is published and studied, and that openness builds trust.' },
+          { q_ar: 'لماذا تُستخدم الأنظمة الحقيقية تشفيراً هجيناً؟', q_en: 'Why do real systems use hybrid encryption?', a_ar: 'غير المتماثل لتبادل المفتاح بأمان، ثم المتماثل السريع لتشفير الجلسة كلها.', a_en: 'Asymmetric to exchange the key securely, then fast symmetric for the whole session.' },
+          { q_ar: 'ما الفرق بين التشفير والتجزئة؟', q_en: 'Difference between encryption and hashing?', a_ar: 'التشفير قابل للفك بمفتاح، والتجزئة بصمة لا تُعكَس أبداً.', a_en: 'Encryption is reversible with a key; a hash is a fingerprint that is never reversed.' },
+          { q_ar: 'ماذا يعني أن نظاماً يستطيع إخبارك بكلمة مرورك؟', q_en: 'What does it mean if a system can tell you your password?', a_ar: 'أنه يخزّنها بلا تجزئة، وهذا خلل أمني جسيم.', a_en: 'It stores it unhashed, which is a serious security defect.' }
+        ]
+      },
+      {
+        title_ar: 'السياسات وإدارة المخاطر',
+        title_en: 'Policies and Risk Management',
+        lead_ar: 'لا مؤسسة تحمي كل شيء بالقدر نفسه، وإدارة المخاطر هي كيف تقرر ما تحميه أولاً وبأي كلفة — والسياسة ما يحوّل القرار إلى ممارسة.',
+        lead_en: 'No organisation protects everything equally, and risk management is how you decide what to protect first and at what cost, while policy is what turns the decision into practice.',
+        body_ar: [
+          'الميزانية محدودة والتهديدات لا تنتهي، فيستحيل حماية كل شيء بأقصى درجة. ولهذا يبدأ الأمن الرشيد بجرد الأصول: ما الذي نملكه، وأين هو، وما قيمته، ومن يملكه. والمؤسسة التي لا تعرف أصولها لا تستطيع حمايتها — وأشهر ثغرة في الواقع خادم منسي لا يعرف أحد أنه ما زال يعمل.',
+          'ثم تقييم المخاطر: لكل أصل، ما التهديدات المحتملة، وما احتمال وقوعها، وما أثرها إن وقعت. والخطر حاصل ضرب الاحتمال في الأثر، وهذا الضرب هو ما يرتّب الأولويات: حدث نادر أثره كارثي قد يستحق عناية أكثر من حدث متكرر أثره تافه.',
+          'وأربع استجابات ممكنة لكل خطر، ومعرفتها تحرّر من وهم أن كل خطر يجب أن يُعالَج: التخفيف بإجراءات تقلله، والنقل بتأمين أو تعهيد يحمّل الطرف الآخر جزءاً منه، والتجنّب بترك النشاط الذي يولّده أصلاً، والقبول بأن تقرر تحمّله واعياً موثّقاً لأن كلفة معالجته تفوق أثره.',
+          'والقبول الواعي الموثّق يختلف عن الإهمال اختلافاً جوهرياً: الأول قرار إداري مسجّل يعرفه المسؤول ويتحمّل مسؤوليته، والثاني جهل بوجود الخطر أصلاً. والفرق بينهما يظهر بعد الحادث.',
+          'والسياسة وثيقة تحدد ما هو مسموح وما هو ممنوع ومن يقرر، وتُحوَّل إلى إجراءات تفصيلية قابلة للتنفيذ. والسياسة التي لا يعرفها الموظفون أو لا تُطبَّق ورقة بلا أثر — بل أسوأ، لأنها تعطي إحساساً كاذباً بالحماية وتخلق مسؤولية قانونية بلا حماية فعلية.',
+          'والضوابط ثلاثة أنواع تُصمَّم معاً: وقائية تمنع الحادث كالجدار الناري والتدريب، وكاشفة ترصده حين يقع كالسجلات وأنظمة الإنذار، وتصحيحية تعالج أثره كالنسخ الاحتياطي وخطة الاستجابة. ومن يستثمر في الوقاية وحدها يكتشف الاختراق بعد شهور — لأن ما لا تراه لا تستطيع إيقافه.'
+        ],
+        body_en: [
+          'Budgets are finite and threats endless, so protecting everything at maximum level is impossible. Sound security therefore begins with an asset inventory: what we own, where it is, what it is worth and who owns it. An organisation that does not know its assets cannot protect them, and the most common real vulnerability is a forgotten server nobody knows is still running.',
+          'Then risk assessment: for each asset, which threats are plausible, how likely they are, and what impact they would have. Risk is likelihood times impact, and that multiplication is what orders priorities: a rare event with catastrophic impact may deserve more attention than a frequent one with trivial impact.',
+          'Four responses exist for any risk, and knowing them frees you from the illusion that every risk must be treated: mitigation with measures reducing it, transfer through insurance or outsourcing shifting part of it, avoidance by dropping the activity generating it, and acceptance by consciously and documentedly bearing it because treatment costs more than its impact.',
+          'Conscious documented acceptance differs fundamentally from negligence: the first is a recorded management decision an accountable person owns, while the second is ignorance that the risk exists at all. The difference shows after an incident.',
+          'A policy is a document defining what is permitted, what is forbidden and who decides, translated into detailed executable procedures. A policy employees do not know or that is not enforced is paper with no effect, and worse, since it gives a false sense of protection and creates legal liability with no actual defence.',
+          'Controls come in three kinds designed together: preventive stopping an incident such as firewalls and training, detective spotting it when it occurs such as logs and alerting systems, and corrective treating its impact such as backups and a response plan. Whoever invests in prevention alone discovers the breach months later, because what you cannot see you cannot stop.'
+        ],
+        table: {
+          head_ar: ['الاستجابة', 'ماذا تعني', 'مثال'],
+          head_en: ['Response', 'Meaning', 'Example'],
+          rows: [
+            ['التخفيف', 'إجراءات تقلل الخطر', 'تحديث وتشفير وتدريب'],
+            ['النقل', 'تحميل طرف آخر جزءاً منه', 'تأمين سيبراني'],
+            ['التجنّب', 'ترك النشاط المولّد له', 'إيقاف خدمة عالية الخطر'],
+            ['القبول', 'تحمّله واعياً وموثّقاً', 'خطر تافه كلفة علاجه أعلى']
+          ]
+        },
+        keyPoints_ar: [
+          'ابدأ بجرد الأصول، فالمؤسسة التي لا تعرف ما تملك لا تحميه.',
+          'الخطر = احتمال × أثر، وهذا ما يرتّب الأولويات لا الخوف.',
+          'أربع استجابات: تخفيف ونقل وتجنّب وقبول — وليس كل خطر يُعالَج.',
+          'القبول الواعي الموثّق قرار إداري، والإهمال جهل بوجود الخطر.',
+          'سياسة لا يعرفها الموظفون تعطي أماناً كاذباً ومسؤولية قانونية.',
+          'الضوابط ثلاثة: وقائية وكاشفة وتصحيحية — والاكتفاء بالوقاية يعمي.'
+        ],
+        keyPoints_en: [
+          'Start with an asset inventory, since an organisation that does not know what it owns cannot protect it.',
+          'Risk equals likelihood times impact, and that orders priorities rather than fear.',
+          'Four responses: mitigate, transfer, avoid, accept, and not every risk is treated.',
+          'Conscious documented acceptance is a management decision; negligence is not knowing the risk exists.',
+          'A policy employees do not know gives false safety and legal liability.',
+          'Controls are preventive, detective and corrective, and prevention alone leaves you blind.'
+        ],
+        analogy_ar: 'تخيّل مالك متجر يريد حمايته. لن يضع خزنة فولاذية لعلب المناديل، وسيضعها للنقد. وقد يشتري تأميناً ضد الحريق بدل بناء نظام إطفاء متكامل — وهذا نقل للخطر لا تقصير. وقد يقرر أن سرقة قلم لا تستحق كاميرا — وهذا قبول واعٍ. والفرق بينه وبين المهمل أنه يعرف ما قرر تركه، والمهمل لا يعرف أنه ترك شيئاً.',
+        analogy_en: 'Picture a shop owner protecting their store. They will not put a steel safe around tissue boxes but will around cash. They may buy fire insurance instead of building a full suppression system, and that is risk transfer rather than negligence. They may decide a stolen pen does not justify a camera, and that is conscious acceptance. What separates them from the negligent is knowing what they chose to leave, while the negligent does not know anything was left.',
+        terms: [
+          { term: 'Asset Inventory', def_ar: 'جرد ما تملكه المؤسسة من أصول معلوماتية.', def_en: 'An inventory of the information assets an organisation owns.' },
+          { term: 'Risk Assessment', def_ar: 'تقدير احتمال التهديدات وأثرها لترتيب الأولويات.', def_en: 'Estimating threat likelihood and impact to order priorities.' },
+          { term: 'Risk Acceptance', def_ar: 'قرار موثّق بتحمّل خطر لأن كلفة علاجه تفوق أثره.', def_en: 'A documented decision to bear a risk because treatment costs more than its impact.' },
+          { term: 'Preventive Control', def_ar: 'ضابط يمنع وقوع الحادث.', def_en: 'A control stopping an incident from occurring.' },
+          { term: 'Detective Control', def_ar: 'ضابط يرصد الحادث حين يقع.', def_en: 'A control spotting an incident when it occurs.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا يبدأ الأمن بجرد الأصول؟', q_en: 'Why does security begin with an asset inventory?', a_ar: 'لأن ما لا تعرف أنك تملكه لا تحميه؛ وأشهر الثغرات خادم منسي يعمل بلا علم أحد.', a_en: 'You cannot protect what you do not know you own, and a forgotten running server is a classic vulnerability.' },
+          { q_ar: 'ما الاستجابات الأربع لأي خطر؟', q_en: 'What are the four responses to a risk?', a_ar: 'التخفيف والنقل والتجنّب والقبول الواعي الموثّق.', a_en: 'Mitigation, transfer, avoidance, and conscious documented acceptance.' },
+          { q_ar: 'ما الفرق بين قبول الخطر والإهمال؟', q_en: 'Difference between accepting a risk and negligence?', a_ar: 'القبول قرار إداري موثّق يعرف صاحبه ما تركه، والإهمال جهل بوجود الخطر أصلاً.', a_en: 'Acceptance is a documented decision whose owner knows what was left; negligence is not knowing the risk exists.' },
+          { q_ar: 'لماذا لا تكفي الضوابط الوقائية وحدها؟', q_en: 'Why are preventive controls alone insufficient?', a_ar: 'لأن ما لا تراه لا توقفه، فبلا ضوابط كاشفة يُكتشف الاختراق بعد شهور.', a_en: 'You cannot stop what you cannot see, so without detective controls a breach surfaces months later.' }
+        ]
+      }
+    ]
   }
 };
