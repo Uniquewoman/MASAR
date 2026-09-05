@@ -10188,6 +10188,325 @@ export const sectionGuides = {
           { q_ar: 'كيف تُبنى الحماية مع نهائية المعاملات؟', q_en: 'How is protection built given finality?', a_ar: 'استباقياً: تحقق من العنوان كاملاً، ومبلغ تجريبي صغير أولاً، وحذر من كل عرض يستعجلك.', a_en: 'Preventively: verifying the full address, sending a small test amount first, and caution toward any offer that rushes you.' }
         ]
       }
+    ],
+
+    // ─────────── البيانات والتحليل المالي ───────────
+    4: [
+      {
+        title_ar: 'مصادر البيانات المالية',
+        title_en: 'Financial Data Sources',
+        lead_ar: 'البيانات المالية ثلاثة أنواع بطبائع مختلفة، وخلطها في معالجة واحدة أصل أكثر أخطاء التحليل — فبيانة المعاملة لا تُعامَل كبيانة السوق.',
+        lead_en: 'Financial data comes in three kinds of different natures, and treating them alike is the root of most analysis errors, since transaction data is not market data.',
+        body_ar: [
+          'ثلاثة أنواع تختلف في مصدرها ومعدل تغيّرها وما يُطلَب منها. بيانات المعاملات تُنتَج داخل المؤسسة عن كل عملية، وهي دقيقة بطبيعتها لأنها سجل ما حدث فعلاً. وبيانات السوق تأتي من الخارج وتتغيّر باستمرار، ودقتها مرتبطة بلحظتها. والبيانات المرجعية ثابتة نسبياً: تصنيفات وأكواد وأسماء كيانات.',
+          'وخلطها في معالجة واحدة خطأ متكرر: بيانة السوق التي تأخّرت ثانية قد تكون خاطئة تماماً، وبيانة معاملة عمرها سنة تبقى صحيحة كما هي. فمعالجة الأولى بمنطق الثانية تنتج تحليلاً مبنياً على أسعار لم تعد قائمة.',
+          'وجودة البيانات تُقاس بخمسة أبعاد: الاكتمال، والدقة، والاتساق بين الأنظمة، والحداثة، والتفرّد بلا تكرار. وضعف بُعد واحد يهدم التحليل كله مهما كانت الأدوات متقدمة — والنموذج المتقن على بيانات رديئة ينتج ثقة عالية في نتيجة خاطئة.',
+          'والمطابقة قلب العمل المالي: التحقق أن ما سجّله نظامك يطابق ما سجّله الطرف الآخر أو البنك. وأي فرق مهما صغر يجب أن يُفسَّر لا أن يُهمَل، لأن ريالاً غير مفسَّر قد يكون خطأ تقريب وقد يكون معاملة مفقودة أو مكرّرة أو احتيالاً صغيراً يتكرر آلاف المرات.',
+          'والبيانات البديلة اتجاه توسّع: مؤشرات خارج السجل المالي التقليدي تُستخدَم في تقييم الجدارة الائتمانية — كانتظام سداد فواتير الخدمات أو تاريخ التعاملات التجارية. وقيمتها أنها تصل من لا سجل ائتماني له أصلاً، وهم الأغلبية في كثير من الأسواق.',
+          'وقيدها أخلاقي وتنظيمي معاً: ليس كل ما يمكن جمعه يجوز استخدامه في قرار مالي، وبعض المؤشرات تنتج تمييزاً غير مقصود بحسب المنطقة أو الفئة. والقاعدة العملية: كل مؤشر يدخل قرار ائتمان يجب أن يكون له مبرر سببي معقول وقابلاً للشرح للعميل، لا مجرد ارتباط إحصائي وُجِد في البيانات.'
+        ],
+        body_en: [
+          'Three kinds differ in source, rate of change and what is asked of them. Transaction data is produced inside the institution for every operation and is inherently precise because it records what actually happened. Market data comes from outside and changes constantly, its accuracy tied to its moment. Reference data is relatively static: classifications, codes and entity names.',
+          'Treating them alike is a recurring error: market data one second late may be entirely wrong while a year-old transaction record stays correct as it is. Processing the first with the logic of the second produces analysis built on prices that no longer exist.',
+          'Data quality is measured on five dimensions: completeness, accuracy, consistency across systems, timeliness, and uniqueness with no duplication. Weakness in one dimension destroys the whole analysis however advanced the tools, and a refined model on poor data produces high confidence in a wrong result.',
+          'Reconciliation is the heart of financial work: verifying that what your system recorded matches what the counterparty or bank recorded. Any difference however small must be explained rather than ignored, because one unexplained riyal may be a rounding error, a missing or duplicated transaction, or a small fraud repeating thousands of times.',
+          'Alternative data is an expanding direction: indicators outside the traditional financial record used in creditworthiness assessment, such as regularity of utility bill payment or commercial dealing history. Its value is reaching those with no credit record at all, who are the majority in many markets.',
+          'Its constraint is both ethical and regulatory: not everything collectable may be used in a financial decision, and some indicators produce unintended discrimination by area or group. The practical rule: every indicator entering a credit decision must have a plausible causal justification and be explainable to the customer, rather than a mere statistical correlation found in the data.'
+        ],
+        table: {
+          head_ar: ['النوع', 'معدل تغيّره', 'ما يهدده'],
+          head_en: ['Kind', 'Rate of change', 'What threatens it'],
+          rows: [
+            ['بيانات المعاملات', 'يُضاف ولا يتغيّر', 'التكرار وفقد سجلات'],
+            ['بيانات السوق', 'مستمر بالثواني', 'التأخّر فيبطل معناها'],
+            ['البيانات المرجعية', 'نادر', 'اختلافها بين الأنظمة'],
+            ['البيانات البديلة', 'متفاوت', 'التمييز غير المقصود']
+          ]
+        },
+        keyPoints_ar: [
+          'ثلاثة أنواع بطبائع مختلفة، ومعالجتها بمنطق واحد أصل أخطاء التحليل.',
+          'بيانة السوق المتأخرة ثانية قد تكون خاطئة، وبيانة المعاملة تبقى صحيحة سنة.',
+          'خمسة أبعاد للجودة، وضعف واحد يهدم التحليل مهما تقدّمت الأدوات.',
+          'كل فرق في المطابقة يُفسَّر: قد يكون تقريباً وقد يكون احتيالاً متكرراً.',
+          'البيانات البديلة تصل من لا سجل ائتماني له، وهم الأغلبية في أسواق كثيرة.',
+          'كل مؤشر ائتماني يحتاج مبرراً سببياً وقابلية شرح، لا ارتباطاً إحصائياً فقط.'
+        ],
+        keyPoints_en: [
+          'Three kinds of different natures, and processing them alike is the root of analysis errors.',
+          'Market data one second late may be wrong while transaction data stays correct for a year.',
+          'Five quality dimensions, and one weakness destroys the analysis however advanced the tools.',
+          'Every reconciliation difference is explained: it may be rounding or a repeating fraud.',
+          'Alternative data reaches those with no credit record, the majority in many markets.',
+          'Every credit indicator needs a causal justification and explainability, not mere correlation.'
+        ],
+        analogy_ar: 'تخيّل ثلاثة أنواع من الأوراق على مكتبك. إيصالات لمشتريات تمت — تبقى صحيحة عشر سنين. ونشرة أسعار سوق مطبوعة قبل ساعة — قد تكون بلا قيمة الآن. وقائمة أسماء الفروع — تتغيّر مرة في السنة. فمن رتّبها كلها بالطريقة نفسها وحدّثها بالوتيرة نفسها، إما أهدر جهداً في تحديث ما لا يتغيّر، أو بنى قراره على سعر مات قبل ساعة وهو يظنه حياً.',
+        analogy_en: 'Picture three kinds of paper on your desk. Receipts for completed purchases stay valid for ten years. A market price sheet printed an hour ago may be worthless now. A list of branch names changes once a year. Whoever files them all the same way and refreshes them at the same rate has either wasted effort updating what does not change, or built a decision on a price that died an hour ago while believing it alive.',
+        terms: [
+          { term: 'Transaction Data', def_ar: 'سجل داخلي لكل عملية تمت فعلاً.', def_en: 'An internal record of every operation that actually happened.' },
+          { term: 'Market Data', def_ar: 'بيانات خارجية دقتها مرتبطة بلحظتها.', def_en: 'External data whose accuracy is tied to its moment.' },
+          { term: 'Reference Data', def_ar: 'تصنيفات وأكواد ثابتة نسبياً بين الأنظمة.', def_en: 'Relatively static classifications and codes across systems.' },
+          { term: 'Reconciliation', def_ar: 'مطابقة سجلك بسجل الطرف الآخر وتفسير كل فرق.', def_en: 'Matching your record to the counterparty and explaining every difference.' },
+          { term: 'Alternative Data', def_ar: 'مؤشرات خارج السجل المالي تُستخدَم في التقييم.', def_en: 'Indicators outside the financial record used in assessment.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا لا تُعالَج بيانات السوق كبيانات المعاملات؟', q_en: 'Why is market data not processed like transaction data?', a_ar: 'لأن دقة السوق مرتبطة بلحظتها وقد تبطل بثانية، بينما سجل المعاملة يبقى صحيحاً سنوات.', a_en: 'Market accuracy is tied to its moment and may lapse in a second, while a transaction record stays correct for years.' },
+          { q_ar: 'لماذا يُفسَّر كل فرق في المطابقة؟', q_en: 'Why is every reconciliation difference explained?', a_ar: 'لأن ريالاً غير مفسَّر قد يكون تقريباً وقد يكون معاملة مفقودة أو احتيالاً صغيراً يتكرر آلاف المرات.', a_en: 'One unexplained riyal may be rounding, a missing transaction, or a small fraud repeating thousands of times.' },
+          { q_ar: 'ما قيمة البيانات البديلة؟', q_en: 'What is the value of alternative data?', a_ar: 'تتيح تقييم من لا سجل ائتماني له أصلاً، وهم الأغلبية في كثير من الأسواق.', a_en: 'It allows assessing those with no credit record at all, the majority in many markets.' },
+          { q_ar: 'ما شرط قبول مؤشر في قرار ائتماني؟', q_en: 'What qualifies an indicator for a credit decision?', a_ar: 'مبرر سببي معقول وقابلية شرحه للعميل، لا مجرد ارتباط إحصائي وُجِد في البيانات.', a_en: 'A plausible causal justification and explainability to the customer, rather than a correlation found in the data.' }
+        ]
+      },
+      {
+        title_ar: 'التحليل والمؤشرات المالية',
+        title_en: 'Financial Analysis and Metrics',
+        lead_ar: 'المؤشر بلا سياق رقم بلا معنى، والمعدل الكلي يخفي أكثر مما يكشف — والقسمة إلى مجموعات هي ما يُظهِر الحقيقة.',
+        lead_en: 'A metric without context is a meaningless number, and an aggregate average hides more than it reveals, and segmentation is what shows the truth.',
+        body_ar: [
+          'المؤشر الجيد ثلاثة شروط: يقيس ما يهم فعلاً، ويمكن التأثير فيه بقرار، ويُقرأ في سياق مقارنة. فمؤشر لا يستطيع أحد تغييره بقرار مؤشر مراقبة لا إدارة، ومؤشر بلا مقارنة بفترة سابقة أو بمنافس أو بهدف لا يقول شيئاً.',
+          'ومؤشرات النمو الأشهر في التقنية المالية أربعة مترابطة: كلفة اكتساب العميل، والقيمة الكلية المتوقعة منه طوال علاقته، ومعدل التسرّب، ومدة استرداد كلفة الاكتساب. والعلاقة بينها ما يحدد سلامة النموذج لا كل واحد منفرداً.',
+          'ومقارنة القيمة المتوقعة بكلفة الاكتساب أهم نسبة: لو كانت الكلفة تقارب القيمة، فالشركة تنمو في العملاء وتخسر في كل واحد. ومدة الاسترداد الطويلة تعني حاجة لتمويل مستمر حتى لو كانت النسبة جيدة على الورق — فالربح المتأخر سنتين لا يدفع رواتب هذا الشهر.',
+          'والمؤشرات المصرفية الخاصة تختلف: هامش الفائدة الصافي يقيس الفرق بين عائد الإقراض وكلفة التمويل، ونسبة القروض المتعثرة تقيس جودة محفظة الائتمان، ونسبة الكفاءة تقيس الكلفة التشغيلية مقابل الدخل. وارتفاع الأخيرة يعني أن نمو الدخل لم يواكب نمو الكلفة.',
+          'وتحليل المجموعات أقوى أداة يُهمِلها كثيرون: بدل قياس معدل كلي، تُقارَن مجموعات العملاء بحسب شهر انضمامهم أو قناة اكتسابهم. فقد يبدو معدل التسرّب الكلي مستقراً بينما مجموعات الأشهر الأخيرة تتسرّب بضعف من سبقها — والمعدل الكلي يخفي ذلك حتى يصير كارثة ظاهرة.',
+          'وقاعدة تحليلية حاسمة: الارتباط ليس سببية. فارتفاع استخدام ميزة عند العملاء الأكثر بقاءً لا يعني أن الميزة أبقتهم، وقد يكون العميل الملتزم أصلاً هو من يستخدمها. والفرق عملي لا نظري: من بنى قراره على ارتباط استثمر في ميزة لن تغيّر شيئاً، وترك السبب الحقيقي بلا معالجة.'
+        ],
+        body_en: [
+          'A good metric meets three conditions: it measures what genuinely matters, it can be influenced by a decision, and it is read against a comparison. A metric nobody can change by a decision is a monitoring rather than a management metric, and one with no comparison to a prior period, a competitor or a target says nothing.',
+          'The best-known growth metrics in FinTech are four interrelated ones: customer acquisition cost, the total expected value over the relationship, the churn rate, and the payback period on acquisition cost. The relationship between them determines model soundness rather than any one alone.',
+          'Comparing expected value to acquisition cost is the most important ratio: if the cost approaches the value, the company grows in customers and loses on each one. A long payback period means needing continuous funding even when the ratio looks fine on paper, since profit arriving in two years does not pay this month salaries.',
+          'Banking-specific metrics differ: net interest margin measures the gap between lending yield and funding cost, the non-performing loan ratio measures credit portfolio quality, and the efficiency ratio measures operating cost against income. A rise in the last means income growth did not keep pace with cost growth.',
+          'Cohort analysis is the most powerful tool many neglect: instead of measuring an aggregate rate, customer groups are compared by their joining month or acquisition channel. An aggregate churn rate may look stable while recent-month cohorts churn at twice the rate of earlier ones, and the aggregate hides that until it becomes a visible catastrophe.',
+          'A decisive analytical rule: correlation is not causation. Higher use of a feature among longer-staying customers does not mean the feature kept them, and it may be that the already-committed customer is the one who uses it. The difference is practical rather than theoretical: whoever built a decision on correlation invested in a feature that changes nothing and left the real cause untreated.'
+        ],
+        table: {
+          head_ar: ['المؤشر', 'ما يقيسه', 'ما يخفيه وحده'],
+          head_en: ['Metric', 'What it measures', 'What it hides alone'],
+          rows: [
+            ['كلفة الاكتساب', 'ثمن جلب عميل', 'هل يستحق العميل ثمنه'],
+            ['القيمة المتوقعة', 'عائد العلاقة كاملة', 'متى يصل ذلك العائد'],
+            ['معدل التسرّب', 'نسبة المغادرين', 'أي مجموعة تتسرّب فعلاً'],
+            ['مدة الاسترداد', 'متى تُستَرد كلفة الاكتساب', 'حاجة التمويل حتى ذلك الحين'],
+            ['نسبة الكفاءة', 'الكلفة مقابل الدخل', 'أي كلفة تحديداً ارتفعت']
+          ]
+        },
+        keyPoints_ar: [
+          'المؤشر الجيد يقيس ما يهم، ويمكن التأثير فيه، ويُقرأ بمقارنة.',
+          'العلاقة بين مؤشرات النمو تحدد سلامة النموذج لا كل واحد منفرداً.',
+          'كلفة تقارب القيمة تعني نمواً في العملاء وخسارة في كل واحد.',
+          'مدة استرداد طويلة تعني حاجة تمويل مستمر ولو بدت النسبة جيدة.',
+          'تحليل المجموعات يكشف ما يخفيه المعدل الكلي حتى يصير كارثة ظاهرة.',
+          'الارتباط ليس سببية: الاستثمار في ميزة مرتبطة قد لا يغيّر شيئاً.'
+        ],
+        keyPoints_en: [
+          'A good metric measures what matters, can be influenced, and is read against a comparison.',
+          'The relationship between growth metrics determines model soundness rather than any one alone.',
+          'A cost approaching the value means growing in customers and losing on each one.',
+          'A long payback period means continuous funding need even when the ratio looks fine.',
+          'Cohort analysis reveals what the aggregate hides until it becomes a visible catastrophe.',
+          'Correlation is not causation: investing in a correlated feature may change nothing.'
+        ],
+        analogy_ar: 'تخيّل مدرسة معدل درجاتها العام ثابت منذ ثلاث سنوات، فيطمئن مديرها. ولو قسّم الطلاب بحسب سنة التحاقهم لاكتشف أن دفعات السنتين الأخيرتين أضعف بكثير، وأن الدفعات القديمة المتفوقة هي التي ترفع المعدل — وهي على وشك التخرّج. المعدل الكلي كان صحيحاً وطمأنه إلى كارثة قادمة، والقسمة إلى دفعات كانت ستريه إياها قبل عامين.',
+        analogy_en: 'Picture a school whose overall grade average has held steady for three years, reassuring its principal. Splitting students by their entry year would reveal that the last two intakes are far weaker and that the older high-performing intakes are holding the average up, and they are about to graduate. The aggregate was accurate and reassured them into a coming catastrophe, while splitting by intake would have shown it two years earlier.',
+        terms: [
+          { term: 'Acquisition Cost', def_ar: 'ما يُنفَق لجلب عميل واحد جديد.', def_en: 'What is spent to bring in one new customer.' },
+          { term: 'Lifetime Value', def_ar: 'العائد المتوقع من العميل طوال علاقته.', def_en: 'Expected return from a customer over their relationship.' },
+          { term: 'Churn Rate', def_ar: 'نسبة العملاء المغادرين في مدة محددة.', def_en: 'The share of customers leaving in a given period.' },
+          { term: 'Payback Period', def_ar: 'المدة حتى تُستَرد كلفة اكتساب العميل.', def_en: 'How long until acquisition cost is recovered.' },
+          { term: 'Cohort Analysis', def_ar: 'مقارنة مجموعات بحسب وقت انضمامها أو قناتها.', def_en: 'Comparing groups by joining time or channel.' }
+        ],
+        cards: [
+          { q_ar: 'ما شروط المؤشر الجيد؟', q_en: 'What makes a good metric?', a_ar: 'أن يقيس ما يهم فعلاً، ويمكن التأثير فيه بقرار، ويُقرأ في سياق مقارنة.', a_en: 'It measures what genuinely matters, can be influenced by a decision, and is read against a comparison.' },
+          { q_ar: 'ماذا يعني اقتراب كلفة الاكتساب من القيمة المتوقعة؟', q_en: 'What does acquisition cost approaching lifetime value mean?', a_ar: 'أن الشركة تنمو في عدد العملاء وتخسر في كل واحد منهم، فالنمو نفسه يوسّع الخسارة.', a_en: 'The company grows in customer count and loses on each, so growth itself widens the loss.' },
+          { q_ar: 'ما الذي يكشفه تحليل المجموعات؟', q_en: 'What does cohort analysis reveal?', a_ar: 'تدهوراً في المجموعات الحديثة يخفيه المعدل الكلي المستقر حتى يصير كارثة ظاهرة.', a_en: 'Deterioration in recent cohorts that a steady aggregate hides until it becomes a visible catastrophe.' },
+          { q_ar: 'لماذا يخطر الخلط بين الارتباط والسببية؟', q_en: 'Why is confusing correlation with causation dangerous?', a_ar: 'لأنه يقود لاستثمار في ميزة لن تغيّر شيئاً، ويترك السبب الحقيقي بلا معالجة.', a_en: 'It leads to investing in a feature that changes nothing while leaving the real cause untreated.' }
+        ]
+      },
+      {
+        title_ar: 'التقارير واللوحات',
+        title_en: 'Reports and Dashboards',
+        lead_ar: 'اللوحة الجيدة تُبنى على القرار الذي ستدعمه لا على البيانات المتاحة — ولوحة لا يترتب على قراءتها فعل هي ديكور مكلف.',
+        lead_en: 'A good dashboard is built around the decision it will support rather than the data available, and a dashboard whose reading leads to no action is expensive decoration.',
+        body_ar: [
+          'السؤال الأول قبل بناء أي لوحة: ما القرار الذي ستدعمه، ومن يتخذه، وكم مرة؟ فمن يبدأ بـ«ما البيانات المتاحة؟» ينتهي بلوحة مزدحمة يفتحها الجميع مرة ثم ينسونها. والاختبار الصادق: لو تغيّر رقم في هذي اللوحة، من سيفعل ماذا؟',
+          'وثلاثة مستويات تختلف في الجمهور والغرض. اللوحة التشغيلية تُقرأ عدة مرات يومياً وتجيب: هل كل شيء يعمل الآن؟ والتحليلية تُقرأ أسبوعياً وتجيب: لماذا تغيّر هذا؟ والتنفيذية تُقرأ شهرياً وتجيب: هل نحن على المسار؟ وخلطها في لوحة واحدة يفسدها لكل الجماهير معاً.',
+          'واختيار الرسم ليس ذوقاً: الخط للتغيّر عبر الزمن، والأعمدة لمقارنة فئات، والانتشار لعلاقة بين متغيّرين. والدائرة سيئة لأكثر من ثلاث فئات لأن العين لا تقارن الزوايا بدقة، والمساحات ثلاثية الأبعاد تشوّه الإدراك دائماً بلا استثناء.',
+          'ومحور القيمة يجب أن يبدأ من الصفر في أعمدة المقارنة، لأن قصّه يضخّم فروقاً ضئيلة بصرياً. وقد يكون القصّ مشروعاً في خط زمني لتقلّبات صغيرة مهمة — لكن يجب أن يكون مقصوداً ومعلَناً لا صدفة أنتجتها الأداة.',
+          'وأخطاء العرض الشائعة في المالية: مقارنة مبالغ بعملات مختلفة بلا توحيد، ومقارنة شهور مختلفة الأيام بلا تطبيع، وعرض معدل بلا حجم العيّنة فيبدو معدل ثلاثة عملاء كمعدل ثلاثة آلاف.',
+          'والتوثيق ما يفصل لوحة موثوقة عن لوحة متنازع عليها: تعريف مكتوب لكل مؤشر، ومصدره، وآخر تحديث، وما يُستثنى من حسابه. فأشهر خلاف في أي مؤسسة أن ترى إدارتان رقمين مختلفين لـ«عدد العملاء النشطين» لأن كل واحدة تعرّف النشاط بطريقة، والحل تعريف واحد معلن لا نقاش متكرر في كل اجتماع.'
+        ],
+        body_en: [
+          'The first question before building any dashboard: which decision will it support, who makes it, and how often? Whoever starts from what data is available ends with a crowded dashboard everyone opens once then forgets. The honest test: if a number here changed, who would do what?',
+          'Three levels differ in audience and purpose. An operational dashboard is read several times daily and answers whether everything is working now. An analytical one is read weekly and answers why this changed. An executive one is read monthly and answers whether we are on track. Mixing them into one ruins it for every audience at once.',
+          'Chart choice is not taste: a line for change over time, bars for comparing categories, a scatter for a relationship between two variables. A pie is poor beyond three categories because the eye compares angles badly, and three-dimensional areas always distort perception with no exception.',
+          'The value axis must start at zero in comparison bars, because truncating it visually magnifies tiny differences. Truncation may be legitimate on a time line for small but meaningful fluctuations, yet it must be deliberate and stated rather than an accident the tool produced.',
+          'Common presentation errors in finance: comparing amounts in different currencies with no normalisation, comparing months of different lengths without adjustment, and showing a rate with no sample size so a three-customer rate looks like a three-thousand-customer rate.',
+          'Documentation separates a trusted dashboard from a disputed one: a written definition for every metric, its source, its last update, and what its calculation excludes. The most famous dispute in any organisation is two departments seeing different numbers for active customers because each defines activity differently, and the fix is one published definition rather than a repeated argument in every meeting.'
+        ],
+        table: {
+          head_ar: ['اللوحة', 'وتيرة القراءة', 'السؤال الذي تجيبه'],
+          head_en: ['Dashboard', 'Reading frequency', 'The question it answers'],
+          rows: [
+            ['تشغيلية', 'عدة مرات يومياً', 'هل كل شيء يعمل الآن؟'],
+            ['تحليلية', 'أسبوعياً', 'لماذا تغيّر هذا؟'],
+            ['تنفيذية', 'شهرياً', 'هل نحن على المسار؟']
+          ]
+        },
+        keyPoints_ar: [
+          'ابدئي بالقرار الذي ستدعمه اللوحة لا بالبيانات المتاحة.',
+          'الاختبار: لو تغيّر رقم فيها، من سيفعل ماذا؟',
+          'خلط المستويات الثلاثة في لوحة واحدة يفسدها لكل الجماهير.',
+          'الدائرة سيئة لأكثر من ثلاث فئات، والأشكال ثلاثية الأبعاد تشوّه دائماً.',
+          'قصّ المحور يضخّم فروقاً ضئيلة، ويجب أن يكون مقصوداً معلَناً لا صدفة.',
+          'تعريف مكتوب لكل مؤشر ينهي خلاف «عدد العملاء النشطين» إلى الأبد.'
+        ],
+        keyPoints_en: [
+          'Start from the decision the dashboard supports rather than the available data.',
+          'The test: if a number changed here, who would do what?',
+          'Mixing the three levels into one ruins it for every audience.',
+          'A pie is poor beyond three categories and three-dimensional shapes always distort.',
+          'Axis truncation magnifies tiny differences and must be deliberate and stated.',
+          'A written definition per metric ends the active customers dispute permanently.'
+        ],
+        analogy_ar: 'تخيّل لوحة عدّادات سيارة فيها أربعون مؤشراً: ضغط كل إطار، وحرارة كل جزء، ومعدل استهلاك آخر عشر رحلات. السائق لن يقرأ شيئاً منها، وسيفوته أن الوقود على وشك النفاد. واللوحة الجيدة تعرض ما يترتب عليه فعل الآن — سرعة ووقود وتحذير — وتخفي الباقي حتى يُطلَب. والسؤال دائماً: أي رقم هنا سيجعلني أغيّر ما أفعله في الدقائق القادمة؟',
+        analogy_en: 'Picture a car dashboard with forty gauges: pressure in each tyre, temperature of each part, consumption over the last ten trips. The driver reads none of it and misses that fuel is nearly gone. A good dashboard shows what leads to action now, speed, fuel and a warning, and hides the rest until asked for. The question is always: which number here would make me change what I do in the next few minutes?',
+        terms: [
+          { term: 'Operational Dashboard', def_ar: 'لوحة تُقرأ يومياً وتجيب: هل يعمل كل شيء الآن؟', def_en: 'A daily-read dashboard answering whether everything works now.' },
+          { term: 'Axis Truncation', def_ar: 'بدء المحور من غير الصفر فيضخّم الفروق بصرياً.', def_en: 'Starting an axis above zero, visually magnifying differences.' },
+          { term: 'Normalisation', def_ar: 'توحيد الأساس قبل المقارنة كتوحيد عدد الأيام.', def_en: 'Unifying the basis before comparison, such as day counts.' },
+          { term: 'Metric Definition', def_ar: 'تعريف مكتوب معلن يمنع اختلاف الأرقام بين الإدارات.', def_en: 'A published written definition preventing differing numbers across departments.' },
+          { term: 'Sample Size', def_ar: 'حجم العيّنة الذي بدونه يصير المعدل مضلّلاً.', def_en: 'The sample size without which a rate becomes misleading.' }
+        ],
+        cards: [
+          { q_ar: 'ما الاختبار الصادق لجدوى لوحة؟', q_en: 'What is the honest test of a dashboard?', a_ar: 'لو تغيّر رقم فيها، من سيفعل ماذا؟ فما لا يترتب على قراءته فعل ديكور مكلف.', a_en: 'If a number changed, who would do what? What leads to no action is expensive decoration.' },
+          { q_ar: 'لماذا لا تُخلَط المستويات الثلاثة؟', q_en: 'Why should the three levels not be mixed?', a_ar: 'لأن لكل واحدة جمهوراً ووتيرة وسؤالاً مختلفاً، فخلطها يفسد اللوحة لكل الجماهير معاً.', a_en: 'Each has a different audience, frequency and question, so mixing ruins it for every audience at once.' },
+          { q_ar: 'متى يكون قصّ المحور مقبولاً؟', q_en: 'When is axis truncation acceptable?', a_ar: 'في خط زمني لتقلّبات صغيرة مهمة، بشرط أن يكون مقصوداً ومعلَناً لا صدفة أنتجتها الأداة.', a_en: 'On a time line for small meaningful fluctuations, provided it is deliberate and stated rather than a tool accident.' },
+          { q_ar: 'كيف يُنهى خلاف «عدد العملاء النشطين»؟', q_en: 'How is the active customers dispute ended?', a_ar: 'بتعريف واحد مكتوب معلن لكل مؤشر مع مصدره وما يُستثنى، لا بنقاش متكرر في كل اجتماع.', a_en: 'By one published written definition per metric with its source and exclusions, rather than a repeated argument.' }
+        ]
+      },
+      {
+        title_ar: 'التنبؤ والنمذجة المالية',
+        title_en: 'Financial Forecasting and Modelling',
+        lead_ar: 'النموذج الذي يتنبّأ بالماضي بدقة تامة هو غالباً أسوأ نموذج للمستقبل — وهذي المفارقة أصل أكثر أخطاء النمذجة المالية كلفة.',
+        lead_en: 'A model that predicts the past perfectly is usually the worst model for the future, and that paradox is the root of the costliest financial modelling errors.',
+        body_ar: [
+          'التنبؤ المالي إجابة عن أسئلة محددة: كم سيكون تدفقنا النقدي بعد ستة أشهر؟ وما احتمال تعثّر هذا المقترض؟ وكم عميلاً سنخسر الربع القادم؟ وكل سؤال يحتاج نموذجاً مختلفاً ولا يوجد نموذج عام يجيبها جميعاً.',
+          'وأول ما يجب فهمه أن كل نموذج مبني على افتراض أن المستقبل يشبه الماضي في بنيته. فحين يتغيّر النظام نفسه — أزمة أو تنظيم جديد أو تغيّر سلوك جماعي — تتعطّل النماذج كلها معاً، وهي أشد ما تُحتاج فيه.',
+          'والإفراط في المطابقة أخطر أخطاء النمذجة: نموذج يحفظ تفاصيل البيانات التاريخية بما فيها ضجيجها العشوائي، فيبدو أداؤه مثالياً على ما رآه ويفشل على الجديد. والمؤشر التحذيري دقة عالية جداً على بيانات التدريب مع فجوة واضحة عند الاختبار.',
+          'والاختبار الخلفي ركن في تقييم أي نموذج مالي، وفيه فخّ شهير: تسرّب المستقبل. أن يستخدم النموذج بلا قصد معلومة لم تكن متاحة في لحظة القرار — كمتوسط محسوب على الفترة كلها بما فيها ما بعد التاريخ المُختبَر. والنتيجة أداء ممتاز في الاختبار ينهار في التطبيق الحقيقي.',
+          'ومحاكاة السيناريوهات أنفع من رقم واحد: أفضل حالة، وأسوأ حالة، والأرجح. فالرقم الواحد يعطي ثقة زائفة، والثلاثة تُظهِر مدى عدم اليقين وتجعل القرار مبنياً على نطاق لا على نقطة. واختبار الضغط يمضي أبعد: ماذا لو وقع أسوأ من أسوأ حالة؟',
+          'وتحليل الحساسية يكشف أين تكمن الهشاشة: أي مدخل لو تغيّر قليلاً قلب النتيجة كثيراً؟ فنموذج يعتمد على افتراض نمو ثابت لخمس سنوات هشّ في هذا الافتراض وحده مهما دقّ في الباقي — والقاعدة أن يُصرَّح بالافتراضات دائماً، لأن النموذج بلا افتراضاته معلنة رأي مغلّف بأرقام.'
+        ],
+        body_en: [
+          'Financial forecasting answers specific questions: what will our cash flow be in six months, what is the probability this borrower defaults, how many customers will we lose next quarter. Each needs a different model and no general model answers them all.',
+          'The first thing to understand is that every model rests on the assumption that the future resembles the past in structure. When the system itself changes, a crisis, new regulation or a collective behaviour shift, all models break at once, precisely when they are most needed.',
+          'Overfitting is the gravest modelling error: a model memorising historical detail including its random noise, so it looks perfect on what it saw and fails on the new. The warning sign is very high accuracy on training data with a clear gap at testing.',
+          'Backtesting is a pillar of evaluating any financial model, and it holds a famous trap: look-ahead leakage, where a model unintentionally uses information unavailable at decision time, such as an average computed over the whole period including dates after the one being tested. The result is excellent test performance that collapses in real use.',
+          'Scenario simulation is more useful than a single number: best case, worst case and most likely. One number gives false confidence while three show the extent of uncertainty and base the decision on a range rather than a point. Stress testing goes further: what if something worse than the worst case occurs?',
+          'Sensitivity analysis reveals where fragility sits: which input, changed slightly, flips the result greatly? A model resting on a constant five-year growth assumption is fragile in that assumption alone however precise the rest. The rule is always declaring assumptions, because a model without its assumptions published is an opinion wrapped in numbers.'
+        ],
+        table: {
+          head_ar: ['الخطأ', 'كيف يظهر', 'كيف يُكشَف'],
+          head_en: ['Error', 'How it appears', 'How it is caught'],
+          rows: [
+            ['الإفراط في المطابقة', 'دقة مثالية على التاريخ', 'فجوة بين التدريب والاختبار'],
+            ['تسرّب المستقبل', 'اختبار خلفي ممتاز', 'مراجعة توقيت كل مدخل'],
+            ['رقم واحد بلا نطاق', 'ثقة زائفة في التقدير', 'ثلاثة سيناريوهات'],
+            ['افتراض غير معلن', 'نموذج يبدو موضوعياً', 'تحليل الحساسية']
+          ]
+        },
+        keyPoints_ar: [
+          'كل نموذج يفترض أن المستقبل يشبه الماضي بنيوياً، ويتعطّل حين يتغيّر النظام.',
+          'الإفراط في المطابقة يحفظ الضجيج، وعلامته فجوة بين التدريب والاختبار.',
+          'تسرّب المستقبل يعطي اختباراً ممتازاً ينهار في التطبيق الحقيقي.',
+          'ثلاثة سيناريوهات خير من رقم واحد يعطي ثقة زائفة.',
+          'تحليل الحساسية يكشف المدخل الذي يقلب النتيجة بتغيّر بسيط.',
+          'نموذج بلا افتراضات معلنة رأي مغلّف بأرقام.'
+        ],
+        keyPoints_en: [
+          'Every model assumes the future structurally resembles the past and breaks when the system changes.',
+          'Overfitting memorises noise, signed by a gap between training and testing.',
+          'Look-ahead leakage yields excellent testing that collapses in real use.',
+          'Three scenarios beat one number that gives false confidence.',
+          'Sensitivity analysis reveals the input that flips the result on a small change.',
+          'A model with undeclared assumptions is an opinion wrapped in numbers.'
+        ],
+        analogy_ar: 'تخيّل طالباً حفظ إجابات امتحانات السنوات الخمس الماضية حرفاً بحرف. لو أعدت عليه أي سؤال قديم لأجاب بدرجة كاملة، ولو غُيِّرت الأرقام في السؤال نفسه لعجز — لأنه حفظ الإجابات لا الطريقة. وأشد ما في الأمر أن نتيجته على الأسئلة القديمة تعطي انطباعاً بأنه الأفضل في الصف، فيُختار للمسابقة ويسقط في أول سؤال جديد.',
+        analogy_en: 'Picture a student who memorised the last five years of exam answers word for word. Repeat any old question and they score full marks; change the numbers in that same question and they fail, because they memorised answers rather than method. Worse, their score on the old questions gives the impression they are the best in the class, so they are chosen for the competition and fall at the first new question.',
+        terms: [
+          { term: 'Overfitting', def_ar: 'حفظ تفاصيل البيانات وضجيجها بدل تعلّم النمط.', def_en: 'Memorising data detail and noise instead of learning the pattern.' },
+          { term: 'Backtesting', def_ar: 'اختبار النموذج على بيانات تاريخية بشروط لحظتها.', def_en: 'Testing a model on historical data under the conditions of its moment.' },
+          { term: 'Look-ahead Bias', def_ar: 'استخدام معلومة لم تكن متاحة عند القرار.', def_en: 'Using information unavailable at decision time.' },
+          { term: 'Stress Testing', def_ar: 'فحص النتيجة عند أسوأ من أسوأ حالة متوقعة.', def_en: 'Checking the outcome under worse than the worst expected case.' },
+          { term: 'Sensitivity Analysis', def_ar: 'قياس أثر تغيّر بسيط في مدخل على النتيجة.', def_en: 'Measuring how a small input change affects the result.' }
+        ],
+        cards: [
+          { q_ar: 'لماذا قد يكون النموذج الأدق على الماضي أسوأ للمستقبل؟', q_en: 'Why may the most past-accurate model be worst for the future?', a_ar: 'لأنه قد يكون حفظ ضجيج البيانات التاريخية لا نمطها، فيفشل على أي بيانات جديدة.', a_en: 'It may have memorised historical noise rather than the pattern, so it fails on any new data.' },
+          { q_ar: 'ما تسرّب المستقبل في الاختبار الخلفي؟', q_en: 'What is look-ahead leakage in backtesting?', a_ar: 'استخدام معلومة لم تكن متاحة لحظة القرار، فيبدو الأداء ممتازاً وينهار في التطبيق الحقيقي.', a_en: 'Using information unavailable at decision time, so performance looks excellent and collapses in real use.' },
+          { q_ar: 'لماذا ثلاثة سيناريوهات خير من رقم واحد؟', q_en: 'Why are three scenarios better than one number?', a_ar: 'لأن الرقم الواحد يعطي ثقة زائفة، والثلاثة تُظهِر مدى عدم اليقين فيُبنى القرار على نطاق.', a_en: 'One number gives false confidence while three show uncertainty so the decision rests on a range.' },
+          { q_ar: 'ما الذي يجعل النموذج رأياً مغلّفاً بأرقام؟', q_en: 'What makes a model an opinion wrapped in numbers?', a_ar: 'غياب الإعلان عن افتراضاته، فلا يُعرَف أي افتراض يحمل النتيجة كلها ولا مدى هشاشته.', a_en: 'Undeclared assumptions, so nobody knows which assumption carries the whole result or how fragile it is.' }
+        ]
+      },
+      {
+        title_ar: 'ذكاء الأعمال في المؤسسات المالية',
+        title_en: 'Business Intelligence in Financial Institutions',
+        lead_ar: 'ذكاء الأعمال ليس أدوات وإنما انضباط: مصدر واحد للحقيقة، وتعريفات موحّدة، وحوكمة تحدد من يرى ماذا ولماذا.',
+        lead_en: 'Business intelligence is not tools but discipline: one source of truth, unified definitions, and governance deciding who sees what and why.',
+        body_ar: [
+          'ذكاء الأعمال تحويل البيانات المتفرقة لقرار. وأصعب ما فيه ليس التقنية وإنما الاتفاق: أن تعني الكلمة الشيء نفسه في كل إدارة. فحين تعرّف إدارة «العميل النشط» بمن سجّل دخوله، وأخرى بمن نفّذ معاملة، تصير كل مقارنة نقاشاً في التعريف لا في القرار.',
+          'ومصدر الحقيقة الواحد هو العلاج: مستودع بيانات موحّد تُبنى عليه كل التقارير، بحيث يستحيل أن يعطي تقريران رقمين مختلفين للمؤشر نفسه. وبدونه تُبنى تقارير متنافسة كل واحد يدافع عن رقمه، وتُستهلَك الاجتماعات في التوفيق بدل القرار.',
+          'وطبقات البنية ثلاث: جمع من الأنظمة المصدر، ثم تحويل وتنظيف وتوحيد، ثم عرض في تقارير ولوحات. وأثقل الطبقات الوسطى دائماً — والمؤسسة التي تستثمر في العرض وتهمل التحويل تحصل على لوحات جميلة لأرقام لا يثق بها أحد.',
+          'والحوكمة في المالية أثقل من غيرها: من يرى بيانات أي عملاء، وما الذي يُخفى أو يُقنَّع، وكم تُحفَظ السجلات، ومن يوافق على تصدير أي بيانات خارج النظام. وهذي متطلبات تنظيمية لا سياسات داخلية اختيارية.',
+          'وأشهر أخطاء المؤسسات نشر الوصول للجميع بحجة الشفافية: بيانات عملاء مفصّلة يصل إليها كل موظف. والصحيح الوصول بحسب الحاجة، وعرض مجمّع لمن لا يحتاج التفصيل، وتقنيع الحقول الحساسة افتراضياً لا عند الطلب.',
+          'ومقياس نجاح ذكاء الأعمال ليس عدد اللوحات ولا حجم المستودع، وإنما قرارات تغيّرت بسببه. والسؤال الذي يكشف الحقيقة: ما آخر قرار اتُّخِذ خلافاً للحدس بسبب رقم رآه أحدهم؟ فإن لم يوجد جواب، فالنظام يوثّق ما يحدث ولا يغيّره — وهذا استثمار كبير في مرآة لا في أداة.'
+        ],
+        body_en: [
+          'Business intelligence turns scattered data into decisions. Its hardest part is not technology but agreement: making a word mean the same thing in every department. When one department defines an active customer as whoever logged in and another as whoever transacted, every comparison becomes an argument about definitions rather than the decision.',
+          'A single source of truth is the remedy: one unified data warehouse on which all reporting is built, so two reports cannot give different numbers for the same metric. Without it, competing reports are built with each side defending its figure, and meetings are consumed reconciling rather than deciding.',
+          'The architecture has three layers: collecting from source systems, then transforming, cleaning and unifying, then presenting in reports and dashboards. The middle layer is always the heaviest, and an institution investing in presentation while neglecting transformation gets beautiful dashboards of numbers nobody trusts.',
+          'Governance in finance is heavier than elsewhere: who sees which customers data, what is hidden or masked, how long records are retained, and who approves exporting any data outside the system. These are regulatory requirements rather than optional internal policies.',
+          'A common institutional error is opening access to everyone in the name of transparency: detailed customer data reachable by every employee. The right approach is need-based access, aggregated views for those who need no detail, and sensitive fields masked by default rather than on request.',
+          'The measure of business intelligence success is not dashboard count nor warehouse size but decisions that changed because of it. The question that reveals the truth: what was the last decision taken against intuition because of a number someone saw? If there is no answer, the system documents what happens without changing it, and that is a large investment in a mirror rather than a tool.'
+        ],
+        table: {
+          head_ar: ['الطبقة', 'وظيفتها', 'أثر إهمالها'],
+          head_en: ['Layer', 'Its function', 'Effect of neglecting it'],
+          rows: [
+            ['الجمع', 'سحب من الأنظمة المصدر', 'بيانات ناقصة من البداية'],
+            ['التحويل', 'تنظيف وتوحيد وتعريف', 'لوحات جميلة لا يثق بها أحد'],
+            ['العرض', 'تقارير ولوحات للقرار', 'بيانات سليمة لا تصل لمن يقرر'],
+            ['الحوكمة', 'من يرى ماذا ولكم', 'مخالفة تنظيمية لا خطأ داخلي']
+          ]
+        },
+        keyPoints_ar: [
+          'أصعب ما في ذكاء الأعمال الاتفاق على التعريفات لا التقنية.',
+          'مصدر الحقيقة الواحد يمنع أن يعطي تقريران رقمين للمؤشر نفسه.',
+          'طبقة التحويل أثقل الطبقات، وإهمالها ينتج لوحات لا يثق بها أحد.',
+          'الحوكمة في المالية متطلب تنظيمي لا سياسة داخلية اختيارية.',
+          'الوصول بحسب الحاجة وتقنيع الحساس افتراضياً لا عند الطلب.',
+          'المقياس قرارات تغيّرت لا عدد لوحات؛ وبلا ذلك فهو مرآة لا أداة.'
+        ],
+        keyPoints_en: [
+          'The hardest part of business intelligence is agreeing definitions rather than technology.',
+          'A single source of truth prevents two reports giving different numbers for one metric.',
+          'The transformation layer is the heaviest, and neglecting it yields dashboards nobody trusts.',
+          'Governance in finance is a regulatory requirement rather than an optional internal policy.',
+          'Access follows need and sensitive fields are masked by default rather than on request.',
+          'The measure is decisions changed rather than dashboard count; without it it is a mirror not a tool.'
+        ],
+        analogy_ar: 'تخيّل مستشفى فيه ثلاثة سجلات لوزن المرضى: واحد بالكيلو، وواحد بالرطل، وواحد يُسجَّل بالملابس. كل سجل دقيق في نفسه، ولا يمكن اتخاذ قرار دوائي بمقارنتها. والحل ليس شراء ميزان أفضل وإنما اتفاق واحد على وحدة القياس وطريقته. وأما لو كانت السجلات كلها موحّدة ودقيقة ولم يقرأها الطبيب قبل أن يصف الدواء، فقد بُذِل الجهد كله في مرآة لا في أداة.',
+        analogy_en: 'Picture a hospital with three records of patient weight: one in kilograms, one in pounds, and one recorded with clothes on. Each record is accurate in itself and no medication decision can compare them. The fix is not buying a better scale but one agreement on the unit and the method. And if all records were unified and accurate yet the doctor never read them before prescribing, all that effort went into a mirror rather than a tool.',
+        terms: [
+          { term: 'Single Source of Truth', def_ar: 'مستودع موحّد تُبنى عليه كل التقارير.', def_en: 'One unified warehouse on which all reporting is built.' },
+          { term: 'Transformation Layer', def_ar: 'طبقة تنظيف وتوحيد البيانات قبل عرضها.', def_en: 'The layer cleaning and unifying data before presentation.' },
+          { term: 'Data Governance', def_ar: 'قواعد من يرى ماذا وكم يُحفَظ ومن يوافق على التصدير.', def_en: 'Rules on who sees what, retention, and who approves export.' },
+          { term: 'Field Masking', def_ar: 'إخفاء حقول حساسة افتراضياً لمن لا يحتاجها.', def_en: 'Hiding sensitive fields by default from those who do not need them.' },
+          { term: 'Decision Impact', def_ar: 'مقياس النجاح: قرارات تغيّرت بسبب البيانات.', def_en: 'The success measure: decisions that changed because of the data.' }
+        ],
+        cards: [
+          { q_ar: 'ما أصعب ما في ذكاء الأعمال؟', q_en: 'What is the hardest part of business intelligence?', a_ar: 'الاتفاق على أن تعني الكلمة الشيء نفسه في كل إدارة، لا التقنية.', a_en: 'Agreeing that a word means the same in every department, rather than technology.' },
+          { q_ar: 'ما أثر إهمال طبقة التحويل؟', q_en: 'What is the effect of neglecting transformation?', a_ar: 'لوحات جميلة لأرقام لا يثق بها أحد، لأن التنظيف والتوحيد لم يحدثا أصلاً.', a_en: 'Beautiful dashboards of numbers nobody trusts, because cleaning and unification never happened.' },
+          { q_ar: 'لماذا لا يُفتَح الوصول للجميع باسم الشفافية؟', q_en: 'Why not open access to everyone for transparency?', a_ar: 'لأن حوكمة البيانات في المالية متطلب تنظيمي؛ والصحيح وصول بحسب الحاجة وتقنيع افتراضي للحساس.', a_en: 'Data governance in finance is a regulatory requirement; access follows need with sensitive fields masked by default.' },
+          { q_ar: 'ما السؤال الذي يكشف نجاح النظام؟', q_en: 'Which question reveals whether the system succeeded?', a_ar: 'ما آخر قرار اتُّخِذ خلافاً للحدس بسبب رقم؟ فإن لم يوجد جواب فهو يوثّق ما يحدث ولا يغيّره.', a_en: 'What was the last decision taken against intuition because of a number? With no answer it documents rather than changes.' }
+        ]
+      }
     ]
   }
 };
