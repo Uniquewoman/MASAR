@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════════════════════════
-// شخصيات الحساب — عشرون شخصية مبنية على مسارات الموقع الخمسة،
-// أربع شخصيات لكل مسار بلونه وبأداة تدل على تخصصه.
+// شخصيات الحساب — عشرون روبوتاً على طراز شخصيات الألعاب،
+// أربعة لكل مسار من مسارات الموقع الخمسة، بلون المسار وأداته.
 //
 // كل شخصية رسم متجهي مبني في الكود لا ملف صورة، لثلاثة أسباب:
 //   · لا تحميل من الشبكة ولا مجلد صور يُنشر مع الموقع.
@@ -9,16 +9,14 @@
 //   · تتوسّع بلا فقد جودة على أي حجم.
 // ═══════════════════════════════════════════════════════════════════
 
-// ─────────── ألوان المسارات كما في تعريفها ───────────
 const TRACK = {
-  Programming:            { c1: '#0d9488', c2: '#042f2e', ar: 'البرمجة',            en: 'Programming' },
-  ArtificialIntelligence: { c1: '#a855f7', c2: '#2e1065', ar: 'الذكاء الاصطناعي',   en: 'AI' },
-  CyberSecurity:          { c1: '#ef4444', c2: '#450a0a', ar: 'الأمن السيبراني',    en: 'Cyber Security' },
-  Networking:             { c1: '#3b82f6', c2: '#0c2d6b', ar: 'الشبكات',            en: 'Networking' },
-  FinTech:                { c1: '#38bdf8', c2: '#075985', ar: 'التقنية المالية',    en: 'FinTech' }
+  Programming:            { c1: '#0d9488', c2: '#042f2e', glow: '#5eead4', ar: 'البرمجة',          en: 'Programming' },
+  ArtificialIntelligence: { c1: '#a855f7', c2: '#2e1065', glow: '#e9d5ff', ar: 'الذكاء الاصطناعي', en: 'AI' },
+  CyberSecurity:          { c1: '#ef4444', c2: '#450a0a', glow: '#fca5a5', ar: 'الأمن السيبراني',  en: 'Cyber Security' },
+  Networking:             { c1: '#3b82f6', c2: '#0c2d6b', glow: '#93c5fd', ar: 'الشبكات',          en: 'Networking' },
+  FinTech:                { c1: '#38bdf8', c2: '#075985', glow: '#bae6fd', ar: 'التقنية المالية',  en: 'FinTech' }
 };
 
-// ─────────── شارة المسار أسفل الشخصية ───────────
 const GLYPH = {
   Programming: '<path d="M97 97l-6 6 6 6M111 97l6 6-6 6" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
   ArtificialIntelligence: '<circle cx="97" cy="97" r="3" fill="#fff"/><circle cx="111" cy="97" r="3" fill="#fff"/><circle cx="104" cy="110" r="3" fill="#fff"/><path d="M97 97l7 13 7-13M97 97h14" stroke="#fff" stroke-width="1.6" fill="none"/>',
@@ -27,134 +25,167 @@ const GLYPH = {
   FinTech: '<path d="M94 111l6-8 5 5 8-11" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M110 97h5v5" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
 };
 
-// ─────────── أغطية الرأس والشعر ───────────
-// الشماغ والحجاب مقصودان: المنصّة عربية وشخصياتها تشبه من يستخدمها.
-const HEAD = {
-  short: (h) => `<path d="M40 54c0-15 10-25 24-25s24 10 24 25c-2-9-9-13-24-13s-22 4-24 13z" fill="${h}"/>`,
+// ─────────── هيكل الرأس ───────────
+const SHELL = {
+  // رأس مربّع مستدير الأركان
+  box: (m, d) => `<rect x="33" y="36" width="62" height="54" rx="17" fill="${m}"/>`
+    + `<rect x="33" y="36" width="62" height="54" rx="17" fill="none" stroke="${d}" stroke-width="2"/>`,
 
-  curly: (h) => `<g fill="${h}"><circle cx="46" cy="44" r="9"/><circle cx="58" cy="37" r="10"/><circle cx="71" cy="37" r="10"/><circle cx="82" cy="45" r="9"/><path d="M41 55c0-11 10-18 23-18s23 7 23 18c-3-8-10-11-23-11s-20 3-23 11z"/></g>`,
+  // قبّة علوية وفكّ عريض
+  dome: (m, d) => `<path d="M64 33c-18 0-30 12-30 28v13c0 9 7 16 16 16h28c9 0 16-7 16-16V61c0-16-12-28-30-28z" fill="${m}"/>`
+    + `<path d="M64 33c-18 0-30 12-30 28v13c0 9 7 16 16 16h28c9 0 16-7 16-16V61c0-16-12-28-30-28z" fill="none" stroke="${d}" stroke-width="2"/>`,
 
-  bun: (h) => `<g fill="${h}"><circle cx="64" cy="26" r="9"/><path d="M40 54c0-15 10-25 24-25s24 10 24 25c-2-9-9-13-24-13s-22 4-24 13z"/></g>`,
+  // سداسي حادّ الطابع
+  hex: (m, d) => `<path d="M64 32l27 15v30L64 92 37 77V47z" fill="${m}"/>`
+    + `<path d="M64 32l27 15v30L64 92 37 77V47z" fill="none" stroke="${d}" stroke-width="2"/>`,
 
-  long: (h) => `<g fill="${h}"><path d="M40 54c0-15 10-25 24-25s24 10 24 25c-2-9-9-13-24-13s-22 4-24 13z"/><path d="M38 50c-3 14-2 28 1 40h8c-3-13-4-26-2-40zM90 50c3 14 2 28-1 40h-8c3-13 4-26 2-40z"/></g>`,
-
-  // الأغطية الثلاثة التالية تُرسم فوق دائرة الرأس فتحجب الوجه،
-  // فتُعاد فتحة الوجه بلون البشرة فوقها ليظهر الوجه مؤطَّراً لا مغطّى.
-
-  // حجاب: يغطي الرأس والرقبة والكتفين
-  hijab: (h, _a, skin) =>
-    `<path d="M64 22c-17 0-28 13-28 30 0 10 2 18 5 24-7 4-11 11-13 20l-2 10h76l-2-10c-2-9-6-16-13-20 3-6 5-14 5-24 0-17-11-30-28-30z" fill="${h}"/>`
-    + `<ellipse cx="64" cy="59" rx="16.5" ry="19" fill="${skin}"/>`
-    + `<path d="M47.5 59c0-11 7-18 16.5-18s16.5 7 16.5 18c0-6-7-10-16.5-10s-16.5 4-16.5 10z" fill="rgba(0,0,0,.10)"/>`,
-
-  // شماغ وعقال
-  shemagh: (h, a, skin) =>
-    `<path d="M64 22c-17 0-28 12-28 28 0 16 4 28 9 38h8c-5-11-7-22-7-32 0-14 8-22 18-22s18 8 18 22c0 10-2 21-7 32h8c5-10 9-22 9-38 0-16-11-28-28-28z" fill="${h}"/>`
-    + `<ellipse cx="64" cy="59" rx="16.5" ry="19" fill="${skin}"/>`
-    + `<ellipse cx="64" cy="32" rx="27" ry="6" fill="${a}"/><ellipse cx="64" cy="39" rx="27" ry="5" fill="${a}"/>`,
-
-  cap: (h) => `<g fill="${h}"><path d="M40 50c0-14 10-23 24-23s24 9 24 23z"/><path d="M88 50h16c0 4-3 6-7 6H88z"/></g>`,
-
-  hood: (h, _a, skin) =>
-    `<path d="M64 20c-19 0-32 14-32 33 0 12 3 22 8 30h48c5-8 8-18 8-30 0-19-13-33-32-33z" fill="${h}"/>`
-    + `<ellipse cx="64" cy="60" rx="16" ry="18" fill="${skin}"/>`
-    + `<path d="M48 60c0-10 7-17 16-17s16 7 16 17c0-6-7-9-16-9s-16 3-16 9z" fill="rgba(0,0,0,.14)"/>`
+  // خوذة ضيّقة من الأسفل
+  helm: (m, d) => `<path d="M64 32c-17 0-29 11-29 26v14c0 10 8 18 18 18h22c10 0 18-8 18-18V58c0-15-12-26-29-26z" fill="${m}"/>`
+    + `<path d="M40 62h48" stroke="${d}" stroke-width="2"/>`
 };
 
-// ─────────── إكسسوارات ───────────
-const ACC = {
-  none: '',
-  glasses: '<g fill="none" stroke="#1e293b" stroke-width="2.4"><circle cx="55" cy="57" r="8"/><circle cx="73" cy="57" r="8"/><path d="M63 57h2M47 55l-6-2M81 55l6-2"/></g>',
-  headset: '<g fill="none" stroke="#1e293b" stroke-width="3"><path d="M40 56V50c0-13 11-22 24-22s24 9 24 22v6"/></g><rect x="34" y="52" width="9" height="16" rx="4" fill="#1e293b"/><rect x="85" y="52" width="9" height="16" rx="4" fill="#1e293b"/><path d="M43 66c8 6 8 10 8 14" stroke="#1e293b" stroke-width="2.4" fill="none"/>',
-  visor: '<rect x="40" y="50" width="48" height="13" rx="6" fill="#1e293b" opacity=".85"/><rect x="44" y="53" width="16" height="6" rx="3" fill="#67e8f9" opacity=".9"/><rect x="68" y="53" width="16" height="6" rx="3" fill="#67e8f9" opacity=".9"/>',
-  mask: '<path d="M46 62c0 10 8 17 18 17s18-7 18-17z" fill="#e2e8f0"/><path d="M46 64h36" stroke="#94a3b8" stroke-width="1.6"/>'
+// ─────────── العيون ───────────
+const EYES = {
+  twin: (g) => `<circle cx="53" cy="62" r="6" fill="${g}"/><circle cx="75" cy="62" r="6" fill="${g}"/>`
+    + `<circle cx="53" cy="62" r="2.4" fill="#0f172a"/><circle cx="75" cy="62" r="2.4" fill="#0f172a"/>`,
+
+  visor: (g) => `<rect x="41" y="55" width="46" height="15" rx="7.5" fill="#0b1220"/>`
+    + `<rect x="46" y="59" width="13" height="7" rx="3.5" fill="${g}"/>`
+    + `<rect x="69" y="59" width="13" height="7" rx="3.5" fill="${g}"/>`,
+
+  slit: (g) => `<rect x="40" y="57" width="48" height="12" rx="6" fill="#0b1220"/>`
+    + `<rect x="45" y="61" width="38" height="4" rx="2" fill="${g}"/>`,
+
+  lens: (g) => `<circle cx="64" cy="62" r="15" fill="#0b1220"/><circle cx="64" cy="62" r="10" fill="${g}"/>`
+    + `<circle cx="64" cy="62" r="4.5" fill="#0f172a"/><circle cx="59" cy="57" r="2.6" fill="#fff" opacity=".85"/>`,
+
+  pixel: (g) => `<rect x="43" y="56" width="42" height="14" rx="4" fill="#0b1220"/>`
+    + `<rect x="47" y="60" width="5" height="6" fill="${g}"/><rect x="55" y="60" width="5" height="6" fill="${g}"/>`
+    + `<rect x="68" y="60" width="5" height="6" fill="${g}"/><rect x="76" y="60" width="5" height="6" fill="${g}"/>`,
+
+  trio: (g) => `<circle cx="50" cy="62" r="4.5" fill="${g}"/><circle cx="64" cy="59" r="5.5" fill="${g}"/><circle cx="78" cy="62" r="4.5" fill="${g}"/>`
 };
 
-// ─────────── تركيب الشخصية ───────────
-const build = ({ track, head, headColor, accent, acc, skin, cloth }) => {
-  const { c1, c2 } = TRACK[track];
-  const dark = shade(skin, -18);
-  const eyes = acc === 'visor'
-    ? ''
-    : `<circle cx="55" cy="57" r="3" fill="#1e293b"/><circle cx="73" cy="57" r="3" fill="#1e293b"/>`;
-  const mouth = acc === 'mask'
-    ? ''
-    : `<path d="M57 68q7 5 14 0" stroke="#1e293b" stroke-width="2.6" fill="none" stroke-linecap="round"/>`;
+// ─────────── الفم أو اللوحة السفلية ───────────
+const MOUTH = {
+  grille: (d) => `<g stroke="${d}" stroke-width="2.4" stroke-linecap="round"><path d="M53 80h22M56 85h16"/></g>`,
+  smile: (d) => `<path d="M55 79q9 7 18 0" stroke="${d}" stroke-width="2.6" fill="none" stroke-linecap="round"/>`,
+  bar: (d) => `<rect x="54" y="79" width="20" height="5" rx="2.5" fill="${d}"/>`,
+  slot: (d) => `<rect x="48" y="78" width="32" height="7" rx="3.5" fill="#0b1220"/><rect x="52" y="80.5" width="24" height="2" rx="1" fill="${d}"/>`,
+  none: () => ''
+};
+
+// ─────────── الهوائي أو ما يعلو الرأس ───────────
+const TOP = {
+  none: () => '',
+  ball: (c, g) => `<path d="M64 36V24" stroke="${c}" stroke-width="3.4" stroke-linecap="round"/><circle cx="64" cy="20" r="5.5" fill="${g}"/>`,
+  dual: (c, g) => `<path d="M48 38l-6-12M80 38l6-12" stroke="${c}" stroke-width="3.2" stroke-linecap="round"/>`
+    + `<circle cx="41" cy="23" r="4.5" fill="${g}"/><circle cx="87" cy="23" r="4.5" fill="${g}"/>`,
+  dish: (c, g) => `<path d="M64 36V26" stroke="${c}" stroke-width="3.4" stroke-linecap="round"/>`
+    + `<ellipse cx="64" cy="21" rx="15" ry="6" fill="${g}"/><ellipse cx="64" cy="21" rx="8" ry="3" fill="${c}"/>`,
+  siren: (c, g) => `<rect x="55" y="24" width="18" height="12" rx="6" fill="${g}"/>`
+    + `<path d="M46 22l-6-4M82 22l6-4" stroke="${g}" stroke-width="2.6" stroke-linecap="round" opacity=".8"/>`,
+  spark: (c, g) => `<path d="M64 34l4 8 8 4-8 4-4 8-4-8-8-4 8-4z" fill="${g}" transform="translate(0,-22)"/>`,
+  waves: (c, g) => `<path d="M64 36V26" stroke="${c}" stroke-width="3.2" stroke-linecap="round"/><circle cx="64" cy="23" r="4" fill="${g}"/>`
+    + `<path d="M52 20a17 17 0 0 1 24 0M46 14a26 26 0 0 1 36 0" stroke="${g}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".75"/>`,
+  fin: (c, g) => `<path d="M64 34c-3-8-1-14 0-18 1 4 3 10 0 18z" fill="${g}"/>`
+};
+
+// ─────────── إضافات فوق كل شيء ───────────
+const EXTRA = {
+  none: () => '',
+  // قلنسوة الهاكر
+  hood: (c) => `<path d="M64 20c-22 0-36 16-36 38 0 13 3 24 9 33l9-5c-5-8-7-17-7-27 0-17 11-28 25-28s25 11 25 28c0 10-2 19-7 27l9 5c6-9 9-20 9-33 0-22-14-38-36-38z" fill="${c}"/>`,
+  // درع على الجبهة
+  shield: (g) => `<path d="M64 34l10 4v7c0 6-4 10-10 12-6-2-10-6-10-12v-7z" fill="${g}" opacity=".9"/>`,
+  // سمّاعات على الجانبين
+  cans: (m, d) => `<rect x="24" y="52" width="12" height="24" rx="6" fill="${d}"/><rect x="92" y="52" width="12" height="24" rx="6" fill="${d}"/>`
+    + `<path d="M30 52V48c0-14 15-24 34-24s34 10 34 24v4" stroke="${d}" stroke-width="4" fill="none"/>`,
+  // سلسلة على الصدر
+  chain: (g) => `<circle cx="55" cy="104" r="6" stroke="${g}" stroke-width="2.6" fill="none"/><circle cx="70" cy="104" r="6" stroke="${g}" stroke-width="2.6" fill="none"/>`
+};
+
+// ─────────── ألواح الأذن الجانبية ───────────
+const ears = (d) =>
+  `<rect x="26" y="57" width="9" height="17" rx="4.5" fill="${d}"/><rect x="93" y="57" width="9" height="17" rx="4.5" fill="${d}"/>`;
+
+// ─────────── تركيب الروبوت ───────────
+const build = (d) => {
+  const { c1, c2, glow } = TRACK[d.track];
+  const metal = d.metal || '#cbd5e1';
+  const edge = d.edge || '#64748b';
+  const g = d.glow || glow;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">`
-    + `<defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs>`
+    + `<defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1">`
+    + `<stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs>`
     + `<circle cx="64" cy="64" r="64" fill="url(#b)"/>`
-    + `<path d="M22 128c0-23 19-36 42-36s42 13 42 36z" fill="${cloth}"/>`
-    + `<rect x="57" y="74" width="14" height="16" rx="7" fill="${dark}"/>`
-    + `<circle cx="64" cy="57" r="23" fill="${skin}"/>`
-    + HEAD[head](headColor, accent, skin)
-    + eyes + mouth + ACC[acc]
+    // الجسم
+    + `<path d="M26 128c0-20 17-31 38-31s38 11 38 31z" fill="${d.body || edge}"/>`
+    + `<rect x="57" y="86" width="14" height="12" rx="4" fill="${edge}"/>`
+    + (d.extra === 'cans' ? EXTRA.cans(metal, edge) : ears(edge))
+    + (d.top ? TOP[d.top](metal, g) : '')
+    + SHELL[d.shell](metal, edge)
+    + EYES[d.eyes](g)
+    + MOUTH[d.mouth](edge)
+    + (d.extra && d.extra !== 'cans' ? EXTRA[d.extra](d.extraColor || g) : '')
     + `<circle cx="104" cy="104" r="17" fill="#0f172a" opacity=".92"/>`
-    + GLYPH[track]
+    + GLYPH[d.track]
     + `</svg>`;
 };
 
-// تعتيم لون البشرة للرقبة، فتظهر بظل طبيعي بلا لون ثانٍ في التعريف
-function shade(hex, amt) {
-  const n = parseInt(hex.slice(1), 16);
-  const cl = (v) => Math.max(0, Math.min(255, v + amt));
-  return '#' + [cl((n >> 16) & 255), cl((n >> 8) & 255), cl(n & 255)]
-    .map(v => v.toString(16).padStart(2, '0')).join('');
-}
-
-const SKIN = { light: '#f2c9a0', tan: '#e0a878', olive: '#c68b5e', deep: '#8d5a3b' };
-
 // ─────────── الشخصيات العشرون ───────────
 const DEFS = [
-  // البرمجة
-  { id: 'prog-1', track: 'Programming', ar: 'المبرمج', en: 'The Coder',
-    head: 'short', headColor: '#1f2937', acc: 'glasses', skin: SKIN.tan, cloth: '#134e4a' },
-  { id: 'prog-2', track: 'Programming', ar: 'مهندسة الواجهات', en: 'Frontend Engineer',
-    head: 'hijab', headColor: '#0f766e', acc: 'none', skin: SKIN.light, cloth: '#115e59' },
-  { id: 'prog-3', track: 'Programming', ar: 'صائد الأخطاء', en: 'Bug Hunter',
-    head: 'cap', headColor: '#0f766e', acc: 'none', skin: SKIN.olive, cloth: '#134e4a' },
-  { id: 'prog-4', track: 'Programming', ar: 'مطوّرة الخوارزميات', en: 'Algorithms Dev',
-    head: 'bun', headColor: '#3f2a1d', acc: 'glasses', skin: SKIN.deep, cloth: '#115e59' },
+  // ══ البرمجة ══
+  { id: 'prog-1', track: 'Programming', ar: 'بوت المطوّر', en: 'Dev Bot',
+    shell: 'box', eyes: 'visor', mouth: 'grille', top: 'ball' },
+  { id: 'prog-2', track: 'Programming', ar: 'بوت الطرفية', en: 'Terminal Bot',
+    shell: 'box', eyes: 'pixel', mouth: 'bar', top: 'none', metal: '#94a3b8', edge: '#334155' },
+  { id: 'prog-3', track: 'Programming', ar: 'بوت التصحيح', en: 'Debug Bot',
+    shell: 'dome', eyes: 'lens', mouth: 'smile', top: 'fin' },
+  { id: 'prog-4', track: 'Programming', ar: 'بوت الخوارزميات', en: 'Algo Bot',
+    shell: 'hex', eyes: 'trio', mouth: 'grille', top: 'dual' },
 
-  // الذكاء الاصطناعي
-  { id: 'ai-1', track: 'ArtificialIntelligence', ar: 'عالِمة البيانات', en: 'Data Scientist',
-    head: 'hijab', headColor: '#7e22ce', acc: 'glasses', skin: SKIN.light, cloth: '#581c87' },
-  { id: 'ai-2', track: 'ArtificialIntelligence', ar: 'مدرّب النماذج', en: 'Model Trainer',
-    head: 'short', headColor: '#312e81', acc: 'headset', skin: SKIN.tan, cloth: '#6b21a8' },
-  { id: 'ai-3', track: 'ArtificialIntelligence', ar: 'مهندس الشبكات العصبية', en: 'Neural Engineer',
-    head: 'curly', headColor: '#1f2937', acc: 'none', skin: SKIN.deep, cloth: '#581c87' },
-  { id: 'ai-4', track: 'ArtificialIntelligence', ar: 'باحثة التعلّم', en: 'Learning Researcher',
-    head: 'long', headColor: '#4c1d95', acc: 'none', skin: SKIN.olive, cloth: '#6b21a8' },
+  // ══ الذكاء الاصطناعي ══
+  { id: 'ai-1', track: 'ArtificialIntelligence', ar: 'بوت العصبونات', en: 'Neuro Bot',
+    shell: 'dome', eyes: 'twin', mouth: 'grille', top: 'dual' },
+  { id: 'ai-2', track: 'ArtificialIntelligence', ar: 'بوت التدريب', en: 'Trainer Bot',
+    shell: 'box', eyes: 'visor', mouth: 'bar', top: 'none', extra: 'cans' },
+  { id: 'ai-3', track: 'ArtificialIntelligence', ar: 'بوت الرؤية', en: 'Vision Bot',
+    shell: 'helm', eyes: 'lens', mouth: 'none', top: 'ball' },
+  { id: 'ai-4', track: 'ArtificialIntelligence', ar: 'بوت التوليد', en: 'Gen Bot',
+    shell: 'hex', eyes: 'trio', mouth: 'smile', top: 'spark' },
 
-  // الأمن السيبراني
-  { id: 'cyb-1', track: 'CyberSecurity', ar: 'المحلّل الأمني', en: 'Security Analyst',
-    head: 'short', headColor: '#1f2937', acc: 'glasses', skin: SKIN.olive, cloth: '#7f1d1d' },
-  { id: 'cyb-2', track: 'CyberSecurity', ar: 'مختبِرة الاختراق', en: 'Pentester',
-    head: 'hood', headColor: '#111827', acc: 'mask', skin: SKIN.light, cloth: '#111827' },
-  { id: 'cyb-3', track: 'CyberSecurity', ar: 'المحقّق الجنائي', en: 'Forensics Investigator',
-    head: 'shemagh', headColor: '#f8fafc', accent: '#111827', acc: 'none', skin: SKIN.tan, cloth: '#7f1d1d' },
-  { id: 'cyb-4', track: 'CyberSecurity', ar: 'حارسة الجدار', en: 'Firewall Guardian',
-    head: 'hijab', headColor: '#991b1b', acc: 'none', skin: SKIN.deep, cloth: '#7f1d1d' },
+  // ══ الأمن السيبراني ══
+  { id: 'cyb-1', track: 'CyberSecurity', ar: 'بوت الهاكر', en: 'Hacker Bot',
+    shell: 'helm', eyes: 'slit', mouth: 'none', top: 'none',
+    extra: 'hood', extraColor: '#111827', metal: '#475569', edge: '#1e293b', glow: '#4ade80' },
+  { id: 'cyb-2', track: 'CyberSecurity', ar: 'بوت الدرع', en: 'Shield Bot',
+    shell: 'box', eyes: 'twin', mouth: 'grille', top: 'none', extra: 'shield' },
+  { id: 'cyb-3', track: 'CyberSecurity', ar: 'بوت التخفّي', en: 'Stealth Bot',
+    shell: 'hex', eyes: 'slit', mouth: 'bar', top: 'fin', metal: '#334155', edge: '#0f172a' },
+  { id: 'cyb-4', track: 'CyberSecurity', ar: 'بوت الإنذار', en: 'Alert Bot',
+    shell: 'dome', eyes: 'pixel', mouth: 'grille', top: 'siren' },
 
-  // الشبكات
-  { id: 'net-1', track: 'Networking', ar: 'مهندس الشبكات', en: 'Network Engineer',
-    head: 'short', headColor: '#1e3a8a', acc: 'none', skin: SKIN.tan, cloth: '#1e40af' },
-  { id: 'net-2', track: 'Networking', ar: 'مديرة العمليات', en: 'Operations Lead',
-    head: 'hijab', headColor: '#1d4ed8', acc: 'glasses', skin: SKIN.light, cloth: '#1e3a8a' },
-  { id: 'net-3', track: 'Networking', ar: 'فنّي الألياف', en: 'Fibre Technician',
-    head: 'cap', headColor: '#1e40af', acc: 'none', skin: SKIN.olive, cloth: '#1e3a8a' },
-  { id: 'net-4', track: 'Networking', ar: 'مخطّطة التغطية', en: 'Coverage Planner',
-    head: 'long', headColor: '#0f172a', acc: 'headset', skin: SKIN.deep, cloth: '#1e40af' },
+  // ══ الشبكات ══
+  { id: 'net-1', track: 'Networking', ar: 'بوت الإشارة', en: 'Signal Bot',
+    shell: 'box', eyes: 'twin', mouth: 'smile', top: 'waves' },
+  { id: 'net-2', track: 'Networking', ar: 'بوت التوجيه', en: 'Router Bot',
+    shell: 'hex', eyes: 'pixel', mouth: 'bar', top: 'dual' },
+  { id: 'net-3', track: 'Networking', ar: 'بوت القمر', en: 'Satellite Bot',
+    shell: 'dome', eyes: 'visor', mouth: 'grille', top: 'dish' },
+  { id: 'net-4', track: 'Networking', ar: 'بوت المراقبة', en: 'Monitor Bot',
+    shell: 'helm', eyes: 'lens', mouth: 'bar', top: 'ball', metal: '#94a3b8', edge: '#1e3a5f' },
 
-  // التقنية المالية
-  { id: 'fin-1', track: 'FinTech', ar: 'المحلّل المالي', en: 'Financial Analyst',
-    head: 'shemagh', headColor: '#f1f5f9', accent: '#0c4a6e', acc: 'none', skin: SKIN.light, cloth: '#0c4a6e' },
-  { id: 'fin-2', track: 'FinTech', ar: 'مهندسة المدفوعات', en: 'Payments Engineer',
-    head: 'hijab', headColor: '#0369a1', acc: 'none', skin: SKIN.tan, cloth: '#075985' },
-  { id: 'fin-3', track: 'FinTech', ar: 'خبير الامتثال', en: 'Compliance Expert',
-    head: 'short', headColor: '#1f2937', acc: 'glasses', skin: SKIN.deep, cloth: '#0c4a6e' },
-  { id: 'fin-4', track: 'FinTech', ar: 'مطوّرة البلوكشين', en: 'Blockchain Dev',
-    head: 'curly', headColor: '#0f172a', acc: 'visor', skin: SKIN.olive, cloth: '#075985' }
+  // ══ التقنية المالية ══
+  { id: 'fin-1', track: 'FinTech', ar: 'بوت المدفوعات', en: 'Payments Bot',
+    shell: 'box', eyes: 'visor', mouth: 'slot', top: 'none' },
+  { id: 'fin-2', track: 'FinTech', ar: 'بوت التحليل', en: 'Analyst Bot',
+    shell: 'dome', eyes: 'twin', mouth: 'smile', top: 'ball' },
+  { id: 'fin-3', track: 'FinTech', ar: 'بوت البلوكشين', en: 'Chain Bot',
+    shell: 'hex', eyes: 'trio', mouth: 'grille', top: 'dual', extra: 'chain' },
+  { id: 'fin-4', track: 'FinTech', ar: 'بوت الامتثال', en: 'Compliance Bot',
+    shell: 'helm', eyes: 'pixel', mouth: 'bar', top: 'fin', extra: 'shield' }
 ];
 
 export const AVATARS = DEFS.map(d => ({
@@ -165,7 +196,7 @@ export const AVATARS = DEFS.map(d => ({
   trackName_ar: TRACK[d.track].ar,
   trackName_en: TRACK[d.track].en,
   color: TRACK[d.track].c1,
-  svg: build({ acc: 'none', accent: '#111827', ...d })
+  svg: build(d)
 }));
 
 /** عنوان بيانات يصلح مباشرة في وسم img — لا يحتاج شبكة ولا ملفاً. */
