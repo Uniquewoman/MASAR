@@ -314,16 +314,17 @@ const PodiumCard = ({ row, place, isMe, color, trackName, t }) => (
       boxShadow: `0 0 40px ${tint(color, 0.15)}`
     }}
   >
-    {/* الميدالية */}
+    {/* الميدالية — الرتبة الحقيقية لا الموضع في القائمة.
+        متعادلان في المركز الأول يظهران «١» كلاهما لا «١» و«٢». */}
     <div className="flex items-center justify-between mb-4">
       <div
         className="w-10 h-10 rounded-2xl grid place-items-center font-black text-slate-900 text-lg"
-        style={{ background: MEDALS[place] }}
+        style={{ background: MEDALS[Math.min(row.overall_rank, 3) - 1] || MEDALS[2] }}
         dir="ltr"
       >
-        {place + 1}
+        {row.overall_rank}
       </div>
-      {place === 0 && <Crown size={20} className="text-amber-300" />}
+      {row.overall_rank === 1 && <Crown size={20} className="text-amber-300" />}
     </div>
 
     <Avatar row={row} color={color} size={56} />
