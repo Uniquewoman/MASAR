@@ -556,8 +556,8 @@ loadQuestions(lvl);
   if (view === 'map') {
     return (
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-32 pb-20 px-10 max-w-5xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
-        <button onClick={() => window.dispatchEvent(new CustomEvent('changeView', { detail: 'dashboard' }))} className="mb-8 flex items-center gap-2 text-white/40 font-black uppercase text-[10px] tracking-widest hover:text-white transition-all">
-          {language === 'ar' ? <ArrowRight size={14} /> : <ArrowRight size={14} className="rotate-180" />} {t('العودة للوحة التحكم', 'BACK TO DASHBOARD')}
+        <button onClick={() => window.dispatchEvent(new CustomEvent('changeView', { detail: 'dashboard' }))} className="mb-8 inline-flex items-center gap-2 px-5 py-3 rounded-2xl border-2 bg-white/5 font-black uppercase text-xs tracking-widest hover:bg-white/15 transition-all text-white border-white/30 hover:border-white/60">
+          {language === 'ar' ? <ArrowRight size={16} /> : <ArrowRight size={16} className="rotate-180" />} {t('العودة للوحة التحكم', 'BACK TO DASHBOARD')}
         </button>
         <div className="text-center mb-16">
           <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-2">{t(section?.title_ar || section?.title, section?.title) || t('المستويات', 'LEVELS')}</h2>

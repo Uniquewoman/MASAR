@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { supabase } from "../supabaseClient";
 
 export default function ResetPassword() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  // إظهار كلمة المرور: من يغيّر كلمته يحتاج يتأكد مما كتب قبل الحفظ
+  const [showPassword, setShowPassword] = useState(false);
 
   async function updatePassword() {
     const { error } = await supabase.auth.updateUser({
@@ -24,13 +27,24 @@ export default function ResetPassword() {
           تغيير كلمة المرور
         </h2>
 
-        <input
-          type="password"
-          placeholder="كلمة المرور الجديدة"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-4 rounded-xl mb-4"
-        />
+        <div className="relative mb-4">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="كلمة المرور الجديدة"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-4 pl-12 rounded-xl"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((v) => !v)}
+            aria-label={showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"}
+            title={showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-800 transition"
+          >
+            {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+          </button>
+        </div>
 
         <button
           onClick={updatePassword}

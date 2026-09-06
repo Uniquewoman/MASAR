@@ -599,9 +599,9 @@ export const Challenges = () => {
 
       {view !== 'menu' && view !== 'playing' && view !== 'room-playing' && (
         <button onClick={backToMenu}
-          className="mb-8 flex items-center gap-2 font-black uppercase text-[10px] tracking-widest hover:gap-4 transition-all"
-          style={{ color: trackColor }}>
-          {language === 'ar' ? <ArrowRight size={14} /> : <ArrowRight size={14} className="rotate-180" />}
+          className="mb-8 inline-flex items-center gap-2 px-5 py-3 rounded-2xl border-2 bg-white/5 font-black uppercase text-xs tracking-widest hover:bg-white/15 transition-all"
+          style={{ color: trackColor, borderColor: trackColor }}>
+          {language === 'ar' ? <ArrowRight size={16} /> : <ArrowRight size={16} className="rotate-180" />}
           {t('العودة', 'BACK')}
         </button>
       )}

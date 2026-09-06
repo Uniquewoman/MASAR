@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { supabase } from '../supabaseClient';
-import { Lock, Mail, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Lock, Mail, ArrowLeft, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Auth({ onAuthSuccess }) {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // إظهار كلمة المرور: يكتبها المستخدم بلا نقاط ليتأكد مما كتب
+  const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState('');
   const [fullName, setFullName] = useState('');
   const language = 'ar'; // أو اجعليها dynamic إذا كانت تتغير
@@ -114,13 +116,22 @@ export default function Auth({ onAuthSuccess }) {
           <div className="relative group/input">
             <Lock className={`absolute ${language === 'ar' ? 'right-7' : 'left-7'} top-1/2 -translate-y-1/2 text-slate-700 group-focus-within/input:text-slate-400 transition-all`} size={20} />
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               placeholder="كلمة المرور"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`w-full p-7 ${language === 'ar' ? 'pr-20' : 'pl-20'} rounded-[2.5rem] bg-slate-900/30 border ${errorMessage ? 'border-red-500' : 'border-slate-800'
+              className={`w-full p-7 ${language === 'ar' ? 'pr-20 pl-20' : 'pl-20 pr-20'} rounded-[2.5rem] bg-slate-900/30 border ${errorMessage ? 'border-red-500' : 'border-slate-800'
                 } text-white focus:border-slate-700 outline-none transition-all`} />
+            <button
+              type="button"
+              onClick={() => setShowPassword(v => !v)}
+              aria-label={showPassword ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'}
+              title={showPassword ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'}
+              className={`absolute ${language === 'ar' ? 'left-7' : 'right-7'} top-1/2 -translate-y-1/2 text-slate-600 hover:text-slate-300 transition-all`}
+            >
+              {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+            </button>
           </div>
           {errorMessage && (
             <p className="text-red-500 text-sm mt-2 mr-2">

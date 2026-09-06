@@ -171,10 +171,10 @@ export const QuestionBank = ({ section }) => {
     >
       <button
         onClick={() => { setSelectedSection(null); setRows([]); }}
-        className="mb-8 flex items-center gap-2 font-black uppercase text-[10px] tracking-widest hover:gap-4 transition-all"
-        style={{ color: trackColor }}
+        className="mb-8 inline-flex items-center gap-2 px-5 py-3 rounded-2xl border-2 bg-white/5 font-black uppercase text-xs tracking-widest hover:bg-white/15 transition-all"
+        style={{ color: trackColor, borderColor: trackColor }}
       >
-        <ArrowRight size={14} className={language === 'ar' ? '' : 'rotate-180'} />
+        <ArrowRight size={16} className={language === 'ar' ? '' : 'rotate-180'} />
         {t('العودة للأقسام', 'BACK TO SECTIONS')}
       </button>
 

@@ -249,9 +249,9 @@ export const Lessons = ({ section }) => {
       className="pt-28 px-6 md:px-10 pb-24 max-w-4xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
 
       <button onClick={() => setSelectedSection(null)}
-        className="mb-8 flex items-center gap-2 font-black uppercase text-[10px] tracking-widest hover:gap-4 transition-all"
-        style={{ color }}>
-        {language === 'ar' ? <ArrowRight size={14} /> : <ArrowRight size={14} className="rotate-180" />}
+        className="mb-8 inline-flex items-center gap-2 px-5 py-3 rounded-2xl border-2 bg-white/5 font-black uppercase text-xs tracking-widest hover:bg-white/15 transition-all"
+        style={{ color, borderColor: color }}>
+        {language === 'ar' ? <ArrowRight size={16} /> : <ArrowRight size={16} className="rotate-180" />}
         {t('العودة للأقسام', 'BACK TO SECTIONS')}
       </button>
 
