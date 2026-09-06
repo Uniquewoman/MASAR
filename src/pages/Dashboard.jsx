@@ -4,9 +4,19 @@ import { useAppContext } from '../context/AppContext';
 import { ArrowRight, Code, Cpu, Shield, Globe, Landmark, Zap } from 'lucide-react';
 
 export const Dashboard = ({ onSelectSection }) => {
-  const { currentTrack, tracksInfo, language, t, updateProfileProgress } = useAppContext();
-  const track = currentTrack || tracksInfo['SE'];
+  const { currentTrack, language, t, updateProfileProgress } = useAppContext();
+  const track = currentTrack;
   const cardBg = "bg-white/[0.03] backdrop-blur-md border border-white/10 hover:bg-white/[0.08]";
+
+  // كان الاحتياطي tracksInfo['SE'] وهو مسار غير موجود، فيعيد undefined
+  // ثم تسقط الصفحة عند أول قراءة لـtrack.color بدل أن ترشد المستخدم.
+  if (!track) {
+    return (
+      <div className="pt-40 text-center text-white/50" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+        {t('اختر مساراً أولاً من الصفحة الرئيسية.', 'Choose a track from the home page first.')}
+      </div>
+    );
+  }
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-32 pb-20 px-10 max-w-7xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
