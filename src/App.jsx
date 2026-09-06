@@ -20,6 +20,7 @@ import { ProfileSettings } from './pages/ProfileSettings';
 import { TrackHome, PlayLevel } from './pages/TrackPages';
 import { SettingsPage } from './pages/SettingsPage';
 import { JourneyPage } from "./pages/JourneyPage";
+import ResetPassword from './pages/ResetPassword';
 const PATHS_CONFIG = {
   Programming: {
     id: 'Programming',
@@ -129,6 +130,10 @@ const startLoading = async (pathId) => {
 
     setView('dashboard'); // الآن انتقلي للداشبورد
   };
+  // رابط استعادة كلمة المرور في البريد يقصد هذا المسار، وكانت الصفحة
+  // مكتوبة وغير موصولة بشيء فيصل المستخدم لصفحة غير موجودة.
+  if (window.location.pathname === '/reset-password') return <ResetPassword />;
+
   if (!user) return <Auth onAuthSuccess={() => setView('dashboard')} />;
 
   return (
