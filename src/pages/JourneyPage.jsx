@@ -1,834 +1,420 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import {
-  Trophy,
-  TrendingUp,
-  Target,
-  Award,
-  Brain,
-  Shield,
-  Star,
-  Flame,
-  BarChart3,
-  ArrowRight,
-  CheckCircle2,
-  CircleAlert,
-  Sparkles
+  Trophy, TrendingUp, Target, Award, Brain, Sparkles,
+  CheckCircle2, Lock, Clock, ArrowRight, Layers
 } from 'lucide-react';
-
 import { useAppContext } from '../context/AppContext';
 
+// ═══════════════════════════════════════════════════════════════════
+// صفحة رحلتي — إعادة ترتيب وتصحيح حساب.
+//
+// كانت البطاقات الثلاث العلوية مفتوحة وبقية الصفحة كلها متداخلة داخل
+// البطاقة الأولى، فيظهر ترتيب المحتوى مقلوباً: الرتبة ثم كل الأقسام
+// ثم بطاقتا التقدم والمسارات في آخر الصفحة.
+//
+// وكان الحساب خاطئاً في ثلاثة مواضع:
+//   · totalLevels = عدد الأقسام × ١٠، والقسم خمسة مستويات لا عشرة.
+//   · completedLevels = مجموع unlocked_level، وهو رقم المستوى المتاح
+//     التالي لا عدد المكتمل، فيُحتسب مستوى لم يُجتَز بعد.
+//   · «المسارات المكتملة» كانت تعدّ الأقسام وتقارنها بعدد المسارات،
+//     فيمكن أن تظهر ٧ من ٥.
+// ═══════════════════════════════════════════════════════════════════
+
+const LEVELS_PER_SECTION = 5;
+
+// unlocked_level هو المستوى المتاح التالي، فالمكتمل ما قبله
+const completedIn = (row) =>
+  Math.max(0, Math.min((row?.unlocked_level ?? 1) - 1, LEVELS_PER_SECTION));
+
 export const JourneyPage = () => {
-const {
-    language,
-    t,
-    currentTrack,
-    tracksInfo,
-    profile,
-    userProgress,
-    journeyLogs,
-    userAchievements
+  const {
+    language, t, currentTrack, tracksInfo,
+    profile, userProgress, journeyLogs, userAchievements
   } = useAppContext();
- const track = currentTrack || {
-  id: null,
-  name_ar: "رحلتي",
-  name: "Journey",
-  color:"#00E5FF"
-};
-const trackProgress = userProgress.filter(
-  item => item.track_id === track?.id
-);
 
-
-const maxLevel = Math.max(
-  ...trackProgress.map(
-    item => item.unlocked_level
-  ),
-  1
-);
-
-
-const totalLevels = trackProgress.length * 10;
-
-
-const completedLevels =
-  trackProgress.reduce(
-    (sum,item)=> sum + item.unlocked_level,
-    0
-  );
-
-
-const progressPercent = Math.min(
-  Math.round(
-    (completedLevels / totalLevels) * 100
-  ),
-  100
-);
   const isArabic = language === 'ar';
+  const card = 'rounded-[2rem] bg-white/[0.03] backdrop-blur-md border border-white/10';
+  const track = currentTrack;
+  const color = track?.color || '#00E5FF';
 
-  const card =
-    "rounded-[2rem] bg-white/[0.03] backdrop-blur-md border border-white/10";
+  // ─────────── حساب التقدم ───────────
+  const stats = useMemo(() => {
+    const progress = userProgress || [];
 
-  const totalTracks = Object.keys(tracksInfo || {}).length;
+    // صفوف المسار الحالي، مطابقةً بالعنوان الكامل كما يخزّنه PlayLevel
+    const sections = track?.sections || [];
+    const perSection = sections.map(sec => {
+      const row = progress.find(
+        p => p.track_id === track?.id && p.section_id === sec.title
+      );
+      return {
+        section: sec,
+        unlocked: row?.unlocked_level ?? 1,
+        completed: completedIn(row)
+      };
+    });
 
-const completedTracks = useMemo(() => {
-  if (!userProgress?.length) return 0;
+    const doneLevels = perSection.reduce((s, x) => s + x.completed, 0);
+    const totalLevels = sections.length * LEVELS_PER_SECTION;
+    const percent = totalLevels ? Math.round((doneLevels / totalLevels) * 100) : 0;
+    const doneSections = perSection.filter(x => x.completed >= LEVELS_PER_SECTION).length;
+    const highestLevel = perSection.reduce((m, x) => Math.max(m, x.completed), 0);
 
-  return userProgress.filter(
-    item => item.unlocked_level >= 5
-  ).length;
+    // مسار يُعد مكتملاً حين تكتمل كل أقسامه لا حين يكتمل قسم واحد
+    const completedTracks = Object.values(tracksInfo || {}).filter(tr => {
+      const secs = tr.sections || [];
+      if (!secs.length) return false;
+      return secs.every(sec => {
+        const row = progress.find(p => p.track_id === tr.id && p.section_id === sec.title);
+        return completedIn(row) >= LEVELS_PER_SECTION;
+      });
+    }).length;
 
-}, [userProgress]);
+    // أول قسم لم يكتمل — هو الخطوة القادمة الطبيعية
+    const nextUp = perSection.find(x => x.completed < LEVELS_PER_SECTION) || null;
+    // أبعد قسم وصل فيه — نقطة قوته الفعلية
+    const strongest = perSection.reduce(
+      (best, x) => (!best || x.completed > best.completed ? x : best),
+      null
+    );
+
+    return {
+      perSection, doneLevels, totalLevels, percent, doneSections,
+      highestLevel, completedTracks,
+      totalTracks: Object.keys(tracksInfo || {}).length,
+      nextUp, strongest
+    };
+  }, [userProgress, track, tracksInfo]);
+
+  if (!track) {
+    return (
+      <div className="pt-40 text-center text-white/50" dir={isArabic ? 'rtl' : 'ltr'}>
+        {t('اختر مساراً أولاً لعرض رحلتك فيه.', 'Choose a track first to see your journey in it.')}
+      </div>
+    );
+  }
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="pt-32 pb-20 px-10 max-w-7xl mx-auto"
-      dir={isArabic ? "rtl" : "ltr"}
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+      className="pt-32 pb-20 px-6 max-w-6xl mx-auto"
+      dir={isArabic ? 'rtl' : 'ltr'}
     >
-
-   
- {/* Header */}
-
-<div className={`mb-14 ${isArabic ? "text-right" : "text-left"}`}>
-  <motion.h2
-    animate={{ y: [0, -8, 0] }}
-    transition={{ repeat: Infinity, duration: 4 }}
-    className="text-6xl font-black italic uppercase tracking-tighter text-white mb-4"
-    style={{ color: track?.color || "#00E5FF" }}
-  >
-    {track
-      ? t("رحلتي في " + track.name_ar, `MY ${track.name}`)
-      : t("رحلتي", "MY JOURNEY")}
-  </motion.h2>
-
-  <p className="text-white/40 uppercase tracking-[0.3em] text-xs font-bold">
-    {track
-      ? t(
-          "كل تقدمك وتحليلك داخل هذا المسار",
-          "YOUR PROGRESS INSIDE THIS TRACK"
-        )
-      : t(
-          "ملخص رحلتك التعليمية بالكامل",
-          "YOUR COMPLETE LEARNING JOURNEY"
-        )}
-  </p>
-</div> {/* Top Cards */}
-
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6"><motion.div
-  whileHover={{ y: -6 }}
-  className={`${card} p-7`}
->
-  <div className="flex items-center justify-between mb-6">
-
-    <div>
-      <p className="text-white/40 text-xs font-bold uppercase">
-        {t("الرتبة", "RANK")}
-      </p>
-
-    <h3 className="text-3xl font-black text-white mt-2">
-  {maxLevel}
-</h3>
-    </div>
-
-    <div
-      className="w-16 h-16 rounded-2xl flex items-center justify-center"
-      style={{
-        backgroundColor: `${track?.color || "#00E5FF"}20`
-      }}
-    >
-      <Trophy
-        size={30}
-        color={track?.color || "#00E5FF"}
-      />
-    </div>
-
-  </div>
-
-  <div className="text-white/50 text-sm">
-    {t(
-      "استمر بالتقدم لرفع رتبتك.",
-      "Keep progressing to rank up."
-    )}
-  </div>
-{/* Journey Timeline */}
-
-<div className="mt-14">
-
-  <div className={`mb-8 ${isArabic ? "text-right" : "text-left"}`}>
-    <h3 className="text-3xl font-black text-white">
-      {t("مسار رحلتك", "YOUR JOURNEY PATH")}
-    </h3>
-
-    <p className="text-white/40 text-xs mt-2 uppercase tracking-widest">
-      {t(
-        "تتبع تقدمك ومستواك الحالي",
-        "TRACK YOUR CURRENT PROGRESS"
-      )}
-    </p>
-  </div>
-
-
-  <div className={`${card} p-8`}>
-
-    {[
-      {
-        icon: <Brain />,
-        title: t("التعلم", "LEARNING"),
-        text: t(
-          "ابدأ التعلم وتجاوز الدروس",
-          "Complete lessons and learn"
-        ),
-        done: true
-      },
-      {
-        icon: <Target />,
-        title: t("التحديات", "CHALLENGES"),
-        text: t(
-          "اختبر مهاراتك بالتحديات",
-          "Test your skills"
-        ),
-        done: false
-      },
-      {
-        icon: <Trophy />,
-        title: t("الإنجاز", "ACHIEVEMENT"),
-        text: t(
-          "افتح المستويات والجوائز",
-          "Unlock levels and rewards"
-        ),
-        done: false
-      }
-
-    ].map((item,index)=>(
-
-      <motion.div
-        key={index}
-        whileHover={{ x: isArabic ? -8 : 8 }}
-        className="flex items-center gap-5 mb-8 last:mb-0"
-      >
-
-        <div
-          className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/5 text-white"
+      {/* ─────────── العنوان ─────────── */}
+      <div className={`mb-12 ${isArabic ? 'text-right' : 'text-left'}`}>
+        <h2
+          className="text-5xl font-black italic uppercase tracking-tighter mb-3"
+          style={{ color }}
         >
-          {item.icon}
-        </div>
+          {t(`رحلتي في ${track.name_ar}`, `MY ${track.name}`)}
+        </h2>
+        <p className="text-white/40 uppercase tracking-[0.3em] text-[11px] font-bold">
+          {t('كل تقدمك داخل هذا المسار', 'YOUR PROGRESS INSIDE THIS TRACK')}
+        </p>
+      </div>
 
-
-        <div>
-
-          <h4 className="text-white font-black text-lg">
-            {item.title}
-          </h4>
-
-          <p className="text-white/40 text-sm">
-            {item.text}
-          </p>
-
-        </div>
-
-
-        <div className="ml-auto">
-
-          {item.done ? (
-            <CheckCircle2 
-              className="text-green-400"
-              size={25}
-            />
-          ) : (
-            <CircleAlert
-              className="text-white/30"
-              size={25}
-            />
-          )}
-
-        </div>
-
-
-      </motion.div>
-
-    ))}
-
-  </div>
-
-</div>
-{/* Recent Activity */}
-
-<div className="mt-14">
-
-  <div className={`mb-8 ${isArabic ? "text-right" : "text-left"}`}>
-    <h3 className="text-3xl font-black text-white">
-      {t("آخر نشاط", "RECENT ACTIVITY")}
-    </h3>
-
-    <p className="text-white/40 text-xs mt-2 uppercase tracking-widest">
-      {t(
-        "آخر خطواتك داخل المنصة",
-        "YOUR LATEST ACTIONS"
-      )}
-    </p>
-  </div>
-
-
-  <div className={`${card} p-8`}>
-
-  {journeyLogs && journeyLogs.length > 0 ? (
-
-    journeyLogs.map((log) => (
-
-      <motion.div
-        key={log.id}
-        whileHover={{ scale: 1.02 }}
-        className="flex items-center justify-between py-5 border-b border-white/5 last:border-none"
-      >
-
-        <div className="flex items-center gap-4">
-
-          <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-white">
-
-            {log.event_type === "completed"
-              ? <CheckCircle2 />
-              : <CircleAlert />
-            }
-
-          </div>
-
-
-          <div>
-
-            <h4 className="text-white font-black">
-              {log.title}
-            </h4>
-
-
-            <p className="text-white/40 text-sm">
-              {log.description}
-            </p>
-
-
-          </div>
-
-        </div>
-
-
-        <ArrowRight
-          className={
-            language === "ar"
-              ? "rotate-180 text-white/30"
-              : "text-white/30"
-          }
+      {/* ─────────── ثلاث بطاقات في صف واحد ─────────── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
+        <StatCard
+          label={t('أعلى مستوى بلغته', 'HIGHEST LEVEL')}
+          value={stats.highestLevel}
+          icon={<Trophy size={26} color={color} />}
+          color={color}
+          note={t('في أبعد أقسام هذا المسار', 'In your furthest section here')}
         />
 
+        <StatCard
+          label={t('تقدّم المسار', 'TRACK PROGRESS')}
+          value={`${stats.percent}%`}
+          icon={<TrendingUp size={26} color={color} />}
+          color={color}
+          note={
+            <span dir="ltr" className="tabular-nums">
+              {stats.doneLevels} / {stats.totalLevels}{' '}
+              <span className="opacity-60">{t('مستوى', 'levels')}</span>
+            </span>
+          }
+        >
+          <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden mt-4">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: `${stats.percent}%` }}
+              transition={{ duration: 1 }}
+              className="h-full rounded-full"
+              style={{ backgroundColor: color }}
+            />
+          </div>
+        </StatCard>
 
-      </motion.div>
+        <StatCard
+          label={t('الأقسام المكتملة', 'SECTIONS DONE')}
+          value={<span dir="ltr" className="tabular-nums">{stats.doneSections}/{track.sections.length}</span>}
+          icon={<Layers size={26} className="text-white/70" />}
+          color={color}
+          note={
+            <span dir="ltr" className="tabular-nums">
+              {stats.completedTracks}/{stats.totalTracks}{' '}
+              <span className="opacity-60">{t('مسار مكتمل', 'tracks complete')}</span>
+            </span>
+          }
+        />
+      </div>
 
-    ))
-
-  ) : (
-
-    <p className="text-white/40 text-center">
-
-      {t(
-        "لا يوجد نشاط حتى الآن",
-        "NO ACTIVITY YET"
-      )}
-
-    </p>
-
-  )}
-
-</div>
-{/* Achievements */}
-
-<div className="mt-14">
-
-  <div className={`mb-8 ${isArabic ? "text-right" : "text-left"}`}>
-
-    <h3 className="text-3xl font-black text-white">
-      {t("الإنجازات", "ACHIEVEMENTS")}
-    </h3>
-
-
-    <p className="text-white/40 text-xs mt-2 uppercase tracking-widest">
-      {t(
-        "الجوائز التي حصلت عليها",
-        "YOUR UNLOCKED REWARDS"
-      )}
-    </p>
-
-  </div>
-
-
-
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-
-  {userAchievements && userAchievements.length > 0 ? (
-
-
-    userAchievements.map((item)=>(
-
-
-      <motion.div
-
-        key={item.id}
-
-        whileHover={{ y:-8 }}
-
-        className={`${card} p-7`}
-
+      {/* ─────────── خريطة التقدم ─────────── */}
+      <Section
+        title={t('خريطة التقدم', 'PROGRESS MAP')}
+        sub={t('كل قسم وخمسة مستوياته', 'Every section and its five levels')}
+        isArabic={isArabic}
       >
-
-
-        <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
-
-          <Trophy size={30}/>
-
-        </div>
-
-
-
-        <h4 className="text-white font-black text-xl">
-
-          {item.achievements?.name}
-
-        </h4>
-
-
-
-        <p className="text-white/40 text-sm mt-3">
-
-          {item.achievements?.description}
-
-        </p>
-
-
-
-        <div className="mt-5 text-xs font-black text-white/50">
-
-          +{item.achievements?.xp_reward || 0} XP
-
-        </div>
-
-
-      </motion.div>
-
-
-    ))
-
-
-  ) : (
-
-
-    <p className="text-white/40">
-
-      {t(
-      "لا توجد إنجازات بعد",
-      "NO ACHIEVEMENTS YET"
-      )}
-
-    </p>
-
-
-  )}
-
-
-  </div>
-
-</div>
-{/* Journey Analysis */}
-
-<div className="mt-14">
-
-  <div className={`mb-8 ${isArabic ? "text-right" : "text-left"}`}>
-
-    <h3 className="text-3xl font-black text-white">
-      {t(
-        "تحليل رحلتك",
-        "JOURNEY ANALYSIS"
-      )}
-    </h3>
-
-    <p className="text-white/40 text-xs mt-2 uppercase tracking-widest">
-      {t(
-        "تحليل ذكي لتقدمك واقتراح الخطوة القادمة",
-        "SMART INSIGHTS ABOUT YOUR PROGRESS"
-      )}
-    </p>
-
-  </div>
-
-
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-
-    <motion.div
-      whileHover={{ y:-6 }}
-      className={`${card} p-7`}
-    >
-
-      <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-5">
-        <Brain />
-      </div>
-
-
-      <h4 className="text-white font-black text-xl">
-        {t(
-          "نقطة قوتك",
-          "YOUR STRENGTH"
-        )}
-      </h4>
-
-
-      <p className="text-white/40 mt-3 text-sm">
-        {t(
-          "الاستمرار والتعلم بشكل منتظم",
-          "Consistency and learning progress"
-        )}
-      </p>
-
-    </motion.div>
-
-
-
-    <motion.div
-      whileHover={{ y:-6 }}
-      className={`${card} p-7`}
-    >
-
-      <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-5">
-        <Target />
-      </div>
-
-
-      <h4 className="text-white font-black text-xl">
-        {t(
-          "ركز أكثر على",
-          "FOCUS ON"
-        )}
-      </h4>
-
-
-      <p className="text-white/40 mt-3 text-sm">
-        {t(
-          "إكمال المستويات القادمة",
-          "Completing upcoming levels"
-        )}
-      </p>
-
-
-    </motion.div>
-
-
-
-
-    <motion.div
-      whileHover={{ y:-6 }}
-      className={`${card} p-7`}
-    >
-
-      <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-5">
-        <Sparkles />
-      </div>
-
-
-      <h4 className="text-white font-black text-xl">
-        {t(
-          "اقتراحنا لك",
-          "NEXT STEP"
-        )}
-      </h4>
-
-
-      <p className="text-white/40 mt-3 text-sm">
-        {t(
-          "ابدأ التحدي القادم وارفع مستواك",
-          "Start your next challenge"
-        )}
-      </p>
-
-
-    </motion.div>
-
-
-  </div>
-
-</div>
-{/* Progress Map */}
-
-<div className="mt-14">
-
-  <div className={`mb-8 ${isArabic ? "text-right" : "text-left"}`}>
-
-    <h3 className="text-3xl font-black text-white">
-      {t(
-        "خريطة التقدم",
-        "PROGRESS MAP"
-      )}
-    </h3>
-
-    <p className="text-white/40 text-xs mt-2 uppercase tracking-widest">
-      {t(
-        "رحلتك من البداية حتى الاحتراف",
-        "YOUR ROAD TO MASTERY"
-      )}
-    </p>
-
-  </div>
-
-
-  <div className={`${card} p-8`}>
-
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-
-
-      {[1,2,3,4,5,6,7,8,9,10].map((level)=>{
-
- const currentLevel = maxLevel;
-        const unlocked = level <= currentLevel;
-
-
-        return (
-
-          <motion.div
-
-            key={level}
-
-            whileHover={{ scale: 1.08 }}
-
-            className={`
-              h-28 rounded-3xl
-              flex flex-col
-              items-center
-              justify-center
-              border
-              transition-all
-              ${
-                unlocked
-                ? "bg-white/10 border-white/20"
-                : "bg-white/[0.02] border-white/5"
-              }
-            `}
-
-          >
-
-
-            <div className="text-white/40 text-xs font-bold uppercase">
-              {t("مستوى","LEVEL")}
-            </div>
-
-
+        <div className={`${card} p-6 space-y-3`}>
+          {stats.perSection.map(({ section, completed, unlocked }, i) => (
             <div
-              className={`
-                text-3xl
-                font-black
-                mt-2
-                ${
-                  unlocked
-                  ? "text-white"
-                  : "text-white/20"
-                }
-              `}
+              key={i}
+              className="flex flex-col sm:flex-row sm:items-center gap-3 p-3 rounded-2xl bg-white/[0.02] border border-white/5"
             >
-              {level}
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-white text-sm truncate">
+                  {t(section.title_ar, section.title)}
+                </div>
+                <div className="text-white/30 text-[11px] mt-0.5">
+                  <span dir="ltr" className="tabular-nums">{completed}/{LEVELS_PER_SECTION}</span>
+                  {' '}{t('مستوى مكتمل', 'levels done')}
+                </div>
+              </div>
+
+              <div className="flex gap-1.5 shrink-0">
+                {[1, 2, 3, 4, 5].map(lv => {
+                  const done = lv <= completed;
+                  const current = lv === unlocked && !done;
+                  return (
+                    <div
+                      key={lv}
+                      title={`${t('مستوى', 'Level')} ${lv}`}
+                      className="w-9 h-9 rounded-xl grid place-items-center text-[11px] font-black border transition"
+                      style={
+                        done
+                          ? { background: color, borderColor: color, color: '#fff' }
+                          : current
+                            ? { background: `${color}18`, borderColor: `${color}70`, color }
+                            : { background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.22)' }
+                      }
+                      dir="ltr"
+                    >
+                      {done ? <CheckCircle2 size={14} /> : current ? lv : <Lock size={12} />}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
+          ))}
+        </div>
+      </Section>
 
-
-            {
-              unlocked ? (
-
-                <CheckCircle2
-                  size={18}
-                  className="mt-2 text-white"
-                />
-
-              ) : (
-
-                <CircleAlert
-                  size={18}
-                  className="mt-2 text-white/20"
-                />
-
-              )
+      {/* ─────────── تحليل رحلتك ─────────── */}
+      <Section
+        title={t('تحليل رحلتك', 'JOURNEY ANALYSIS')}
+        sub={t('مبني على تقدمك الفعلي', 'Based on your actual progress')}
+        isArabic={isArabic}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <InsightCard
+            icon={<Brain />} color={color}
+            title={t('أبعد ما وصلت', 'FURTHEST POINT')}
+            body={
+              stats.strongest && stats.strongest.completed > 0
+                ? t(
+                    `${stats.strongest.section.title_ar} — ${stats.strongest.completed} من ${LEVELS_PER_SECTION}`,
+                    `${stats.strongest.section.title} — ${stats.strongest.completed} of ${LEVELS_PER_SECTION}`
+                  )
+                : t('لم تجتز مستوى بعد في هذا المسار.', 'No level passed yet in this track.')
             }
+          />
+          <InsightCard
+            icon={<Target />} color={color}
+            title={t('خطوتك القادمة', 'NEXT STEP')}
+            body={
+              stats.nextUp
+                ? t(
+                    `المستوى ${stats.nextUp.unlocked} في ${stats.nextUp.section.title_ar}`,
+                    `Level ${stats.nextUp.unlocked} in ${stats.nextUp.section.title}`
+                  )
+                : t('أكملت كل أقسام هذا المسار.', 'You completed every section here.')
+            }
+          />
+          <InsightCard
+            icon={<Sparkles />} color={color}
+            title={t('ما بقي أمامك', 'WHAT REMAINS')}
+            body={
+              <span dir="ltr" className="tabular-nums">
+                {stats.totalLevels - stats.doneLevels}{' '}
+                <span className="opacity-70">{t('مستوى', 'levels')}</span>
+              </span>
+            }
+          />
+        </div>
+      </Section>
 
+      {/* ─────────── آخر نشاط ─────────── */}
+      <Section
+        title={t('آخر نشاط', 'RECENT ACTIVITY')}
+        sub={t('آخر عشر خطوات لك', 'Your last ten steps')}
+        isArabic={isArabic}
+      >
+        <div className={`${card} p-6`}>
+          {journeyLogs?.length ? (
+            <div className="divide-y divide-white/5">
+              {journeyLogs.map(log => (
+                <div key={log.id} className="flex items-center gap-4 py-4 first:pt-0 last:pb-0">
+                  <div
+                    className="w-11 h-11 rounded-xl grid place-items-center shrink-0"
+                    style={{ background: `${color}18`, color }}
+                  >
+                    {log.event_type === 'completed' ? <CheckCircle2 size={18} /> : <Clock size={18} />}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-white font-bold text-sm truncate">{log.title}</h4>
+                    {log.description && (
+                      <p className="text-white/40 text-xs mt-0.5 truncate">{log.description}</p>
+                    )}
+                  </div>
+                  {log.created_at && (
+                    <span className="text-white/25 text-[11px] shrink-0 tabular-nums" dir="ltr">
+                      {new Date(log.created_at).toLocaleDateString(isArabic ? 'ar-SA' : 'en-GB')}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-white/35 text-center text-sm py-6">
+              {t('لا نشاط بعد — اجتز مستوى ليظهر هنا.', 'No activity yet. Pass a level and it appears here.')}
+            </p>
+          )}
+        </div>
+      </Section>
 
-          </motion.div>
+      {/* ─────────── الإنجازات ─────────── */}
+      <Section
+        title={t('الإنجازات', 'ACHIEVEMENTS')}
+        sub={t('ما فتحته حتى الآن', 'What you unlocked so far')}
+        isArabic={isArabic}
+      >
+        {userAchievements?.length ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {userAchievements.map(item => (
+              <motion.div key={item.id} whileHover={{ y: -5 }} className={`${card} p-6`}>
+                <div
+                  className="w-14 h-14 rounded-2xl grid place-items-center mb-4"
+                  style={{ background: `${color}18`, color }}
+                >
+                  <Award size={26} />
+                </div>
+                <h4 className="text-white font-black text-lg">{item.achievements?.name}</h4>
+                <p className="text-white/40 text-sm mt-2 leading-relaxed">
+                  {item.achievements?.description}
+                </p>
+                <div className="mt-4 text-xs font-black" style={{ color }} dir="ltr">
+                  +{item.achievements?.xp_reward || 0} XP
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className={`${card} p-6`}>
+            <p className="text-white/35 text-center text-sm py-6">
+              {t('لا إنجازات بعد.', 'No achievements yet.')}
+            </p>
+          </div>
+        )}
+      </Section>
 
-        )
+      {/* ─────────── رسالة الختام ─────────── */}
+      <motion.div
+        whileHover={{ y: -4 }}
+        className={`${card} p-8 mt-14 relative overflow-hidden`}
+      >
+        <div className="absolute inset-0 opacity-20 blur-3xl" style={{ backgroundColor: color }} />
+        <div className="relative flex flex-col md:flex-row items-center gap-6">
+          <div
+            className="w-16 h-16 rounded-2xl grid place-items-center shrink-0"
+            style={{ backgroundColor: `${color}20` }}
+          >
+            <Sparkles size={32} color={color} />
+          </div>
+          <div className={isArabic ? 'text-right' : 'text-left'}>
+            <h3 className="text-xl font-black text-white">
+              {t('أين أنت الآن', 'WHERE YOU STAND')}
+            </h3>
+            <p className="text-white/50 mt-2 leading-relaxed text-sm">
+              {stats.percent >= 80
+                ? t('بقي القليل على إكمال المسار — أنهِ ما تبقّى قبل أن يبرد.',
+                     'Little remains to finish this track. Close it out before it goes cold.')
+                : stats.percent >= 40
+                  ? t('تجاوزت المنتصف، والأقسام القادمة تبني على ما أتقنته.',
+                       'You are past halfway, and the coming sections build on what you mastered.')
+                  : stats.doneLevels > 0
+                    ? t('بدأت فعلاً — والاستمرار بمستوى في اليوم يقطع المسار في شهر.',
+                         'You have genuinely started. One level a day finishes this track in a month.')
+                    : t('ابدأ بالمستوى الأول من القسم الأول، والباقي يفتح تباعاً.',
+                         'Start at the first level of the first section; the rest unlocks in turn.')}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
-      })}
-
-
-    </div>
-
-  </div>
-
-</div>{/* AI Journey Message */}
-
-<div className="mt-14">
-
+// ═════════ بطاقة رقم في الصف العلوي ═════════
+const StatCard = ({ label, value, icon, color, note, children }) => (
   <motion.div
     whileHover={{ y: -5 }}
-    className={`${card} p-8 relative overflow-hidden`}
+    className="rounded-[2rem] bg-white/[0.03] backdrop-blur-md border border-white/10 p-6"
   >
-
-    <div
-      className="absolute inset-0 opacity-20 blur-3xl"
-      style={{
-        backgroundColor: track?.color || "#00E5FF"
-      }}
-    />
-
-
-    <div className="relative flex flex-col md:flex-row items-center gap-6">
-
-
+    <div className="flex items-start justify-between mb-4">
+      <div className="min-w-0">
+        <p className="text-white/40 text-[11px] font-bold uppercase tracking-wider">{label}</p>
+        <h3 className="text-3xl font-black text-white mt-2 tabular-nums" dir="ltr">{value}</h3>
+      </div>
       <div
-        className="w-20 h-20 rounded-3xl flex items-center justify-center"
-        style={{
-          backgroundColor: `${track?.color || "#00E5FF"}20`
-        }}
+        className="w-14 h-14 rounded-2xl grid place-items-center shrink-0"
+        style={{ backgroundColor: `${color}20` }}
       >
-
-        <Sparkles
-          size={38}
-          color={track?.color || "#00E5FF"}
-        />
-
+        {icon}
       </div>
-
-
-
-      <div className={isArabic ? "text-right" : "text-left"}>
-
-        <h3 className="text-2xl font-black text-white">
-
-          {t(
-            "رسالة مساعدك الذكي",
-            "AI ASSISTANT MESSAGE"
-          )}
-
-        </h3>
-
-
-        <p className="text-white/50 mt-3 leading-relaxed">
-
-          {profile?.total_progress >= 80
-
-            ? t(
-                "ممتاز! أنت قريب من إكمال رحلتك، استمر بنفس القوة 🚀",
-                "Amazing! You are close to completing your journey 🚀"
-              )
-
-            : profile?.total_progress >= 40
-
-            ? t(
-                "تقدمك جيد، ركز على التحديات القادمة لرفع مستواك 🔥",
-                "Good progress, focus on upcoming challenges 🔥"
-              )
-
-            : t(
-                "ابدأ خطوتك الأولى، كل مستوى يقربك من الاحتراف ⭐",
-                "Start your first step, every level gets you closer ⭐"
-              )
-
-          }
-
-        </p>
-
-
-      </div>
-
-
-
     </div>
-
-
+    <div className="text-white/45 text-xs">{note}</div>
+    {children}
   </motion.div>
-
-
-</div>
-</div>
-</motion.div><motion.div
-  whileHover={{ y: -6 }}
-  className={`${card} p-7`}
->
-  <div className="flex items-center justify-between mb-6">
-
-    <div>
-      <p className="text-white/40 text-xs font-bold uppercase">
-        {t("التقدم", "PROGRESS")}
-      </p>
-
-      <h3 className="text-3xl font-black text-white mt-2">
-       {progressPercent}%
-      </h3>
-    </div>
-
-    <div
-      className="w-16 h-16 rounded-2xl flex items-center justify-center"
-      style={{
-        backgroundColor: `${track?.color || "#00E5FF"}20`
-      }}
-    >
-      <TrendingUp
-        size={30}
-        color={track?.color || "#00E5FF"}
-      />
-    </div>
-
-  </div>
-
-  <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
-    <motion.div
-      initial={{ width: 0 }}
-      animate={{
-       width: `${progressPercent}%`
-      }}
-      transition={{ duration: 1 }}
-      className="h-full rounded-full"
-      style={{
-        backgroundColor: track?.color || "#00E5FF"
-      }}
-    />
-  </div>
-
-</motion.div><motion.div
-  whileHover={{ y: -6 }}
-  className={`${card} p-7`}
->
-  <div className="flex items-center justify-between mb-6">
-
-    <div>
-      <p className="text-white/40 text-xs font-bold uppercase">
-        {t("المسارات", "TRACKS")}
-      </p>
-
-      <h3 className="text-3xl font-black text-white mt-2">
-        {completedTracks}/{totalTracks}
-      </h3>
-    </div>
-
-    <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center">
-      <Award size={30} className="text-white" />
-    </div>
-
-  </div>
-
-  <p className="text-white/50 text-sm font-bold">
-    {t(
-      "مسارات مكتملة",
-      "Completed learning paths"
-    )}
-  </p>
-
-</motion.div>
-
-</div>
-
-</motion.div>
-
 );
-};
+
+// ═════════ عنوان قسم ═════════
+const Section = ({ title, sub, isArabic, children }) => (
+  <div className="mt-14">
+    <div className={`mb-6 ${isArabic ? 'text-right' : 'text-left'}`}>
+      <h3 className="text-2xl font-black text-white">{title}</h3>
+      <p className="text-white/35 text-[11px] mt-1.5 uppercase tracking-widest">{sub}</p>
+    </div>
+    {children}
+  </div>
+);
+
+// ═════════ بطاقة تحليل ═════════
+const InsightCard = ({ icon, title, body, color }) => (
+  <motion.div
+    whileHover={{ y: -5 }}
+    className="rounded-[2rem] bg-white/[0.03] backdrop-blur-md border border-white/10 p-6"
+  >
+    <div
+      className="w-12 h-12 rounded-2xl grid place-items-center mb-4"
+      style={{ background: `${color}18`, color }}
+    >
+      {icon}
+    </div>
+    <h4 className="text-white font-black text-base">{title}</h4>
+    <p className="text-white/45 mt-2 text-sm leading-relaxed">{body}</p>
+  </motion.div>
+);
+
+export default JourneyPage;
