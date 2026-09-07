@@ -385,7 +385,7 @@ export const Challenges = () => {
   // حركة الظهور كل ثانية وتفقد الحقول تركيزها مع كل حرف.
   const renderSetup = (isRoom) => (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto space-y-8">
-      <div className={`p-10 rounded-[3rem] ${cardBg} space-y-10`}>
+      <div className={`p-5 md:p-10 rounded-[1.5rem] md:rounded-[3rem] ${cardBg} space-y-10`}>
         <h2 className="text-3xl font-black italic text-white uppercase tracking-tighter text-center">
           {isRoom ? t('إنشاء غرفة تحدي', 'CREATE CHALLENGE ROOM') : t('تخصيص التحدي', 'CUSTOMIZE CHALLENGE')}
         </h2>
@@ -544,7 +544,7 @@ export const Challenges = () => {
         </div>
 
         <motion.div key={qIndex} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          className={`p-10 rounded-[3rem] ${cardBg} ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+          className={`p-5 md:p-10 rounded-[1.5rem] md:rounded-[3rem] ${cardBg} ${language === 'ar' ? 'text-right' : 'text-left'}`}>
           <h3 className="text-2xl font-black text-white mb-6 leading-relaxed">{currentQ?.question}</h3>
 
           {currentQ?.code_snippet && (
@@ -595,7 +595,7 @@ export const Challenges = () => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-      className="pt-32 px-10 pb-20 max-w-7xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      className="pt-24 md:pt-32 px-4 md:px-10 pb-20 max-w-7xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
 
       {view !== 'menu' && view !== 'playing' && view !== 'room-playing' && (
         <button onClick={backToMenu}
@@ -618,13 +618,13 @@ export const Challenges = () => {
               dEn: 'Create a room, share the code with up to four players, and start together.' }
           ].map(card => (
             <motion.div key={card.id} whileHover={{ y: -10 }} onClick={() => goto(card.id)}
-              className={`p-12 rounded-[4rem] ${cardBg} cursor-pointer flex flex-col justify-between h-[480px] border-b-8 group ${language === 'ar' ? 'text-right' : 'text-left'}`}
+              className={`p-5 md:p-12 rounded-[4rem] ${cardBg} cursor-pointer flex flex-col justify-between h-[480px] border-b-8 group ${language === 'ar' ? 'text-right' : 'text-left'}`}
               style={{ borderBottomColor: trackColor }}>
-              <div className="p-8 rounded-[2.5rem] bg-white/5 w-fit" style={{ color: trackColor }}>
+              <div className="p-4 md:p-8 rounded-[1.25rem] md:rounded-[2.5rem] bg-white/5 w-fit" style={{ color: trackColor }}>
                 <card.icon size={48} />
               </div>
               <div>
-                <h2 className="text-4xl font-black italic text-white mb-4 uppercase tracking-tighter">{t(card.ar, card.en)}</h2>
+                <h2 className="text-2xl md:text-4xl font-black italic text-white mb-4 uppercase tracking-tighter">{t(card.ar, card.en)}</h2>
                 <p className="text-white/40 font-bold leading-relaxed text-lg">{t(card.dAr, card.dEn)}</p>
               </div>
               <div className="w-full py-6 rounded-[2rem] font-black uppercase text-sm tracking-widest text-center"
@@ -643,7 +643,7 @@ export const Challenges = () => {
       {view === 'room-menu' && (
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div whileHover={{ y: -8 }} onClick={() => goto('room-setup')}
-            className={`p-10 rounded-[3rem] ${cardBg} cursor-pointer h-[340px] flex flex-col justify-between`}>
+            className={`p-5 md:p-10 rounded-[1.5rem] md:rounded-[3rem] ${cardBg} cursor-pointer h-[340px] flex flex-col justify-between`}>
             <Sparkles size={40} style={{ color: trackColor }} />
             <div>
               <h3 className="text-2xl font-black italic text-white uppercase mb-2">{t('إنشاء غرفة', 'CREATE ROOM')}</h3>
@@ -653,7 +653,7 @@ export const Challenges = () => {
               style={{ backgroundColor: trackColor, color: '#000' }}>{t('إنشاء', 'CREATE')}</div>
           </motion.div>
 
-          <div className={`p-10 rounded-[3rem] ${cardBg} h-[340px] flex flex-col justify-between`}>
+          <div className={`p-5 md:p-10 rounded-[1.5rem] md:rounded-[3rem] ${cardBg} h-[340px] flex flex-col justify-between`}>
             <LogIn size={40} style={{ color: trackColor }} />
             <div>
               <h3 className="text-2xl font-black italic text-white uppercase mb-2">{t('دخول بكود', 'JOIN WITH CODE')}</h3>
@@ -675,12 +675,12 @@ export const Challenges = () => {
       {/* ── غرفة الانتظار ── */}
       {view === 'lobby' && room && (
         <div className="max-w-4xl mx-auto space-y-10">
-          <div className={`p-12 rounded-[3rem] ${cardBg} text-center relative overflow-hidden`}>
+          <div className={`p-5 md:p-12 rounded-[1.5rem] md:rounded-[3rem] ${cardBg} text-center relative overflow-hidden`}>
             <div className="absolute inset-0 opacity-10"
               style={{ background: `linear-gradient(to bottom right, ${pickedTrack.color}, transparent)` }} />
             <p className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30 mb-4">{t('كود الغرفة', 'ROOM CODE')}</p>
             <div className="flex items-center justify-center gap-4 mb-6">
-              <span className="text-6xl font-black tracking-[0.3em] text-white" dir="ltr">{room.code}</span>
+              <span className="text-3xl md:text-6xl font-black tracking-[0.3em] text-white" dir="ltr">{room.code}</span>
               <button onClick={copyCode} className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
                 {copied ? <Check size={20} className="text-green-400" /> : <Copy size={20} className="text-white/50" />}
               </button>
@@ -739,14 +739,14 @@ export const Challenges = () => {
           className={`max-w-2xl mx-auto p-16 rounded-[4rem] ${cardBg} text-center space-y-8`}>
           <Trophy size={64} className="mx-auto" style={{ color: pickedTrack.color }} />
           <div>
-            <h2 className="text-5xl font-black italic text-white uppercase tracking-tighter mb-3">{t('انتهى التحدي', 'CHALLENGE OVER')}</h2>
+            <h2 className="text-2xl md:text-5xl font-black italic text-white uppercase tracking-tighter mb-3">{t('انتهى التحدي', 'CHALLENGE OVER')}</h2>
             <p className="text-white/40 font-bold">
               {t(`أجبت ${correct} من ${questions.length} إجابة صحيحة`, `${correct} of ${questions.length} correct`)}
             </p>
           </div>
-          <div className="p-8 rounded-[2.5rem] bg-white/5 border border-white/10">
+          <div className="p-4 md:p-8 rounded-[1.25rem] md:rounded-[2.5rem] bg-white/5 border border-white/10">
             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 mb-2">{t('النقاط المضافة لحسابك', 'POINTS ADDED')}</p>
-            <p className="text-6xl font-black italic" style={{ color: pickedTrack.color }}>+{earned}</p>
+            <p className="text-3xl md:text-6xl font-black italic" style={{ color: pickedTrack.color }}>+{earned}</p>
             {earned < correct * POINTS.PER_CORRECT && (
               <p className="text-[11px] font-bold text-amber-400/70 mt-3">
                 {t('بلغت السقف اليومي للنقاط — بقية إجاباتك صحيحة لكنها لم تُحتسب.',
@@ -770,9 +770,9 @@ export const Challenges = () => {
       {view === 'room-result' && (
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
           className="max-w-2xl mx-auto space-y-8">
-          <div className={`p-12 rounded-[4rem] ${cardBg} text-center`}>
+          <div className={`p-5 md:p-12 rounded-[4rem] ${cardBg} text-center`}>
             <Trophy size={56} className="mx-auto mb-6" style={{ color: pickedTrack.color }} />
-            <h2 className="text-4xl font-black italic text-white uppercase tracking-tighter mb-2">{t('النتيجة النهائية', 'FINAL RESULT')}</h2>
+            <h2 className="text-2xl md:text-4xl font-black italic text-white uppercase tracking-tighter mb-2">{t('النتيجة النهائية', 'FINAL RESULT')}</h2>
             <p className="text-white/30 font-bold text-xs">
               {players.some(p => !p.finished)
                 ? t('بانتظار بقية اللاعبين لاحتساب النقاط…', 'Waiting for other players before points are awarded…')

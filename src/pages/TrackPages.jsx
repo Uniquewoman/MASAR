@@ -11,14 +11,14 @@ export const TrackHome = () => {
   const cardBg = "bg-white/[0.03] backdrop-blur-md border border-white/10 hover:bg-white/[0.08]";
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-32 pb-20 px-10 max-w-7xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-24 md:pt-32 pb-20 px-4 md:px-10 max-w-7xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className="text-center mb-16">
-        <h2 className="text-6xl font-black italic uppercase tracking-tighter text-white mb-4" style={{ color: track.color }}>
+        <h2 className="text-3xl md:text-6xl font-black italic uppercase tracking-tighter text-white mb-4" style={{ color: track.color }}>
           {t(track.name_ar, track.name)}
         </h2>
         <p className="text-white/40 font-bold uppercase tracking-widest text-xs">{t('نظرة عامة على المسار', 'TRACK OVERVIEW')}</p>
       </div>
-      <div className={`p-12 rounded-[4rem] ${cardBg} mb-12 relative overflow-hidden shadow-2xl ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+      <div className={`p-5 md:p-12 rounded-[4rem] ${cardBg} mb-12 relative overflow-hidden shadow-2xl ${language === 'ar' ? 'text-right' : 'text-left'}`}>
         <div className="absolute inset-0 opacity-20" style={{ background: `linear-gradient(to bottom right, ${track.color}, transparent)` }} />
         <h3 className="text-2xl font-black italic text-white mb-6 uppercase">{t('وصف المسار', 'TRACK DESCRIPTION')}</h3>
         <p className="text-lg text-white/60 font-bold leading-relaxed">{t(track.description_ar, track.description)}</p>
@@ -550,20 +550,20 @@ loadQuestions(lvl);
 };
   // فحص المسار هنا — بعد كل الـ hooks، حتى لا نخالف قواعد React
   if (!track) {
-    return <div className="p-10 text-center text-white">لم يتم اختيار مسار صحيح. الرجاء العودة للقائمة الرئيسية.</div>;
+    return <div className="p-5 md:p-10 text-center text-white">لم يتم اختيار مسار صحيح. الرجاء العودة للقائمة الرئيسية.</div>;
   }
 
   if (view === 'map') {
     return (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-32 pb-20 px-10 max-w-5xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-24 md:pt-32 pb-20 px-4 md:px-10 max-w-5xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
         <button onClick={() => window.dispatchEvent(new CustomEvent('changeView', { detail: 'dashboard' }))} className="mb-8 inline-flex items-center gap-2 px-5 py-3 rounded-2xl border-2 bg-white/5 font-black uppercase text-xs tracking-widest hover:bg-white/15 transition-all text-white border-white/30 hover:border-white/60">
           {language === 'ar' ? <ArrowRight size={16} /> : <ArrowRight size={16} className="rotate-180" />} {t('العودة للوحة التحكم', 'BACK TO DASHBOARD')}
         </button>
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-2">{t(section?.title_ar || section?.title, section?.title) || t('المستويات', 'LEVELS')}</h2>
+          <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter text-white mb-2">{t(section?.title_ar || section?.title, section?.title) || t('المستويات', 'LEVELS')}</h2>
           <p className="text-white/40 font-bold uppercase tracking-widest text-xs">{t('أجب 30 إجابة صحيحة لفتح المستوى التالي', 'ANSWER 30 QUESTIONS CORRECTLY TO UNLOCK THE NEXT LEVEL')}</p>
         </div>
-        <div className="grid grid-cols-3 md:grid-cols-5 gap-8">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-8">
 
  {levels.map((lvl) => (
   <motion.div
@@ -613,12 +613,12 @@ loadQuestions(lvl);
   }
 
   return (
-    <div className="pt-32 px-10 pb-20 flex items-center justify-center min-h-[90vh]" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="pt-24 md:pt-32 px-4 md:px-10 pb-20 flex items-center justify-center min-h-[90vh]" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <AnimatePresence mode="wait">
         {isLevelFailed ? (
-          <motion.div key="fail" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className={`p-12 rounded-[4rem] ${cardBg} text-center max-w-lg shadow-2xl border-t-8 border-red-500`}>
+          <motion.div key="fail" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className={`p-5 md:p-12 rounded-[4rem] ${cardBg} text-center max-w-lg shadow-2xl border-t-8 border-red-500`}>
             <XCircle size={80} className="text-red-500 mx-auto mb-8" />
-            <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-4">{t('لقد فشلت!', 'YOU FAILED!')}</h2>
+            <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter text-white mb-4">{t('لقد فشلت!', 'YOU FAILED!')}</h2>
            
             <p className="text-white/40 font-bold mb-10 leading-relaxed">{t('لقد ارتكبت 6 أخطاء. جاري إعادتك للمستويات...', 'You made 6 mistakes. Returning to levels...')}</p>
             <div className="w-full bg-white/5 h-1 rounded-full overflow-hidden">
@@ -626,14 +626,14 @@ loadQuestions(lvl);
             </div>
           </motion.div>
         ) : isLevelSuccess ? (
-          <motion.div key="success" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className={`p-12 rounded-[4rem] ${cardBg} text-center max-w-lg border-t-8 shadow-2xl`} style={{ borderTopColor: trackColor }}>
+          <motion.div key="success" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className={`p-5 md:p-12 rounded-[4rem] ${cardBg} text-center max-w-lg border-t-8 shadow-2xl`} style={{ borderTopColor: trackColor }}>
             <CheckCircle2 size={80} style={{ color: trackColor }} className="mx-auto mb-8" />
-            <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-4">{t('أحسنت صنعاً!', 'WELL DONE!')}</h2>
+            <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter text-white mb-4">{t('أحسنت صنعاً!', 'WELL DONE!')}</h2>
             <p className="text-white/40 font-bold mb-10 leading-relaxed">{t('أحسنت! أجبت على العدد المطلوب بشكل صحيح. تم فتح المستوى التالي ومزامنة نقاط الخبرة.', 'Well done! You answered enough questions correctly. Next level unlocked and XP synced.')}</p>
             <button onClick={() => setView('map')} className="w-full py-6 rounded-[2rem] text-black font-black uppercase tracking-tighter shadow-2xl hover:scale-105 transition-all" style={{ backgroundColor: trackColor, boxShadow: `0 15px 40px ${trackColor}30` }}>{t('المتابعة للمستويات', 'CONTINUE TO LEVELS')}</button>
           </motion.div>
         ) : (
-          <motion.div key={questionNum} initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -50, opacity: 0 }} className={`p-12 rounded-[4rem] ${cardBg} w-full max-w-4xl relative overflow-hidden shadow-2xl`}>
+          <motion.div key={questionNum} initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -50, opacity: 0 }} className={`p-5 md:p-12 rounded-[4rem] ${cardBg} w-full max-w-4xl relative overflow-hidden shadow-2xl`}>
             <button onClick={() => setView('map')} className="absolute top-8 left-8 p-3 rounded-2xl bg-white/5 border border-white/5 text-white/40 hover:text-white transition-all z-20">
               <ArrowLeft size={20} className={language === 'ar' ? 'rotate-180' : ''} />
             </button>
@@ -1055,7 +1055,7 @@ loadQuestions(lvl);
                   <motion.button
                     key={i}
                     onClick={() => handleAnswer(i)}
-                    className={`p-8 rounded-[2rem] border text-lg font-black transition-all ${language === 'ar' ? 'text-right' : 'text-left'} ${!isAnswered ? 'hover:bg-white/10 hover:border-white/20' : ''} ${textColor}`}
+                    className={`p-4 md:p-8 rounded-[2rem] border text-lg font-black transition-all ${language === 'ar' ? 'text-right' : 'text-left'} ${!isAnswered ? 'hover:bg-white/10 hover:border-white/20' : ''} ${textColor}`}
                     style={{ ...borderStyle, ...bgStyle }}
                     disabled={isAnswered}
                   >

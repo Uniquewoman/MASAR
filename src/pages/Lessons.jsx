@@ -155,7 +155,7 @@ const Flashcards = ({ cards, color, t, language }) => {
       </div>
 
       <button onClick={() => setShown(s => !s)}
-        className={`w-full min-h-[190px] p-8 rounded-[1.5rem] border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all flex flex-col justify-center ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+        className={`w-full min-h-[190px] p-4 md:p-8 rounded-[1.5rem] border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-all flex flex-col justify-center ${language === 'ar' ? 'text-right' : 'text-left'}`}>
         <p className="text-[10px] font-black uppercase tracking-[0.4em] mb-4" style={{ color }}>
           {shown ? t('الإجابة', 'ANSWER') : t('سؤال', 'QUESTION')}
         </p>
@@ -217,8 +217,8 @@ export const Lessons = ({ section }) => {
   if (!selectedSection) {
     return (
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-        className="pt-32 px-6 md:px-10 pb-20 max-w-7xl mx-auto text-center" dir={language === 'ar' ? 'rtl' : 'ltr'}>
-        <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-8">
+        className="pt-24 md:pt-32 px-6 md:px-10 pb-20 max-w-7xl mx-auto text-center" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+        <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter text-white mb-8">
           {t('اختر قسماً لعرض الشرح', 'CHOOSE A SECTION')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -226,7 +226,7 @@ export const Lessons = ({ section }) => {
             const ready = (sectionGuides[track.id]?.[i] || []).length;
             return (
               <motion.div key={i} whileHover={{ scale: 1.03 }} onClick={() => setSelectedSection(sec)}
-                className={`p-8 rounded-[2.5rem] ${cardBg} cursor-pointer border-t-4 hover:bg-white/[0.06] transition-all`}
+                className={`p-4 md:p-8 rounded-[1.25rem] md:rounded-[2.5rem] ${cardBg} cursor-pointer border-t-4 hover:bg-white/[0.06] transition-all`}
                 style={{ borderColor: color }}>
                 <h3 className={`text-xl font-black text-white mb-2 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                   {t(sec.title_ar, sec.title)}
@@ -256,7 +256,7 @@ export const Lessons = ({ section }) => {
       </button>
 
       {/* رأس القسم */}
-      <div className={`p-10 rounded-[2.5rem] ${cardBg} mb-10 relative overflow-hidden ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+      <div className={`p-5 md:p-10 rounded-[1.25rem] md:rounded-[2.5rem] ${cardBg} mb-10 relative overflow-hidden ${language === 'ar' ? 'text-right' : 'text-left'}`}>
         <div className="absolute inset-0 opacity-10" style={{ background: `linear-gradient(to bottom right, ${color}, transparent)` }} />
         <h1 className="text-3xl md:text-4xl font-black italic text-white mb-4 relative z-10">
           {t(selectedSection.title_ar, selectedSection.title)}
@@ -284,7 +284,7 @@ export const Lessons = ({ section }) => {
       )}
 
       {topics.length === 0 ? (
-        <div className={`p-16 rounded-[3rem] ${cardBg} text-center`}>
+        <div className={`p-16 rounded-[1.5rem] md:rounded-[3rem] ${cardBg} text-center`}>
           <BookOpen size={48} className="mx-auto mb-6 opacity-30" style={{ color }} />
           <h3 className="text-2xl font-black italic text-white mb-3">{t('شرح هذا القسم قيد الإعداد', 'THIS SECTION IS IN PREPARATION')}</h3>
           <p className="text-white/40 font-bold text-sm">
@@ -358,7 +358,7 @@ export const Lessons = ({ section }) => {
           )}
 
           {/* نقاط أساسية للحفظ */}
-          <div className={`p-8 rounded-[1.5rem] mb-10 ${language === 'ar' ? 'text-right' : 'text-left'}`}
+          <div className={`p-4 md:p-8 rounded-[1.5rem] mb-10 ${language === 'ar' ? 'text-right' : 'text-left'}`}
             style={{ backgroundColor: color }}>
             <h4 className="font-black text-black/80 mb-5 text-lg">{t('نقاط أساسية للحفظ', 'KEY POINTS')}</h4>
             <ul className="space-y-3">
@@ -373,7 +373,7 @@ export const Lessons = ({ section }) => {
 
           {/* المصطلحات */}
           {topic.terms?.length > 0 && (
-            <div className={`p-7 rounded-[1.5rem] mb-10 ${cardBg} ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+            <div className={`p-4 md:p-7 rounded-[1.5rem] mb-10 ${cardBg} ${language === 'ar' ? 'text-right' : 'text-left'}`}>
               <div className="flex items-center gap-2 mb-5" style={{ color }}>
                 <Sparkles size={16} />
                 <span className="text-[10px] font-black uppercase tracking-[0.3em]">{t('مصطلحات الموضوع', 'TERMS')}</span>

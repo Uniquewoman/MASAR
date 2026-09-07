@@ -129,10 +129,10 @@ export const QuestionBank = ({ section }) => {
     return (
       <motion.div
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-        className="pt-32 px-6 pb-20 max-w-7xl mx-auto text-center"
+        className="pt-24 md:pt-32 px-6 pb-20 max-w-7xl mx-auto text-center"
         dir={language === 'ar' ? 'rtl' : 'ltr'}
       >
-        <h2 className="text-4xl font-black italic uppercase tracking-tighter text-white mb-3">
+        <h2 className="text-2xl md:text-4xl font-black italic uppercase tracking-tighter text-white mb-3">
           {t('بنك الأسئلة', 'QUESTION BANK')}
         </h2>
         <p className="text-white/50 text-sm mb-10">
@@ -145,7 +145,7 @@ export const QuestionBank = ({ section }) => {
               key={i}
               whileHover={{ scale: 1.04 }}
               onClick={() => { setSelectedSection(sec); setLevel(1); }}
-              className={`p-8 rounded-[2.5rem] ${cardBg} cursor-pointer border-t-4 hover:bg-white/[0.07] transition`}
+              className={`p-4 md:p-8 rounded-[1.25rem] md:rounded-[2.5rem] ${cardBg} cursor-pointer border-t-4 hover:bg-white/[0.07] transition`}
               style={{ borderColor: trackColor }}
             >
               <h3 className={`text-xl font-black text-white mb-2 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
@@ -166,7 +166,7 @@ export const QuestionBank = ({ section }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-      className="pt-32 px-6 pb-20 max-w-5xl mx-auto"
+      className="pt-24 md:pt-32 px-6 pb-20 max-w-5xl mx-auto"
       dir={language === 'ar' ? 'rtl' : 'ltr'}
     >
       <button
@@ -178,7 +178,7 @@ export const QuestionBank = ({ section }) => {
         {t('العودة للأقسام', 'BACK TO SECTIONS')}
       </button>
 
-      <div className={`p-8 rounded-[2.5rem] ${cardBg} mb-6 relative overflow-hidden`}>
+      <div className={`p-4 md:p-8 rounded-[1.25rem] md:rounded-[2.5rem] ${cardBg} mb-6 relative overflow-hidden`}>
         <div className="absolute inset-0 opacity-10" style={{ background: `linear-gradient(to bottom right, ${trackColor}, transparent)` }} />
         <h1 className="text-3xl font-black italic uppercase tracking-tighter text-white relative z-10">
           {t(selectedSection.title_ar, selectedSection.title)}
@@ -339,7 +339,7 @@ const QuestionCard = ({ q, index, color, language, t }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-      className={`p-7 rounded-[2rem] ${cardBg} ${language === 'ar' ? 'text-right' : 'text-left'}`}
+      className={`p-4 md:p-7 rounded-[2rem] ${cardBg} ${language === 'ar' ? 'text-right' : 'text-left'}`}
     >
       {/* الترويسة */}
       <div className="flex items-center gap-3 mb-4 flex-wrap">

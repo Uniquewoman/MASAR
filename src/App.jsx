@@ -152,7 +152,7 @@ const startLoading = async (pathId) => {
       `}</style>
 
       {/* Header */}
-      <header className="p-6 flex justify-between items-center fixed top-0 w-full z-[100] bg-black/40 backdrop-blur-xl border-b border-white/5 shadow-2xl">
+      <header className="p-4 md:p-6 flex justify-between items-center fixed top-0 w-full z-[100] bg-black/40 backdrop-blur-xl border-b border-white/5 shadow-2xl">
         <div className="flex items-center gap-4">
           <button onClick={() => setIsSidebarOpen(true)} className="p-3 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all">
             <Menu size={24} />
@@ -173,7 +173,7 @@ const startLoading = async (pathId) => {
               initial={{ x: language === 'ar' ? 500 : -500 }}
               animate={{ x: 0 }}
               exit={{ x: language === 'ar' ? 500 : -500 }}
-              className={`fixed top-0 ${language === 'ar' ? 'right-0 border-l' : 'left-0 border-r'} h-full w-[380px] bg-[#030712]/95 border-white/5 z-[120] p-10 flex flex-col gap-3 overflow-y-auto no-scrollbar shadow-2xl`}
+              className={`fixed top-0 ${language === 'ar' ? 'right-0 border-l' : 'left-0 border-r'} h-full w-[85%] max-w-[380px] md:w-[380px] bg-[#030712]/95 border-white/5 z-[120] p-5 md:p-10 flex flex-col gap-3 overflow-y-auto no-scrollbar shadow-2xl`}
             >
               <div className="mb-10 flex justify-between items-center px-4">
                 <h2 className="text-[10px] font-black tracking-[0.5em] text-white opacity-40 uppercase">{t('قائمة النظام', 'SYSTEM MENU')}</h2>
@@ -193,7 +193,7 @@ const startLoading = async (pathId) => {
               <SidebarCard icon={<Settings />} title={t('الإعدادات', 'SETTINGS')} color={activePath?.color} onClick={() => { setView('settings'); setIsSidebarOpen(false); }} />
               <button
                 onClick={() => setShowLogoutModal(true)}
-                className="mt-8 p-6 rounded-[2.5rem] bg-red-500/10 border border-red-500/20 text-red-500 font-black uppercase text-[10px] tracking-widest hover:bg-red-500/20 transition-all flex items-center justify-center gap-2"
+                className="mt-8 p-6 rounded-[1.25rem] md:rounded-[2.5rem] bg-red-500/10 border border-red-500/20 text-red-500 font-black uppercase text-[10px] tracking-widest hover:bg-red-500/20 transition-all flex items-center justify-center gap-2"
               >
                 <LogOut size={16} />
                 {t('تسجيل الخروج', 'LOGOUT')}
@@ -207,13 +207,13 @@ const startLoading = async (pathId) => {
 
         <AnimatePresence mode="wait">
           {view === 'landing' && (
-            <motion.div key="landing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-20 px-10 pb-20 max-w-7xl mx-auto flex flex-col items-center" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+            <motion.div key="landing" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-20 px-4 md:px-10 pb-20 max-w-7xl mx-auto flex flex-col items-center" dir={language === 'ar' ? 'rtl' : 'ltr'}>
               <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="text-center mb-16">
-                <h1 className="text-5xl font-black italic uppercase tracking-tighter text-white mb-2">{t('مرحباً بك في مسار', 'WELCOME TO MASAR')}</h1>
+                <h1 className="text-2xl md:text-5xl font-black italic uppercase tracking-tighter text-white mb-2">{t('مرحباً بك في مسار', 'WELCOME TO MASAR')}</h1>
                 <p className="text-sm text-white/40 font-bold uppercase tracking-[0.3em]">{t('اختر مسارك التعليمي للبدء', 'CHOOSE YOUR LEARNING PATH TO START')}</p>
               </motion.div>
 
-              <div className="flex flex-row justify-center gap-6 w-full px-4 no-scrollbar">
+              <div className="flex flex-row justify-start md:justify-center gap-4 md:gap-6 w-full px-4 overflow-x-auto md:overflow-x-visible no-scrollbar">
                 {Object.values(PATHS_CONFIG).map((p, i) => (
                   <motion.div
                     key={p.id}
@@ -222,10 +222,10 @@ const startLoading = async (pathId) => {
                     transition={{ delay: i * 0.1 }}
                     whileHover={{ y: -15, scale: 1.02 }}
                     onClick={() => startLoading(p.id)}
-                    className={`w-72 h-[480px] rounded-[4rem] bg-gradient-to-br ${p.theme.bg} border border-white/10 p-12 flex flex-col items-center justify-between cursor-pointer group relative shadow-2xl overflow-hidden shadow-black shrink-0 transition-shadow hover:shadow-white/5`}
+                    className={`w-60 h-[400px] md:w-72 md:h-[480px] rounded-[2rem] md:rounded-[4rem] bg-gradient-to-br ${p.theme.bg} border border-white/10 p-5 md:p-12 flex flex-col items-center justify-between cursor-pointer group relative shadow-2xl overflow-hidden shadow-black shrink-0 transition-shadow hover:shadow-white/5`}
                   >
                     <div className="absolute inset-0 bg-black/60 group-hover:bg-transparent transition-all duration-700" />
-                    <div className="relative z-10 p-8 rounded-[2.5rem] bg-white/5" style={{ color: p.color }}>
+                    <div className="relative z-10 p-4 md:p-8 rounded-[1.25rem] md:rounded-[2.5rem] bg-white/5" style={{ color: p.color }}>
                       {React.cloneElement(p.icon, { size: 48 })}
                     </div>
                     <div className="relative z-10 text-center">
@@ -254,7 +254,7 @@ const startLoading = async (pathId) => {
 
       {showLogoutModal && (
         <div className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center">
-          <div className="w-[420px] p-8 rounded-[2.5rem] bg-[#030712] border border-white/10 shadow-2xl">
+          <div className="w-[90%] max-w-[420px] md:w-[420px] p-4 md:p-8 rounded-[1.25rem] md:rounded-[2.5rem] bg-[#030712] border border-white/10 shadow-2xl">
 
             <h2 className="text-2xl font-black text-center mb-4">
               {t('تسجيل الخروج', 'Logout')}
@@ -298,7 +298,7 @@ const startLoading = async (pathId) => {
 
 function SidebarCard({ icon, title, color, onClick, isSoon }) {
   return (
-    <button onClick={isSoon ? null : onClick} className={`w-full p-5 rounded-[2.5rem] bg-white/[0.03] border border-white/5 transition-all flex items-center gap-6 group relative overflow-hidden text-white ${isSoon ? 'opacity-40 cursor-not-allowed' : 'hover:bg-white/[0.08] hover:border-white/10'}`}>
+    <button onClick={isSoon ? null : onClick} className={`w-full p-5 rounded-[1.25rem] md:rounded-[2.5rem] bg-white/[0.03] border border-white/5 transition-all flex items-center gap-6 group relative overflow-hidden text-white ${isSoon ? 'opacity-40 cursor-not-allowed' : 'hover:bg-white/[0.08] hover:border-white/10'}`}>
 
       <div className="p-4 rounded-2xl bg-white/5 shadow-inner" style={{ color: color || '#0d9488' }}>{icon}</div>
       <div className="flex flex-col items-start"><span className="font-black text-xs uppercase italic tracking-tight">{title}</span>{isSoon && <span className="text-[8px] font-black text-white/40 tracking-widest uppercase mt-1">Soon</span>}</div>

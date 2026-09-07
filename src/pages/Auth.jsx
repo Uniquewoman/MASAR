@@ -87,7 +87,7 @@ export default function Auth({ onAuthSuccess }) {
                 placeholder="الاسم الكامل"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full p-7 rounded-[2.5rem] bg-slate-900/30 border border-slate-800 text-white"
+                className="w-full p-4 md:p-7 rounded-[1.25rem] md:rounded-[2.5rem] bg-slate-900/30 border border-slate-800 text-white"
               />
 
               <input
@@ -95,7 +95,7 @@ export default function Auth({ onAuthSuccess }) {
                 placeholder="اسم المستخدم"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full p-7 rounded-[2.5rem] bg-slate-900/30 border border-slate-800 text-white"
+                className="w-full p-4 md:p-7 rounded-[1.25rem] md:rounded-[2.5rem] bg-slate-900/30 border border-slate-800 text-white"
               />
             </>
           )}
@@ -108,7 +108,7 @@ export default function Auth({ onAuthSuccess }) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`w-full p-7 ${language === 'ar' ? 'pr-20' : 'pl-20'} rounded-[2.5rem] bg-slate-900/30 border border-slate-800 text-white focus:border-slate-700 outline-none transition-all`}
+              className={`w-full p-4 md:p-7 ${language === 'ar' ? 'pr-20' : 'pl-20'} rounded-[1.25rem] md:rounded-[2.5rem] bg-slate-900/30 border border-slate-800 text-white focus:border-slate-700 outline-none transition-all`}
             />
           </div>
 
@@ -121,7 +121,7 @@ export default function Auth({ onAuthSuccess }) {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`w-full p-7 ${language === 'ar' ? 'pr-20 pl-20' : 'pl-20 pr-20'} rounded-[2.5rem] bg-slate-900/30 border ${errorMessage ? 'border-red-500' : 'border-slate-800'
+              className={`w-full p-4 md:p-7 ${language === 'ar' ? 'pr-20 pl-20' : 'pl-20 pr-20'} rounded-[1.25rem] md:rounded-[2.5rem] bg-slate-900/30 border ${errorMessage ? 'border-red-500' : 'border-slate-800'
                 } text-white focus:border-slate-700 outline-none transition-all`} />
             <button
               type="button"
@@ -143,7 +143,7 @@ export default function Auth({ onAuthSuccess }) {
           <motion.button
             whileHover={{ scale: 1.02 }}
             type="submit"
-            className="w-full py-7 rounded-[3rem] bg-indigo-600 text-white font-black uppercase tracking-tighter shadow-2xl transition-all flex items-center justify-center gap-4"
+            className="w-full py-7 rounded-[1.5rem] md:rounded-[3rem] bg-indigo-600 text-white font-black uppercase tracking-tighter shadow-2xl transition-all flex items-center justify-center gap-4"
           >
             <span className="text-lg">{isLogin ? 'دخول' : 'تسجيل'}</span>
             {language === 'ar' ? <ArrowLeft size={24} /> : <ArrowRight size={24} />}

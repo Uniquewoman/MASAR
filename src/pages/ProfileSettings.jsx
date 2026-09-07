@@ -202,7 +202,7 @@ animate={{ opacity:1, y:0 }}
 
 dir={language==="ar"?"rtl":"ltr"}
 
-className="pt-32 pb-20 px-10 max-w-4xl mx-auto"
+className="pt-24 md:pt-32 pb-20 px-4 md:px-10 max-w-4xl mx-auto"
 
 >
 
@@ -230,7 +230,7 @@ className="pt-32 pb-20 px-10 max-w-4xl mx-auto"
   </span>
 </button>
 
-<h2 className="text-5xl font-black text-white mb-4">
+<h2 className="text-2xl md:text-5xl font-black text-white mb-4">
 
 {userData.full_name}
 
@@ -263,7 +263,7 @@ className="pt-32 pb-20 px-10 max-w-4xl mx-auto"
 
 
 
-<div className="p-8 rounded-3xl bg-white bg-opacity-5 border border-white border-opacity-10">
+<div className="p-4 md:p-8 rounded-3xl bg-white bg-opacity-5 border border-white border-opacity-10">
 
 
 <BookOpen className="text-teal-500 mb-4" size={24}/>
@@ -304,7 +304,7 @@ className="pt-32 pb-20 px-10 max-w-4xl mx-auto"
 
 
 
-<div className="p-8 rounded-3xl bg-white bg-opacity-5 border border-white bg-opacity-10">
+<div className="p-4 md:p-8 rounded-3xl bg-white bg-opacity-5 border border-white bg-opacity-10">
 
 
 <Trophy className="text-yellow-500 mb-4" size={24}/>
@@ -344,7 +344,7 @@ className="pt-32 pb-20 px-10 max-w-4xl mx-auto"
 
 
 
-<div className="mt-6 p-8 rounded-3xl bg-white bg-opacity-5 border border-white border-opacity-10">
+<div className="mt-6 p-4 md:p-8 rounded-3xl bg-white bg-opacity-5 border border-white border-opacity-10">
 
 
 <h3 className="text-xl font-black text-white mb-8">

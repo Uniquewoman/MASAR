@@ -19,9 +19,9 @@ export const Dashboard = ({ onSelectSection }) => {
   }
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-32 pb-20 px-10 max-w-7xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-24 md:pt-32 pb-20 px-4 md:px-10 max-w-7xl mx-auto" dir={language === 'ar' ? 'rtl' : 'ltr'}>
       <div className={`mb-16 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
-        <motion.h2 animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4 }} className="text-6xl font-black italic uppercase tracking-tighter text-white mb-4" style={{ color: track.color }}>
+        <motion.h2 animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4 }} className="text-3xl md:text-6xl font-black italic uppercase tracking-tighter text-white mb-4" style={{ color: track.color }}>
           {t(track.name_ar, track.name)}
         </motion.h2>
         <p className="text-white/40 font-bold uppercase tracking-[0.3em] text-xs">
@@ -34,7 +34,7 @@ export const Dashboard = ({ onSelectSection }) => {
           <motion.div
             key={i}
             whileHover={{ y: -10, scale: 1.02 }}
-            className={`p-8 rounded-[3rem] ${cardBg} cursor-pointer relative overflow-hidden group h-[380px] flex flex-col justify-between`}
+            className={`p-4 md:p-8 rounded-[1.5rem] md:rounded-[3rem] ${cardBg} cursor-pointer relative overflow-hidden group h-[380px] flex flex-col justify-between`}
           onClick={() => {
   // بدلاً من إرسال القسم كما هو، تأكدي أننا نرسل العنوان الأصلي فقط
   onSelectSection({
@@ -52,7 +52,7 @@ export const Dashboard = ({ onSelectSection }) => {
               <div className="p-5 rounded-2xl bg-white/5 text-white/20 transition-colors" style={{ color: section.isHovered ? track.color : undefined }}>
                 <Zap size={24} />
               </div>
-              <div className="text-4xl font-black italic text-white/5 group-hover:text-white/10 transition-colors">0{i + 1}</div>
+              <div className="text-2xl md:text-4xl font-black italic text-white/5 group-hover:text-white/10 transition-colors">0{i + 1}</div>
             </div>
             <div className={language === 'ar' ? 'text-right' : 'text-left'}>
               <h3 className="text-2xl font-black italic text-white mb-3 uppercase tracking-tighter">

@@ -159,7 +159,7 @@ export const Leaderboard = () => {
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 mb-3">
           <Crown className="text-amber-400" size={28} />
-          <h1 className="text-4xl font-black tracking-tight text-white">
+          <h1 className="text-2xl md:text-4xl font-black tracking-tight text-white">
             {t('المتصدّرون', 'LEADERBOARD')}
           </h1>
         </div>

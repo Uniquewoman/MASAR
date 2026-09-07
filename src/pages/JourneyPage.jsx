@@ -98,13 +98,13 @@ export const JourneyPage = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-      className="pt-32 pb-20 px-6 max-w-6xl mx-auto"
+      className="pt-24 md:pt-32 pb-20 px-6 max-w-6xl mx-auto"
       dir={isArabic ? 'rtl' : 'ltr'}
     >
       {/* ─────────── العنوان ─────────── */}
       <div className={`mb-12 ${isArabic ? 'text-right' : 'text-left'}`}>
         <h2
-          className="text-5xl font-black italic uppercase tracking-tighter mb-3"
+          className="text-2xl md:text-5xl font-black italic uppercase tracking-tighter mb-3"
           style={{ color }}
         >
           {t(`رحلتي في ${track.name_ar}`, `MY ${track.name}`)}
@@ -332,7 +332,7 @@ export const JourneyPage = () => {
       {/* ─────────── رسالة الختام ─────────── */}
       <motion.div
         whileHover={{ y: -4 }}
-        className={`${card} p-8 mt-14 relative overflow-hidden`}
+        className={`${card} p-4 md:p-8 mt-14 relative overflow-hidden`}
       >
         <div className="absolute inset-0 opacity-20 blur-3xl" style={{ backgroundColor: color }} />
         <div className="relative flex flex-col md:flex-row items-center gap-6">
