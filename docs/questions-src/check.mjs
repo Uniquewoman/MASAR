@@ -37,6 +37,7 @@ for (let off = 0; ; off += 1000) {
     + `?select=question&track_id=eq.${track}&is_active=eq.true`
     + `&order=id&limit=1000&offset=${off}`;
   const page = await (await fetch(url, { headers: H })).json();
+  if (!Array.isArray(page)) break;          // خطأ صلاحية أو شبكة
   page.forEach(x => existing.add(x.question));
   if (page.length < 1000) break;
 }
@@ -56,6 +57,25 @@ for (const f of fs.readdirSync(here).filter(f => f.endsWith('.mjs') && !['check.
   mod.questions.forEach(q => { if (!existing.has(q.question)) { existing.add(q.question); pending++; } });
 }
 if (pending) console.log(`+ ${pending} عنواناً من دفعات معلّقة في المسار نفسه`);
+
+// ─────────── لقطة محلية حين يتعذّر جلب البنك الحيّ ───────────
+// منذ حصر قراءة `questions` على المسجّلين (٧ سبتمبر ٢٠٢٦) لم يعد المفتاح
+// العام يقرأ البنك، فصار الفاحص يقارن بصفر عنوان **ويعلن النجاح** — ومرّ
+// بذلك تكرار حقيقي بين S6 L1 وL3 لم يكتشفه إلا استعلام SQL بعد الإدخال.
+// اللقطة تُحدَّث بـ:
+//   select json_agg(question) from public.questions
+//   where track_id='CyberSecurity' and is_active;
+const snapPath = path.join(here, `.titles.${track}.json`);
+let liveCount = existing.size - pending;
+if (liveCount === 0 && fs.existsSync(snapPath)) {
+  let added = 0;
+  for (const q of JSON.parse(fs.readFileSync(snapPath, 'utf8'))) {
+    if (!existing.has(q)) { existing.add(q); added++; }
+  }
+  liveCount = added;
+  console.log(`+ ${added} عنواناً من اللقطة المحلية (تعذّر جلب البنك الحيّ)`);
+}
+const LIVE_OK = liveCount > 0;
 
 const fail = [];
 const warn = [];
@@ -140,7 +160,11 @@ const titles = questions.map(q => q.question);
 const dupInBatch = titles.filter((t, i) => titles.indexOf(t) !== i);
 dupInBatch.length ? bad(`تكرار داخلي: ${[...new Set(dupInBatch)].join(' · ')}`) : ok('صفر تكرار داخل الدفعة');
 const dupTrack = titles.filter(t => existing.has(t));
-dupTrack.length ? bad(`تكرار مع المسار: ${dupTrack.join(' · ')}`) : ok(`صفر تكرار مع ${existing.size} سؤالاً قائماً`);
+dupTrack.length
+  ? bad(`تكرار مع المسار: ${dupTrack.join(' · ')}`)
+  : LIVE_OK
+    ? ok(`صفر تكرار مع ${existing.size} سؤالاً قائماً`)
+    : bad('فحص التكرار عبر المسار لم يُنفَّذ — لا بنك حيّ ولا لقطة محلية');
 
 console.log('\n═══ البنية ═══');
 const noExp = questions.filter(q => !q.explanation || !q.explanation.trim());
