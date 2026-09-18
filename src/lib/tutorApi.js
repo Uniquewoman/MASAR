@@ -2,9 +2,10 @@ import { supabase } from '../supabaseClient';
 
 // يرسل رسالة للمرشد (دالة Edge `tutor`) بجلسة المستخدم الحالية.
 // السياق يخبر المرشد أين المستخدم الآن (المسار/القسم/المستوى/اللغة).
-export async function askTutor(message, context) {
+// conversationId فارغ = محادثة جديدة، والخادم يرجّع رقمها.
+export async function askTutor(message, context, conversationId = null) {
   const { data, error } = await supabase.functions.invoke('tutor', {
-    body: { message, context },
+    body: { message, context, conversation_id: conversationId },
   });
   if (error) {
     // supabase-js يخفي جسم الرد عند الأخطاء غير 2xx — نحاول قراءته لعرض رسالة مفهومة
@@ -15,16 +16,36 @@ export async function askTutor(message, context) {
   return data;
 }
 
-// سجل المحادثة السابق (RLS يضمن أنه للمستخدم نفسه)
-export async function loadTutorHistory(limit = 30) {
+// ─── المحادثات (RLS يضمن أنها للمستخدم نفسه) ───
+export async function listConversations() {
+  const { data } = await supabase
+    .from('tutor_conversations')
+    .select('id,title,updated_at')
+    .order('updated_at', { ascending: false });
+  return data || [];
+}
+
+export async function loadConversation(conversationId, limit = 200) {
   const { data } = await supabase
     .from('tutor_messages')
     .select('role,content,created_at')
-    .order('created_at', { ascending: false })
+    .eq('conversation_id', conversationId)
+    .order('created_at', { ascending: true })
     .limit(limit);
-  return (data || []).reverse();
+  return data || [];
 }
 
+export async function renameConversation(id, title) {
+  const { error } = await supabase.from('tutor_conversations').update({ title }).eq('id', id);
+  return !error;
+}
+
+export async function deleteConversation(id) {
+  const { error } = await supabase.from('tutor_conversations').delete().eq('id', id);
+  return !error;
+}
+
+// ─── الخطط ───
 export async function loadLatestPlan() {
   const { data } = await supabase
     .from('study_plans')

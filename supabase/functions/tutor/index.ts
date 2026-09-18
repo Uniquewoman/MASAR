@@ -148,7 +148,7 @@ Deno.serve(async (req) => {
   if (authErr || !authUser) return json({ error: 'unauthorized' }, 401);
   const userId = authUser.id;
 
-  let body: { message?: string; context?: Ctx };
+  let body: { message?: string; context?: Ctx; conversation_id?: number | null };
   try { body = await req.json(); } catch { return json({ error: 'bad json' }, 400); }
   const message = (body.message ?? '').toString().trim().slice(0, 2000);
   if (!message) return json({ error: 'empty message' }, 400);
@@ -160,9 +160,21 @@ Deno.serve(async (req) => {
   const { count } = await admin.from('tutor_messages').select('*', { count: 'exact', head: true }).eq('user_id', userId).eq('role', 'user').gte('created_at', since.toISOString());
   if ((count ?? 0) >= DAILY_LIMIT) return json({ error: 'limit', reply: lang === 'en' ? `You've reached today's limit (${DAILY_LIMIT} messages). See you tomorrow!` : `وصلت حد اليوم (${DAILY_LIMIT} رسالة). نكمل بكرة!` }, 429);
 
-  // آخر ١٢ رسالة للسياق
+  // المحادثة: موجودة (ونتحقق أنها للمستخدم نفسه) أو جديدة بعنوان من أول رسالة
+  let convId = Number(body.conversation_id) || null;
+  if (convId) {
+    const { data: c } = await admin.from('tutor_conversations').select('id').eq('id', convId).eq('user_id', userId).maybeSingle();
+    if (!c) convId = null;
+  }
+  if (!convId) {
+    const title = message.replace(/\s+/g, ' ').slice(0, 48) + (message.length > 48 ? '…' : '');
+    const { data: c } = await admin.from('tutor_conversations').insert({ user_id: userId, title }).select('id').single();
+    convId = c!.id;
+  }
+
+  // آخر ٢٠ رسالة من هذي المحادثة للسياق
   const [{ data: hist }, { data: profile }] = await Promise.all([
-    admin.from('tutor_messages').select('role,content').eq('user_id', userId).order('created_at', { ascending: false }).limit(12),
+    admin.from('tutor_messages').select('role,content').eq('conversation_id', convId).order('created_at', { ascending: false }).limit(20),
     admin.from('profiles').select('full_name,username').eq('id', userId).maybeSingle(),
   ]);
   const name = profile?.full_name || profile?.username || null;
@@ -173,7 +185,7 @@ Deno.serve(async (req) => {
     { role: 'user', content: message },
   ];
 
-  await admin.from('tutor_messages').insert({ user_id: userId, role: 'user', content: message, context: ctx });
+  await admin.from('tutor_messages').insert({ user_id: userId, conversation_id: convId, role: 'user', content: message, context: ctx });
 
   const toolsUsed: string[] = [];
   let reply = '';
@@ -209,6 +221,7 @@ Deno.serve(async (req) => {
   }
   if (!reply) reply = lang === 'en' ? 'I could not form an answer — try rephrasing.' : 'ما قدرت أكوّن إجابة — جرّب صياغة ثانية.';
 
-  await admin.from('tutor_messages').insert({ user_id: userId, role: 'assistant', content: reply, context: { tools: toolsUsed } });
-  return json({ reply, planSaved: toolsUsed.includes('save_study_plan') });
+  await admin.from('tutor_messages').insert({ user_id: userId, conversation_id: convId, role: 'assistant', content: reply, context: { tools: toolsUsed } });
+  await admin.from('tutor_conversations').update({ updated_at: new Date().toISOString() }).eq('id', convId);
+  return json({ reply, conversation_id: convId, planSaved: toolsUsed.includes('save_study_plan') });
 });

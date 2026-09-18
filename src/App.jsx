@@ -6,6 +6,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from './context/AppContext';
 import TutorWidget from './components/TutorWidget';
+import TutorPage from './pages/TutorPage';
 
 // Import New Pages
 import { supabase } from './supabaseClient'; // تأكدي من المسار
@@ -185,6 +186,7 @@ const startLoading = async (pathId) => {
               <SidebarCard icon={<Database />} title={t('بنك الأسئلة', 'QUESTION BANK')} color={activePath?.color} onClick={() => { setView('banks'); setIsSidebarOpen(false); }} />
               <div className="my-4 h-px bg-white/5 w-full" />
               <SidebarCard icon={<Trophy />} title={t('التحديات ', '   CHALLENGES')} color={activePath?.color} onClick={() => { setView('challenges'); setIsSidebarOpen(false); }} />
+              <SidebarCard icon={<Sparkles />} title={t('المرشد', 'TUTOR')} color={activePath?.color} onClick={() => { setView('tutor'); setIsSidebarOpen(false); }} />
               <SidebarCard icon={<Crown />} title={t('المتصدّرون', 'LEADERBOARD')} color={activePath?.color} onClick={() => { setView('leaderboard'); setIsSidebarOpen(false); }} />
 
               <SidebarCard icon={<Trophy />} title={t(' رحلتي ', '   My Journey')} color={activePath?.color} onClick={() => { setView('journey'); setIsSidebarOpen(false); }} />
@@ -250,16 +252,16 @@ const startLoading = async (pathId) => {
           {view === 'leaderboard' && <Leaderboard key="leaderboard" />}
           {view === "journey" && <JourneyPage key="journey" />}
           {view === 'settings' && <SettingsPage key="settings" />}
+          {view === 'tutor' && <TutorPage key="tutor" context={{
+            view,
+            track_id: currentTrack?.id,
+            section_id: activeSection?.title,
+            section_index: activeSection ? currentTrack?.sections?.findIndex(s => s.title === activeSection.title || s.title === `${currentTrack.name} ${activeSection.title}`) : undefined,
+          }} />}
         </AnimatePresence>
       </main>
 
-      {/* المرشد — يعرف أين المستخدم الآن ليرد بسياق الصفحة */}
-      <TutorWidget context={{
-        view,
-        track_id: currentTrack?.id,
-        section_id: activeSection?.title,
-        section_index: activeSection ? currentTrack?.sections?.findIndex(s => s.title === activeSection.title || s.title === `${currentTrack.name} ${activeSection.title}`) : undefined,
-      }} />
+      <TutorWidget view={view} onOpen={() => setView('tutor')} />
 
       {showLogoutModal && (
         <div className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center">
