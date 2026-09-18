@@ -1,4 +1,6 @@
-#  MASAR | منصة مسار التعليمية
+# MASAR | منصة مسار التعليمية
+
+Live: https://masar.auniquedeveloper.com
 
 Masar is a bilingual (Arabic/English, RTL-first) web learning platform. I built it for myself first, and for anyone who wants to learn without losing interest halfway through: the whole journey is structured like a game, so you always know where you are and what comes next.
 
@@ -22,7 +24,7 @@ It's a dark-themed, card-driven UI covering five learning tracks: **Programming,
 ## Tech stack
 
 - React 19 + Vite 7
-- Tailwind CSS 4
+- Tailwind CSS 3.4
 - Framer Motion (animations) + Lucide (icons)
 - Supabase (Postgres + Auth) as the live backend
 - React Context for global state (auth, track selection, language, theme, gamification) — no React Router; navigation is a local view-state switch in `App.jsx`
@@ -61,18 +63,18 @@ npm run seed:questions   # seed script for the question bank
 ## Project structure
 
 ```
-tailwind.config.js       # إعدادات Tailwind (بالجذر)
-postcss.config.js        # إعدادات PostCSS (بالجذر)
-.env / .env.example      # مفاتيح Supabase
+tailwind.config.js       # Tailwind config (project root)
+postcss.config.js        # PostCSS config (project root)
+.env / .env.example      # Supabase keys
 src/
 ├── App.jsx              # root component + view-state navigation (landing/dashboard/lessons/...)
-├── supabaseClient.js     # Supabase client (auth + data) — يقرأ من .env
+├── supabaseClient.js     # Supabase client (auth + data), reads from .env
 ├── context/
 │   └── AppContext.jsx    # auth, track selection, language (i18n), theme, XP/levels, progress
 ├── data/
 │   ├── courses.js        # bilingual lesson/document content per track & section
 │   ├── questions.js      # question bank per track/section
-│   ├── bigDatabase.js    # أسئلة السايبر (multiple-choice / true-false / fix-code / matching)
+│   ├── bigDatabase.js    # cyber security questions (multiple-choice / true-false / fix-code / matching)
 │   └── questionSeeder.js # seeds the question bank (npm run seed:questions)
 └── pages/
     ├── Auth.jsx
@@ -95,7 +97,6 @@ SQL migrations live in [`sql/`](sql/). The curriculum plan — which topics belo
 
 - Auth and progress are backed by Supabase (Postgres + Auth) — no longer purely client-side.
 - The `backend/` folder is a separate, not-yet-wired-in Express + Prisma API (JWT auth, SQLite dev DB) — an alternate backend design that the frontend currently does **not** call.
-- `my-codex-app/` is an earlier standalone scaffold of this project kept in the repo for reference; it is not part of the active app.
 
 ---
 

@@ -2,6 +2,9 @@
   "name": "masar",
   "private": true,
   "version": "0.0.0",
+  "description": "Bilingual gamified learning platform: five tech tracks, level-based practice, and a question bank on Supabase.",
+  "author": "Rawan Alshammari",
+  "homepage": "https://masar.auniquedeveloper.com",
   "type": "module",
   "scripts": {
     "dev": "vite",
