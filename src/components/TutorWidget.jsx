@@ -13,13 +13,13 @@ export default function TutorWidget({ view, onOpen }) {
     <motion.button
       whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}
       onClick={onOpen}
-      aria-label={t('المرشد', 'Tutor')}
-      title={t('المرشد', 'Tutor')}
+      aria-label={t('مساعدي', 'My Assistant')}
+      title={t('مساعدي', 'My Assistant')}
       className="fixed bottom-5 end-5 z-[90] h-14 pl-5 pr-4 rounded-full flex items-center gap-2 shadow-2xl border border-white/20 text-black font-black text-sm"
       style={{ backgroundColor: color, boxShadow: `0 0 30px ${color}66` }}
     >
       <Sparkles size={20} />
-      <span className="hidden sm:inline">{t('المرشد', 'Tutor')}</span>
+      <span className="hidden sm:inline">{t('مساعدي', 'Assistant')}</span>
     </motion.button>
   );
 }

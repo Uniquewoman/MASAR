@@ -29,7 +29,7 @@ export default function StudyPlanCard() {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-black" style={{ backgroundColor: color }}><CalendarCheck size={18} /></div>
           <div>
-            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 flex items-center gap-1"><Sparkles size={10} />{t('خطتك من المرشد', 'YOUR TUTOR\'S PLAN')}</div>
+            <div className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 flex items-center gap-1"><Sparkles size={10} />{t('خطتك من مساعدي', 'MY ASSISTANT\'S PLAN')}</div>
             <h3 className="font-black text-lg">{plan.title}</h3>
           </div>
         </div>

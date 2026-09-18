@@ -186,7 +186,7 @@ const startLoading = async (pathId) => {
               <SidebarCard icon={<Database />} title={t('بنك الأسئلة', 'QUESTION BANK')} color={activePath?.color} onClick={() => { setView('banks'); setIsSidebarOpen(false); }} />
               <div className="my-4 h-px bg-white/5 w-full" />
               <SidebarCard icon={<Trophy />} title={t('التحديات ', '   CHALLENGES')} color={activePath?.color} onClick={() => { setView('challenges'); setIsSidebarOpen(false); }} />
-              <SidebarCard icon={<Sparkles />} title={t('المرشد', 'TUTOR')} color={activePath?.color} onClick={() => { setView('tutor'); setIsSidebarOpen(false); }} />
+              <SidebarCard icon={<Sparkles />} title={t('مساعدي', 'MY ASSISTANT')} color={activePath?.color} onClick={() => { setView('tutor'); setIsSidebarOpen(false); }} />
               <SidebarCard icon={<Crown />} title={t('المتصدّرون', 'LEADERBOARD')} color={activePath?.color} onClick={() => { setView('leaderboard'); setIsSidebarOpen(false); }} />
 
               <SidebarCard icon={<Trophy />} title={t(' رحلتي ', '   My Journey')} color={activePath?.color} onClick={() => { setView('journey'); setIsSidebarOpen(false); }} />

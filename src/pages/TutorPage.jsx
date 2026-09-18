@@ -130,7 +130,7 @@ export default function TutorPage({ context }) {
         <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-2xl flex items-center justify-center text-black" style={{ backgroundColor: color, boxShadow: `0 0 30px ${color}55` }}><Sparkles size={20} /></div>
           <div>
-            <h2 className="text-2xl md:text-3xl font-black italic tracking-tighter">{t('المرشد', 'YOUR TUTOR')}</h2>
+            <h2 className="text-2xl md:text-3xl font-black italic tracking-tighter">{t('مساعدي', 'MY ASSISTANT')}</h2>
             <p className="text-[10px] text-white/40 font-bold uppercase tracking-[0.3em]">{t('يعرف تقدّمك · يشرح · يمرّنك · يخطط لك', 'Knows your progress · explains · quizzes · plans')}</p>
           </div>
         </div>
@@ -155,7 +155,7 @@ export default function TutorPage({ context }) {
             {msgs.length === 0 && !busy && (
               <div className="h-full flex flex-col items-center justify-center text-center text-white/50 gap-3 max-w-md mx-auto">
                 <Sparkles size={36} style={{ color }} />
-                <p className="font-black text-lg text-white/80">{t('أهلاً! أنا مرشدك في مسار.', "Hi! I'm your Masar tutor.")}</p>
+                <p className="font-black text-lg text-white/80">{t('أهلاً! أنا مساعدك في مسار.', "Hi! I'm your Masar assistant.")}</p>
                 <p className="text-xs leading-relaxed">{t('أعرف تقدّمك ونقاط ضعفك، أشرح أي درس بأكثر من طريقة، أمرّنك، وأجهّز لك خطة أسبوعية. ابدأ بسؤال أو اختر من الأزرار تحت.', 'I know your progress and weak spots, explain any lesson in more than one way, quiz you, and build your weekly plan. Ask anything or pick a button below.')}</p>
               </div>
             )}
