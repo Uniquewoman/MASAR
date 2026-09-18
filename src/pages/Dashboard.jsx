@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useAppContext } from '../context/AppContext';
 import { ArrowRight, Code, Cpu, Shield, Globe, Landmark, Zap } from 'lucide-react';
+import StudyPlanCard from '../components/StudyPlanCard';
 
 export const Dashboard = ({ onSelectSection }) => {
   const { currentTrack, language, t, updateProfileProgress } = useAppContext();
@@ -28,6 +29,8 @@ export const Dashboard = ({ onSelectSection }) => {
           {t('أقسام المسار التعليمي', 'LEARNING TRACK SECTIONS')}
         </p>
       </div>
+
+      <StudyPlanCard />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {track.sections.map((section, i) => (

@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppContext } from './context/AppContext';
+import TutorWidget from './components/TutorWidget';
 
 // Import New Pages
 import { supabase } from './supabaseClient'; // تأكدي من المسار
@@ -251,6 +252,14 @@ const startLoading = async (pathId) => {
           {view === 'settings' && <SettingsPage key="settings" />}
         </AnimatePresence>
       </main>
+
+      {/* المرشد — يعرف أين المستخدم الآن ليرد بسياق الصفحة */}
+      <TutorWidget context={{
+        view,
+        track_id: currentTrack?.id,
+        section_id: activeSection?.title,
+        section_index: activeSection ? currentTrack?.sections?.findIndex(s => s.title === activeSection.title || s.title === `${currentTrack.name} ${activeSection.title}`) : undefined,
+      }} />
 
       {showLogoutModal && (
         <div className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center">

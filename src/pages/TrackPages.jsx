@@ -295,11 +295,13 @@ const loadQuestions = async (level) => {
 };
 
 // تسجيل أن اليوزر شاف السؤال، حتى لا يتكرر عليه قبل ما تخلص أسئلة المستوى
-const recordSeen = async (question) => {
+// ومعه صحة الإجابة وزمنها — هذا ما يبني عليه «المرشد» نقاط القوة والضعف
+const recordSeen = async (question, correct = null) => {
   if (!question) return;
   try {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
+    const limit = question.time_limit || 60;
     await supabase.from("user_question_history").insert({
       user_id: user.id,
       question_id: question.id,
@@ -307,6 +309,8 @@ const recordSeen = async (question) => {
       section_id: section.title,
       level: Number(selectedLevel),
       cycle,
+      is_correct: correct,
+      answer_ms: correct === null ? null : Math.max(0, limit - timeLeft) * 1000,
     });
   } catch (e) {
     console.warn("⚠️ تعذّر تسجيل السؤال في السجل:", e?.message);
@@ -406,7 +410,7 @@ const endDrag = (e) => {
 function scoreAnswer(correct) {
   setIsCorrect(correct);
 
-  recordSeen(currentQ);
+  recordSeen(currentQ, correct);
 
   if (correct) {
     const newCorrect = correctCount + 1;
@@ -531,6 +535,7 @@ setHint(null);
 };
 const startLevel = (lvl) => {
   setSelectedLevel(lvl);
+  window.dispatchEvent(new CustomEvent('tutorLevel', { detail: lvl }));
   setView('playing');
 
   setMistakes(0);
