@@ -2,7 +2,7 @@
 
 Live: https://masar.auniquedeveloper.com
 
-Masar is a bilingual (Arabic/English, RTL-first) web learning platform. I built it for myself first, and for anyone who wants to learn without losing interest halfway through: the whole journey is structured like a game, so you always know where you are and what comes next.
+Masar is a bilingual (Arabic/English, RTL-first) web learning platform for anyone who wants to learn tech without getting bored — learning as a game and a journey: levels to unlock, XP to earn, achievements to collect, and a leaderboard to climb. One place to study, practice, and watch your progress grow across tracks.
 
 It's a dark-themed, card-driven UI covering five learning tracks: **Programming, Artificial Intelligence, Cyber Security, Networking, and FinTech**, each broken into sections with lessons, a question bank, and level-based practice.
 
