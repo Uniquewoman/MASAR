@@ -206,7 +206,7 @@ const loadQuestions = async (level) => {
   const currentTrackId = track.id; 
   const currentSectionId = section.title; 
 
-  console.log("🔍 جاري جلب الأسئلة بناءً على:", { 
+  console.log("جاري جلب الأسئلة بناءً على:", { 
     Track: currentTrackId, 
     Section: currentSectionId, 
     Level: level 
@@ -223,13 +223,13 @@ const loadQuestions = async (level) => {
     .order("question_order", { ascending: true });
 
   if (error) {
-    console.error("❌ خطأ Supabase:", error.message);
+    console.error("[missing] خطأ Supabase:", error.message);
     setLoading(false);
     return;
   }
 
   if (!pool || pool.length === 0) {
-    console.warn("⚠️ لا توجد أسئلة بهذا المسار والقسم والمستوى:", { currentTrackId, currentSectionId, level });
+    console.warn("Note: لا توجد أسئلة بهذا المسار والقسم والمستوى:", { currentTrackId, currentSectionId, level });
     alert(`عذراً، لم يتم العثور على أسئلة للمسار: ${currentTrackId}، القسم: ${currentSectionId}، المستوى: ${level}`);
     setLoading(false);
     return;
@@ -255,7 +255,7 @@ const loadQuestions = async (level) => {
 
     if (histErr) {
       // الجدول غير موجود بعد — نكمل بدون تتبّع بدل ما ينكسر المستوى
-      console.warn("⚠️ تعذّر قراءة سجل الأسئلة، سيتم السحب بدون تتبّع:", histErr.message);
+      console.warn("Note: تعذّر قراءة سجل الأسئلة، سيتم السحب بدون تتبّع:", histErr.message);
     } else if (history?.length) {
       activeCycle = Math.max(...history.map(h => h.cycle));
       seenIds = history.filter(h => h.cycle === activeCycle).map(h => h.question_id);
@@ -269,7 +269,7 @@ const loadQuestions = async (level) => {
   if (remaining.length < need) {
     activeCycle += 1;
     remaining = [...pool];
-    console.log(`🔄 انتهت أسئلة المستوى — بدء الدورة رقم ${activeCycle}`);
+    console.log(`انتهت أسئلة المستوى — بدء الدورة رقم ${activeCycle}`);
   }
   setCycle(activeCycle);
 
@@ -284,7 +284,7 @@ const loadQuestions = async (level) => {
   // 8. توزيع يضمن ألا يتجمّع نفس الموضوع أو نفس النوع في أسئلة متتالية
   //    (الخلط العشوائي وحده قد يُخرج عدة أسئلة من نفس الموضوع وراء بعض)
   const session = spreadOut(shuffled.slice(0, PULL_SIZE));
-  console.log(`✅ بنك المستوى ${pool.length} سؤال · متبقٍ ${remaining.length} · سُحب ${session.length} · المطلوب ${need} صحيحة · دورة ${activeCycle}`);
+  console.log(`[done] بنك المستوى ${pool.length} سؤال · متبقٍ ${remaining.length} · سُحب ${session.length} · المطلوب ${need} صحيحة · دورة ${activeCycle}`);
 
   setSessionQuestions(session);
   setCurrentQ(session[0]);
@@ -313,7 +313,7 @@ const recordSeen = async (question, correct = null) => {
       answer_ms: correct === null ? null : Math.max(0, limit - timeLeft) * 1000,
     });
   } catch (e) {
-    console.warn("⚠️ تعذّر تسجيل السؤال في السجل:", e?.message);
+    console.warn("Note: تعذّر تسجيل السؤال في السجل:", e?.message);
   }
 };
 // تعريف دالة (مرفوع) وليس ثابتاً، لأن مؤقّت السؤال أعلاه يستدعيها قبل هذا السطر

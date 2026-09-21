@@ -55,4 +55,4 @@ commit;
 
 fs.mkdirSync(out.replace(/[/\\][^/\\]+$/, ''), { recursive: true });
 fs.writeFileSync(out, sql, 'utf8');
-console.log(`✓ ${out} — ${questions.length} سؤالاً · ${(sql.length / 1024).toFixed(0)} كيلوبايت`);
+console.log(`OK ${out} — ${questions.length} سؤالاً · ${(sql.length / 1024).toFixed(0)} كيلوبايت`);

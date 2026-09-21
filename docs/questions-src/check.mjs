@@ -79,8 +79,8 @@ const LIVE_OK = liveCount > 0;
 
 const fail = [];
 const warn = [];
-const ok = (m) => console.log('  ✓ ' + m);
-const bad = (m) => { fail.push(m); console.log('  ✗ ' + m); };
+const ok = (m) => console.log('  OK ' + m);
+const bad = (m) => { fail.push(m); console.log('  FAIL ' + m); };
 
 console.log('\n═══ عدد الأسئلة ═══');
 questions.length === 90 ? ok('٩٠ سؤالاً') : bad(`العدد ${questions.length} لا ٩٠`);
@@ -140,7 +140,7 @@ mc.forEach(q => {
     }
   });
 });
-odd ? console.log(`  ⚠ ${odd} إنذار — تُقرأ يدوياً`) : ok('صفر حالة');
+odd ? console.log(`  WARN ${odd} إنذار — تُقرأ يدوياً`) : ok('صفر حالة');
 
 console.log('\n═══ كلمة من السؤال حصرية بالصحيحة ═══');
 let leak = 0;
@@ -153,7 +153,7 @@ mc.forEach(q => {
     }
   });
 });
-leak ? console.log(`  ⚠ ${leak} إنذار — تُقرأ يدوياً`) : ok('صفر حالة');
+leak ? console.log(`  WARN ${leak} إنذار — تُقرأ يدوياً`) : ok('صفر حالة');
 
 console.log('\n═══ التكرار (داخل الدفعة وعبر المسار) ═══');
 const titles = questions.map(q => q.question);
@@ -206,8 +206,8 @@ Object.keys(topics).length <= 3 ? ok(`${Object.keys(topics).length} مواضيع
 
 console.log('\n' + '═'.repeat(52));
 if (warn.length) {
-  console.log(`\n⚠ ${warn.length} إنذار يحتاج قراءة يدوية:`);
+  console.log(`\nWARN ${warn.length} إنذار يحتاج قراءة يدوية:`);
   warn.forEach(w => console.log('   - ' + w));
 }
-console.log(fail.length ? `\n✗ رسب ${fail.length} فحصاً` : '\n✓ اجتازت كل الفحوصات الآلية');
+console.log(fail.length ? `\nFAIL رسب ${fail.length} فحصاً` : '\nOK اجتازت كل الفحوصات الآلية');
 process.exit(fail.length ? 1 : 0);

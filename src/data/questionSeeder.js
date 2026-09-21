@@ -2183,9 +2183,9 @@ is_active:true
 
 
     if (error) {
-        console.log("❌ خطأ:", error);
+        console.log("[missing] خطأ:", error);
     } else {
-        console.log("✅ تمت الإضافة:", data);
+        console.log("[done] تمت الإضافة:", data);
     }
 
 }
