@@ -18,6 +18,7 @@ It's a dark-themed, card-driven UI covering five learning tracks: **Programming,
 - **Journey dashboard** — personal progress, achievements, and activity log
 - **Profile & settings** — theme, language switcher, notifications/security toggles, logout
 - **Auth** — Supabase-backed sign up / sign in / password reset
+- **Tutor** — an in-app assistant scoped to the platform's own content. It reads the learner's progress, explains any covered topic in a fixed structure (what it is, why it matters, an example, common mistakes, a self-check, where to practice), and prepares a study plan. Conversations are saved and can be renamed or deleted. Runs as a Supabase Edge Function; the model key never reaches the browser.
 
 ---
 
@@ -27,6 +28,7 @@ It's a dark-themed, card-driven UI covering five learning tracks: **Programming,
 - Tailwind CSS 3.4
 - Framer Motion (animations) + Lucide (icons)
 - Supabase (Postgres + Auth) as the live backend
+- Supabase Edge Functions (Deno) for the tutor, calling OpenAI server-side
 - React Context for global state (auth, track selection, language, theme, gamification) — no React Router; navigation is a local view-state switch in `App.jsx`
 
 ---
